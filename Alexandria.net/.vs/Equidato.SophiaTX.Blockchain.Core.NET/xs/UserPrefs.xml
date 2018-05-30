@@ -1,0 +1,18 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Equidato.SophiaTX.Blockchain.Core.NET/API/SphTxApi.cs">
+    <Files>
+      <File FileName="Equidato.SophiaTX.Blockchain.Core.NET/API/SphTxJsonRpc.cs" Line="1" Column="1" />
+      <File FileName="Equidato.SophiaTX.Blockchain.Core.NET/Core/SophiaClient.cs" Line="13" Column="29" />
+      <File FileName="Equidato.SophiaTX.Blockchain.Core.NET/Core/Daemon.cs" Line="9" Column="22" />
+      <File FileName="Equidato.SophiaTX.Blockchain.Core.NET/Core/Wallet.cs" Line="15" Column="31" />
+      <File FileName="Equidato.SophiaTX.Blockchain.Core.NET/Core/Methods/Account.cs" Line="192" Column="14" />
+      <File FileName="Equidato.SophiaTX.Blockchain.Core.NET/API/SphTxApi.cs" Line="11" Column="37" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>

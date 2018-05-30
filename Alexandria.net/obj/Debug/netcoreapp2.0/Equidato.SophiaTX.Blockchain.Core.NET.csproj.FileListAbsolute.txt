@@ -1,0 +1,16 @@
+/Users/martynharler/RiderProjects/Equidato.SophiaTX.Blockchain.Core.NET/Equidato.SophiaTX.Blockchain.Core.NET/bin/Debug/netcoreapp2.0/Equidato.SophiaTX.Blockchain.Core.NET.deps.json
+/Users/martynharler/RiderProjects/Equidato.SophiaTX.Blockchain.Core.NET/Equidato.SophiaTX.Blockchain.Core.NET/bin/Debug/netcoreapp2.0/Equidato.SophiaTX.Blockchain.Core.NET.dll
+/Users/martynharler/RiderProjects/Equidato.SophiaTX.Blockchain.Core.NET/Equidato.SophiaTX.Blockchain.Core.NET/bin/Debug/netcoreapp2.0/Equidato.SophiaTX.Blockchain.Core.NET.pdb
+/Users/martynharler/RiderProjects/Equidato.SophiaTX.Blockchain.Core.NET/Equidato.SophiaTX.Blockchain.Core.NET/obj/Debug/netcoreapp2.0/Equidato.SophiaTX.Blockchain.Core.NET.csproj.CoreCompileInputs.cache
+/Users/martynharler/RiderProjects/Equidato.SophiaTX.Blockchain.Core.NET/Equidato.SophiaTX.Blockchain.Core.NET/obj/Debug/netcoreapp2.0/Equidato.SophiaTX.Blockchain.Core.NET.AssemblyInfoInputs.cache
+/Users/martynharler/RiderProjects/Equidato.SophiaTX.Blockchain.Core.NET/Equidato.SophiaTX.Blockchain.Core.NET/obj/Debug/netcoreapp2.0/Equidato.SophiaTX.Blockchain.Core.NET.AssemblyInfo.cs
+/Users/martynharler/RiderProjects/Equidato.SophiaTX.Blockchain.Core.NET/Equidato.SophiaTX.Blockchain.Core.NET/obj/Debug/netcoreapp2.0/Equidato.SophiaTX.Blockchain.Core.NET.dll
+/Users/martynharler/RiderProjects/Equidato.SophiaTX.Blockchain.Core.NET/Equidato.SophiaTX.Blockchain.Core.NET/obj/Debug/netcoreapp2.0/Equidato.SophiaTX.Blockchain.Core.NET.pdb
+/Users/martynharler/GitHub/Alexandria/Equidato.SophiaTX.Blockchain.Core.NET/Equidato.SophiaTX.Blockchain.Core.NET/obj/Debug/netcoreapp2.0/Equidato.SophiaTX.Blockchain.Core.NET.csproj.CoreCompileInputs.cache
+/Users/martynharler/GitHub/Alexandria/Equidato.SophiaTX.Blockchain.Core.NET/Equidato.SophiaTX.Blockchain.Core.NET/obj/Debug/netcoreapp2.0/Equidato.SophiaTX.Blockchain.Core.NET.AssemblyInfoInputs.cache
+/Users/martynharler/GitHub/Alexandria/Equidato.SophiaTX.Blockchain.Core.NET/Equidato.SophiaTX.Blockchain.Core.NET/obj/Debug/netcoreapp2.0/Equidato.SophiaTX.Blockchain.Core.NET.AssemblyInfo.cs
+/Users/martynharler/GitHub/Alexandria/Equidato.SophiaTX.Blockchain.Core.NET/Equidato.SophiaTX.Blockchain.Core.NET/obj/Debug/netcoreapp2.0/Equidato.SophiaTX.Blockchain.Core.NET.dll
+/Users/martynharler/GitHub/Alexandria/Equidato.SophiaTX.Blockchain.Core.NET/Equidato.SophiaTX.Blockchain.Core.NET/obj/Debug/netcoreapp2.0/Equidato.SophiaTX.Blockchain.Core.NET.pdb
+/Users/martynharler/GitHub/Alexandria/Equidato.SophiaTX.Blockchain.Core.NET/Equidato.SophiaTX.Blockchain.Core.NET/bin/Debug/netcoreapp2.0/Equidato.SophiaTX.Blockchain.Core.NET.deps.json
+/Users/martynharler/GitHub/Alexandria/Equidato.SophiaTX.Blockchain.Core.NET/Equidato.SophiaTX.Blockchain.Core.NET/bin/Debug/netcoreapp2.0/Equidato.SophiaTX.Blockchain.Core.NET.dll
+/Users/martynharler/GitHub/Alexandria/Equidato.SophiaTX.Blockchain.Core.NET/Equidato.SophiaTX.Blockchain.Core.NET/bin/Debug/netcoreapp2.0/Equidato.SophiaTX.Blockchain.Core.NET.pdb

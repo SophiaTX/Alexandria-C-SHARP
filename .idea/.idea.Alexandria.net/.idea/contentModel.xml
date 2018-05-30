@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="$PROJECT_DIR$" t="IncludeFlat">
+      <e p="Alexandria.net" t="IncludeRecursive">
+        <e p="Alexandria.net.csproj" t="IncludeRecursive" />
+        <e p="API" t="Include">
+          <e p="Account.cs" t="Include" />
+          <e p="Key.cs" t="Include" />
+          <e p="Messaging.cs" t="Include" />
+          <e p="Order.cs" t="Include" />
+          <e p="SphTxApi.cs" t="Include" />
+          <e p="SphTxJsonRpc.cs" t="Include" />
+          <e p="Transfer.cs" t="Include" />
+          <e p="Wallet.cs" t="Include" />
+          <e p="Witness.cs" t="Include" />
+        </e>
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Communication" t="Include">
+          <e p="SphTxWebsocket.cs" t="Include" />
+        </e>
+        <e p="Core" t="Include">
+          <e p="Daemon.cs" t="Include" />
+          <e p="SophiaClient.cs" t="Include" />
+          <e p="Wallet.cs" t="Include" />
+        </e>
+        <e p="Messaging" t="Include">
+          <e p="Errors" t="Include">
+            <e p="ErrorBody.cs" t="Include" />
+            <e p="ErrorData.cs" t="Include" />
+            <e p="ErrorMessage.cs" t="Include" />
+          </e>
+          <e p="Receive" t="Include">
+            <e p="DTO" t="Include">
+              <e p="ReceiveDataRequestResponse.cs" t="Include" />
+              <e p="ReceiveDataResponse.cs" t="Include" />
+              <e p="ReceiveResponseResult.cs" t="Include" />
+            </e>
+            <e p="RecvMessageCollection.cs" t="Include" />
+          </e>
+          <e p="Responses" t="Include">
+            <e p="DTO" t="Include">
+              <e p="Account.cs" t="Include" />
+              <e p="AccountRequestResponse.cs" t="Include" />
+              <e p="Active.cs" t="Include" />
+              <e p="DataRequestResponse.cs" t="Include" />
+              <e p="DataResponse.cs" t="Include" />
+              <e p="LockUnlockRequestResponse.cs" t="Include" />
+              <e p="LockUnlockResponse.cs" t="Include" />
+              <e p="Options.cs" t="Include" />
+              <e p="Owner.cs" t="Include" />
+              <e p="PricePerSubscribe.cs" t="Include" />
+              <e p="Result.cs" t="Include" />
+              <e p="RightsToPublish.cs" t="Include" />
+              <e p="SendResponseResult.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.0" t="Include">
+              <e p="Alexandria.net.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="Alexandria.net.sln" t="IncludeFlat" />
+      <e p="packages" t="ExcludeRecursive" />
+    </e>
+    <e p="$USER_HOME$/Library/Caches/Rider2018.1/resharper-host/local/Transient/ReSharperHost/v12/SolutionCaches/_Alexandria.net.980360794.00" t="ExcludeRecursive" />
+  </component>
+</project>

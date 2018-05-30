@@ -1,0 +1,1020 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="68f111d0-8d0b-46c9-ad7b-8ca144e86f9d" name="Default" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="LockUnlockRequestResponse.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/LockUnlockRequestResponse.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="2" column="9" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
+              <folding>
+                <marker date="1527419092703" expanded="true" signature="116:229" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LockUnlockResponse.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/LockUnlockResponse.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="30">
+              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+              <folding>
+                <marker date="1527419057817" expanded="true" signature="133:322" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RecvMessageCollection.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Receive/RecvMessageCollection.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="8" column="33" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
+              <folding>
+                <marker date="1527419032275" expanded="false" signature="6:123" ph="..." />
+                <marker date="1527419032275" expanded="true" signature="190:534" ph="{...}" />
+                <marker date="1527419032275" expanded="true" signature="231:532" ph="{...}" />
+                <marker date="1527419032275" expanded="true" signature="416:526" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ReceiveDataResponse.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Receive/DTO/ReceiveDataResponse.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="11" column="31" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
+              <folding>
+                <marker date="1527419021869" expanded="false" signature="6:56" ph="..." />
+                <marker date="1527419021869" expanded="true" signature="127:346" ph="{...}" />
+                <marker date="1527419021869" expanded="true" signature="166:344" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ReceiveResponseResult.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Receive/DTO/ReceiveResponseResult.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+              <folding>
+                <marker date="1527419028052" expanded="true" signature="93:851" ph="{...}" />
+                <marker date="1527419028052" expanded="true" signature="134:849" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Wallet.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Core/Wallet.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
+              <folding>
+                <marker date="1527601030156" expanded="true" signature="97:242" ph="{...}" />
+                <marker date="1527601030156" expanded="false" signature="103:236" ph="Constructors" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SphTxJsonRpc.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/API/SphTxJsonRpc.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="23" column="18" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
+              <folding>
+                <marker date="1527417924994" expanded="false" signature="6:116" ph="..." />
+                <marker date="1527417924994" expanded="true" signature="169:4578" ph="{...}" />
+                <marker date="1527417924994" expanded="true" signature="203:4576" ph="{...}" />
+                <marker date="1527417924994" expanded="false" signature="218:285" ph="const" />
+                <marker date="1527417924994" expanded="false" signature="289:390" ph="Enums" />
+                <marker date="1527417924994" expanded="true" signature="333:377" ph="{...}" />
+                <marker date="1527417924994" expanded="false" signature="394:530" ph="Structures" />
+                <marker date="1527417924994" expanded="true" signature="441:517" ph="{...}" />
+                <marker date="1527417924994" expanded="false" signature="534:662" ph="Variables" />
+                <marker date="1527417924994" expanded="false" signature="666:1266" ph="Constructors" />
+                <marker date="1527417924994" expanded="true" signature="774:1253" ph="{...}" />
+                <marker date="1527417924994" expanded="false" signature="1270:3890" ph="private methods" />
+                <marker date="1527417924994" expanded="true" signature="1322:1354" ph="{...}" />
+                <marker date="1527417924994" expanded="true" signature="1427:3873" ph="{...}" />
+                <marker date="1527417924994" expanded="true" signature="1569:2864" ph="{...}" />
+                <marker date="1527417924994" expanded="true" signature="2903:3281" ph="{...}" />
+                <marker date="1527417924994" expanded="true" signature="3208:3273" ph="{...}" />
+                <marker date="1527417924994" expanded="true" signature="3381:3842" ph="{...}" />
+                <marker date="1527417924994" expanded="true" signature="3445:3609" ph="{...}" />
+                <marker date="1527417924994" expanded="true" signature="3753:3834" ph="{...}" />
+                <marker date="1527417924994" expanded="false" signature="3894:4570" ph="public methods" />
+                <marker date="1527417924994" expanded="true" signature="3988:4557" ph="{...}" />
+                <marker date="1527417924994" expanded="true" signature="4071:4166" ph="{...}" />
+                <marker date="1527417924994" expanded="true" signature="4192:4235" ph="{...}" />
+                <marker date="1527417924994" expanded="true" signature="4327:4535" ph="{...}" />
+                <marker date="1527417924994" expanded="true" signature="4340:4419" ph="{...}" />
+                <marker date="1527417924994" expanded="true" signature="4434:4489" ph="{...}" />
+                <marker date="1527417924994" expanded="true" signature="4456:4483" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Witness.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Core/Methods/Witness.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1035">
+              <caret line="71" column="25" selection-start-line="71" selection-start-column="25" selection-end-line="71" selection-end-column="25" />
+              <folding>
+                <marker date="1527335982352" expanded="false" signature="6:78" ph="..." />
+                <marker date="1527335982352" expanded="true" signature="140:5998" ph="{...}" />
+                <marker date="1527335982352" expanded="true" signature="185:5996" ph="{...}" />
+                <marker date="1527335982352" expanded="true" signature="200:360" ph="/// Returns the list Of witnesses producing blocks In the current round (21 Blocks) ... " />
+                <marker date="1527335982352" expanded="true" signature="405:496" ph="{...}" />
+                <marker date="1527335982352" expanded="true" signature="583:664" ph="///  ... " />
+                <marker date="1527335982352" expanded="true" signature="704:795" ph="{...}" />
+                <marker date="1527335982352" expanded="true" signature="813:1115" ph="/* Returns information about the given witness. ... */" />
+                <marker date="1527335982352" expanded="true" signature="1124:1253" ph="///  ... " />
+                <marker date="1527335982352" expanded="true" signature="1309:1459" ph="{...}" />
+                <marker date="1527335982352" expanded="true" signature="1477:2525" ph="/* Lists all witnesses registered In the blockchain. This returns a list Of ... */" />
+                <marker date="1527335982352" expanded="true" signature="2534:2702" ph="///  ... " />
+                <marker date="1527335982352" expanded="true" signature="2770:2931" ph="{...}" />
+                <marker date="1527335982352" expanded="true" signature="2949:3649" ph="/// Update a witness Object owned by the given account. ... " />
+                <marker date="1527335982352" expanded="true" signature="3792:3981" ph="{...}" />
+                <marker date="1527335982352" expanded="true" signature="3999:4544" ph="/// Vote on a comment to be paid Sophia ... " />
+                <marker date="1527335982352" expanded="true" signature="4655:4835" ph="{...}" />
+                <marker date="1527335982352" expanded="true" signature="4845:5656" ph="/// Vote for a witness to become a block producer. By default an account has not voted positively Or negatively f ... " />
+                <marker date="1527335982352" expanded="true" signature="5796:5989" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SphTxApi.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/API/SphTxApi.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="48" column="23" selection-start-line="48" selection-start-column="23" selection-end-line="48" selection-end-column="23" />
+              <folding>
+                <marker date="1527517873616" expanded="false" signature="6:233" ph="..." />
+                <marker date="1527517873616" expanded="true" signature="286:2710" ph="{...}" />
+                <marker date="1527517873616" expanded="true" signature="325:2708" ph="{...}" />
+                <marker date="1527517873616" expanded="false" signature="331:427" ph="Enums" />
+                <marker date="1527517873616" expanded="true" signature="366:412" ph="{...}" />
+                <marker date="1527517873616" expanded="false" signature="431:578" ph="Variables" />
+                <marker date="1527517873616" expanded="false" signature="582:875" ph="Constructors" />
+                <marker date="1527517873616" expanded="true" signature="654:754" ph="{...}" />
+                <marker date="1527517873616" expanded="true" signature="785:861" ph="{...}" />
+                <marker date="1527517873616" expanded="true" signature="879:1220" ph="Private methods" />
+                <marker date="1527517873616" expanded="true" signature="973:1206" ph="{...}" />
+                <marker date="1527517873616" expanded="true" signature="1021:1078" ph="{...}" />
+                <marker date="1527517873616" expanded="true" signature="1086:1202" ph="{...}" />
+                <marker date="1527517873616" expanded="true" signature="1148:1197" ph="{...}" />
+                <marker date="1527517873616" expanded="false" signature="1224:2705" ph="protected methods" />
+                <marker date="1527517873616" expanded="true" signature="1294:1403" ph="{...}" />
+                <marker date="1527517873616" expanded="true" signature="1467:1585" ph="{...}" />
+                <marker date="1527517873616" expanded="true" signature="1654:1771" ph="{...}" />
+                <marker date="1527517873616" expanded="true" signature="1821:1929" ph="{...}" />
+                <marker date="1527517873616" expanded="true" signature="1979:2088" ph="{...}" />
+                <marker date="1527517873616" expanded="true" signature="2157:2275" ph="{...}" />
+                <marker date="1527517873616" expanded="true" signature="2344:2461" ph="{...}" />
+                <marker date="1527517873616" expanded="true" signature="2511:2619" ph="{...}" />
+                <marker date="1527517873616" expanded="true" signature="2644:2691" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Equidato.SophiaTX.Blockchain.Core.NET.csproj" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Equidato.SophiaTX.Blockchain.Core.NET.csproj">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>arrParams</find>
+      <find>&lt;param name=&quot;broadcast&quot;&gt;&lt;/param&gt;</find>
+      <find>(type: asset)</find>
+      <find>SophiaWebsocket</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>@params</replace>
+      <replace>&lt;param name=&quot;broadcast&quot;&gt;true if you wish to broadcast the transaction.&lt;/param&gt;</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/API/SphTxApi.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/API/SphTxJsonRpc.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Communication/SphTxWebsocket.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/Account.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/Options.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/Result.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/LockUnlockResponse.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/DataResponse.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/Active.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/DataRequestResponse.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/SendResponseResult.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/Owner.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/PricePerSubscribe.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/RightsToPublish.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/LockUnlockRequestResponse.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/AccountRequestResponse.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Receive/DTO/ReceiveResponseResult.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Receive/DTO/ReceiveDataResponse.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Receive/DTO/ReceiveDataRequestResponse.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Receive/RecvMessageCollection.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Errors/ErrorBody.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Errors/ErrorMessage.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Errors/ErrorData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Core/Methods/Transfer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Core/Methods/Account.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Core/Methods/Key.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Core/Methods/Order.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Core/Methods/Witness.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Core/Methods/Messaging.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Core/Methods/Wallet.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/77480FE9-AF28-4EE9-91A3-F97AC09FAF8C/59/d7154a42/ClientWebSocket.cs" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Core/Daemon.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Core/SophiaClient.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Core/Wallet.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/API/Class1.cs" />
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/API/CWebsocket.cs" />
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Transformations/CJson.cs" />
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Core/Class1.cs" />
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Core/Wallet/Accounts.cs" />
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Core/WalletCalls/Accounts.cs" />
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Core/WalletCalls/Key.cs" />
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Core/WalletCalls/Witness.cs" />
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Core/WalletCalls/Account.cs" />
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Core/Account.cs" />
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Core/Methods/Account.cs" />
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Core/Methods/Order.cs" />
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Core/Methods/Key.cs" />
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Core/Methods/Witness.cs" />
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Core/Methods/Transfer.cs" />
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Core/Methods/Wallet.cs" />
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Core/Methods/Messaging.cs" />
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Transformations/SophiaJson.cs" />
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/API/SophiaWebsocket.cs" />
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/API/SophiaAPI.cs" />
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/API/SophiaJson.cs" />
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/API/SphtxApi.cs" />
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Core/SophiaWebsocket.cs" />
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Core/Daemon.cs" />
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Communication/SphTxJson.cs" />
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Communication/SphTxWebsocket.cs" />
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Communication/SphTxWebRequest.cs" />
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/API/SphTxApi.cs" />
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Core/SophiaClient.cs" />
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/API/SphTxJsonRpc.cs" />
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Errors/ErrorBody.cs" />
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Errors/ErrorData.cs" />
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Errors/ErrorMessage.cs" />
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Receive/DTO/ReceiveDataRequestResponse.cs" />
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Receive/DTO/ReceiveDataResponse.cs" />
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Receive/DTO/ReceiveResponseResult.cs" />
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Receive/RecvMessageCollection.cs" />
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/Account.cs" />
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/AccountRequestResponse.cs" />
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/Active.cs" />
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/DataRequestResponse.cs" />
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/DataResponse.cs" />
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/LockUnlockRequestResponse.cs" />
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/LockUnlockResponse.cs" />
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/Options.cs" />
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/Owner.cs" />
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/PricePerSubscribe.cs" />
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/Result.cs" />
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/SendResponseResult.cs" />
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/RightsToPublish.cs" />
+        <option value="$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Core/Wallet.cs" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="y" value="23" />
+    <option name="width" value="1440" />
+    <option name="height" value="834" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator currentView="SolutionExplorer" proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scratches" />
+      <pane id="SolutionExplorer">
+        <subPane>
+          <expand>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="Equidato.SophiaTX.Blockchain.Core.NET (1 project)" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="Equidato.SophiaTX.Blockchain.Core.NET (1 project)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Equidato.SophiaTX.Blockchain.Core.NET" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+        <option name="show-file-system" value="false" />
+        <option name="show-all-items" value="false" />
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Rider.ProjectViewActivator.IsNotFirstRun" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="68f111d0-8d0b-46c9-ad7b-8ca144e86f9d" name="Default" comment="" />
+      <created>1527257049880</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1527257049880</updated>
+      <workItem from="1527257053670" duration="4058000" />
+      <workItem from="1527320954691" duration="15578000" />
+      <workItem from="1527587513023" duration="1500000" />
+      <workItem from="1527668328766" duration="441000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="21577000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="23" width="1440" height="834" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Errors In Solution" order="14" weight="0.32913166" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Unit Tests" order="8" />
+      <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Version Control" order="10" />
+      <window_info anchor="bottom" id="Terminal" order="11" />
+      <window_info anchor="bottom" id="NuGet" order="12" weight="0.32913166" />
+      <window_info active="true" anchor="right" content_ui="combo" id="Project" order="3" sideWeight="0.49859944" visible="true" weight="0.26251787" />
+      <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
+      <window_info id="Database" order="1" weight="0.21101573" />
+      <window_info anchor="right" id="Structure" order="4" sideWeight="0.5014006" side_tool="true" weight="0.20886981" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info id="Favorites" order="0" side_tool="true" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Build" order="15" visible="true" weight="0.32913166" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32913166" />
+    </layout>
+    <layout-to-restore>
+      <window_info anchor="bottom" id="NuGet" order="12" weight="0.32913166" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Docker" order="13" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Project" order="3" sideWeight="0.49859944" weight="0.18240343" />
+      <window_info active="true" anchor="right" id="Structure" order="4" sideWeight="0.5014006" visible="true" weight="0.1988555" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Unit Tests" order="8" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Errors In Solution" order="14" weight="0.32913166" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Terminal" order="11" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info id="Database" order="1" weight="0.21101573" />
+      <window_info id="Favorites" order="0" side_tool="true" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="UnityProjectConfiguration" isUnityUI="false" />
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/DataRequestResponse.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="9" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/DataResponse.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="15" selection-start-line="2" selection-start-column="15" selection-end-line="2" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/LockUnlockRequestResponse.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="9" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
+          <folding>
+            <marker date="1527419092703" expanded="true" signature="116:229" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/LockUnlockResponse.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding>
+            <marker date="1527419057817" expanded="true" signature="133:322" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/Options.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="67" selection-start-line="2" selection-start-column="67" selection-end-line="2" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/Owner.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/PricePerSubscribe.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="14" selection-start-column="14" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/SendResponseResult.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/RightsToPublish.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/Result.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="1" lean-forward="true" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/API/SphTxApi.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1305">
+          <caret line="87" column="15" selection-start-line="87" selection-start-column="15" selection-end-line="87" selection-end-column="15" />
+          <folding>
+            <marker date="1527517873616" expanded="false" signature="6:233" ph="..." />
+            <marker date="1527517873616" expanded="true" signature="286:2710" ph="{...}" />
+            <marker date="1527517873616" expanded="true" signature="325:2708" ph="{...}" />
+            <marker date="1527517873616" expanded="false" signature="331:427" ph="Enums" />
+            <marker date="1527517873616" expanded="true" signature="366:412" ph="{...}" />
+            <marker date="1527517873616" expanded="false" signature="431:578" ph="Variables" />
+            <marker date="1527517873616" expanded="false" signature="582:875" ph="Constructors" />
+            <marker date="1527517873616" expanded="true" signature="654:754" ph="{...}" />
+            <marker date="1527517873616" expanded="true" signature="785:861" ph="{...}" />
+            <marker date="1527517873616" expanded="true" signature="879:1220" ph="Private methods" />
+            <marker date="1527517873616" expanded="true" signature="973:1206" ph="{...}" />
+            <marker date="1527517873616" expanded="true" signature="1021:1078" ph="{...}" />
+            <marker date="1527517873616" expanded="true" signature="1086:1202" ph="{...}" />
+            <marker date="1527517873616" expanded="true" signature="1148:1197" ph="{...}" />
+            <marker date="1527517873616" expanded="false" signature="1224:2705" ph="protected methods" />
+            <marker date="1527517873616" expanded="true" signature="1294:1403" ph="{...}" />
+            <marker date="1527517873616" expanded="true" signature="1467:1585" ph="{...}" />
+            <marker date="1527517873616" expanded="true" signature="1654:1771" ph="{...}" />
+            <marker date="1527517873616" expanded="true" signature="1821:1929" ph="{...}" />
+            <marker date="1527517873616" expanded="true" signature="1979:2088" ph="{...}" />
+            <marker date="1527517873616" expanded="true" signature="2157:2275" ph="{...}" />
+            <marker date="1527517873616" expanded="true" signature="2344:2461" ph="{...}" />
+            <marker date="1527517873616" expanded="true" signature="2511:2619" ph="{...}" />
+            <marker date="1527517873616" expanded="true" signature="2644:2691" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Communication/SphTxWebsocket.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="915">
+          <caret line="67" column="17" selection-start-line="67" selection-start-column="17" selection-end-line="67" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/API/SphTxJsonRpc.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="27" />
+          <folding>
+            <marker date="1527417924994" expanded="false" signature="6:116" ph="..." />
+            <marker date="1527417924994" expanded="true" signature="169:4578" ph="{...}" />
+            <marker date="1527417924994" expanded="true" signature="203:4576" ph="{...}" />
+            <marker date="1527417924994" expanded="false" signature="218:285" ph="const" />
+            <marker date="1527417924994" expanded="false" signature="289:390" ph="Enums" />
+            <marker date="1527417924994" expanded="true" signature="333:377" ph="{...}" />
+            <marker date="1527417924994" expanded="false" signature="394:530" ph="Structures" />
+            <marker date="1527417924994" expanded="true" signature="441:517" ph="{...}" />
+            <marker date="1527417924994" expanded="false" signature="534:662" ph="Variables" />
+            <marker date="1527417924994" expanded="false" signature="666:1266" ph="Constructors" />
+            <marker date="1527417924994" expanded="true" signature="774:1253" ph="{...}" />
+            <marker date="1527417924994" expanded="false" signature="1270:3890" ph="private methods" />
+            <marker date="1527417924994" expanded="true" signature="1322:1354" ph="{...}" />
+            <marker date="1527417924994" expanded="true" signature="1427:3873" ph="{...}" />
+            <marker date="1527417924994" expanded="true" signature="1569:2864" ph="{...}" />
+            <marker date="1527417924994" expanded="true" signature="2903:3281" ph="{...}" />
+            <marker date="1527417924994" expanded="true" signature="3208:3273" ph="{...}" />
+            <marker date="1527417924994" expanded="true" signature="3381:3842" ph="{...}" />
+            <marker date="1527417924994" expanded="true" signature="3445:3609" ph="{...}" />
+            <marker date="1527417924994" expanded="true" signature="3753:3834" ph="{...}" />
+            <marker date="1527417924994" expanded="false" signature="3894:4570" ph="public methods" />
+            <marker date="1527417924994" expanded="true" signature="3988:4557" ph="{...}" />
+            <marker date="1527417924994" expanded="true" signature="4071:4166" ph="{...}" />
+            <marker date="1527417924994" expanded="true" signature="4192:4235" ph="{...}" />
+            <marker date="1527417924994" expanded="true" signature="4327:4535" ph="{...}" />
+            <marker date="1527417924994" expanded="true" signature="4340:4419" ph="{...}" />
+            <marker date="1527417924994" expanded="true" signature="4434:4489" ph="{...}" />
+            <marker date="1527417924994" expanded="true" signature="4456:4483" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Core/Daemon.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2790">
+          <caret line="186" column="22" selection-start-line="186" selection-start-column="22" selection-end-line="186" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Core/Methods/Wallet.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4140">
+          <caret line="276" column="13" selection-start-line="276" selection-start-column="13" selection-end-line="276" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Core/Methods/Order.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="600">
+          <caret line="40" column="21" selection-start-line="40" selection-start-column="21" selection-end-line="40" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Core/Methods/Messaging.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="675">
+          <caret line="45" column="8" selection-start-line="45" selection-start-column="8" selection-end-line="45" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Core/Methods/Key.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="569">
+          <caret line="107" column="9" selection-start-line="107" selection-start-column="9" selection-end-line="107" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Core/Methods/Transfer.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="30" column="23" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/77480FE9-AF28-4EE9-91A3-F97AC09FAF8C/59/d7154a42/ClientWebSocket.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Core/Methods/Wallet.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4335">
+          <caret line="299" selection-start-line="299" selection-end-line="299" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Core/Daemon.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="26" column="24" selection-start-line="26" selection-start-column="24" selection-end-line="26" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Communication/SphTxWebsocket.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-349">
+          <caret line="10" column="10" selection-start-line="10" selection-start-column="10" selection-end-line="10" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Core/SophiaClient.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="34" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Errors/ErrorBody.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="15" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Errors/ErrorData.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Errors/ErrorMessage.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="26" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Receive/DTO/ReceiveDataRequestResponse.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="21" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/Account.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="35" selection-start-line="3" selection-start-column="35" selection-end-line="3" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/AccountRequestResponse.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/Active.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="16" selection-start-line="2" selection-start-column="16" selection-end-line="2" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/DataRequestResponse.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="9" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/DataResponse.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="15" selection-start-line="2" selection-start-column="15" selection-end-line="2" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/Options.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="67" selection-start-line="2" selection-start-column="67" selection-end-line="2" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/Owner.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/PricePerSubscribe.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="14" selection-start-column="14" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/SendResponseResult.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/RightsToPublish.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="27" selection-start-line="2" selection-start-column="27" selection-end-line="2" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/Result.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="1" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Core/Methods/Account.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="23" column="24" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
+          <folding>
+            <marker date="1527333578410" expanded="false" signature="6:78" ph="..." />
+            <marker date="1527333578410" expanded="true" signature="140:11901" ph="{...}" />
+            <marker date="1527333578410" expanded="true" signature="185:11899" ph="{...}" />
+            <marker date="1527333578410" expanded="true" signature="197:11893" ph="Methods" />
+            <marker date="1527333578410" expanded="true" signature="227:891" ph="/// This method will genrate New owner, active, and memo keys For the New account which will be controlable by th ... " />
+            <marker date="1527333578410" expanded="true" signature="1002:1154" ph="{...}" />
+            <marker date="1527333578410" expanded="true" signature="1158:2154" ph="/// This method Is used by faucets To create New accounts For other users which must provide their desired keys. ... " />
+            <marker date="1527333578410" expanded="true" signature="2329:2504" ph="{...}" />
+            <marker date="1527333578410" expanded="true" signature="2516:2777" ph="/// Returns information about the given account. ... " />
+            <marker date="1527333578410" expanded="true" signature="2829:2961" ph="{...}" />
+            <marker date="1527333578410" expanded="true" signature="2968:3537" ph="/// Account operations have sequence numbers from 0 To N where N Is the most recent operation. ... " />
+            <marker date="1527333578410" expanded="true" signature="3615:3762" ph="{...}" />
+            <marker date="1527333578410" expanded="true" signature="3769:4595" ph="/// Lists all accounts registered In the blockchain. This returns a list Of all account names And their account i ... " />
+            <marker date="1527333578410" expanded="true" signature="4659:4802" ph="{...}" />
+            <marker date="1527333578410" expanded="true" signature="4809:4988" ph="/// Gets the account information For all accounts For which this wallet has aPrivate key ... " />
+            <marker date="1527333578410" expanded="true" signature="5026:5105" ph="{...}" />
+            <marker date="1527333578410" expanded="true" signature="5117:5419" ph="///  ... " />
+            <marker date="1527333578410" expanded="true" signature="5560:5738" ph="{...}" />
+            <marker date="1527333578410" expanded="true" signature="5745:6047" ph="///  ... " />
+            <marker date="1527333578410" expanded="true" signature="6194:6372" ph="{...}" />
+            <marker date="1527333578410" expanded="true" signature="6381:7026" ph="/// This method updates the keys Of an existing account. ... " />
+            <marker date="1527333578410" expanded="true" signature="7179:7340" ph="{...}" />
+            <marker date="1527333578410" expanded="true" signature="7344:8286" ph="/// update_account_auth_key(string account_name, authority_type type, public_key_type key, weight_type weight, bo ... " />
+            <marker date="1527333578410" expanded="true" signature="8425:8582" ph="{...}" />
+            <marker date="1527333578410" expanded="true" signature="8586:8842" ph="///  ... " />
+            <marker date="1527333578410" expanded="true" signature="8951:9092" ph="{...}" />
+            <marker date="1527333578410" expanded="true" signature="9096:9883" ph="/// This method updates the weight threshold Of an authority For an account. Warning: You can create impossible a ... " />
+            <marker date="1527333578410" expanded="true" signature="10005:10152" ph="{...}" />
+            <marker date="1527333578410" expanded="true" signature="10156:10491" ph="/// This method updates the memo key Of an account ... " />
+            <marker date="1527333578410" expanded="true" signature="10587:10722" ph="{...}" />
+            <marker date="1527333578410" expanded="true" signature="10728:11115" ph="/// This method updates the account JSON metadata  ... " />
+            <marker date="1527333578410" expanded="true" signature="11212:11352" ph="{...}" />
+            <marker date="1527333578410" expanded="true" signature="11364:11613" ph="///  ... " />
+            <marker date="1527333578410" expanded="true" signature="11721:11877" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/LockUnlockRequestResponse.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="9" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
+          <folding>
+            <marker date="1527419092703" expanded="true" signature="116:229" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Responses/DTO/LockUnlockResponse.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding>
+            <marker date="1527419057817" expanded="true" signature="133:322" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Receive/RecvMessageCollection.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="8" column="33" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="33" />
+          <folding>
+            <marker date="1527419032275" expanded="false" signature="6:123" ph="..." />
+            <marker date="1527419032275" expanded="true" signature="190:534" ph="{...}" />
+            <marker date="1527419032275" expanded="true" signature="231:532" ph="{...}" />
+            <marker date="1527419032275" expanded="true" signature="416:526" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Receive/DTO/ReceiveDataResponse.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="11" column="31" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
+          <folding>
+            <marker date="1527419021869" expanded="false" signature="6:56" ph="..." />
+            <marker date="1527419021869" expanded="true" signature="127:346" ph="{...}" />
+            <marker date="1527419021869" expanded="true" signature="166:344" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Messaging/Receive/DTO/ReceiveResponseResult.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+          <folding>
+            <marker date="1527419028052" expanded="true" signature="93:851" ph="{...}" />
+            <marker date="1527419028052" expanded="true" signature="134:849" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Core/Wallet.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="10" column="18" selection-start-line="10" selection-start-column="18" selection-end-line="10" selection-end-column="18" />
+          <folding>
+            <marker date="1527601030156" expanded="true" signature="97:242" ph="{...}" />
+            <marker date="1527601030156" expanded="false" signature="103:236" ph="Constructors" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/API/SphTxJsonRpc.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="23" column="18" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
+          <folding>
+            <marker date="1527417924994" expanded="false" signature="6:116" ph="..." />
+            <marker date="1527417924994" expanded="true" signature="169:4578" ph="{...}" />
+            <marker date="1527417924994" expanded="true" signature="203:4576" ph="{...}" />
+            <marker date="1527417924994" expanded="false" signature="218:285" ph="const" />
+            <marker date="1527417924994" expanded="false" signature="289:390" ph="Enums" />
+            <marker date="1527417924994" expanded="true" signature="333:377" ph="{...}" />
+            <marker date="1527417924994" expanded="false" signature="394:530" ph="Structures" />
+            <marker date="1527417924994" expanded="true" signature="441:517" ph="{...}" />
+            <marker date="1527417924994" expanded="false" signature="534:662" ph="Variables" />
+            <marker date="1527417924994" expanded="false" signature="666:1266" ph="Constructors" />
+            <marker date="1527417924994" expanded="true" signature="774:1253" ph="{...}" />
+            <marker date="1527417924994" expanded="false" signature="1270:3890" ph="private methods" />
+            <marker date="1527417924994" expanded="true" signature="1322:1354" ph="{...}" />
+            <marker date="1527417924994" expanded="true" signature="1427:3873" ph="{...}" />
+            <marker date="1527417924994" expanded="true" signature="1569:2864" ph="{...}" />
+            <marker date="1527417924994" expanded="true" signature="2903:3281" ph="{...}" />
+            <marker date="1527417924994" expanded="true" signature="3208:3273" ph="{...}" />
+            <marker date="1527417924994" expanded="true" signature="3381:3842" ph="{...}" />
+            <marker date="1527417924994" expanded="true" signature="3445:3609" ph="{...}" />
+            <marker date="1527417924994" expanded="true" signature="3753:3834" ph="{...}" />
+            <marker date="1527417924994" expanded="false" signature="3894:4570" ph="public methods" />
+            <marker date="1527417924994" expanded="true" signature="3988:4557" ph="{...}" />
+            <marker date="1527417924994" expanded="true" signature="4071:4166" ph="{...}" />
+            <marker date="1527417924994" expanded="true" signature="4192:4235" ph="{...}" />
+            <marker date="1527417924994" expanded="true" signature="4327:4535" ph="{...}" />
+            <marker date="1527417924994" expanded="true" signature="4340:4419" ph="{...}" />
+            <marker date="1527417924994" expanded="true" signature="4434:4489" ph="{...}" />
+            <marker date="1527417924994" expanded="true" signature="4456:4483" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Core/Methods/Witness.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1035">
+          <caret line="71" column="25" selection-start-line="71" selection-start-column="25" selection-end-line="71" selection-end-column="25" />
+          <folding>
+            <marker date="1527335982352" expanded="false" signature="6:78" ph="..." />
+            <marker date="1527335982352" expanded="true" signature="140:5998" ph="{...}" />
+            <marker date="1527335982352" expanded="true" signature="185:5996" ph="{...}" />
+            <marker date="1527335982352" expanded="true" signature="200:360" ph="/// Returns the list Of witnesses producing blocks In the current round (21 Blocks) ... " />
+            <marker date="1527335982352" expanded="true" signature="405:496" ph="{...}" />
+            <marker date="1527335982352" expanded="true" signature="583:664" ph="///  ... " />
+            <marker date="1527335982352" expanded="true" signature="704:795" ph="{...}" />
+            <marker date="1527335982352" expanded="true" signature="813:1115" ph="/* Returns information about the given witness. ... */" />
+            <marker date="1527335982352" expanded="true" signature="1124:1253" ph="///  ... " />
+            <marker date="1527335982352" expanded="true" signature="1309:1459" ph="{...}" />
+            <marker date="1527335982352" expanded="true" signature="1477:2525" ph="/* Lists all witnesses registered In the blockchain. This returns a list Of ... */" />
+            <marker date="1527335982352" expanded="true" signature="2534:2702" ph="///  ... " />
+            <marker date="1527335982352" expanded="true" signature="2770:2931" ph="{...}" />
+            <marker date="1527335982352" expanded="true" signature="2949:3649" ph="/// Update a witness Object owned by the given account. ... " />
+            <marker date="1527335982352" expanded="true" signature="3792:3981" ph="{...}" />
+            <marker date="1527335982352" expanded="true" signature="3999:4544" ph="/// Vote on a comment to be paid Sophia ... " />
+            <marker date="1527335982352" expanded="true" signature="4655:4835" ph="{...}" />
+            <marker date="1527335982352" expanded="true" signature="4845:5656" ph="/// Vote for a witness to become a block producer. By default an account has not voted positively Or negatively f ... " />
+            <marker date="1527335982352" expanded="true" signature="5796:5989" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET.sln">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/API/SphTxApi.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="48" column="23" selection-start-line="48" selection-start-column="23" selection-end-line="48" selection-end-column="23" />
+          <folding>
+            <marker date="1527517873616" expanded="false" signature="6:233" ph="..." />
+            <marker date="1527517873616" expanded="true" signature="286:2710" ph="{...}" />
+            <marker date="1527517873616" expanded="true" signature="325:2708" ph="{...}" />
+            <marker date="1527517873616" expanded="false" signature="331:427" ph="Enums" />
+            <marker date="1527517873616" expanded="true" signature="366:412" ph="{...}" />
+            <marker date="1527517873616" expanded="false" signature="431:578" ph="Variables" />
+            <marker date="1527517873616" expanded="false" signature="582:875" ph="Constructors" />
+            <marker date="1527517873616" expanded="true" signature="654:754" ph="{...}" />
+            <marker date="1527517873616" expanded="true" signature="785:861" ph="{...}" />
+            <marker date="1527517873616" expanded="true" signature="879:1220" ph="Private methods" />
+            <marker date="1527517873616" expanded="true" signature="973:1206" ph="{...}" />
+            <marker date="1527517873616" expanded="true" signature="1021:1078" ph="{...}" />
+            <marker date="1527517873616" expanded="true" signature="1086:1202" ph="{...}" />
+            <marker date="1527517873616" expanded="true" signature="1148:1197" ph="{...}" />
+            <marker date="1527517873616" expanded="false" signature="1224:2705" ph="protected methods" />
+            <marker date="1527517873616" expanded="true" signature="1294:1403" ph="{...}" />
+            <marker date="1527517873616" expanded="true" signature="1467:1585" ph="{...}" />
+            <marker date="1527517873616" expanded="true" signature="1654:1771" ph="{...}" />
+            <marker date="1527517873616" expanded="true" signature="1821:1929" ph="{...}" />
+            <marker date="1527517873616" expanded="true" signature="1979:2088" ph="{...}" />
+            <marker date="1527517873616" expanded="true" signature="2157:2275" ph="{...}" />
+            <marker date="1527517873616" expanded="true" signature="2344:2461" ph="{...}" />
+            <marker date="1527517873616" expanded="true" signature="2511:2619" ph="{...}" />
+            <marker date="1527517873616" expanded="true" signature="2644:2691" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Equidato.SophiaTX.Blockchain.Core.NET/Equidato.SophiaTX.Blockchain.Core.NET.csproj">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+  </component>
+</project>
