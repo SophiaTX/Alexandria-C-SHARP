@@ -22,8 +22,8 @@ namespace Alexandria.net.API
 		#region Variables
 
 		private readonly EType _etype;
-		private readonly SphTxJsonRpc _json;
-		private readonly SphTxWebsocket _socket;
+		private readonly RpcConnection _json;
+		private readonly WebsocketConnection _socket;
 
 		#endregion
 
@@ -31,13 +31,13 @@ namespace Alexandria.net.API
 
 		protected SphTxApi(string hostname, ushort port)
 		{
-			_json = new SphTxJsonRpc(hostname, port, "/rpc");
+			_json = new RpcConnection(hostname, port, "/rpc");
 			_etype = EType.RemoteProcedureCall;
 		}
 
 		public SphTxApi(string uri)
 		{
-			_socket = new SphTxWebsocket(uri);
+			_socket = new WebsocketConnection(uri);
 			_etype = EType.WebSockets;
 		}
 
@@ -49,7 +49,8 @@ namespace Alexandria.net.API
 		{
 			if (_etype == EType.RemoteProcedureCall)
 			{
-				return _json.SendRequest(method, @params);
+				var resp = _json.SendRequest(method, @params);
+				return resp.Result;
 			}
 			else
 			{
@@ -87,7 +88,6 @@ namespace Alexandria.net.API
 
 		protected JValue call_api_value(string method)
 		{
-
 			return JsonConvert.DeserializeObject<Dictionary<string, JValue>>(SendRequest(method))["result"];
 		}
 

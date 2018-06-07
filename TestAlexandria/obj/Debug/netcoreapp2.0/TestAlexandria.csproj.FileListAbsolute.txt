@@ -1,0 +1,16 @@
+/Users/sanjivjha/RiderProjects/Alexandria/TestAlexandria/bin/Debug/netcoreapp2.0/xunit.runner.visualstudio.dotnetcore.testadapter.dll
+/Users/sanjivjha/RiderProjects/Alexandria/TestAlexandria/bin/Debug/netcoreapp2.0/xunit.runner.reporters.netcoreapp10.dll
+/Users/sanjivjha/RiderProjects/Alexandria/TestAlexandria/bin/Debug/netcoreapp2.0/xunit.runner.utility.netcoreapp10.dll
+/Users/sanjivjha/RiderProjects/Alexandria/TestAlexandria/bin/Debug/netcoreapp2.0/TestAlexandria.deps.json
+/Users/sanjivjha/RiderProjects/Alexandria/TestAlexandria/bin/Debug/netcoreapp2.0/TestAlexandria.runtimeconfig.json
+/Users/sanjivjha/RiderProjects/Alexandria/TestAlexandria/bin/Debug/netcoreapp2.0/TestAlexandria.runtimeconfig.dev.json
+/Users/sanjivjha/RiderProjects/Alexandria/TestAlexandria/bin/Debug/netcoreapp2.0/TestAlexandria.dll
+/Users/sanjivjha/RiderProjects/Alexandria/TestAlexandria/bin/Debug/netcoreapp2.0/TestAlexandria.pdb
+/Users/sanjivjha/RiderProjects/Alexandria/TestAlexandria/bin/Debug/netcoreapp2.0/Alexandria.net.dll
+/Users/sanjivjha/RiderProjects/Alexandria/TestAlexandria/bin/Debug/netcoreapp2.0/Alexandria.net.pdb
+/Users/sanjivjha/RiderProjects/Alexandria/TestAlexandria/obj/Debug/netcoreapp2.0/TestAlexandria.csprojResolveAssemblyReference.cache
+/Users/sanjivjha/RiderProjects/Alexandria/TestAlexandria/obj/Debug/netcoreapp2.0/TestAlexandria.csproj.CoreCompileInputs.cache
+/Users/sanjivjha/RiderProjects/Alexandria/TestAlexandria/obj/Debug/netcoreapp2.0/TestAlexandria.AssemblyInfoInputs.cache
+/Users/sanjivjha/RiderProjects/Alexandria/TestAlexandria/obj/Debug/netcoreapp2.0/TestAlexandria.AssemblyInfo.cs
+/Users/sanjivjha/RiderProjects/Alexandria/TestAlexandria/obj/Debug/netcoreapp2.0/TestAlexandria.dll
+/Users/sanjivjha/RiderProjects/Alexandria/TestAlexandria/obj/Debug/netcoreapp2.0/TestAlexandria.pdb
