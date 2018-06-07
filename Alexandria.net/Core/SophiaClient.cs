@@ -6,7 +6,7 @@ namespace Alexandria.net.Core
     {
         public Daemon Daemon { get; set; }
         public Wallet Wallet { get; set; }
-        public SphTxWebsocket WebSocket { get; set; }
+        public WebsocketConnection WebSocket { get; set; }
 
         public SophiaClient(string hostname, ushort daemonPort, ushort walletPort)
         {
@@ -18,7 +18,7 @@ namespace Alexandria.net.Core
         {
             Daemon = new Daemon();
             Wallet = new Wallet();
-            WebSocket = new SphTxWebsocket();
+            WebSocket = new WebsocketConnection();
         }
     }
 }
