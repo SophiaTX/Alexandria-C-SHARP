@@ -5,15 +5,17 @@
       <e p="Alexandria.net" t="IncludeRecursive">
         <e p="Alexandria.net.csproj" t="IncludeRecursive" />
         <e p="API" t="Include">
-          <e p="Account.cs" t="Include" />
-          <e p="Key.cs" t="Include" />
-          <e p="Messaging.cs" t="Include" />
-          <e p="Order.cs" t="Include" />
           <e p="SphTxApi.cs" t="Include" />
           <e p="SphTxJsonRpc.cs" t="Include" />
-          <e p="Transfer.cs" t="Include" />
-          <e p="Wallet.cs" t="Include" />
-          <e p="Witness.cs" t="Include" />
+          <e p="WalletFunctions" t="Include">
+            <e p="Account.cs" t="Include" />
+            <e p="Key.cs" t="Include" />
+            <e p="Messaging.cs" t="Include" />
+            <e p="Order.cs" t="Include" />
+            <e p="Transfer.cs" t="Include" />
+            <e p="Wallet.cs" t="Include" />
+            <e p="Witness.cs" t="Include" />
+          </e>
         </e>
         <e p="bin" t="ExcludeRecursive" />
         <e p="Communication" t="Include">
@@ -23,6 +25,10 @@
           <e p="Daemon.cs" t="Include" />
           <e p="SophiaClient.cs" t="Include" />
           <e p="Wallet.cs" t="Include" />
+        </e>
+        <e p="libalexandria.dylib" t="Include" />
+        <e p="Libs" t="Include">
+          <e p="libalexandria.dylib" t="Include" />
         </e>
         <e p="Messaging" t="Include">
           <e p="Errors" t="Include">
@@ -66,6 +72,7 @@
       </e>
       <e p="Alexandria.net.sln" t="IncludeFlat" />
       <e p="packages" t="ExcludeRecursive" />
+      <e p="Tests" t="Include" />
     </e>
     <e p="$USER_HOME$/Library/Caches/Rider2018.1/resharper-host/local/Transient/ReSharperHost/v12/SolutionCaches/_Alexandria.net.980360794.00" t="ExcludeRecursive" />
   </component>

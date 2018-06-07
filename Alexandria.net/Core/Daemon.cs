@@ -162,6 +162,13 @@ namespace Alexandria.net.Core
 
 		//  return the active discussions with the highest cumulative pending payouts without respect to category, total
 		//  pending payout means the pending payout of all children as well.
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="startAuthor"></param>
+		/// <param name="startPermlink"></param>
+		/// <param name="limit"></param>
+		/// <returns></returns>
 		public JArray get_replies_by_last_update(string startAuthor, string startPermlink, uint limit)
 		{
 			var arrParams = new ArrayList {startAuthor, startPermlink, limit};
