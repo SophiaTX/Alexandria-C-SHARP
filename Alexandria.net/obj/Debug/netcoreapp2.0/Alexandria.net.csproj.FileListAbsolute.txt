@@ -1,0 +1,8 @@
+/Users/sanjivjha/RiderProjects/Alexandria/Alexandria.net/bin/Debug/netcoreapp2.0/Alexandria.net.deps.json
+/Users/sanjivjha/RiderProjects/Alexandria/Alexandria.net/bin/Debug/netcoreapp2.0/Alexandria.net.dll
+/Users/sanjivjha/RiderProjects/Alexandria/Alexandria.net/bin/Debug/netcoreapp2.0/Alexandria.net.pdb
+/Users/sanjivjha/RiderProjects/Alexandria/Alexandria.net/obj/Debug/netcoreapp2.0/Alexandria.net.csproj.CoreCompileInputs.cache
+/Users/sanjivjha/RiderProjects/Alexandria/Alexandria.net/obj/Debug/netcoreapp2.0/Alexandria.net.AssemblyInfoInputs.cache
+/Users/sanjivjha/RiderProjects/Alexandria/Alexandria.net/obj/Debug/netcoreapp2.0/Alexandria.net.AssemblyInfo.cs
+/Users/sanjivjha/RiderProjects/Alexandria/Alexandria.net/obj/Debug/netcoreapp2.0/Alexandria.net.dll
+/Users/sanjivjha/RiderProjects/Alexandria/Alexandria.net/obj/Debug/netcoreapp2.0/Alexandria.net.pdb

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Globalization;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -9,20 +10,20 @@ namespace Alexandria.net.API.WalletFunctions
 	public partial class  Wallet : SphTxApi
 	{
 		#region DllImports
-		[DllImport("libalexandria.dylib")]
-		private static extern bool generate_private_key([MarshalAs(UnmanagedType.LPStr)]string private_key);
+		[DllImport("/Users/sanjivjha/RiderProjects/Alexandria/Alexandria.net/libalexandria.dylib")]
+		private static extern bool generate_private_key([MarshalAs(UnmanagedType.LPArray)]byte[] private_key);
 
-		[DllImport("libalexandria.dylib")]
+		[DllImport("/Users/sanjivjha/RiderProjects/Alexandria/Alexandria.net/libalexandria.dylib")]
 		private static extern bool get_transaction_digest([MarshalAs(UnmanagedType.LPStr)] string transaction,
-			[MarshalAs(UnmanagedType.LPStr)] string digest);
+			[MarshalAs(UnmanagedType.LPArray)] byte[] digest);
 
-		[DllImport("libalexandria.dylib")]
+		[DllImport("/Users/sanjivjha/RiderProjects/Alexandria/Alexandria.net/libalexandria.dylib")]
 		private static extern bool sign_digest([MarshalAs(UnmanagedType.LPStr)] string digest,
-			[MarshalAs(UnmanagedType.LPStr)] string private_key, [MarshalAs(UnmanagedType.LPStr)] string signed_digest);        
+			[MarshalAs(UnmanagedType.LPStr)] string private_key, [MarshalAs(UnmanagedType.LPArray)] byte[] signed_digest);        
         
-		[DllImport("libalexandria.dylib")]
+		[DllImport("/Users/sanjivjha/RiderProjects/Alexandria/Alexandria.net/libalexandria.dylib")]
 		private static extern bool add_signature([MarshalAs(UnmanagedType.LPStr)] string transaction,
-			[MarshalAs(UnmanagedType.LPStr)] string signature, [MarshalAs(UnmanagedType.LPStr)] string signed_tx);
+			[MarshalAs(UnmanagedType.LPStr)] string signature, [MarshalAs(UnmanagedType.LPArray)] byte[] signed_tx);
 		#endregion
 		
 		#region Constructors
@@ -217,7 +218,7 @@ namespace Alexandria.net.API.WalletFunctions
 		/// </summary>
 		public void Lock()
 		{
-			call_api(MethodBase.GetCurrentMethod().Name);
+			call_api("lock");
 		}
 
 		/// <summary>

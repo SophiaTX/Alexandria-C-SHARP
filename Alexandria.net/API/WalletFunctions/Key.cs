@@ -90,22 +90,22 @@ namespace Alexandria.net.API.WalletFunctions
             return call_api_value(MethodBase.GetCurrentMethod().Name).ToString(CultureInfo.InvariantCulture);
         }
         
-        public bool generate_private_key_c(string privatekey)
+        public bool generate_private_key_c(byte[] privatekey)
         {
             return Wallet.generate_private_key(privatekey);
         }
 
-        public bool get_transaction_digest_c(string transaction, string digest)
+        public bool get_transaction_digest_c(string transaction, byte[] digest)
         {
             return Wallet.get_transaction_digest(transaction, digest);
         }
 
-        public bool sign_digest_c(string digest, string privatekey, string signeddigest)
+        public bool sign_digest_c(string digest, string privatekey, byte[] signeddigest)
         {
             return Wallet.sign_digest(digest, privatekey, signeddigest);
         }
 
-        public bool add_signature_c(string transaction, string signature, string signedtx)
+        public bool add_signature_c(string transaction, string signature, byte[] signedtx)
         {
             return Wallet.add_signature(transaction, signature, signedtx);
         }
