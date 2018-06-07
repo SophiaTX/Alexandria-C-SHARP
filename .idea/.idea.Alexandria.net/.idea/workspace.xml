@@ -2,24 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ea3b2ade-501a-4815-a8c3-d1edd46d493e" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/Alexandria.net/API/JsonRpc.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test/UnitTest/BaseTest.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Test/UnitTest/DeamonTest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Alexandria.net/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Alexandria.net/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Alexandria.net/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Alexandria.net/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Alexandria.net/riderModule.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Alexandria.net/riderModule.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alexandria.net.sln" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandria.net.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alexandria.net.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandria.net.sln.DotSettings.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alexandria.net/API/SphTxJsonRpc.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alexandria.net/Communication/SphTxWebsocket.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandria.net/Communication/WebsocketConnection.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alexandria.net/Core/SophiaClient.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandria.net/Core/SophiaClient.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alexandria.net/Libs/libalexandria.dylib" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alexandria.net/obj/Alexandria.net.csproj.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandria.net/obj/Alexandria.net.csproj.nuget.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alexandria.net/obj/Alexandria.net.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandria.net/obj/Alexandria.net.csproj.nuget.g.props" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alexandria.net/obj/Debug/netcoreapp2.0/Alexandria.net.csprojResolveAssemblyReference.cache" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alexandria.net/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandria.net/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alexandria.net/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandria.net/obj/project.packagespec.json" afterDir="false" />
     </list>
+    <ignored path=".idea/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,8 +17,8 @@
       <file leaf-file-name="WalletTests.cs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Test/UnitTest/WalletTests.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="337">
-              <caret line="31" column="40" lean-forward="true" selection-start-line="31" selection-start-column="40" selection-end-line="31" selection-end-column="40" />
+            <state relative-caret-position="75">
+              <caret line="31" column="40" selection-start-line="31" selection-start-column="40" selection-end-line="31" selection-end-column="40" />
               <folding>
                 <marker date="1528385862546" expanded="true" signature="6:53" ph="..." />
                 <marker date="1528385862546" expanded="true" signature="74:2291" ph="{...}" />
@@ -127,6 +112,7 @@
     <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/Account.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Test/UnitTest/BaseTest.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Test/UnitTest/DeamonTest.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Alexandria.net/obj/Debug/netcoreapp2.0/Alexandria.net.AssemblyInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Wallet.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Messaging.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Witness.cs" root0="FORCE_HIGHLIGHTING" />
@@ -365,14 +351,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32917705" />
       <window_info anchor="right" id="Errors In Solution" order="4" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.32917705" />
       <window_info anchor="bottom" id="Unit Tests" order="7" weight="0.5274314" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32793018" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.6832918" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="7" visible="true" weight="0.6832918" />
       <window_info anchor="bottom" id="NuGet" order="7" weight="0.32969698" />
       <window_info anchor="right" content_ui="combo" id="Project" order="3" visible="true" weight="0.26037195" />
       <window_info anchor="bottom" id="Build" order="8" weight="0.32668328" />
@@ -436,6 +421,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Tested functions on Local node" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tested functions on Local node" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1105,8 +1094,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Test/UnitTest/WalletTests.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="31" column="40" lean-forward="true" selection-start-line="31" selection-start-column="40" selection-end-line="31" selection-end-column="40" />
+        <state relative-caret-position="75">
+          <caret line="31" column="40" selection-start-line="31" selection-start-column="40" selection-end-line="31" selection-end-column="40" />
           <folding>
             <marker date="1528385862546" expanded="true" signature="6:53" ph="..." />
             <marker date="1528385862546" expanded="true" signature="74:2291" ph="{...}" />
