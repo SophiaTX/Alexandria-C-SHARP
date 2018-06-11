@@ -50,7 +50,7 @@ namespace Alexandria.net.API
 			if (_etype == EType.RemoteProcedureCall)
 			{
 				var resp = _json.SendRequest(method, @params);
-				return resp.Result;
+				return resp.Result.Response.Result;
 			}
 			else
 			{
@@ -68,7 +68,7 @@ namespace Alexandria.net.API
 
 		protected JObject call_api(string method)
 		{
-			return JsonConvert.DeserializeObject<Dictionary<string, JObject>>(SendRequest(method))["result"];
+			return JsonConvert.DeserializeObject<Dictionary<string,JObject>>(SendRequest(method))["result"];
 		}
 
 		protected JObject call_api(string method, ArrayList @params)

@@ -18,43 +18,50 @@ namespace UnitTest
         [Fact]
         public void IsLockedFunc()
         {
+            
             _client.Wallet.is_locked();
 
         }
+        
+        [Fact]
+        public void UnLockAccount()
+        {
+            _client.Wallet.Unlock("abc");
+        }
 
         [Fact]
-        public void LockAccount()
+        public void suggestbrainkey()
         {
-            _client.Wallet.Lock();
+           _client.Wallet.suggest_brain_key();  
         }
+        
 
         [Fact]
         public void GeneratePrivateKey()
         {          
             
-            bool val= _client.Wallet.generate_private_key_c(key);
+            _client.Wallet.generate_private_key_c(key);
            
              
         }
         [Fact]
         public void GetTransactionDigest()
         {           
-            bool val= _client.Wallet.get_transaction_digest_c(transaction,digest);
+           _client.Wallet.get_transaction_digest_c(transaction,digest);
            
             
         }
         [Fact]
         public void SignedDigest()
         {           
-            bool val= _client.Wallet.sign_digest_c(digest.ToString(),key.ToString(),sign);
-            Console.WriteLine("Generated Signature:" + System.Text.Encoding.ASCII.GetString(sign) + val);
+            _client.Wallet.sign_digest_c(digest.ToString(),key.ToString(),sign);
+            
             
         }
         [Fact]
         public void AddSignature()
         {           
-            bool val= _client.Wallet.add_signature_c(transaction,sign.ToString(),signedDigest);
-            Console.WriteLine("Signed Digest:" + System.Text.Encoding.ASCII.GetString(signedDigest) + val);
+            _client.Wallet.add_signature_c(transaction,sign.ToString(),signedDigest);
             
         }
     }

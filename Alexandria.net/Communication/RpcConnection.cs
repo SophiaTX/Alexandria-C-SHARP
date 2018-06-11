@@ -1,10 +1,15 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Alexandria.net.API;
+using Alexandria.net.Messaging.Responses.DTO;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Alexandria.net.Communication
 {
@@ -40,26 +45,36 @@ namespace Alexandria.net.Communication
         #region public methods
 
 
-        public async Task<string> SendRequest(string method, ArrayList @params)
+        public async Task<LockUnlockRequestResponse> SendRequest(string method, ArrayList @params)
 
-            {
-                var result = string.Empty;
+            {             
 
-                var request = new
-                {
-                    jsonrpc = JsonRpc,
-                    id = GetRequestId(),
-                    method = method,
-                    request = @params ?? (IEnumerable) ""
-                };
+                    var request = new
+                    {
+                        jsonrpc = JsonRpc,
+                        id = GetRequestId(),
+                        method = method,
+                        request = @params ?? (IEnumerable) ""
+                    };
 
-                var json = JsonConvert.SerializeObject(request);
+                    var json = JsonConvert.SerializeObject(request);
 
-                var response = await ReceiveAsync(json);
-                if (response == null) return null;
-                result = await response.Content.ReadAsStringAsync();
+                    var response = await SendAsync(json);
+                   
+                    if (response == null) return null;
+                      var responsecontent = await response.Content.ReadAsStringAsync();
+                      var contentdata = JsonConvert.DeserializeObject<LockUnlockResponse>(responsecontent);
+                    
+                    var resultrep = new LockUnlockRequestResponse
+                    {
+                        Request = json,
+                        Response = contentdata
 
-                return result;
+                    };
+                        
+
+                    return resultrep;
+                   
             }
         
 
@@ -100,4 +115,6 @@ namespace Alexandria.net.Communication
         #endregion
 
     }
+
+    
 }
