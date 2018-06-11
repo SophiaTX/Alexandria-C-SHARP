@@ -31,6 +31,9 @@
           <e p="SophiaClient.cs" t="Include" />
           <e p="Wallet.cs" t="Include" />
         </e>
+        <e p="lib" t="Include">
+          <e p="libalexandria.dylib" t="Include" />
+        </e>
         <e p="libalexandria.dylib" t="Include" />
         <e p="Messaging" t="Include">
           <e p="Errors" t="Include">

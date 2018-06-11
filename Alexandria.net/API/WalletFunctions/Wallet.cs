@@ -10,18 +10,18 @@ namespace Alexandria.net.API.WalletFunctions
 	public partial class  Wallet : SphTxApi
 	{
 		#region DllImports
-		[DllImport("/Users/sanjivjha/RiderProjects/Alexandria/Alexandria.net/libalexandria.dylib")]
+		[DllImport("libalexandria.dylib")]
 		private static extern bool generate_private_key([MarshalAs(UnmanagedType.LPArray)]byte[] private_key);
 
-		[DllImport("/Users/sanjivjha/RiderProjects/Alexandria/Alexandria.net/libalexandria.dylib")]
+		[DllImport("libalexandria.dylib")]
 		private static extern bool get_transaction_digest([MarshalAs(UnmanagedType.LPStr)] string transaction,
 			[MarshalAs(UnmanagedType.LPArray)] byte[] digest);
 
-		[DllImport("/Users/sanjivjha/RiderProjects/Alexandria/Alexandria.net/libalexandria.dylib")]
+		[DllImport("libalexandria.dylib")]
 		private static extern bool sign_digest([MarshalAs(UnmanagedType.LPStr)] string digest,
 			[MarshalAs(UnmanagedType.LPStr)] string private_key, [MarshalAs(UnmanagedType.LPArray)] byte[] signed_digest);        
         
-		[DllImport("/Users/sanjivjha/RiderProjects/Alexandria/Alexandria.net/libalexandria.dylib")]
+		[DllImport("libalexandria.dylib")]
 		private static extern bool add_signature([MarshalAs(UnmanagedType.LPStr)] string transaction,
 			[MarshalAs(UnmanagedType.LPStr)] string signature, [MarshalAs(UnmanagedType.LPArray)] byte[] signed_tx);
 		#endregion
