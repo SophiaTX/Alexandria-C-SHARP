@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Reflection;
-using Newtonsoft.Json.Linq;
 
 namespace Alexandria.net.API.WalletFunctions
 {
@@ -28,7 +27,7 @@ namespace Alexandria.net.API.WalletFunctions
 		public string Transfer(string from, string to, decimal amount, string memo, bool broadcast = true)
 		{
 			var @params = new ArrayList {@from, to, amount, memo, broadcast};
-			return call_api(MethodBase.GetCurrentMethod().Name, @params);
+			return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
 		}
 
 		//    Transfer STEEM into a vesting fund represented by vesting shares (VESTS).
@@ -53,7 +52,7 @@ namespace Alexandria.net.API.WalletFunctions
 		public string transfer_to_vesting(string from, string to, decimal amount, bool broadcast = true)
 		{
 			var @params = new ArrayList {@from, to, amount, broadcast};
-			return call_api(MethodBase.GetCurrentMethod().Name, @params);
+			return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
 		}
 
 		// Transfers into savings happen immediately, transfers from savings take 72 hours
@@ -70,7 +69,7 @@ namespace Alexandria.net.API.WalletFunctions
 		public string transfer_to_savings(string from, string to, string amount, string memo, bool broadcast = false)
 		{
 			var @params = new ArrayList {@from, to, amount, broadcast};
-			return call_api(MethodBase.GetCurrentMethod().Name, @params);
+			return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
 		}
 
 
@@ -90,7 +89,7 @@ namespace Alexandria.net.API.WalletFunctions
 			bool broadcast = false)
 		{
 			var @params = new ArrayList {@from, requestId, to, amount, memo, broadcast};
-			return call_api(MethodBase.GetCurrentMethod().Name, @params);
+			return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
 		}
 
 		// @param request_id the id used in transfer_from_savings
@@ -106,7 +105,7 @@ namespace Alexandria.net.API.WalletFunctions
 		public string cancel_transfer_from_savings(string from, uint requestId, bool broadcast = false)
 		{
 			var @params = new ArrayList {@from, requestId, broadcast};
-			return call_api(MethodBase.GetCurrentMethod().Name, @params);
+			return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
 		}
     }
 }

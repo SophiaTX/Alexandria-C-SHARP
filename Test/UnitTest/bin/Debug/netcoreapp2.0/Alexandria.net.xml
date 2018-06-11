@@ -1,0 +1,790 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Alexandria.net</name>
+    </assembly>
+    <members>
+        <member name="T:Alexandria.net.API.WalletFunctions.Wallet">
+            <summary>
+            All wallet calls to the SophiaTX Blockchain
+            </summary>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.create_account(System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            This method will genrate New owner, active, and memo keys For the New account which will be controlable by this wallet.
+            There Is a fee associated With account creation that Is paid by the creator.
+            The current account creation fee can be found With the 'info' wallet command.
+            </summary>
+            <param name="creator">The account creating the New account </param>
+            <param name="newAccountName">The name Of the New account </param>
+            <param name="jsonMeta">JSON Metadata associated With the New account </param>
+            <param name="broadcast">true if you wish to broadcast the transaction.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.create_account_with_keys(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            This method Is used by faucets To create New accounts For other users which must provide their desired keys.
+            The resulting account may Not be controllable by this wallet. There Is a fee associated With account
+            creation that Is paid by the creator. The current account creation fee can be found With the 'info' wallet command.
+            </summary>
+            <param name="creator">The account creating the New account</param>
+            <param name="newname">The name Of the New account</param>
+            <param name="jsonMeta">JSON Metadata associated With the New account owner</param>
+            <param name="owner">Public owner key Of the New account </param>
+            <param name="active">Public active key Of the New account</param>
+            <param name="posting">Public posting key Of the New account</param>
+            <param name="memo">Public memo key Of the New account</param>
+            <param name="broadcast">true if you wish to broadcast the transaction.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.get_account(System.String)">
+            <summary>
+            Returns information about the given account.
+            </summary>
+            <param name="accountName">the name Of the account To provide information about </param>
+            <returns>the Public account data stored In the blockchain</returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.get_account_history(System.String,System.UInt32,System.UInt32)">
+            <summary>
+            Account operations have sequence numbers from 0 To N where N Is the most recent operation.
+            This method returns operations In the range [from-limit,from]
+            </summary>
+            <param name="account">account whose history will be returned </param>
+            <param name="from">the absolute sequence number, -1 means most recent, limit Is the number Of operations before from. </param>
+            <param name="limit">the maximum number of items that can be queried (0 to 1000], must be less than from</param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.list_accounts(System.String,System.UInt32)">
+            <summary>
+            Lists all accounts registered In the blockchain. This returns a list Of all account names And their account ids, sorted by account name.
+            Use the 'lowerbound' and limit parameters to page through the list. To retrieve all accounts, start by setting 'lowerbound' to the
+            empty string '""', and then each iteration, pass the last account name returned as the 'lowerbound' for the next 'list_accounts()' call.
+            </summary>
+            <param name="lowerbound">the name Of the first account To Return. If the named account does Not exist, the list will start at the account that comes after 'lowerbound' </param>
+            <param name="limit">the maximum number Of accounts To return (max: 1000) </param>
+            <returns>a list Of accounts mapping account names To account ids</returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.list_my_accounts">
+            <summary>
+            Gets the account information For all accounts For which this wallet has aPrivate key
+            </summary>
+            <returns>the account information</returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.recover_account(System.String,System.Collections.Hashtable,System.Collections.Hashtable,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="accountToRecover"></param>
+            <param name="recentAuthority"></param>
+            <param name="newAuthority"></param>
+            <param name="broadcast">true if you wish to broadcast the transaction.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.request_account_recovery(System.String,System.String,System.Collections.Hashtable,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="recoveryAccount"></param>
+            <param name="accountToRecover"></param>
+            <param name="newAuthority"></param>
+            <param name="broadcast">true if you wish to broadcast the transaction.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.update_account(System.String,System.String,System.String,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            This method updates the keys Of an existing account.
+            </summary>
+            <param name="accountname">The name Of the account </param>
+            <param name="jsonMeta">New JSON Metadata to be associated with the account</param>
+            <param name="owner">New public owner key for the account </param>
+            <param name="active">New public active key for the account </param>
+            <param name="posting">New public posting key for the account </param>
+            <param name="memo">New public memo key for the account</param>
+            <param name="broadcast">true if you wish to broadcast the transaction.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.update_account_auth_account(System.String,System.String,System.String,System.UInt16,System.Boolean)">
+            <summary>
+            update_account_auth_key(string account_name, authority_type type, public_key_type key, weight_type weight, bool broadcast)
+            This method updates the key Of an authority For an exisiting account.
+            Warning: You can create impossible authorities Using this method. The method will fail If you create an impossible owner authority, but will
+            allow impossible active And posting authorities.
+            </summary>
+            <param name="accountName">The name Of the account whose authority you wish To update</param>
+            <param name="type">The authority type. e.g. owner, active, Or posting</param>
+            <param name="authAccount">The Public key To add To the authority</param>
+            <param name="weight">The weight the key should have In the authority. A weight Of 0 indicates the removal Of the key.</param>
+            <param name="broadcast">true if you wish to broadcast the transaction.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.update_account_auth_key(System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="accountName"></param>
+            <param name="type"></param>
+            <param name="key"></param>
+            <param name="broadcast">true if you wish to broadcast the transaction.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.update_account_auth_threshold(System.String,System.String,System.UInt32,System.Boolean)">
+            <summary>
+            This method updates the weight threshold Of an authority For an account. Warning: You can create impossible authorities Using this method As well As
+            implicitly met authorities. The method will fail If you create an implicitly true authority And if you create an impossible owner authority,
+            but will allow impossible active And posting authorities.
+            </summary>
+            <param name="accountName">The name Of the account whose authority you wish to update </param>
+            <param name="type">The authority type. e.g. owner, active, Or posting</param>
+            <param name="threshold">The weight threshold required For the authority To be met</param>
+            <param name="broadcast">true if you wish to broadcast the transaction.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.update_account_memo_key(System.String,System.String,System.Boolean)">
+            <summary>
+            This method updates the memo key Of an account
+            </summary>
+            <param name="accountName">The name Of the account you wish To update </param>
+            <param name="key">The New memo public key </param>
+            <param name="broadcast">true if you wish to broadcast the transaction.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.update_account_meta(System.String,System.String,System.Boolean)">
+            <summary>
+            This method updates the account JSON metadata 
+            </summary>
+            <param name="accountName">The name Of the account you wish To update </param>
+            <param name="jsonMeta">The New JSON metadata for the account. This overrides existing metadata</param>
+            <param name="broadcast">true if you wish to broadcast the transaction.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.change_recovery_account(System.String,System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="owner"></param>
+            <param name="newRecoveryAccount"></param>
+            <param name="broadcast">true if you wish to broadcast the transaction.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.get_private_key(System.String)">
+            <summary>
+            Gets the user private key
+            </summary>
+            <param name="pubkey">the associated public key</param>
+            <returns>the private key</returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.get_private_key_from_password(System.String,System.String,System.String)">
+            <summary>
+            Get the WIF Private key corresponding To a Public key. The Private key must already be In the wallet.
+            </summary>
+            <param name="account">the account to use</param>
+            <param name="role">active | owner | posting | memo </param>
+            <param name="password">the account password</param>
+            <returns>the private key</returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.import_key(System.String)">
+            <summary>
+            Imports a WIF Private Key into the wallet To be used To sign transactionsby an account.
+            </summary>
+            <param name="wifKey">the WIF Private Key To import</param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.list_keys">
+            <summary>
+            Dumps all Private keys owned by the wallet.
+            The keys are printed In WIF format. You can import these keys into another wallet using 'import_key()' 
+            </summary>
+            <returns>a map containing the Private keys, indexed by their Public key</returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.normalize_brain_key(System.String)">
+            <summary>
+            Transforms a brain key To reduce the chance Of errors When re-entering the
+            key from memory.
+            This takes a user-supplied brain key And normalizes it into the form used
+            For generating private keys. In particular, this upper-cases all ASCII
+            characters And collapses multiple spaces into one.
+            </summary>
+            <param name="key">the brain key As supplied by the user </param>
+            <returns>the brain key In its normalized form</returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.suggest_brain_key">
+            <summary>
+            Suggests a safe brain key To use For creating your account.
+            create_account_with_brain_key()' requires you to specify a 'brain key', a
+            Long passphrase that provides enough entropy to generate cyrptographic
+            keys. This function will suggest a suitably random string that should be
+            easy to write down (And, with effort, memorize).
+            </summary>
+            <returns>the suggested brain key</returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.generate_private_key_c(System.Byte[])">
+            <summary>
+            Generates the Private Keys
+            </summary>
+            <param name="privatekey">the key bytes</param>
+            <returns>true if generated</returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.get_transaction_digest_c(System.String,System.Byte[])">
+            <summary>
+            Gets the transaction digest
+            </summary>
+            <param name="transaction">the transaction to digest</param>
+            <param name="digest">the digest bytes</param>
+            <returns>true if successful</returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.sign_digest_c(System.String,System.String,System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="digest"></param>
+            <param name="privatekey"></param>
+            <param name="signeddigest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.add_signature_c(System.String,System.String,System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="transaction"></param>
+            <param name="signature"></param>
+            <param name="signedtx"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.get_conversion_requests(System.String)">
+            <summary>
+            Returns conversion requests by an account
+            </summary>
+            <param name="owner">Account name Of the account owning the requests</param>
+            <returns>All pending conversion requests by account</returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.get_inbox(System.String,System.DateTime,System.UInt32)">
+            <summary>
+            
+            </summary>
+            <param name="account"></param>
+            <param name="newest"></param>
+            <param name="limit"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.get_outbox(System.String,System.DateTime,System.UInt32)">
+            <summary>
+            
+            </summary>
+            <param name="account"></param>
+            <param name="newest"></param>
+            <param name="limit"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.post_comment(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Post Or update a comment
+            </summary>
+            <param name="author">the name Of the account authoring the comment </param>
+            <param name="permlink">the accountwide unique permlink For the comment </param>
+            <param name="parentAuthor">can be null If this Is a top level comment</param>
+            <param name="parentPermlink">becomes category If parent_author Is "" </param>
+            <param name="title">the title Of the comment </param>
+            <param name="body">he body Of the comment </param>
+            <param name="json">the json metadata Of the comment </param>
+            <param name="broadcast">true if you wish to broadcast the transaction.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.send_private_message(System.String,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="from"></param>
+            <param name="to"></param>
+            <param name="subject"></param>
+            <param name="body"></param>
+            <param name="broadcast">true if you wish to broadcast the transaction.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.cancel_order(System.String,System.UInt32,System.Boolean)">
+            <summary>
+            Cancel an order created With create_order
+            </summary>
+            <param name="owner">The name Of the account owning the order To cancel_order </param>
+            <param name="orderid">The unique identifier assigned To the order by its creator</param>
+            <param name="broadcast">true if you wish to broadcast the transaction.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.create_order(System.String,System.UInt32,System.Decimal,System.Decimal,System.Boolean,System.UInt32,System.Boolean)">
+            <summary>
+            Creates a limit order at the price amount_to_sell / min_to_receive And will deduct amount_to_sell from account
+            </summary>
+            <param name="owner">The name Of the account creating the order </param>
+            <param name="orderId">Is a unique identifier assigned by the creator of the order, it can be reused after the order has been filled </param>
+            <param name="amountToSell">The amount Of either SBD Or STEEM you wish To sell </param>
+            <param name="minToReceive">The amount Of the other asset you will receive at a minimum</param>
+            <param name="fillOrKill">true if you want the order to be killed if it cannot immediately be filled</param>
+            <param name="expiration">the time the order should expire If it has Not been filled</param>
+            <param name="broadcast">true if you wish to broadcast the transaction.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.get_order_book(System.UInt32)">
+            <summary>
+            Gets the current order book For STEEM:SBD
+            </summary>
+            <param name="limit">Maximum number Of orders To return For bids And asks. Max Is 1000.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.Transfer(System.String,System.String,System.Decimal,System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="from"></param>
+            <param name="to"></param>
+            <param name="amount"></param>
+            <param name="memo"></param>
+            <param name="broadcast">true if you wish to broadcast the transaction.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.transfer_to_vesting(System.String,System.String,System.Decimal,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="from"></param>
+            <param name="to"></param>
+            <param name="amount"></param>
+            <param name="broadcast">true if you wish to broadcast the transaction.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.transfer_to_savings(System.String,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="from"></param>
+            <param name="to"></param>
+            <param name="amount"></param>
+            <param name="memo"></param>
+            <param name="broadcast">true if you wish to broadcast the transaction.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.transfer_from_savings(System.String,System.UInt32,System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="from"></param>
+            <param name="requestId"></param>
+            <param name="to"></param>
+            <param name="amount"></param>
+            <param name="memo"></param>
+            <param name="broadcast">true if you wish to broadcast the transaction.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.cancel_transfer_from_savings(System.String,System.UInt32,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="from"></param>
+            <param name="requestId"></param>
+            <param name="broadcast">true if you wish to broadcast the transaction.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.#ctor(System.String,System.UInt16)">
+            <summary>
+            Wallet Constructor
+            </summary>
+            <param name="hostname">the rpc endpoint ip address</param>
+            <param name="port">the rpc endpoint post</param>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.About">
+            <summary>
+            Gets the compile time info
+            </summary>
+            <returns>Returns compile time info And client And dependencies versions</returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.Challenge(System.String,System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="challenger"></param>
+            <param name="challenged"></param>
+            <param name="broadcast">true if you wish to broadcast the transaction.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.convert_sbd(System.String,System.Decimal,System.Boolean)">
+            <summary>
+            This method will convert SBD To STEEM at the current_median_history price one week from the time it Is executed.
+            This method depends upon there being a valid price feed.
+            </summary>
+            <param name="from">The account requesting conversion Of its SBD i.e. "1.000 SBD"</param>
+            <param name="amount">The amount Of SBD To convert</param>
+            <param name="broadcast">true if you wish to broadcast the transaction.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.Follow(System.String,System.String,System.Collections.ArrayList,System.Boolean)">
+            <summary>
+            Marks one account As following another account. Requires the posting authority Of the follower.
+            </summary>
+            <param name="follower"></param>
+            <param name="following"></param>
+            <param name="what">a set of things to follow: posts, comments, votes, ignore</param>
+            <param name="broadcast">true if you wish to broadcast the transaction.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.get_block(System.Int32)">
+            <summary>
+            Returns information about the block
+            </summary>
+            <param name="num">the block num</param>
+            <returns>Public block data On the blockchain</returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.get_feed_history">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.get_owner_history(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="account"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.get_prototype_operation(System.String)">
+             <summary>
+             This returns a Default-initialized Object Of the given type; it can be used during early development Of the wallet When we don't yet have custom
+             commands for creating all of the operations the blockchain supports.
+            
+             Any operation the blockchain supports can be created Using the transaction //builder's 'add_operation_to_builder_transaction()' , but to do that from
+             the CLI you need To know what the JSON form Of the operation looks Like. //This will give you a template you can fill In. It's better than nothing.
+             </summary>
+             <param name="operationType">the type Of operation To Return, must be one Of the operations defined In 'steemit/chain/operations.hpp' (e.g., "global_parameters_update_operation") </param>
+             <returns> a Default-constructed operation of the given type</returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.get_state(System.String)">
+            <summary>
+            Returns the state info associated With the URL
+            </summary>
+            <param name="url"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.get_transaction(System.String)">
+            <summary>
+            Returns transaction by ID.
+            </summary>
+            <param name="trxId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.Gethelp(System.String)">
+            <summary>
+            Returns detailed help On a Single API command.
+            </summary>
+            <param name="method">the name Of the API command you want help With</param>
+            <returns>a multi-line String suitable For displaying On a terminal</returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.help">
+            <summary>
+            Returns a list Of all commands supported by the wallet API.
+            </summary>
+            <returns>a multi-line String suitable For displaying On a terminal</returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.info">
+            <summary>
+            Returns info about the current state Of the blockchain
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.is_locked">
+            <summary>
+            Checks whether the wallet Is locked (Is unable To use its Private keys). This state can be changed by calling 'lock()' or 'unlock()'.
+            </summary>
+            <returns>true if the wallet Is locked</returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.is_new">
+            <summary>
+            Checks whether the wallet has just been created And has Not yet had a password set. Calling 'set_password' will transition the wallet to the locked state.
+            </summary>
+            <returns>true if the wallet Is New</returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.load_wallet_file(System.String)">
+            <summary>
+            Loads a specified Graphene wallet. The current wallet Is closed before the New wallet Is loaded.
+            </summary>
+            <param name="walletFilename">the filename Of the wallet JSON file To load. If 'wallet_filename' is empty, it reloads the existing wallet file</param>
+            <returns>true if the specified wallet Is loaded</returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.Lock">
+            <summary>
+            Locks the wallet immediately.
+            </summary>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.network_add_nodes(System.Collections.ArrayList)">
+            <summary>
+            
+            </summary>
+            <param name="nodes"></param>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.network_get_connected_peers">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.Prove(System.String,System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="challenged"></param>
+            <param name="broadcast">true if you wish to broadcast the transaction.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.publish_feed(System.String,System.Decimal,System.Boolean)">
+            <summary>
+            A witness can Public a price feed For the STEEM:SBD market. The median price feed Is used To process conversion requests from SBD To STEEM.
+            </summary>
+            <param name="witness">The witness publishing the price feed </param>
+            <param name="exchangeRate">The desired exchange rate</param>
+            <param name="broadcast">true if you wish to broadcast the transaction.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.save_wallet_file(System.String)">
+            <summary>
+            Saves the current wallet To the given filename.
+            </summary>
+            <param name="walletFilename">the filename Of the New wallet JSON file To create Or overwrite. If 'wallet_filename' is empty, save to the current filename. </param>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.set_password(System.String)">
+            <summary>
+            Sets a New password On the wallet.
+            The wallet must be either 'new' or 'unlocked' to execute this command.
+            </summary>
+            <param name="password">the new password</param>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.set_transaction_expiration(System.UInt32)">
+            <summary>
+            
+            </summary>
+            <param name="seconds"></param>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.set_voting_proxy(System.String,System.String,System.Boolean)">
+             <summary>
+             Set the voting proxy For an account.
+            
+             If a user does Not wish To take an active part In voting, they can choose to allow another account to vote their stake.
+            
+             Setting a vote proxy does Not remove your previous votes from the blockchain, they remain there but are ignored. If you later null out your
+             vote proxy, your previous votes will take effect again.
+            
+             This setting can be changed at any time.
+             </summary>
+             <param name="accountToModify">the name Or id Of the account To update</param>
+             <param name="proxy">the name Of account that should proxy To, Or empty String To have no proxy </param>
+             <param name="broadcast">true if you wish to broadcast the transaction.</param>
+             <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.unlock(System.String)">
+            <summary>
+            The wallet remain unlocked until the 'lock' is called or the program exits.
+            </summary>
+            <param name="password">the password previously Set With 'set_password()'</param>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.unlock(System.Collections.ArrayList)">
+            <summary>
+            Unlocks the wallet
+            </summary>
+            <param name="password">the password to unlock the wallet</param>
+            <returns>the response received from the blockchain for the request</returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.withdraw_vesting(System.String,System.Decimal,System.Boolean)">
+            <summary>
+            Set up a vesting withdraw request. The request Is fulfilled once a week over the next two years (104 weeks)
+            </summary>
+            <param name="from">account vests are drawn from</param>
+            <param name="vestingShares">the amount of vests to withdrawover the Next two
+                   years. Each week (amount/104) shares are withdrawn And depositted
+                   back as STEEM. i.e. "10.000000 VESTS" </param>
+            <param name="broadcast">true if you want to broadcast the transaction</param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.get_active_witnesses">
+            <summary>
+            Returns the list Of witnesses producing blocks In the current round (21 Blocks)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.get_miner_queue">
+            <summary>
+            Returns the queue Of pow miners waiting To produce blocks.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.get_witness(System.String)">
+            <summary>
+            Returns information about the given witness.
+            </summary>
+            <param name="ownerAccount">the name Or id Of the witness account owner, Or the id of the witness</param>
+            <returns>the information about the witness stored In the block chain</returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.list_witnesses(System.String,System.UInt32)">
+            <summary>
+            Lists all witnesses registered In the blockchain. This returns a list Of
+            all account names that own witnesses, And the associated witness id, sorted
+            by name. This lists witnesses whether they are currently voted In Or Not.
+            Use the 'lowerbound' and limit parameters to page through the list. To
+            retrieve all witnesss, start by setting 'lowerbound' to the empty string
+            '""', and then each iteration, pass the last witness name returned as the
+            'lowerbound' for the next 'list_witnesss()' call.
+            </summary>
+            <param name="lowerbound">the name Of the first witness To Return. If the named witness does Not exist, the list will start at the witness thatcomes after 'lowerbound'</param>
+            <param name="limit">the maximum number Of witnesss To return (max: 1000)</param>
+            <returns>a list Of witnesss mapping witness names To witness ids</returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.update_witness(System.String,System.String,System.String,Newtonsoft.Json.Linq.JArray,System.Boolean)">
+            <summary>
+            Update a witness Object owned by the given account.
+            </summary>
+            <param name="witnessName">The name Of the witness's owner account.Also accepts the ID of the owner account Or the ID of the witness.</param>
+            <param name="url">Same as for create_witness. The empty string makes it remain the same.</param>
+            <param name="blockSigningKey">The New block signing public key. The empty string makes it remain the same.</param>
+            <param name="props">The chain properties the witness Is voting On. </param>
+            <param name="broadcast">true if you wish to broadcast the transaction.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.Vote(System.String,System.String,System.String,System.Int16,System.Boolean)">
+            <summary>
+            Vote on a comment to be paid Sophia
+            </summary>
+            <param name="voter">The account voting</param>
+            <param name="author">The author Of the comment To be voted On</param>
+            <param name="permlink">The permlink Of the comment To be voted On. (author, permlink) Is a unique pair</param>
+            <param name="weight">The weight [-100,100] Of the vote</param>
+            <param name="broadcast">true if you wish to broadcast the transaction</param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.vote_for_witness(System.String,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Vote for a witness to become a block producer. By default an account has not voted positively Or negatively for a witness.
+            The account can either vote for with positively votes Or against with negative votes.
+            The vote will remain until updated With another vote. Vote strength Is determined by the accounts vesting shares.
+            </summary>
+            <param name="accountToVoteWith">The account voting For a witness</param>
+            <param name="witnessToVoteFor">The witness that Is being voted For</param>
+            <param name="approve">true if the account Is voting for the account to be able to be a block produce</param>
+            <param name="broadcast">true if you wish to broadcast the transaction </param>
+            <returns></returns>
+        </member>
+        <member name="T:Alexandria.net.Communication.RpcConnection">
+            <summary>
+            Abstract Class which manages the sending and receiving of data to and from the blockchain
+            </summary>
+        </member>
+        <member name="M:Alexandria.net.Communication.RpcConnection.#ctor(System.String,System.UInt16,System.String,System.String)">
+            <summary>
+            RPCConnection Constructor
+            </summary>
+            <param name="hostname"></param>
+            <param name="port"></param>
+            <param name="api"></param>
+            <param name="version"></param>
+        </member>
+        <member name="M:Alexandria.net.Communication.RpcConnection.SendRequest(System.String,System.Collections.ArrayList)">
+            <summary>
+            Sends the request to the blockchain
+            </summary>
+            <param name="method">the method to call</param>
+            <param name="params">the parameters to send with the method</param>
+            <returns>the http response from ther server</returns>
+        </member>
+        <member name="M:Alexandria.net.Communication.RpcConnection.ProcessRequest(System.String,System.Collections.ArrayList)">
+            <summary>
+            Processes the request and gets the response from the server
+            </summary>
+            <param name="methodname">the method name to call</param>
+            <param name="params">the paramaters to pass with the method</param>
+            <returns>the http response from the server</returns>
+        </member>
+        <member name="M:Alexandria.net.Communication.RpcConnection.SendAsync(System.String)">
+            <summary>
+                Sends the data to the blockchain
+            </summary>
+            <param name="data">the data to send</param>
+            <returns>the response from the send</returns>
+        </member>
+        <member name="M:Alexandria.net.Communication.RpcConnection.ReceiveAsync(System.String)">
+            <summary>
+                Receives data from the blockchain
+            </summary>
+            <param name="data">the data</param>
+            <returns></returns>
+        </member>
+        <member name="T:Alexandria.net.Core.Daemon">
+            <summary>
+            Daemon implementation
+            </summary>
+            <inheritdoc cref="T:Alexandria.net.Communication.RpcConnection"/>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.get_replies_by_last_update(System.String,System.String,System.UInt32)">
+            <summary>
+            
+            </summary>
+            <param name="startAuthor"></param>
+            <param name="startPermlink"></param>
+            <param name="limit"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Alexandria.net.Core.SophiaClient">
+            <summary>
+            The main entry point for accessing the SophiaTX Blockchain
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Core.SophiaClient.Daemon">
+            <summary>
+            The blockchain daemon
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Core.SophiaClient.Wallet">
+            <summary>
+            the blockchain wallet
+            </summary>
+        </member>
+        <member name="M:Alexandria.net.Core.SophiaClient.#ctor(System.String,System.UInt16,System.UInt16)">
+            <summary>
+            Client Constructor
+            </summary>
+            <param name="hostname">the rpc endpoint ip address</param>
+            <param name="daemonPort">the daemon rpc endpoint post</param>
+            <param name="walletPort">the wallet rpc endpoint post</param>
+        </member>
+        <member name="M:Alexandria.net.Core.SophiaClient.#ctor">
+            <summary>
+            Client Constructor
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Core.Wallet">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Alexandria.net.Core.Wallet.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:Alexandria.net.Core.Wallet.#ctor(System.String,System.UInt16)">
+            <summary>
+            
+            </summary>
+            <param name="hostname"></param>
+            <param name="port"></param>
+        </member>
+        <member name="T:Alexandria.net.Messaging.Responses.DTO.LockUnlockResponse">
+            <summary>
+            The wallet lock and unlock response
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.LockUnlockResponse.Id">
+            <summary>
+            the Id of the call
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.LockUnlockResponse.Result">
+            <summary>
+            the result passed back from the blockchain
+            </summary>
+        </member>
+    </members>
+</doc>

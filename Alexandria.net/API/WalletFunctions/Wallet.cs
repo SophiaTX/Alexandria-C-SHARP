@@ -1,15 +1,17 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Globalization;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using Alexandria.net.Communication;
 using Alexandria.net.Messaging.Responses.DTO;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace Alexandria.net.API.WalletFunctions
 {
-	public partial class  Wallet : SphTxApi
+	/// <summary>
+	/// All wallet calls to the SophiaTX Blockchain
+	/// </summary>
+	public partial class  Wallet : RpcConnection
 	{
 		#region DllImports
 		[DllImport("libalexandria.dylib")]
@@ -30,6 +32,11 @@ namespace Alexandria.net.API.WalletFunctions
 		
 		#region Constructors
 
+		/// <summary>
+		/// Wallet Constructor
+		/// </summary>
+		/// <param name="hostname">the rpc endpoint ip address</param>
+		/// <param name="port">the rpc endpoint post</param>
 		protected Wallet(string hostname = "127.0.0.1", ushort port = 8091) : base(hostname, port)
 		{
 		}
@@ -44,7 +51,7 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <returns>Returns compile time info And client And dependencies versions</returns>
 		public string About()
 		{
-			return call_api(MethodBase.GetCurrentMethod().Name.ToLower());
+			return SendRequest(MethodBase.GetCurrentMethod().Name.ToLower());
 		}
 
 		/// <summary>
@@ -57,7 +64,7 @@ namespace Alexandria.net.API.WalletFunctions
 		public string Challenge(string challenger, string challenged, bool broadcast = true)
 		{
 			var @params = new ArrayList {challenger, challenged, broadcast};
-			return call_api(MethodBase.GetCurrentMethod().Name, @params);
+			return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
 		}
 
 		/// <summary>
@@ -71,7 +78,7 @@ namespace Alexandria.net.API.WalletFunctions
 		public string convert_sbd(string from, decimal amount, bool broadcast = true)
 		{
 			var @params = new ArrayList {@from, amount, broadcast};
-			return call_api(MethodBase.GetCurrentMethod().Name, @params);
+			return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
 		}
 		
 		/// <summary>
@@ -85,7 +92,7 @@ namespace Alexandria.net.API.WalletFunctions
 		public string Follow(string follower, string following, ArrayList what, bool broadcast = true)
 		{
 			var @params = new ArrayList {follower, following, what, broadcast};
-			return call_api(MethodBase.GetCurrentMethod().Name, @params);
+			return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
 		}
 
 		/// <summary>
@@ -96,7 +103,7 @@ namespace Alexandria.net.API.WalletFunctions
 		public BlockResponse get_block(int num)
 		{
 			var @params = new ArrayList {num};
-			var result =  call_api(MethodBase.GetCurrentMethod().Name, @params);
+			var result =  SendRequest(MethodBase.GetCurrentMethod().Name, @params);
 			var contentdata = JsonConvert.DeserializeObject<BlockResponse>(result);
 			return contentdata;
 		}
@@ -108,7 +115,7 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <returns></returns>
 		public string get_feed_history()
 		{
-			return call_api(MethodBase.GetCurrentMethod().Name);
+			return SendRequest(MethodBase.GetCurrentMethod().Name);
 		}
 
 		/// <summary>
@@ -116,10 +123,10 @@ namespace Alexandria.net.API.WalletFunctions
 		/// </summary>
 		/// <param name="account"></param>
 		/// <returns></returns>
-		public JArray get_owner_history(string account)
+		public string get_owner_history(string account)
 		{
 			var @params = new ArrayList {account};
-			return call_api_array(MethodBase.GetCurrentMethod().Name, @params);
+			return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
 		}
 
 		/// <summary>
@@ -134,7 +141,7 @@ namespace Alexandria.net.API.WalletFunctions
 		public string get_prototype_operation(string operationType)
 		{
 			var @params = new ArrayList {operationType};
-			return call_api(MethodBase.GetCurrentMethod().Name, @params);
+			return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
 		}
 
 		/// <summary>
@@ -145,7 +152,7 @@ namespace Alexandria.net.API.WalletFunctions
 		public string get_state(string url)
 		{
 			var @params = new ArrayList {url};
-			return call_api(MethodBase.GetCurrentMethod().Name, @params);
+			return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
 		}
 
 		/// <summary>
@@ -156,18 +163,18 @@ namespace Alexandria.net.API.WalletFunctions
 		public string get_transaction(string trxId)
 		{
 			var @params = new ArrayList {trxId};
-			return call_api(MethodBase.GetCurrentMethod().Name, @params);
+			return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
 		}
   
 		/// <summary>
 		/// Returns detailed help On a Single API command.
 		/// </summary>
-		/// <param name="method">the name Of the API command you want help With (type: Const String &)</param>
+		/// <param name="method">the name Of the API command you want help With</param>
 		/// <returns>a multi-line String suitable For displaying On a terminal</returns>
 		public string Gethelp(string method)
 		{
 			var @params = new ArrayList {method};
-			return call_api_value(MethodBase.GetCurrentMethod().Name, @params).ToString(CultureInfo.InvariantCulture);
+			return SendRequest(MethodBase.GetCurrentMethod().Name, @params).ToString(CultureInfo.InvariantCulture);
 		}
 
 		/// <summary>
@@ -176,7 +183,7 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <returns>a multi-line String suitable For displaying On a terminal</returns>
 		public string help()
 		{
-			return call_api_value(MethodBase.GetCurrentMethod().Name).ToString(CultureInfo.InvariantCulture);
+			return SendRequest(MethodBase.GetCurrentMethod().Name).ToString(CultureInfo.InvariantCulture);
 		}
 
 		/// <summary>
@@ -185,7 +192,7 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <returns></returns>
 		public InfoResponse info()
 		{
-			var result =  call_api(MethodBase.GetCurrentMethod().Name);
+			var result =  SendRequest(MethodBase.GetCurrentMethod().Name);
 			var contentdata = JsonConvert.DeserializeObject<InfoResponse>(result);
 			return contentdata;
 		}
@@ -196,7 +203,8 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <returns>true if the wallet Is locked</returns>
 		public bool is_locked()
 		{
-			return (bool) call_api_value(MethodBase.GetCurrentMethod().Name);
+			var result = SendRequest(MethodBase.GetCurrentMethod().Name);
+			return result == "true";
 		}
   
 		/// <summary>
@@ -205,7 +213,8 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <returns>true if the wallet Is New</returns>
 		public bool is_new()
 		{
-			return (bool) call_api_value(MethodBase.GetCurrentMethod().Name);
+			var result = SendRequest(MethodBase.GetCurrentMethod().Name);
+			return result == "true";
 		} 
    
 		/// <summary>
@@ -216,7 +225,8 @@ namespace Alexandria.net.API.WalletFunctions
 		public bool load_wallet_file(string walletFilename)
 		{
 			var @params = new ArrayList {walletFilename};
-			return (bool) call_api_value(MethodBase.GetCurrentMethod().Name, @params);
+			var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+			return result == "true";
 		}
 
 		/// <summary>
@@ -224,7 +234,7 @@ namespace Alexandria.net.API.WalletFunctions
 		/// </summary>
 		public LockUnlockResponse Lock()
 		{
-			var result = call_api("lock");
+			var result = SendRequest("lock");
 			
 			var contentdata = JsonConvert.DeserializeObject<LockUnlockResponse>(result);
 			return contentdata;
@@ -236,16 +246,16 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <param name="nodes"></param>
 		public void network_add_nodes(ArrayList nodes)
 		{
-			call_api(MethodBase.GetCurrentMethod().Name);
+			SendRequest(MethodBase.GetCurrentMethod().Name);
 		}
 
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <returns></returns>
-		public JArray network_get_connected_peers()
+		public string network_get_connected_peers()
 		{
-			return call_api_array(MethodBase.GetCurrentMethod().Name);
+			return SendRequest(MethodBase.GetCurrentMethod().Name);
 		}
 
 		/// <summary>
@@ -257,7 +267,7 @@ namespace Alexandria.net.API.WalletFunctions
 		public string Prove(string challenged, bool broadcast = true)
 		{
 			var @params = new ArrayList {challenged, broadcast};
-			return call_api(MethodBase.GetCurrentMethod().Name, @params);
+			return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
 		}
 
 		/// <summary>
@@ -270,7 +280,7 @@ namespace Alexandria.net.API.WalletFunctions
 		public string publish_feed(string witness, decimal exchangeRate, bool broadcast = true)
 		{
 			var @params = new ArrayList {witness, exchangeRate, broadcast};
-			return call_api(MethodBase.GetCurrentMethod().Name, @params);
+			return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
 		}
 
 		/// <summary>
@@ -280,7 +290,7 @@ namespace Alexandria.net.API.WalletFunctions
 		public void save_wallet_file(string walletFilename)
 		{
 			var @params = new ArrayList {walletFilename};
-			call_api(MethodBase.GetCurrentMethod().Name, @params);
+			SendRequest(MethodBase.GetCurrentMethod().Name, @params);
 		}
 
 		/// <summary>
@@ -291,7 +301,7 @@ namespace Alexandria.net.API.WalletFunctions
 		public void set_password(string password)
 		{
 			var @params = new ArrayList {password};
-			call_api(MethodBase.GetCurrentMethod().Name, @params);
+			SendRequest(MethodBase.GetCurrentMethod().Name, @params);
 		}
 
 		/// <summary>
@@ -301,7 +311,7 @@ namespace Alexandria.net.API.WalletFunctions
 		public void set_transaction_expiration(uint seconds)
 		{
 			var @params = new ArrayList {seconds};
-			call_api(MethodBase.GetCurrentMethod().Name, @params);
+			SendRequest(MethodBase.GetCurrentMethod().Name, @params);
 		}
 
 		/// <summary>
@@ -321,7 +331,7 @@ namespace Alexandria.net.API.WalletFunctions
 		public string set_voting_proxy(string accountToModify, string proxy, bool broadcast = true)
 		{
 			var @params = new ArrayList {accountToModify, proxy, broadcast};
-			return call_api(MethodBase.GetCurrentMethod().Name, @params);
+			return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
 		}
 
 		/// <summary>
@@ -331,15 +341,20 @@ namespace Alexandria.net.API.WalletFunctions
 		public LockUnlockResponse unlock(string password)
 		{
 			var @params = new ArrayList {password};
-			var result = call_api(MethodBase.GetCurrentMethod().Name, @params);
+			var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
 			
 			var contentdata = JsonConvert.DeserializeObject<LockUnlockResponse>(result);
 			return contentdata;
 		}
 		
+		/// <summary>
+		/// Unlocks the wallet
+		/// </summary>
+		/// <param name="password">the password to unlock the wallet</param>
+		/// <returns>the response received from the blockchain for the request</returns>
 		public LockUnlockResponse unlock(ArrayList password)
 		{
-			var result = call_api(MethodBase.GetCurrentMethod().Name, password);
+			var result = SendRequest(MethodBase.GetCurrentMethod().Name, password);
 			
 			var contentdata = JsonConvert.DeserializeObject<LockUnlockResponse>(result);
 			return contentdata;
@@ -357,7 +372,7 @@ namespace Alexandria.net.API.WalletFunctions
 		public string withdraw_vesting(string from, decimal vestingShares, bool broadcast = true)
 		{
 			var @params = new ArrayList {@from, vestingShares, broadcast};
-			return call_api(MethodBase.GetCurrentMethod().Name, @params);
+			return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
 		}
 
 		#endregion

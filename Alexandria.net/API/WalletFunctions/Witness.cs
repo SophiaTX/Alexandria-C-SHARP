@@ -10,66 +10,47 @@ namespace Alexandria.net.API.WalletFunctions
         /// Returns the list Of witnesses producing blocks In the current round (21 Blocks)
         /// </summary>
         /// <returns></returns>
-        public JArray get_active_witnesses()
+        public string get_active_witnesses()
         {
-            return call_api_array(MethodBase.GetCurrentMethod().Name);
+            return SendRequest(MethodBase.GetCurrentMethod().Name);
         }
         
-        //Returns the queue Of pow miners waiting To produce blocks.
         /// <summary>
-        /// 
+        /// Returns the queue Of pow miners waiting To produce blocks.
         /// </summary>
         /// <returns></returns>
-        public JArray get_miner_queue()
+        public string get_miner_queue()
         {
-            return call_api_array(MethodBase.GetCurrentMethod().Name);
+            return SendRequest(MethodBase.GetCurrentMethod().Name);
         }
-        
-        //    Returns information about the given witness.
-        //
-        //    Parameters:
-        //        owner_account: the name Or id Of the witness account owner, Or the id of the witness 
-        //
-        //    Returns
-        //        the information about the witness stored In the block chain
+            
         /// <summary>
-        /// 
+        /// Returns information about the given witness.
         /// </summary>
-        /// <param name="ownerAccount"></param>
-        /// <returns></returns>
+        /// <param name="ownerAccount">the name Or id Of the witness account owner, Or the id of the witness</param>
+        /// <returns>the information about the witness stored In the block chain</returns>
         public string get_witness(string ownerAccount)
         {
             var @params = new ArrayList {ownerAccount};
-            return call_api(MethodBase.GetCurrentMethod().Name, @params);
+            return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
         }
-        
-        //    Lists all witnesses registered In the blockchain. This returns a list Of
-        //    all account names that own witnesses, And the associated witness id, sorted
-        //    by name. This lists witnesses whether they are currently voted In Or Not.
-        //
-        //    Use the 'lowerbound' and limit parameters to page through the list. To
-        //    retrieve all witnesss, start by setting 'lowerbound' to the empty string
-        //    '""', and then each iteration, pass the last witness name returned as the
-        //    'lowerbound' for the next 'list_witnesss()' call.
-        //
-        //    Parameters:
-        //         lowerbound: the name Of the first witness To Return. If the named
-        //        witness does Not exist, the list will start at the witness that
-        //        comes after 'lowerbound' (type: const string &)
-        //         limit: the maximum number Of witnesss To return (max: 1000) 
-        //
-        //    Returns
-        //        a list Of witnesss mapping witness names To witness ids
+             
         /// <summary>
-        /// 
+        /// Lists all witnesses registered In the blockchain. This returns a list Of
+        /// all account names that own witnesses, And the associated witness id, sorted
+        /// by name. This lists witnesses whether they are currently voted In Or Not.
+        /// Use the 'lowerbound' and limit parameters to page through the list. To
+        /// retrieve all witnesss, start by setting 'lowerbound' to the empty string
+        /// '""', and then each iteration, pass the last witness name returned as the
+        /// 'lowerbound' for the next 'list_witnesss()' call.
         /// </summary>
-        /// <param name="lowerbound"></param>
-        /// <param name="limit"></param>
-        /// <returns></returns>
-        public JArray list_witnesses(string lowerbound, uint limit)
+        /// <param name="lowerbound">the name Of the first witness To Return. If the named witness does Not exist, the list will start at the witness thatcomes after 'lowerbound'</param>
+        /// <param name="limit">the maximum number Of witnesss To return (max: 1000)</param>
+        /// <returns>a list Of witnesss mapping witness names To witness ids</returns>
+        public string list_witnesses(string lowerbound, uint limit)
         {
             var @params = new ArrayList {lowerbound, limit};
-            return call_api_array(MethodBase.GetCurrentMethod().Name, @params);
+            return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
         }
         
         /// <summary>
@@ -85,7 +66,7 @@ namespace Alexandria.net.API.WalletFunctions
             bool broadcast = true)
         {
             var @params = new ArrayList {witnessName, url, blockSigningKey, props, broadcast};
-            return call_api(MethodBase.GetCurrentMethod().Name, @params);
+            return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
         }
         
         /// <summary>
@@ -100,7 +81,7 @@ namespace Alexandria.net.API.WalletFunctions
         public string Vote(string voter, string author, string permlink, short weight, bool broadcast = true)
         {
             var @params = new ArrayList {voter, author, permlink, weight, broadcast};
-            return call_api(MethodBase.GetCurrentMethod().Name, @params);
+            return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
         }
 
         /// <summary>
@@ -117,7 +98,7 @@ namespace Alexandria.net.API.WalletFunctions
             bool broadcast = true)
         {
             var @params = new ArrayList {accountToVoteWith, witnessToVoteFor, approve, broadcast};
-            return call_api(MethodBase.GetCurrentMethod().Name, @params);
+            return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
         }
 
     }

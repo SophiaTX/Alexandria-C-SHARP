@@ -19,9 +19,7 @@ namespace UnitTest
         [Fact]
         public void IsLockedFunc()
         {
-            
             _client.Wallet.is_locked();
-
         }
 
         [Fact]

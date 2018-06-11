@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using System.Reflection;
-using Newtonsoft.Json.Linq;
 
 namespace Alexandria.net.API.WalletFunctions
 {
@@ -16,7 +15,7 @@ namespace Alexandria.net.API.WalletFunctions
         public string cancel_order(string owner, uint orderid, bool broadcast = true)
         {
             var @params = new ArrayList {owner, orderid, broadcast};
-            return call_api(MethodBase.GetCurrentMethod().Name, @params);
+            return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
         }
         
         /// <summary>
@@ -35,7 +34,7 @@ namespace Alexandria.net.API.WalletFunctions
         {
             var @params =
                 new ArrayList {owner, orderId, amountToSell, minToReceive, fillOrKill, expiration, broadcast};
-            return call_api(MethodBase.GetCurrentMethod().Name, @params);
+            return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
         }
         
         /// <summary>
@@ -46,7 +45,7 @@ namespace Alexandria.net.API.WalletFunctions
         public string get_order_book(uint limit)
         {
             var @params = new ArrayList {limit};
-            return call_api(MethodBase.GetCurrentMethod().Name, @params);
+            return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
         }
     }
 }

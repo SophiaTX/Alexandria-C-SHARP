@@ -2,7 +2,6 @@
 using System.Reflection;
 using Alexandria.net.Messaging.Responses.DTO;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace Alexandria.net.API.WalletFunctions
 {
@@ -23,7 +22,7 @@ namespace Alexandria.net.API.WalletFunctions
 		public string create_account(string creator, string newAccountName, string jsonMeta, bool broadcast = true)
 		{
 			var @params = new ArrayList {creator, newAccountName, jsonMeta, broadcast};
-			return call_api(MethodBase.GetCurrentMethod().Name, @params);
+			return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
 		}
 
 		/// <summary>
@@ -44,7 +43,7 @@ namespace Alexandria.net.API.WalletFunctions
 			string posting, string memo, bool broadcast = true)
 		{
 			var @params = new ArrayList {creator, newname, jsonMeta, owner, active, posting, memo, broadcast};
-			return call_api(MethodBase.GetCurrentMethod().Name, @params);
+			return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
 		}
 	    
 	    /// <summary>
@@ -56,7 +55,7 @@ namespace Alexandria.net.API.WalletFunctions
 	    {
 		    var @params = new ArrayList {accountName};
 
-		    return call_api(MethodBase.GetCurrentMethod().Name, @params);
+		    return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
 	    }
 
 	    /// <summary>
@@ -67,10 +66,10 @@ namespace Alexandria.net.API.WalletFunctions
 	    /// <param name="from">the absolute sequence number, -1 means most recent, limit Is the number Of operations before from. </param>
 	    /// <param name="limit">the maximum number of items that can be queried (0 to 1000], must be less than from</param>
 	    /// <returns></returns>
-	    public JToken get_account_history(string account, uint from, uint limit)
+	    public string get_account_history(string account, uint from, uint limit)
 	    {
 		    var @params = new ArrayList {account, @from, limit};
-		    return call_api_token(MethodBase.GetCurrentMethod().Name, @params);
+		    return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
 	    }
 
 	    /// <summary>
@@ -84,7 +83,7 @@ namespace Alexandria.net.API.WalletFunctions
 	    public ListAccountsResponse list_accounts(string lowerbound = "", uint limit = 1000)
 	    {
 		    var @params = new ArrayList {lowerbound, limit};
-		    var result = call_api(MethodBase.GetCurrentMethod().Name, @params);
+		    var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
 		    
 		    var contentdata = JsonConvert.DeserializeObject<ListAccountsResponse>(result);
 		    return contentdata;
@@ -94,9 +93,9 @@ namespace Alexandria.net.API.WalletFunctions
 	    /// Gets the account information For all accounts For which this wallet has aPrivate key
 	    /// </summary>
 	    /// <returns>the account information</returns>
-	    public JArray list_my_accounts()
+	    public string list_my_accounts()
 	    {
-		    return call_api_array(MethodBase.GetCurrentMethod().Name);
+		    return SendRequest(MethodBase.GetCurrentMethod().Name);
 	    }
 	    
 	    /// <summary>
@@ -111,7 +110,7 @@ namespace Alexandria.net.API.WalletFunctions
 		    bool broadcast = true)
 	    {
 		    var @params = new ArrayList {accountToRecover, recentAuthority, newAuthority, broadcast};
-		    return call_api(MethodBase.GetCurrentMethod().Name, @params);
+		    return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
 	    }
 
 	    /// <summary>
@@ -126,7 +125,7 @@ namespace Alexandria.net.API.WalletFunctions
 		    bool broadcast = true)
 	    {
 		    var @params = new ArrayList {recoveryAccount, accountToRecover, newAuthority, broadcast};
-		    return call_api(MethodBase.GetCurrentMethod().Name, @params);
+		    return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
 	    }
 	    
 		/// <summary>
@@ -144,7 +143,7 @@ namespace Alexandria.net.API.WalletFunctions
 			string memo, bool broadcast = true)
 		{
 			var @params = new ArrayList {accountname, jsonMeta, owner, active, memo, broadcast};
-			return call_api(MethodBase.GetCurrentMethod().Name, @params);
+			return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
 		}
 
 		/// <summary>
@@ -163,7 +162,7 @@ namespace Alexandria.net.API.WalletFunctions
 			bool broadcast = true)
 		{
 			var @params = new ArrayList {accountName, type, authAccount, weight, broadcast};
-			return call_api(MethodBase.GetCurrentMethod().Name, @params);
+			return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
 		}
 
 		/// <summary>
@@ -177,7 +176,7 @@ namespace Alexandria.net.API.WalletFunctions
 		public string update_account_auth_key(string accountName, string type, string key, bool broadcast = true)
 		{
 			var @params = new ArrayList {accountName, type, key, broadcast};
-			return call_api(MethodBase.GetCurrentMethod().Name, @params);
+			return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
 		}
 
 		/// <summary>
@@ -194,7 +193,7 @@ namespace Alexandria.net.API.WalletFunctions
 			bool broadcast = true)
 		{
 			var @params = new ArrayList {accountName, type, threshold, broadcast};
-			return call_api(MethodBase.GetCurrentMethod().Name, @params);
+			return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
 		}
 
 		/// <summary>
@@ -207,7 +206,7 @@ namespace Alexandria.net.API.WalletFunctions
 		public string update_account_memo_key(string accountName, string key, bool broadcast = true)
 		{
 			var @params = new ArrayList {accountName, key, broadcast};
-			return call_api(MethodBase.GetCurrentMethod().Name, @params);
+			return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
 		}
 		
 		/// <summary>
@@ -220,7 +219,7 @@ namespace Alexandria.net.API.WalletFunctions
 		public string update_account_meta(string accountName, string jsonMeta, bool broadcast = true)
 		{
 			var @params = new ArrayList {accountName, jsonMeta, broadcast};
-			return call_api(MethodBase.GetCurrentMethod().Name, @params);
+			return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
 		}
 	    
 	    /// <summary>
@@ -233,7 +232,7 @@ namespace Alexandria.net.API.WalletFunctions
 	    public string change_recovery_account(string owner, string newRecoveryAccount, bool broadcast = true)
 	    {
 		    var @params = new ArrayList {owner, newRecoveryAccount, broadcast};
-		    return call_api(MethodBase.GetCurrentMethod().Name, @params);
+		    return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
 	    }
 	    #endregion
     }

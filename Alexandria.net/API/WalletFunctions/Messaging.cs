@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Reflection;
-using Newtonsoft.Json.Linq;
 
 namespace Alexandria.net.API.WalletFunctions
 {
@@ -12,10 +11,10 @@ namespace Alexandria.net.API.WalletFunctions
         /// </summary>
         /// <param name="owner">Account name Of the account owning the requests</param>
         /// <returns>All pending conversion requests by account</returns>
-        public JArray get_conversion_requests(string owner)
+        public string get_conversion_requests(string owner)
         {
             var @params = new ArrayList {owner};
-            return call_api_array(MethodBase.GetCurrentMethod().Name, @params);
+            return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
         }
         
         /// <summary>
@@ -25,10 +24,10 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="newest"></param>
         /// <param name="limit"></param>
         /// <returns></returns>
-        public JArray get_inbox(string account, DateTime newest, uint limit)
+        public string get_inbox(string account, DateTime newest, uint limit)
         {
             var @params = new ArrayList {account, newest, limit};
-            return call_api_array(MethodBase.GetCurrentMethod().Name, @params);
+            return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
         }
 
         /// <summary>
@@ -38,10 +37,10 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="newest"></param>
         /// <param name="limit"></param>
         /// <returns></returns>
-        public JArray get_outbox(string account, DateTime newest, uint limit)
+        public string get_outbox(string account, DateTime newest, uint limit)
         {
             var @params = new ArrayList {account, newest, limit};
-            return call_api_array(MethodBase.GetCurrentMethod().Name, @params);
+            return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
         }
         
         /// <summary>
@@ -60,7 +59,7 @@ namespace Alexandria.net.API.WalletFunctions
             string title, string body, string json, bool broadcast = true)
         {
             var @params = new ArrayList {author, permlink, parentAuthor, parentPermlink, title, body, json, broadcast};
-            return call_api(MethodBase.GetCurrentMethod().Name, @params);
+            return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
         }
         
         /// <summary>
@@ -75,7 +74,7 @@ namespace Alexandria.net.API.WalletFunctions
         public string send_private_message(string from, string to, string subject, string body, bool broadcast = true)
         {
             var @params = new ArrayList {@from, to, subject, body, broadcast};
-            return call_api(MethodBase.GetCurrentMethod().Name, @params);
+            return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
         }
 
     }

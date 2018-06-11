@@ -7,37 +7,68 @@ using Newtonsoft.Json;
 
 namespace Alexandria.net.Communication
 {
-    public class RpcConnection
+    /// <summary>
+    /// Abstract Class which manages the sending and receiving of data to and from the blockchain
+    /// </summary>
+    public abstract class RpcConnection
     {
         #region Variables
 
         private int _requestId;
         private readonly string _uri;
         private readonly HttpClient _client;
-        private const string JsonRpc = "2.0";
+        private readonly string _jsonRpc;
 
         #endregion
 
         #region Constructors
 
-        public RpcConnection(string hostname, ushort port, string api, string version = "2.0")
+        /// <summary>
+        /// RPCConnection Constructor
+        /// </summary>
+        /// <param name="hostname"></param>
+        /// <param name="port"></param>
+        /// <param name="api"></param>
+        /// <param name="version"></param>
+        protected RpcConnection(string hostname, ushort port, string api = "/rpc", string version = "2.0")
         {
             _uri = string.Format("http://{0}:{1}{2}", hostname, port, api);
             _client = new HttpClient();
+            _jsonRpc = version;
         }
         #endregion
 
         #region public methods
-        
-
-        public async Task<string> SendRequest(string methodname, ArrayList @params)
+        /// <summary>
+        /// Sends the request to the blockchain
+        /// </summary>
+        /// <param name="method">the method to call</param>
+        /// <param name="params">the parameters to send with the method</param>
+        /// <returns>the http response from ther server</returns>
+        protected string SendRequest(string method, ArrayList @params = null)
         {
-            string response = string.Empty;
+            var resp = ProcessRequest(method, @params);
+            return resp.Result;
+        }
+
+
+        #endregion
+
+        #region private methods
+        /// <summary>
+        /// Processes the request and gets the response from the server
+        /// </summary>
+        /// <param name="methodname">the method name to call</param>
+        /// <param name="params">the paramaters to pass with the method</param>
+        /// <returns>the http response from the server</returns>
+        private async Task<string> ProcessRequest(string methodname, ArrayList @params = null)
+        {
+            var response = string.Empty;
             try
             {
                 var request = new
                 {
-                    jsonrpc = JsonRpc,
+                    jsonrpc = _jsonRpc,
                     id = GetRequestId(),
                     method = methodname,
                     @params = @params ?? new ArrayList()
@@ -57,11 +88,6 @@ namespace Alexandria.net.Communication
             
             return response;
         }
-
-
-        #endregion
-
-        #region private methods
 
         private int GetRequestId()
         {

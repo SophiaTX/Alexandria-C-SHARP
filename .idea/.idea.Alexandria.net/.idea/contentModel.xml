@@ -4,12 +4,10 @@
     <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.3.1/build/netcoreapp1.0/xunit.runner.reporters.netcoreapp10.dll" t="Include" />
     <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.3.1/build/netcoreapp1.0/xunit.runner.utility.netcoreapp10.dll" t="Include" />
     <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.3.1/build/netcoreapp1.0/xunit.runner.visualstudio.dotnetcore.testadapter.dll" t="Include" />
-    <e p="$USER_HOME$/Library/Caches/Rider2018.1/resharper-host/local/Transient/ReSharperHost/v12/SolutionCaches/_Alexandria.net.-1113668252.00" t="ExcludeRecursive" />
     <e p="$PROJECT_DIR$" t="IncludeFlat">
       <e p="Alexandria.net" t="IncludeRecursive">
         <e p="Alexandria.net.csproj" t="IncludeRecursive" />
         <e p="API" t="Include">
-          <e p="SphTxApi.cs" t="Include" />
           <e p="WalletFunctions" t="Include">
             <e p="Account.cs" t="Include" />
             <e p="Key.cs" t="Include" />
@@ -23,7 +21,6 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="Communication" t="Include">
           <e p="RpcConnection.cs" t="Include" />
-          <e p="WebsocketConnection.cs" t="Include" />
         </e>
         <e p="Core" t="Include">
           <e p="Daemon.cs" t="Include" />
@@ -99,5 +96,6 @@
       </e>
       <e p="Tests" t="Include" />
     </e>
+    <e p="$USER_HOME$/Library/Caches/Rider2018.1/resharper-host/local/Transient/ReSharperHost/v12/SolutionCaches/_Alexandria.net.980360794.00" t="ExcludeRecursive" />
   </component>
 </project>

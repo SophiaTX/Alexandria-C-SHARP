@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Globalization;
 using System.Reflection;
-using Newtonsoft.Json.Linq;
 
 namespace Alexandria.net.API.WalletFunctions
 {
@@ -15,40 +14,32 @@ namespace Alexandria.net.API.WalletFunctions
         public string get_private_key(string pubkey)
         {
             var @params = new ArrayList {pubkey};
-            return call_api_value(MethodBase.GetCurrentMethod().Name, @params).ToString(CultureInfo.InvariantCulture);
+            return SendRequest(MethodBase.GetCurrentMethod().Name, @params).ToString(CultureInfo.InvariantCulture);
         }
 
-        // Get the WIF Private key corresponding To a Public key. The Private key must already be In the wallet.
-        // Parameters:
-        // role: - active | owner | posting | memo 
         /// <summary>
-        /// 
+        /// Get the WIF Private key corresponding To a Public key. The Private key must already be In the wallet.
         /// </summary>
-        /// <param name="account"></param>
-        /// <param name="role"></param>
-        /// <param name="password"></param>
-        /// <returns></returns>
+        /// <param name="account">the account to use</param>
+        /// <param name="role">active | owner | posting | memo </param>
+        /// <param name="password">the account password</param>
+        /// <returns>the private key</returns>
         public string get_private_key_from_password(string account, string role, string password)
         {
             var @params = new ArrayList {account, role, password};
-            return call_api(MethodBase.GetCurrentMethod().Name, @params);
+            return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
         }
-
-        //    Imports a WIF Private Key into the wallet To be used To sign transactionsby an account.
-        //
-        //    example: import_key 5KQwrPbwdL6PhXujxW37FSSQZ1JiwsST4cqQzDeyXtP79zkvFD3
-        //
-        //    Parameters:
-        //         wif_key: the WIF Private Key To import 
+ 
         /// <summary>
-        /// 
+        /// Imports a WIF Private Key into the wallet To be used To sign transactionsby an account.
         /// </summary>
-        /// <param name="wifKey"></param>
+        /// <param name="wifKey">the WIF Private Key To import</param>
         /// <returns></returns>
-        public bool import_key(string wifKey)
+        // todo - this was returning bool, check and update code accordingly
+        public string import_key(string wifKey)
         {
             var @params = new ArrayList {wifKey};
-            return (bool) call_api_value(MethodBase.GetCurrentMethod().Name, @params);
+            return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
         }
         
         /// <summary>
@@ -56,9 +47,9 @@ namespace Alexandria.net.API.WalletFunctions
         /// The keys are printed In WIF format. You can import these keys into another wallet using 'import_key()' 
         /// </summary>
         /// <returns>a map containing the Private keys, indexed by their Public key</returns>
-        public JToken list_keys()
+        public string list_keys()
         {
-            return call_api_token(MethodBase.GetCurrentMethod().Name);
+            return SendRequest(MethodBase.GetCurrentMethod().Name);
         }
 
         /// <summary>
@@ -73,7 +64,7 @@ namespace Alexandria.net.API.WalletFunctions
         public string normalize_brain_key(string key)
         {
             var @params = new ArrayList {key};
-            return call_api_value(MethodBase.GetCurrentMethod().Name, @params).ToString(CultureInfo.InvariantCulture);
+            return SendRequest(MethodBase.GetCurrentMethod().Name, @params).ToString(CultureInfo.InvariantCulture);
         }
         
 
@@ -81,33 +72,58 @@ namespace Alexandria.net.API.WalletFunctions
         /// Suggests a safe brain key To use For creating your account.
         /// create_account_with_brain_key()' requires you to specify a 'brain key', a
         /// Long passphrase that provides enough entropy to generate cyrptographic
-        // /keys. This function will suggest a suitably random string that should be
+        /// keys. This function will suggest a suitably random string that should be
         /// easy to write down (And, with effort, memorize).
         /// </summary>
         /// <returns>the suggested brain key</returns>
         public string suggest_brain_key()
         {
-            return call_api_value(MethodBase.GetCurrentMethod().Name).ToString(CultureInfo.InvariantCulture);
+            return SendRequest(MethodBase.GetCurrentMethod().Name).ToString(CultureInfo.InvariantCulture);
         }
         
+        /// <summary>
+        /// Generates the Private Keys
+        /// </summary>
+        /// <param name="privatekey">the key bytes</param>
+        /// <returns>true if generated</returns>
         public bool generate_private_key_c(byte[] privatekey)
         {
-            return Wallet.generate_private_key(privatekey);
+            return generate_private_key(privatekey);
         }
 
+        /// <summary>
+        /// Gets the transaction digest
+        /// </summary>
+        /// <param name="transaction">the transaction to digest</param>
+        /// <param name="digest">the digest bytes</param>
+        /// <returns>true if successful</returns>
         public bool get_transaction_digest_c(string transaction, byte[] digest)
         {
-            return Wallet.get_transaction_digest(transaction, digest);
+            return get_transaction_digest(transaction, digest);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="digest"></param>
+        /// <param name="privatekey"></param>
+        /// <param name="signeddigest"></param>
+        /// <returns></returns>
         public bool sign_digest_c(string digest, string privatekey, byte[] signeddigest)
         {
-            return Wallet.sign_digest(digest, privatekey, signeddigest);
+            return sign_digest(digest, privatekey, signeddigest);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="transaction"></param>
+        /// <param name="signature"></param>
+        /// <param name="signedtx"></param>
+        /// <returns></returns>
         public bool add_signature_c(string transaction, string signature, byte[] signedtx)
         {
-            return Wallet.add_signature(transaction, signature, signedtx);
+            return add_signature(transaction, signature, signedtx);
         }
         
     }
