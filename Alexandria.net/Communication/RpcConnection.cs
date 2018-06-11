@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.Immutable;
-using System.Linq;
+﻿using System.Collections;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using Alexandria.net.API;
-using Alexandria.net.Messaging.Responses.DTO;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace Alexandria.net.Communication
 {
@@ -19,7 +12,6 @@ namespace Alexandria.net.Communication
 
         private int _requestId;
         private readonly string _uri;
-        private readonly JsonRpc _jsonRpc;
         private readonly HttpClient _client;
         private const string JsonRpc = "2.0";
 
@@ -29,54 +21,42 @@ namespace Alexandria.net.Communication
 
         public RpcConnection(string hostname, ushort port, string api, string version = "2.0")
         {
-            _jsonRpc = new JsonRpc
-            {
-                Port = port,
-                Api = api,
-                Version = version
-            };
-            _uri = string.Format("http://{0}:{1}{2}", hostname, _jsonRpc.Port, _jsonRpc.Api);
-
+            _uri = string.Format("http://{0}:{1}{2}", hostname, port, api);
             _client = new HttpClient();
-            
         }
         #endregion
 
         #region public methods
 
 
-        public async Task<LockUnlockRequestResponse> SendRequest(string method, ArrayList @params)
+        public async Task<string> SendRequest(string method, ArrayList @params)
+        {
+            string response = string.Empty;
+            try
+            {
+                var request = new
+                {
+                    jsonrpc = JsonRpc,
+                    id = GetRequestId(),
+                    method = method,
+                    request = @params ?? (IEnumerable) ""
+                };
 
-            {             
+                var json = JsonConvert.SerializeObject(request);
 
-                    var request = new
-                    {
-                        jsonrpc = JsonRpc,
-                        id = GetRequestId(),
-                        method = method,
-                        request = @params ?? (IEnumerable) ""
-                    };
+                var httpResponse = await SendAsync(json);
 
-                    var json = JsonConvert.SerializeObject(request);
-
-                    var response = await SendAsync(json);
-                   
-                    if (response == null) return null;
-                      var responsecontent = await response.Content.ReadAsStringAsync();
-                      var contentdata = JsonConvert.DeserializeObject<LockUnlockResponse>(responsecontent);
-                    
-                    var resultrep = new LockUnlockRequestResponse
-                    {
-                        Request = json,
-                        Response = contentdata
-
-                    };
-                        
-
-                    return resultrep;
-                   
+                if (httpResponse == null) return response;
+                response = await httpResponse.Content.ReadAsStringAsync();              
             }
-        
+            catch (HttpRequestException e)
+            {
+                response = $"{e.Message}";
+            }
+            
+            return response;
+        }
+
 
         #endregion
 

@@ -35,7 +35,7 @@ namespace Alexandria.net.API
 			_etype = EType.RemoteProcedureCall;
 		}
 
-		public SphTxApi(string uri)
+		protected SphTxApi(string uri)
 		{
 			_socket = new WebsocketConnection(uri);
 			_etype = EType.WebSockets;
@@ -50,15 +50,13 @@ namespace Alexandria.net.API
 			if (_etype == EType.RemoteProcedureCall)
 			{
 				var resp = _json.SendRequest(method, @params);
-				return resp.Result.Response.Result;
+				return resp.Result;
 			}
-			else
+
+			using (var t = _socket.SendRequest(method, @params))
 			{
-				using (var t = _socket.SendRequest(method, @params))
-				{
-					t.Wait();
-					return t.Result;
-				}
+				t.Wait();
+				return t.Result;
 			}
 		}
 
@@ -66,14 +64,14 @@ namespace Alexandria.net.API
 
 		#region protected methods
 
-		protected JObject call_api(string method)
+		protected string call_api(string method)
 		{
-			return JsonConvert.DeserializeObject<Dictionary<string,JObject>>(SendRequest(method))["result"];
+			return JsonConvert.DeserializeObject<string>(SendRequest(method));
 		}
 
-		protected JObject call_api(string method, ArrayList @params)
+		protected string call_api(string method, ArrayList @params)
 		{
-			return JsonConvert.DeserializeObject<Dictionary<string, JObject>>(SendRequest(method, @params))["result"];
+			return JsonConvert.DeserializeObject<string>(SendRequest(method, @params));
 		}
 
 		protected JArray call_api_array(string method, ArrayList @params)

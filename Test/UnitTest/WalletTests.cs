@@ -22,6 +22,13 @@ namespace UnitTest
             _client.Wallet.is_locked();
 
         }
+
+        [Fact]
+        public void Lock()
+        {
+            var result = _client.Wallet.Lock();
+            Console.WriteLine(result.Response);
+        }
         
         [Fact]
         public void UnLockAccount()

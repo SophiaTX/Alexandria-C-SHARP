@@ -3,6 +3,8 @@ using System.Collections;
 using System.Globalization;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using Alexandria.net.Messaging.Responses.DTO;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace Alexandria.net.API.WalletFunctions
@@ -216,9 +218,17 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <summary>
 		/// Locks the wallet immediately.
 		/// </summary>
-		public void Lock()
+		public LockUnlockRequestResponse Lock()
 		{
-			call_api("lock");
+			var result = call_api("lock");
+			
+			var contentdata = JsonConvert.DeserializeObject<LockUnlockResponse>(result);
+
+			var resultrep = new LockUnlockRequestResponse
+			{
+			    Response = contentdata
+			};
+			return resultrep;
 		}
 
 		/// <summary>
