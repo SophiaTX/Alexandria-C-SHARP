@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Reflection;
+using Alexandria.net.Messaging.Responses.DTO;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace Alexandria.net.API.WalletFunctions
@@ -18,7 +20,7 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <param name="jsonMeta">JSON Metadata associated With the New account </param>
 		/// <param name="broadcast">true if you wish to broadcast the transaction.</param>
 		/// <returns></returns>
-		public JObject create_account(string creator, string newAccountName, string jsonMeta, bool broadcast = true)
+		public string create_account(string creator, string newAccountName, string jsonMeta, bool broadcast = true)
 		{
 			var @params = new ArrayList {creator, newAccountName, jsonMeta, broadcast};
 			return call_api(MethodBase.GetCurrentMethod().Name, @params);
@@ -38,7 +40,7 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <param name="memo">Public memo key Of the New account</param>
 		/// <param name="broadcast">true if you wish to broadcast the transaction.</param>
 		/// <returns></returns>
-		public JObject create_account_with_keys(string creator, string newname, string jsonMeta, string owner, string active,
+		public string create_account_with_keys(string creator, string newname, string jsonMeta, string owner, string active,
 			string posting, string memo, bool broadcast = true)
 		{
 			var @params = new ArrayList {creator, newname, jsonMeta, owner, active, posting, memo, broadcast};
@@ -50,7 +52,7 @@ namespace Alexandria.net.API.WalletFunctions
 	    /// </summary>
 	    /// <param name="accountName">the name Of the account To provide information about </param>
 	    /// <returns>the Public account data stored In the blockchain</returns>
-	    public JObject get_account(string accountName)
+	    public string get_account(string accountName)
 	    {
 		    var @params = new ArrayList {accountName};
 
@@ -79,10 +81,13 @@ namespace Alexandria.net.API.WalletFunctions
 	    /// <param name="lowerbound">the name Of the first account To Return. If the named account does Not exist, the list will start at the account that comes after 'lowerbound' </param>
 	    /// <param name="limit">the maximum number Of accounts To return (max: 1000) </param>
 	    /// <returns>a list Of accounts mapping account names To account ids</returns>
-	    public JArray list_accounts(string lowerbound, uint limit)
+	    public ListAccountsResponse list_accounts(string lowerbound = "", uint limit = 1000)
 	    {
 		    var @params = new ArrayList {lowerbound, limit};
-		    return call_api_array(MethodBase.GetCurrentMethod().Name, @params);
+		    var result = call_api(MethodBase.GetCurrentMethod().Name, @params);
+		    
+		    var contentdata = JsonConvert.DeserializeObject<ListAccountsResponse>(result);
+		    return contentdata;
 	    }
 
 	    /// <summary>
@@ -102,7 +107,7 @@ namespace Alexandria.net.API.WalletFunctions
 	    /// <param name="newAuthority"></param>
 	    /// <param name="broadcast">true if you wish to broadcast the transaction.</param>
 	    /// <returns></returns>
-	    public JObject recover_account(string accountToRecover, Hashtable recentAuthority, Hashtable newAuthority,
+	    public string recover_account(string accountToRecover, Hashtable recentAuthority, Hashtable newAuthority,
 		    bool broadcast = true)
 	    {
 		    var @params = new ArrayList {accountToRecover, recentAuthority, newAuthority, broadcast};
@@ -117,7 +122,7 @@ namespace Alexandria.net.API.WalletFunctions
 	    /// <param name="newAuthority"></param>
 	    /// <param name="broadcast">true if you wish to broadcast the transaction.</param>
 	    /// <returns></returns>
-	    public JObject request_account_recovery(string recoveryAccount, string accountToRecover, Hashtable newAuthority,
+	    public string request_account_recovery(string recoveryAccount, string accountToRecover, Hashtable newAuthority,
 		    bool broadcast = true)
 	    {
 		    var @params = new ArrayList {recoveryAccount, accountToRecover, newAuthority, broadcast};
@@ -135,7 +140,7 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <param name="memo">New public memo key for the account</param>
 		/// <param name="broadcast">true if you wish to broadcast the transaction.</param>
 		/// <returns></returns>
-		public JObject update_account(string accountname, string jsonMeta, string owner, string active, string posting,
+		public string update_account(string accountname, string jsonMeta, string owner, string active, string posting,
 			string memo, bool broadcast = true)
 		{
 			var @params = new ArrayList {accountname, jsonMeta, owner, active, memo, broadcast};
@@ -154,7 +159,7 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <param name="weight">The weight the key should have In the authority. A weight Of 0 indicates the removal Of the key.</param>
 		/// <param name="broadcast">true if you wish to broadcast the transaction.</param>
 		/// <returns></returns>
-		public JObject update_account_auth_account(string accountName, string type, string authAccount, ushort weight,
+		public string update_account_auth_account(string accountName, string type, string authAccount, ushort weight,
 			bool broadcast = true)
 		{
 			var @params = new ArrayList {accountName, type, authAccount, weight, broadcast};
@@ -169,7 +174,7 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <param name="key"></param>
 		/// <param name="broadcast">true if you wish to broadcast the transaction.</param>
 		/// <returns></returns>
-		public JObject update_account_auth_key(string accountName, string type, string key, bool broadcast = true)
+		public string update_account_auth_key(string accountName, string type, string key, bool broadcast = true)
 		{
 			var @params = new ArrayList {accountName, type, key, broadcast};
 			return call_api(MethodBase.GetCurrentMethod().Name, @params);
@@ -185,7 +190,7 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <param name="threshold">The weight threshold required For the authority To be met</param>
 		/// <param name="broadcast">true if you wish to broadcast the transaction.</param>
 		/// <returns></returns>
-		public JObject update_account_auth_threshold(string accountName, string type, uint threshold,
+		public string update_account_auth_threshold(string accountName, string type, uint threshold,
 			bool broadcast = true)
 		{
 			var @params = new ArrayList {accountName, type, threshold, broadcast};
@@ -199,7 +204,7 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <param name="key">The New memo public key </param>
 		/// <param name="broadcast">true if you wish to broadcast the transaction.</param>
 		/// <returns></returns>
-		public JObject update_account_memo_key(string accountName, string key, bool broadcast = true)
+		public string update_account_memo_key(string accountName, string key, bool broadcast = true)
 		{
 			var @params = new ArrayList {accountName, key, broadcast};
 			return call_api(MethodBase.GetCurrentMethod().Name, @params);
@@ -212,7 +217,7 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <param name="jsonMeta">The New JSON metadata for the account. This overrides existing metadata</param>
 		/// <param name="broadcast">true if you wish to broadcast the transaction.</param>
 		/// <returns></returns>
-		public JObject update_account_meta(string accountName, string jsonMeta, bool broadcast = true)
+		public string update_account_meta(string accountName, string jsonMeta, bool broadcast = true)
 		{
 			var @params = new ArrayList {accountName, jsonMeta, broadcast};
 			return call_api(MethodBase.GetCurrentMethod().Name, @params);
@@ -225,7 +230,7 @@ namespace Alexandria.net.API.WalletFunctions
 	    /// <param name="newRecoveryAccount"></param>
 	    /// <param name="broadcast">true if you wish to broadcast the transaction.</param>
 	    /// <returns></returns>
-	    public JObject change_recovery_account(string owner, string newRecoveryAccount, bool broadcast = true)
+	    public string change_recovery_account(string owner, string newRecoveryAccount, bool broadcast = true)
 	    {
 		    var @params = new ArrayList {owner, newRecoveryAccount, broadcast};
 		    return call_api(MethodBase.GetCurrentMethod().Name, @params);

@@ -4,6 +4,7 @@
     <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.3.1/build/netcoreapp1.0/xunit.runner.reporters.netcoreapp10.dll" t="Include" />
     <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.3.1/build/netcoreapp1.0/xunit.runner.utility.netcoreapp10.dll" t="Include" />
     <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.3.1/build/netcoreapp1.0/xunit.runner.visualstudio.dotnetcore.testadapter.dll" t="Include" />
+    <e p="$USER_HOME$/Library/Caches/Rider2018.1/resharper-host/local/Transient/ReSharperHost/v12/SolutionCaches/_Alexandria.net.-1113668252.00" t="ExcludeRecursive" />
     <e p="$PROJECT_DIR$" t="IncludeFlat">
       <e p="Alexandria.net" t="IncludeRecursive">
         <e p="Alexandria.net.csproj" t="IncludeRecursive" />
@@ -29,6 +30,9 @@
           <e p="SophiaClient.cs" t="Include" />
           <e p="Wallet.cs" t="Include" />
         </e>
+        <e p="lib" t="Include">
+          <e p="libalexandria.dylib" t="Include" />
+        </e>
         <e p="libalexandria.dylib" t="Include" />
         <e p="Messaging" t="Include">
           <e p="Errors" t="Include">
@@ -49,10 +53,16 @@
               <e p="Account.cs" t="Include" />
               <e p="AccountRequestResponse.cs" t="Include" />
               <e p="Active.cs" t="Include" />
+              <e p="BlockData.cs" t="Include" />
+              <e p="BlockResponse.cs" t="Include" />
               <e p="DataRequestResponse.cs" t="Include" />
               <e p="DataResponse.cs" t="Include" />
+              <e p="InfoData.cs" t="Include" />
+              <e p="InfoResponse.cs" t="Include" />
+              <e p="ListAccountsResponse.cs" t="Include" />
               <e p="LockUnlockRequestResponse.cs" t="Include" />
               <e p="LockUnlockResponse.cs" t="Include" />
+              <e p="MedianSbdPrice.cs" t="Include" />
               <e p="Options.cs" t="Include" />
               <e p="Owner.cs" t="Include" />
               <e p="PricePerSubscribe.cs" t="Include" />
@@ -89,6 +99,5 @@
       </e>
       <e p="Tests" t="Include" />
     </e>
-    <e p="$USER_HOME$/Library/Caches/Rider2018.1/resharper-host/local/Transient/ReSharperHost/v12/SolutionCaches/_Alexandria.net.980360794.00" t="ExcludeRecursive" />
   </component>
 </project>

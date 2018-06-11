@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,9 +28,9 @@ namespace Alexandria.net.Communication
         #endregion
 
         #region public methods
+        
 
-
-        public async Task<string> SendRequest(string method, ArrayList @params)
+        public async Task<string> SendRequest(string methodname, ArrayList @params)
         {
             string response = string.Empty;
             try
@@ -38,8 +39,8 @@ namespace Alexandria.net.Communication
                 {
                     jsonrpc = JsonRpc,
                     id = GetRequestId(),
-                    method = method,
-                    request = @params ?? (IEnumerable) ""
+                    method = methodname,
+                    @params = @params ?? new ArrayList()
                 };
 
                 var json = JsonConvert.SerializeObject(request);

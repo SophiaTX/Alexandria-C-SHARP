@@ -42,9 +42,9 @@ namespace Alexandria.net.API.WalletFunctions
 		/// Gets the compile time info
 		/// </summary>
 		/// <returns>Returns compile time info And client And dependencies versions</returns>
-		public JObject About()
+		public string About()
 		{
-			return call_api(MethodBase.GetCurrentMethod().Name);
+			return call_api(MethodBase.GetCurrentMethod().Name.ToLower());
 		}
 
 		/// <summary>
@@ -54,7 +54,7 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <param name="challenged"></param>
 		/// <param name="broadcast">true if you wish to broadcast the transaction.</param>
 		/// <returns></returns>
-		public JObject Challenge(string challenger, string challenged, bool broadcast = true)
+		public string Challenge(string challenger, string challenged, bool broadcast = true)
 		{
 			var @params = new ArrayList {challenger, challenged, broadcast};
 			return call_api(MethodBase.GetCurrentMethod().Name, @params);
@@ -68,7 +68,7 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <param name="amount">The amount Of SBD To convert</param>
 		/// <param name="broadcast">true if you wish to broadcast the transaction.</param>
 		/// <returns></returns>
-		public JObject convert_sbd(string from, decimal amount, bool broadcast = true)
+		public string convert_sbd(string from, decimal amount, bool broadcast = true)
 		{
 			var @params = new ArrayList {@from, amount, broadcast};
 			return call_api(MethodBase.GetCurrentMethod().Name, @params);
@@ -82,7 +82,7 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <param name="what">a set of things to follow: posts, comments, votes, ignore</param>
 		/// <param name="broadcast">true if you wish to broadcast the transaction.</param>
 		/// <returns></returns>
-		public JObject Follow(string follower, string following, ArrayList what, bool broadcast = true)
+		public string Follow(string follower, string following, ArrayList what, bool broadcast = true)
 		{
 			var @params = new ArrayList {follower, following, what, broadcast};
 			return call_api(MethodBase.GetCurrentMethod().Name, @params);
@@ -93,10 +93,12 @@ namespace Alexandria.net.API.WalletFunctions
 		/// </summary>
 		/// <param name="num">the block num</param>
 		/// <returns>Public block data On the blockchain</returns>
-		public JObject get_block(uint num)
+		public BlockResponse get_block(int num)
 		{
 			var @params = new ArrayList {num};
-			return call_api(MethodBase.GetCurrentMethod().Name, @params);
+			var result =  call_api(MethodBase.GetCurrentMethod().Name, @params);
+			var contentdata = JsonConvert.DeserializeObject<BlockResponse>(result);
+			return contentdata;
 		}
 
 		//return the current price feed history
@@ -104,7 +106,7 @@ namespace Alexandria.net.API.WalletFunctions
 		/// 
 		/// </summary>
 		/// <returns></returns>
-		public JObject get_feed_history()
+		public string get_feed_history()
 		{
 			return call_api(MethodBase.GetCurrentMethod().Name);
 		}
@@ -129,7 +131,7 @@ namespace Alexandria.net.API.WalletFunctions
 		/// </summary>
 		/// <param name="operationType">the type Of operation To Return, must be one Of the operations defined In 'steemit/chain/operations.hpp' (e.g., "global_parameters_update_operation") </param>
 		/// <returns> a Default-constructed operation of the given type</returns>
-		public JObject get_prototype_operation(string operationType)
+		public string get_prototype_operation(string operationType)
 		{
 			var @params = new ArrayList {operationType};
 			return call_api(MethodBase.GetCurrentMethod().Name, @params);
@@ -140,7 +142,7 @@ namespace Alexandria.net.API.WalletFunctions
 		/// </summary>
 		/// <param name="url"></param>
 		/// <returns></returns>
-		public JObject get_state(string url)
+		public string get_state(string url)
 		{
 			var @params = new ArrayList {url};
 			return call_api(MethodBase.GetCurrentMethod().Name, @params);
@@ -151,7 +153,7 @@ namespace Alexandria.net.API.WalletFunctions
 		/// </summary>
 		/// <param name="trxId"></param>
 		/// <returns></returns>
-		public JObject get_transaction(string trxId)
+		public string get_transaction(string trxId)
 		{
 			var @params = new ArrayList {trxId};
 			return call_api(MethodBase.GetCurrentMethod().Name, @params);
@@ -172,7 +174,7 @@ namespace Alexandria.net.API.WalletFunctions
 		/// Returns a list Of all commands supported by the wallet API.
 		/// </summary>
 		/// <returns>a multi-line String suitable For displaying On a terminal</returns>
-		public string Help()
+		public string help()
 		{
 			return call_api_value(MethodBase.GetCurrentMethod().Name).ToString(CultureInfo.InvariantCulture);
 		}
@@ -181,9 +183,11 @@ namespace Alexandria.net.API.WalletFunctions
 		/// Returns info about the current state Of the blockchain
 		/// </summary>
 		/// <returns></returns>
-		public JObject Info()
+		public InfoResponse info()
 		{
-			return call_api(MethodBase.GetCurrentMethod().Name);
+			var result =  call_api(MethodBase.GetCurrentMethod().Name);
+			var contentdata = JsonConvert.DeserializeObject<InfoResponse>(result);
+			return contentdata;
 		}
  
 		/// <summary>
@@ -218,17 +222,12 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <summary>
 		/// Locks the wallet immediately.
 		/// </summary>
-		public LockUnlockRequestResponse Lock()
+		public LockUnlockResponse Lock()
 		{
 			var result = call_api("lock");
 			
 			var contentdata = JsonConvert.DeserializeObject<LockUnlockResponse>(result);
-
-			var resultrep = new LockUnlockRequestResponse
-			{
-			    Response = contentdata
-			};
-			return resultrep;
+			return contentdata;
 		}
 
 		/// <summary>
@@ -255,7 +254,7 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <param name="challenged"></param>
 		/// <param name="broadcast">true if you wish to broadcast the transaction.</param>
 		/// <returns></returns>
-		public JObject Prove(string challenged, bool broadcast = true)
+		public string Prove(string challenged, bool broadcast = true)
 		{
 			var @params = new ArrayList {challenged, broadcast};
 			return call_api(MethodBase.GetCurrentMethod().Name, @params);
@@ -268,7 +267,7 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <param name="exchangeRate">The desired exchange rate</param>
 		/// <param name="broadcast">true if you wish to broadcast the transaction.</param>
 		/// <returns></returns>
-		public JObject publish_feed(string witness, decimal exchangeRate, bool broadcast = true)
+		public string publish_feed(string witness, decimal exchangeRate, bool broadcast = true)
 		{
 			var @params = new ArrayList {witness, exchangeRate, broadcast};
 			return call_api(MethodBase.GetCurrentMethod().Name, @params);
@@ -319,7 +318,7 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <param name="proxy">the name Of account that should proxy To, Or empty String To have no proxy </param>
 		/// <param name="broadcast">true if you wish to broadcast the transaction.</param>
 		/// <returns></returns>
-		public JObject set_voting_proxy(string accountToModify, string proxy, bool broadcast = true)
+		public string set_voting_proxy(string accountToModify, string proxy, bool broadcast = true)
 		{
 			var @params = new ArrayList {accountToModify, proxy, broadcast};
 			return call_api(MethodBase.GetCurrentMethod().Name, @params);
@@ -329,10 +328,21 @@ namespace Alexandria.net.API.WalletFunctions
 		/// The wallet remain unlocked until the 'lock' is called or the program exits.
 		/// </summary>
 		/// <param name="password">the password previously Set With 'set_password()'</param>
-		public void Unlock(string password)
+		public LockUnlockResponse unlock(string password)
 		{
 			var @params = new ArrayList {password};
-			call_api(MethodBase.GetCurrentMethod().Name, @params);
+			var result = call_api(MethodBase.GetCurrentMethod().Name, @params);
+			
+			var contentdata = JsonConvert.DeserializeObject<LockUnlockResponse>(result);
+			return contentdata;
+		}
+		
+		public LockUnlockResponse unlock(ArrayList password)
+		{
+			var result = call_api(MethodBase.GetCurrentMethod().Name, password);
+			
+			var contentdata = JsonConvert.DeserializeObject<LockUnlockResponse>(result);
+			return contentdata;
 		}
 
 		/// <summary>
@@ -344,7 +354,7 @@ namespace Alexandria.net.API.WalletFunctions
 		///        back as STEEM. i.e. "10.000000 VESTS" </param>
 		/// <param name="broadcast">true if you want to broadcast the transaction</param>
 		/// <returns></returns>
-		public JObject withdraw_vesting(string from, decimal vestingShares, bool broadcast = true)
+		public string withdraw_vesting(string from, decimal vestingShares, bool broadcast = true)
 		{
 			var @params = new ArrayList {@from, vestingShares, broadcast};
 			return call_api(MethodBase.GetCurrentMethod().Name, @params);

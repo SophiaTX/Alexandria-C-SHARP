@@ -29,6 +29,48 @@ namespace Alexandria.net.Communication
 		#endregion
 
 		#region Public methods
+		
+		public async Task<string> SendRequest(string method, string @params = null)
+		{
+			var result = string.Empty;
+			var bytes = new byte[2048];
+			var request = new
+			{
+				jsonrpc = JsonRpc,
+				id = 1,
+				method = method,
+				request = @params ?? (IEnumerable) ""
+			};
+
+			var jason = JsonConvert.SerializeObject(request);
+			for (var retry = 1; retry < 2; retry++)
+			{
+				try
+				{
+					if (_clientWebSocket.State != WebSocketState.Open)
+						await _clientWebSocket.ConnectAsync(_uri, CancellationToken.None);
+
+					var bytesToSend = new ArraySegment<byte>(Encoding.UTF8.GetBytes(jason));
+					var bytesReceived = new ArraySegment<byte>(bytes);
+					await _clientWebSocket.SendAsync(bytesToSend, WebSocketMessageType.Text, true, CancellationToken.None);
+					WebSocketReceiveResult resp;
+					do
+					{
+						resp = await _clientWebSocket.ReceiveAsync(bytesReceived, CancellationToken.None);
+						result += Encoding.UTF8.GetString(bytesReceived.Array, 0, resp.Count);
+					} while (!resp.EndOfMessage);
+
+					break;
+				}
+				catch
+				{
+					if (retry == 2) throw;
+				}
+				Thread.Sleep(1000);
+			}
+
+			return result;
+		}
 
 		public async Task<string> SendRequest(string method, ArrayList @params = null)
 		{

@@ -25,7 +25,7 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <param name="memo"></param>
 		/// <param name="broadcast">true if you wish to broadcast the transaction.</param>
 		/// <returns></returns>
-		public JObject Transfer(string from, string to, decimal amount, string memo, bool broadcast = true)
+		public string Transfer(string from, string to, decimal amount, string memo, bool broadcast = true)
 		{
 			var @params = new ArrayList {@from, to, amount, memo, broadcast};
 			return call_api(MethodBase.GetCurrentMethod().Name, @params);
@@ -50,7 +50,7 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <param name="amount"></param>
 		/// <param name="broadcast">true if you wish to broadcast the transaction.</param>
 		/// <returns></returns>
-		public JObject transfer_to_vesting(string from, string to, decimal amount, bool broadcast = true)
+		public string transfer_to_vesting(string from, string to, decimal amount, bool broadcast = true)
 		{
 			var @params = new ArrayList {@from, to, amount, broadcast};
 			return call_api(MethodBase.GetCurrentMethod().Name, @params);
@@ -67,7 +67,7 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <param name="memo"></param>
 		/// <param name="broadcast">true if you wish to broadcast the transaction.</param>
 		/// <returns></returns>
-		public JObject transfer_to_savings(string from, string to, string amount, string memo, bool broadcast = false)
+		public string transfer_to_savings(string from, string to, string amount, string memo, bool broadcast = false)
 		{
 			var @params = new ArrayList {@from, to, amount, broadcast};
 			return call_api(MethodBase.GetCurrentMethod().Name, @params);
@@ -86,7 +86,7 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <param name="memo"></param>
 		/// <param name="broadcast">true if you wish to broadcast the transaction.</param>
 		/// <returns></returns>
-		public JObject transfer_from_savings(string from, uint requestId, string to, string amount, string memo,
+		public string transfer_from_savings(string from, uint requestId, string to, string amount, string memo,
 			bool broadcast = false)
 		{
 			var @params = new ArrayList {@from, requestId, to, amount, memo, broadcast};
@@ -103,7 +103,7 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <param name="requestId"></param>
 		/// <param name="broadcast">true if you wish to broadcast the transaction.</param>
 		/// <returns></returns>
-		public JObject cancel_transfer_from_savings(string from, uint requestId, bool broadcast = false)
+		public string cancel_transfer_from_savings(string from, uint requestId, bool broadcast = false)
 		{
 			var @params = new ArrayList {@from, requestId, broadcast};
 			return call_api(MethodBase.GetCurrentMethod().Name, @params);

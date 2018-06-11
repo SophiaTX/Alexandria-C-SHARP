@@ -37,7 +37,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// </summary>
         /// <param name="ownerAccount"></param>
         /// <returns></returns>
-        public JObject get_witness(string ownerAccount)
+        public string get_witness(string ownerAccount)
         {
             var @params = new ArrayList {ownerAccount};
             return call_api(MethodBase.GetCurrentMethod().Name, @params);
@@ -81,7 +81,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="props">The chain properties the witness Is voting On. </param>
         /// <param name="broadcast">true if you wish to broadcast the transaction.</param>
         /// <returns></returns>
-        public JObject update_witness(string witnessName, string url, string blockSigningKey, JArray props,
+        public string update_witness(string witnessName, string url, string blockSigningKey, JArray props,
             bool broadcast = true)
         {
             var @params = new ArrayList {witnessName, url, blockSigningKey, props, broadcast};
@@ -97,7 +97,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="weight">The weight [-100,100] Of the vote</param>
         /// <param name="broadcast">true if you wish to broadcast the transaction</param>
         /// <returns></returns>
-        public JObject Vote(string voter, string author, string permlink, short weight, bool broadcast = true)
+        public string Vote(string voter, string author, string permlink, short weight, bool broadcast = true)
         {
             var @params = new ArrayList {voter, author, permlink, weight, broadcast};
             return call_api(MethodBase.GetCurrentMethod().Name, @params);
@@ -113,7 +113,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="approve">true if the account Is voting for the account to be able to be a block produce</param>
         /// <param name="broadcast">true if you wish to broadcast the transaction </param>
         /// <returns></returns>
-        public JObject vote_for_witness(string accountToVoteWith, string witnessToVoteFor, bool approve,
+        public string vote_for_witness(string accountToVoteWith, string witnessToVoteFor, bool approve,
             bool broadcast = true)
         {
             var @params = new ArrayList {accountToVoteWith, witnessToVoteFor, approve, broadcast};

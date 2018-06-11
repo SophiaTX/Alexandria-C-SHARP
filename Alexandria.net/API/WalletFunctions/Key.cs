@@ -28,7 +28,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="role"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        public JObject get_private_key_from_password(string account, string role, string password)
+        public string get_private_key_from_password(string account, string role, string password)
         {
             var @params = new ArrayList {account, role, password};
             return call_api(MethodBase.GetCurrentMethod().Name, @params);

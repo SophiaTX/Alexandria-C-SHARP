@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Alexandria.net.Core;
 using Xunit;
 
@@ -24,25 +25,67 @@ namespace UnitTest
         }
 
         [Fact]
-        public void Lock()
+        public void LockAccount()
         {
-            var result = _client.Wallet.Lock();
-            Console.WriteLine(result.Response);
+            if (!_client.Wallet.is_locked())
+            {
+                var result = _client.Wallet.Lock();
+                Console.WriteLine(result);
+            }
+            else
+            {
+                Console.WriteLine("Already locked!");
+            }
+        }
+
+        [Fact]
+        public void GetInfo()
+        {
+            var result = _client.Wallet.info();
+            Console.WriteLine(result);
+        }
+
+        [Fact]
+        public void GetAbout()
+        {
+            _client.Wallet.About();
+        }
+
+        [Fact]
+        public void ListAccounts()
+        {
+            var result = _client.Wallet.list_accounts();
+            Console.WriteLine(result);
+        }
+
+        [Fact]
+        public void GetBlock()
+        {
+            var result = _client.Wallet.get_block(16116);
+            Console.WriteLine(result);
+        }        
+        [Fact]
+        public void GetHelp()
+        {
+            var result = _client.Wallet.help();
+            Console.WriteLine(result);
         }
         
         [Fact]
         public void UnLockAccount()
         {
-            _client.Wallet.Unlock("abc");
-        }
-
-        [Fact]
-        public void suggestbrainkey()
-        {
-           _client.Wallet.suggest_brain_key();  
+            if (_client.Wallet.is_locked())
+            {
+                var param = new ArrayList {"abcde"};
+                var result = _client.Wallet.unlock(param);
+                Console.WriteLine(result);
+            }
+            else
+            {
+                Console.WriteLine("Already unlocked!");
+            }
         }
         
-
         [Fact]
         public void GeneratePrivateKey()
         {          

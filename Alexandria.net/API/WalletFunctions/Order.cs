@@ -13,7 +13,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="orderid">The unique identifier assigned To the order by its creator</param>
         /// <param name="broadcast">true if you wish to broadcast the transaction.</param>
         /// <returns></returns>
-        public JObject cancel_order(string owner, uint orderid, bool broadcast = true)
+        public string cancel_order(string owner, uint orderid, bool broadcast = true)
         {
             var @params = new ArrayList {owner, orderid, broadcast};
             return call_api(MethodBase.GetCurrentMethod().Name, @params);
@@ -30,7 +30,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="expiration">the time the order should expire If it has Not been filled</param>
         /// <param name="broadcast">true if you wish to broadcast the transaction.</param>
         /// <returns></returns>
-        public JObject create_order(string owner, uint orderId, decimal amountToSell, decimal minToReceive,
+        public string create_order(string owner, uint orderId, decimal amountToSell, decimal minToReceive,
             bool fillOrKill, uint expiration, bool broadcast = true)
         {
             var @params =
@@ -43,7 +43,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// </summary>
         /// <param name="limit">Maximum number Of orders To return For bids And asks. Max Is 1000.</param>
         /// <returns></returns>
-        public JObject get_order_book(uint limit)
+        public string get_order_book(uint limit)
         {
             var @params = new ArrayList {limit};
             return call_api(MethodBase.GetCurrentMethod().Name, @params);

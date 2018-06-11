@@ -56,7 +56,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="json">the json metadata Of the comment </param>
         /// <param name="broadcast">true if you wish to broadcast the transaction.</param>
         /// <returns></returns>
-        public JObject post_comment(string author, string permlink, string parentAuthor, string parentPermlink,
+        public string post_comment(string author, string permlink, string parentAuthor, string parentPermlink,
             string title, string body, string json, bool broadcast = true)
         {
             var @params = new ArrayList {author, permlink, parentAuthor, parentPermlink, title, body, json, broadcast};
@@ -72,7 +72,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="body"></param>
         /// <param name="broadcast">true if you wish to broadcast the transaction.</param>
         /// <returns></returns>
-        public JObject send_private_message(string from, string to, string subject, string body, bool broadcast = true)
+        public string send_private_message(string from, string to, string subject, string body, bool broadcast = true)
         {
             var @params = new ArrayList {@from, to, subject, body, broadcast};
             return call_api(MethodBase.GetCurrentMethod().Name, @params);

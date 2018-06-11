@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection.Metadata;
+using System.Reflection.Metadata.Ecma335;
 using Alexandria.net.Communication;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -44,7 +46,7 @@ namespace Alexandria.net.API
 		#endregion
 
 		#region Private methods
-
+		
 		private string SendRequest(string method, ArrayList @params = null)
 		{
 			if (_etype == EType.RemoteProcedureCall)
@@ -64,19 +66,53 @@ namespace Alexandria.net.API
 
 		#region protected methods
 
+		//todo - these protected methods can be removed eventually and just call the SendRequest mnethod which is currebntly set as private
 		protected string call_api(string method)
 		{
-			return JsonConvert.DeserializeObject<string>(SendRequest(method));
+			var result = string.Empty;
+			try
+			{
+				result = SendRequest(method);
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e);
+				throw;
+			}
+
+			return result;
 		}
 
 		protected string call_api(string method, ArrayList @params)
 		{
-			return JsonConvert.DeserializeObject<string>(SendRequest(method, @params));
+			var result = string.Empty;
+			try
+			{
+				result = SendRequest(method, @params);
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e);
+				throw;
+			}
+
+			return result;
 		}
 
-		protected JArray call_api_array(string method, ArrayList @params)
+		protected string call_api_array(string method, ArrayList @params)
 		{
-			return JsonConvert.DeserializeObject<Dictionary<string, JArray>>(SendRequest(method, @params))["result"];
+			var result = string.Empty;
+			try
+			{
+				result = SendRequest(method, @params);
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e);
+				throw;
+			}
+
+			return result;
 		}
 
 		protected JArray call_api_array(string method)
@@ -102,7 +138,8 @@ namespace Alexandria.net.API
 
 		protected JToken call_api_token(string method)
 		{
-			return JsonConvert.DeserializeObject<Dictionary<string, JToken>>(SendRequest(method))["result"];
+			return null;
+			//return JsonConvert.DeserializeObject<Dictionary<string, JToken>>(SendRequest(method))["result"];
 		}
 
 		public void Dispose()

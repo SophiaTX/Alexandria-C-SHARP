@@ -22,43 +22,43 @@ namespace Alexandria.net.Core
 
 		#region public Methods
 
-		public JObject get_config()
+		public string get_config()
 		{
 			return call_api(MethodBase.GetCurrentMethod().Name);
 		}
 
-		public JObject get_dynamic_global_properties()
+		public string get_dynamic_global_properties()
 		{
 			return call_api(MethodBase.GetCurrentMethod().Name);
 		}
 
-		public JObject get_chain_properties()
+		public string get_chain_properties()
 		{
 			return call_api(MethodBase.GetCurrentMethod().Name);
 		}
 
-		public JObject get_current_median_history_price()
+		public string get_current_median_history_price()
 		{
 			return call_api(MethodBase.GetCurrentMethod().Name);
 		}
 
 
-		public JObject get_feed_history()
+		public string get_feed_history()
 		{
 			return call_api(MethodBase.GetCurrentMethod().Name);
 		}
 
-		public JObject get_witness_schedule()
+		public string get_witness_schedule()
 		{
 			return call_api(MethodBase.GetCurrentMethod().Name);
 		}
 
-		public JObject get_hardfork_version()
+		public string get_hardfork_version()
 		{
 			return call_api(MethodBase.GetCurrentMethod().Name);
 		}
 
-		public JObject get_next_scheduled_hardfork()
+		public string get_next_scheduled_hardfork()
 		{
 			return call_api(MethodBase.GetCurrentMethod().Name);
 		}
@@ -93,19 +93,19 @@ namespace Alexandria.net.Core
 			return call_api_array(MethodBase.GetCurrentMethod().Name, arrParams);
 		}
 
-		public JObject get_recovery_request(string account)
+		public string get_recovery_request(string account)
 		{
 			var arrParams = new ArrayList {account};
 			return call_api(MethodBase.GetCurrentMethod().Name, arrParams);
 		}
 
-		public JObject get_block_header(long blockId)
+		public string get_block_header(long blockId)
 		{
 			var arrParams = new ArrayList {blockId};
 			return call_api(MethodBase.GetCurrentMethod().Name, arrParams);
 		}
 
-		public JObject get_block(long blockId)
+		public string get_block(long blockId)
 		{
 			var arrParams = new ArrayList {blockId};
 			return call_api(MethodBase.GetCurrentMethod().Name, arrParams);
@@ -124,7 +124,7 @@ namespace Alexandria.net.Core
 			return call_api_array(MethodBase.GetCurrentMethod().Name, arrParams);
 		}
 
-		public JObject get_witness_by_account(string account)
+		public string get_witness_by_account(string account)
 		{
 			var arrParams = new ArrayList {account};
 			return call_api(MethodBase.GetCurrentMethod().Name, arrParams);
@@ -148,7 +148,7 @@ namespace Alexandria.net.Core
 			return call_api_array(MethodBase.GetCurrentMethod().Name, arrParams);
 		}
 
-		public JObject get_content(string author, string permlink)
+		public string get_content(string author, string permlink)
 		{
 			var arrParams = new ArrayList {author, permlink};
 			return call_api(MethodBase.GetCurrentMethod().Name, arrParams);
