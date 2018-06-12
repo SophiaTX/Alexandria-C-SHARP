@@ -31,3 +31,5 @@
 /Users/martynharler/GitHub/Alexandria/Test/UnitTest/obj/Debug/netcoreapp2.0/UnitTest.dll
 /Users/martynharler/GitHub/Alexandria/Test/UnitTest/obj/Debug/netcoreapp2.0/UnitTest.pdb
 /Users/martynharler/GitHub/Alexandria/Test/UnitTest/bin/Debug/netcoreapp2.0/Alexandria.net.xml
+/Users/sanjivjha/RiderProjects/Alexandria/Test/UnitTest/bin/Debug/netcoreapp2.0/Alexandria.net.xml
+/Users/sanjivjha/RiderProjects/Alexandria/Test/UnitTest/obj/Debug/netcoreapp2.0/UnitTest.csprojResolveAssemblyReference.cache

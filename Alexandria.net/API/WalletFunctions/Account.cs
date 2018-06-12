@@ -66,10 +66,12 @@ namespace Alexandria.net.API.WalletFunctions
 	    /// <param name="from">the absolute sequence number, -1 means most recent, limit Is the number Of operations before from. </param>
 	    /// <param name="limit">the maximum number of items that can be queried (0 to 1000], must be less than from</param>
 	    /// <returns></returns>
-	    public string get_account_history(string account, uint from, uint limit)
+	    public AccountHistoryResponse get_account_history(string account, uint from, uint limit)
 	    {
 		    var @params = new ArrayList {account, @from, limit};
-		    return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+		    var result= SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+		    var contentdata = JsonConvert.DeserializeObject<AccountHistoryResponse>(result);
+		    return contentdata;
 	    }
 
 	    /// <summary>
@@ -229,10 +231,12 @@ namespace Alexandria.net.API.WalletFunctions
 	    /// <param name="newRecoveryAccount"></param>
 	    /// <param name="broadcast">true if you wish to broadcast the transaction.</param>
 	    /// <returns></returns>
-	    public string change_recovery_account(string owner, string newRecoveryAccount, bool broadcast = true)
+	    public LockUnlockResponse change_recovery_account(string owner, string newRecoveryAccount, bool broadcast = true)
 	    {
 		    var @params = new ArrayList {owner, newRecoveryAccount, broadcast};
-		    return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+		    var result= SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+		    var contentdata = JsonConvert.DeserializeObject<LockUnlockResponse>(result);
+		    return contentdata;
 	    }
 	    #endregion
     }

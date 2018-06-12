@@ -14,18 +14,18 @@ namespace Alexandria.net.API.WalletFunctions
 	public partial class  Wallet : RpcConnection
 	{
 		#region DllImports
-		[DllImport("libalexandria.dylib")]
+		[DllImport("/Users/sanjivjha/RiderProjects/Alexandria/Alexandria.net/Lib/libalexandria.dylib")]
 		private static extern bool generate_private_key([MarshalAs(UnmanagedType.LPArray)]byte[] private_key);
 
-		[DllImport("libalexandria.dylib")]
+		[DllImport("/Users/sanjivjha/RiderProjects/Alexandria/Alexandria.net/Lib/libalexandria.dylib")]
 		private static extern bool get_transaction_digest([MarshalAs(UnmanagedType.LPStr)] string transaction,
 			[MarshalAs(UnmanagedType.LPArray)] byte[] digest);
 
-		[DllImport("libalexandria.dylib")]
+		[DllImport("/Users/sanjivjha/RiderProjects/Alexandria/Alexandria.net/Lib/libalexandria.dylib")]
 		private static extern bool sign_digest([MarshalAs(UnmanagedType.LPStr)] string digest,
 			[MarshalAs(UnmanagedType.LPStr)] string private_key, [MarshalAs(UnmanagedType.LPArray)] byte[] signed_digest);        
         
-		[DllImport("libalexandria.dylib")]
+		[DllImport("/Users/sanjivjha/RiderProjects/Alexandria/Alexandria.net/Lib/libalexandria.dylib")]
 		private static extern bool add_signature([MarshalAs(UnmanagedType.LPStr)] string transaction,
 			[MarshalAs(UnmanagedType.LPStr)] string signature, [MarshalAs(UnmanagedType.LPArray)] byte[] signed_tx);
 		#endregion
@@ -113,9 +113,11 @@ namespace Alexandria.net.API.WalletFunctions
 		/// 
 		/// </summary>
 		/// <returns></returns>
-		public string get_feed_history()
+		public FeedHistoryResponse get_feed_history()
 		{
-			return SendRequest(MethodBase.GetCurrentMethod().Name);
+			var result= SendRequest(MethodBase.GetCurrentMethod().Name);
+			var contentdata = JsonConvert.DeserializeObject<FeedHistoryResponse>(result);
+			return contentdata;
 		}
 
 		/// <summary>
@@ -369,10 +371,12 @@ namespace Alexandria.net.API.WalletFunctions
 		///        back as STEEM. i.e. "10.000000 VESTS" </param>
 		/// <param name="broadcast">true if you want to broadcast the transaction</param>
 		/// <returns></returns>
-		public string withdraw_vesting(string from, decimal vestingShares, bool broadcast = true)
+		public LockUnlockResponse withdraw_vesting(string from, decimal vestingShares, bool broadcast = true)
 		{
 			var @params = new ArrayList {@from, vestingShares, broadcast};
-			return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+			var result= SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+			var contentdata = JsonConvert.DeserializeObject<LockUnlockResponse>(result);
+			return contentdata;
 		}
 
 		#endregion

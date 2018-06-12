@@ -16,3 +16,5 @@
 /Users/martynharler/GitHub/Alexandria/Alexandria.net/bin/Debug/netcoreapp2.0/Alexandria.net.dll
 /Users/martynharler/GitHub/Alexandria/Alexandria.net/bin/Debug/netcoreapp2.0/Alexandria.net.pdb
 /Users/martynharler/GitHub/Alexandria/Alexandria.net/bin/Debug/netcoreapp2.0/Alexandria.net.xml
+/Users/sanjivjha/RiderProjects/Alexandria/Alexandria.net/bin/Debug/netcoreapp2.0/Alexandria.net.xml
+/Users/sanjivjha/RiderProjects/Alexandria/Alexandria.net/obj/Debug/netcoreapp2.0/Alexandria.net.csprojResolveAssemblyReference.cache

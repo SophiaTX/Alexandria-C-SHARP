@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Reflection;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Alexandria.net.Messaging.Responses.DTO;
 
 namespace Alexandria.net.API.WalletFunctions
 {
@@ -10,9 +12,11 @@ namespace Alexandria.net.API.WalletFunctions
         /// Returns the list Of witnesses producing blocks In the current round (21 Blocks)
         /// </summary>
         /// <returns></returns>
-        public string get_active_witnesses()
+        public ActiveWitnessResponse get_active_witnesses()
         {
-            return SendRequest(MethodBase.GetCurrentMethod().Name);
+            var result= SendRequest(MethodBase.GetCurrentMethod().Name);
+            var contentdata = JsonConvert.DeserializeObject<ActiveWitnessResponse>(result);
+            return contentdata;
         }
         
         /// <summary>
