@@ -43,9 +43,9 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <param name="broadcast">true if you wish to broadcast the transaction.</param>
 		/// <returns></returns>
 		public LockUnlockResponse create_account_with_keys(string creator, string newname, string jsonMeta, string owner, string active,
-			string posting, string memo, bool broadcast = true)
+			 string memo, bool broadcast = true)
 		{
-			var @params = new ArrayList {creator, newname, jsonMeta, owner, active, posting, memo, broadcast};
+			var @params = new ArrayList {creator, newname, jsonMeta, owner, active,  memo, broadcast};
 			var result= SendRequest(MethodBase.GetCurrentMethod().Name, @params);
 			var contentdata = JsonConvert.DeserializeObject<LockUnlockResponse>(result);
 			return contentdata;

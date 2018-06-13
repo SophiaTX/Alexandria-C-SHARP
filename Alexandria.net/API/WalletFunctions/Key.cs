@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Globalization;
 using System.Reflection;
 using Alexandria.net.Messaging.Responses.DTO;
@@ -83,6 +84,7 @@ namespace Alexandria.net.API.WalletFunctions
         public string suggest_brain_key()
         {
             return SendRequest(MethodBase.GetCurrentMethod().Name).ToString(CultureInfo.InvariantCulture);
+            
         }
         
         /// <summary>
@@ -90,9 +92,11 @@ namespace Alexandria.net.API.WalletFunctions
         /// </summary>
         /// <param name="privatekey">the key bytes</param>
         /// <returns>true if generated</returns>
-        public bool generate_private_key_c(byte[] privatekey)
+        public string generate_private_key_c(byte[] privatekey)
         {
-            return generate_private_key(privatekey);
+            var val= generate_private_key(privatekey);
+            var result = System.Text.Encoding.Default.GetString(privatekey);
+            return result;
             
         }
 
@@ -114,9 +118,11 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="privatekey"></param>
         /// <param name="signeddigest"></param>
         /// <returns></returns>
-        public bool sign_digest_c(string digest, string privatekey, byte[] signeddigest)
+        public string sign_digest_c(string digest, string privatekey, byte[] signeddigest)
         {
-            return sign_digest(digest, privatekey, signeddigest);
+            var value=sign_digest(digest, privatekey, signeddigest);
+            var result = System.Text.Encoding.Default.GetString(signeddigest);
+            return result;
         }
 
         /// <summary>
@@ -126,10 +132,25 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="signature"></param>
         /// <param name="signedtx"></param>
         /// <returns></returns>
-        public bool add_signature_c(string transaction, string signature, byte[] signedtx)
+        public SendResponseResult add_signature_c(string transaction, string signature, byte[] signedtx)
         {
-            return add_signature(transaction, signature, signedtx);
+            SendResponseResult result = null;
+            try
+            {
+                var value= add_signature(transaction, signature, signedtx);
+                if (!value) return null;
+                result = JsonConvert.DeserializeObject<SendResponseResult>(System.Text.Encoding.Default.GetString(signedtx));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+
+            return result;
         }
         
     }
 }
+
+//todo - logging needs to be implemented

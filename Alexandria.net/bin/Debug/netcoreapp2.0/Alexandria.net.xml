@@ -186,7 +186,7 @@
             <param name="broadcast">true if you wish to broadcast the transaction.</param>
             <returns></returns>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.create_account_with_keys(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Boolean)">
+        <member name="M:Alexandria.net.API.WalletFunctions.Wallet.create_account_with_keys(System.String,System.String,System.String,System.String,System.String,System.String,System.Boolean)">
             <summary>
             This method Is used by faucets To create New accounts For other users which must provide their desired keys.
             The resulting account may Not be controllable by this wallet. There Is a fee associated With account

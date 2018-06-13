@@ -2,18 +2,34 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ea3b2ade-501a-4815-a8c3-d1edd46d493e" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Account.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Asset.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Authority.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Crypto.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Network.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/ReceiverRecipe.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Alexandria.net/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Alexandria.net/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Alexandria.net/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Alexandria.net/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/AccountWallet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/AccountWallet.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Key.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Key.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandria.net/Lib/libalexandria.dylib" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandria.net/Lib/libalexandria.dylib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandria.net/bin/Debug/netcoreapp2.0/Alexandria.net.deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandria.net/bin/Debug/netcoreapp2.0/Alexandria.net.deps.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandria.net/bin/Debug/netcoreapp2.0/Alexandria.net.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandria.net/bin/Debug/netcoreapp2.0/Alexandria.net.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandria.net/bin/Debug/netcoreapp2.0/Alexandria.net.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandria.net/bin/Debug/netcoreapp2.0/Alexandria.net.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandria.net/bin/Debug/netcoreapp2.0/Alexandria.net.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandria.net/bin/Debug/netcoreapp2.0/Alexandria.net.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandria.net/libalexandria.dylib" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandria.net/libalexandria.dylib" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Alexandria.net/obj/Alexandria.net.csproj.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandria.net/obj/Alexandria.net.csproj.nuget.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Alexandria.net/obj/Alexandria.net.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandria.net/obj/Alexandria.net.csproj.nuget.g.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandria.net/obj/Debug/netcoreapp2.0/Alexandria.net.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandria.net/obj/Debug/netcoreapp2.0/Alexandria.net.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandria.net/obj/Debug/netcoreapp2.0/Alexandria.net.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandria.net/obj/Debug/netcoreapp2.0/Alexandria.net.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Alexandria.net/obj/Debug/netcoreapp2.0/Alexandria.net.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandria.net/obj/Debug/netcoreapp2.0/Alexandria.net.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Alexandria.net/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandria.net/obj/project.assets.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Alexandria.net/obj/project.packagespec.json" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandria.net/obj/project.packagespec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test/UnitTest/WalletTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Test/UnitTest/WalletTests.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test/UnitTest/bin/Debug/netcoreapp2.0/Alexandria.net.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Test/UnitTest/bin/Debug/netcoreapp2.0/Alexandria.net.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test/UnitTest/bin/Debug/netcoreapp2.0/Alexandria.net.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Test/UnitTest/bin/Debug/netcoreapp2.0/Alexandria.net.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test/UnitTest/bin/Debug/netcoreapp2.0/Alexandria.net.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Test/UnitTest/bin/Debug/netcoreapp2.0/Alexandria.net.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test/UnitTest/bin/Debug/netcoreapp2.0/UnitTest.deps.json" beforeDir="false" afterPath="$PROJECT_DIR$/Test/UnitTest/bin/Debug/netcoreapp2.0/UnitTest.deps.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test/UnitTest/bin/Debug/netcoreapp2.0/UnitTest.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Test/UnitTest/bin/Debug/netcoreapp2.0/UnitTest.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test/UnitTest/bin/Debug/netcoreapp2.0/UnitTest.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Test/UnitTest/bin/Debug/netcoreapp2.0/UnitTest.pdb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test/UnitTest/bin/Debug/netcoreapp2.0/UnitTest.runtimeconfig.dev.json" beforeDir="false" afterPath="$PROJECT_DIR$/Test/UnitTest/bin/Debug/netcoreapp2.0/UnitTest.runtimeconfig.dev.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test/UnitTest/obj/Debug/netcoreapp2.0/UnitTest.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Test/UnitTest/obj/Debug/netcoreapp2.0/UnitTest.csproj.CoreCompileInputs.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test/UnitTest/obj/Debug/netcoreapp2.0/UnitTest.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Test/UnitTest/obj/Debug/netcoreapp2.0/UnitTest.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test/UnitTest/obj/Debug/netcoreapp2.0/UnitTest.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Test/UnitTest/obj/Debug/netcoreapp2.0/UnitTest.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Test/UnitTest/obj/UnitTest.csproj.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Test/UnitTest/obj/UnitTest.csproj.nuget.cache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Test/UnitTest/obj/UnitTest.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/Test/UnitTest/obj/UnitTest.csproj.nuget.g.props" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Test/UnitTest/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/Test/UnitTest/obj/project.assets.json" afterDir="false" />
@@ -37,348 +53,182 @@
       <file leaf-file-name="WalletTests.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Test/UnitTest/WalletTests.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="251">
-              <caret line="105" column="36" selection-start-line="105" selection-start-column="36" selection-end-line="105" selection-end-column="36" />
+            <state relative-caret-position="219">
+              <caret line="140" column="46" selection-start-line="140" selection-start-column="46" selection-end-line="140" selection-end-column="46" />
               <folding>
-                <marker date="1528879538004" expanded="false" signature="6:79" ph="..." />
-                <marker date="1528879538004" expanded="true" signature="100:27678" ph="{...}" />
-                <marker date="1528879538004" expanded="true" signature="142:27676" ph="{...}" />
-                <marker date="1528879538004" expanded="true" signature="1175:3358" ph="{...}" />
-                <marker date="1528879538004" expanded="true" signature="3417:4984" ph="{...}" />
-                <marker date="1528879538004" expanded="true" signature="5033:8845" ph="{...}" />
-                <marker date="1528879538004" expanded="true" signature="8894:12571" ph="{...}" />
-                <marker date="1528879538004" expanded="true" signature="12572:12844" ph="/* [Fact] ... */" />
-                <marker date="1528879538004" expanded="true" signature="12907:13016" ph="{...}" />
-                <marker date="1528879538004" expanded="true" signature="13059:13116" ph="{...}" />
-                <marker date="1528879538004" expanded="true" signature="13177:19152" ph="{...}" />
-                <marker date="1528879538004" expanded="true" signature="19211:24745" ph="{...}" />
-                <marker date="1528879538004" expanded="true" signature="24798:24919" ph="{...}" />
-                <marker date="1528879538004" expanded="true" signature="24976:25071" ph="{...}" />
-                <marker date="1528879538004" expanded="true" signature="25125:25196" ph="{...}" />
-                <marker date="1528879538004" expanded="true" signature="25257:25324" ph="{...}" />
-                <marker date="1528879538004" expanded="true" signature="25374:25434" ph="{...}" />
-                <marker date="1528879538004" expanded="true" signature="25484:25771" ph="{...}" />
-                <marker date="1528879538004" expanded="true" signature="25539:25662" ph="{...}" />
-                <marker date="1528879538004" expanded="true" signature="25679:25761" ph="{...}" />
-                <marker date="1528879538004" expanded="true" signature="25817:25924" ph="{...}" />
-                <marker date="1528879538004" expanded="true" signature="25971:26027" ph="{...}" />
-                <marker date="1528879538004" expanded="true" signature="26078:26194" ph="{...}" />
-                <marker date="1528879538004" expanded="true" signature="26241:26358" ph="{...}" />
-                <marker date="1528879538004" expanded="true" signature="26411:26518" ph="{...}" />
-                <marker date="1528879538004" expanded="true" signature="26578:26926" ph="{...}" />
-                <marker date="1528879538004" expanded="true" signature="26632:26815" ph="{...}" />
-                <marker date="1528879538004" expanded="true" signature="26832:26916" ph="{...}" />
-                <marker date="1528879538004" expanded="true" signature="26991:27116" ph="{...}" />
-                <marker date="1528879538004" expanded="true" signature="27174:27302" ph="{...}" />
-                <marker date="1528879538004" expanded="true" signature="27352:27490" ph="{...}" />
-                <marker date="1528879538004" expanded="true" signature="27540:27670" ph="{...}" />
+                <marker date="1528898532667" expanded="false" signature="6:79" ph="..." />
+                <marker date="1528898532667" expanded="true" signature="100:27874" ph="{...}" />
+                <marker date="1528898532667" expanded="true" signature="142:27872" ph="{...}" />
+                <marker date="1528898532667" expanded="true" signature="1345:3530" ph="{...}" />
+                <marker date="1528898532667" expanded="true" signature="3598:5157" ph="{...}" />
+                <marker date="1528898532667" expanded="true" signature="5215:9027" ph="{...}" />
+                <marker date="1528898532667" expanded="true" signature="9085:12762" ph="{...}" />
+                <marker date="1528898532667" expanded="true" signature="12815:12883" ph="{...}" />
+                <marker date="1528898532667" expanded="true" signature="12947:13019" ph="{...}" />
+                <marker date="1528898532667" expanded="true" signature="13082:13191" ph="{...}" />
+                <marker date="1528898532667" expanded="true" signature="13234:13291" ph="{...}" />
+                <marker date="1528898532667" expanded="true" signature="13352:19327" ph="{...}" />
+                <marker date="1528898532667" expanded="true" signature="19386:24920" ph="{...}" />
+                <marker date="1528898532667" expanded="true" signature="24973:25094" ph="{...}" />
+                <marker date="1528898532667" expanded="true" signature="25151:25246" ph="{...}" />
+                <marker date="1528898532667" expanded="true" signature="25300:25371" ph="{...}" />
+                <marker date="1528898532667" expanded="true" signature="25432:25499" ph="{...}" />
+                <marker date="1528898532667" expanded="true" signature="25549:25609" ph="{...}" />
+                <marker date="1528898532667" expanded="true" signature="25659:25946" ph="{...}" />
+                <marker date="1528898532667" expanded="true" signature="25714:25837" ph="{...}" />
+                <marker date="1528898532667" expanded="true" signature="25854:25936" ph="{...}" />
+                <marker date="1528898532667" expanded="true" signature="25992:26099" ph="{...}" />
+                <marker date="1528898532667" expanded="true" signature="26146:26202" ph="{...}" />
+                <marker date="1528898532667" expanded="true" signature="26253:26369" ph="{...}" />
+                <marker date="1528898532667" expanded="true" signature="26416:26533" ph="{...}" />
+                <marker date="1528898532667" expanded="true" signature="26586:26693" ph="{...}" />
+                <marker date="1528898532667" expanded="true" signature="26753:27101" ph="{...}" />
+                <marker date="1528898532667" expanded="true" signature="26807:26990" ph="{...}" />
+                <marker date="1528898532667" expanded="true" signature="27007:27091" ph="{...}" />
+                <marker date="1528898532667" expanded="true" signature="27166:27300" ph="{...}" />
+                <marker date="1528898532667" expanded="true" signature="27358:27492" ph="{...}" />
+                <marker date="1528898532667" expanded="true" signature="27542:27667" ph="{...}" />
+                <marker date="1528898532667" expanded="true" signature="27717:27856" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Wallet.cs" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Wallet.cs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Wallet.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="208" column="12" selection-start-line="208" selection-start-column="12" selection-end-line="208" selection-end-column="36" />
+            <state relative-caret-position="195">
+              <caret line="104" column="12" selection-start-line="104" selection-start-column="12" selection-end-line="104" selection-end-column="12" />
               <folding>
-                <marker date="1528879537986" expanded="false" signature="6:221" ph="..." />
-                <marker date="1528879537986" expanded="true" signature="267:14678" ph="{...}" />
-                <marker date="1528879537986" expanded="true" signature="271:349" ph="/// All wallet calls to the SophiaTX Blockchain ... " />
-                <marker date="1528879537986" expanded="true" signature="395:14676" ph="{...}" />
-                <marker date="1528879537986" expanded="false" signature="401:1514" ph="DllImports" />
-                <marker date="1528879537986" expanded="true" signature="1520:1834" ph="Constructors" />
-                <marker date="1528879537986" expanded="true" signature="1544:1719" ph="/// Wallet Constructor ... " />
-                <marker date="1528879537986" expanded="true" signature="1812:1820" ph="{...}" />
-                <marker date="1528879537986" expanded="true" signature="1838:14673" ph="Public Methods" />
-                <marker date="1528879537986" expanded="true" signature="1864:2015" ph="/// Gets the compile time info ... " />
-                <marker date="1528879537986" expanded="true" signature="2039:2116" ph="{...}" />
-                <marker date="1528879537986" expanded="true" signature="2120:2348" ph="///  ... " />
-                <marker date="1528879537986" expanded="true" signature="2435:2579" ph="{...}" />
-                <marker date="1528879537986" expanded="true" signature="2583:3065" ph="/// This method will convert SBD To STEEM at the current_median_history price one week from the time it Is execut ... " />
-                <marker date="1528879537986" expanded="true" signature="3145:3280" ph="{...}" />
-                <marker date="1528879537986" expanded="true" signature="3286:3697" ph="/// Marks one account As following another account. Requires the posting authority Of the follower. ... " />
-                <marker date="1528879537986" expanded="true" signature="3794:3941" ph="{...}" />
-                <marker date="1528879537986" expanded="true" signature="3945:4124" ph="/// Returns information about the block ... " />
-                <marker date="1528879537986" expanded="true" signature="4166:4385" ph="{...}" />
-                <marker date="1528879537986" expanded="true" signature="4431:4494" ph="///  ... " />
-                <marker date="1528879537986" expanded="true" signature="4542:4718" ph="{...}" />
-                <marker date="1528879537986" expanded="true" signature="4722:4822" ph="///  ... " />
-                <marker date="1528879537986" expanded="true" signature="4872:4990" ph="{...}" />
-                <marker date="1528879537986" expanded="true" signature="4994:5835" ph="/// This returns a Default-initialized Object Of the given type; it can be used during early development Of the w ... " />
-                <marker date="1528879537986" expanded="true" signature="5897:6021" ph="{...}" />
-                <marker date="1528879537986" expanded="true" signature="6025:6167" ph="/// Returns the state info associated With the URL ... " />
-                <marker date="1528879537986" expanded="true" signature="6205:6319" ph="{...}" />
-                <marker date="1528879537986" expanded="true" signature="6323:6447" ph="/// Returns transaction by ID. ... " />
-                <marker date="1528879537986" expanded="true" signature="6493:6609" ph="{...}" />
-                <marker date="1528879537986" expanded="true" signature="6615:6863" ph="/// Returns detailed help On a Single API command. ... " />
-                <marker date="1528879537986" expanded="true" signature="6902:7058" ph="{...}" />
-                <marker date="1528879537986" expanded="true" signature="7062:7241" ph="/// Returns a list Of all commands supported by the wallet API. ... " />
-                <marker date="1528879537986" expanded="true" signature="7264:7370" ph="{...}" />
-                <marker date="1528879537986" expanded="true" signature="7374:7491" ph="/// Returns info about the current state Of the blockchain ... " />
-                <marker date="1528879537986" expanded="true" signature="7520:7691" ph="{...}" />
-                <marker date="1528879537986" expanded="true" signature="7696:7920" ph="/// Checks whether the wallet Is locked (Is unable To use its Private keys). This state can be changed by calling ... " />
-                <marker date="1528879537986" expanded="true" signature="7946:8047" ph="{...}" />
-                <marker date="1528879537986" expanded="true" signature="8053:8295" ph="/// Checks whether the wallet has just been created And has Not yet had a password set. Calling 'set_password' wi ... " />
-                <marker date="1528879537986" expanded="true" signature="8332:8511" ph="{...}" />
-                <marker date="1528879537986" expanded="true" signature="8519:8872" ph="/// Loads a specified Graphene wallet. The current wallet Is closed before the New wallet Is loaded. ... " />
-                <marker date="1528879537986" expanded="true" signature="8926:9085" ph="{...}" />
-                <marker date="1528879537986" expanded="true" signature="9089:9155" ph="/// Locks the wallet immediately. ... " />
-                <marker date="1528879537986" expanded="true" signature="9190:9342" ph="{...}" />
-                <marker date="1528879537986" expanded="true" signature="9346:9418" ph="///  ... " />
-                <marker date="1528879537986" expanded="true" signature="9467:9527" ph="{...}" />
-                <marker date="1528879537986" expanded="true" signature="9531:9594" ph="///  ... " />
-                <marker date="1528879537986" expanded="true" signature="9640:9707" ph="{...}" />
-                <marker date="1528879537986" expanded="true" signature="9711:9899" ph="///  ... " />
-                <marker date="1528879537986" expanded="true" signature="9963:10095" ph="{...}" />
-                <marker date="1528879537986" expanded="true" signature="10099:10528" ph="/// A witness can Public a price feed For the STEEM:SBD market. The median price feed Is used To process conversi ... " />
-                <marker date="1528879537986" expanded="true" signature="10618:10761" ph="{...}" />
-                <marker date="1528879537986" expanded="true" signature="10765:11019" ph="/// Saves the current wallet To the given filename. ... " />
-                <marker date="1528879537986" expanded="true" signature="11073:11191" ph="{...}" />
-                <marker date="1528879537986" expanded="true" signature="11195:11397" ph="/// Sets a New password On the wallet. ... " />
-                <marker date="1528879537986" expanded="true" signature="11441:11553" ph="{...}" />
-                <marker date="1528879537986" expanded="true" signature="11557:11631" ph="///  ... " />
-                <marker date="1528879537986" expanded="true" signature="11686:11797" ph="{...}" />
-                <marker date="1528879537986" expanded="true" signature="11801:12578" ph="/// Set the voting proxy For an account. ... " />
-                <marker date="1528879537986" expanded="true" signature="12672:12816" ph="{...}" />
-                <marker date="1528879537986" expanded="true" signature="12820:13019" ph="/// The wallet remain unlocked until the 'lock' is called or the program exits. ... " />
-                <marker date="1528879537986" expanded="true" signature="13071:13303" ph="{...}" />
-                <marker date="1528879537986" expanded="true" signature="13309:13518" ph="/// Unlocks the wallet ... " />
-                <marker date="1528879537986" expanded="true" signature="13573:13763" ph="{...}" />
-                <marker date="1528879537986" expanded="true" signature="13767:14305" ph="/// Set up a vesting withdraw request. The request Is fulfilled once a week over the next two years (104 weeks) ... " />
-                <marker date="1528879537986" expanded="true" signature="14409:14659" ph="{...}" />
+                <marker date="1528896643216" expanded="false" signature="6:221" ph="..." />
+                <marker date="1528896643216" expanded="true" signature="267:14678" ph="{...}" />
+                <marker date="1528896643216" expanded="true" signature="271:349" ph="/// All wallet calls to the SophiaTX Blockchain ... " />
+                <marker date="1528896643216" expanded="true" signature="395:14676" ph="{...}" />
+                <marker date="1528896643216" expanded="false" signature="401:1514" ph="DllImports" />
+                <marker date="1528896643216" expanded="false" signature="1520:1834" ph="Constructors" />
+                <marker date="1528896643216" expanded="true" signature="1544:1719" ph="/// Wallet Constructor ... " />
+                <marker date="1528896643216" expanded="true" signature="1812:1820" ph="{...}" />
+                <marker date="1528896643216" expanded="true" signature="1838:14673" ph="Public Methods" />
+                <marker date="1528896643216" expanded="true" signature="1864:2015" ph="/// Gets the compile time info ... " />
+                <marker date="1528896643216" expanded="true" signature="2039:2116" ph="{...}" />
+                <marker date="1528896643216" expanded="true" signature="2120:2348" ph="///  ... " />
+                <marker date="1528896643216" expanded="true" signature="2435:2579" ph="{...}" />
+                <marker date="1528896643216" expanded="true" signature="2583:3065" ph="/// This method will convert SBD To STEEM at the current_median_history price one week from the time it Is execut ... " />
+                <marker date="1528896643216" expanded="true" signature="3145:3280" ph="{...}" />
+                <marker date="1528896643216" expanded="true" signature="3286:3697" ph="/// Marks one account As following another account. Requires the posting authority Of the follower. ... " />
+                <marker date="1528896643216" expanded="true" signature="3794:3941" ph="{...}" />
+                <marker date="1528896643216" expanded="true" signature="3945:4124" ph="/// Returns information about the block ... " />
+                <marker date="1528896643216" expanded="true" signature="4166:4385" ph="{...}" />
+                <marker date="1528896643216" expanded="true" signature="4431:4494" ph="///  ... " />
+                <marker date="1528896643216" expanded="true" signature="4542:4718" ph="{...}" />
+                <marker date="1528896643216" expanded="true" signature="4722:4822" ph="///  ... " />
+                <marker date="1528896643216" expanded="true" signature="4872:4990" ph="{...}" />
+                <marker date="1528896643216" expanded="true" signature="4994:5835" ph="/// This returns a Default-initialized Object Of the given type; it can be used during early development Of the w ... " />
+                <marker date="1528896643216" expanded="true" signature="5897:6021" ph="{...}" />
+                <marker date="1528896643216" expanded="true" signature="6025:6167" ph="/// Returns the state info associated With the URL ... " />
+                <marker date="1528896643216" expanded="true" signature="6205:6319" ph="{...}" />
+                <marker date="1528896643216" expanded="true" signature="6323:6447" ph="/// Returns transaction by ID. ... " />
+                <marker date="1528896643216" expanded="true" signature="6493:6609" ph="{...}" />
+                <marker date="1528896643216" expanded="true" signature="6615:6863" ph="/// Returns detailed help On a Single API command. ... " />
+                <marker date="1528896643216" expanded="true" signature="6902:7058" ph="{...}" />
+                <marker date="1528896643216" expanded="true" signature="7062:7241" ph="/// Returns a list Of all commands supported by the wallet API. ... " />
+                <marker date="1528896643216" expanded="true" signature="7264:7370" ph="{...}" />
+                <marker date="1528896643216" expanded="true" signature="7374:7491" ph="/// Returns info about the current state Of the blockchain ... " />
+                <marker date="1528896643216" expanded="true" signature="7520:7691" ph="{...}" />
+                <marker date="1528896643216" expanded="true" signature="7696:7920" ph="/// Checks whether the wallet Is locked (Is unable To use its Private keys). This state can be changed by calling ... " />
+                <marker date="1528896643216" expanded="true" signature="7946:8047" ph="{...}" />
+                <marker date="1528896643216" expanded="true" signature="8053:8295" ph="/// Checks whether the wallet has just been created And has Not yet had a password set. Calling 'set_password' wi ... " />
+                <marker date="1528896643216" expanded="true" signature="8332:8511" ph="{...}" />
+                <marker date="1528896643216" expanded="true" signature="8519:8872" ph="/// Loads a specified Graphene wallet. The current wallet Is closed before the New wallet Is loaded. ... " />
+                <marker date="1528896643216" expanded="true" signature="8926:9085" ph="{...}" />
+                <marker date="1528896643216" expanded="true" signature="9089:9155" ph="/// Locks the wallet immediately. ... " />
+                <marker date="1528896643216" expanded="true" signature="9190:9342" ph="{...}" />
+                <marker date="1528896643216" expanded="true" signature="9346:9418" ph="///  ... " />
+                <marker date="1528896643216" expanded="true" signature="9467:9527" ph="{...}" />
+                <marker date="1528896643216" expanded="true" signature="9531:9594" ph="///  ... " />
+                <marker date="1528896643216" expanded="true" signature="9640:9707" ph="{...}" />
+                <marker date="1528896643216" expanded="true" signature="9711:9899" ph="///  ... " />
+                <marker date="1528896643216" expanded="true" signature="9963:10095" ph="{...}" />
+                <marker date="1528896643216" expanded="true" signature="10099:10528" ph="/// A witness can Public a price feed For the STEEM:SBD market. The median price feed Is used To process conversi ... " />
+                <marker date="1528896643216" expanded="true" signature="10618:10761" ph="{...}" />
+                <marker date="1528896643216" expanded="true" signature="10765:11019" ph="/// Saves the current wallet To the given filename. ... " />
+                <marker date="1528896643216" expanded="true" signature="11073:11191" ph="{...}" />
+                <marker date="1528896643216" expanded="true" signature="11195:11397" ph="/// Sets a New password On the wallet. ... " />
+                <marker date="1528896643216" expanded="true" signature="11441:11553" ph="{...}" />
+                <marker date="1528896643216" expanded="true" signature="11557:11631" ph="///  ... " />
+                <marker date="1528896643216" expanded="true" signature="11686:11797" ph="{...}" />
+                <marker date="1528896643216" expanded="true" signature="11801:12578" ph="/// Set the voting proxy For an account. ... " />
+                <marker date="1528896643216" expanded="true" signature="12672:12816" ph="{...}" />
+                <marker date="1528896643216" expanded="true" signature="12820:13019" ph="/// The wallet remain unlocked until the 'lock' is called or the program exits. ... " />
+                <marker date="1528896643216" expanded="true" signature="13071:13303" ph="{...}" />
+                <marker date="1528896643216" expanded="true" signature="13309:13518" ph="/// Unlocks the wallet ... " />
+                <marker date="1528896643216" expanded="true" signature="13573:13763" ph="{...}" />
+                <marker date="1528896643216" expanded="true" signature="13767:14305" ph="/// Set up a vesting withdraw request. The request Is fulfilled once a week over the next two years (104 weeks) ... " />
+                <marker date="1528896643216" expanded="true" signature="14409:14659" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Account.cs" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Account.cs">
+      <file leaf-file-name="Key.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Key.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="30" column="47" lean-forward="true" selection-start-line="30" selection-start-column="47" selection-end-line="30" selection-end-column="47" />
+            <state relative-caret-position="496">
+              <caret line="152" column="5" selection-start-line="152" selection-start-column="5" selection-end-line="152" selection-end-column="5" />
               <folding>
-                <marker date="1528891774627" expanded="true" signature="6:143" ph="..." />
-                <marker date="1528891774627" expanded="true" signature="189:11711" ph="{...}" />
-                <marker date="1528891774627" expanded="true" signature="196:237" ph="///  ... " />
-                <marker date="1528891774627" expanded="true" signature="278:11709" ph="{...}" />
-                <marker date="1528891774627" expanded="false" signature="294:663" ph="Constructors" />
-                <marker date="1528891774627" expanded="true" signature="324:523" ph="/// Wallet Constructor ... " />
-                <marker date="1528891774627" expanded="true" signature="623:643" ph="{...}" />
-                <marker date="1528891774627" expanded="true" signature="673:852" ph="/// Returns true if an account with given name exists. ... " />
-                <marker date="1528891774627" expanded="true" signature="907:1103" ph="{...}" />
-                <marker date="1528891774627" expanded="true" signature="1113:1328" ph="/// Returns true if the library has imported the private key corresponding to the given public key. ... " />
-                <marker date="1528891774627" expanded="true" signature="1375:1562" ph="{...}" />
-                <marker date="1528891774627" expanded="true" signature="1572:1983" ph="/// Returns true if the library has imported the private key corresponding to the account's owner key.In case of ... " />
-                <marker date="1528891774627" expanded="true" signature="2050:2246" ph="{...}" />
-                <marker date="1528891774627" expanded="true" signature="2256:2668" ph="/// Returns true if the library has imported the private key corresponding to the account's active key.In case of ... " />
-                <marker date="1528891774627" expanded="true" signature="2736:2932" ph="{...}" />
-                <marker date="1528891774627" expanded="true" signature="2942:3168" ph="/// Returns true if the library has imported the private key corresponding to the account's memo key. ... " />
-                <marker date="1528891774627" expanded="true" signature="3234:3430" ph="{...}" />
-                <marker date="1528891774627" expanded="true" signature="3440:3664" ph="/// Returns the active authority of the given account.Object authority has the following structure: ... " />
-                <marker date="1528891774627" expanded="true" signature="3729:3957" ph="{...}" />
-                <marker date="1528891774627" expanded="true" signature="3967:4145" ph="/// Returns the owner authority of the given account. ... " />
-                <marker date="1528891774627" expanded="true" signature="4209:4437" ph="{...}" />
-                <marker date="1528891774627" expanded="true" signature="4447:4618" ph="/// Returns the memo key of the given account. ... " />
-                <marker date="1528891774627" expanded="true" signature="4672:4897" ph="{...}" />
-                <marker date="1528891774627" expanded="true" signature="4908:5063" ph="/// Get account SPHTX balance. ... " />
-                <marker date="1528891774627" expanded="true" signature="5123:5347" ph="{...}" />
-                <marker date="1528891774627" expanded="true" signature="5357:5520" ph="/// Get account vested SPHTX balance. ... " />
-                <marker date="1528891774627" expanded="true" signature="5580:5804" ph="{...}" />
-                <marker date="1528891774627" expanded="true" signature="5814:6017" ph="/// Creates authority resolvable with signature corresponding to the given pub_key. ... " />
-                <marker date="1528891774627" expanded="true" signature="6080:6303" ph="{...}" />
-                <marker date="1528891774627" expanded="true" signature="6313:6583" ph="/// Creates authority resolvable with given number of signatures out of the given set of keys. ... " />
-                <marker date="1528891774627" expanded="true" signature="6688:6933" ph="{...}" />
-                <marker date="1528891774627" expanded="true" signature="6943:7140" ph="/// Creates authority resolvable with a given managing account. ... " />
-                <marker date="1528891774627" expanded="true" signature="7224:7461" ph="{...}" />
-                <marker date="1528891774627" expanded="true" signature="7471:7729" ph="/// Creates authority resolvable with given number of​ managing accounts. ... " />
-                <marker date="1528891774627" expanded="true" signature="7846:8100" ph="{...}" />
-                <marker date="1528891774627" expanded="true" signature="8110:8389" ph="/// Update account authorities. ... " />
-                <marker date="1528891774627" expanded="true" signature="8492:8709" ph="{...}" />
-                <marker date="1528891774627" expanded="true" signature="8719:8933" ph="/// Deposit to_vestings SPHTXs to vesting. ... " />
-                <marker date="1528891774627" expanded="true" signature="9008:9217" ph="{...}" />
-                <marker date="1528891774627" expanded="true" signature="9227:9442" ph="/// Withdraw from_vestings vested SPHTXs. ... " />
-                <marker date="1528891774627" expanded="true" signature="9521:9732" ph="{...}" />
-                <marker date="1528891774627" expanded="true" signature="9742:10000" ph="/// Vote or unvote a witness. ... " />
-                <marker date="1528891774627" expanded="true" signature="10106:10338" ph="{...}" />
-                <marker date="1528891774627" expanded="true" signature="10348:10632" ph="/// Update an account to witness.Requires XXX vested SPHTX before updating. ... " />
-                <marker date="1528891774627" expanded="true" signature="10719:10931" ph="{...}" />
-                <marker date="1528891774627" expanded="true" signature="10941:11304" ph="/// Creates new account in the SophiaTX blockchain. ... " />
-                <marker date="1528891774627" expanded="true" signature="11456:11703" ph="{...}" />
+                <marker date="1528899236683" expanded="true" signature="6:161" ph="..." />
+                <marker date="1528899236683" expanded="true" signature="207:6158" ph="{...}" />
+                <marker date="1528899236683" expanded="true" signature="248:6156" ph="{...}" />
+                <marker date="1528899236683" expanded="true" signature="263:451" ph="/// Gets the user private key ... " />
+                <marker date="1528899236683" expanded="true" signature="504:690" ph="{...}" />
+                <marker date="1528899236683" expanded="true" signature="700:1094" ph="/// Get the WIF Private key corresponding To a Public key. The Private key must already be In the wallet. ... " />
+                <marker date="1528899236683" expanded="true" signature="1201:1488" ph="{...}" />
+                <marker date="1528899236683" expanded="true" signature="1499:1815" ph="/// Imports a WIF Private Key into the wallet To be used To sign transactionsby an account. ... " />
+                <marker date="1528899236683" expanded="true" signature="1863:2010" ph="{...}" />
+                <marker date="1528899236683" expanded="true" signature="2028:2330" ph="/// Dumps all Private keys owned by the wallet. ... " />
+                <marker date="1528899236683" expanded="true" signature="2364:2452" ph="{...}" />
+                <marker date="1528899236683" expanded="true" signature="2462:2991" ph="/// Transforms a brain key To reduce the chance Of errors When re-entering the ... " />
+                <marker date="1528899236683" expanded="true" signature="3045:3228" ph="{...}" />
+                <marker date="1528899236683" expanded="true" signature="3247:3725" ph="/// Suggests a safe brain key To use For creating your account. ... " />
+                <marker date="1528899236683" expanded="true" signature="3767:3907" ph="{...}" />
+                <marker date="1528899236683" expanded="true" signature="3925:4108" ph="/// Generates the Private Keys ... " />
+                <marker date="1528899236683" expanded="true" signature="4172:4364" ph="{...}" />
+                <marker date="1528899236683" expanded="true" signature="4374:4630" ph="/// Gets the transaction digest ... " />
+                <marker date="1528899236683" expanded="true" signature="4710:4794" ph="{...}" />
+                <marker date="1528899236683" expanded="true" signature="4804:5021" ph="///  ... " />
+                <marker date="1528899236683" expanded="true" signature="5112:5307" ph="{...}" />
+                <marker date="1528899236683" expanded="true" signature="5317:5534" ph="///  ... " />
+                <marker date="1528899236683" expanded="true" signature="5639:6141" ph="{...}" />
+                <marker date="1528899236683" expanded="true" signature="5711:5982" ph="{...}" />
+                <marker date="1528899236683" expanded="true" signature="6014:6103" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Crypto.cs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Crypto.cs">
+      <file leaf-file-name="BlockData.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/BlockData.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="458">
-              <caret line="61" selection-start-line="61" selection-end-line="61" selection-end-column="36" />
+            <state relative-caret-position="255">
+              <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
               <folding>
-                <marker date="1528890337024" expanded="true" signature="6:157" ph="..." />
-                <marker date="1528890337024" expanded="true" signature="203:7832" ph="{...}" />
-                <marker date="1528890337024" expanded="true" signature="268:7830" ph="{...}" />
-                <marker date="1528890337024" expanded="false" signature="284:652" ph="Constructors" />
-                <marker date="1528890337024" expanded="true" signature="314:513" ph="/// Wallet Constructor ... " />
-                <marker date="1528890337024" expanded="true" signature="612:632" ph="{...}" />
-                <marker date="1528890337024" expanded="true" signature="663:750" ph="/// Generates new private/public key pair. ... " />
-                <marker date="1528890337024" expanded="true" signature="805:980" ph="{...}" />
-                <marker date="1528890337024" expanded="true" signature="991:1138" ph="/// Generates new private/public key pair from brian key. ... " />
-                <marker date="1528890337024" expanded="true" signature="1221:1458" ph="{...}" />
-                <marker date="1528890337024" expanded="true" signature="1469:1895" ph="/// Form a transaction containing a json-formatted operation, sign it with a given private key and send it to ... " />
-                <marker date="1528890337024" expanded="true" signature="1974:2180" ph="{...}" />
-                <marker date="1528890337024" expanded="true" signature="2191:2521" ph="/// Sing a json-formatted transaction with a given private key and send it to the network. ... " />
-                <marker date="1528890337024" expanded="true" signature="2604:2812" ph="{...}" />
-                <marker date="1528890337024" expanded="true" signature="2823:2917" ph="/// Sign given digest using provided private key. ... " />
-                <marker date="1528890337024" expanded="true" signature="2985:3217" ph="{...}" />
-                <marker date="1528890337024" expanded="true" signature="3229:3386" ph="/// Generate public key part associated to the given private key. ... " />
-                <marker date="1528890337024" expanded="true" signature="3441:3665" ph="{...}" />
-                <marker date="1528890337024" expanded="true" signature="3677:3804" ph="/// Decodes base58-encoded string. ... " />
-                <marker date="1528890337024" expanded="true" signature="3862:4091" ph="{...}" />
-                <marker date="1528890337024" expanded="true" signature="4103:4222" ph="/// Encodes data to base58 string. ... " />
-                <marker date="1528890337024" expanded="true" signature="4270:4487" ph="{...}" />
-                <marker date="1528890337024" expanded="true" signature="4498:4763" ph="/// Verify if the given public key corresponds to the private key used to sign the digest. ... " />
-                <marker date="1528890337024" expanded="true" signature="4848:5058" ph="{...}" />
-                <marker date="1528890337024" expanded="true" signature="5069:5374" ph="/// Encrypts the document in plaintext using shared secret constructed via sender's private key and receveir's pu ... " />
-                <marker date="1528890337024" expanded="true" signature="5469:5716" ph="{...}" />
-                <marker date="1528890337024" expanded="true" signature="5727:6092" ph="/// Decrypts the encrypted data using shared secret constructed via receiver's private key and sender's public ke ... " />
-                <marker date="1528890337024" expanded="true" signature="6192:6444" ph="{...}" />
-                <marker date="1528890337024" expanded="true" signature="6454:6751" ph="/// Encrypts the data in plain using shared secret constructed via sender's private key and receveir's public key ... " />
-                <marker date="1528890337024" expanded="true" signature="6850:7101" ph="{...}" />
-                <marker date="1528890337024" expanded="true" signature="7112:7464" ph="/// Decrypts the encrypted data using shared secret constructed via receiver's private key and sender's public ke ... " />
-                <marker date="1528890337024" expanded="true" signature="7568:7824" ph="{...}" />
+                <marker date="1528732185110" expanded="true" signature="6:47" ph="..." />
+                <marker date="1528732185110" expanded="true" signature="97:650" ph="{...}" />
+                <marker date="1528732185110" expanded="true" signature="126:648" ph="{...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Asset.cs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Asset.cs">
+      <file leaf-file-name="SendResponseResult.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/SendResponseResult.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="412">
-              <caret line="41" selection-start-line="41" selection-end-line="41" selection-end-column="36" />
+            <state relative-caret-position="60">
+              <caret line="5" column="35" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="35" />
               <folding>
-                <marker date="1528888076602" expanded="true" signature="6:100" ph="..." />
-                <marker date="1528888076602" expanded="true" signature="169:3734" ph="{...}" />
-                <marker date="1528888076602" expanded="true" signature="176:231" ph="/// ... " />
-                <marker date="1528888076602" expanded="true" signature="270:3732" ph="{...}" />
-                <marker date="1528888076602" expanded="false" signature="286:653" ph="Constructors" />
-                <marker date="1528888076602" expanded="true" signature="316:515" ph="/// Wallet Constructor ... " />
-                <marker date="1528888076602" expanded="true" signature="613:633" ph="{...}" />
-                <marker date="1528888076602" expanded="true" signature="680:1019" ph="/// Trnasfer given assets from one user to other one. ... " />
-                <marker date="1528888076602" expanded="true" signature="1121:1342" ph="{...}" />
-                <marker date="1528888076602" expanded="true" signature="1352:1577" ph="/// Returns the balance of the given account and UIA ... " />
-                <marker date="1528888076602" expanded="true" signature="1661:1879" ph="{...}" />
-                <marker date="1528888076602" expanded="true" signature="1889:2174" ph="///  ... " />
-                <marker date="1528888076602" expanded="true" signature="2302:2552" ph="{...}" />
-                <marker date="1528888076602" expanded="true" signature="2647:2874" ph="{...}" />
-                <marker date="1528888076602" expanded="true" signature="2959:3180" ph="{...}" />
-                <marker date="1528888076602" expanded="true" signature="3243:3471" ph="{...}" />
-                <marker date="1528888076602" expanded="true" signature="3530:3726" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AccountWallet.cs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/AccountWallet.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="705">
-              <caret line="50" column="31" selection-start-line="49" selection-start-column="12" selection-end-line="50" selection-end-column="31" />
-              <folding>
-                <marker date="1528879537983" expanded="false" signature="6:119" ph="..." />
-                <marker date="1528879537983" expanded="true" signature="165:12604" ph="{...}" />
-                <marker date="1528879537983" expanded="true" signature="210:12602" ph="{...}" />
-                <marker date="1528879537983" expanded="true" signature="222:12596" ph="Methods" />
-                <marker date="1528879537983" expanded="true" signature="252:916" ph="/// This method will genrate New owner, active, and memo keys For the New account which will be controlable by th ... " />
-                <marker date="1528879537983" expanded="true" signature="1038:1305" ph="{...}" />
-                <marker date="1528879537983" expanded="true" signature="1314:2310" ph="/// This method Is used by faucets To create New accounts For other users which must provide their desired keys. ... " />
-                <marker date="1528879537983" expanded="true" signature="2496:2786" ph="{...}" />
-                <marker date="1528879537983" expanded="true" signature="2798:3059" ph="/// Returns information about the given account. ... " />
-                <marker date="1528879537983" expanded="true" signature="3110:3245" ph="{...}" />
-                <marker date="1528879537983" expanded="true" signature="3252:3821" ph="/// Account operations have sequence numbers from 0 To N where N Is the most recent operation. ... " />
-                <marker date="1528879537983" expanded="true" signature="3915:4177" ph="{...}" />
-                <marker date="1528879537983" expanded="true" signature="4184:5010" ph="/// Lists all accounts registered In the blockchain. This returns a list Of all account names And their account i ... " />
-                <marker date="1528879537983" expanded="true" signature="5100:5364" ph="{...}" />
-                <marker date="1528879537983" expanded="true" signature="5371:5550" ph="/// Gets the account information For all accounts For which this wallet has aPrivate key ... " />
-                <marker date="1528879537983" expanded="true" signature="5588:5664" ph="{...}" />
-                <marker date="1528879537983" expanded="true" signature="5676:5978" ph="///  ... " />
-                <marker date="1528879537983" expanded="true" signature="6118:6299" ph="{...}" />
-                <marker date="1528879537983" expanded="true" signature="6306:6608" ph="///  ... " />
-                <marker date="1528879537983" expanded="true" signature="6754:6935" ph="{...}" />
-                <marker date="1528879537983" expanded="true" signature="6944:7589" ph="/// This method updates the keys Of an existing account. ... " />
-                <marker date="1528879537983" expanded="true" signature="7741:7905" ph="{...}" />
-                <marker date="1528879537983" expanded="true" signature="7909:8851" ph="/// update_account_auth_key(string account_name, authority_type type, public_key_type key, weight_type weight, bo ... " />
-                <marker date="1528879537983" expanded="true" signature="8989:9149" ph="{...}" />
-                <marker date="1528879537983" expanded="true" signature="9153:9409" ph="///  ... " />
-                <marker date="1528879537983" expanded="true" signature="9517:9661" ph="{...}" />
-                <marker date="1528879537983" expanded="true" signature="9665:10452" ph="/// This method updates the weight threshold Of an authority For an account. Warning: You can create impossible a ... " />
-                <marker date="1528879537983" expanded="true" signature="10573:10723" ph="{...}" />
-                <marker date="1528879537983" expanded="true" signature="10727:11062" ph="/// This method updates the memo key Of an account ... " />
-                <marker date="1528879537983" expanded="true" signature="11157:11295" ph="{...}" />
-                <marker date="1528879537983" expanded="true" signature="11301:11688" ph="/// This method updates the account JSON metadata  ... " />
-                <marker date="1528879537983" expanded="true" signature="11784:11927" ph="{...}" />
-                <marker date="1528879537983" expanded="true" signature="11939:12188" ph="///  ... " />
-                <marker date="1528879537983" expanded="true" signature="12307:12580" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Network.cs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Network.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="44" selection-start-line="44" selection-end-line="45" selection-end-column="82" />
-              <folding>
-                <marker date="1528884543004" expanded="true" signature="6:143" ph="..." />
-                <marker date="1528884543004" expanded="true" signature="189:4516" ph="{...}" />
-                <marker date="1528884543004" expanded="true" signature="255:4514" ph="{...}" />
-                <marker date="1528884543004" expanded="false" signature="271:667" ph="Constructors" />
-                <marker date="1528884543004" expanded="true" signature="301:527" ph="/// Wallet Constructor ... " />
-                <marker date="1528884543004" expanded="true" signature="627:647" ph="{...}" />
-                <marker date="1528884543004" expanded="true" signature="677:812" ph="/// Returns true if the library is connected to a backend. ... " />
-                <marker date="1528884543004" expanded="true" signature="846:977" ph="{...}" />
-                <marker date="1528884543004" expanded="true" signature="987:1176" ph="/// Connects to the WS endpoint. ... " />
-                <marker date="1528884543004" expanded="true" signature="1227:1421" ph="{...}" />
-                <marker date="1528884543004" expanded="true" signature="1431:1602" ph="/// Get hash including chain ID (digest), ready to be signed, of a JSON formatted transaction. ... " />
-                <marker date="1528884543004" expanded="true" signature="1665:1831" ph="{...}" />
-                <marker date="1528884543004" expanded="true" signature="1842:2097" ph="///  ... " />
-                <marker date="1528884543004" expanded="true" signature="2214:2391" ph="{...}" />
-                <marker date="1528884543004" expanded="true" signature="2402:2657" ph="///  ... " />
-                <marker date="1528884543004" expanded="true" signature="2792:2969" ph="{...}" />
-                <marker date="1528884543004" expanded="true" signature="2980:3235" ph="///  ... " />
-                <marker date="1528884543004" expanded="true" signature="3372:3549" ph="{...}" />
-                <marker date="1528884543004" expanded="true" signature="3559:4065" ph="/// Allowed options for search_type are &quot;by_sender&quot;, &quot;by_recipient&quot;, &quot;by_sender_datetime&quot;, &quot;by_recipient_datetime ... " />
-                <marker date="1528884543004" expanded="true" signature="4225:4507" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Authority.cs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Authority.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="26" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="26" />
-              <folding>
-                <marker date="1528884512427" expanded="true" signature="79:365" ph="{...}" />
-                <marker date="1528884512427" expanded="true" signature="86:127" ph="///  ... " />
-                <marker date="1528884512427" expanded="true" signature="154:363" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ReceiverRecipe.cs" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/ReceiverRecipe.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <folding>
-                <marker date="1528884497401" expanded="true" signature="79:392" ph="{...}" />
-                <marker date="1528884497401" expanded="true" signature="113:390" ph="{...}" />
+                <marker date="1528360404621" expanded="false" signature="6:56" ph="..." />
+                <marker date="1528360404621" expanded="true" signature="106:705" ph="{...}" />
+                <marker date="1528360404621" expanded="true" signature="144:703" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -408,7 +258,7 @@
   </component>
   <component name="Git.Settings">
     <option name="ROOT_SYNC" value="SYNC" />
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/Alexandria.net" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="master" />
@@ -416,74 +266,92 @@
     </option>
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/899ABC88-C3F1-4C7D-B7BA-444AD3BDFC76/d7/660f6def/Task`1.cs" root0="SKIP_INSPECTION" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7424F2A7-2E40-45BA-993C-8D8B1DFB39D4/48/ac08540d/HttpContent.cs" root0="SKIP_INSPECTION" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/724F386D-8F5B-4395-A7FA-46C7A3A38A2A/26/69fafb28/TestInvoker`1.cs" root0="SKIP_INSPECTION" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/724F386D-8F5B-4395-A7FA-46C7A3A38A2A/24/ba9fc9cd/XunitTestRunner.cs" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/Test/UnitTest/WalletTests.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Test/UnitTest/BaseTest.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Test/Program.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Test/UnitTest/DeamonTest.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/ConsoleApp1/Program.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/TestAlexandria/UnitTest1.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/BlockResponse.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/ActiveWitnessResponse.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/InfoData.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/BlockData.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/ListAccountsResponse.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/InfoResponse.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/MedianSbdPrice.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Alexandria.net/Communication/RpcConnection.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/SendResponseResult.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/RightsToPublish.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/Result.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Alexandria.net/obj/Debug/netcoreapp2.0/Alexandria.net.AssemblyInfo.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/PricePerSubscribe.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Crypto.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/Owner.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/Options.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/LockUnlockResponse.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Asset.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/724F386D-8F5B-4395-A7FA-46C7A3A38A2A/25/576c483d/TestRunner`1.cs" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Receive/DTO/ReceiveDataRequestResponse.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Receive/DTO/ReceiveDataResponse.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Receive/DTO/ReceiveResponseResult.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/724F386D-8F5B-4395-A7FA-46C7A3A38A2A/92/1aa1d0a6/XunitTestCase.cs" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/AccountRequestResponse.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/LockUnlockRequestResponse.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/DataResponse.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/RightsToPublish.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/PricePerSubscribe.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/Owner.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/724F386D-8F5B-4395-A7FA-46C7A3A38A2A/39/a809e053/XunitTestMethodRunner.cs" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/SendResponseResult.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/KeyFromPassword.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/DataRequestResponse.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/Active.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/AccountRequestResponse.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Network.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/DataResponse.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/LockUnlockResponse.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/Result.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/Options.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/899ABC88-C3F1-4C7D-B7BA-444AD3BDFC76/de/024ba253/Encoding.cs" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/Account.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Authority.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Receive/RecvMessageCollection.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/ReceiverRecipe.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Receive/DTO/ReceiveResponseResult.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Receive/DTO/ReceiveDataResponse.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Receive/DTO/ReceiveDataRequestResponse.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Account.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Errors/ErrorMessage.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Errors/ErrorData.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Errors/ErrorBody.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Alexandria.net/Core/Wallet.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/FeedData.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Alexandria.net/Core/SophiaClient.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/CurrentMedianHistory.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Witness.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/AccountHistoryResponse.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Test/UnitTest/BaseTest.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Test/UnitTest/DeamonTest.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/D32DB49E-5E34-4072-9DA3-1845C03DDC3A/c1/366d253f/JsonTextReader.cs" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Wallet.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/FeedHistoryResponse.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Transfer.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Order.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Messaging.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Key.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Witness.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/ReceiverRecipe.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Order.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Network.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Key.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/AccountWallet.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Alexandria.net/Core/Daemon.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Account.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Crypto.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Transfer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Authority.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Asset.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/TestAlexandria/UnitTest1.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/D32DB49E-5E34-4072-9DA3-1845C03DDC3A/3b/a5b4de4c/JsonSerializerInternalReader.cs" root0="SKIP_INSPECTION" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/899ABC88-C3F1-4C7D-B7BA-444AD3BDFC76/3c/178ee346/MethodBase.cs" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/Alexandria.net/API/SphTxApi.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/899ABC88-C3F1-4C7D-B7BA-444AD3BDFC76/38/42d0ed2a/RuntimeMethodInfo.cs" root0="SKIP_INSPECTION" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/899ABC88-C3F1-4C7D-B7BA-444AD3BDFC76/a1/08a14127/ThrowHelper.cs" root0="SKIP_INSPECTION" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/899ABC88-C3F1-4C7D-B7BA-444AD3BDFC76/5e/3767f005/RuntimeMethodHandle.cs" root0="SKIP_INSPECTION" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/899ABC88-C3F1-4C7D-B7BA-444AD3BDFC76/2b/00e36f0c/RuntimeType.cs" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/Alexandria.net/Core/Wallet.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/AccountHistoryResponse.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Alexandria.net/Core/SophiaClient.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/ActiveWitnessResponse.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Alexandria.net/Core/Daemon.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/ConsoleApp1/Program.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/899ABC88-C3F1-4C7D-B7BA-444AD3BDFC76/6a/90c21a1b/RuntimeMethodInfoStub.cs" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/InfoResponse.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Alexandria.net/obj/Debug/netcoreapp2.0/Alexandria.net.AssemblyInfo.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/MedianSbdPrice.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/InfoData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/BlockData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/BlockResponse.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/535EC1CE-E708-426A-9B6E-A27670D8EBE6/8c/c616537f/SslProtocols.cs" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/ListAccountsResponse.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/FeedData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Test/Program.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/FeedHistoryResponse.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/CurrentMedianHistory.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/899ABC88-C3F1-4C7D-B7BA-444AD3BDFC76/bc/f454d038/SecurityContextSource.cs" root0="SKIP_INSPECTION" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/724F386D-8F5B-4395-A7FA-46C7A3A38A2A/b4/01ff0251/ExecutionTimer.cs" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Errors/ErrorData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Errors/ErrorMessage.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/899ABC88-C3F1-4C7D-B7BA-444AD3BDFC76/9b/bc1498b9/Task.cs" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Errors/ErrorBody.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Receive/RecvMessageCollection.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Alexandria.net/Communication/RpcConnection.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/899ABC88-C3F1-4C7D-B7BA-444AD3BDFC76/d5/f49f3e3a/String.cs" root0="SKIP_INSPECTION" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/Active.cs" />
-        <option value="$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/DataRequestResponse.cs" />
-        <option value="$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/DataResponse.cs" />
         <option value="$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/Options.cs" />
         <option value="$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/Owner.cs" />
         <option value="$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/PricePerSubscribe.cs" />
         <option value="$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/RightsToPublish.cs" />
-        <option value="$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/SendResponseResult.cs" />
         <option value="$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/Result.cs" />
         <option value="$PROJECT_DIR$/Alexandria.net/Messaging/Errors/ErrorMessage.cs" />
         <option value="$PROJECT_DIR$/Alexandria.net/API/Transfer.cs" />
@@ -520,13 +388,17 @@
         <option value="$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Witness.cs" />
         <option value="$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Order.cs" />
         <option value="$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Wallet.cs" />
-        <option value="$PROJECT_DIR$/Test/UnitTest/WalletTests.cs" />
-        <option value="$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Key.cs" />
         <option value="$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Authority.cs" />
         <option value="$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Crypto.cs" />
         <option value="$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Asset.cs" />
         <option value="$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Class1.cs" />
         <option value="$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Account.cs" />
+        <option value="$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/AccountWallet.cs" />
+        <option value="$PROJECT_DIR$/Test/UnitTest/WalletTests.cs" />
+        <option value="$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/AddSignatureResponse.cs" />
+        <option value="$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/BlockData.cs" />
+        <option value="$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/SendResponseResult.cs" />
+        <option value="$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Key.cs" />
       </list>
     </option>
   </component>
@@ -539,10 +411,10 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="y" value="203" />
     <option name="width" value="1440" />
-    <option name="height" value="834" />
+    <option name="height" value="820" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -552,7 +424,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="SolutionExplorer">
         <subPane>
           <expand>
@@ -586,8 +457,22 @@
               <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
               <item name="Alexandria.net (2 projects)" type="977d5f41:SolutionExplorerNodeRider" />
               <item name="Alexandria.net" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="API" type="977d5f41:SolutionExplorerNodeRider" />
-              <item name="WalletFunctions" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Messaging" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="Alexandria.net (2 projects)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Alexandria.net" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Messaging" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Responses" type="977d5f41:SolutionExplorerNodeRider" />
+            </path>
+            <path>
+              <item name="" type="13324e5d:SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="Alexandria.net (2 projects)" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Alexandria.net" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Messaging" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="Responses" type="977d5f41:SolutionExplorerNodeRider" />
+              <item name="DTO" type="977d5f41:SolutionExplorerNodeRider" />
             </path>
           </expand>
           <select />
@@ -595,6 +480,7 @@
         <option name="show-file-system" value="false" />
         <option name="show-all-items" value="false" />
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -603,6 +489,153 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
+    <UpdatedFiles>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Updated from server" />
+        <option name="myStatusName" value="Changed on server" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="CHANGED_ON_SERVER" />
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Updated" />
+          <option name="myStatusName" value="Changed" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="UPDATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/.idea.Alexandria.net/.idea/contentModel.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/.idea.Alexandria.net/.idea/workspace.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Account.cs</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Alexandria.net/bin/Debug/netcoreapp2.0/Alexandria.net.deps.json</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Alexandria.net/bin/Debug/netcoreapp2.0/Alexandria.net.dll</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Alexandria.net/bin/Debug/netcoreapp2.0/Alexandria.net.pdb</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Alexandria.net/bin/Debug/netcoreapp2.0/Alexandria.net.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Alexandria.net/obj/Alexandria.net.csproj.nuget.cache</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Alexandria.net/obj/Alexandria.net.csproj.nuget.g.props</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Alexandria.net/obj/Debug/netcoreapp2.0/Alexandria.net.csproj.CoreCompileInputs.cache</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Alexandria.net/obj/Debug/netcoreapp2.0/Alexandria.net.csprojAssemblyReference.cache</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Alexandria.net/obj/Debug/netcoreapp2.0/Alexandria.net.dll</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Alexandria.net/obj/Debug/netcoreapp2.0/Alexandria.net.pdb</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Alexandria.net/obj/project.assets.json</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Alexandria.net/obj/project.packagespec.json</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Test/UnitTest/bin/Debug/netcoreapp2.0/Alexandria.net.dll</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Test/UnitTest/bin/Debug/netcoreapp2.0/Alexandria.net.pdb</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Test/UnitTest/bin/Debug/netcoreapp2.0/Alexandria.net.xml</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Test/UnitTest/bin/Debug/netcoreapp2.0/UnitTest.deps.json</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Test/UnitTest/bin/Debug/netcoreapp2.0/UnitTest.dll</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Test/UnitTest/bin/Debug/netcoreapp2.0/UnitTest.pdb</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Test/UnitTest/bin/Debug/netcoreapp2.0/UnitTest.runtimeconfig.dev.json</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Test/UnitTest/obj/Debug/netcoreapp2.0/UnitTest.csproj.CoreCompileInputs.cache</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Test/UnitTest/obj/Debug/netcoreapp2.0/UnitTest.csprojAssemblyReference.cache</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Test/UnitTest/obj/Debug/netcoreapp2.0/UnitTest.dll</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Test/UnitTest/obj/Debug/netcoreapp2.0/UnitTest.pdb</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Test/UnitTest/obj/UnitTest.csproj.nuget.cache</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Test/UnitTest/obj/UnitTest.csproj.nuget.g.props</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Test/UnitTest/obj/project.assets.json</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Test/UnitTest/obj/project.packagespec.json</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Created" />
+          <option name="myStatusName" value="Created" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="CREATED" />
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/AccountWallet.cs</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Asset.cs</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Authority.cs</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Crypto.cs</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Network.cs</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/ReceiverRecipe.cs</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Alexandria.net/obj/Debug/netcoreapp2.0/Alexandria.net.csprojResolveAssemblyReference.cache</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/Test/UnitTest/obj/Debug/netcoreapp2.0/UnitTest.csprojResolveAssemblyReference.cache</PATH>
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Deleted" />
+          <option name="myStatusName" value="Deleted" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="true" />
+          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
+        </FILE-GROUP>
+        <FILE-GROUP>
+          <option name="myUpdateName" value="Restored" />
+          <option name="myStatusName" value="Will be restored" />
+          <option name="mySupportsDeletion" value="false" />
+          <option name="myCanBeAbsent" value="false" />
+          <option name="myId" value="RESTORED" />
+        </FILE-GROUP>
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Modified" />
+        <option name="myStatusName" value="Modified" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MODIFIED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Skipped" />
+        <option name="myStatusName" value="Skipped" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SKIPPED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with conflicts" />
+        <option name="myStatusName" value="Will be merged with conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_CONFLICTS" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with tree conflicts" />
+        <option name="myStatusName" value="Merged with tree conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged with property conflicts" />
+        <option name="myStatusName" value="Will be merged with property conflicts" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Merged" />
+        <option name="myStatusName" value="Will be merged" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="MERGED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Not in repository" />
+        <option name="myStatusName" value="Not in repository" />
+        <option name="mySupportsDeletion" value="true" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="UNKNOWN" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally added" />
+        <option name="myStatusName" value="Locally added" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_ADDED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Locally removed" />
+        <option name="myStatusName" value="Locally removed" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="LOCALLY_REMOVED" />
+      </FILE-GROUP>
+      <FILE-GROUP>
+        <option name="myUpdateName" value="Switched" />
+        <option name="myStatusName" value="Switched" />
+        <option name="mySupportsDeletion" value="false" />
+        <option name="myCanBeAbsent" value="false" />
+        <option name="myId" value="SWITCHED" />
+      </FILE-GROUP>
+    </UpdatedFiles>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -690,33 +723,46 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="834" extended-state="0" />
+    <frame x="0" y="0" width="1920" height="1080" extended-state="0" />
     <layout>
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.32913166" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32892057" />
       <window_info anchor="right" id="Errors In Solution" order="4" weight="0.3297568" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.32913166" />
-      <window_info anchor="bottom" id="Unit Tests" order="7" weight="0.35660848" />
-      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Messages" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.32793018" />
+      <window_info anchor="bottom" id="Unit Tests" order="7" weight="0.32484725" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32857144" />
-      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32793018" />
       <window_info anchor="bottom" id="NuGet" order="7" weight="0.3277311" />
-      <window_info active="true" anchor="right" content_ui="combo" id="Project" order="3" visible="true" weight="0.21459228" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="right" id="Database" order="5" />
+      <window_info anchor="right" content_ui="combo" id="Project" order="3" visible="true" weight="0.28221512" />
+      <window_info anchor="bottom" id="Build" order="8" weight="0.3238289" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info id="Structure" order="0" side_tool="true" weight="0.24964234" />
-      <window_info anchor="right" id="Time Tracking" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.5" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.42566192" />
       <window_info id="Favorites" order="1" side_tool="true" />
+      <window_info anchor="bottom" id="NuGet" order="7" weight="0.3277311" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info active="true" anchor="right" content_ui="combo" id="Project" order="3" visible="true" weight="0.21459228" />
+      <window_info id="Structure" order="0" side_tool="true" weight="0.24964234" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32913166" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32857144" />
+      <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Inspection Results" order="9" weight="0.32793018" />
+      <window_info anchor="bottom" id="Unit Tests" order="7" weight="0.35660848" />
+      <window_info anchor="right" id="Time Tracking" order="6" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.5" />
+      <window_info anchor="right" id="Errors In Solution" order="4" weight="0.3297568" />
+      <window_info anchor="right" id="Database" order="5" />
       <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.32913166" />
+      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Build" order="8" weight="0.3241895" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info id="Favorites" order="1" side_tool="true" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1140,52 +1186,52 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Key.cs</url>
-          <line>30</line>
+          <line>31</line>
           <properties documentPath="$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Key.cs" initialLine="30">
             <startOffsets>
-              <startOffset value="1213" />
+              <startOffset value="1227" />
             </startOffsets>
             <endOffsets>
-              <endOffset value="1267" />
+              <endOffset value="1281" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="195" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Key.cs</url>
-          <line>31</line>
+          <line>32</line>
           <properties documentPath="$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Key.cs" initialLine="31">
             <startOffsets>
-              <startOffset value="1280" />
+              <startOffset value="1294" />
             </startOffsets>
             <endOffsets>
-              <endOffset value="1349" />
+              <endOffset value="1363" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="196" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Key.cs</url>
-          <line>32</line>
+          <line>33</line>
           <properties documentPath="$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Key.cs" initialLine="32">
             <startOffsets>
-              <startOffset value="1362" />
+              <startOffset value="1376" />
             </startOffsets>
             <endOffsets>
-              <endOffset value="1438" />
+              <endOffset value="1452" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="197" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Key.cs</url>
-          <line>33</line>
+          <line>34</line>
           <properties documentPath="$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Key.cs" initialLine="33">
             <startOffsets>
-              <startOffset value="1451" />
+              <startOffset value="1465" />
             </startOffsets>
             <endOffsets>
-              <endOffset value="1470" />
+              <endOffset value="1484" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="198" />
@@ -1193,23 +1239,107 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Account.cs</url>
           <line>117</line>
-          <properties documentPath="$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Class1.cs" initialLine="114">
-            <startOffsets>
-              <startOffset value="4896" />
-            </startOffsets>
-            <endOffsets>
-              <endOffset value="4897" />
-            </endOffsets>
-          </properties>
+          <properties documentPath="$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Class1.cs" initialLine="114" />
           <option name="timeStamp" value="200" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Key.cs</url>
+          <line>96</line>
+          <properties documentPath="$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Key.cs" initialLine="95">
+            <startOffsets>
+              <startOffset value="4195" />
+            </startOffsets>
+            <endOffsets>
+              <endOffset value="4237" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="209" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Key.cs</url>
+          <line>98</line>
+          <properties documentPath="$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Key.cs" initialLine="97">
+            <startOffsets>
+              <startOffset value="4327" />
+            </startOffsets>
+            <endOffsets>
+              <endOffset value="4341" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="210" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Key.cs</url>
+          <line>97</line>
+          <properties documentPath="$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Key.cs" initialLine="96">
+            <startOffsets>
+              <startOffset value="4250" />
+            </startOffsets>
+            <endOffsets>
+              <endOffset value="4314" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="211" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Wallet.cs</url>
+          <line>104</line>
+          <properties documentPath="$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Wallet.cs" initialLine="104">
+            <startOffsets>
+              <startOffset value="4174" />
+            </startOffsets>
+            <endOffsets>
+              <endOffset value="4208" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="215" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Wallet.cs</url>
+          <line>105</line>
+          <properties documentPath="$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Wallet.cs" initialLine="105">
+            <startOffsets>
+              <startOffset value="4212" />
+            </startOffsets>
+            <endOffsets>
+              <endOffset value="4283" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="216" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Wallet.cs</url>
+          <line>106</line>
+          <properties documentPath="$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Wallet.cs" initialLine="106">
+            <startOffsets>
+              <startOffset value="4287" />
+            </startOffsets>
+            <endOffsets>
+              <endOffset value="4358" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="217" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Wallet.cs</url>
+          <line>107</line>
+          <properties documentPath="$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Wallet.cs" initialLine="107">
+            <startOffsets>
+              <startOffset value="4362" />
+            </startOffsets>
+            <endOffsets>
+              <endOffset value="4381" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="218" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="201" />
+      <option name="time" value="219" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Unit Tests">
+        <watch expression="httpResponse" />
         <watch expression="e" />
-        <watch expression="httpResponse" language="TEXT" />
       </configuration>
     </watches-manager>
   </component>
@@ -1230,20 +1360,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/LockUnlockRequestResponse.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/DataResponse.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4">
-          <caret column="22" selection-start-column="22" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/D32DB49E-5E34-4072-9DA3-1845C03DDC3A/3b/a5b4de4c/JsonSerializerInternalReader.cs" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/899ABC88-C3F1-4C7D-B7BA-444AD3BDFC76/a1/08a14127/ThrowHelper.cs" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/D32DB49E-5E34-4072-9DA3-1845C03DDC3A/c1/366d253f/JsonTextReader.cs" />
@@ -1251,13 +1367,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
           <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Test/UnitTest/BaseTest.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -1315,31 +1424,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/SendResponseResult.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="23" column="28" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/LockUnlockResponse.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="19" column="42" selection-start-line="19" selection-start-column="42" selection-end-line="19" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Alexandria.net/Core/SophiaClient.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Alexandria.net/Core/Daemon.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="11" column="32" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -1354,13 +1442,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="11" column="1" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/BlockData.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="6" lean-forward="true" selection-start-column="6" selection-end-column="6" />
         </state>
       </provider>
     </entry>
@@ -1420,189 +1501,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Key.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="599">
-          <caret line="44" selection-start-line="44" selection-end-line="45" selection-end-column="76" />
-          <folding>
-            <marker date="1528879537984" expanded="false" signature="6:147" ph="..." />
-            <marker date="1528879537984" expanded="true" signature="193:5484" ph="{...}" />
-            <marker date="1528879537984" expanded="true" signature="234:5482" ph="{...}" />
-            <marker date="1528879537984" expanded="true" signature="249:437" ph="/// Gets the user private key ... " />
-            <marker date="1528879537984" expanded="true" signature="490:676" ph="{...}" />
-            <marker date="1528879537984" expanded="true" signature="686:1080" ph="/// Get the WIF Private key corresponding To a Public key. The Private key must already be In the wallet. ... " />
-            <marker date="1528879537984" expanded="true" signature="1187:1474" ph="{...}" />
-            <marker date="1528879537984" expanded="true" signature="1485:1724" ph="/// Imports a WIF Private Key into the wallet To be used To sign transactionsby an account. ... " />
-            <marker date="1528879537984" expanded="true" signature="1849:1996" ph="{...}" />
-            <marker date="1528879537984" expanded="true" signature="2014:2316" ph="/// Dumps all Private keys owned by the wallet. ... " />
-            <marker date="1528879537984" expanded="true" signature="2350:2438" ph="{...}" />
-            <marker date="1528879537984" expanded="true" signature="2448:2977" ph="/// Transforms a brain key To reduce the chance Of errors When re-entering the ... " />
-            <marker date="1528879537984" expanded="true" signature="3031:3214" ph="{...}" />
-            <marker date="1528879537984" expanded="true" signature="3233:3711" ph="/// Suggests a safe brain key To use For creating your account. ... " />
-            <marker date="1528879537984" expanded="true" signature="3753:3880" ph="{...}" />
-            <marker date="1528879537984" expanded="true" signature="3898:4081" ph="/// Generates the Private Keys ... " />
-            <marker date="1528879537984" expanded="true" signature="4143:4229" ph="{...}" />
-            <marker date="1528879537984" expanded="true" signature="4239:4495" ph="/// Gets the transaction digest ... " />
-            <marker date="1528879537984" expanded="true" signature="4575:4659" ph="{...}" />
-            <marker date="1528879537984" expanded="true" signature="4669:4886" ph="///  ... " />
-            <marker date="1528879537984" expanded="true" signature="4975:5061" ph="{...}" />
-            <marker date="1528879537984" expanded="true" signature="5071:5288" ph="///  ... " />
-            <marker date="1528879537984" expanded="true" signature="5379:5467" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Test/UnitTest/WalletTests.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="105" column="36" selection-start-line="105" selection-start-column="36" selection-end-line="105" selection-end-column="36" />
-          <folding>
-            <marker date="1528879538004" expanded="false" signature="6:79" ph="..." />
-            <marker date="1528879538004" expanded="true" signature="100:27678" ph="{...}" />
-            <marker date="1528879538004" expanded="true" signature="142:27676" ph="{...}" />
-            <marker date="1528879538004" expanded="true" signature="1175:3358" ph="{...}" />
-            <marker date="1528879538004" expanded="true" signature="3417:4984" ph="{...}" />
-            <marker date="1528879538004" expanded="true" signature="5033:8845" ph="{...}" />
-            <marker date="1528879538004" expanded="true" signature="8894:12571" ph="{...}" />
-            <marker date="1528879538004" expanded="true" signature="12572:12844" ph="/* [Fact] ... */" />
-            <marker date="1528879538004" expanded="true" signature="12907:13016" ph="{...}" />
-            <marker date="1528879538004" expanded="true" signature="13059:13116" ph="{...}" />
-            <marker date="1528879538004" expanded="true" signature="13177:19152" ph="{...}" />
-            <marker date="1528879538004" expanded="true" signature="19211:24745" ph="{...}" />
-            <marker date="1528879538004" expanded="true" signature="24798:24919" ph="{...}" />
-            <marker date="1528879538004" expanded="true" signature="24976:25071" ph="{...}" />
-            <marker date="1528879538004" expanded="true" signature="25125:25196" ph="{...}" />
-            <marker date="1528879538004" expanded="true" signature="25257:25324" ph="{...}" />
-            <marker date="1528879538004" expanded="true" signature="25374:25434" ph="{...}" />
-            <marker date="1528879538004" expanded="true" signature="25484:25771" ph="{...}" />
-            <marker date="1528879538004" expanded="true" signature="25539:25662" ph="{...}" />
-            <marker date="1528879538004" expanded="true" signature="25679:25761" ph="{...}" />
-            <marker date="1528879538004" expanded="true" signature="25817:25924" ph="{...}" />
-            <marker date="1528879538004" expanded="true" signature="25971:26027" ph="{...}" />
-            <marker date="1528879538004" expanded="true" signature="26078:26194" ph="{...}" />
-            <marker date="1528879538004" expanded="true" signature="26241:26358" ph="{...}" />
-            <marker date="1528879538004" expanded="true" signature="26411:26518" ph="{...}" />
-            <marker date="1528879538004" expanded="true" signature="26578:26926" ph="{...}" />
-            <marker date="1528879538004" expanded="true" signature="26632:26815" ph="{...}" />
-            <marker date="1528879538004" expanded="true" signature="26832:26916" ph="{...}" />
-            <marker date="1528879538004" expanded="true" signature="26991:27116" ph="{...}" />
-            <marker date="1528879538004" expanded="true" signature="27174:27302" ph="{...}" />
-            <marker date="1528879538004" expanded="true" signature="27352:27490" ph="{...}" />
-            <marker date="1528879538004" expanded="true" signature="27540:27670" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Wallet.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="208" column="12" selection-start-line="208" selection-start-column="12" selection-end-line="208" selection-end-column="36" />
-          <folding>
-            <marker date="1528879537986" expanded="false" signature="6:221" ph="..." />
-            <marker date="1528879537986" expanded="true" signature="267:14678" ph="{...}" />
-            <marker date="1528879537986" expanded="true" signature="271:349" ph="/// All wallet calls to the SophiaTX Blockchain ... " />
-            <marker date="1528879537986" expanded="true" signature="395:14676" ph="{...}" />
-            <marker date="1528879537986" expanded="false" signature="401:1514" ph="DllImports" />
-            <marker date="1528879537986" expanded="true" signature="1520:1834" ph="Constructors" />
-            <marker date="1528879537986" expanded="true" signature="1544:1719" ph="/// Wallet Constructor ... " />
-            <marker date="1528879537986" expanded="true" signature="1812:1820" ph="{...}" />
-            <marker date="1528879537986" expanded="true" signature="1838:14673" ph="Public Methods" />
-            <marker date="1528879537986" expanded="true" signature="1864:2015" ph="/// Gets the compile time info ... " />
-            <marker date="1528879537986" expanded="true" signature="2039:2116" ph="{...}" />
-            <marker date="1528879537986" expanded="true" signature="2120:2348" ph="///  ... " />
-            <marker date="1528879537986" expanded="true" signature="2435:2579" ph="{...}" />
-            <marker date="1528879537986" expanded="true" signature="2583:3065" ph="/// This method will convert SBD To STEEM at the current_median_history price one week from the time it Is execut ... " />
-            <marker date="1528879537986" expanded="true" signature="3145:3280" ph="{...}" />
-            <marker date="1528879537986" expanded="true" signature="3286:3697" ph="/// Marks one account As following another account. Requires the posting authority Of the follower. ... " />
-            <marker date="1528879537986" expanded="true" signature="3794:3941" ph="{...}" />
-            <marker date="1528879537986" expanded="true" signature="3945:4124" ph="/// Returns information about the block ... " />
-            <marker date="1528879537986" expanded="true" signature="4166:4385" ph="{...}" />
-            <marker date="1528879537986" expanded="true" signature="4431:4494" ph="///  ... " />
-            <marker date="1528879537986" expanded="true" signature="4542:4718" ph="{...}" />
-            <marker date="1528879537986" expanded="true" signature="4722:4822" ph="///  ... " />
-            <marker date="1528879537986" expanded="true" signature="4872:4990" ph="{...}" />
-            <marker date="1528879537986" expanded="true" signature="4994:5835" ph="/// This returns a Default-initialized Object Of the given type; it can be used during early development Of the w ... " />
-            <marker date="1528879537986" expanded="true" signature="5897:6021" ph="{...}" />
-            <marker date="1528879537986" expanded="true" signature="6025:6167" ph="/// Returns the state info associated With the URL ... " />
-            <marker date="1528879537986" expanded="true" signature="6205:6319" ph="{...}" />
-            <marker date="1528879537986" expanded="true" signature="6323:6447" ph="/// Returns transaction by ID. ... " />
-            <marker date="1528879537986" expanded="true" signature="6493:6609" ph="{...}" />
-            <marker date="1528879537986" expanded="true" signature="6615:6863" ph="/// Returns detailed help On a Single API command. ... " />
-            <marker date="1528879537986" expanded="true" signature="6902:7058" ph="{...}" />
-            <marker date="1528879537986" expanded="true" signature="7062:7241" ph="/// Returns a list Of all commands supported by the wallet API. ... " />
-            <marker date="1528879537986" expanded="true" signature="7264:7370" ph="{...}" />
-            <marker date="1528879537986" expanded="true" signature="7374:7491" ph="/// Returns info about the current state Of the blockchain ... " />
-            <marker date="1528879537986" expanded="true" signature="7520:7691" ph="{...}" />
-            <marker date="1528879537986" expanded="true" signature="7696:7920" ph="/// Checks whether the wallet Is locked (Is unable To use its Private keys). This state can be changed by calling ... " />
-            <marker date="1528879537986" expanded="true" signature="7946:8047" ph="{...}" />
-            <marker date="1528879537986" expanded="true" signature="8053:8295" ph="/// Checks whether the wallet has just been created And has Not yet had a password set. Calling 'set_password' wi ... " />
-            <marker date="1528879537986" expanded="true" signature="8332:8511" ph="{...}" />
-            <marker date="1528879537986" expanded="true" signature="8519:8872" ph="/// Loads a specified Graphene wallet. The current wallet Is closed before the New wallet Is loaded. ... " />
-            <marker date="1528879537986" expanded="true" signature="8926:9085" ph="{...}" />
-            <marker date="1528879537986" expanded="true" signature="9089:9155" ph="/// Locks the wallet immediately. ... " />
-            <marker date="1528879537986" expanded="true" signature="9190:9342" ph="{...}" />
-            <marker date="1528879537986" expanded="true" signature="9346:9418" ph="///  ... " />
-            <marker date="1528879537986" expanded="true" signature="9467:9527" ph="{...}" />
-            <marker date="1528879537986" expanded="true" signature="9531:9594" ph="///  ... " />
-            <marker date="1528879537986" expanded="true" signature="9640:9707" ph="{...}" />
-            <marker date="1528879537986" expanded="true" signature="9711:9899" ph="///  ... " />
-            <marker date="1528879537986" expanded="true" signature="9963:10095" ph="{...}" />
-            <marker date="1528879537986" expanded="true" signature="10099:10528" ph="/// A witness can Public a price feed For the STEEM:SBD market. The median price feed Is used To process conversi ... " />
-            <marker date="1528879537986" expanded="true" signature="10618:10761" ph="{...}" />
-            <marker date="1528879537986" expanded="true" signature="10765:11019" ph="/// Saves the current wallet To the given filename. ... " />
-            <marker date="1528879537986" expanded="true" signature="11073:11191" ph="{...}" />
-            <marker date="1528879537986" expanded="true" signature="11195:11397" ph="/// Sets a New password On the wallet. ... " />
-            <marker date="1528879537986" expanded="true" signature="11441:11553" ph="{...}" />
-            <marker date="1528879537986" expanded="true" signature="11557:11631" ph="///  ... " />
-            <marker date="1528879537986" expanded="true" signature="11686:11797" ph="{...}" />
-            <marker date="1528879537986" expanded="true" signature="11801:12578" ph="/// Set the voting proxy For an account. ... " />
-            <marker date="1528879537986" expanded="true" signature="12672:12816" ph="{...}" />
-            <marker date="1528879537986" expanded="true" signature="12820:13019" ph="/// The wallet remain unlocked until the 'lock' is called or the program exits. ... " />
-            <marker date="1528879537986" expanded="true" signature="13071:13303" ph="{...}" />
-            <marker date="1528879537986" expanded="true" signature="13309:13518" ph="/// Unlocks the wallet ... " />
-            <marker date="1528879537986" expanded="true" signature="13573:13763" ph="{...}" />
-            <marker date="1528879537986" expanded="true" signature="13767:14305" ph="/// Set up a vesting withdraw request. The request Is fulfilled once a week over the next two years (104 weeks) ... " />
-            <marker date="1528879537986" expanded="true" signature="14409:14659" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/ReceiverRecipe.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <marker date="1528884497401" expanded="true" signature="79:392" ph="{...}" />
-            <marker date="1528884497401" expanded="true" signature="113:390" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Network.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="480">
           <caret line="44" selection-start-line="44" selection-end-line="45" selection-end-column="82" />
-          <folding>
-            <marker date="1528884543004" expanded="true" signature="6:143" ph="..." />
-            <marker date="1528884543004" expanded="true" signature="189:4516" ph="{...}" />
-            <marker date="1528884543004" expanded="true" signature="255:4514" ph="{...}" />
-            <marker date="1528884543004" expanded="false" signature="271:667" ph="Constructors" />
-            <marker date="1528884543004" expanded="true" signature="301:527" ph="/// Wallet Constructor ... " />
-            <marker date="1528884543004" expanded="true" signature="627:647" ph="{...}" />
-            <marker date="1528884543004" expanded="true" signature="677:812" ph="/// Returns true if the library is connected to a backend. ... " />
-            <marker date="1528884543004" expanded="true" signature="846:977" ph="{...}" />
-            <marker date="1528884543004" expanded="true" signature="987:1176" ph="/// Connects to the WS endpoint. ... " />
-            <marker date="1528884543004" expanded="true" signature="1227:1421" ph="{...}" />
-            <marker date="1528884543004" expanded="true" signature="1431:1602" ph="/// Get hash including chain ID (digest), ready to be signed, of a JSON formatted transaction. ... " />
-            <marker date="1528884543004" expanded="true" signature="1665:1831" ph="{...}" />
-            <marker date="1528884543004" expanded="true" signature="1842:2097" ph="///  ... " />
-            <marker date="1528884543004" expanded="true" signature="2214:2391" ph="{...}" />
-            <marker date="1528884543004" expanded="true" signature="2402:2657" ph="///  ... " />
-            <marker date="1528884543004" expanded="true" signature="2792:2969" ph="{...}" />
-            <marker date="1528884543004" expanded="true" signature="2980:3235" ph="///  ... " />
-            <marker date="1528884543004" expanded="true" signature="3372:3549" ph="{...}" />
-            <marker date="1528884543004" expanded="true" signature="3559:4065" ph="/// Allowed options for search_type are &quot;by_sender&quot;, &quot;by_recipient&quot;, &quot;by_sender_datetime&quot;, &quot;by_recipient_datetime ... " />
-            <marker date="1528884543004" expanded="true" signature="4225:4507" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1610,11 +1515,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="26" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="26" />
-          <folding>
-            <marker date="1528884512427" expanded="true" signature="79:365" ph="{...}" />
-            <marker date="1528884512427" expanded="true" signature="86:127" ph="///  ... " />
-            <marker date="1528884512427" expanded="true" signature="154:363" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1622,26 +1522,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
           <caret line="28" selection-start-line="28" selection-end-line="29" selection-end-column="76" />
-          <folding>
-            <marker date="1528739397717" expanded="true" signature="6:50" ph="..." />
-            <marker date="1528739397717" expanded="true" signature="96:4245" ph="{...}" />
-            <marker date="1528739397717" expanded="true" signature="141:4243" ph="{...}" />
-            <marker date="1528739397717" expanded="true" signature="156:643" ph="/* Transfer funds from one account To another. STEEM And SBD can be ... */" />
-            <marker date="1528739397717" expanded="true" signature="646:930" ph="///  ... " />
-            <marker date="1528739397717" expanded="true" signature="1031:1176" ph="{...}" />
-            <marker date="1528739397717" expanded="true" signature="1180:1761" ph="/* Transfer STEEM into a vesting fund represented by vesting shares (VESTS). ... */" />
-            <marker date="1528739397717" expanded="true" signature="1765:2015" ph="///  ... " />
-            <marker date="1528739397717" expanded="true" signature="2114:2253" ph="{...}" />
-            <marker date="1528739397717" expanded="true" signature="2257:2344" ph="/* Transfers into savings happen immediately, transfers from savings take 72 hours ... */" />
-            <marker date="1528739397717" expanded="true" signature="2347:2631" ph="///  ... " />
-            <marker date="1528739397717" expanded="true" signature="2743:2882" ph="{...}" />
-            <marker date="1528739397717" expanded="true" signature="2887:3039" ph="/* @param request_id - an unique ID assigned by from account, the id is used to cancel the operation and can be r ... */" />
-            <marker date="1528739397717" expanded="true" signature="3042:3365" ph="///  ... " />
-            <marker date="1528739397717" expanded="true" signature="3498:3654" ph="{...}" />
-            <marker date="1528739397717" expanded="true" signature="3658:3777" ph="/* @param request_id the id used in transfer_from_savings ... */" />
-            <marker date="1528739397717" expanded="true" signature="3780:4001" ph="///  ... " />
-            <marker date="1528739397717" expanded="true" signature="4099:4237" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1649,83 +1529,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="458">
           <caret line="61" selection-start-line="61" selection-end-line="61" selection-end-column="36" />
-          <folding>
-            <marker date="1528890337024" expanded="true" signature="6:157" ph="..." />
-            <marker date="1528890337024" expanded="true" signature="203:7832" ph="{...}" />
-            <marker date="1528890337024" expanded="true" signature="268:7830" ph="{...}" />
-            <marker date="1528890337024" expanded="false" signature="284:652" ph="Constructors" />
-            <marker date="1528890337024" expanded="true" signature="314:513" ph="/// Wallet Constructor ... " />
-            <marker date="1528890337024" expanded="true" signature="612:632" ph="{...}" />
-            <marker date="1528890337024" expanded="true" signature="663:750" ph="/// Generates new private/public key pair. ... " />
-            <marker date="1528890337024" expanded="true" signature="805:980" ph="{...}" />
-            <marker date="1528890337024" expanded="true" signature="991:1138" ph="/// Generates new private/public key pair from brian key. ... " />
-            <marker date="1528890337024" expanded="true" signature="1221:1458" ph="{...}" />
-            <marker date="1528890337024" expanded="true" signature="1469:1895" ph="/// Form a transaction containing a json-formatted operation, sign it with a given private key and send it to ... " />
-            <marker date="1528890337024" expanded="true" signature="1974:2180" ph="{...}" />
-            <marker date="1528890337024" expanded="true" signature="2191:2521" ph="/// Sing a json-formatted transaction with a given private key and send it to the network. ... " />
-            <marker date="1528890337024" expanded="true" signature="2604:2812" ph="{...}" />
-            <marker date="1528890337024" expanded="true" signature="2823:2917" ph="/// Sign given digest using provided private key. ... " />
-            <marker date="1528890337024" expanded="true" signature="2985:3217" ph="{...}" />
-            <marker date="1528890337024" expanded="true" signature="3229:3386" ph="/// Generate public key part associated to the given private key. ... " />
-            <marker date="1528890337024" expanded="true" signature="3441:3665" ph="{...}" />
-            <marker date="1528890337024" expanded="true" signature="3677:3804" ph="/// Decodes base58-encoded string. ... " />
-            <marker date="1528890337024" expanded="true" signature="3862:4091" ph="{...}" />
-            <marker date="1528890337024" expanded="true" signature="4103:4222" ph="/// Encodes data to base58 string. ... " />
-            <marker date="1528890337024" expanded="true" signature="4270:4487" ph="{...}" />
-            <marker date="1528890337024" expanded="true" signature="4498:4763" ph="/// Verify if the given public key corresponds to the private key used to sign the digest. ... " />
-            <marker date="1528890337024" expanded="true" signature="4848:5058" ph="{...}" />
-            <marker date="1528890337024" expanded="true" signature="5069:5374" ph="/// Encrypts the document in plaintext using shared secret constructed via sender's private key and receveir's pu ... " />
-            <marker date="1528890337024" expanded="true" signature="5469:5716" ph="{...}" />
-            <marker date="1528890337024" expanded="true" signature="5727:6092" ph="/// Decrypts the encrypted data using shared secret constructed via receiver's private key and sender's public ke ... " />
-            <marker date="1528890337024" expanded="true" signature="6192:6444" ph="{...}" />
-            <marker date="1528890337024" expanded="true" signature="6454:6751" ph="/// Encrypts the data in plain using shared secret constructed via sender's private key and receveir's public key ... " />
-            <marker date="1528890337024" expanded="true" signature="6850:7101" ph="{...}" />
-            <marker date="1528890337024" expanded="true" signature="7112:7464" ph="/// Decrypts the encrypted data using shared secret constructed via receiver's private key and sender's public ke ... " />
-            <marker date="1528890337024" expanded="true" signature="7568:7824" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/AccountWallet.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="705">
-          <caret line="50" column="31" selection-start-line="49" selection-start-column="12" selection-end-line="50" selection-end-column="31" />
-          <folding>
-            <marker date="1528879537983" expanded="false" signature="6:119" ph="..." />
-            <marker date="1528879537983" expanded="true" signature="165:12604" ph="{...}" />
-            <marker date="1528879537983" expanded="true" signature="210:12602" ph="{...}" />
-            <marker date="1528879537983" expanded="true" signature="222:12596" ph="Methods" />
-            <marker date="1528879537983" expanded="true" signature="252:916" ph="/// This method will genrate New owner, active, and memo keys For the New account which will be controlable by th ... " />
-            <marker date="1528879537983" expanded="true" signature="1038:1305" ph="{...}" />
-            <marker date="1528879537983" expanded="true" signature="1314:2310" ph="/// This method Is used by faucets To create New accounts For other users which must provide their desired keys. ... " />
-            <marker date="1528879537983" expanded="true" signature="2496:2786" ph="{...}" />
-            <marker date="1528879537983" expanded="true" signature="2798:3059" ph="/// Returns information about the given account. ... " />
-            <marker date="1528879537983" expanded="true" signature="3110:3245" ph="{...}" />
-            <marker date="1528879537983" expanded="true" signature="3252:3821" ph="/// Account operations have sequence numbers from 0 To N where N Is the most recent operation. ... " />
-            <marker date="1528879537983" expanded="true" signature="3915:4177" ph="{...}" />
-            <marker date="1528879537983" expanded="true" signature="4184:5010" ph="/// Lists all accounts registered In the blockchain. This returns a list Of all account names And their account i ... " />
-            <marker date="1528879537983" expanded="true" signature="5100:5364" ph="{...}" />
-            <marker date="1528879537983" expanded="true" signature="5371:5550" ph="/// Gets the account information For all accounts For which this wallet has aPrivate key ... " />
-            <marker date="1528879537983" expanded="true" signature="5588:5664" ph="{...}" />
-            <marker date="1528879537983" expanded="true" signature="5676:5978" ph="///  ... " />
-            <marker date="1528879537983" expanded="true" signature="6118:6299" ph="{...}" />
-            <marker date="1528879537983" expanded="true" signature="6306:6608" ph="///  ... " />
-            <marker date="1528879537983" expanded="true" signature="6754:6935" ph="{...}" />
-            <marker date="1528879537983" expanded="true" signature="6944:7589" ph="/// This method updates the keys Of an existing account. ... " />
-            <marker date="1528879537983" expanded="true" signature="7741:7905" ph="{...}" />
-            <marker date="1528879537983" expanded="true" signature="7909:8851" ph="/// update_account_auth_key(string account_name, authority_type type, public_key_type key, weight_type weight, bo ... " />
-            <marker date="1528879537983" expanded="true" signature="8989:9149" ph="{...}" />
-            <marker date="1528879537983" expanded="true" signature="9153:9409" ph="///  ... " />
-            <marker date="1528879537983" expanded="true" signature="9517:9661" ph="{...}" />
-            <marker date="1528879537983" expanded="true" signature="9665:10452" ph="/// This method updates the weight threshold Of an authority For an account. Warning: You can create impossible a ... " />
-            <marker date="1528879537983" expanded="true" signature="10573:10723" ph="{...}" />
-            <marker date="1528879537983" expanded="true" signature="10727:11062" ph="/// This method updates the memo key Of an account ... " />
-            <marker date="1528879537983" expanded="true" signature="11157:11295" ph="{...}" />
-            <marker date="1528879537983" expanded="true" signature="11301:11688" ph="/// This method updates the account JSON metadata  ... " />
-            <marker date="1528879537983" expanded="true" signature="11784:11927" ph="{...}" />
-            <marker date="1528879537983" expanded="true" signature="11939:12188" ph="///  ... " />
-            <marker date="1528879537983" expanded="true" signature="12307:12580" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1733,25 +1536,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="412">
           <caret line="41" selection-start-line="41" selection-end-line="41" selection-end-column="36" />
-          <folding>
-            <marker date="1528888076602" expanded="true" signature="6:100" ph="..." />
-            <marker date="1528888076602" expanded="true" signature="169:3734" ph="{...}" />
-            <marker date="1528888076602" expanded="true" signature="176:231" ph="/// ... " />
-            <marker date="1528888076602" expanded="true" signature="270:3732" ph="{...}" />
-            <marker date="1528888076602" expanded="false" signature="286:653" ph="Constructors" />
-            <marker date="1528888076602" expanded="true" signature="316:515" ph="/// Wallet Constructor ... " />
-            <marker date="1528888076602" expanded="true" signature="613:633" ph="{...}" />
-            <marker date="1528888076602" expanded="true" signature="680:1019" ph="/// Trnasfer given assets from one user to other one. ... " />
-            <marker date="1528888076602" expanded="true" signature="1121:1342" ph="{...}" />
-            <marker date="1528888076602" expanded="true" signature="1352:1577" ph="/// Returns the balance of the given account and UIA ... " />
-            <marker date="1528888076602" expanded="true" signature="1661:1879" ph="{...}" />
-            <marker date="1528888076602" expanded="true" signature="1889:2174" ph="///  ... " />
-            <marker date="1528888076602" expanded="true" signature="2302:2552" ph="{...}" />
-            <marker date="1528888076602" expanded="true" signature="2647:2874" ph="{...}" />
-            <marker date="1528888076602" expanded="true" signature="2959:3180" ph="{...}" />
-            <marker date="1528888076602" expanded="true" signature="3243:3471" ph="{...}" />
-            <marker date="1528888076602" expanded="true" signature="3530:3726" ph="{...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1759,54 +1543,312 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="30" column="47" lean-forward="true" selection-start-line="30" selection-start-column="47" selection-end-line="30" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/AccountWallet.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2331">
+          <caret line="47" column="84" selection-start-line="47" selection-start-column="84" selection-end-line="47" selection-end-column="84" />
           <folding>
-            <marker date="1528891774627" expanded="true" signature="6:143" ph="..." />
-            <marker date="1528891774627" expanded="true" signature="189:11711" ph="{...}" />
-            <marker date="1528891774627" expanded="true" signature="196:237" ph="///  ... " />
-            <marker date="1528891774627" expanded="true" signature="278:11709" ph="{...}" />
-            <marker date="1528891774627" expanded="false" signature="294:663" ph="Constructors" />
-            <marker date="1528891774627" expanded="true" signature="324:523" ph="/// Wallet Constructor ... " />
-            <marker date="1528891774627" expanded="true" signature="623:643" ph="{...}" />
-            <marker date="1528891774627" expanded="true" signature="673:852" ph="/// Returns true if an account with given name exists. ... " />
-            <marker date="1528891774627" expanded="true" signature="907:1103" ph="{...}" />
-            <marker date="1528891774627" expanded="true" signature="1113:1328" ph="/// Returns true if the library has imported the private key corresponding to the given public key. ... " />
-            <marker date="1528891774627" expanded="true" signature="1375:1562" ph="{...}" />
-            <marker date="1528891774627" expanded="true" signature="1572:1983" ph="/// Returns true if the library has imported the private key corresponding to the account's owner key.In case of ... " />
-            <marker date="1528891774627" expanded="true" signature="2050:2246" ph="{...}" />
-            <marker date="1528891774627" expanded="true" signature="2256:2668" ph="/// Returns true if the library has imported the private key corresponding to the account's active key.In case of ... " />
-            <marker date="1528891774627" expanded="true" signature="2736:2932" ph="{...}" />
-            <marker date="1528891774627" expanded="true" signature="2942:3168" ph="/// Returns true if the library has imported the private key corresponding to the account's memo key. ... " />
-            <marker date="1528891774627" expanded="true" signature="3234:3430" ph="{...}" />
-            <marker date="1528891774627" expanded="true" signature="3440:3664" ph="/// Returns the active authority of the given account.Object authority has the following structure: ... " />
-            <marker date="1528891774627" expanded="true" signature="3729:3957" ph="{...}" />
-            <marker date="1528891774627" expanded="true" signature="3967:4145" ph="/// Returns the owner authority of the given account. ... " />
-            <marker date="1528891774627" expanded="true" signature="4209:4437" ph="{...}" />
-            <marker date="1528891774627" expanded="true" signature="4447:4618" ph="/// Returns the memo key of the given account. ... " />
-            <marker date="1528891774627" expanded="true" signature="4672:4897" ph="{...}" />
-            <marker date="1528891774627" expanded="true" signature="4908:5063" ph="/// Get account SPHTX balance. ... " />
-            <marker date="1528891774627" expanded="true" signature="5123:5347" ph="{...}" />
-            <marker date="1528891774627" expanded="true" signature="5357:5520" ph="/// Get account vested SPHTX balance. ... " />
-            <marker date="1528891774627" expanded="true" signature="5580:5804" ph="{...}" />
-            <marker date="1528891774627" expanded="true" signature="5814:6017" ph="/// Creates authority resolvable with signature corresponding to the given pub_key. ... " />
-            <marker date="1528891774627" expanded="true" signature="6080:6303" ph="{...}" />
-            <marker date="1528891774627" expanded="true" signature="6313:6583" ph="/// Creates authority resolvable with given number of signatures out of the given set of keys. ... " />
-            <marker date="1528891774627" expanded="true" signature="6688:6933" ph="{...}" />
-            <marker date="1528891774627" expanded="true" signature="6943:7140" ph="/// Creates authority resolvable with a given managing account. ... " />
-            <marker date="1528891774627" expanded="true" signature="7224:7461" ph="{...}" />
-            <marker date="1528891774627" expanded="true" signature="7471:7729" ph="/// Creates authority resolvable with given number of​ managing accounts. ... " />
-            <marker date="1528891774627" expanded="true" signature="7846:8100" ph="{...}" />
-            <marker date="1528891774627" expanded="true" signature="8110:8389" ph="/// Update account authorities. ... " />
-            <marker date="1528891774627" expanded="true" signature="8492:8709" ph="{...}" />
-            <marker date="1528891774627" expanded="true" signature="8719:8933" ph="/// Deposit to_vestings SPHTXs to vesting. ... " />
-            <marker date="1528891774627" expanded="true" signature="9008:9217" ph="{...}" />
-            <marker date="1528891774627" expanded="true" signature="9227:9442" ph="/// Withdraw from_vestings vested SPHTXs. ... " />
-            <marker date="1528891774627" expanded="true" signature="9521:9732" ph="{...}" />
-            <marker date="1528891774627" expanded="true" signature="9742:10000" ph="/// Vote or unvote a witness. ... " />
-            <marker date="1528891774627" expanded="true" signature="10106:10338" ph="{...}" />
-            <marker date="1528891774627" expanded="true" signature="10348:10632" ph="/// Update an account to witness.Requires XXX vested SPHTX before updating. ... " />
-            <marker date="1528891774627" expanded="true" signature="10719:10931" ph="{...}" />
-            <marker date="1528891774627" expanded="true" signature="10941:11304" ph="/// Creates new account in the SophiaTX blockchain. ... " />
-            <marker date="1528891774627" expanded="true" signature="11456:11703" ph="{...}" />
+            <marker date="1528897051903" expanded="false" signature="6:119" ph="..." />
+            <marker date="1528897051903" expanded="true" signature="165:12581" ph="{...}" />
+            <marker date="1528897051903" expanded="true" signature="210:12579" ph="{...}" />
+            <marker date="1528897051903" expanded="true" signature="222:12573" ph="Methods" />
+            <marker date="1528897051903" expanded="true" signature="252:916" ph="/// This method will genrate New owner, active, and memo keys For the New account which will be controlable by th ... " />
+            <marker date="1528897051903" expanded="true" signature="1038:1305" ph="{...}" />
+            <marker date="1528897051903" expanded="true" signature="1314:2310" ph="/// This method Is used by faucets To create New accounts For other users which must provide their desired keys. ... " />
+            <marker date="1528897051903" expanded="true" signature="2481:2763" ph="{...}" />
+            <marker date="1528897051903" expanded="true" signature="2775:3036" ph="/// Returns information about the given account. ... " />
+            <marker date="1528897051903" expanded="true" signature="3087:3222" ph="{...}" />
+            <marker date="1528897051903" expanded="true" signature="3229:3798" ph="/// Account operations have sequence numbers from 0 To N where N Is the most recent operation. ... " />
+            <marker date="1528897051903" expanded="true" signature="3892:4154" ph="{...}" />
+            <marker date="1528897051903" expanded="true" signature="4161:4987" ph="/// Lists all accounts registered In the blockchain. This returns a list Of all account names And their account i ... " />
+            <marker date="1528897051903" expanded="true" signature="5077:5341" ph="{...}" />
+            <marker date="1528897051903" expanded="true" signature="5348:5527" ph="/// Gets the account information For all accounts For which this wallet has aPrivate key ... " />
+            <marker date="1528897051903" expanded="true" signature="5565:5641" ph="{...}" />
+            <marker date="1528897051903" expanded="true" signature="5653:5955" ph="///  ... " />
+            <marker date="1528897051903" expanded="true" signature="6095:6276" ph="{...}" />
+            <marker date="1528897051903" expanded="true" signature="6283:6585" ph="///  ... " />
+            <marker date="1528897051903" expanded="true" signature="6731:6912" ph="{...}" />
+            <marker date="1528897051903" expanded="true" signature="6921:7566" ph="/// This method updates the keys Of an existing account. ... " />
+            <marker date="1528897051903" expanded="true" signature="7718:7882" ph="{...}" />
+            <marker date="1528897051903" expanded="true" signature="7886:8828" ph="/// update_account_auth_key(string account_name, authority_type type, public_key_type key, weight_type weight, bo ... " />
+            <marker date="1528897051903" expanded="true" signature="8966:9126" ph="{...}" />
+            <marker date="1528897051903" expanded="true" signature="9130:9386" ph="///  ... " />
+            <marker date="1528897051903" expanded="true" signature="9494:9638" ph="{...}" />
+            <marker date="1528897051903" expanded="true" signature="9642:10429" ph="/// This method updates the weight threshold Of an authority For an account. Warning: You can create impossible a ... " />
+            <marker date="1528897051903" expanded="true" signature="10550:10700" ph="{...}" />
+            <marker date="1528897051903" expanded="true" signature="10704:11039" ph="/// This method updates the memo key Of an account ... " />
+            <marker date="1528897051903" expanded="true" signature="11134:11272" ph="{...}" />
+            <marker date="1528897051903" expanded="true" signature="11278:11665" ph="/// This method updates the account JSON metadata  ... " />
+            <marker date="1528897051903" expanded="true" signature="11761:11904" ph="{...}" />
+            <marker date="1528897051903" expanded="true" signature="11916:12165" ph="///  ... " />
+            <marker date="1528897051903" expanded="true" signature="12284:12557" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/share/dotnet/sdk/2.1.4/Sdks/Microsoft.NET.Sdk/build/Microsoft.PackageDependencyResolution.targets">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="164">
+          <caret line="326" column="4" selection-start-line="326" selection-start-column="4" selection-end-line="326" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Alexandria.net/Core/Daemon.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="15" column="15" selection-start-line="15" selection-start-column="15" selection-end-line="15" selection-end-column="15" />
+          <folding>
+            <marker date="1528806867928" expanded="false" signature="6:100" ph="..." />
+            <marker date="1528806867928" expanded="true" signature="131:5973" ph="{...}" />
+            <marker date="1528806867928" expanded="true" signature="135:231" ph="/// Daemon implementation ... " />
+            <marker date="1528806867928" expanded="true" signature="268:5971" ph="{...}" />
+            <marker date="1528806867928" expanded="true" signature="274:407" ph="Constructors" />
+            <marker date="1528806867928" expanded="true" signature="385:393" ph="{...}" />
+            <marker date="1528806867928" expanded="false" signature="411:5968" ph="public Methods" />
+            <marker date="1528806867928" expanded="true" signature="463:530" ph="{...}" />
+            <marker date="1528806867928" expanded="true" signature="579:646" ph="{...}" />
+            <marker date="1528806867928" expanded="true" signature="686:753" ph="{...}" />
+            <marker date="1528806867928" expanded="true" signature="805:872" ph="{...}" />
+            <marker date="1528806867928" expanded="true" signature="909:976" ph="{...}" />
+            <marker date="1528806867928" expanded="true" signature="1016:1083" ph="{...}" />
+            <marker date="1528806867928" expanded="true" signature="1123:1190" ph="{...}" />
+            <marker date="1528806867928" expanded="true" signature="1237:1304" ph="{...}" />
+            <marker date="1528806867928" expanded="true" signature="1354:1477" ph="{...}" />
+            <marker date="1528806867928" expanded="true" signature="1536:1659" ph="{...}" />
+            <marker date="1528806867928" expanded="true" signature="1723:1855" ph="{...}" />
+            <marker date="1528806867928" expanded="true" signature="1892:1959" ph="{...}" />
+            <marker date="1528806867928" expanded="true" signature="2010:2132" ph="{...}" />
+            <marker date="1528806867928" expanded="true" signature="2186:2308" ph="{...}" />
+            <marker date="1528806867928" expanded="true" signature="2356:2478" ph="{...}" />
+            <marker date="1528806867928" expanded="true" signature="2519:2641" ph="{...}" />
+            <marker date="1528806867928" expanded="true" signature="2693:2817" ph="{...}" />
+            <marker date="1528806867928" expanded="true" signature="2875:2997" ph="{...}" />
+            <marker date="1528806867928" expanded="true" signature="3053:3175" ph="{...}" />
+            <marker date="1528806867928" expanded="true" signature="3238:3364" ph="{...}" />
+            <marker date="1528806867928" expanded="true" signature="3401:3468" ph="{...}" />
+            <marker date="1528806867928" expanded="true" signature="3598:3729" ph="{...}" />
+            <marker date="1528806867928" expanded="true" signature="3790:3921" ph="{...}" />
+            <marker date="1528806867928" expanded="true" signature="3996:4133" ph="{...}" />
+            <marker date="1528806867928" expanded="true" signature="4137:4320" ph="/* return the active discussions with the highest cumulative pending payouts without respect to category, total ... */" />
+            <marker date="1528806867928" expanded="true" signature="4323:4505" ph="///  ... " />
+            <marker date="1528806867928" expanded="true" signature="4602:4750" ph="{...}" />
+            <marker date="1528806867928" expanded="true" signature="4754:5087" ph="/* This method Is used to fetch all posts/comments by start_author that occur after before_date And start_permlin ... */" />
+            <marker date="1528806867928" expanded="true" signature="5214:5369" ph="{...}" />
+            <marker date="1528806867928" expanded="true" signature="5373:5747" ph="/* Account operations have sequence numbers from 0 to N where N Is the most recent operation. This method ... */" />
+            <marker date="1528806867928" expanded="true" signature="5823:5954" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Alexandria.net/Core/SophiaClient.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="26" column="29" selection-start-line="26" selection-start-column="29" selection-end-line="26" selection-end-column="29" />
+          <folding>
+            <marker date="1528806867930" expanded="true" signature="66:1156" ph="{...}" />
+            <marker date="1528806867930" expanded="true" signature="73:172" ph="/// The main entry point for accessing the SophiaTX Blockchain ... " />
+            <marker date="1528806867930" expanded="true" signature="202:1154" ph="{...}" />
+            <marker date="1528806867930" expanded="true" signature="217:287" ph="/// The blockchain daemon ... " />
+            <marker date="1528806867930" expanded="true" signature="334:404" ph="/// the blockchain wallet ... " />
+            <marker date="1528806867930" expanded="true" signature="452:738" ph="/// Client Constructor ... " />
+            <marker date="1528806867930" expanded="true" signature="821:951" ph="{...}" />
+            <marker date="1528806867930" expanded="true" signature="961:1028" ph="/// Client Constructor ... " />
+            <marker date="1528806867930" expanded="true" signature="1058:1148" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Test/UnitTest/BaseTest.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="61" selection-start-line="6" selection-start-column="61" selection-end-line="6" selection-end-column="61" />
+          <folding>
+            <marker date="1528367863714" expanded="true" signature="46:180" ph="{...}" />
+            <marker date="1528367863714" expanded="true" signature="74:178" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/SignedTrasnactionResponse.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="8" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/SendResponseResult.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="5" column="35" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="35" />
+          <folding>
+            <marker date="1528360404621" expanded="false" signature="6:56" ph="..." />
+            <marker date="1528360404621" expanded="true" signature="106:705" ph="{...}" />
+            <marker date="1528360404621" expanded="true" signature="144:703" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/BlockData.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+          <folding>
+            <marker date="1528732185110" expanded="true" signature="6:47" ph="..." />
+            <marker date="1528732185110" expanded="true" signature="97:650" ph="{...}" />
+            <marker date="1528732185110" expanded="true" signature="126:648" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Key.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="496">
+          <caret line="152" column="5" selection-start-line="152" selection-start-column="5" selection-end-line="152" selection-end-column="5" />
+          <folding>
+            <marker date="1528899236683" expanded="true" signature="6:161" ph="..." />
+            <marker date="1528899236683" expanded="true" signature="207:6158" ph="{...}" />
+            <marker date="1528899236683" expanded="true" signature="248:6156" ph="{...}" />
+            <marker date="1528899236683" expanded="true" signature="263:451" ph="/// Gets the user private key ... " />
+            <marker date="1528899236683" expanded="true" signature="504:690" ph="{...}" />
+            <marker date="1528899236683" expanded="true" signature="700:1094" ph="/// Get the WIF Private key corresponding To a Public key. The Private key must already be In the wallet. ... " />
+            <marker date="1528899236683" expanded="true" signature="1201:1488" ph="{...}" />
+            <marker date="1528899236683" expanded="true" signature="1499:1815" ph="/// Imports a WIF Private Key into the wallet To be used To sign transactionsby an account. ... " />
+            <marker date="1528899236683" expanded="true" signature="1863:2010" ph="{...}" />
+            <marker date="1528899236683" expanded="true" signature="2028:2330" ph="/// Dumps all Private keys owned by the wallet. ... " />
+            <marker date="1528899236683" expanded="true" signature="2364:2452" ph="{...}" />
+            <marker date="1528899236683" expanded="true" signature="2462:2991" ph="/// Transforms a brain key To reduce the chance Of errors When re-entering the ... " />
+            <marker date="1528899236683" expanded="true" signature="3045:3228" ph="{...}" />
+            <marker date="1528899236683" expanded="true" signature="3247:3725" ph="/// Suggests a safe brain key To use For creating your account. ... " />
+            <marker date="1528899236683" expanded="true" signature="3767:3907" ph="{...}" />
+            <marker date="1528899236683" expanded="true" signature="3925:4108" ph="/// Generates the Private Keys ... " />
+            <marker date="1528899236683" expanded="true" signature="4172:4364" ph="{...}" />
+            <marker date="1528899236683" expanded="true" signature="4374:4630" ph="/// Gets the transaction digest ... " />
+            <marker date="1528899236683" expanded="true" signature="4710:4794" ph="{...}" />
+            <marker date="1528899236683" expanded="true" signature="4804:5021" ph="///  ... " />
+            <marker date="1528899236683" expanded="true" signature="5112:5307" ph="{...}" />
+            <marker date="1528899236683" expanded="true" signature="5317:5534" ph="///  ... " />
+            <marker date="1528899236683" expanded="true" signature="5639:6141" ph="{...}" />
+            <marker date="1528899236683" expanded="true" signature="5711:5982" ph="{...}" />
+            <marker date="1528899236683" expanded="true" signature="6014:6103" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Test/UnitTest/WalletTests.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="140" column="46" selection-start-line="140" selection-start-column="46" selection-end-line="140" selection-end-column="46" />
+          <folding>
+            <marker date="1528898532667" expanded="false" signature="6:79" ph="..." />
+            <marker date="1528898532667" expanded="true" signature="100:27874" ph="{...}" />
+            <marker date="1528898532667" expanded="true" signature="142:27872" ph="{...}" />
+            <marker date="1528898532667" expanded="true" signature="1345:3530" ph="{...}" />
+            <marker date="1528898532667" expanded="true" signature="3598:5157" ph="{...}" />
+            <marker date="1528898532667" expanded="true" signature="5215:9027" ph="{...}" />
+            <marker date="1528898532667" expanded="true" signature="9085:12762" ph="{...}" />
+            <marker date="1528898532667" expanded="true" signature="12815:12883" ph="{...}" />
+            <marker date="1528898532667" expanded="true" signature="12947:13019" ph="{...}" />
+            <marker date="1528898532667" expanded="true" signature="13082:13191" ph="{...}" />
+            <marker date="1528898532667" expanded="true" signature="13234:13291" ph="{...}" />
+            <marker date="1528898532667" expanded="true" signature="13352:19327" ph="{...}" />
+            <marker date="1528898532667" expanded="true" signature="19386:24920" ph="{...}" />
+            <marker date="1528898532667" expanded="true" signature="24973:25094" ph="{...}" />
+            <marker date="1528898532667" expanded="true" signature="25151:25246" ph="{...}" />
+            <marker date="1528898532667" expanded="true" signature="25300:25371" ph="{...}" />
+            <marker date="1528898532667" expanded="true" signature="25432:25499" ph="{...}" />
+            <marker date="1528898532667" expanded="true" signature="25549:25609" ph="{...}" />
+            <marker date="1528898532667" expanded="true" signature="25659:25946" ph="{...}" />
+            <marker date="1528898532667" expanded="true" signature="25714:25837" ph="{...}" />
+            <marker date="1528898532667" expanded="true" signature="25854:25936" ph="{...}" />
+            <marker date="1528898532667" expanded="true" signature="25992:26099" ph="{...}" />
+            <marker date="1528898532667" expanded="true" signature="26146:26202" ph="{...}" />
+            <marker date="1528898532667" expanded="true" signature="26253:26369" ph="{...}" />
+            <marker date="1528898532667" expanded="true" signature="26416:26533" ph="{...}" />
+            <marker date="1528898532667" expanded="true" signature="26586:26693" ph="{...}" />
+            <marker date="1528898532667" expanded="true" signature="26753:27101" ph="{...}" />
+            <marker date="1528898532667" expanded="true" signature="26807:26990" ph="{...}" />
+            <marker date="1528898532667" expanded="true" signature="27007:27091" ph="{...}" />
+            <marker date="1528898532667" expanded="true" signature="27166:27300" ph="{...}" />
+            <marker date="1528898532667" expanded="true" signature="27358:27492" ph="{...}" />
+            <marker date="1528898532667" expanded="true" signature="27542:27667" ph="{...}" />
+            <marker date="1528898532667" expanded="true" signature="27717:27856" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Wallet.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="104" column="12" selection-start-line="104" selection-start-column="12" selection-end-line="104" selection-end-column="12" />
+          <folding>
+            <marker date="1528896643216" expanded="false" signature="6:221" ph="..." />
+            <marker date="1528896643216" expanded="true" signature="267:14678" ph="{...}" />
+            <marker date="1528896643216" expanded="true" signature="271:349" ph="/// All wallet calls to the SophiaTX Blockchain ... " />
+            <marker date="1528896643216" expanded="true" signature="395:14676" ph="{...}" />
+            <marker date="1528896643216" expanded="false" signature="401:1514" ph="DllImports" />
+            <marker date="1528896643216" expanded="false" signature="1520:1834" ph="Constructors" />
+            <marker date="1528896643216" expanded="true" signature="1544:1719" ph="/// Wallet Constructor ... " />
+            <marker date="1528896643216" expanded="true" signature="1812:1820" ph="{...}" />
+            <marker date="1528896643216" expanded="true" signature="1838:14673" ph="Public Methods" />
+            <marker date="1528896643216" expanded="true" signature="1864:2015" ph="/// Gets the compile time info ... " />
+            <marker date="1528896643216" expanded="true" signature="2039:2116" ph="{...}" />
+            <marker date="1528896643216" expanded="true" signature="2120:2348" ph="///  ... " />
+            <marker date="1528896643216" expanded="true" signature="2435:2579" ph="{...}" />
+            <marker date="1528896643216" expanded="true" signature="2583:3065" ph="/// This method will convert SBD To STEEM at the current_median_history price one week from the time it Is execut ... " />
+            <marker date="1528896643216" expanded="true" signature="3145:3280" ph="{...}" />
+            <marker date="1528896643216" expanded="true" signature="3286:3697" ph="/// Marks one account As following another account. Requires the posting authority Of the follower. ... " />
+            <marker date="1528896643216" expanded="true" signature="3794:3941" ph="{...}" />
+            <marker date="1528896643216" expanded="true" signature="3945:4124" ph="/// Returns information about the block ... " />
+            <marker date="1528896643216" expanded="true" signature="4166:4385" ph="{...}" />
+            <marker date="1528896643216" expanded="true" signature="4431:4494" ph="///  ... " />
+            <marker date="1528896643216" expanded="true" signature="4542:4718" ph="{...}" />
+            <marker date="1528896643216" expanded="true" signature="4722:4822" ph="///  ... " />
+            <marker date="1528896643216" expanded="true" signature="4872:4990" ph="{...}" />
+            <marker date="1528896643216" expanded="true" signature="4994:5835" ph="/// This returns a Default-initialized Object Of the given type; it can be used during early development Of the w ... " />
+            <marker date="1528896643216" expanded="true" signature="5897:6021" ph="{...}" />
+            <marker date="1528896643216" expanded="true" signature="6025:6167" ph="/// Returns the state info associated With the URL ... " />
+            <marker date="1528896643216" expanded="true" signature="6205:6319" ph="{...}" />
+            <marker date="1528896643216" expanded="true" signature="6323:6447" ph="/// Returns transaction by ID. ... " />
+            <marker date="1528896643216" expanded="true" signature="6493:6609" ph="{...}" />
+            <marker date="1528896643216" expanded="true" signature="6615:6863" ph="/// Returns detailed help On a Single API command. ... " />
+            <marker date="1528896643216" expanded="true" signature="6902:7058" ph="{...}" />
+            <marker date="1528896643216" expanded="true" signature="7062:7241" ph="/// Returns a list Of all commands supported by the wallet API. ... " />
+            <marker date="1528896643216" expanded="true" signature="7264:7370" ph="{...}" />
+            <marker date="1528896643216" expanded="true" signature="7374:7491" ph="/// Returns info about the current state Of the blockchain ... " />
+            <marker date="1528896643216" expanded="true" signature="7520:7691" ph="{...}" />
+            <marker date="1528896643216" expanded="true" signature="7696:7920" ph="/// Checks whether the wallet Is locked (Is unable To use its Private keys). This state can be changed by calling ... " />
+            <marker date="1528896643216" expanded="true" signature="7946:8047" ph="{...}" />
+            <marker date="1528896643216" expanded="true" signature="8053:8295" ph="/// Checks whether the wallet has just been created And has Not yet had a password set. Calling 'set_password' wi ... " />
+            <marker date="1528896643216" expanded="true" signature="8332:8511" ph="{...}" />
+            <marker date="1528896643216" expanded="true" signature="8519:8872" ph="/// Loads a specified Graphene wallet. The current wallet Is closed before the New wallet Is loaded. ... " />
+            <marker date="1528896643216" expanded="true" signature="8926:9085" ph="{...}" />
+            <marker date="1528896643216" expanded="true" signature="9089:9155" ph="/// Locks the wallet immediately. ... " />
+            <marker date="1528896643216" expanded="true" signature="9190:9342" ph="{...}" />
+            <marker date="1528896643216" expanded="true" signature="9346:9418" ph="///  ... " />
+            <marker date="1528896643216" expanded="true" signature="9467:9527" ph="{...}" />
+            <marker date="1528896643216" expanded="true" signature="9531:9594" ph="///  ... " />
+            <marker date="1528896643216" expanded="true" signature="9640:9707" ph="{...}" />
+            <marker date="1528896643216" expanded="true" signature="9711:9899" ph="///  ... " />
+            <marker date="1528896643216" expanded="true" signature="9963:10095" ph="{...}" />
+            <marker date="1528896643216" expanded="true" signature="10099:10528" ph="/// A witness can Public a price feed For the STEEM:SBD market. The median price feed Is used To process conversi ... " />
+            <marker date="1528896643216" expanded="true" signature="10618:10761" ph="{...}" />
+            <marker date="1528896643216" expanded="true" signature="10765:11019" ph="/// Saves the current wallet To the given filename. ... " />
+            <marker date="1528896643216" expanded="true" signature="11073:11191" ph="{...}" />
+            <marker date="1528896643216" expanded="true" signature="11195:11397" ph="/// Sets a New password On the wallet. ... " />
+            <marker date="1528896643216" expanded="true" signature="11441:11553" ph="{...}" />
+            <marker date="1528896643216" expanded="true" signature="11557:11631" ph="///  ... " />
+            <marker date="1528896643216" expanded="true" signature="11686:11797" ph="{...}" />
+            <marker date="1528896643216" expanded="true" signature="11801:12578" ph="/// Set the voting proxy For an account. ... " />
+            <marker date="1528896643216" expanded="true" signature="12672:12816" ph="{...}" />
+            <marker date="1528896643216" expanded="true" signature="12820:13019" ph="/// The wallet remain unlocked until the 'lock' is called or the program exits. ... " />
+            <marker date="1528896643216" expanded="true" signature="13071:13303" ph="{...}" />
+            <marker date="1528896643216" expanded="true" signature="13309:13518" ph="/// Unlocks the wallet ... " />
+            <marker date="1528896643216" expanded="true" signature="13573:13763" ph="{...}" />
+            <marker date="1528896643216" expanded="true" signature="13767:14305" ph="/// Set up a vesting withdraw request. The request Is fulfilled once a week over the next two years (104 weeks) ... " />
+            <marker date="1528896643216" expanded="true" signature="14409:14659" ph="{...}" />
           </folding>
         </state>
       </provider>
