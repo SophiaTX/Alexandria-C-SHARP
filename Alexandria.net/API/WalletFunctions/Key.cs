@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Globalization;
 using System.Reflection;
+using Alexandria.net.Messaging.Responses.DTO;
+using Newtonsoft.Json;
 
 namespace Alexandria.net.API.WalletFunctions
 {
@@ -24,10 +26,12 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="role">active | owner | posting | memo </param>
         /// <param name="password">the account password</param>
         /// <returns>the private key</returns>
-        public string get_private_key_from_password(string account, string role, string password)
+        public KeyFromPassword get_private_key_from_password(string account, string role, string password)
         {
             var @params = new ArrayList {account, role, password};
-            return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+            var result= SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+            var contentdata = JsonConvert.DeserializeObject<KeyFromPassword>(result);
+            return contentdata;
         }
  
         /// <summary>
@@ -89,6 +93,7 @@ namespace Alexandria.net.API.WalletFunctions
         public bool generate_private_key_c(byte[] privatekey)
         {
             return generate_private_key(privatekey);
+            
         }
 
         /// <summary>

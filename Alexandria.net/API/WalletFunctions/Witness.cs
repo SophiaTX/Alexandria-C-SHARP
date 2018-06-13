@@ -98,11 +98,14 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="approve">true if the account Is voting for the account to be able to be a block produce</param>
         /// <param name="broadcast">true if you wish to broadcast the transaction </param>
         /// <returns></returns>
-        public string vote_for_witness(string accountToVoteWith, string witnessToVoteFor, bool approve,
+        public LockUnlockResponse vote_for_witness(string accountToVoteWith, string witnessToVoteFor, bool approve,
             bool broadcast = true)
         {
             var @params = new ArrayList {accountToVoteWith, witnessToVoteFor, approve, broadcast};
-            return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+            var result= SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+            var contentdata = JsonConvert.DeserializeObject<LockUnlockResponse>(result);
+            return contentdata;
+        
         }
 
     }

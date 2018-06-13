@@ -213,10 +213,11 @@ namespace Alexandria.net.API.WalletFunctions
 		/// Checks whether the wallet has just been created And has Not yet had a password set. Calling 'set_password' will transition the wallet to the locked state.
 		/// </summary>
 		/// <returns>true if the wallet Is New</returns>
-		public bool is_new()
+		public LockUnlockResponse is_new()
 		{
-			var result = SendRequest(MethodBase.GetCurrentMethod().Name);
-			return result == "true";
+			var result = SendRequest(MethodBase.GetCurrentMethod().Name);			
+			var contentdata = JsonConvert.DeserializeObject<LockUnlockResponse>(result);
+			return contentdata;
 		} 
    
 		/// <summary>

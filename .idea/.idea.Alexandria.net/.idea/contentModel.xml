@@ -62,6 +62,7 @@
               <e p="FeedHistoryResponse.cs" t="Include" />
               <e p="InfoData.cs" t="Include" />
               <e p="InfoResponse.cs" t="Include" />
+              <e p="KeyFromPassword.cs" t="Include" />
               <e p="ListAccountsResponse.cs" t="Include" />
               <e p="LockUnlockRequestResponse.cs" t="Include" />
               <e p="LockUnlockResponse.cs" t="Include" />

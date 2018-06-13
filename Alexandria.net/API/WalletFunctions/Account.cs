@@ -19,12 +19,15 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <param name="jsonMeta">JSON Metadata associated With the New account </param>
 		/// <param name="broadcast">true if you wish to broadcast the transaction.</param>
 		/// <returns></returns>
-		public string create_account(string creator, string newAccountName, string jsonMeta, bool broadcast = true)
+		public LockUnlockResponse create_account(string creator, string newAccountName, string jsonMeta, bool broadcast = true)
 		{
 			var @params = new ArrayList {creator, newAccountName, jsonMeta, broadcast};
-			return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+			var result= SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+			var contentdata = JsonConvert.DeserializeObject<LockUnlockResponse>(result);
+			return contentdata;
+			
 		}
-
+	    
 		/// <summary>
 		/// This method Is used by faucets To create New accounts For other users which must provide their desired keys.
 		/// The resulting account may Not be controllable by this wallet. There Is a fee associated With account
@@ -39,11 +42,14 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <param name="memo">Public memo key Of the New account</param>
 		/// <param name="broadcast">true if you wish to broadcast the transaction.</param>
 		/// <returns></returns>
-		public string create_account_with_keys(string creator, string newname, string jsonMeta, string owner, string active,
+		public LockUnlockResponse create_account_with_keys(string creator, string newname, string jsonMeta, string owner, string active,
 			string posting, string memo, bool broadcast = true)
 		{
 			var @params = new ArrayList {creator, newname, jsonMeta, owner, active, posting, memo, broadcast};
-			return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+			var result= SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+			var contentdata = JsonConvert.DeserializeObject<LockUnlockResponse>(result);
+			return contentdata;
+			
 		}
 	    
 	    /// <summary>

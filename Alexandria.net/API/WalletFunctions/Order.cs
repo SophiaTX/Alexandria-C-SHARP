@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Reflection;
+using Alexandria.net.Messaging.Responses.DTO;
+using Newtonsoft.Json;
 
 namespace Alexandria.net.API.WalletFunctions
 {
@@ -12,10 +14,12 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="orderid">The unique identifier assigned To the order by its creator</param>
         /// <param name="broadcast">true if you wish to broadcast the transaction.</param>
         /// <returns></returns>
-        public string cancel_order(string owner, uint orderid, bool broadcast = true)
+        public LockUnlockResponse cancel_order(string owner, uint orderid, bool broadcast = true)
         {
             var @params = new ArrayList {owner, orderid, broadcast};
-            return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+            var result= SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+            var contentdata = JsonConvert.DeserializeObject<LockUnlockResponse>(result);
+            return contentdata;
         }
         
         /// <summary>
@@ -29,12 +33,14 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="expiration">the time the order should expire If it has Not been filled</param>
         /// <param name="broadcast">true if you wish to broadcast the transaction.</param>
         /// <returns></returns>
-        public string create_order(string owner, uint orderId, decimal amountToSell, decimal minToReceive,
+        public LockUnlockResponse create_order(string owner, uint orderId, decimal amountToSell, decimal minToReceive,
             bool fillOrKill, uint expiration, bool broadcast = true)
         {
             var @params =
                 new ArrayList {owner, orderId, amountToSell, minToReceive, fillOrKill, expiration, broadcast};
-            return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+            var result= SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+            var contentdata = JsonConvert.DeserializeObject<LockUnlockResponse>(result);
+            return contentdata;
         }
         
         /// <summary>
