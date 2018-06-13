@@ -79,6 +79,7 @@
               <e p="Result.cs" t="Include" />
               <e p="RightsToPublish.cs" t="Include" />
               <e p="SendResponseResult.cs" t="Include" />
+              <e p="SignedTrasnactionResponse.cs" t="Include" />
             </e>
           </e>
         </e>

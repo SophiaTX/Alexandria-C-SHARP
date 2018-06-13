@@ -9,49 +9,7 @@ namespace Alexandria.net.API.WalletFunctions
     {
 	    #region Methods
 	    
-        /// <summary>
-		/// This method will genrate New owner, active, and memo keys For the New account which will be controlable by this wallet.
-		/// There Is a fee associated With account creation that Is paid by the creator.
-		/// The current account creation fee can be found With the 'info' wallet command.
-		/// </summary>
-		/// <param name="creator">The account creating the New account </param>
-		/// <param name="newAccountName">The name Of the New account </param>
-		/// <param name="jsonMeta">JSON Metadata associated With the New account </param>
-		/// <param name="broadcast">true if you wish to broadcast the transaction.</param>
-		/// <returns></returns>
-		public LockUnlockResponse create_account(string creator, string newAccountName, string jsonMeta, bool broadcast = true)
-		{
-			var @params = new ArrayList {creator, newAccountName, jsonMeta, broadcast};
-			var result= SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-			var contentdata = JsonConvert.DeserializeObject<LockUnlockResponse>(result);
-			return contentdata;
-			
-		}
-	    
-		/// <summary>
-		/// This method Is used by faucets To create New accounts For other users which must provide their desired keys.
-		/// The resulting account may Not be controllable by this wallet. There Is a fee associated With account
-		/// creation that Is paid by the creator. The current account creation fee can be found With the 'info' wallet command.
-		/// </summary>
-		/// <param name="creator">The account creating the New account</param>
-		/// <param name="newname">The name Of the New account</param>
-		/// <param name="jsonMeta">JSON Metadata associated With the New account owner</param>
-		/// <param name="owner">Public owner key Of the New account </param>
-		/// <param name="active">Public active key Of the New account</param>
-		/// <param name="posting">Public posting key Of the New account</param>
-		/// <param name="memo">Public memo key Of the New account</param>
-		/// <param name="broadcast">true if you wish to broadcast the transaction.</param>
-		/// <returns></returns>
-		public LockUnlockResponse create_account_with_keys(string creator, string newname, string jsonMeta, string owner, string active,
-			 string memo, bool broadcast = true)
-		{
-			var @params = new ArrayList {creator, newname, jsonMeta, owner, active,  memo, broadcast};
-			var result= SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-			var contentdata = JsonConvert.DeserializeObject<LockUnlockResponse>(result);
-			return contentdata;
-			
-		}
-	    
+       
 	    /// <summary>
 	    /// Returns information about the given account.
 	    /// </summary>
@@ -88,7 +46,7 @@ namespace Alexandria.net.API.WalletFunctions
 	    /// <param name="lowerbound">the name Of the first account To Return. If the named account does Not exist, the list will start at the account that comes after 'lowerbound' </param>
 	    /// <param name="limit">the maximum number Of accounts To return (max: 1000) </param>
 	    /// <returns>a list Of accounts mapping account names To account ids</returns>
-	    public ListAccountsResponse list_accounts(string lowerbound = "", uint limit = 1000)
+	    private ListAccountsResponse list_accounts(string lowerbound = "", uint limit = 1000)
 	    {
 		    var @params = new ArrayList {lowerbound, limit};
 		    var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
@@ -97,15 +55,7 @@ namespace Alexandria.net.API.WalletFunctions
 		    return contentdata;
 	    }
 
-	    /// <summary>
-	    /// Gets the account information For all accounts For which this wallet has aPrivate key
-	    /// </summary>
-	    /// <returns>the account information</returns>
-	    public string list_my_accounts()
-	    {
-		    return SendRequest(MethodBase.GetCurrentMethod().Name);
-	    }
-	    
+	   
 	    /// <summary>
 	    /// 
 	    /// </summary>
@@ -154,81 +104,7 @@ namespace Alexandria.net.API.WalletFunctions
 			return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
 		}
 
-		/// <summary>
-		/// update_account_auth_key(string account_name, authority_type type, public_key_type key, weight_type weight, bool broadcast)
-		/// This method updates the key Of an authority For an exisiting account.
-		/// Warning: You can create impossible authorities Using this method. The method will fail If you create an impossible owner authority, but will
-		/// allow impossible active And posting authorities.
-		/// </summary>
-		/// <param name="accountName">The name Of the account whose authority you wish To update</param>
-		/// <param name="type">The authority type. e.g. owner, active, Or posting</param>
-		/// <param name="authAccount">The Public key To add To the authority</param>
-		/// <param name="weight">The weight the key should have In the authority. A weight Of 0 indicates the removal Of the key.</param>
-		/// <param name="broadcast">true if you wish to broadcast the transaction.</param>
-		/// <returns></returns>
-		public string update_account_auth_account(string accountName, string type, string authAccount, ushort weight,
-			bool broadcast = true)
-		{
-			var @params = new ArrayList {accountName, type, authAccount, weight, broadcast};
-			return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-		}
-
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="accountName"></param>
-		/// <param name="type"></param>
-		/// <param name="key"></param>
-		/// <param name="broadcast">true if you wish to broadcast the transaction.</param>
-		/// <returns></returns>
-		public string update_account_auth_key(string accountName, string type, string key, bool broadcast = true)
-		{
-			var @params = new ArrayList {accountName, type, key, broadcast};
-			return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-		}
-
-		/// <summary>
-		/// This method updates the weight threshold Of an authority For an account. Warning: You can create impossible authorities Using this method As well As
-		/// implicitly met authorities. The method will fail If you create an implicitly true authority And if you create an impossible owner authority,
-		/// but will allow impossible active And posting authorities.
-		/// </summary>
-		/// <param name="accountName">The name Of the account whose authority you wish to update </param>
-		/// <param name="type">The authority type. e.g. owner, active, Or posting</param>
-		/// <param name="threshold">The weight threshold required For the authority To be met</param>
-		/// <param name="broadcast">true if you wish to broadcast the transaction.</param>
-		/// <returns></returns>
-		public string update_account_auth_threshold(string accountName, string type, uint threshold,
-			bool broadcast = true)
-		{
-			var @params = new ArrayList {accountName, type, threshold, broadcast};
-			return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-		}
-
-		/// <summary>
-		/// This method updates the memo key Of an account
-		/// </summary>
-		/// <param name="accountName">The name Of the account you wish To update </param>
-		/// <param name="key">The New memo public key </param>
-		/// <param name="broadcast">true if you wish to broadcast the transaction.</param>
-		/// <returns></returns>
-		public string update_account_memo_key(string accountName, string key, bool broadcast = true)
-		{
-			var @params = new ArrayList {accountName, key, broadcast};
-			return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-		}
 		
-		/// <summary>
-		/// This method updates the account JSON metadata 
-		/// </summary>
-		/// <param name="accountName">The name Of the account you wish To update </param>
-		/// <param name="jsonMeta">The New JSON metadata for the account. This overrides existing metadata</param>
-		/// <param name="broadcast">true if you wish to broadcast the transaction.</param>
-		/// <returns></returns>
-		public string update_account_meta(string accountName, string jsonMeta, bool broadcast = true)
-		{
-			var @params = new ArrayList {accountName, jsonMeta, broadcast};
-			return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-		}
 	    
 	    /// <summary>
 	    /// 

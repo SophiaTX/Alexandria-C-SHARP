@@ -9,16 +9,7 @@ namespace Alexandria.net.API.WalletFunctions
 {
     public partial class Wallet // Key
     {
-        /// <summary>
-        /// Gets the user private key
-        /// </summary>
-        /// <param name="pubkey">the associated public key</param>
-        /// <returns>the private key</returns>
-        public string get_private_key(string pubkey)
-        {
-            var @params = new ArrayList {pubkey};
-            return SendRequest(MethodBase.GetCurrentMethod().Name, @params).ToString(CultureInfo.InvariantCulture);
-        }
+        
 
         /// <summary>
         /// Get the WIF Private key corresponding To a Public key. The Private key must already be In the wallet.
@@ -35,28 +26,7 @@ namespace Alexandria.net.API.WalletFunctions
             return contentdata;
         }
  
-        /// <summary>
-        /// Imports a WIF Private Key into the wallet To be used To sign transactionsby an account.
-        /// </summary>
-        /// <param name="wifKey">the WIF Private Key To import</param>
-        /// <returns></returns>
-        // todo - this was returning bool, check and update code accordingly
-        public string import_key(string wifKey)
-        {
-            var @params = new ArrayList {wifKey};
-            return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-        }
-        
-        /// <summary>
-        /// Dumps all Private keys owned by the wallet.
-        /// The keys are printed In WIF format. You can import these keys into another wallet using 'import_key()' 
-        /// </summary>
-        /// <returns>a map containing the Private keys, indexed by their Public key</returns>
-        public string list_keys()
-        {
-            return SendRequest(MethodBase.GetCurrentMethod().Name);
-        }
-
+       
         /// <summary>
         /// Transforms a brain key To reduce the chance Of errors When re-entering the
         /// key from memory.

@@ -3,7 +3,7 @@ using System.Reflection;
 using Alexandria.net.Messaging.Responses.DTO;
 using Newtonsoft.Json;
 
-namespace Alexandria.net.API.WalletFunctions
+namespace Alexandria.net.API.WalletFunctions///delete complete file
 {
     public partial class Wallet // Order
     {

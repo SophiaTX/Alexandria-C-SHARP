@@ -15,18 +15,6 @@ namespace UnitTest
         private string sign="1f05e0a0ad257dd3f93fb01cacf8da5da2e1a632d6da4f1eb35506a3e5a854f8ff1ff42e725f0caac288226e29b7138bd02a3389b3fb4aab4b92cd9f3f0773e96";
         private string key="5KfQMLDj6QkiGV515xb42GzB6PqS4aGGefBYxZwWvuazsW1AYrj";
            
-        [Fact]
-        public void CreateAccount()
-        {
-            _client.Wallet.create_account("initminer","newaccount","{}",true);//{"id":0,"error":{"code":1,"message":"10 assert_exception: Assert Exception\napproving_account_objects.size() == v_approving_account_names.size(): \n    {\"aco.size:\":0,\"acn\":1}\n    wallet.cpp:573 sign_transaction\n\n    {\"creator\":\"creator\",\"new_account_name\":\"newaccount\",\"json_meta\":\"{}\",\"owner\":\"STM5piKvNaif6LrbscRka2EcP966QxLqEQZsqgov8KuwpXDsD2twV\",\"active\":\"STM67jBS4Hcrtg6EH811yMoCxq134Go6eUf5zxnsyR5qHhR3szGuo\",\"memo\":\"STM63Wv9vRvhVHwYHTpGR8F4ZLUh2m8nzkunK3RS24cG9SnJ4AsC9\",\"broadcast\":true}\n    wallet.cpp:1088 create_account_with_keys\n\n    {\"creator\":\"creator\",\"new_account_name\":\"newaccount\",\"json_meta\":\"{}\"}\n    wallet.cpp:1405 create_account\n\n    {\"call.method\":\"create_account\",\"call.params\":[\"creator\",\"newaccount\",\"{}\",true]}\n    websocket_api.cpp:138 on_message","data":{"code":10,"name":"assert_exception","message":"Assert Exception","stack":[{"context":{"level":"error","file":"wallet.cpp","line":573,"method":"sign_transaction","hostname":"","timestamp":"2018-06-13T07:25:37"},"format":"approving_account_objects.size() == v_approving_account_names.size(): ","data":{"aco.size:":0,"acn":1}},{"context":{"level":"warn","file":"wallet.cpp","line":1088,"method":"create_account_with_keys","hostname":"","timestamp":"2018-06-13T07:25:37"},"format":"","data":{"creator":"creator","new_account_name":"newaccount","json_meta":"{}","owner":"STM5piKvNaif6LrbscRka2EcP966QxLqEQZsqgov8KuwpXDsD2twV","active":"STM67jBS4Hcrtg6EH811yMoCxq134Go6eUf5zxnsyR5qHhR3szGuo","memo":"STM63Wv9vRvhVHwYHTpGR8F4ZLUh2m8nzkunK3RS24cG9SnJ4AsC9","broadcast":true}},{"context":{"level":"warn","file":"wallet.cpp","line":1405,"method":"create_account","hostname":"","timestamp":"2018-06-13T07:25:37"},"format":"","data":{"creator":"creator","new_account_name":"newaccount","json_meta":"{}"}},{"context":{"level":"warn","file":"websocket_api.cpp","line":138,"method":"on_message","hostname":"","timestamp":"2018-06-13T07:25:37"},"format":"","data":{"call.method":"create_account","call.params":["creator","newaccount","{}",true]}}]}}}
-        }
-        
-        [Fact]
-        public void CreateAccountWithKeys()
-        {
-            _client.Wallet.create_account_with_keys("initminer","newaccountnew","{}","STM72M7oitApSdU1fp4wPWNYgBrtxkUq7yK2xAgzxrNEkKkoPKN2u","STM5ewyxmQQw5AU84BXBxgQQ5EdF8W8ixioF4rKE9emGttG8pd5Hp","STM68V6ZxM4Myh6xmCxWtHU4gF1gxQo6yikRhb9akERn5pnV7QwCH",true);
-            //{"id":0,"error":{"code":1,"message":"10 assert_exception: Assert Exception\nbase58str.substr( 0, prefix_len ) == prefix: \n    {\"base58str\":\"posting\"}\n    types.cpp:27 public_key_type\n\n    {\"call.method\":\"create_account_with_keys\",\"call.params\":[\"creator\",\"newaccountnew\",\"{}\",\"STM72M7oitApSdU1fp4wPWNYgBrtxkUq7yK2xAgzxrNEkKkoPKN2u\",\"STM5ewyxmQQw5AU84BXBxgQQ5EdF8W8ixioF4rKE9emGttG8pd5Hp\",\"posting\",\"STM68V6ZxM4Myh6xmCxWtHU4gF1gxQo6yikRhb9akERn5pnV7QwCH\",true]}\n    websocket_api.cpp:138 on_message","data":{"code":10,"name":"assert_exception","message":"Assert Exception","stack":[{"context":{"level":"error","file":"types.cpp","line":27,"method":"public_key_type","hostname":"","timestamp":"2018-06-13T07:38:34"},"format":"base58str.substr( 0, prefix_len ) == prefix: ","data":{"base58str":"posting"}},{"context":{"level":"warn","file":"websocket_api.cpp","line":138,"method":"on_message","hostname":"","timestamp":"2018-06-13T07:38:34"},"format":"","data":{"call.method":"create_account_with_keys","call.params":["creator","newaccountnew","{}","STM72M7oitApSdU1fp4wPWNYgBrtxkUq7yK2xAgzxrNEkKkoPKN2u","STM5ewyxmQQw5AU84BXBxgQQ5EdF8W8ixioF4rKE9emGttG8pd5Hp","posting","STM68V6ZxM4Myh6xmCxWtHU4gF1gxQo6yikRhb9akERn5pnV7QwCH",true]}}]}}}
-        }
         
         [Fact]
         public void CreateOrder()
@@ -128,12 +116,7 @@ namespace UnitTest
             _client.Wallet.About();
         }
 
-        [Fact]
-        public void ListAccounts()
-        {
-            var result = _client.Wallet.list_accounts();
-            Console.WriteLine(result);
-        }
+        
 
         [Fact]
         public void GetBlock()
