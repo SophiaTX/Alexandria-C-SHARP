@@ -1,249 +1,290 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using System.Reflection;
-using Alexandria.net.Messaging.Responses.DTO;
+using Alexandria.net.Communication;
 using Newtonsoft.Json;
 
 namespace Alexandria.net.API.WalletFunctions
 {
-    public partial class Wallet // account
+    /// <summary>
+    /// 
+    /// </summary>
+    public class Account : RpcConnection
     {
-	    #region Methods
-	    
+
+        #region Constructors
+
         /// <summary>
-		/// This method will genrate New owner, active, and memo keys For the New account which will be controlable by this wallet.
-		/// There Is a fee associated With account creation that Is paid by the creator.
-		/// The current account creation fee can be found With the 'info' wallet command.
-		/// </summary>
-		/// <param name="creator">The account creating the New account </param>
-		/// <param name="newAccountName">The name Of the New account </param>
-		/// <param name="jsonMeta">JSON Metadata associated With the New account </param>
-		/// <param name="broadcast">true if you wish to broadcast the transaction.</param>
-		/// <returns></returns>
-		public LockUnlockResponse create_account(string creator, string newAccountName, string jsonMeta, bool broadcast = true)
-		{
-			var @params = new ArrayList {creator, newAccountName, jsonMeta, broadcast};
-			var result= SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-			var contentdata = JsonConvert.DeserializeObject<LockUnlockResponse>(result);
-			return contentdata;
-			
-		}
-	    
-		/// <summary>
-		/// This method Is used by faucets To create New accounts For other users which must provide their desired keys.
-		/// The resulting account may Not be controllable by this wallet. There Is a fee associated With account
-		/// creation that Is paid by the creator. The current account creation fee can be found With the 'info' wallet command.
-		/// </summary>
-		/// <param name="creator">The account creating the New account</param>
-		/// <param name="newname">The name Of the New account</param>
-		/// <param name="jsonMeta">JSON Metadata associated With the New account owner</param>
-		/// <param name="owner">Public owner key Of the New account </param>
-		/// <param name="active">Public active key Of the New account</param>
-		/// <param name="posting">Public posting key Of the New account</param>
-		/// <param name="memo">Public memo key Of the New account</param>
-		/// <param name="broadcast">true if you wish to broadcast the transaction.</param>
-		/// <returns></returns>
-		public LockUnlockResponse create_account_with_keys(string creator, string newname, string jsonMeta, string owner, string active,
-			string posting, string memo, bool broadcast = true)
-		{
-			var @params = new ArrayList {creator, newname, jsonMeta, owner, active, posting, memo, broadcast};
-			var result= SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-			var contentdata = JsonConvert.DeserializeObject<LockUnlockResponse>(result);
-			return contentdata;
-			
-		}
-	    
-	    /// <summary>
-	    /// Returns information about the given account.
-	    /// </summary>
-	    /// <param name="accountName">the name Of the account To provide information about </param>
-	    /// <returns>the Public account data stored In the blockchain</returns>
-	    public string get_account(string accountName)
-	    {
-		    var @params = new ArrayList {accountName};
+        /// Wallet Constructor
+        /// </summary>
+        /// <param name="hostname">the rpc endpoint ip address</param>
+        /// <param name="port">the rpc endpoint post</param>
+        protected Account(string hostname = "127.0.0.1", ushort port = 8091) : base(hostname, port)
+        {
+        }
 
-		    return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-	    }
+        #endregion
 
-	    /// <summary>
-	    /// Account operations have sequence numbers from 0 To N where N Is the most recent operation.
-	    /// This method returns operations In the range [from-limit,from]
-	    /// </summary>
-	    /// <param name="account">account whose history will be returned </param>
-	    /// <param name="from">the absolute sequence number, -1 means most recent, limit Is the number Of operations before from. </param>
-	    /// <param name="limit">the maximum number of items that can be queried (0 to 1000], must be less than from</param>
-	    /// <returns></returns>
-	    public AccountHistoryResponse get_account_history(string account, uint from, uint limit)
-	    {
-		    var @params = new ArrayList {account, @from, limit};
-		    var result= SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-		    var contentdata = JsonConvert.DeserializeObject<AccountHistoryResponse>(result);
-		    return contentdata;
-	    }
+        /// <summary>
+        /// Returns true if an account with given name exists.
+        /// </summary>
+        /// <param name="account_name"></param>
+        /// <returns></returns>
+        public bool accountExists(string account_name)
+        {
+            var @params = new ArrayList {account_name};
+            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+            return result == "true";
+        }
 
-	    /// <summary>
-	    /// Lists all accounts registered In the blockchain. This returns a list Of all account names And their account ids, sorted by account name.
-	    /// Use the 'lowerbound' and limit parameters to page through the list. To retrieve all accounts, start by setting 'lowerbound' to the
-	    /// empty string '""', and then each iteration, pass the last account name returned as the 'lowerbound' for the next 'list_accounts()' call.
-	    /// </summary>
-	    /// <param name="lowerbound">the name Of the first account To Return. If the named account does Not exist, the list will start at the account that comes after 'lowerbound' </param>
-	    /// <param name="limit">the maximum number Of accounts To return (max: 1000) </param>
-	    /// <returns>a list Of accounts mapping account names To account ids</returns>
-	    public ListAccountsResponse list_accounts(string lowerbound = "", uint limit = 1000)
-	    {
-		    var @params = new ArrayList {lowerbound, limit};
-		    var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-		    
-		    var contentdata = JsonConvert.DeserializeObject<ListAccountsResponse>(result);
-		    return contentdata;
-	    }
+        /// <summary>
+        /// Returns true if the library has imported the private key corresponding to the given public key.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public bool hasPrivateKeys(byte[] key)
+        {
+            var @params = new ArrayList {key};
+            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+            return result == "true";
+        }
 
-	    /// <summary>
-	    /// Gets the account information For all accounts For which this wallet has aPrivate key
-	    /// </summary>
-	    /// <returns>the account information</returns>
-	    public string list_my_accounts()
-	    {
-		    return SendRequest(MethodBase.GetCurrentMethod().Name);
-	    }
-	    
-	    /// <summary>
-	    /// 
-	    /// </summary>
-	    /// <param name="accountToRecover"></param>
-	    /// <param name="recentAuthority"></param>
-	    /// <param name="newAuthority"></param>
-	    /// <param name="broadcast">true if you wish to broadcast the transaction.</param>
-	    /// <returns></returns>
-	    public string recover_account(string accountToRecover, Hashtable recentAuthority, Hashtable newAuthority,
-		    bool broadcast = true)
-	    {
-		    var @params = new ArrayList {accountToRecover, recentAuthority, newAuthority, broadcast};
-		    return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-	    }
+        /// <summary>
+        /// Returns true if the library has imported the private key corresponding to the account's owner key.In case of
+        /// authorities consisting of more than one key(mutlisig), it returns true if and only if the library has
+        /// sufificient keys to resolve the owner autority.
+        /// </summary>
+        /// <param name="account_name"></param>
+        /// <returns></returns>
+        public bool hasAccountOwnerPrivateKey(string account_name)
+        {
+            var @params = new ArrayList {account_name};
+            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+            return result == "true";
+        }
 
-	    /// <summary>
-	    /// 
-	    /// </summary>
-	    /// <param name="recoveryAccount"></param>
-	    /// <param name="accountToRecover"></param>
-	    /// <param name="newAuthority"></param>
-	    /// <param name="broadcast">true if you wish to broadcast the transaction.</param>
-	    /// <returns></returns>
-	    public string request_account_recovery(string recoveryAccount, string accountToRecover, Hashtable newAuthority,
-		    bool broadcast = true)
-	    {
-		    var @params = new ArrayList {recoveryAccount, accountToRecover, newAuthority, broadcast};
-		    return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-	    }
-	    
-		/// <summary>
-		/// This method updates the keys Of an existing account.
-		/// </summary>
-		/// <param name="accountname">The name Of the account </param>
-		/// <param name="jsonMeta">New JSON Metadata to be associated with the account</param>
-		/// <param name="owner">New public owner key for the account </param>
-		/// <param name="active">New public active key for the account </param>
-		/// <param name="posting">New public posting key for the account </param>
-		/// <param name="memo">New public memo key for the account</param>
-		/// <param name="broadcast">true if you wish to broadcast the transaction.</param>
-		/// <returns></returns>
-		public string update_account(string accountname, string jsonMeta, string owner, string active, string posting,
-			string memo, bool broadcast = true)
-		{
-			var @params = new ArrayList {accountname, jsonMeta, owner, active, memo, broadcast};
-			return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-		}
+        /// <summary>
+        /// Returns true if the library has imported the private key corresponding to the account's active key.In case of
+        /// authorities consisting of more than one key(mutlisig), it returns true if and only if the library has
+        /// sufficient keys to resolve the active autority.
+        /// </summary>
+        /// <param name="account_name"></param>
+        /// <returns></returns>
+        public bool hasAccountActivePrivateKey(string account_name)
+        {
+            var @params = new ArrayList {account_name};
+            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+            return result == "true";
+        }
 
-		/// <summary>
-		/// update_account_auth_key(string account_name, authority_type type, public_key_type key, weight_type weight, bool broadcast)
-		/// This method updates the key Of an authority For an exisiting account.
-		/// Warning: You can create impossible authorities Using this method. The method will fail If you create an impossible owner authority, but will
-		/// allow impossible active And posting authorities.
-		/// </summary>
-		/// <param name="accountName">The name Of the account whose authority you wish To update</param>
-		/// <param name="type">The authority type. e.g. owner, active, Or posting</param>
-		/// <param name="authAccount">The Public key To add To the authority</param>
-		/// <param name="weight">The weight the key should have In the authority. A weight Of 0 indicates the removal Of the key.</param>
-		/// <param name="broadcast">true if you wish to broadcast the transaction.</param>
-		/// <returns></returns>
-		public string update_account_auth_account(string accountName, string type, string authAccount, ushort weight,
-			bool broadcast = true)
-		{
-			var @params = new ArrayList {accountName, type, authAccount, weight, broadcast};
-			return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-		}
+        /// <summary>
+        /// Returns true if the library has imported the private key corresponding to the account's memo key.
+        /// </summary>
+        /// <param name="account_name"></param>
+        /// <returns></returns>
+        public bool hasAccountMemoPrivateKey(string account_name)
+        {
+            var @params = new ArrayList {account_name};
+            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+            return result == "true";
+        }
 
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="accountName"></param>
-		/// <param name="type"></param>
-		/// <param name="key"></param>
-		/// <param name="broadcast">true if you wish to broadcast the transaction.</param>
-		/// <returns></returns>
-		public string update_account_auth_key(string accountName, string type, string key, bool broadcast = true)
-		{
-			var @params = new ArrayList {accountName, type, key, broadcast};
-			return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-		}
+        /// <summary>
+        /// Returns the active authority of the given account.Object authority has the following structure:
+        /// </summary>
+        /// <param name="account_name"></param>
+        /// <returns></returns>
+        public Authority getActiveAuthority(string account_name)
+        {
+            var @params = new ArrayList {account_name};
+            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+            return JsonConvert.DeserializeObject<Authority>(result);
+        }
 
-		/// <summary>
-		/// This method updates the weight threshold Of an authority For an account. Warning: You can create impossible authorities Using this method As well As
-		/// implicitly met authorities. The method will fail If you create an implicitly true authority And if you create an impossible owner authority,
-		/// but will allow impossible active And posting authorities.
-		/// </summary>
-		/// <param name="accountName">The name Of the account whose authority you wish to update </param>
-		/// <param name="type">The authority type. e.g. owner, active, Or posting</param>
-		/// <param name="threshold">The weight threshold required For the authority To be met</param>
-		/// <param name="broadcast">true if you wish to broadcast the transaction.</param>
-		/// <returns></returns>
-		public string update_account_auth_threshold(string accountName, string type, uint threshold,
-			bool broadcast = true)
-		{
-			var @params = new ArrayList {accountName, type, threshold, broadcast};
-			return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-		}
+        /// <summary>
+        /// Returns the owner authority of the given account.
+        /// </summary>
+        /// <param name="account_name"></param>
+        /// <returns></returns>
+        public Authority getOwnerAuthority(string account_name)
+        {
+            var @params = new ArrayList {account_name};
+            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+            return JsonConvert.DeserializeObject<Authority>(result);
+        }
 
-		/// <summary>
-		/// This method updates the memo key Of an account
-		/// </summary>
-		/// <param name="accountName">The name Of the account you wish To update </param>
-		/// <param name="key">The New memo public key </param>
-		/// <param name="broadcast">true if you wish to broadcast the transaction.</param>
-		/// <returns></returns>
-		public string update_account_memo_key(string accountName, string key, bool broadcast = true)
-		{
-			var @params = new ArrayList {accountName, key, broadcast};
-			return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-		}
-		
-		/// <summary>
-		/// This method updates the account JSON metadata 
-		/// </summary>
-		/// <param name="accountName">The name Of the account you wish To update </param>
-		/// <param name="jsonMeta">The New JSON metadata for the account. This overrides existing metadata</param>
-		/// <param name="broadcast">true if you wish to broadcast the transaction.</param>
-		/// <returns></returns>
-		public string update_account_meta(string accountName, string jsonMeta, bool broadcast = true)
-		{
-			var @params = new ArrayList {accountName, jsonMeta, broadcast};
-			return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-		}
-	    
-	    /// <summary>
-	    /// 
-	    /// </summary>
-	    /// <param name="owner"></param>
-	    /// <param name="newRecoveryAccount"></param>
-	    /// <param name="broadcast">true if you wish to broadcast the transaction.</param>
-	    /// <returns></returns>
-	    public LockUnlockResponse change_recovery_account(string owner, string newRecoveryAccount, bool broadcast = true)
-	    {
-		    var @params = new ArrayList {owner, newRecoveryAccount, broadcast};
-		    var result= SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-		    var contentdata = JsonConvert.DeserializeObject<LockUnlockResponse>(result);
-		    return contentdata;
-	    }
-	    #endregion
+        /// <summary>
+        /// Returns the memo key of the given account.
+        /// </summary>
+        /// <param name="account_name"></param>
+        /// <returns></returns>
+        public byte[] getMemoKey(string account_name)
+        {
+            var @params = new ArrayList {account_name};
+            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+            return JsonConvert.DeserializeObject<byte[]>(result);
+        }
+
+
+        /// <summary>
+        /// Get account SPHTX balance.
+        /// </summary>
+        /// <param name="account_name"></param>
+        /// <returns></returns>
+        public ulong getAccountBalance(string account_name)
+        {
+            var @params = new ArrayList {account_name};
+            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+            return JsonConvert.DeserializeObject<ulong>(result);
+        }
+
+        /// <summary>
+        /// Get account vested SPHTX balance.
+
+        /// </summary>
+        /// <param name="account_name"></param>
+        /// <returns></returns>
+        public ulong getVestingBalance(string account_name)
+        {
+            var @params = new ArrayList {account_name};
+            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+            return JsonConvert.DeserializeObject<ulong>(result);
+        }
+
+        /// <summary>
+        /// Creates authority resolvable with signature corresponding to the given pub_key.
+        /// </summary>
+        /// <param name="pub_key"></param>
+        /// <returns></returns>
+        public Authority createSimpleAuthority(byte[] pub_key)
+        {
+            var @params = new ArrayList {pub_key};
+            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+            return JsonConvert.DeserializeObject<Authority>(result);
+        }
+
+        /// <summary>
+        /// Creates authority resolvable with given number of signatures out of the given set of keys.
+        /// </summary>
+        /// <param name="pub_keys"></param>
+        /// <param name="required_signatures"></param>
+        /// <returns></returns>
+        public Authority createSimpleMultisigAuthority(List<byte[]> pub_keys, ulong required_signatures)
+        {
+            var @params = new ArrayList {pub_keys, required_signatures};
+            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+            return JsonConvert.DeserializeObject<Authority>(result);
+        }
+
+        /// <summary>
+        /// Creates authority resolvable with a given managing account.
+        /// </summary>
+        /// <param name="managing_account_name"></param>
+        /// <returns></returns>
+        public Authority createSimpleManagedAuthority(string managing_account_name)
+        {
+            var @params = new ArrayList {managing_account_name};
+            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+            return JsonConvert.DeserializeObject<Authority>(result);
+        }
+
+        /// <summary>
+        /// Creates authority resolvable with given number of​ managing accounts.
+        /// </summary>
+        /// <param name="managing_accounts"></param>
+        /// <param name="required_signatures"></param>
+        /// <returns></returns>
+        public Authority createSimpleMultiManagedAuthority(List<string> managing_accounts, uint required_signatures)
+        {
+            var @params = new ArrayList {managing_accounts, required_signatures};
+            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+            return JsonConvert.DeserializeObject<Authority>(result);
+        }
+
+        /// <summary>
+        /// Update account authorities.
+        /// </summary>
+        /// <param name="account_name"></param>
+        /// <param name="owner"></param>
+        /// <param name="active"></param>
+        /// <param name="memo"></param>
+        /// <returns></returns>
+        public bool updateAccount(string account_name, Authority owner, Authority active, byte[] memo)
+        {
+            var @params = new ArrayList {account_name, owner, active, memo};
+            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+            return result == "true";
+        }
+
+        /// <summary>
+        /// Deposit to_vestings SPHTXs to vesting.
+        /// </summary>
+        /// <param name="account_name"></param>
+        /// <param name="to_vestings"></param>
+        /// <returns></returns>
+        public bool depositVesting(string account_name, ulong to_vestings)
+        {
+            var @params = new ArrayList {account_name, to_vestings};
+            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+            return result == "true";
+        }
+
+        /// <summary>
+        /// Withdraw from_vestings vested SPHTXs.
+        /// </summary>
+        /// <param name="account_name"></param>
+        /// <param name="from_vestings"></param>
+        /// <returns></returns>
+        public bool withdrawVestings(string account_name, ulong from_vestings)
+        {
+            var @params = new ArrayList {account_name, from_vestings};
+            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+            return result == "true";
+        }
+
+        /// <summary>
+        /// Vote or unvote a witness.
+        /// </summary>
+        /// <param name="voting_account_name"></param>
+        /// <param name="voted_account_name"></param>
+        /// <param name="approve"></param>
+        /// <returns></returns>
+        public bool voteForWitness(string voting_account_name, string voted_account_name, string approve)
+        {
+            var @params = new ArrayList {voting_account_name, voted_account_name, approve};
+            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+            return result == "true";
+        }
+
+        /// <summary>
+        /// Update an account to witness.Requires XXX vested SPHTX before updating.
+        /// </summary>
+        /// <param name="account_name"></param>
+        /// <param name="url"></param>
+        /// <param name="block_key"></param>
+        /// <returns></returns>
+        public bool updateToWitness(string account_name, string url, byte[] block_key)
+        {
+            var @params = new ArrayList {account_name, url, block_key};
+            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+            return result == "true";
+        }
+
+        /// <summary>
+        /// Creates new account in the SophiaTX blockchain.
+        /// </summary>
+        /// <param name="registering_account_name"></param>
+        /// <param name="new_account_name"></param>
+        /// <param name="owner"></param>
+        /// <param name="active"></param>
+        /// <param name="memo"></param>
+        /// <returns></returns>
+        public bool createAccount(string registering_account_name, string new_account_name, Authority owner,
+            Authority active, byte[] memo)
+        {
+            var @params = new ArrayList {registering_account_name, new_account_name, owner, active, memo};
+            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+            return result == "true";
+        }
     }
 }
