@@ -171,14 +171,6 @@ namespace Alexandria.net.API.WalletFunctions
         /// <returns></returns>
         public ActiveWitnessResponse Vote(string accountToVoteWith, string witnessToVoteFor, bool approve)
         {
-<<<<<<< HEAD
-            var reqname = _cSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = new ArrayList {accountToVoteWith, witnessToVoteFor, approve};
-            var result = SendRequest(reqname, @params);
-            var contentdata = JsonConvert.DeserializeObject<ActiveWitnessResponse>(result);
-            return contentdata;
-        }
-=======
             try
             {
                 var reqname = _cSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
@@ -192,14 +184,7 @@ namespace Alexandria.net.API.WalletFunctions
             {
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw ;
-            }
-            
+            }   
         }
-        
-        /// <summary>
-        /// C#toCPP object generated to map the method names according to C# naming conventions
-        /// </summary>
-        private CSharpToCPP _cSharpToCpp = new CSharpToCPP();
->>>>>>> 77b65a5ef8f1b972701c625c4cf00746cb880c0e
     }
 }

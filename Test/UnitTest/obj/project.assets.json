@@ -7254,36 +7254,35 @@
     ]
   },
   "packageFolders": {
-    "/Users/sanjivjha/.nuget/packages/": {},
+    "/Users/martynharler/.nuget/packages/": {},
     "/usr/local/share/dotnet/sdk/NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/sanjivjha/RiderProjects/Alexandria/Test/UnitTest/UnitTest.csproj",
+      "projectUniqueName": "/Users/martynharler/GitHub/Alexandria/Test/UnitTest/UnitTest.csproj",
       "projectName": "UnitTest",
-      "projectPath": "/Users/sanjivjha/RiderProjects/Alexandria/Test/UnitTest/UnitTest.csproj",
-      "packagesPath": "/Users/sanjivjha/.nuget/packages/",
-      "outputPath": "/Users/sanjivjha/RiderProjects/Alexandria/Test/UnitTest/obj/",
+      "projectPath": "/Users/martynharler/GitHub/Alexandria/Test/UnitTest/UnitTest.csproj",
+      "packagesPath": "/Users/martynharler/.nuget/packages/",
+      "outputPath": "/Users/martynharler/GitHub/Alexandria/Test/UnitTest/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "/Users/sanjivjha/.config/NuGet/NuGet.Config"
+        "/Users/martynharler/.config/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.0"
       ],
       "sources": {
-        "https://api.nuget.org/v3/index.json": {},
-        "https://www.nuget.org/": {}
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "/Users/sanjivjha/RiderProjects/Alexandria/Alexandria.net/Alexandria.net.csproj": {
-              "projectPath": "/Users/sanjivjha/RiderProjects/Alexandria/Alexandria.net/Alexandria.net.csproj"
+            "/Users/martynharler/GitHub/Alexandria/Alexandria.net/Alexandria.net.csproj": {
+              "projectPath": "/Users/martynharler/GitHub/Alexandria/Alexandria.net/Alexandria.net.csproj"
             }
           }
         }

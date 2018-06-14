@@ -753,11 +753,6 @@
             <param name="approve">true if the account Is voting for the account to be able to be a block produce</param>
             <returns></returns>
         </member>
-        <member name="F:Alexandria.net.API.WalletFunctions.Witness._cSharpToCpp">
-            <summary>
-            C#toCPP object generated to map the method names according to C# naming conventions
-            </summary>
-        </member>
         <member name="T:Alexandria.net.Communication.RpcConnection">
             <summary>
             Abstract Class which manages the sending and receiving of data to and from the blockchain
