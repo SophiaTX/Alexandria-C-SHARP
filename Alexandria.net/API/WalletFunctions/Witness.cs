@@ -106,13 +106,10 @@ namespace Alexandria.net.API.WalletFunctions
         public ActiveWitnessResponse Vote(string accountToVoteWith, string witnessToVoteFor, bool approve)
         {
             var reqname = _cSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            
             var @params = new ArrayList {accountToVoteWith, witnessToVoteFor, approve};
             var result = SendRequest(reqname, @params);
             var contentdata = JsonConvert.DeserializeObject<ActiveWitnessResponse>(result);
             return contentdata;
         }
-
-        private CSharpToCPP _cSharpToCpp = new CSharpToCPP();
     }
 }
