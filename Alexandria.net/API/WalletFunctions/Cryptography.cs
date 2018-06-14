@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using Alexandria.net.Communication;
+using Alexandria.net.Logging;
 using Newtonsoft.Json;
 
 namespace Alexandria.net.API.WalletFunctions
@@ -10,7 +11,7 @@ namespace Alexandria.net.API.WalletFunctions
     /// <inheritdoc />
     public class Cryptography : RpcConnection
     {
-
+        private readonly ILogger _logger;
         #region Constructors
 
         /// <summary>
@@ -22,6 +23,8 @@ namespace Alexandria.net.API.WalletFunctions
         public Cryptography(string hostname = "127.0.0.1", ushort port = 8091, string api = "/rpc",
             string version = "2.0") : base(hostname, port, api, version)
         {
+            var assemblyname = Assembly.GetExecutingAssembly().GetName().Name;
+            _logger = new Logger(loggingType.server, assemblyname);
         }
 
         #endregion
@@ -32,8 +35,17 @@ namespace Alexandria.net.API.WalletFunctions
         /// </summary>
         public Tuple<string, byte[]> generateKeyPair()
         {
-            var result = SendRequest(MethodBase.GetCurrentMethod().Name);
-            return JsonConvert.DeserializeObject<Tuple<string, byte[]>>(result);
+            try
+            {
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name);
+                return JsonConvert.DeserializeObject<Tuple<string, byte[]>>(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError(ex.Message);
+                throw;
+            }
+           
         }
 
 
@@ -43,9 +55,18 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="brainKey"></param>
         public Tuple<string, byte[]> generateKeyPairFromBrainKey(string brainKey)
         {
-            var @params = new ArrayList {brainKey};
-            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-            return JsonConvert.DeserializeObject<Tuple<string, byte[]>>(result);
+            try
+            {
+                var @params = new ArrayList {brainKey};
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return JsonConvert.DeserializeObject<Tuple<string, byte[]>>(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError(ex.Message);
+                throw;
+            }
+            
         }
 
 
@@ -59,9 +80,18 @@ namespace Alexandria.net.API.WalletFunctions
         /// <returns>Returns true is it was properly signes and accepted, false otherwise.</returns>
         public bool signAndSendOperation(string operation, string privateKey)
         {
-            var @params = new ArrayList {operation, privateKey};
-            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-            return result == "true";
+            try
+            {
+                var @params = new ArrayList {operation, privateKey};
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return result == "true";
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError(ex.Message);
+                throw;
+            }
+           
         }
 
 
@@ -73,9 +103,18 @@ namespace Alexandria.net.API.WalletFunctions
         /// <remarks>Returns true is it was properly signes and accepted, false otherwise.</remarks>
         public bool signAndSendTransaction(string transaction, string privateKey)
         {
-            var @params = new ArrayList {transaction, privateKey};
-            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-            return result == "true";
+            try
+            {
+                var @params = new ArrayList {transaction, privateKey};
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return result == "true";
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError(ex.Message);
+                throw;
+            }
+            
         }
 
 
@@ -84,9 +123,18 @@ namespace Alexandria.net.API.WalletFunctions
         /// </summary>
         public char[] signDigest(char[] digest, string privateKey)
         {
-            var @params = new ArrayList {digest, privateKey};
-            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-            return JsonConvert.DeserializeObject<char[]>(result);
+            try
+            {
+                var @params = new ArrayList {digest, privateKey};
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return JsonConvert.DeserializeObject<char[]>(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError(ex.Message);
+                throw;
+            }
+            
         }
 
 
@@ -97,9 +145,18 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="privateKey"></param>
         public byte[] getPublicKey(string privateKey)
         {
-            var @params = new ArrayList {privateKey};
-            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-            return JsonConvert.DeserializeObject<byte[]>(result);
+            try
+            {
+                var @params = new ArrayList {privateKey};
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return JsonConvert.DeserializeObject<byte[]>(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError(ex.Message);
+                throw;
+            }
+            
         }
 
 
@@ -110,9 +167,18 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="encodedData"></param>
         public List<char> fromBase58(string encodedData)
         {
-            var @params = new ArrayList {encodedData};
-            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-            return JsonConvert.DeserializeObject<List<char>>(result);
+            try
+            {
+                var @params = new ArrayList {encodedData};
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return JsonConvert.DeserializeObject<List<char>>(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError(ex.Message);
+                throw;
+            }
+            
         }
 
 
@@ -123,9 +189,18 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="data"></param>
         public string toBase58(List<char> data)
         {
-            var @params = new ArrayList {data};
-            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-            return JsonConvert.DeserializeObject<string>(result);
+            try
+            {
+                var @params = new ArrayList {data};
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return JsonConvert.DeserializeObject<string>(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError(ex.Message);
+                throw;
+            }
+            
         }
 
 
@@ -137,9 +212,19 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="signature"></param>
         public bool verifySignature(char[] digest, byte[] pubKey, char[] signature)
         {
-            var @params = new ArrayList {digest, pubKey, signature};
-            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-            return result == "true";
+            try
+            {
+                var @params = new ArrayList {digest, pubKey, signature};
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return result == "true";
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError(ex.Message);
+                throw;
+            }
+        
+           
         }
 
 
@@ -151,9 +236,18 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="privateKey"></param>
         public string encryptDocument(string plaintext, string publicKey, string privateKey)
         {
-            var @params = new ArrayList {plaintext, publicKey, privateKey};
-            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-            return JsonConvert.DeserializeObject<string>(result);
+            try
+            {
+                var @params = new ArrayList {plaintext, publicKey, privateKey};
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return JsonConvert.DeserializeObject<string>(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError(ex.Message);
+                throw;
+            }
+            
         }
 
 
@@ -166,9 +260,18 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="privateKey"></param>
         public string decryptDocument(string encryptedText, string publicKey, string privateKey)
         {
-            var @params = new ArrayList {encryptedText, publicKey, privateKey};
-            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-            return JsonConvert.DeserializeObject<string>(result);
+            try
+            {
+                var @params = new ArrayList {encryptedText, publicKey, privateKey};
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return JsonConvert.DeserializeObject<string>(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError(ex.Message);
+                throw;
+            }
+            
         }
 
         /// <summary>
@@ -179,9 +282,18 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="privateKey"></param>
         public List<byte> encryptData(List<byte> plaindata, string publicKey, string privateKey)
         {
-            var @params = new ArrayList {plaindata, publicKey, privateKey};
-            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-            return JsonConvert.DeserializeObject<List<byte>>(result);
+            try
+            {
+                var @params = new ArrayList {plaindata, publicKey, privateKey};
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return JsonConvert.DeserializeObject<List<byte>>(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError(ex.Message);
+                throw;
+            }
+            
         }
 
 
@@ -193,9 +305,18 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="privateKey"></param>
         public List<byte> decryptData(List<byte> encryptedText, string publicKey, string privateKey)
         {
-            var @params = new ArrayList {encryptedText, publicKey, privateKey};
-            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-            return JsonConvert.DeserializeObject<List<byte>>(result);
+            try
+            {
+                var @params = new ArrayList {encryptedText, publicKey, privateKey};
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return JsonConvert.DeserializeObject<List<byte>>(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError(ex.Message);
+                throw;
+            }
+            
         }
     }
 }

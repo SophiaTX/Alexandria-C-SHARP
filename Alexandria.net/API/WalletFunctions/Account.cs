@@ -3,18 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using Alexandria.net.Communication;
-using Alexandria.net.Logging;
 using Newtonsoft.Json;
+using Alexandria.net.Logging;
 
 namespace Alexandria.net.API.WalletFunctions
 {
     /// <summary>
-    /// 
+    /// Wallet Account Functions 
     /// </summary>
     public class Account : RpcConnection
     {
         private readonly ILogger _logger;
-
         #region Constructors
 
         /// <summary>
@@ -32,12 +31,12 @@ namespace Alexandria.net.API.WalletFunctions
         }
 
         #endregion
-
+        
         /// <summary>
         /// Returns true if an account with given name exists.
         /// </summary>
-        /// <param name="accountName"></param>
-        /// <returns></returns>
+        /// <param name="accountName">Input string accountName</param>
+        /// <returns>Returns true if success and false for failed try</returns>
         public bool accountExists(string accountName)
         {
             try
@@ -46,23 +45,31 @@ namespace Alexandria.net.API.WalletFunctions
                 var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
                 return result == "true";
             }
-            catch (Exception e)
-            {
-                _logger.WriteError(e.Message);
-                return false;
-            }
+            catch (Exception ex)
+             {
+                 _logger.WriteError(ex.Message);
+                 throw;
+             }
         }
 
         /// <summary>
         /// Returns true if the library has imported the private key corresponding to the given public key.
         /// </summary>
-        /// <param name="key"></param>
-        /// <returns></returns>
+        /// <param name="key">Input byte[] key</param>
+        /// <returns>Returns true if success and false for failed try</returns>
         public bool hasPrivateKeys(byte[] key)
         {
-            var @params = new ArrayList {key};
-            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-            return result == "true";
+            try
+            {
+                var @params = new ArrayList {key};
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return result == "true";
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError(ex.Message);
+                throw;
+            }
         }
 
         /// <summary>
@@ -70,13 +77,22 @@ namespace Alexandria.net.API.WalletFunctions
         /// authorities consisting of more than one key(mutlisig), it returns true if and only if the library has
         /// sufificient keys to resolve the owner autority.
         /// </summary>
-        /// <param name="accountName"></param>
-        /// <returns></returns>
+        /// <param name="accountName">Input string accountName</param>
+        /// <returns>Returns true if success and false for failed try</returns>
         public bool hasAccountOwnerPrivateKey(string accountName)
         {
-            var @params = new ArrayList {accountName};
-            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-            return result == "true";
+            try
+            {
+                var @params = new ArrayList {accountName};
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return result == "true";
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError(ex.Message);
+                throw;
+            }
+            
         }
 
         /// <summary>
@@ -84,222 +100,389 @@ namespace Alexandria.net.API.WalletFunctions
         /// authorities consisting of more than one key(mutlisig), it returns true if and only if the library has
         /// sufficient keys to resolve the active autority.
         /// </summary>
-        /// <param name="accountName"></param>
-        /// <returns></returns>
+        /// <param name="accountName">Input string accountName</param>
+        /// <returns>Returns true if success and false for failed try</returns>
         public bool hasAccountActivePrivateKey(string accountName)
         {
-            var @params = new ArrayList {accountName};
-            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-            return result == "true";
+            try
+            {
+                var @params = new ArrayList {accountName};
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return result == "true";
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError(ex.Message);
+                throw;
+            }
+            
         }
 
         /// <summary>
         /// Returns true if the library has imported the private key corresponding to the account's memo key.
         /// </summary>
-        /// <param name="accountName"></param>
-        /// <returns></returns>
+        /// <param name="accountName">Input string accountName</param>
+        /// <returns>Returns true if success and false for failed try</returns>
         public bool hasAccountMemoPrivateKey(string accountName)
         {
-            var @params = new ArrayList {accountName};
-            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-            return result == "true";
+            try
+            {
+                var @params = new ArrayList {accountName};
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return result == "true";
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError(ex.Message);
+                throw;
+            }
+            
         }
 
         /// <summary>
         /// Returns the active authority of the given account.Object authority has the following structure:
         /// </summary>
-        /// <param name="accountName"></param>
-        /// <returns></returns>
+        /// <param name="accountName">Input string accountName</param>
+        /// <returns>Returns the Json object with the details about the active authority</returns>
         public Authority getActiveAuthority(string accountName)
         {
-            var @params = new ArrayList {accountName};
-            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-            return JsonConvert.DeserializeObject<Authority>(result);
+            try
+            {
+                var @params = new ArrayList {accountName};
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return JsonConvert.DeserializeObject<Authority>(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError(ex.Message);
+                throw;
+            }
         }
 
         /// <summary>
         /// Returns the owner authority of the given account.
         /// </summary>
-        /// <param name="accountName"></param>
-        /// <returns></returns>
+        /// <param name="accountName">Input string accountName</param>
+        /// <returns>Returns the Json object with the deails about the owner authority</returns>
         public Authority getOwnerAuthority(string accountName)
         {
-            var @params = new ArrayList {accountName};
-            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-            return JsonConvert.DeserializeObject<Authority>(result);
+            try
+            {
+                var @params = new ArrayList {accountName};
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return JsonConvert.DeserializeObject<Authority>(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError(ex.Message);
+                throw;
+            }
         }
 
         /// <summary>
         /// Returns the memo key of the given account.
         /// </summary>
-        /// <param name="accountName"></param>
-        /// <returns></returns>
+        /// <param name="accountName">Input string accountName</param>
+        /// <returns>Returns the Memo Key of the corresponding account</returns>
         public byte[] getMemoKey(string accountName)
         {
-            var @params = new ArrayList {accountName};
-            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-            return JsonConvert.DeserializeObject<byte[]>(result);
+            try
+            {
+                var @params = new ArrayList {accountName};
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return JsonConvert.DeserializeObject<byte[]>(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError(ex.Message);
+                throw;
+            }
+           
         }
 
 
         /// <summary>
-        /// Get account SPHTX balance.
+        /// Get SPHTX balance of the account.
         /// </summary>
-        /// <param name="accountName"></param>
-        /// <returns></returns>
+        /// <param name="accountName">Input string accountName</param>
+        /// <returns>Returns the account balance as a Json object</returns>
         public ulong getAccountBalance(string accountName)
         {
-            var @params = new ArrayList {accountName};
-            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-            return JsonConvert.DeserializeObject<ulong>(result);
+            try
+            {
+                var @params = new ArrayList {accountName};
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return JsonConvert.DeserializeObject<ulong>(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError(ex.Message);
+                throw;
+            }
+            
         }
 
         /// <summary>
-        /// Get account vested SPHTX balance.
+        /// Get SPHTX balance of the vesting account.
         /// </summary>
-        /// <param name="accountName"></param>
-        /// <returns></returns>
+        /// <param name="accountName">Input string accountName</param>
+        /// <returns>Returns the account balance as a Json object</returns>
         public ulong getVestingBalance(string accountName)
         {
-            var @params = new ArrayList {accountName};
-            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-            return JsonConvert.DeserializeObject<ulong>(result);
+            try
+            {
+                var @params = new ArrayList {accountName};
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return JsonConvert.DeserializeObject<ulong>(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError(ex.Message);
+                throw;
+            }
+            
         }
 
         /// <summary>
         /// Creates authority resolvable with signature corresponding to the given pub_key.
         /// </summary>
-        /// <param name="pubKey"></param>
-        /// <returns></returns>
+        /// <param name="pubKey">Input byte[] pubKey</param>
+        /// <returns>Returns Json object with details combining
+        /// -WeightThreshold
+        /// -AccountAuths
+        /// -KeyAuths
+        /// </returns>
         public Authority createSimpleAuthority(byte[] pubKey)
         {
-            var @params = new ArrayList {pubKey};
-            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-            return JsonConvert.DeserializeObject<Authority>(result);
+            try
+            {
+                var @params = new ArrayList {pubKey};
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return JsonConvert.DeserializeObject<Authority>(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError(ex.Message);
+                throw;
+            }
+            
         }
 
         /// <summary>
         /// Creates authority resolvable with given number of signatures out of the given set of keys.
         /// </summary>
-        /// <param name="pubKeys"></param>
-        /// <param name="requiredSignatures"></param>
-        /// <returns></returns>
+        /// <param name="pubKeys">Input List of Byte[] pubKeys</param>
+        /// <param name="requiredSignatures">Input ulong requiredSignatures</param>
+        /// <returns>Returns Json object with details combining
+        /// -WeightThreshold
+        /// -AccountAuths
+        /// -KeyAuths
+        /// </returns>
         public Authority createSimpleMultisigAuthority(List<byte[]> pubKeys, ulong requiredSignatures)
         {
-            var @params = new ArrayList {pubKeys, requiredSignatures};
-            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-            return JsonConvert.DeserializeObject<Authority>(result);
+            try
+            {
+                var @params = new ArrayList {pubKeys, requiredSignatures};
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return JsonConvert.DeserializeObject<Authority>(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError(ex.Message);
+                throw;
+            }
+            
         }
 
         /// <summary>
         /// Creates authority resolvable with a given managing account.
         /// </summary>
-        /// <param name="managingAccountName"></param>
-        /// <returns></returns>
+        /// <param name="managingAccountName">string managingAccountName</param>
+        /// <returns>Returns Json object with details combining
+        /// -WeightThreshold
+        /// -AccountAuths
+        /// -KeyAuths
+        /// </returns>
         public Authority createSimpleManagedAuthority(string managingAccountName)
         {
-            var @params = new ArrayList {managingAccountName};
-            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-            return JsonConvert.DeserializeObject<Authority>(result);
+            try
+            {
+                var @params = new ArrayList {managingAccountName};
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return JsonConvert.DeserializeObject<Authority>(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError(ex.Message);
+                throw ;
+            }
+           
         }
 
         /// <summary>
         /// Creates authority resolvable with given number of​ managing accounts.
         /// </summary>
-        /// <param name="managingAccounts"></param>
-        /// <param name="requiredSignatures"></param>
-        /// <returns></returns>
+        /// <param name="managingAccounts">Input List of string managingAccounts</param>
+        /// <param name="requiredSignatures">Input uint requiredSignatures</param>
+        /// <returns>Returns Json object with details combining
+        /// -WeightThreshold
+        /// -AccountAuths
+        /// -KeyAuths
+        /// </returns>
         public Authority createSimpleMultiManagedAuthority(List<string> managingAccounts, uint requiredSignatures)
         {
-            var @params = new ArrayList {managingAccounts, requiredSignatures};
-            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-            return JsonConvert.DeserializeObject<Authority>(result);
+            try
+            {
+                var @params = new ArrayList {managingAccounts, requiredSignatures};
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return JsonConvert.DeserializeObject<Authority>(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError(ex.Message);
+                throw;
+            }
+            
         }
 
         /// <summary>
         /// Update account authorities.
         /// </summary>
-        /// <param name="accountName"></param>
-        /// <param name="owner"></param>
-        /// <param name="active"></param>
-        /// <param name="memo"></param>
-        /// <returns></returns>
+        /// <param name="accountName">Input string accountName</param>
+        /// <param name="owner">Input Authority owner</param>
+        /// <param name="active">Input Authority active</param>
+        /// <param name="memo">Input byte[] memo</param>
+        /// <returns>Returns true if success or false for failed try</returns>
         public bool updateAccount(string accountName, Authority owner, Authority active, byte[] memo)
         {
-            var @params = new ArrayList {accountName, owner, active, memo};
-            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-            return result == "true";
+            try
+            {
+                var @params = new ArrayList {accountName, owner, active, memo};
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return result == "true";
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError(ex.Message);
+                throw;
+            }
+            
         }
 
         /// <summary>
         /// Deposit to_vestings SPHTXs to vesting.
         /// </summary>
-        /// <param name="accountName"></param>
-        /// <param name="toVestings"></param>
-        /// <returns></returns>
+        /// <param name="accountName">Input string accountName</param>
+        /// <param name="toVestings">Input ulong toVestings</param>
+        /// <returns>Returns true if success or false for failed try</returns>
         public bool depositVesting(string accountName, ulong toVestings)
         {
-            var @params = new ArrayList {accountName, toVestings};
-            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-            return result == "true";
+            try
+            {
+                var @params = new ArrayList {accountName, toVestings};
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return result == "true";
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError(ex.Message);
+                throw;
+            }
+           
         }
 
         /// <summary>
         /// Withdraw from_vestings vested SPHTXs.
         /// </summary>
-        /// <param name="accountName"></param>
-        /// <param name="fromVestings"></param>
-        /// <returns></returns>
+        /// <param name="accountName">Input string accountName</param>
+        /// <param name="fromVestings">Input ulong fromVestings</param>
+        /// <returns>Returns true if success or false for failed try</returns>
         public bool withdrawVestings(string accountName, ulong fromVestings)
         {
-            var @params = new ArrayList {accountName, fromVestings};
-            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-            return result == "true";
+            try
+            {
+                var @params = new ArrayList {accountName, fromVestings};
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return result == "true";
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError(ex.Message);
+                throw;
+            }
+            
         }
 
         /// <summary>
         /// Vote or unvote a witness.
         /// </summary>
-        /// <param name="votingAccountName"></param>
-        /// <param name="votedAccountName"></param>
-        /// <param name="approve"></param>
+        /// <param name="votingAccountName">Input string votingAccountName</param>
+        /// <param name="votedAccountName">Input string votedAccountName</param>
+        /// <param name="approve">Input string approve</param>
         /// <returns></returns>
         public bool voteForWitness(string votingAccountName, string votedAccountName, string approve)
         {
-            var @params = new ArrayList {votingAccountName, votedAccountName, approve};
-            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-            return result == "true";
+            try
+            {
+                var @params = new ArrayList {votingAccountName, votedAccountName, approve};
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return result == "true";
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError(ex.Message);
+                throw;
+            }
+            
         }
 
         /// <summary>
         /// Update an account to witness.Requires XXX vested SPHTX before updating.
         /// </summary>
-        /// <param name="accountName"></param>
-        /// <param name="url"></param>
-        /// <param name="blockKey"></param>
-        /// <returns></returns>
+        /// <param name="accountName">Inout string accountName</param>
+        /// <param name="url">Input string url</param>
+        /// <param name="blockKey">Input byte[] blockKey</param>
+        /// <returns>Returns true if success or false for failed try</returns>
         public bool updateToWitness(string accountName, string url, byte[] blockKey)
         {
-            var @params = new ArrayList {accountName, url, blockKey};
-            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-            return result == "true";
+            try
+            {
+                var @params = new ArrayList {accountName, url, blockKey};
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return result == "true";
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError(ex.Message);
+                throw;
+            }
+            
         }
 
         /// <summary>
         /// Creates new account in the SophiaTX blockchain.
         /// </summary>
-        /// <param name="registeringAccountName"></param>
-        /// <param name="newAccountName"></param>
-        /// <param name="owner"></param>
-        /// <param name="active"></param>
-        /// <param name="memo"></param>
-        /// <returns></returns>
+        /// <param name="registeringAccountName">Input string registeringAccountName</param>
+        /// <param name="newAccountName">Input string newAccountName</param>
+        /// <param name="owner">Input Authority owner</param>
+        /// <param name="active">Input Authority active</param>
+        /// <param name="memo">Input byte[] memo</param>
+        /// <returns>Returns true if success or false for failed try</returns>
         public bool createAccount(string registeringAccountName, string newAccountName, Authority owner,
             Authority active, byte[] memo)
         {
-            var @params = new ArrayList {registeringAccountName, newAccountName, owner, active, memo};
-            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-            return result == "true";
+            try
+            {
+                var @params = new ArrayList {registeringAccountName, newAccountName, owner, active, memo};
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return result == "true";
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError(ex.Message);
+                throw;
+            }
+           
         }
     }
 }

@@ -501,7 +501,15 @@
             <param name="transaction">string transaction</param>
             <returns>Returns char[] transaction digest</returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:Alexandria.net.API.WalletFunctions.Network.makeCustomJsonOperation(System.String,System.Collections.Generic.List{System.String},System.UInt64,System.String)" -->
+        <member name="M:Alexandria.net.API.WalletFunctions.Network.makeCustomJsonOperation(System.String,System.Collections.Generic.List{System.String},System.UInt64,System.String)">
+            <summary>
+            </summary>
+            <param name="sender">string sender</param>
+            <param name="recipients">List of string recipients</param>
+            <param name="appId">ulong appId</param>
+            <param name="document">string document</param>
+            <returns></returns>
+        </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Network.makeCustomBinaryOperation(System.String,System.Collections.Generic.List{System.String},System.UInt64,System.Collections.Generic.List{System.Char})">
             <summary>
             
@@ -610,7 +618,15 @@
             <param name="trxId"></param>
             <returns></returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:Alexandria.net.API.WalletFunctions.Transaction.publish_feed(System.String,System.Decimal)" -->
+        <member name="M:Alexandria.net.API.WalletFunctions.Transaction.publish_feed(System.String,System.Decimal)">
+            <summary>
+            A witness can Public a price feed For the SPHTX:SBD market.
+            The median price feed Is used To process conversion requests from SBD To SPHTX.
+            </summary>
+            <param name="witness">The witness publishing the price feed </param>
+            <param name="exchangeRate">The desired exchange rate</param>
+            <returns></returns>
+        </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Transaction.set_transaction_expiration(System.UInt32)">
             <summary>
             

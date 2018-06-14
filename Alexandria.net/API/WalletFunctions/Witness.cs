@@ -1,7 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
+using System.Collections;
 using System.Reflection;
 using Alexandria.net.Communication;
+using Alexandria.net.Logging;
 using Alexandria.net.Mapping;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -10,7 +11,7 @@ using Alexandria.net.Messaging.Responses.DTO;
 namespace Alexandria.net.API.WalletFunctions
 {
     public class Witness : RpcConnection
-    {   
+    {   private readonly ILogger _logger;
         /// <summary>
         /// Connects Witness with default values, the runtime values inherited from base class
         /// </summary>
@@ -21,7 +22,8 @@ namespace Alexandria.net.API.WalletFunctions
         public Witness(string hostname = "127.0.0.1", ushort port = 8091, string api = "/rpc", string version = "2.0") :
             base(hostname, port, api, version)
         {
-            
+            var assemblyname = Assembly.GetExecutingAssembly().GetName().Name;
+            _logger = new Logger(loggingType.server, assemblyname);
         }
 
         /// <summary>
@@ -31,9 +33,18 @@ namespace Alexandria.net.API.WalletFunctions
         /// </returns>
         public ActiveWitnessResponse get_active_witnesses()
         {
-            var result = SendRequest(MethodBase.GetCurrentMethod().Name);
-            var contentdata = JsonConvert.DeserializeObject<ActiveWitnessResponse>(result);
-            return contentdata;
+            try
+            {
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name);
+                var contentdata = JsonConvert.DeserializeObject<ActiveWitnessResponse>(result);
+                return contentdata;
+            }
+            catch(Exception ex)
+            {
+                _logger.WriteError(ex.Message);
+                throw;
+            }
+            
         }
 
         /// <summary>
@@ -42,7 +53,16 @@ namespace Alexandria.net.API.WalletFunctions
         /// <returns>...</returns>
         public string get_miner_queue()
         {
-            return SendRequest(MethodBase.GetCurrentMethod().Name);
+            try
+            {
+                return SendRequest(MethodBase.GetCurrentMethod().Name);
+            }
+            catch(Exception ex)
+            {
+                _logger.WriteError(ex.Message);
+                throw;
+            }
+            
         }
 
         /// <summary>
@@ -52,8 +72,17 @@ namespace Alexandria.net.API.WalletFunctions
         /// <returns>the information about the witness stored In the block chain</returns>
         public string get_witness(string ownerAccount)
         {
-            var @params = new ArrayList {ownerAccount};
-            return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+            try
+            {
+                var @params = new ArrayList {ownerAccount};
+                return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+            }
+            catch(Exception ex)
+            {
+                _logger.WriteError(ex.Message);
+                throw;
+            }
+            
         }
 
         /// <summary>
@@ -71,8 +100,17 @@ namespace Alexandria.net.API.WalletFunctions
         /// <returns>Returns a list Of witnesss mapping witness names To witness ids</returns>
         public string list_witnesses(string lowerbound, uint limit)
         {
-            var @params = new ArrayList {lowerbound, limit};
-            return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+            try
+            {
+                var @params = new ArrayList {lowerbound, limit};
+                return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+            }
+            catch(Exception ex)
+            {
+                _logger.WriteError(ex.Message);
+                throw;
+            }
+            
         }
 
         /// <summary>
@@ -86,8 +124,17 @@ namespace Alexandria.net.API.WalletFunctions
         /// <returns></returns>
         public string update_witness(string witnessName, string url, string blockSigningKey, JArray props)
         {
-            var @params = new ArrayList {witnessName, url, blockSigningKey, props};
-            return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+            try
+            {
+                var @params = new ArrayList {witnessName, url, blockSigningKey, props};
+                return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+            }
+            catch(Exception ex)
+            {
+                _logger.WriteError(ex.Message);
+                throw;
+            }
+           
         }
 
         /// <summary>
@@ -100,8 +147,17 @@ namespace Alexandria.net.API.WalletFunctions
         /// <returns></returns>
         public string Vote(string voter, string author, string permlink, short weight)
         {
-            var @params = new ArrayList {voter, author, permlink, weight};
-            return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+            try
+            {
+                var @params = new ArrayList {voter, author, permlink, weight};
+                return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+            }
+            catch(Exception ex)
+            {
+                _logger.WriteError(ex.Message);
+                throw ;
+            }
+           
         }
 
         /// <summary>
@@ -115,12 +171,21 @@ namespace Alexandria.net.API.WalletFunctions
         /// <returns></returns>
         public ActiveWitnessResponse Vote(string accountToVoteWith, string witnessToVoteFor, bool approve)
         {
-            var reqname = _cSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+            try
+            {
+                var reqname = _cSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
             
-            var @params = new ArrayList {accountToVoteWith, witnessToVoteFor, approve};
-            var result = SendRequest(reqname, @params);
-            var contentdata = JsonConvert.DeserializeObject<ActiveWitnessResponse>(result);
-            return contentdata;
+                var @params = new ArrayList {accountToVoteWith, witnessToVoteFor, approve};
+                var result = SendRequest(reqname, @params);
+                var contentdata = JsonConvert.DeserializeObject<ActiveWitnessResponse>(result);
+                return contentdata;
+            }
+            catch(Exception ex)
+            {
+                _logger.WriteError(ex.Message);
+                throw ;
+            }
+            
         }
         
         /// <summary>

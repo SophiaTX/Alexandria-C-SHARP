@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using Alexandria.net.Core;
 using Xunit;
 
 
@@ -8,7 +6,7 @@ namespace UnitTest
 {
     public class WalletTests : BaseTest
     {
-        private const string transaction =
+        private const string Transaction =
             "{ \"ref_block_num\": 287,\"ref_block_prefix\": 3535709865,\"expiration\": \"2018-06-01T07:42:27\",\"operations\": [[\"account_create\",{\"fee\": \"0.000030 SPHTX\",\"creator\": \"initminer\",\"new_account_name\": \"matus\",\"owner\": {\"weight_threshold\": 1,\"account_auths\": [],\"key_auths\": [[\"STM5WcWH1RAUd2sJK4eNJxomZuf6RAjs1s6CB4sfkQcHaaS3JY66f\",1 ]]},\"active\": {\"weight_threshold\": 1,\"account_auths\": [],\"key_auths\": [[\"STM8JCyWEwLUypREhAadUxKVWSzTyhUvNW8XiYppnZN31sBpMXUt8\",1]]},\"memo_key\": \"STM5sSw5xWuEYQf1EUoCsD6uUHuGgA6orAC4var1Kka28BL2j3wiL\",\"json_metadata\": \"{}\"}]],\"extensions\": [],\"signatures\": [],\"transaction_id\": \"560f5b91130e4048dbc6a6d4b2d1e0093b412a83\",\"block_num\": 0,\"transaction_num\": 0}";
 
         private readonly string _digest="560f5b91130e4048dbc6a6d4b2d1e0093b412a83a529c36d7066";
@@ -60,7 +58,7 @@ namespace UnitTest
         [Fact]
         public void GetTransactionDigest()
         {           
-           _client.Wallet.Key.get_transaction_digest_c(transaction,new byte[64]);
+           _client.Wallet.Key.get_transaction_digest_c(Transaction,new byte[64]);
              
         }
         [Fact]
@@ -72,7 +70,7 @@ namespace UnitTest
         [Fact]
         public void AddSignature()
         {           
-            _client.Wallet.Key.add_signature_c(transaction,_sign,new byte[transaction.Length+200]);
+            _client.Wallet.Key.add_signature_c(Transaction,_sign,new byte[Transaction.Length+200]);
             
         }
     }

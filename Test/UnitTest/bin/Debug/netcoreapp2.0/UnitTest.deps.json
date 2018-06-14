@@ -570,10 +570,7 @@
           "Serilog": "2.7.2-dev-01005"
         },
         "runtime": {
-          "lib/netstandard1.1/Serilog.Formatting.Compact.dll": {
-            "assemblyVersion": "1.0.1.0",
-            "fileVersion": "1.0.1.0"
-          }
+          "lib/netstandard1.1/Serilog.Formatting.Compact.dll": {}
         }
       },
       "Serilog.Sinks.File/4.0.1-dev-00796": {
@@ -588,10 +585,7 @@
           "System.Threading.Timer": "4.0.1"
         },
         "runtime": {
-          "lib/netstandard1.3/Serilog.Sinks.File.dll": {
-            "assemblyVersion": "2.0.0.0",
-            "fileVersion": "4.0.1.0"
-          }
+          "lib/netstandard1.3/Serilog.Sinks.File.dll": {}
         }
       },
       "Serilog.Sinks.PeriodicBatching/2.1.1": {
@@ -601,10 +595,7 @@
           "System.Threading.Timer": "4.0.1"
         },
         "runtime": {
-          "lib/netstandard1.2/Serilog.Sinks.PeriodicBatching.dll": {
-            "assemblyVersion": "2.0.0.0",
-            "fileVersion": "2.1.1.0"
-          }
+          "lib/netstandard1.2/Serilog.Sinks.PeriodicBatching.dll": {}
         }
       },
       "Serilog.Sinks.Seq/4.0.1-dev-00155": {
@@ -616,10 +607,7 @@
           "System.Net.Http": "4.3.2"
         },
         "runtime": {
-          "lib/netstandard1.3/Serilog.Sinks.Seq.dll": {
-            "assemblyVersion": "4.0.1.0",
-            "fileVersion": "4.0.1.0"
-          }
+          "lib/netstandard1.3/Serilog.Sinks.Seq.dll": {}
         }
       },
       "System.AppContext/4.1.0": {

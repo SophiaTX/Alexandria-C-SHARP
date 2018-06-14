@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections;
-using System.Globalization;
-using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using Alexandria.net.Communication;
+using Alexandria.net.Logging;
 using Alexandria.net.Messaging.Responses.DTO;
 using Newtonsoft.Json;
 
@@ -12,6 +10,7 @@ namespace Alexandria.net.API.WalletFunctions
 {
     public class Key :RpcConnection
     {
+        private readonly ILogger _logger;
         private const string libpath = "/Users/sanjivjha/RiderProjects/Alexandria/Alexandria.net/libalexandria.dylib";
         #region DllImports
         /// <summary>
@@ -64,6 +63,9 @@ namespace Alexandria.net.API.WalletFunctions
         public Key(string hostname = "127.0.0.1", ushort port = 8091, string api = "/rpc", string version = "2.0") :
             base(hostname, port, api, version)
         {
+            
+            var assemblyname = Assembly.GetExecutingAssembly().GetName().Name;
+            _logger = new Logger(loggingType.server, assemblyname);
             //todo - solve the loading of the dll
             //AppDomain.CurrentDomain.BaseDirectory
         }
@@ -75,7 +77,16 @@ namespace Alexandria.net.API.WalletFunctions
         /// <returns>Returns true if success or false for failed try</returns>
         public string generate_private_key_c(byte[] privatekey)
         {
-            return generate_private_key(privatekey) ? System.Text.Encoding.Default.GetString(privatekey) : string.Empty;
+            try
+            {
+                return generate_private_key(privatekey) ? System.Text.Encoding.Default.GetString(privatekey) : string.Empty;
+            }
+            catch(Exception ex)
+            {
+                _logger.WriteError(ex.Message);
+                throw;
+            }
+           
         }
 
         /// <summary>
@@ -86,7 +97,16 @@ namespace Alexandria.net.API.WalletFunctions
         /// <returns>Returns true if success or false for failed try</returns>
         public bool get_transaction_digest_c(string transaction, byte[] digest)
         {
-            return get_transaction_digest(transaction, digest);
+            try
+            {
+                return get_transaction_digest(transaction, digest);
+            }
+            catch(Exception ex)
+            {
+                _logger.WriteError(ex.Message);
+                throw ;
+            }
+            
         }
 
         /// <summary>
@@ -98,9 +118,18 @@ namespace Alexandria.net.API.WalletFunctions
         /// <returns>Returns true if success or false for failed try</returns>
         public string sign_digest_c(string digest, string privatekey, byte[] signeddigest)
         {
-            return sign_digest(digest, privatekey, signeddigest)
-                ? System.Text.Encoding.Default.GetString(signeddigest)
-                : string.Empty;
+            try
+            {
+                return sign_digest(digest, privatekey, signeddigest)
+                    ? System.Text.Encoding.Default.GetString(signeddigest)
+                    : string.Empty;
+            }
+            catch(Exception ex)
+            {
+                _logger.WriteError(ex.Message);
+                throw ;
+            }
+            
         }
 
         /// <summary>
@@ -120,9 +149,10 @@ namespace Alexandria.net.API.WalletFunctions
                 result = JsonConvert.DeserializeObject<SendResponseResult>(
                     System.Text.Encoding.Default.GetString(signedtx));
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Console.WriteLine(e);
+                _logger.WriteError(ex.Message);
+                
                 throw;
             }
             return result;
