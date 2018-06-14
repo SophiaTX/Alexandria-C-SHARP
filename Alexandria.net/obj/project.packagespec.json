@@ -1,10 +1,10 @@
 ﻿{
   "version": "1.0.0",
   "restore": {
-    "projectUniqueName": "/Users/sanjivjha/RiderProjects/Alexandria/Alexandria.net/Alexandria.net.csproj",
+    "projectUniqueName": "/Users/martynharler/GitHub/Alexandria/Alexandria.net/Alexandria.net.csproj",
     "projectName": "Alexandria.net",
-    "projectPath": "/Users/sanjivjha/RiderProjects/Alexandria/Alexandria.net/Alexandria.net.csproj",
-    "outputPath": "/Users/sanjivjha/RiderProjects/Alexandria/Alexandria.net/obj/",
+    "projectPath": "/Users/martynharler/GitHub/Alexandria/Alexandria.net/Alexandria.net.csproj",
+    "outputPath": "/Users/martynharler/GitHub/Alexandria/Alexandria.net/obj/",
     "projectStyle": "PackageReference",
     "fallbackFolders": [
       "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
@@ -35,6 +35,14 @@
         "Newtonsoft.Json": {
           "target": "Package",
           "version": "[11.0.2, )"
+        },
+        "Serilog": {
+          "target": "Package",
+          "version": "[2.7.2-dev-01005, )"
+        },
+        "Serilog.Extensions.Logging": {
+          "target": "Package",
+          "version": "[2.1.0-dev-10193, )"
         }
       },
       "imports": [

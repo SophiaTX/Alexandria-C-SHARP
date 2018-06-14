@@ -4,11 +4,29 @@ namespace Alexandria.net.API.WalletFunctions
 {
     public class ReceiverRecipe
     {
-        public ulong app_id { get; set; }
-        public string sender { get; set; }
-        public List<string> recipients { get; set; }
-        public string binary { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public ulong AppId { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Sender { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public List<string> Recipients { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Binary { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public bool Type { get; set; }
-        public string document { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Document { get; set; }
     }
 }

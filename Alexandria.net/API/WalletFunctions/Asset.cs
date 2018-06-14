@@ -19,7 +19,8 @@ namespace Alexandria.net.API.WalletFunctions
         /// </summary>
         /// <param name="hostname">the rpc endpoint ip address</param>
         /// <param name="port">the rpc endpoint post</param>
-        protected Asset(string hostname = "127.0.0.1", ushort port = 8091) : base(hostname, port)
+        public Asset(string hostname = "127.0.0.1", ushort port = 8091, string api = "/rpc", string version = "2.0") :
+            base(hostname, port, api, version)
         {
         }
 
@@ -33,11 +34,11 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="to"></param>
         /// <param name="memo"></param>
         /// <param name="balance"></param>
-        /// <param name="asset_symbol"></param>
+        /// <param name="assetSymbol"></param>
         /// <returns></returns>
-        public bool transfer(string from, string to, string memo, ulong balance, string asset_symbol)
+        public bool transfer(string from, string to, string memo, ulong balance, string assetSymbol)
         {
-            var @params = new ArrayList {from, to, memo, balance, asset_symbol};
+            var @params = new ArrayList {from, to, memo, balance, assetSymbol};
             var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
             return result == "true";
         }
@@ -45,12 +46,12 @@ namespace Alexandria.net.API.WalletFunctions
         /// <summary>
         /// Returns the balance of the given account and UIA
         /// </summary>
-        /// <param name="account_name"></param>
-        /// <param name="asset_symbol"></param>
+        /// <param name="accountName"></param>
+        /// <param name="assetSymbol"></param>
         /// <returns></returns>
-        public ulong getAccountUiaBalance(string account_name, string asset_symbol)
+        public ulong getAccountUiaBalance(string accountName, string assetSymbol)
         {
-            var @params = new ArrayList {account_name, asset_symbol};
+            var @params = new ArrayList {accountName, assetSymbol};
             var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
             return Convert.ToUInt64(result);
         }
@@ -58,42 +59,42 @@ namespace Alexandria.net.API.WalletFunctions
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="owner_account_name"></param>
-        /// <param name="management_authority"></param>
-        /// <param name="max_supply"></param>
-        /// <param name="asset_symbol"></param>
+        /// <param name="ownerAccountName"></param>
+        /// <param name="managementAuthority"></param>
+        /// <param name="maxSupply"></param>
+        /// <param name="assetSymbol"></param>
         /// <returns></returns>
-        public bool createUia(string owner_account_name, Authority management_authority, ulong max_supply, string asset_symbol)
+        public bool createUia(string ownerAccountName, Authority managementAuthority, ulong maxSupply, string assetSymbol)
         {
-            var @params = new ArrayList {owner_account_name, management_authority, max_supply, asset_symbol};
+            var @params = new ArrayList {ownerAccountName, managementAuthority, maxSupply, assetSymbol};
             var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
             return result == "true";
         }
 
-        public bool issueUia(string reveiver_account_name, ulong amount, string asset_symbol)
+        public bool issueUia(string reveiverAccountName, ulong amount, string assetSymbol)
         {
-            var @params = new ArrayList {reveiver_account_name, amount, asset_symbol};
+            var @params = new ArrayList {reveiverAccountName, amount, assetSymbol};
             var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
             return result == "true";
         }
 
-        public bool burnUia(string account_name, ulong amount, string asset_symbol)
+        public bool burnUia(string accountName, ulong amount, string assetSymbol)
         {
-            var @params = new ArrayList {account_name, amount, asset_symbol};
+            var @params = new ArrayList {accountName, amount, assetSymbol};
             var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);   
             return result == "true";
         }
 
-        public Authority getUiaAuthority(string asset_symbol)
+        public Authority getUiaAuthority(string assetSymbol)
         {
-            var @params = new ArrayList {asset_symbol};
+            var @params = new ArrayList {assetSymbol};
             var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
             return JsonConvert.DeserializeObject<Authority>(result);
         }
 
-        public bool hasUiaPrivateKey(string asset_symbol)
+        public bool hasUiaPrivateKey(string assetSymbol)
         {
-            var @params = new ArrayList {asset_symbol};
+            var @params = new ArrayList {assetSymbol};
             var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
             return result == "true";
         }

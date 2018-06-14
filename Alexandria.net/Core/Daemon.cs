@@ -13,7 +13,7 @@ namespace Alexandria.net.Core
 	{
 		#region Constructors
 
-		public Daemon(string hostname = "127.0.0.1", ushort port = 8090) : base(hostname, port)
+		public Daemon(string hostname = "127.0.0.1", ushort port = 8091, string api = "/rpc", string version = "2.0") : base(hostname, port, api, version)
 		{
 		}
 
