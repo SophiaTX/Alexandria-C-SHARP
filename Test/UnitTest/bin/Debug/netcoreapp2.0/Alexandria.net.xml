@@ -241,6 +241,7 @@
             </summary>
             <param name="hostname">the rpc endpoint ip address</param>
             <param name="port">the rpc endpoint post</param>
+            <param name="api"></param>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Cryptography.generateKeyPair">
             <summary>

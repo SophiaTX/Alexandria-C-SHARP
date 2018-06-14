@@ -143,7 +143,6 @@ namespace Alexandria.net.API.WalletFunctions
 
         /// <summary>
         /// Get account vested SPHTX balance.
-
         /// </summary>
         /// <param name="accountName"></param>
         /// <returns></returns>

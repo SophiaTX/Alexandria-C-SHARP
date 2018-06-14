@@ -33,6 +33,9 @@
           <e p="libalexandria.dylib" t="Include" />
         </e>
         <e p="Logging" t="Include" />
+        <e p="Mapping" t="Include">
+          <e p="CSharpToCPP.cs" t="Include" />
+        </e>
         <e p="Messaging" t="Include">
           <e p="Errors" t="Include">
             <e p="ErrorBody.cs" t="Include" />

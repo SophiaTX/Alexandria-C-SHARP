@@ -7,7 +7,7 @@ namespace Alexandria.net.Core
 	/// </summary>
 	public class Wallet 
 	{
-		#region Mewmber Variables
+		#region Member Variables
 
 		public Account Account { get; set; }
 		public Asset Asset { get; set; }

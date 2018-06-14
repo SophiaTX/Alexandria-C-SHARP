@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Reflection;
 using Alexandria.net.Communication;
+using Alexandria.net.Mapping;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Alexandria.net.Messaging.Responses.DTO;
@@ -102,12 +103,16 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="witnessToVoteFor">The witness that Is being voted For</param>
         /// <param name="approve">true if the account Is voting for the account to be able to be a block produce</param>
         /// <returns></returns>
-        public ActiveWitnessResponse vote_for_witness(string accountToVoteWith, string witnessToVoteFor, bool approve)
+        public ActiveWitnessResponse Vote(string accountToVoteWith, string witnessToVoteFor, bool approve)
         {
+            var reqname = _cSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+            
             var @params = new ArrayList {accountToVoteWith, witnessToVoteFor, approve};
-            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+            var result = SendRequest(reqname, @params);
             var contentdata = JsonConvert.DeserializeObject<ActiveWitnessResponse>(result);
             return contentdata;
         }
+
+        private CSharpToCPP _cSharpToCpp = new CSharpToCPP();
     }
 }
