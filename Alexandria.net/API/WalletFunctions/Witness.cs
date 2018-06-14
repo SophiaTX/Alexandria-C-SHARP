@@ -41,7 +41,7 @@ namespace Alexandria.net.API.WalletFunctions
             }
             catch(Exception ex)
             {
-                _logger.WriteError(ex.Message);
+                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
             
@@ -59,7 +59,7 @@ namespace Alexandria.net.API.WalletFunctions
             }
             catch(Exception ex)
             {
-                _logger.WriteError(ex.Message);
+                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
             
@@ -79,7 +79,7 @@ namespace Alexandria.net.API.WalletFunctions
             }
             catch(Exception ex)
             {
-                _logger.WriteError(ex.Message);
+                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
             
@@ -107,7 +107,7 @@ namespace Alexandria.net.API.WalletFunctions
             }
             catch(Exception ex)
             {
-                _logger.WriteError(ex.Message);
+                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
             
@@ -131,7 +131,7 @@ namespace Alexandria.net.API.WalletFunctions
             }
             catch(Exception ex)
             {
-                _logger.WriteError(ex.Message);
+                
                 throw;
             }
            
@@ -154,7 +154,7 @@ namespace Alexandria.net.API.WalletFunctions
             }
             catch(Exception ex)
             {
-                _logger.WriteError(ex.Message);
+                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw ;
             }
            
@@ -182,7 +182,7 @@ namespace Alexandria.net.API.WalletFunctions
             }
             catch(Exception ex)
             {
-                _logger.WriteError(ex.Message);
+                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw ;
             }
             
