@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using Alexandria.net.Communication;
+using Alexandria.net.Logging;
 using Newtonsoft.Json;
 
 namespace Alexandria.net.API.WalletFunctions
@@ -11,6 +13,7 @@ namespace Alexandria.net.API.WalletFunctions
     /// </summary>
     public class Account : RpcConnection
     {
+        private readonly ILogger _logger;
 
         #region Constructors
 
@@ -24,6 +27,8 @@ namespace Alexandria.net.API.WalletFunctions
         public Account(string hostname = "127.0.0.1", ushort port = 8091, string api = "/rpc", string version = "2.0") :
             base(hostname, port, api, version)
         {
+            var assemblyname = Assembly.GetExecutingAssembly().GetName().Name;
+            _logger = new Logger(loggingType.server, assemblyname);
         }
 
         #endregion
@@ -35,9 +40,17 @@ namespace Alexandria.net.API.WalletFunctions
         /// <returns></returns>
         public bool accountExists(string accountName)
         {
-            var @params = new ArrayList {accountName};
-            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-            return result == "true";
+            try
+            {
+                var @params = new ArrayList {accountName};
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return result == "true";
+            }
+            catch (Exception e)
+            {
+                _logger.WriteError(e.Message);
+                return false;
+            }
         }
 
         /// <summary>
