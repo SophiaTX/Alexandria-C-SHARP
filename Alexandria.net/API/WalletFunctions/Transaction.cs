@@ -91,7 +91,7 @@ namespace Alexandria.net.API.WalletFunctions
 		/// </summary>
 		/// <param name="witness">The witness publishing the price feed </param>
 		/// <param name="exchangeRate">The desired exchange rate</param>
-		/// <returns></returns>
+		/// <4returns></returns>
 		private string publish_feed(string witness, decimal exchangeRate)
 		{
 			var @params = new ArrayList {witness, exchangeRate};

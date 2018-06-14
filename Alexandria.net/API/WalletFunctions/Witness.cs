@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using System.Reflection;
 using Alexandria.net.Communication;
 using Alexandria.net.Mapping;
@@ -9,16 +10,25 @@ using Alexandria.net.Messaging.Responses.DTO;
 namespace Alexandria.net.API.WalletFunctions
 {
     public class Witness : RpcConnection
-    {
+    {   
+        /// <summary>
+        /// Connects Witness with default values, the runtime values inherited from base class
+        /// </summary>
+        /// <param name="hostname">string hostname = "127.0.0.1"</param>
+        /// <param name="port">ushort port = 8091</param>
+        /// <param name="api">string api = "/rpc"</param>
+        /// <param name="version">string version = "2.0"</param>
         public Witness(string hostname = "127.0.0.1", ushort port = 8091, string api = "/rpc", string version = "2.0") :
             base(hostname, port, api, version)
         {
+            
         }
 
         /// <summary>
-        /// Returns the list Of witnesses producing blocks In the current round (21 Blocks)
+        /// Returns the list Of witnesses producing blocks In the current round 
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Returns json object combining list of active witnesses 
+        /// </returns>
         public ActiveWitnessResponse get_active_witnesses()
         {
             var result = SendRequest(MethodBase.GetCurrentMethod().Name);
@@ -29,7 +39,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <summary>
         /// Returns the queue Of pow miners waiting To produce blocks.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>...</returns>
         public string get_miner_queue()
         {
             return SendRequest(MethodBase.GetCurrentMethod().Name);
@@ -58,7 +68,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="lowerbound">the name Of the first witness To Return.
         /// If the named witness does Not exist, the list will start at the witness thatcomes after 'lowerbound'</param>
         /// <param name="limit">the maximum number Of witnesss To return (max: 1000)</param>
-        /// <returns>a list Of witnesss mapping witness names To witness ids</returns>
+        /// <returns>Returns a list Of witnesss mapping witness names To witness ids</returns>
         public string list_witnesses(string lowerbound, uint limit)
         {
             var @params = new ArrayList {lowerbound, limit};
@@ -112,7 +122,10 @@ namespace Alexandria.net.API.WalletFunctions
             var contentdata = JsonConvert.DeserializeObject<ActiveWitnessResponse>(result);
             return contentdata;
         }
-
+        
+        /// <summary>
+        /// C#toCPP object generated to map the method names according to C# naming conventions
+        /// </summary>
         private CSharpToCPP _cSharpToCpp = new CSharpToCPP();
     }
 }

@@ -3,7 +3,7 @@
 namespace Alexandria.net.Core
 {
 	/// <summary>
-	/// 
+	/// List of all the functionalities supported by the SophiaTX C# Wallet API
 	/// </summary>
 	public class Wallet 
 	{

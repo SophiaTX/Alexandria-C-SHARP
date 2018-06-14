@@ -20,139 +20,231 @@ namespace Alexandria.net.Core
 		#endregion
 
 		#region public Methods
-
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
 		public string get_config()
 		{
 			return SendRequest(MethodBase.GetCurrentMethod().Name);
 		}
-
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
 		public string get_dynamic_global_properties()
 		{
 			return SendRequest(MethodBase.GetCurrentMethod().Name);
 		}
-
+		/// <summary>
+		/// 	
+		/// </summary>
+		/// <returns></returns>
 		public string get_chain_properties()
 		{
 			return SendRequest(MethodBase.GetCurrentMethod().Name);
 		}
-
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
 		public string get_current_median_history_price()
 		{
 			return SendRequest(MethodBase.GetCurrentMethod().Name);
 		}
-
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
 
 		public string get_feed_history()
 		{
 			return SendRequest(MethodBase.GetCurrentMethod().Name);
 		}
-
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
 		public string get_witness_schedule()
 		{
 			return SendRequest(MethodBase.GetCurrentMethod().Name);
 		}
-
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
 		public string get_hardfork_version()
 		{
 			return SendRequest(MethodBase.GetCurrentMethod().Name);
 		}
-
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
 		public string get_next_scheduled_hardfork()
 		{
 			return SendRequest(MethodBase.GetCurrentMethod().Name);
 		}
-
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="accounts"></param>
+		/// <returns></returns>
 		public string get_accounts(ArrayList accounts)
 		{
 			var arrParams = new ArrayList {accounts};
 			return SendRequest(MethodBase.GetCurrentMethod().Name, arrParams);
 		}
 
-
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="accounts"></param>
+		/// <returns></returns>
 		public string lookup_account_names(ArrayList accounts)
 		{
 			var arrParams = new ArrayList {accounts};
 			return SendRequest(MethodBase.GetCurrentMethod().Name, arrParams);
 		}
-
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="lowerbound"></param>
+		/// <param name="limit"></param>
+		/// <returns></returns>
 		public string lookup_accounts(string lowerbound, uint limit)
 		{
 			var arrParams = new ArrayList {lowerbound, limit};
 			return SendRequest(MethodBase.GetCurrentMethod().Name, arrParams);
 		}
-
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
 		public string get_account_count()
 		{
 			return SendRequest(MethodBase.GetCurrentMethod().Name);
 		}
-
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="account"></param>
+		/// <returns></returns>
 		public string get_owner_history(string account)
 		{
 			var arrParams = new ArrayList {account};
 			return SendRequest(MethodBase.GetCurrentMethod().Name, arrParams);
 		}
-
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="account"></param>
+		/// <returns></returns>
 		public string get_recovery_request(string account)
 		{
 			var arrParams = new ArrayList {account};
 			return SendRequest(MethodBase.GetCurrentMethod().Name, arrParams);
 		}
-
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="blockId"></param>
+		/// <returns></returns>
 		public string get_block_header(long blockId)
 		{
 			var arrParams = new ArrayList {blockId};
 			return SendRequest(MethodBase.GetCurrentMethod().Name, arrParams);
 		}
-
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="blockId"></param>
+		/// <returns></returns>
 		public string get_block(long blockId)
 		{
 			var arrParams = new ArrayList {blockId};
 			return SendRequest(MethodBase.GetCurrentMethod().Name, arrParams);
 		}
-
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="witnesses"></param>
+		/// <returns></returns>
 		public string get_witnesses(ArrayList witnesses)
 		{
 			var arrParams = new ArrayList {witnesses};
 			return SendRequest(MethodBase.GetCurrentMethod().Name, arrParams);
 		}
 
-
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="account"></param>
+		/// <returns></returns>
 		public string get_conversion_requests(string account)
 		{
 			var arrParams = new ArrayList {account};
 			return SendRequest(MethodBase.GetCurrentMethod().Name, arrParams);
 		}
-
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="account"></param>
+		/// <returns></returns>
 		public string get_witness_by_account(string account)
 		{
 			var arrParams = new ArrayList {account};
 			return SendRequest(MethodBase.GetCurrentMethod().Name, arrParams);
 		}
-
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="from"></param>
+		/// <param name="limit"></param>
+		/// <returns></returns>
 		public string get_witnesses_by_vote(string from, int limit)
 		{
 			var arrParams = new ArrayList {from, limit};
 			return SendRequest(MethodBase.GetCurrentMethod().Name, arrParams);
 		}
-
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
 		public string get_witness_count()
 		{
 			return SendRequest(MethodBase.GetCurrentMethod().Name);
 		}
-
+		
 		// if permlink Is "" then it will return all votes for author
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="author"></param>
+		/// <param name="permlink"></param>
+		/// <returns></returns>
 		public string get_active_votes(string author, string permlink)
 		{
 			var arrParams = new ArrayList {author, permlink};
 			return SendRequest(MethodBase.GetCurrentMethod().Name, arrParams);
 		}
-
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="author"></param>
+		/// <param name="permlink"></param>
+		/// <returns></returns>
 		public string get_content(string author, string permlink)
 		{
 			var arrParams = new ArrayList {author, permlink};
 			return SendRequest(MethodBase.GetCurrentMethod().Name, arrParams);
 		}
-
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="parent"></param>
+		/// <param name="parentPermlink"></param>
+		/// <returns></returns>
 		public string get_content_replies(string parent, string parentPermlink)
 		{
 			var arrParams = new ArrayList {parent, parentPermlink};

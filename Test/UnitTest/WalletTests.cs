@@ -44,7 +44,7 @@ namespace UnitTest
         {
             _client.Wallet.Transaction.About();
         }
-      
+        
         [Fact]
         public void GetBlock()
         {
@@ -54,24 +54,19 @@ namespace UnitTest
        
         [Fact]
         public void GeneratePrivateKey()
-        {          
-            
-            _client.Wallet.Key.generate_private_key_c(new byte[52]);
-           
-             
+        {                     
+            _client.Wallet.Key.generate_private_key_c(new byte[52]);      
         }
         [Fact]
         public void GetTransactionDigest()
         {           
-           _client.Wallet.Key.get_transaction_digest_c(transaction,new byte[62]);
-           
-            
+           _client.Wallet.Key.get_transaction_digest_c(transaction,new byte[64]);
+             
         }
         [Fact]
         public void SignedDigest()
         {           
             _client.Wallet.Key.sign_digest_c(_digest,_key,new byte[130]);
-            
             
         }
         [Fact]

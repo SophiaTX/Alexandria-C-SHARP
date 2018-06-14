@@ -6,7 +6,7 @@
     <members>
         <member name="T:Alexandria.net.API.WalletFunctions.Account">
             <summary>
-            
+            Wallet Account Functions 
             </summary>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Account.#ctor(System.String,System.UInt16,System.String,System.String)">
@@ -22,15 +22,15 @@
             <summary>
             Returns true if an account with given name exists.
             </summary>
-            <param name="accountName"></param>
-            <returns></returns>
+            <param name="accountName">Input string accountName</param>
+            <returns>Returns true if success and false for failed try</returns>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Account.hasPrivateKeys(System.Byte[])">
             <summary>
             Returns true if the library has imported the private key corresponding to the given public key.
             </summary>
-            <param name="key"></param>
-            <returns></returns>
+            <param name="key">Input byte[] key</param>
+            <returns>Returns true if success and false for failed try</returns>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Account.hasAccountOwnerPrivateKey(System.String)">
             <summary>
@@ -38,8 +38,8 @@
             authorities consisting of more than one key(mutlisig), it returns true if and only if the library has
             sufificient keys to resolve the owner autority.
             </summary>
-            <param name="accountName"></param>
-            <returns></returns>
+            <param name="accountName">Input string accountName</param>
+            <returns>Returns true if success and false for failed try</returns>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Account.hasAccountActivePrivateKey(System.String)">
             <summary>
@@ -47,129 +47,151 @@
             authorities consisting of more than one key(mutlisig), it returns true if and only if the library has
             sufficient keys to resolve the active autority.
             </summary>
-            <param name="accountName"></param>
-            <returns></returns>
+            <param name="accountName">Input string accountName</param>
+            <returns>Returns true if success and false for failed try</returns>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Account.hasAccountMemoPrivateKey(System.String)">
             <summary>
             Returns true if the library has imported the private key corresponding to the account's memo key.
             </summary>
-            <param name="accountName"></param>
-            <returns></returns>
+            <param name="accountName">Input string accountName</param>
+            <returns>Returns true if success and false for failed try</returns>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Account.getActiveAuthority(System.String)">
             <summary>
             Returns the active authority of the given account.Object authority has the following structure:
             </summary>
-            <param name="accountName"></param>
-            <returns></returns>
+            <param name="accountName">Input string accountName</param>
+            <returns>Returns the Json object with the details about the active authority</returns>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Account.getOwnerAuthority(System.String)">
             <summary>
             Returns the owner authority of the given account.
             </summary>
-            <param name="accountName"></param>
-            <returns></returns>
+            <param name="accountName">Input string accountName</param>
+            <returns>Returns the Json object with the deails about the owner authority</returns>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Account.getMemoKey(System.String)">
             <summary>
             Returns the memo key of the given account.
             </summary>
-            <param name="accountName"></param>
-            <returns></returns>
+            <param name="accountName">Input string accountName</param>
+            <returns>Returns the Memo Key of the corresponding account</returns>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Account.getAccountBalance(System.String)">
             <summary>
-            Get account SPHTX balance.
+            Get SPHTX balance of the account.
             </summary>
-            <param name="accountName"></param>
-            <returns></returns>
+            <param name="accountName">Input string accountName</param>
+            <returns>Returns the account balance as a Json object</returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:Alexandria.net.API.WalletFunctions.Account.getVestingBalance(System.String)" -->
+        <member name="M:Alexandria.net.API.WalletFunctions.Account.getVestingBalance(System.String)">
+            <summary>
+            Get SPHTX balance of the vesting account.
+            </summary>
+            <param name="accountName">Input string accountName</param>
+            <returns>Returns the account balance as a Json object</returns>
+        </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Account.createSimpleAuthority(System.Byte[])">
             <summary>
             Creates authority resolvable with signature corresponding to the given pub_key.
             </summary>
-            <param name="pubKey"></param>
-            <returns></returns>
+            <param name="pubKey">Input byte[] pubKey</param>
+            <returns>Returns Json object with details combining
+            -WeightThreshold
+            -AccountAuths
+            -KeyAuths
+            </returns>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Account.createSimpleMultisigAuthority(System.Collections.Generic.List{System.Byte[]},System.UInt64)">
             <summary>
             Creates authority resolvable with given number of signatures out of the given set of keys.
             </summary>
-            <param name="pubKeys"></param>
-            <param name="requiredSignatures"></param>
-            <returns></returns>
+            <param name="pubKeys">Input List of Byte[] pubKeys</param>
+            <param name="requiredSignatures">Input ulong requiredSignatures</param>
+            <returns>Returns Json object with details combining
+            -WeightThreshold
+            -AccountAuths
+            -KeyAuths
+            </returns>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Account.createSimpleManagedAuthority(System.String)">
             <summary>
             Creates authority resolvable with a given managing account.
             </summary>
-            <param name="managingAccountName"></param>
-            <returns></returns>
+            <param name="managingAccountName">string managingAccountName</param>
+            <returns>Returns Json object with details combining
+            -WeightThreshold
+            -AccountAuths
+            -KeyAuths
+            </returns>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Account.createSimpleMultiManagedAuthority(System.Collections.Generic.List{System.String},System.UInt32)">
             <summary>
             Creates authority resolvable with given number of​ managing accounts.
             </summary>
-            <param name="managingAccounts"></param>
-            <param name="requiredSignatures"></param>
-            <returns></returns>
+            <param name="managingAccounts">Input List of string managingAccounts</param>
+            <param name="requiredSignatures">Input uint requiredSignatures</param>
+            <returns>Returns Json object with details combining
+            -WeightThreshold
+            -AccountAuths
+            -KeyAuths
+            </returns>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Account.updateAccount(System.String,Alexandria.net.API.WalletFunctions.Authority,Alexandria.net.API.WalletFunctions.Authority,System.Byte[])">
             <summary>
             Update account authorities.
             </summary>
-            <param name="accountName"></param>
-            <param name="owner"></param>
-            <param name="active"></param>
-            <param name="memo"></param>
-            <returns></returns>
+            <param name="accountName">Input string accountName</param>
+            <param name="owner">Input Authority owner</param>
+            <param name="active">Input Authority active</param>
+            <param name="memo">Input byte[] memo</param>
+            <returns>Returns true if success or false for failed try</returns>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Account.depositVesting(System.String,System.UInt64)">
             <summary>
             Deposit to_vestings SPHTXs to vesting.
             </summary>
-            <param name="accountName"></param>
-            <param name="toVestings"></param>
-            <returns></returns>
+            <param name="accountName">Input string accountName</param>
+            <param name="toVestings">Input ulong toVestings</param>
+            <returns>Returns true if success or false for failed try</returns>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Account.withdrawVestings(System.String,System.UInt64)">
             <summary>
             Withdraw from_vestings vested SPHTXs.
             </summary>
-            <param name="accountName"></param>
-            <param name="fromVestings"></param>
-            <returns></returns>
+            <param name="accountName">Input string accountName</param>
+            <param name="fromVestings">Input ulong fromVestings</param>
+            <returns>Returns true if success or false for failed try</returns>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Account.voteForWitness(System.String,System.String,System.String)">
             <summary>
             Vote or unvote a witness.
             </summary>
-            <param name="votingAccountName"></param>
-            <param name="votedAccountName"></param>
-            <param name="approve"></param>
+            <param name="votingAccountName">Input string votingAccountName</param>
+            <param name="votedAccountName">Input string votedAccountName</param>
+            <param name="approve">Input string approve</param>
             <returns></returns>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Account.updateToWitness(System.String,System.String,System.Byte[])">
             <summary>
             Update an account to witness.Requires XXX vested SPHTX before updating.
             </summary>
-            <param name="accountName"></param>
-            <param name="url"></param>
-            <param name="blockKey"></param>
-            <returns></returns>
+            <param name="accountName">Inout string accountName</param>
+            <param name="url">Input string url</param>
+            <param name="blockKey">Input byte[] blockKey</param>
+            <returns>Returns true if success or false for failed try</returns>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Account.createAccount(System.String,System.String,Alexandria.net.API.WalletFunctions.Authority,Alexandria.net.API.WalletFunctions.Authority,System.Byte[])">
             <summary>
             Creates new account in the SophiaTX blockchain.
             </summary>
-            <param name="registeringAccountName"></param>
-            <param name="newAccountName"></param>
-            <param name="owner"></param>
-            <param name="active"></param>
-            <param name="memo"></param>
-            <returns></returns>
+            <param name="registeringAccountName">Input string registeringAccountName</param>
+            <param name="newAccountName">Input string newAccountName</param>
+            <param name="owner">Input Authority owner</param>
+            <param name="active">Input Authority active</param>
+            <param name="memo">Input byte[] memo</param>
+            <returns>Returns true if success or false for failed try</returns>
         </member>
         <member name="T:Alexandria.net.API.WalletFunctions.Asset">
             <inheritdoc />
@@ -187,30 +209,66 @@
             <summary>
             Trnasfer given assets from one user to other one.
             </summary>
-            <param name="from"></param>
-            <param name="to"></param>
-            <param name="memo"></param>
-            <param name="balance"></param>
-            <param name="assetSymbol"></param>
-            <returns></returns>
+            <param name="from">string from</param>
+            <param name="to">string to</param>
+            <param name="memo">string memo</param>
+            <param name="balance">ulong balance</param>
+            <param name="assetSymbol">string assetSymbol</param>
+            <returns>Returns true if success or false for failed try</returns>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Asset.getAccountUiaBalance(System.String,System.String)">
             <summary>
             Returns the balance of the given account and UIA
             </summary>
-            <param name="accountName"></param>
-            <param name="assetSymbol"></param>
-            <returns></returns>
+            <param name="accountName">string accountName</param>
+            <param name="assetSymbol">string assetSymbol</param>
+            <returns>Returns retruns ulong Accournt balance</returns>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Asset.createUia(System.String,Alexandria.net.API.WalletFunctions.Authority,System.UInt64,System.String)">
             <summary>
-            
+            Create UIA for the given account authority
             </summary>
-            <param name="ownerAccountName"></param>
-            <param name="managementAuthority"></param>
-            <param name="maxSupply"></param>
-            <param name="assetSymbol"></param>
-            <returns></returns>
+            <param name="ownerAccountName">string ownerAccountName</param>
+            <param name="managementAuthority">Authority managementAuthority</param>
+            <param name="maxSupply">ulong maxSupply</param>
+            <param name="assetSymbol">string assetSymbol</param>
+            <returns>Returns true if success or false for failed try</returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Asset.issueUia(System.String,System.UInt64,System.String)">
+            <summary>
+            Issues an UIA for the Receiver account of given ammount
+            </summary>
+            <param name="reveiverAccountName">string reveiverAccountName</param>
+            <param name="amount">ulong amount</param>
+            <param name="assetSymbol">string assetSymbol</param>
+            <returns>Returns true if success or false for failed try</returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Asset.burnUia(System.String,System.UInt64,System.String)">
+            <summary>
+             Vanish given amount of UIA 
+            </summary>
+            <param name="accountName">string accountName</param>
+            <param name="amount">ulong amount</param>
+            <param name="assetSymbol">string assetSymbol</param>
+            <returns>Returns true if success or false for failed try</returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Asset.getUiaAuthority(System.String)">
+            <summary>
+            Check for the authority assigned to given UIA, identify by Symbol
+            </summary>
+            <param name="assetSymbol">string assetSymbol</param>
+            <returns>Returns Json object with details combining
+            -WeightThreshold
+            -AccountAuths
+            -KeyAuths
+            </returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Asset.hasUiaPrivateKey(System.String)">
+            <summary>
+            Checks if the given UIA has a private key, identify by Sumbol
+            </summary>
+            <param name="assetSymbol">string assetSymbol</param>
+            <returns>Returns true if success or false for failed try</returns>
         </member>
         <member name="T:Alexandria.net.API.WalletFunctions.Authority">
             <summary>
@@ -336,12 +394,54 @@
             <param name="publicKey"></param>
             <param name="privateKey"></param>
         </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Key.generate_private_key(System.Byte[])">
+            <summary>
+            Create a private key
+            </summary>
+            <param name="private_key">byte[52] private_key</param>
+            <returns>Returns true if success or false for failed try</returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Key.get_transaction_digest(System.String,System.Byte[])">
+            <summary>
+            Create a Transaction digest of the given transaction
+            </summary>
+            <param name="transaction">string transaction</param>
+            <param name="digest">byte[] digest</param>
+            <returns>Returns true if success or false for failed try</returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Key.sign_digest(System.String,System.String,System.Byte[])">
+            <summary>
+            Creates signamture for the given transaction and digest
+            </summary>
+            <param name="digest">string digest</param>
+            <param name="private_key">string private_key</param>
+            <param name="signed_digest">byte[] signed_digest</param>
+            <returns>Returns true if success or false for failed try</returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Key.add_signature(System.String,System.String,System.Byte[])">
+            <summary>
+            Sign a transcation using the given signature
+            </summary>
+            <param name="transaction">string transaction</param>
+            <param name="signature">string signature</param>
+            <param name="signed_tx">byte[] signed_tx</param>
+            <returns>Returns true if success or false for failed try</returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Key.#ctor(System.String,System.UInt16,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="hostname"></param>
+            <param name="port"></param>
+            <param name="api"></param>
+            <param name="version"></param>
+        </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Key.generate_private_key_c(System.Byte[])">
             <summary>
             Generates the Private Keys
             </summary>
             <param name="privatekey">the key bytes</param>
-            <returns>true if generated</returns>
+            <returns>Returns true if success or false for failed try</returns>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Key.get_transaction_digest_c(System.String,System.Byte[])">
             <summary>
@@ -349,25 +449,25 @@
             </summary>
             <param name="transaction">the transaction to digest</param>
             <param name="digest">the digest bytes</param>
-            <returns>true if successful</returns>
+            <returns>Returns true if success or false for failed try</returns>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Key.sign_digest_c(System.String,System.String,System.Byte[])">
             <summary>
-            
+            Creates a signature for the given private key and transaction digest
             </summary>
-            <param name="digest"></param>
-            <param name="privatekey"></param>
-            <param name="signeddigest"></param>
-            <returns></returns>
+            <param name="digest">string digest</param>
+            <param name="privatekey">string privatekey</param>
+            <param name="signeddigest"> byte[] signeddigest</param>
+            <returns>Returns true if success or false for failed try</returns>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Key.add_signature_c(System.String,System.String,System.Byte[])">
             <summary>
-            
+            Signs the given transactions and returns true for success
             </summary>
-            <param name="transaction"></param>
-            <param name="signature"></param>
-            <param name="signedtx"></param>
-            <returns></returns>
+            <param name="transaction">string transaction</param>
+            <param name="signature">string signature</param>
+            <param name="signedtx">byte[] signedtx</param>
+            <returns>Returns true if success or false for failed try</returns>
         </member>
         <member name="T:Alexandria.net.API.WalletFunctions.Network">
             <inheritdoc />
@@ -384,32 +484,24 @@
             <summary>
             Returns true if the library is connected to a backend.
             </summary>
-            <returns></returns>
+            <returns>Returns true if success and false for failed try</returns>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Network.connect(System.String,System.Int32)">
             <summary>
             Connects to the WS endpoint.
             </summary>
-            <param name="host"></param>
-            <param name="port"></param>
-            <returns></returns>
+            <param name="host">string host</param>
+            <param name="port">int port</param>
+            <returns>Returns true if success and false for failed try</returns>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Network.getTransactionDigest(System.String)">
             <summary>
             Get hash including chain ID (digest), ready to be signed, of a JSON formatted transaction.
             </summary>
-            <returns></returns>
+            <param name="transaction">string transaction</param>
+            <returns>Returns char[] transaction digest</returns>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Network.makeCustomJsonOperation(System.String,System.Collections.Generic.List{System.String},System.UInt64,System.String)">
-            <summary>
-            
-            </summary>
-            <param name="sender"></param>
-            <param name="recipients"></param>
-            <param name="appId"></param>
-            <param name="document"></param>
-            <returns></returns>
-        </member>
+        <!-- Badly formed XML comment ignored for member "M:Alexandria.net.API.WalletFunctions.Network.makeCustomJsonOperation(System.String,System.Collections.Generic.List{System.String},System.UInt64,System.String)" -->
         <member name="M:Alexandria.net.API.WalletFunctions.Network.makeCustomBinaryOperation(System.String,System.Collections.Generic.List{System.String},System.UInt64,System.Collections.Generic.List{System.Char})">
             <summary>
             
@@ -518,15 +610,7 @@
             <param name="trxId"></param>
             <returns></returns>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Transaction.publish_feed(System.String,System.Decimal)">
-            <summary>
-            A witness can Public a price feed For the SPHTX:SBD market.
-            The median price feed Is used To process conversion requests from SBD To SPHTX.
-            </summary>
-            <param name="witness">The witness publishing the price feed </param>
-            <param name="exchangeRate">The desired exchange rate</param>
-            <returns></returns>
-        </member>
+        <!-- Badly formed XML comment ignored for member "M:Alexandria.net.API.WalletFunctions.Transaction.publish_feed(System.String,System.Decimal)" -->
         <member name="M:Alexandria.net.API.WalletFunctions.Transaction.set_transaction_expiration(System.UInt32)">
             <summary>
             
@@ -577,17 +661,27 @@
             <param name="amount">The amount Of STEEM To vest i.e. "100.00 SPHTX" </param>
             <returns></returns>
         </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Witness.#ctor(System.String,System.UInt16,System.String,System.String)">
+            <summary>
+            Connects Witness with default values, the runtime values inherited from base class
+            </summary>
+            <param name="hostname">string hostname = "127.0.0.1"</param>
+            <param name="port">ushort port = 8091</param>
+            <param name="api">string api = "/rpc"</param>
+            <param name="version">string version = "2.0"</param>
+        </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Witness.get_active_witnesses">
             <summary>
-            Returns the list Of witnesses producing blocks In the current round (21 Blocks)
+            Returns the list Of witnesses producing blocks In the current round 
             </summary>
-            <returns></returns>
+            <returns>Returns json object combining list of active witnesses 
+            </returns>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Witness.get_miner_queue">
             <summary>
             Returns the queue Of pow miners waiting To produce blocks.
             </summary>
-            <returns></returns>
+            <returns>...</returns>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Witness.get_witness(System.String)">
             <summary>
@@ -609,7 +703,7 @@
             <param name="lowerbound">the name Of the first witness To Return.
             If the named witness does Not exist, the list will start at the witness thatcomes after 'lowerbound'</param>
             <param name="limit">the maximum number Of witnesss To return (max: 1000)</param>
-            <returns>a list Of witnesss mapping witness names To witness ids</returns>
+            <returns>Returns a list Of witnesss mapping witness names To witness ids</returns>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Witness.update_witness(System.String,System.String,System.String,Newtonsoft.Json.Linq.JArray)">
             <summary>
@@ -632,7 +726,7 @@
             <param name="weight">The weight [-100,100] Of the vote</param>
             <returns></returns>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Witness.vote_for_witness(System.String,System.String,System.Boolean)">
+        <member name="M:Alexandria.net.API.WalletFunctions.Witness.Vote(System.String,System.String,System.Boolean)">
             <summary>
             Vote for a witness to become a block producer. By default an account has not voted positively Or negatively for a witness.
             The account can either vote for with positively votes Or against with negative votes.
@@ -642,6 +736,11 @@
             <param name="witnessToVoteFor">The witness that Is being voted For</param>
             <param name="approve">true if the account Is voting for the account to be able to be a block produce</param>
             <returns></returns>
+        </member>
+        <member name="F:Alexandria.net.API.WalletFunctions.Witness._cSharpToCpp">
+            <summary>
+            C#toCPP object generated to map the method names according to C# naming conventions
+            </summary>
         </member>
         <member name="T:Alexandria.net.Communication.RpcConnection">
             <summary>
@@ -693,6 +792,169 @@
             </summary>
             <inheritdoc cref="T:Alexandria.net.Communication.RpcConnection"/>
         </member>
+        <member name="M:Alexandria.net.Core.Daemon.get_config">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.get_dynamic_global_properties">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.get_chain_properties">
+            <summary>
+            	
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.get_current_median_history_price">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.get_feed_history">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.get_witness_schedule">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.get_hardfork_version">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.get_next_scheduled_hardfork">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.get_accounts(System.Collections.ArrayList)">
+            <summary>
+            
+            </summary>
+            <param name="accounts"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.lookup_account_names(System.Collections.ArrayList)">
+            <summary>
+            
+            </summary>
+            <param name="accounts"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.lookup_accounts(System.String,System.UInt32)">
+            <summary>
+            
+            </summary>
+            <param name="lowerbound"></param>
+            <param name="limit"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.get_account_count">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.get_owner_history(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="account"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.get_recovery_request(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="account"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.get_block_header(System.Int64)">
+            <summary>
+            
+            </summary>
+            <param name="blockId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.get_block(System.Int64)">
+            <summary>
+            
+            </summary>
+            <param name="blockId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.get_witnesses(System.Collections.ArrayList)">
+            <summary>
+            
+            </summary>
+            <param name="witnesses"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.get_conversion_requests(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="account"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.get_witness_by_account(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="account"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.get_witnesses_by_vote(System.String,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="from"></param>
+            <param name="limit"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.get_witness_count">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.get_active_votes(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="author"></param>
+            <param name="permlink"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.get_content(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="author"></param>
+            <param name="permlink"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.get_content_replies(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="parent"></param>
+            <param name="parentPermlink"></param>
+            <returns></returns>
+        </member>
         <member name="M:Alexandria.net.Core.Daemon.get_replies_by_last_update(System.String,System.String,System.UInt32)">
             <summary>
             
@@ -732,7 +994,7 @@
         </member>
         <member name="T:Alexandria.net.Core.Wallet">
             <summary>
-            
+            List of all the functionalities supported by the SophiaTX C# Wallet API
             </summary>
         </member>
         <member name="M:Alexandria.net.Core.Wallet.#ctor(System.String,System.UInt16)">

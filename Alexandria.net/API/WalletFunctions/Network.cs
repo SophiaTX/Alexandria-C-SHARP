@@ -28,7 +28,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <summary>
         /// Returns true if the library is connected to a backend.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Returns true if success and false for failed try</returns>
         public bool isConnected()
         {
             var result = SendRequest(MethodBase.GetCurrentMethod().Name);
@@ -38,9 +38,9 @@ namespace Alexandria.net.API.WalletFunctions
         /// <summary>
         /// Connects to the WS endpoint.
         /// </summary>
-        /// <param name="host"></param>
-        /// <param name="port"></param>
-        /// <returns></returns>
+        /// <param name="host">string host</param>
+        /// <param name="port">int port</param>
+        /// <returns>Returns true if success and false for failed try</returns>
         public bool connect(string host, int port)
         {
             var @params = new ArrayList {host, port};
@@ -48,24 +48,24 @@ namespace Alexandria.net.API.WalletFunctions
             return result == "true";
         }
 
+        
         /// <summary>
         /// Get hash including chain ID (digest), ready to be signed, of a JSON formatted transaction.
         /// </summary>
-        /// <returns></returns>
+        /// <param name="transaction">string transaction</param>
+        /// <returns>Returns char[] transaction digest</returns>
         public char[] getTransactionDigest(string transaction)
         {
             var @params = new ArrayList {transaction};
             return SendRequest(MethodBase.GetCurrentMethod().Name, @params).ToCharArray();
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="recipients"></param>
-        /// <param name="appId"></param>
-        /// <param name="document"></param>
+        /// <param name="sender">string sender</param>
+        /// <param name="recipients">List<string> recipients</param>
+        /// <param name="appId">ulong appId</param>
+        /// <param name="document">string document</param>
         /// <returns></returns>
         public string makeCustomJsonOperation(string sender, List<string> recipients, ulong appId, string document)
         {
