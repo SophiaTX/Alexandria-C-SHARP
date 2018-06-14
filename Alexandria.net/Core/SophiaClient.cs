@@ -15,7 +15,6 @@ namespace Alexandria.net.Core
         /// the blockchain wallet
         /// </summary>
         public Wallet Wallet { get; }
-
         /// <summary>
         /// Client Constructor
         /// </summary>
@@ -27,7 +26,6 @@ namespace Alexandria.net.Core
             Daemon = new Daemon(hostname, daemonPort);
             Wallet = new Wallet(hostname, walletPort);
         }
-
         /// <summary>
         /// Client Constructor
         /// </summary>

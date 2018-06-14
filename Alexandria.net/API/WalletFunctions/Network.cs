@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using Alexandria.net.Communication;
+using Alexandria.net.Logging;
 using Newtonsoft.Json;
 
 namespace Alexandria.net.API.WalletFunctions
@@ -9,7 +11,7 @@ namespace Alexandria.net.API.WalletFunctions
     /// <inheritdoc />
     public class Network : RpcConnection
     {
-
+        private readonly ILogger _logger;
         #region Constructors
 
         /// <inheritdoc />
@@ -21,6 +23,8 @@ namespace Alexandria.net.API.WalletFunctions
         public Network(string hostname = "127.0.0.1", ushort port = 8091, string api = "/rpc", string version = "2.0") :
             base(hostname, port, api, version)
         {
+            var assemblyname = Assembly.GetExecutingAssembly().GetName().Name;
+            _logger = new Logger(loggingType.server, assemblyname);
         }
 
         #endregion
@@ -28,49 +32,85 @@ namespace Alexandria.net.API.WalletFunctions
         /// <summary>
         /// Returns true if the library is connected to a backend.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Returns true if success and false for failed try</returns>
         public bool isConnected()
         {
-            var result = SendRequest(MethodBase.GetCurrentMethod().Name);
-            return result == "true";
+            try
+            {
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name);
+                return result == "true";
+            }
+            catch(Exception ex)
+            {
+                _logger.WriteError(ex.Message);
+                throw ;
+            }
+            
         }
 
         /// <summary>
         /// Connects to the WS endpoint.
         /// </summary>
-        /// <param name="host"></param>
-        /// <param name="port"></param>
-        /// <returns></returns>
+        /// <param name="host">string host</param>
+        /// <param name="port">int port</param>
+        /// <returns>Returns true if success and false for failed try</returns>
         public bool connect(string host, int port)
         {
-            var @params = new ArrayList {host, port};
-            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-            return result == "true";
+            try
+            {
+                var @params = new ArrayList {host, port};
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return result == "true";
+            }
+            catch(Exception ex)
+            {
+                _logger.WriteError(ex.Message);
+                throw ;
+            }
+            
         }
 
+        
         /// <summary>
         /// Get hash including chain ID (digest), ready to be signed, of a JSON formatted transaction.
         /// </summary>
-        /// <returns></returns>
+        /// <param name="transaction">string transaction</param>
+        /// <returns>Returns char[] transaction digest</returns>
         public char[] getTransactionDigest(string transaction)
         {
-            var @params = new ArrayList {transaction};
-            return SendRequest(MethodBase.GetCurrentMethod().Name, @params).ToCharArray();
+            try
+            {
+                var @params = new ArrayList {transaction};
+                return SendRequest(MethodBase.GetCurrentMethod().Name, @params).ToCharArray();
+            }
+            catch(Exception ex)
+            {
+                _logger.WriteError(ex.Message);
+                throw;
+            }
+            
         }
 
-
         /// <summary>
-        /// 
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="recipients"></param>
-        /// <param name="appId"></param>
-        /// <param name="document"></param>
+        /// <param name="sender">string sender</param>
+        /// <param name="recipients">List of string recipients</param>
+        /// <param name="appId">ulong appId</param>
+        /// <param name="document">string document</param>
         /// <returns></returns>
         public string makeCustomJsonOperation(string sender, List<string> recipients, ulong appId, string document)
         {
-            var @params = new ArrayList {sender, recipients, appId, document};
-            return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+            try
+            {
+                var @params = new ArrayList {sender, recipients, appId, document};
+                return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+            }
+            catch(Exception ex)
+            {
+                _logger.WriteError(ex.Message);
+                throw;
+            }
+           
         }
 
 
@@ -85,8 +125,17 @@ namespace Alexandria.net.API.WalletFunctions
         public string makeCustomBinaryOperation(string sender, List<string> recipients, ulong appId,
             List<char> document)
         {
-            var @params = new ArrayList {sender, recipients, appId, document};
-            return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+            try
+            {
+                var @params = new ArrayList {sender, recipients, appId, document};
+                return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+            }
+            catch(Exception ex)
+            {
+                _logger.WriteError(ex.Message);
+                throw ;
+            }
+            
         }
 
 
@@ -101,8 +150,17 @@ namespace Alexandria.net.API.WalletFunctions
         public string makeCustomBinaryBase58Operation(string sender, List<string> recipients, ulong appId,
             string document)
         {
-            var @params = new ArrayList {sender, recipients, appId, document};
-            return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+            try
+            {
+                var @params = new ArrayList {sender, recipients, appId, document};
+                return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+            }
+            catch(Exception ex)
+            {
+                _logger.WriteError(ex.Message);
+                throw;
+            }
+            
         }
 
         /// <summary>
@@ -118,9 +176,18 @@ namespace Alexandria.net.API.WalletFunctions
         public Dictionary<ulong, ReceiverRecipe> get_received_documents(ulong appId, string searchType,
             string account, string start, uint count)
         {
-            var @params = new ArrayList {appId, searchType, account, start, count};
-            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-            return JsonConvert.DeserializeObject<Dictionary<ulong, ReceiverRecipe>>(result);
+            try
+            {
+                var @params = new ArrayList {appId, searchType, account, start, count};
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return JsonConvert.DeserializeObject<Dictionary<ulong, ReceiverRecipe>>(result);
+            }
+            catch(Exception ex)
+            {
+                _logger.WriteError(ex.Message);
+                throw;
+            }
+            
         }
 
     }

@@ -1,8 +1,8 @@
-﻿using System.Collections;
-using System.Globalization;
+﻿using System;
+using System.Collections;
 using System.Reflection;
-using System.Runtime.InteropServices;
 using Alexandria.net.Communication;
+using Alexandria.net.Logging;
 using Alexandria.net.Messaging.Responses.DTO;
 using Newtonsoft.Json;
 
@@ -12,7 +12,7 @@ namespace Alexandria.net.API.WalletFunctions
 	/// All wallet calls to the SophiaTX Blockchain
 	/// </summary>
 	public partial class  Transaction : RpcConnection
-	{	
+	{	private readonly ILogger _logger;
 		#region Constructors
 
 		/// <summary>
@@ -23,6 +23,8 @@ namespace Alexandria.net.API.WalletFunctions
 		public Transaction(string hostname = "127.0.0.1", ushort port = 8091, string api = "/rpc",
 			string version = "2.0") : base(hostname, port, api, version)
 		{
+			var assemblyname = Assembly.GetExecutingAssembly().GetName().Name;
+			_logger = new Logger(loggingType.server, assemblyname);
 		}
 
 		#endregion
@@ -35,7 +37,16 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <returns>Returns compile time info And client And dependencies versions</returns>
 		public string About()
 		{
-			return SendRequest(MethodBase.GetCurrentMethod().Name.ToLower());
+			try
+			{
+				return SendRequest(MethodBase.GetCurrentMethod().Name.ToLower());
+			}
+			catch(Exception ex)
+			{
+				_logger.WriteError(ex.Message);
+				throw ;
+			}
+			
 		}
 
 		/// <summary>
@@ -46,8 +57,17 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <returns></returns>
 		public string Challenge(string challenger, string challenged)
 		{
-			var @params = new ArrayList {challenger, challenged};
-			return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+			try
+			{
+				var @params = new ArrayList {challenger, challenged};
+				return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+			}
+			catch(Exception ex)
+			{
+				_logger.WriteError(ex.Message);
+				throw ;
+			}
+			
 		}
 
 		/// <summary>
@@ -57,10 +77,19 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <returns>Public block data On the blockchain</returns>
 		public BlockResponse get_block(int num)
 		{
-			var @params = new ArrayList {num};
-			var result =  SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-			var contentdata = JsonConvert.DeserializeObject<BlockResponse>(result);
-			return contentdata;
+			try
+			{
+				var @params = new ArrayList {num};
+				var result =  SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+				var contentdata = JsonConvert.DeserializeObject<BlockResponse>(result);
+				return contentdata;
+			}
+			catch(Exception ex)
+			{
+				_logger.WriteError(ex.Message);
+				throw ;
+			}
+			
 		}
 
 		/// <summary>
@@ -69,9 +98,18 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <returns></returns>
 		public FeedHistoryResponse get_feed_history()
 		{
-			var result= SendRequest(MethodBase.GetCurrentMethod().Name);
-			var contentdata = JsonConvert.DeserializeObject<FeedHistoryResponse>(result);
-			return contentdata;
+			try
+			{
+				var result= SendRequest(MethodBase.GetCurrentMethod().Name);
+				var contentdata = JsonConvert.DeserializeObject<FeedHistoryResponse>(result);
+				return contentdata;
+			}
+			catch(Exception ex)
+			{
+				_logger.WriteError(ex.Message);
+				throw ;
+			}
+			
 		}
 
 		/// <summary>
@@ -81,8 +119,17 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <returns></returns>
 		public string get_transaction(string trxId)
 		{
-			var @params = new ArrayList {trxId};
-			return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+			try
+			{
+				var @params = new ArrayList {trxId};
+				return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+			}
+			catch(Exception ex)
+			{
+				_logger.WriteError(ex.Message);
+				throw ;
+			}
+			
 		}
 
 		/// <summary>
@@ -94,8 +141,17 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <returns></returns>
 		private string publish_feed(string witness, decimal exchangeRate)
 		{
-			var @params = new ArrayList {witness, exchangeRate};
-			return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+			try
+			{
+				var @params = new ArrayList {witness, exchangeRate};
+				return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+			}
+			catch(Exception ex)
+			{
+				_logger.WriteError(ex.Message);
+				throw ;
+			}
+			
 		}
 
 		/// <summary>
@@ -104,8 +160,17 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <param name="seconds"></param>
 		private void set_transaction_expiration(uint seconds)
 		{
-			var @params = new ArrayList {seconds};
-			SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+			try
+			{
+				var @params = new ArrayList {seconds};
+				SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+			}
+			catch(Exception ex)
+			{
+				_logger.WriteError(ex.Message);
+				throw ;
+			}
+			
 		}
 
 		/// <summary>
@@ -120,8 +185,17 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <returns></returns>
 		public string set_voting_proxy(string accountToModify, string proxy)
 		{
-			var @params = new ArrayList {accountToModify, proxy};
-			return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+			try
+			{
+				var @params = new ArrayList {accountToModify, proxy};
+				return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+			}
+			catch(Exception ex)
+			{
+				_logger.WriteError(ex.Message);
+				throw ;
+			}
+			
 		}
 
 		/// <summary>
@@ -134,10 +208,19 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <returns></returns>
 		public LockUnlockResponse withdraw_vesting(string from, decimal vestingShares)
 		{
-			var @params = new ArrayList {from, vestingShares};
-			var result= SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-			var contentdata = JsonConvert.DeserializeObject<LockUnlockResponse>(result);
-			return contentdata;
+			try
+			{
+				var @params = new ArrayList {from, vestingShares};
+				var result= SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+				var contentdata = JsonConvert.DeserializeObject<LockUnlockResponse>(result);
+				return contentdata;
+			}
+			catch(Exception ex)
+			{
+				_logger.WriteError(ex.Message);
+				throw ;
+			}
+			
 		}
 
 		/// <summary>
@@ -150,8 +233,17 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <returns></returns>
 		public string Transfer(string from, string to, decimal amount, string memo)
 		{
-			var @params = new ArrayList {@from, to, amount, memo};
-			return SendRequest(MethodBase.GetCurrentMethod().Name.ToLower(), @params);
+			try
+			{
+				var @params = new ArrayList {@from, to, amount, memo};
+				return SendRequest(MethodBase.GetCurrentMethod().Name.ToLower(), @params);
+			}
+			catch(Exception ex)
+			{
+				_logger.WriteError(ex.Message);
+				throw ;
+			}
+			
 		}
 
 		/// <summary>
@@ -166,8 +258,17 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <returns></returns>
 		public string transfer_to_vesting(string from, string to, decimal amount)
 		{
-			var @params = new ArrayList {@from, to, amount};
-			return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+			try
+			{
+				var @params = new ArrayList {@from, to, amount};
+				return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+			}
+			catch(Exception ex)
+			{
+				_logger.WriteError(ex.Message);
+				throw ;
+			}
+			
 		}
 
 		#endregion

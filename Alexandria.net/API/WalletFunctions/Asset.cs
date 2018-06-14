@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Reflection;
 using Alexandria.net.Communication;
+using Alexandria.net.Logging;
 using Newtonsoft.Json;
 
 namespace Alexandria.net.API.WalletFunctions
@@ -11,6 +12,7 @@ namespace Alexandria.net.API.WalletFunctions
     /// </summary>
     public class Asset : RpcConnection
     {
+        private readonly ILogger _logger;
 
         #region Constructors
 
@@ -22,6 +24,8 @@ namespace Alexandria.net.API.WalletFunctions
         public Asset(string hostname = "127.0.0.1", ushort port = 8091, string api = "/rpc", string version = "2.0") :
             base(hostname, port, api, version)
         {
+            var assemblyname = Assembly.GetExecutingAssembly().GetName().Name;
+            _logger = new Logger(loggingType.server, assemblyname);
         }
 
         #endregion
@@ -30,73 +34,167 @@ namespace Alexandria.net.API.WalletFunctions
         /// <summary>
         /// Trnasfer given assets from one user to other one.
         /// </summary>
-        /// <param name="from"></param>
-        /// <param name="to"></param>
-        /// <param name="memo"></param>
-        /// <param name="balance"></param>
-        /// <param name="assetSymbol"></param>
-        /// <returns></returns>
+        /// <param name="from">string from</param>
+        /// <param name="to">string to</param>
+        /// <param name="memo">string memo</param>
+        /// <param name="balance">ulong balance</param>
+        /// <param name="assetSymbol">string assetSymbol</param>
+        /// <returns>Returns true if success or false for failed try</returns>
         public bool transfer(string from, string to, string memo, ulong balance, string assetSymbol)
         {
-            var @params = new ArrayList {from, to, memo, balance, assetSymbol};
-            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-            return result == "true";
+            try
+            {
+                var @params = new ArrayList {from, to, memo, balance, assetSymbol};
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return result == "true";
+            }
+            catch (Exception ex)
+            {
+                
+                _logger.WriteError(ex.Message);
+                throw;
+            }
+            
         }
 
         /// <summary>
         /// Returns the balance of the given account and UIA
         /// </summary>
-        /// <param name="accountName"></param>
-        /// <param name="assetSymbol"></param>
-        /// <returns></returns>
+        /// <param name="accountName">string accountName</param>
+        /// <param name="assetSymbol">string assetSymbol</param>
+        /// <returns>Returns retruns ulong Accournt balance</returns>
         public ulong getAccountUiaBalance(string accountName, string assetSymbol)
         {
-            var @params = new ArrayList {accountName, assetSymbol};
-            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-            return Convert.ToUInt64(result);
+            try
+            {
+                var @params = new ArrayList {accountName, assetSymbol};
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return Convert.ToUInt64(result);
+            }
+            catch (Exception ex)
+            {
+                
+                _logger.WriteError(ex.Message);
+                throw;
+            }
+            
         }
 
         /// <summary>
-        /// 
+        /// Create UIA for the given account authority
         /// </summary>
-        /// <param name="ownerAccountName"></param>
-        /// <param name="managementAuthority"></param>
-        /// <param name="maxSupply"></param>
-        /// <param name="assetSymbol"></param>
-        /// <returns></returns>
+        /// <param name="ownerAccountName">string ownerAccountName</param>
+        /// <param name="managementAuthority">Authority managementAuthority</param>
+        /// <param name="maxSupply">ulong maxSupply</param>
+        /// <param name="assetSymbol">string assetSymbol</param>
+        /// <returns>Returns true if success or false for failed try</returns>
         public bool createUia(string ownerAccountName, Authority managementAuthority, ulong maxSupply, string assetSymbol)
         {
-            var @params = new ArrayList {ownerAccountName, managementAuthority, maxSupply, assetSymbol};
-            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-            return result == "true";
+            try
+            {
+                var @params = new ArrayList {ownerAccountName, managementAuthority, maxSupply, assetSymbol};
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return result == "true";
+            }
+            catch (Exception ex)
+            {
+                
+                _logger.WriteError(ex.Message);
+                throw;
+            }
+            
         }
-
+        /// <summary>
+        /// Issues an UIA for the Receiver account of given ammount
+        /// </summary>
+        /// <param name="reveiverAccountName">string reveiverAccountName</param>
+        /// <param name="amount">ulong amount</param>
+        /// <param name="assetSymbol">string assetSymbol</param>
+        /// <returns>Returns true if success or false for failed try</returns>
         public bool issueUia(string reveiverAccountName, ulong amount, string assetSymbol)
         {
-            var @params = new ArrayList {reveiverAccountName, amount, assetSymbol};
-            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-            return result == "true";
+            try
+            {
+                var @params = new ArrayList {reveiverAccountName, amount, assetSymbol};
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return result == "true";
+            }
+            catch (Exception ex)
+            {
+                
+                _logger.WriteError(ex.Message);
+                throw;
+            }
+            
         }
-
+        /// <summary>
+        ///  Vanish given amount of UIA 
+        /// </summary>
+        /// <param name="accountName">string accountName</param>
+        /// <param name="amount">ulong amount</param>
+        /// <param name="assetSymbol">string assetSymbol</param>
+        /// <returns>Returns true if success or false for failed try</returns>
         public bool burnUia(string accountName, ulong amount, string assetSymbol)
         {
-            var @params = new ArrayList {accountName, amount, assetSymbol};
-            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);   
-            return result == "true";
+            try
+            {
+                var @params = new ArrayList {accountName, amount, assetSymbol};
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);   
+                return result == "true";
+            }
+            catch (Exception ex)
+            {
+                
+                _logger.WriteError(ex.Message);
+                throw;
+            }
+            
         }
-
+        /// <summary>
+        /// Check for the authority assigned to given UIA, identify by Symbol
+        /// </summary>
+        /// <param name="assetSymbol">string assetSymbol</param>
+        /// <returns>Returns Json object with details combining
+        /// -WeightThreshold
+        /// -AccountAuths
+        /// -KeyAuths
+        /// </returns>
         public Authority getUiaAuthority(string assetSymbol)
         {
-            var @params = new ArrayList {assetSymbol};
-            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-            return JsonConvert.DeserializeObject<Authority>(result);
+            try
+            {
+                var @params = new ArrayList {assetSymbol};
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return JsonConvert.DeserializeObject<Authority>(result);
+            }
+            catch (Exception ex)
+            {
+                
+                _logger.WriteError(ex.Message);
+                throw ;
+            }
+            
         }
-
+        /// <summary>
+        /// Checks if the given UIA has a private key, identify by Sumbol
+        /// </summary>
+        /// <param name="assetSymbol">string assetSymbol</param>
+        /// <returns>Returns true if success or false for failed try</returns>
         public bool hasUiaPrivateKey(string assetSymbol)
         {
-            var @params = new ArrayList {assetSymbol};
-            var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-            return result == "true";
+            try
+            {
+                var @params = new ArrayList {assetSymbol};
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return result == "true";
+            }
+            catch (Exception ex)
+            {
+                
+                _logger.WriteError(ex.Message);
+                throw ;
+            }
+            
         }
     }
 }
