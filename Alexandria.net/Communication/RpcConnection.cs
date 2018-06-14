@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections;
+﻿ using System.Collections;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Alexandria.net.Mapping;
 using Newtonsoft.Json;
 
 namespace Alexandria.net.Communication
@@ -18,6 +18,7 @@ namespace Alexandria.net.Communication
         private readonly string _uri;
         private readonly HttpClient _client;
         private readonly string _jsonRpc;
+        protected readonly CSharpToCPP _cSharpToCpp = new CSharpToCPP();
 
         #endregion
 
