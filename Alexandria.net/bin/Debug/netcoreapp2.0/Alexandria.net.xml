@@ -85,7 +85,13 @@
             <param name="accountName"></param>
             <returns></returns>
         </member>
-        <!-- Badly formed XML comment ignored for member "M:Alexandria.net.API.WalletFunctions.Account.getVestingBalance(System.String)" -->
+        <member name="M:Alexandria.net.API.WalletFunctions.Account.getVestingBalance(System.String)">
+            <summary>
+            Get account vested SPHTX balance.
+            </summary>
+            <param name="accountName"></param>
+            <returns></returns>
+        </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Account.createSimpleAuthority(System.Byte[])">
             <summary>
             Creates authority resolvable with signature corresponding to the given pub_key.
@@ -632,7 +638,7 @@
             <param name="weight">The weight [-100,100] Of the vote</param>
             <returns></returns>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Witness.vote_for_witness(System.String,System.String,System.Boolean)">
+        <member name="M:Alexandria.net.API.WalletFunctions.Witness.Vote(System.String,System.String,System.Boolean)">
             <summary>
             Vote for a witness to become a block producer. By default an account has not voted positively Or negatively for a witness.
             The account can either vote for with positively votes Or against with negative votes.
