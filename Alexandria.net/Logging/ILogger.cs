@@ -10,5 +10,7 @@
         void WriteWarning(string data);
         void WriteInfo(string data);
         void WriteTestData(string data);
+        BuildMode BuildMode { get; set; }
+        
     }
 }

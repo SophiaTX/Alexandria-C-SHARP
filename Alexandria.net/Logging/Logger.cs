@@ -10,7 +10,7 @@ namespace Alexandria.net.Logging
 {
     public class Logger :ILogger
     {
-        public Logger(loggingType loggingtype, string appname)
+        public Logger(loggingType loggingtype, string appname, BuildMode mode = BuildMode.Prod)
         {
             switch (loggingtype)
             {
@@ -23,6 +23,8 @@ namespace Alexandria.net.Logging
                 default:
                     throw new ArgumentOutOfRangeException(nameof(loggingtype), loggingtype, null);
             }
+
+            BuildMode = mode;
         }
 
 
@@ -84,24 +86,53 @@ namespace Alexandria.net.Logging
 
         public void WriteTestData(string data)
         {
-            throw new NotImplementedException();
+            Write(data, ErrorType.Verbose);
         }
+
+        public BuildMode BuildMode { get; set; }
 
         private void Write(string info, ErrorType errortype)
         {
-            switch (errortype)
+            switch (BuildMode)
             {
-                case ErrorType.Debug:
-                    Log.Debug(info);
+                case BuildMode.Test:
+                    switch (errortype)
+                    {
+                        case ErrorType.Debug:
+                            Log.Debug(info);
+                            break;
+                        case ErrorType.Error:
+                            Log.Error(info);
+                            break;
+                        case ErrorType.Warning:
+                            Log.Warning(info);
+                            break;
+                        case ErrorType.Verbose:
+                            Log.Verbose(info);
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException(nameof(errortype), errortype, null);
+                    }
                     break;
-                case ErrorType.Error:
-                    Log.Error(info);
-                    break;
-                case ErrorType.Warning:
-                    Log.Warning(info);
+                
+                case BuildMode.Prod:
+                    switch (errortype)
+                    {
+                        case ErrorType.Debug:
+                            Log.Debug(info);
+                            break;
+                        case ErrorType.Error:
+                            Log.Error(info);
+                            break;
+                        case ErrorType.Warning:
+                            Log.Warning(info);
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException(nameof(errortype), errortype, null);
+                    }
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(errortype), errortype, null);
+                    throw new ArgumentOutOfRangeException();
             }
         }
     }

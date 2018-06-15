@@ -7,6 +7,7 @@ namespace UnitTest
         [Fact]
         public void test()
         {
+            _client.Daemon.get_account_count();
         }
     }
 }

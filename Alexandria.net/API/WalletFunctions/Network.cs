@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using Alexandria.net.Communication;
 using Alexandria.net.Logging;
+using Alexandria.net.Settings;
 using Newtonsoft.Json;
 
 namespace Alexandria.net.API.WalletFunctions
@@ -18,10 +19,9 @@ namespace Alexandria.net.API.WalletFunctions
         /// <summary>
         /// Wallet Constructor
         /// </summary>
-        /// <param name="hostname">the rpc endpoint ip address</param>
-        /// <param name="port">the rpc endpoint post</param>
-        public Network(string hostname = "127.0.0.1", ushort port = 8091, string api = "/rpc", string version = "2.0") :
-            base(hostname, port, api, version)
+        /// <param name="config"></param>
+        public Network(IConfig config) :
+            base(config)
         {
             var assemblyname = Assembly.GetExecutingAssembly().GetName().Name;
             _logger = new Logger(loggingType.server, assemblyname);

@@ -73,5 +73,15 @@ namespace UnitTest
             _client.Wallet.Key.add_signature_c(Transaction,_sign,new byte[Transaction.Length+200]);
             
         }
+
+        [Fact]
+        public void test()
+        {
+            _client.Wallet.Account.accountExists("");
+            _client.Wallet.Asset.createUia("",null,0,"");
+            _client.Wallet.Cryptography.decryptData(null, "", "");
+            _client.Wallet.Network.connect("",0);
+        }
+        
     }
 }

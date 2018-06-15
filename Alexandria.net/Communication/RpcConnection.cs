@@ -1,9 +1,13 @@
-﻿ using System.Collections;
+﻿ using System;
+ using System.Collections;
 using System.Net.Http;
-using System.Text;
+ using System.Reflection;
+ using System.Text;
 using System.Threading.Tasks;
-using Alexandria.net.Mapping;
-using Newtonsoft.Json;
+ using Alexandria.net.Logging;
+ using Alexandria.net.Mapping;
+ using Alexandria.net.Settings;
+ using Newtonsoft.Json;
 
 namespace Alexandria.net.Communication
 {
@@ -13,12 +17,18 @@ namespace Alexandria.net.Communication
     public abstract class RpcConnection
     {
         #region Variables
-
         private int _requestId;
         private readonly string _uri;
         private readonly HttpClient _client;
         private readonly string _jsonRpc;
-        protected readonly CSharpToCPP _cSharpToCpp = new CSharpToCPP();
+        protected readonly CSharpToCPP CSharpToCpp = new CSharpToCPP();
+        private readonly ILogger _logger;
+        private readonly BuildMode _buildMode;
+        #endregion
+
+        #region Properties
+
+        protected IConfig Config { get; private set; }
 
         #endregion
 
@@ -27,16 +37,20 @@ namespace Alexandria.net.Communication
         /// <summary>
         /// RPCConnection Constructor
         /// </summary>
-        /// <param name="hostname"></param>
-        /// <param name="port"></param>
-        /// <param name="api"></param>
-        /// <param name="version"></param>
-        protected RpcConnection(string hostname, ushort port, string api = "/rpc", string version = "2.0")
+        /// <param name="config"></param>
+        protected RpcConnection(IConfig config, bool Wallet = true)
         {
-            _uri = string.Format("http://{0}:{1}{2}", hostname, port, api);
+            Config = config;
+            _uri = string.Format("http://{0}:{1}{2}", Config.Hostname, Wallet ? Config.WalletPort : config.DaemonPort,
+                config.Api);
             _client = new HttpClient();
-            _jsonRpc = version;
+            _jsonRpc = Config.Version;
+
+            var assemblyname = Assembly.GetExecutingAssembly().GetName().Name;
+            _logger = new Logger(loggingType.server, assemblyname);
+            _buildMode = Config.BuildMode;
         }
+
         #endregion
 
         #region public methods
@@ -80,11 +94,17 @@ namespace Alexandria.net.Communication
                 var httpResponse = await SendAsync(json);
 
                 if (httpResponse == null) return response;
-                response = await httpResponse.Content.ReadAsStringAsync();              
+                response = await httpResponse.Content.ReadAsStringAsync();
+                if (_buildMode == BuildMode.Test)
+                {
+                    _logger.WriteTestData(
+                        $"Date & Time: {DateTime.UtcNow} || Method: {methodname} || Request Data: {json} || Response Data: {response}");
+                }
             }
-            catch (HttpRequestException e)
+            catch (HttpRequestException ex)
             {
-                response = $"{e.Message}";
+                response = $"{ex.Message}";
+                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
             }
             
             return response;
@@ -104,18 +124,6 @@ namespace Alexandria.net.Communication
         {
             var response =
                 await _client.PostAsync(_uri, new StringContent(data, Encoding.UTF8));
-            response.EnsureSuccessStatusCode();
-            return response;
-        }
-
-        /// <summary>
-        ///     Receives data from the blockchain
-        /// </summary>
-        /// <param name="data">the data</param>
-        /// <returns></returns>
-        private async Task<HttpResponseMessage> ReceiveAsync(string data)
-        {
-            var response = await _client.PostAsync(_uri, new StringContent(data, Encoding.UTF8));
             response.EnsureSuccessStatusCode();
             return response;
         }

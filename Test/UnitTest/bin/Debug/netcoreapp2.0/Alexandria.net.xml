@@ -5,18 +5,17 @@
     </assembly>
     <members>
         <member name="T:Alexandria.net.API.WalletFunctions.Account">
+            <inheritdoc />
             <summary>
             Wallet Account Functions 
             </summary>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Account.#ctor(System.String,System.UInt16,System.String,System.String)">
+        <member name="M:Alexandria.net.API.WalletFunctions.Account.#ctor(Alexandria.net.Settings.IConfig)">
+            <inheritdoc />
             <summary>
             Wallet Constructor
             </summary>
-            <param name="hostname">the rpc endpoint ip address</param>
-            <param name="port">the rpc endpoint post</param>
-            <param name="api"></param>
-            <param name="version"></param>
+            <param name="config"></param>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Account.accountExists(System.String)">
             <summary>
@@ -198,12 +197,11 @@
             <summary>
             </summary>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Asset.#ctor(System.String,System.UInt16,System.String,System.String)">
+        <member name="M:Alexandria.net.API.WalletFunctions.Asset.#ctor(Alexandria.net.Settings.IConfig)">
             <summary>
             Wallet Constructor
             </summary>
-            <param name="hostname">the rpc endpoint ip address</param>
-            <param name="port">the rpc endpoint post</param>
+            <param name="config"></param>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Asset.transfer(System.String,System.String,System.String,System.UInt64,System.String)">
             <summary>
@@ -293,13 +291,12 @@
         <member name="T:Alexandria.net.API.WalletFunctions.Cryptography">
             <inheritdoc />
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Cryptography.#ctor(System.String,System.UInt16,System.String,System.String)">
+        <member name="M:Alexandria.net.API.WalletFunctions.Cryptography.#ctor(Alexandria.net.Settings.IConfig)">
+            <inheritdoc />
             <summary>
             Wallet Constructor
             </summary>
-            <param name="hostname">the rpc endpoint ip address</param>
-            <param name="port">the rpc endpoint post</param>
-            <param name="api"></param>
+            <param name="config"></param>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Cryptography.generateKeyPair">
             <summary>
@@ -394,11 +391,16 @@
             <param name="publicKey"></param>
             <param name="privateKey"></param>
         </member>
+        <member name="T:Alexandria.net.API.WalletFunctions.Key">
+            <inheritdoc />
+            <summary>
+            </summary>
+        </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Key.generate_private_key(System.Byte[])">
             <summary>
             Create a private key
             </summary>
-            <param name="private_key">byte[52] private_key</param>
+            <param name="privateKey">byte[52] private_key</param>
             <returns>Returns true if success or false for failed try</returns>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Key.get_transaction_digest(System.String,System.Byte[])">
@@ -414,8 +416,8 @@
             Creates signamture for the given transaction and digest
             </summary>
             <param name="digest">string digest</param>
-            <param name="private_key">string private_key</param>
-            <param name="signed_digest">byte[] signed_digest</param>
+            <param name="privateKey">string private_key</param>
+            <param name="signedDigest">byte[] signed_digest</param>
             <returns>Returns true if success or false for failed try</returns>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Key.add_signature(System.String,System.String,System.Byte[])">
@@ -424,17 +426,14 @@
             </summary>
             <param name="transaction">string transaction</param>
             <param name="signature">string signature</param>
-            <param name="signed_tx">byte[] signed_tx</param>
+            <param name="signedTx">byte[] signed_tx</param>
             <returns>Returns true if success or false for failed try</returns>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Key.#ctor(System.String,System.UInt16,System.String,System.String)">
+        <member name="M:Alexandria.net.API.WalletFunctions.Key.#ctor(Alexandria.net.Settings.IConfig)">
             <summary>
             
             </summary>
-            <param name="hostname"></param>
-            <param name="port"></param>
-            <param name="api"></param>
-            <param name="version"></param>
+            <param name="config"></param>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Key.generate_private_key_c(System.Byte[])">
             <summary>
@@ -472,13 +471,12 @@
         <member name="T:Alexandria.net.API.WalletFunctions.Network">
             <inheritdoc />
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Network.#ctor(System.String,System.UInt16,System.String,System.String)">
+        <member name="M:Alexandria.net.API.WalletFunctions.Network.#ctor(Alexandria.net.Settings.IConfig)">
             <inheritdoc />
             <summary>
             Wallet Constructor
             </summary>
-            <param name="hostname">the rpc endpoint ip address</param>
-            <param name="port">the rpc endpoint post</param>
+            <param name="config"></param>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Network.isConnected">
             <summary>
@@ -542,6 +540,11 @@
             <param name="count"></param>
             <returns></returns>
         </member>
+        <member name="T:Alexandria.net.API.WalletFunctions.ReceiverRecipe">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="P:Alexandria.net.API.WalletFunctions.ReceiverRecipe.AppId">
             <summary>
             
@@ -573,16 +576,16 @@
             </summary>
         </member>
         <member name="T:Alexandria.net.API.WalletFunctions.Transaction">
+            <inheritdoc />
             <summary>
             All wallet calls to the SophiaTX Blockchain
             </summary>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Transaction.#ctor(System.String,System.UInt16,System.String,System.String)">
+        <member name="M:Alexandria.net.API.WalletFunctions.Transaction.#ctor(Alexandria.net.Settings.IConfig)">
             <summary>
             Wallet Constructor
             </summary>
-            <param name="hostname">the rpc endpoint ip address</param>
-            <param name="port">the rpc endpoint post</param>
+            <param name="config"></param>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Transaction.About">
             <summary>
@@ -677,14 +680,16 @@
             <param name="amount">The amount Of STEEM To vest i.e. "100.00 SPHTX" </param>
             <returns></returns>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Witness.#ctor(System.String,System.UInt16,System.String,System.String)">
+        <member name="T:Alexandria.net.API.WalletFunctions.Witness">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Witness.#ctor(Alexandria.net.Settings.IConfig)">
             <summary>
             Connects Witness with default values, the runtime values inherited from base class
             </summary>
-            <param name="hostname">string hostname = "127.0.0.1"</param>
-            <param name="port">ushort port = 8091</param>
-            <param name="api">string api = "/rpc"</param>
-            <param name="version">string version = "2.0"</param>
+            <param name="config"></param>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Witness.get_active_witnesses">
             <summary>
@@ -758,14 +763,11 @@
             Abstract Class which manages the sending and receiving of data to and from the blockchain
             </summary>
         </member>
-        <member name="M:Alexandria.net.Communication.RpcConnection.#ctor(System.String,System.UInt16,System.String,System.String)">
+        <member name="M:Alexandria.net.Communication.RpcConnection.#ctor(Alexandria.net.Settings.IConfig,System.Boolean)">
             <summary>
             RPCConnection Constructor
             </summary>
-            <param name="hostname"></param>
-            <param name="port"></param>
-            <param name="api"></param>
-            <param name="version"></param>
+            <param name="config"></param>
         </member>
         <member name="M:Alexandria.net.Communication.RpcConnection.SendRequest(System.String,System.Collections.ArrayList)">
             <summary>
@@ -790,18 +792,17 @@
             <param name="data">the data to send</param>
             <returns>the response from the send</returns>
         </member>
-        <member name="M:Alexandria.net.Communication.RpcConnection.ReceiveAsync(System.String)">
-            <summary>
-                Receives data from the blockchain
-            </summary>
-            <param name="data">the data</param>
-            <returns></returns>
-        </member>
         <member name="T:Alexandria.net.Core.Daemon">
             <summary>
             Daemon implementation
             </summary>
             <inheritdoc cref="T:Alexandria.net.Communication.RpcConnection"/>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.#ctor(Alexandria.net.Settings.IConfig)">
+            <summary>
+            
+            </summary>
+            <param name="config"></param>
         </member>
         <member name="M:Alexandria.net.Core.Daemon.get_config">
             <summary>
@@ -975,6 +976,16 @@
             <param name="limit"></param>
             <returns></returns>
         </member>
+        <member name="M:Alexandria.net.Core.Daemon.get_discussions_by_author_before_date(System.String,System.String,System.DateTime,System.UInt32)">
+            <summary>
+            
+            </summary>
+            <param name="author"></param>
+            <param name="startPermlink"></param>
+            <param name="beforeDate"></param>
+            <param name="limit"></param>
+            <returns></returns>
+        </member>
         <member name="T:Alexandria.net.Core.SophiaClient">
             <summary>
             The main entry point for accessing the SophiaTX Blockchain
@@ -998,22 +1009,16 @@
             <param name="daemonPort">the daemon rpc endpoint post</param>
             <param name="walletPort">the wallet rpc endpoint post</param>
         </member>
-        <member name="M:Alexandria.net.Core.SophiaClient.#ctor">
-            <summary>
-            Client Constructor
-            </summary>
-        </member>
         <member name="T:Alexandria.net.Core.Wallet">
             <summary>
             List of all the functionalities supported by the SophiaTX C# Wallet API
             </summary>
         </member>
-        <member name="M:Alexandria.net.Core.Wallet.#ctor(System.String,System.UInt16)">
+        <member name="M:Alexandria.net.Core.Wallet.#ctor(Alexandria.net.Settings.IConfig)">
             <summary>
             
             </summary>
-            <param name="hostname"></param>
-            <param name="port"></param>
+            <param name="config"></param>
         </member>
         <member name="T:Alexandria.net.Messaging.Responses.DTO.LockUnlockResponse">
             <summary>
@@ -1028,6 +1033,21 @@
         <member name="P:Alexandria.net.Messaging.Responses.DTO.LockUnlockResponse.Result">
             <summary>
             the result passed back from the blockchain
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Settings.Config.BuildMode">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Settings.Config.LoggingType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Settings.IConfig">
+            <summary>
+            
             </summary>
         </member>
     </members>

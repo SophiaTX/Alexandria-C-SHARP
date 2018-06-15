@@ -1,4 +1,5 @@
 ﻿using Alexandria.net.API.WalletFunctions;
+using Alexandria.net.Settings;
 
 namespace Alexandria.net.Core
 {
@@ -9,13 +10,34 @@ namespace Alexandria.net.Core
 	{
 		#region Member Variables
 
-		public Account Account { get; set; }
-		public Asset Asset { get; set; }
-		public Cryptography Cryptography { get; set; }
-		public Key Key { get; set; }
-		public Network Network { get; set; }
-		public Transaction Transaction { get; set; }
-		public Witness Witness { get; set; }
+		/// <summary>
+		/// 
+		/// </summary>
+		public Account Account { get; }
+		/// <summary>
+		/// 
+		/// </summary>
+		public Asset Asset { get; }
+		/// <summary>
+		/// 
+		/// </summary>
+		public Cryptography Cryptography { get; }
+		/// <summary>
+		/// 
+		/// </summary>
+		public Key Key { get; }
+		/// <summary>
+		/// 
+		/// </summary>
+		public Network Network { get; }
+		/// <summary>
+		/// 
+		/// </summary>
+		public Transaction Transaction { get; }
+		/// <summary>
+		/// 
+		/// </summary>
+		public Witness Witness { get; }
 
 		#endregion
 		
@@ -24,31 +46,17 @@ namespace Alexandria.net.Core
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="hostname"></param>
-		/// <param name="port"></param>
-		public Wallet(string hostname, ushort port)
+		/// <param name="config"></param>
+		public Wallet(IConfig config)
 		{
-			Account = new Account(hostname, port);
-			Asset = new Asset(hostname, port);
-			Cryptography = new Cryptography(hostname, port);
-			Key = new Key(hostname, port);
-			Network = new Network(hostname, port);
-			Transaction = new Transaction(hostname, port);
-			Witness = new Witness(hostname, port);
-
-		}
-
-		public Wallet()
-		{
-			Account = new Account();
-			Asset = new Asset();
-			Cryptography = new Cryptography();
-			Key = new Key();
-			Network = new Network();
-			Transaction = new Transaction();
-			Witness = new Witness();
-		}
-
+			Account = new Account(config);
+			Asset = new Asset(config);
+			Cryptography = new Cryptography(config);
+			Key = new Key(config);
+			Network = new Network(config);
+			Transaction = new Transaction(config);
+			Witness = new Witness(config);
+		}	
 		#endregion
     }
 }	

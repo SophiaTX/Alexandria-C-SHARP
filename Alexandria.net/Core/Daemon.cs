@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Reflection;
 using Alexandria.net.Communication;
+using Alexandria.net.Settings;
 
 namespace Alexandria.net.Core
 {
@@ -13,7 +14,12 @@ namespace Alexandria.net.Core
 	{
 		#region Constructors
 
-		public Daemon(string hostname = "127.0.0.1", ushort port = 8091, string api = "/rpc", string version = "2.0") : base(hostname, port, api, version)
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="config"></param>
+		public Daemon(IConfig config) :
+			base(config)
 		{
 		}
 
@@ -270,6 +276,14 @@ namespace Alexandria.net.Core
 		//
 		// If start_permlink Is empty then only before_date will be considered. If both are specified the eariler to the two metrics will be used. This
 		// should allow easy pagination.
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="author"></param>
+		/// <param name="startPermlink"></param>
+		/// <param name="beforeDate"></param>
+		/// <param name="limit"></param>
+		/// <returns></returns>
 		public string get_discussions_by_author_before_date(string author, string startPermlink, DateTime beforeDate,
 			uint limit)
 		{

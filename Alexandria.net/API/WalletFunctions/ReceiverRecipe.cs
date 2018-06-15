@@ -2,6 +2,9 @@
 
 namespace Alexandria.net.API.WalletFunctions
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class ReceiverRecipe
     {
         /// <summary>

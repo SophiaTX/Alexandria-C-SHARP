@@ -4,24 +4,26 @@ using System.Reflection;
 using Alexandria.net.Communication;
 using Alexandria.net.Logging;
 using Alexandria.net.Messaging.Responses.DTO;
+using Alexandria.net.Settings;
 using Newtonsoft.Json;
 
 namespace Alexandria.net.API.WalletFunctions
 {
+	/// <inheritdoc />
 	/// <summary>
 	/// All wallet calls to the SophiaTX Blockchain
 	/// </summary>
-	public partial class  Transaction : RpcConnection
-	{	private readonly ILogger _logger;
+	public class  Transaction : RpcConnection
+	{	
+		private readonly ILogger _logger;
+		
 		#region Constructors
 
 		/// <summary>
 		/// Wallet Constructor
 		/// </summary>
-		/// <param name="hostname">the rpc endpoint ip address</param>
-		/// <param name="port">the rpc endpoint post</param>
-		public Transaction(string hostname = "127.0.0.1", ushort port = 8091, string api = "/rpc",
-			string version = "2.0") : base(hostname, port, api, version)
+		/// <param name="config"></param>
+		public Transaction(IConfig config) : base(config)
 		{
 			var assemblyname = Assembly.GetExecutingAssembly().GetName().Name;
 			_logger = new Logger(loggingType.server, assemblyname);

@@ -2,6 +2,9 @@
 {
     public enum ErrorType
     {
-        Debug, Error, Warning
+        Debug,
+        Error,
+        Warning,
+        Verbose
     }
 }

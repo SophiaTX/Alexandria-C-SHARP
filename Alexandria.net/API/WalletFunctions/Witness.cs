@@ -3,24 +3,25 @@ using System.Collections;
 using System.Reflection;
 using Alexandria.net.Communication;
 using Alexandria.net.Logging;
-using Alexandria.net.Mapping;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Alexandria.net.Messaging.Responses.DTO;
+using Alexandria.net.Settings;
 
 namespace Alexandria.net.API.WalletFunctions
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class Witness : RpcConnection
     {   private readonly ILogger _logger;
+
         /// <summary>
         /// Connects Witness with default values, the runtime values inherited from base class
         /// </summary>
-        /// <param name="hostname">string hostname = "127.0.0.1"</param>
-        /// <param name="port">ushort port = 8091</param>
-        /// <param name="api">string api = "/rpc"</param>
-        /// <param name="version">string version = "2.0"</param>
-        public Witness(string hostname = "127.0.0.1", ushort port = 8091, string api = "/rpc", string version = "2.0") :
-            base(hostname, port, api, version)
+        /// <param name="config"></param>
+        public Witness(IConfig config) :
+            base(config)
         {
             var assemblyname = Assembly.GetExecutingAssembly().GetName().Name;
             _logger = new Logger(loggingType.server, assemblyname);
@@ -129,12 +130,11 @@ namespace Alexandria.net.API.WalletFunctions
                 var @params = new ArrayList {witnessName, url, blockSigningKey, props};
                 return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                
+                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
-           
         }
 
         /// <summary>
@@ -173,7 +173,7 @@ namespace Alexandria.net.API.WalletFunctions
         {
             try
             {
-                var reqname = _cSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
             
                 var @params = new ArrayList {accountToVoteWith, witnessToVoteFor, approve};
                 var result = SendRequest(reqname, @params);
