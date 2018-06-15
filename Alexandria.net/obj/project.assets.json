@@ -4141,29 +4141,30 @@
     ]
   },
   "packageFolders": {
-    "/Users/martynharler/.nuget/packages/": {},
+    "/Users/sanjivjha/.nuget/packages/": {},
     "/usr/local/share/dotnet/sdk/NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/martynharler/GitHub/Alexandria/Alexandria.net/Alexandria.net.csproj",
+      "projectUniqueName": "/Users/sanjivjha/RiderProjects/Alexandria/Alexandria.net/Alexandria.net.csproj",
       "projectName": "Alexandria.net",
-      "projectPath": "/Users/martynharler/GitHub/Alexandria/Alexandria.net/Alexandria.net.csproj",
-      "packagesPath": "/Users/martynharler/.nuget/packages/",
-      "outputPath": "/Users/martynharler/GitHub/Alexandria/Alexandria.net/obj/",
+      "projectPath": "/Users/sanjivjha/RiderProjects/Alexandria/Alexandria.net/Alexandria.net.csproj",
+      "packagesPath": "/Users/sanjivjha/.nuget/packages/",
+      "outputPath": "/Users/sanjivjha/RiderProjects/Alexandria/Alexandria.net/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "/Users/martynharler/.config/NuGet/NuGet.Config"
+        "/Users/sanjivjha/.config/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.0"
       ],
       "sources": {
-        "https://api.nuget.org/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {},
+        "https://www.nuget.org/": {}
       },
       "frameworks": {
         "netcoreapp2.0": {

@@ -396,7 +396,7 @@
             <summary>
             </summary>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Key.generate_private_key(System.Byte[])">
+        <member name="M:Alexandria.net.API.WalletFunctions.Key.generate_private_key(System.Byte[],System.Byte[])">
             <summary>
             Create a private key
             </summary>
@@ -435,7 +435,7 @@
             </summary>
             <param name="config"></param>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Key.generate_private_key_c(System.Byte[])">
+        <member name="M:Alexandria.net.API.WalletFunctions.Key.generate_private_key_c(System.Byte[],System.Byte[])">
             <summary>
             Generates the Private Keys
             </summary>
@@ -1012,6 +1012,41 @@
         <member name="T:Alexandria.net.Core.Wallet">
             <summary>
             List of all the functionalities supported by the SophiaTX C# Wallet API
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Core.Wallet.Account">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Core.Wallet.Asset">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Core.Wallet.Cryptography">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Core.Wallet.Key">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Core.Wallet.Network">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Core.Wallet.Transaction">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Core.Wallet.Witness">
+            <summary>
+            
             </summary>
         </member>
         <member name="M:Alexandria.net.Core.Wallet.#ctor(Alexandria.net.Settings.IConfig)">
