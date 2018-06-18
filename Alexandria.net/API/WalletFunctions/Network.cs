@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using Alexandria.net.Communication;
 using Alexandria.net.Logging;
+using Alexandria.net.Messaging.Responses.DTO;
 using Alexandria.net.Settings;
 using Newtonsoft.Json;
 
@@ -33,12 +34,14 @@ namespace Alexandria.net.API.WalletFunctions
         /// Returns true if the library is connected to a backend.
         /// </summary>
         /// <returns>Returns true if success and false for failed try</returns>
-        public bool isConnected()
+        public ActiveWitnessResponse isConnected()
         {
             try
             {
                 var result = SendRequest(MethodBase.GetCurrentMethod().Name);
-                return result == "true";
+                
+                var contentdata = JsonConvert.DeserializeObject<ActiveWitnessResponse>(result);
+                return contentdata;
             }
             catch(Exception ex)
             {

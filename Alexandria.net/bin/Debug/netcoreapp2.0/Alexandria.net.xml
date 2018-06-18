@@ -181,7 +181,7 @@
             <param name="blockKey">Input byte[] blockKey</param>
             <returns>Returns true if success or false for failed try</returns>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Account.createAccount(System.String,System.String,Alexandria.net.API.WalletFunctions.Authority,Alexandria.net.API.WalletFunctions.Authority,System.Byte[])">
+        <member name="M:Alexandria.net.API.WalletFunctions.Account.create_account(System.String,System.String,System.String,System.Boolean)">
             <summary>
             Creates new account in the SophiaTX blockchain.
             </summary>
@@ -434,6 +434,12 @@
             
             </summary>
             <param name="config"></param>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Key.list_keys">
+            <summary>
+            
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Key.generate_private_key_c(System.Byte[],System.Byte[])">
             <summary>

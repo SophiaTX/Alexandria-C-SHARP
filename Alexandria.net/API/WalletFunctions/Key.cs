@@ -69,7 +69,25 @@ namespace Alexandria.net.API.WalletFunctions
             var assemblyname = Assembly.GetExecutingAssembly().GetName().Name;
             _logger = new Logger(loggingType.server, assemblyname);
         }
-
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public string list_keys()          
+        {
+            try
+            {
+                var result= SendRequest(MethodBase.GetCurrentMethod().Name);
+                return result;
+            }
+            catch(Exception ex)
+            {
+                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+                throw ;
+            }
+        }
+        
         /// <summary>
         /// Generates the Private Keys
         /// </summary>
@@ -79,7 +97,8 @@ namespace Alexandria.net.API.WalletFunctions
         {
             try
             {
-                return generate_private_key(privatekey,publickey) ? System.Text.Encoding.Default.GetString(privatekey) : string.Empty;
+                var result=generate_private_key(privatekey,publickey) ? System.Text.Encoding.Default.GetString(privatekey) : string.Empty;
+                return result;
             }
             catch(Exception ex)
             {
@@ -108,6 +127,7 @@ namespace Alexandria.net.API.WalletFunctions
             }
             
         }
+        
 
         /// <summary>
         /// Creates a signature for the given private key and transaction digest

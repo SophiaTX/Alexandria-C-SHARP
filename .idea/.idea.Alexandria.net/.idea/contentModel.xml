@@ -57,6 +57,8 @@
           </e>
           <e p="Responses" t="Include">
             <e p="DTO" t="Include">
+              <e p="AboutData.cs" t="Include" />
+              <e p="AboutResponse.cs" t="Include" />
               <e p="Account.cs" t="Include" />
               <e p="AccountHistoryResponse.cs" t="Include" />
               <e p="AccountRequestResponse.cs" t="Include" />

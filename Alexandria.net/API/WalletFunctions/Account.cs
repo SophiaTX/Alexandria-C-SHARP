@@ -458,6 +458,21 @@ namespace Alexandria.net.API.WalletFunctions
             }
             
         }
+        public bool get_account(string AccountName)
+        {
+            try
+            {
+                var @params = new ArrayList {AccountName};
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return result == "true";
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+                throw;
+            }
+           
+        }
 
         /// <summary>
         /// Creates new account in the SophiaTX blockchain.
@@ -468,12 +483,11 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="active">Input Authority active</param>
         /// <param name="memo">Input byte[] memo</param>
         /// <returns>Returns true if success or false for failed try</returns>
-        public bool createAccount(string registeringAccountName, string newAccountName, Authority owner,
-            Authority active, byte[] memo)
+        public bool create_account(string Creator, string newAccountName, string JSONData,bool broadcast)
         {
             try
             {
-                var @params = new ArrayList {registeringAccountName, newAccountName, owner, active, memo};
+                var @params = new ArrayList {Creator, newAccountName, JSONData, broadcast};
                 var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
                 return result == "true";
             }
