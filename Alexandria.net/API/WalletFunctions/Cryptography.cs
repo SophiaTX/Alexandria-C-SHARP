@@ -22,7 +22,7 @@ namespace Alexandria.net.API.WalletFunctions
         public Cryptography(IConfig config) : base(config)
         {
             var assemblyname = Assembly.GetExecutingAssembly().GetName().Name;
-            _logger = new Logger(loggingType.server, assemblyname);
+            _logger = new Logger(LoggingType.Server, assemblyname);
         }
 
         #endregion

@@ -130,7 +130,7 @@
             -KeyAuths
             </returns>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Account.updateAccount(System.String,Alexandria.net.API.WalletFunctions.Authority,Alexandria.net.API.WalletFunctions.Authority,System.Byte[])">
+        <member name="M:Alexandria.net.API.WalletFunctions.Account.updateAccount(System.String,Alexandria.net.Messaging.Responses.Authority,Alexandria.net.Messaging.Responses.Authority,System.Byte[])">
             <summary>
             Update account authorities.
             </summary>
@@ -223,7 +223,7 @@
             <param name="assetSymbol">string assetSymbol</param>
             <returns>Returns retruns ulong Accournt balance</returns>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Asset.createUia(System.String,Alexandria.net.API.WalletFunctions.Authority,System.UInt64,System.String)">
+        <member name="M:Alexandria.net.API.WalletFunctions.Asset.createUia(System.String,Alexandria.net.Messaging.Responses.Authority,System.UInt64,System.String)">
             <summary>
             Create UIA for the given account authority
             </summary>
@@ -268,26 +268,6 @@
             </summary>
             <param name="assetSymbol">string assetSymbol</param>
             <returns>Returns true if success or false for failed try</returns>
-        </member>
-        <member name="T:Alexandria.net.API.WalletFunctions.Authority">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Alexandria.net.API.WalletFunctions.Authority.WeightThreshold">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Alexandria.net.API.WalletFunctions.Authority.AccountAuths">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Alexandria.net.API.WalletFunctions.Authority.KeyAuths">
-            <summary>
-            
-            </summary>
         </member>
         <member name="T:Alexandria.net.API.WalletFunctions.Cryptography">
             <inheritdoc />
@@ -387,6 +367,50 @@
             <param name="encryptedText"></param>
             <param name="publicKey"></param>
             <param name="privateKey"></param>
+        </member>
+        <member name="T:Alexandria.net.API.WalletFunctions.Data">
+            <inheritdoc />
+            <summary>
+            </summary>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Data.#ctor(Alexandria.net.Settings.IConfig,Alexandria.net.Settings.IBlockchainConfig)">
+            <summary>
+            
+            </summary>
+            <param name="config"></param>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Data.Send(Alexandria.net.Messaging.Receiver.SenderData)">
+            <summary>
+            
+            </summary>
+            <param name="senderdata"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Data.SendBinary(Alexandria.net.Messaging.Receiver.SenderData)">
+            <summary>
+            
+            </summary>
+            <param name="senderdata"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Data.SendBinaryBase58(Alexandria.net.Messaging.Receiver.SenderData)">
+            <summary>
+            
+            </summary>
+            <param name="senderdata"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Data.Receive(System.UInt64,Alexandria.net.Enums.SearchType,Alexandria.net.Enums.AccountOwner,Alexandria.net.Enums.StartBy,System.UInt32)">
+            <summary>
+            Allowed options for search_type are "by_sender", "by_recipient", "by_sender_datetime", "by_recipient_datetime".
+            Account is then either sender or recevier, and start is either index od ISO time stamp.
+            </summary>
+            <param name="appId">The Id of the application which we are receiving for</param>
+            <param name="searchType">based on the Search Type Enum</param>
+            <param name="account">Account Owner - sender or receiver</param>
+            <param name="start">Start by value - index or ISO time stamp</param>
+            <param name="count"></param>
+            <returns></returns>
         </member>
         <member name="T:Alexandria.net.API.WalletFunctions.Key">
             <inheritdoc />
@@ -503,40 +527,28 @@
             <param name="count"></param>
             <returns></returns>
         </member>
-        <member name="T:Alexandria.net.API.WalletFunctions.ReceiverRecipe">
+        <member name="M:Alexandria.net.API.WalletFunctions.Network.makeTransaction(System.Collections.Generic.List{System.String})">
             <summary>
-            
+            Form a transaction out of existing operations.
             </summary>
+            <param name="operations"></param>
+            <returns></returns>
         </member>
-        <member name="P:Alexandria.net.API.WalletFunctions.ReceiverRecipe.AppId">
+        <member name="M:Alexandria.net.API.WalletFunctions.Network.addSingature(System.String,System.Char[])">
             <summary>
-            
+            Add signature to the transaction. Useful fo rmulti-sig transactions,
+            where all the signatures have to be calculated and added one by one.
             </summary>
+            <param name="transaction"></param>
+            <param name="signature"></param>
+            <returns></returns>
         </member>
-        <member name="P:Alexandria.net.API.WalletFunctions.ReceiverRecipe.Sender">
+        <member name="M:Alexandria.net.API.WalletFunctions.Network.sendSignedTransaction(System.String)">
             <summary>
             
             </summary>
-        </member>
-        <member name="P:Alexandria.net.API.WalletFunctions.ReceiverRecipe.Recipients">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Alexandria.net.API.WalletFunctions.ReceiverRecipe.Binary">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Alexandria.net.API.WalletFunctions.ReceiverRecipe.Type">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Alexandria.net.API.WalletFunctions.ReceiverRecipe.Document">
-            <summary>
-            
-            </summary>
+            <param name="transaction"></param>
+            <returns></returns>
         </member>
         <member name="T:Alexandria.net.API.WalletFunctions.Transaction">
             <inheritdoc />
@@ -726,6 +738,22 @@
             <param name="witnessToVoteFor">The witness that Is being voted For</param>
             <param name="approve">true if the account Is voting for the account to be able to be a block produce</param>
             <returns></returns>
+        </member>
+        <member name="T:Alexandria.net.API.WalletFunctions.StringValueAttribute">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.StringValueAttribute.#ctor(System.String)">
+            <inheritdoc />
+            <summary>
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="P:Alexandria.net.API.WalletFunctions.StringValueAttribute.Value">
+            <summary>
+            
+            </summary>
         </member>
         <member name="T:Alexandria.net.Communication.RpcConnection">
             <summary>
@@ -1018,11 +1046,196 @@
             
             </summary>
         </member>
-        <member name="M:Alexandria.net.Core.Wallet.#ctor(Alexandria.net.Settings.IConfig)">
+        <member name="M:Alexandria.net.Core.Wallet.#ctor(Alexandria.net.Settings.IConfig,Alexandria.net.Settings.IBlockchainConfig)">
             <summary>
             
             </summary>
             <param name="config"></param>
+        </member>
+        <member name="T:Alexandria.net.Enums.AccountOwner">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Alexandria.net.Enums.AccountOwner.Sender">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Alexandria.net.Enums.AccountOwner.Receiver">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Enums.BuildMode">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Alexandria.net.Enums.BuildMode.Test">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Alexandria.net.Enums.BuildMode.Prod">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Enums.ErrorType">
+            <summary>
+            e
+            </summary>
+        </member>
+        <member name="F:Alexandria.net.Enums.ErrorType.Debug">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Alexandria.net.Enums.ErrorType.Error">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Alexandria.net.Enums.ErrorType.Warning">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Alexandria.net.Enums.ErrorType.Verbose">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Enums.SearchType">
+            <summary>
+            Search Type for receiving data from the Blockchain
+            </summary>
+        </member>
+        <member name="F:Alexandria.net.Enums.SearchType.BySender">
+            <summary>
+            Search by Sender
+            </summary>
+        </member>
+        <member name="F:Alexandria.net.Enums.SearchType.ByRecipient">
+            <summary>
+            Search by Recipient
+            </summary>
+        </member>
+        <member name="F:Alexandria.net.Enums.SearchType.BySenderDatetime">
+            <summary>
+            Search by Sender DateTime (UTC)
+            </summary>
+        </member>
+        <member name="F:Alexandria.net.Enums.SearchType.ByRecipientDatetime">
+            <summary>
+            Search by Receipient DateTime (UTC)
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Enums.StartBy">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Alexandria.net.Enums.StartBy.Index">
+            <summary>
+            Search by Sender
+            </summary>
+        </member>
+        <member name="F:Alexandria.net.Enums.StartBy.IsoTimeStamp">
+            <summary>
+            Search by Recipient
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Enums.TransactionType">
+            <summary>
+            the transaction method type you would like use
+            </summary>
+        </member>
+        <member name="F:Alexandria.net.Enums.TransactionType.SignAndSend">
+            <summary>
+            this sends a single document
+            </summary>
+        </member>
+        <member name="F:Alexandria.net.Enums.TransactionType.MakeSignAndSend">
+            <summary>
+            this sends multiple documents
+            </summary>
+        </member>
+        <member name="F:Alexandria.net.Enums.TransactionType.MakeDigestSignAndSend">
+            <summary>
+            this sends multiple document with digest
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Logging.LoggingType">
+            <summary>
+            Type which will be used when writing to logs
+            </summary>
+        </member>
+        <member name="F:Alexandria.net.Logging.LoggingType.File">
+            <summary>
+            Writes to a clef file
+            </summary>
+        </member>
+        <member name="F:Alexandria.net.Logging.LoggingType.Server">
+            <summary>
+            Writes to the sophia server
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Messaging.Receiver.SenderData">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Receiver.SenderData.Sender">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Receiver.SenderData.Recipients">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Receiver.SenderData.AppId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Receiver.SenderData.Documents">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Receiver.SenderData.DocumentChars">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Receiver.SenderData.PrivateKey">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Messaging.Responses.Authority">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.Authority.WeightThreshold">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.Authority.AccountAuths">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.Authority.KeyAuths">
+            <summary>
+            
+            </summary>
         </member>
         <member name="T:Alexandria.net.Messaging.Responses.DTO.LockUnlockResponse">
             <summary>
@@ -1039,12 +1252,114 @@
             the result passed back from the blockchain
             </summary>
         </member>
-        <member name="P:Alexandria.net.Settings.Config.BuildMode">
+        <member name="T:Alexandria.net.Messaging.Responses.DTO.ReceiverRecipe">
             <summary>
             
             </summary>
         </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.ReceiverRecipe.AppId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.ReceiverRecipe.Sender">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.ReceiverRecipe.Recipients">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.ReceiverRecipe.Binary">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.ReceiverRecipe.Type">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.ReceiverRecipe.Document">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Settings.Config">
+            <summary>
+            Configuraton object for the build mode, the logging type and the endpoints
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Settings.Config.BuildMode">
+            <summary>
+            The buildmode: Prod is standard and should be used always,
+            Test should be set when the addon is presented for testing
+            before release and used to confirm with Sophia 
+            </summary>
+        </member>
         <member name="P:Alexandria.net.Settings.Config.LoggingType">
+            <summary>
+            The logging type which will be used
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Settings.Config.ReceiveInterval">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Settings.Config.Hostname">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Settings.Config.DaemonPort">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Settings.Config.WalletPort">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Settings.Config.Api">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Settings.Config.Version">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Settings.IBlockchainConfig">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Settings.IBlockchainConfig.IsoTimeStamp">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Settings.IBlockchainConfig.SearchType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Settings.IBlockchainConfig.Account">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Settings.IBlockchainConfig.Start">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Settings.IBlockchainConfig.Index">
             <summary>
             
             </summary>

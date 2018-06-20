@@ -1,10 +1,10 @@
 ﻿{
   "version": "1.0.0",
   "restore": {
-    "projectUniqueName": "/Users/sanjivjha/RiderProjects/Alexandria/Alexandria.net/Alexandria.net.csproj",
+    "projectUniqueName": "/Users/martynharler/GitHub/Alexandria/Alexandria.net/Alexandria.net.csproj",
     "projectName": "Alexandria.net",
-    "projectPath": "/Users/sanjivjha/RiderProjects/Alexandria/Alexandria.net/Alexandria.net.csproj",
-    "outputPath": "/Users/sanjivjha/RiderProjects/Alexandria/Alexandria.net/obj/",
+    "projectPath": "/Users/martynharler/GitHub/Alexandria/Alexandria.net/Alexandria.net.csproj",
+    "outputPath": "/Users/martynharler/GitHub/Alexandria/Alexandria.net/obj/",
     "projectStyle": "PackageReference",
     "fallbackFolders": [
       "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"

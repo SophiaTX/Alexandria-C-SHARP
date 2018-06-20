@@ -2,7 +2,7 @@
 {
     public class CSharpToCPP
     {
-        public const string Vote = "vote_for_witness";
+        private const string Vote = "vote_for_witness";
 
 
         public string GetValue(string value)

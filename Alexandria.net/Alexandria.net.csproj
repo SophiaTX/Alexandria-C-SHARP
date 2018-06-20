@@ -15,5 +15,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="API\SphTxApi.cs" />
+    <Compile Remove="Core\Class1.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="logging.config" />
   </ItemGroup>
 </Project>

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Alexandria.net.API.WalletFunctions
+namespace Alexandria.net.Messaging.Responses
 {
     /// <summary>
     /// 
