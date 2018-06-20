@@ -4,6 +4,7 @@ using System.Net.Http;
  using System.Reflection;
  using System.Text;
 using System.Threading.Tasks;
+ using Alexandria.net.Enums;
  using Alexandria.net.Logging;
  using Alexandria.net.Mapping;
  using Alexandria.net.Settings;
@@ -47,7 +48,7 @@ namespace Alexandria.net.Communication
             _jsonRpc = Config.Version;
 
             var assemblyname = Assembly.GetExecutingAssembly().GetName().Name;
-            _logger = new Logger(loggingType.server, assemblyname);
+            _logger = new Logger(LoggingType.Server, assemblyname);
             _buildMode = Config.BuildMode;
         }
 
@@ -70,6 +71,7 @@ namespace Alexandria.net.Communication
         #endregion
 
         #region private methods
+
         /// <summary>
         /// Processes the request and gets the response from the server
         /// </summary>
@@ -106,7 +108,7 @@ namespace Alexandria.net.Communication
                 response = $"{ex.Message}";
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
             }
-            
+
             return response;
         }
 

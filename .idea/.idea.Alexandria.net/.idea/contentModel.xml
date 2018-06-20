@@ -11,11 +11,10 @@
           <e p="WalletFunctions" t="Include">
             <e p="Account.cs" t="Include" />
             <e p="Asset.cs" t="Include" />
-            <e p="Authority.cs" t="Include" />
             <e p="Cryptography.cs" t="Include" />
+            <e p="Data.cs" t="Include" />
             <e p="Key.cs" t="Include" />
             <e p="Network.cs" t="Include" />
-            <e p="ReceiverRecipe.cs" t="Include" />
             <e p="Transaction.cs" t="Include" />
             <e p="Witness.cs" t="Include" />
           </e>
@@ -29,10 +28,22 @@
           <e p="SophiaClient.cs" t="Include" />
           <e p="Wallet.cs" t="Include" />
         </e>
-        <e p="libalexandria.dylib" t="Include" />
-        <e p="Logging" t="Include">
+        <e p="Enums" t="Include">
+          <e p="AccountOwner.cs" t="Include" />
           <e p="BuildMode.cs" t="Include" />
           <e p="ErrorType.cs" t="Include" />
+          <e p="SearchType.cs" t="Include" />
+          <e p="StartBy.cs" t="Include" />
+          <e p="TransactionType.cs" t="Include" />
+        </e>
+        <e p="Extensions" t="Include">
+          <e p="EnumExtensions.cs" t="Include" />
+        </e>
+        <e p="Helpers" t="Include">
+          <e p="StringValueAttribute.cs" t="Include" />
+        </e>
+        <e p="libalexandria.dylib" t="Include" />
+        <e p="Logging" t="Include">
           <e p="ILogger.cs" t="Include" />
           <e p="Logger.cs" t="Include" />
           <e p="loggingType.cs" t="Include" />
@@ -46,15 +57,17 @@
             <e p="ErrorData.cs" t="Include" />
             <e p="ErrorMessage.cs" t="Include" />
           </e>
-          <e p="Receive" t="Include">
+          <e p="Receiver" t="Include">
             <e p="DTO" t="Include">
               <e p="ReceiveDataRequestResponse.cs" t="Include" />
               <e p="ReceiveDataResponse.cs" t="Include" />
               <e p="ReceiveResponseResult.cs" t="Include" />
             </e>
             <e p="RecvMessageCollection.cs" t="Include" />
+            <e p="SenderData.cs" t="Include" />
           </e>
           <e p="Responses" t="Include">
+            <e p="Authority.cs" t="Include" />
             <e p="DTO" t="Include">
               <e p="Account.cs" t="Include" />
               <e p="AccountHistoryResponse.cs" t="Include" />
@@ -78,6 +91,7 @@
               <e p="Options.cs" t="Include" />
               <e p="Owner.cs" t="Include" />
               <e p="PricePerSubscribe.cs" t="Include" />
+              <e p="ReceiverRecipe.cs" t="Include" />
               <e p="Result.cs" t="Include" />
               <e p="RightsToPublish.cs" t="Include" />
               <e p="SendResponseResult.cs" t="Include" />
@@ -93,7 +107,9 @@
           </e>
         </e>
         <e p="Settings" t="Include">
+          <e p="BlockchainConfig.cs" t="Include" />
           <e p="Config.cs" t="Include" />
+          <e p="IBlockchainConfig.cs" t="Include" />
           <e p="IConfig.cs" t="Include" />
         </e>
       </e>

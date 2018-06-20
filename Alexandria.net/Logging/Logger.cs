@@ -1,23 +1,22 @@
 ﻿using System;
-using Microsoft.Extensions.Logging;
+using Alexandria.net.Enums;
 using Serilog;
-using Serilog.Core;
-using Serilog.Events;
 using Serilog.Formatting.Compact;
-using ILogger = Microsoft.Extensions.Logging.ILogger;
 
 namespace Alexandria.net.Logging
 {
     public class Logger :ILogger
     {
-        public Logger(loggingType loggingtype, string appname, BuildMode mode = BuildMode.Prod)
+        public BuildMode BuildMode { get; set; }
+        
+        public Logger(LoggingType loggingtype, string appname, BuildMode mode = BuildMode.Prod)
         {
             switch (loggingtype)
             {
-                case loggingType.file:
+                case LoggingType.File:
                     CreateLoggerCJson(appname);
                     break;
-                case loggingType.server:
+                case LoggingType.Server:
                     CreateLoggerToServer(appname);
                     break;
                 default:
@@ -89,9 +88,8 @@ namespace Alexandria.net.Logging
             Write(data, ErrorType.Verbose);
         }
 
-        public BuildMode BuildMode { get; set; }
 
-        private void Write(string info, ErrorType errortype)
+        public void Write(string info, ErrorType errortype)
         {
             switch (BuildMode)
             {

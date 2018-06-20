@@ -1,13 +1,13 @@
 ﻿using System;
+using System.ComponentModel;
 using System.IO;
 using System.Reflection;
+using Alexandria.net.Enums;
 using Alexandria.net.Logging;
 using Alexandria.net.Settings;
 using Newtonsoft.Json;
 
-//todo - Martyn's todos
 //todo - link in the send and receive
-//todo - threadsafe delegate for the receive message
 //todo - timeout period to be cojnfigurable :: specified in the config file
 
 
@@ -21,6 +21,7 @@ namespace Alexandria.net.Core
         #region Member Variables
 
         private Config _config;
+        private BlockchainConfig _blockchainConfig;
 
         #endregion
 
@@ -48,7 +49,8 @@ namespace Alexandria.net.Core
         /// <param name="walletPort">the wallet rpc endpoint post</param>
         public SophiaClient(string hostname = "", ushort daemonPort = 0, ushort walletPort = 0)
         {
-            LoadJson();
+            _config = LoadJson<Config>("config.json");
+            _blockchainConfig = LoadJson<BlockchainConfig>("blockchainconfig.json");
             if (_config != null)
             {
                 if (hostname != "")
@@ -59,11 +61,11 @@ namespace Alexandria.net.Core
                     _config.WalletPort = walletPort;
 
                 Daemon = new Daemon(_config);
-                Wallet = new Wallet(_config);
+                Wallet = new Wallet(_config, _blockchainConfig);
             }
             else
             {
-                var logger = new Logger(loggingType.server, Assembly.GetExecutingAssembly().GetName().Name);
+                var logger = new Logger(LoggingType.Server, Assembly.GetExecutingAssembly().GetName().Name);
                 logger.WriteError("Error with the config file");
             }
         }
@@ -83,7 +85,7 @@ namespace Alexandria.net.Core
             {
                 _config = new Config
                 {
-                    LoggingType = loggingType.file,
+                    LoggingType = LoggingType.File,
                     BuildMode = BuildMode.Prod,
                     Hostname = "127.0.0.1",
                     DaemonPort = 8091,
@@ -93,6 +95,46 @@ namespace Alexandria.net.Core
                 };
                 File.WriteAllText(filename, JsonConvert.SerializeObject(_config));
             }
+        }
+
+        private T LoadJson<T>(string filename)
+        {
+            var fullfilename = $"{AssemblyDirectory}/{filename}";
+            if (File.Exists(fullfilename))
+            {
+                return JsonConvert.DeserializeObject<T>(File.ReadAllText(fullfilename));
+            }
+            else
+            {
+                if (typeof(T) == typeof(Config))
+                {
+                    var config = new Config
+                    {
+                        LoggingType = LoggingType.File,
+                        BuildMode = BuildMode.Prod,
+                        Hostname = "195.48.9.208",
+                        DaemonPort = 8095,
+                        WalletPort = 8096,
+                        Api = "/rpc",
+                        Version = "2.0"
+                    };
+                    File.WriteAllText(fullfilename, JsonConvert.SerializeObject(config));
+                }
+                else if (typeof(T) == typeof(BlockchainConfig))
+                {
+                    var blockchainconfig = new BlockchainConfig
+                    {
+                        Account = AccountOwner.Sender,
+                        Index = 0,
+                        IsoTimeStamp = DateTime.UtcNow,
+                        SearchType = SearchType.BySender,
+                        Start = StartBy.Index
+                    };
+                    File.WriteAllText(fullfilename, JsonConvert.SerializeObject(blockchainconfig));
+                }
+            }
+
+            return default(T);
         }
 
         private static string AssemblyDirectory

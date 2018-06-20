@@ -67,7 +67,7 @@ namespace Alexandria.net.API.WalletFunctions
         {
 
             var assemblyname = Assembly.GetExecutingAssembly().GetName().Name;
-            _logger = new Logger(loggingType.server, assemblyname);
+            _logger = new Logger(LoggingType.Server, assemblyname);
         }
 
         /// <summary>

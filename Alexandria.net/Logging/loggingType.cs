@@ -1,8 +1,21 @@
-﻿namespace Alexandria.net.Logging
+﻿using Alexandria.net.API.WalletFunctions;
+
+namespace Alexandria.net.Logging
 {
-    public enum loggingType
+    /// <summary>
+    /// Type which will be used when writing to logs
+    /// </summary>
+    public enum LoggingType
     {
-        file,
-        server
+        /// <summary>
+        /// Writes to a clef file
+        /// </summary>
+        [StringValue("File")]
+        File,
+        /// <summary>
+        /// Writes to the sophia server
+        /// </summary>
+        [StringValue("Server")]
+        Server
     };
 }

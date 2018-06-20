@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using Alexandria.net.Communication;
 using Alexandria.net.Logging;
+using Alexandria.net.Messaging.Responses.DTO;
 using Alexandria.net.Settings;
 using Newtonsoft.Json;
 
@@ -13,6 +14,7 @@ namespace Alexandria.net.API.WalletFunctions
     public class Network : RpcConnection
     {
         private readonly ILogger _logger;
+
         #region Constructors
 
         /// <inheritdoc />
@@ -24,7 +26,7 @@ namespace Alexandria.net.API.WalletFunctions
             base(config)
         {
             var assemblyname = Assembly.GetExecutingAssembly().GetName().Name;
-            _logger = new Logger(loggingType.server, assemblyname);
+            _logger = new Logger(LoggingType.Server, assemblyname);
         }
 
         #endregion
@@ -40,12 +42,12 @@ namespace Alexandria.net.API.WalletFunctions
                 var result = SendRequest(MethodBase.GetCurrentMethod().Name);
                 return result == "true";
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
-                throw ;
+                throw;
             }
-            
+
         }
 
         /// <summary>
@@ -62,15 +64,15 @@ namespace Alexandria.net.API.WalletFunctions
                 var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
                 return result == "true";
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
-                throw ;
+                throw;
             }
-            
+
         }
 
-        
+
         /// <summary>
         /// Get hash including chain ID (digest), ready to be signed, of a JSON formatted transaction.
         /// </summary>
@@ -83,12 +85,12 @@ namespace Alexandria.net.API.WalletFunctions
                 var @params = new ArrayList {transaction};
                 return SendRequest(MethodBase.GetCurrentMethod().Name, @params).ToCharArray();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
-            
+
         }
 
         /// <summary>
@@ -105,12 +107,12 @@ namespace Alexandria.net.API.WalletFunctions
                 var @params = new ArrayList {sender, recipients, appId, document};
                 return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
-           
+
         }
 
 
@@ -130,12 +132,12 @@ namespace Alexandria.net.API.WalletFunctions
                 var @params = new ArrayList {sender, recipients, appId, document};
                 return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
-                throw ;
+                throw;
             }
-            
+
         }
 
 
@@ -155,12 +157,12 @@ namespace Alexandria.net.API.WalletFunctions
                 var @params = new ArrayList {sender, recipients, appId, document};
                 return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
-            
+
         }
 
         /// <summary>
@@ -182,13 +184,76 @@ namespace Alexandria.net.API.WalletFunctions
                 var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
                 return JsonConvert.DeserializeObject<Dictionary<ulong, ReceiverRecipe>>(result);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
-            
+
         }
 
+
+        /// <summary>
+        /// Form a transaction out of existing operations.
+        /// </summary>
+        /// <param name="operations"></param>
+        /// <returns></returns>
+        public string makeTransaction(List<string> operations)
+        {
+            try
+            {
+                var @params = new ArrayList {operations};
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return JsonConvert.DeserializeObject<string>(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+                throw;
+            }
+        }
+
+
+        /// <summary>
+        /// Add signature to the transaction. Useful fo rmulti-sig transactions,
+        /// where all the signatures have to be calculated and added one by one.
+        /// </summary>
+        /// <param name="transaction"></param>
+        /// <param name="signature"></param>
+        /// <returns></returns>
+        public string addSingature(string transaction, char[] signature)
+        {
+            try
+            {
+                var @params = new ArrayList {transaction, signature};
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return JsonConvert.DeserializeObject<string>(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="transaction"></param>
+        /// <returns></returns>
+        public bool sendSignedTransaction(string transaction)
+        {
+            try
+            {
+                var @params = new ArrayList {transaction};
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return JsonConvert.DeserializeObject<bool>(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+                throw;
+            }
+        }
     }
 }

@@ -38,6 +38,8 @@ namespace Alexandria.net.Core
 		/// 
 		/// </summary>
 		public Witness Witness { get; }
+		
+		public Data Data { get; }
 
 		#endregion
 		
@@ -47,7 +49,7 @@ namespace Alexandria.net.Core
 		/// 
 		/// </summary>
 		/// <param name="config"></param>
-		public Wallet(IConfig config)
+		public Wallet(IConfig config, IBlockchainConfig blockchainConfig)
 		{
 			Account = new Account(config);
 			Asset = new Asset(config);
@@ -56,6 +58,7 @@ namespace Alexandria.net.Core
 			Network = new Network(config);
 			Transaction = new Transaction(config);
 			Witness = new Witness(config);
+			Data = new Data(config, blockchainConfig);
 		}	
 		#endregion
     }

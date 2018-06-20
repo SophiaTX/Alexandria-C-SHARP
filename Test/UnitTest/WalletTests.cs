@@ -1,4 +1,5 @@
 using System;
+using Alexandria.net.Logging;
 using Xunit;
 
 
@@ -46,7 +47,7 @@ namespace UnitTest
         [Fact]
         public void GetBlock()
         {
-            var result = _client.Wallet.Transaction.get_block(16116);
+            var result = _client.Wallet.Transaction.get_block(1);
             Console.WriteLine(result);
         }        
        
@@ -77,11 +78,13 @@ namespace UnitTest
         [Fact]
         public void test()
         {
-            _client.Wallet.Account.accountExists("");
-            _client.Wallet.Asset.createUia("",null,0,"");
-            _client.Wallet.Cryptography.decryptData(null, "", "");
-            _client.Wallet.Network.connect("",0);
+//            _client.Wallet.Data.TestLogging("Test Message",
+//                $"{DateTime.UtcNow} : Graylog test message to see whether apprach is correct");
+            
+            //_client.Wallet.Data.TestLoggingException();
+            //var logger = new Logger(loggingType.file, "test", BuildMode.Prod);
+            //logger.WriteError("this is a test message");
         }
-        
+
     }
 }
