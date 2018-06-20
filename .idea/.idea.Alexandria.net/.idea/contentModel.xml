@@ -4,6 +4,7 @@
     <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.3.1/build/netcoreapp1.0/xunit.runner.reporters.netcoreapp10.dll" t="Include" />
     <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.3.1/build/netcoreapp1.0/xunit.runner.utility.netcoreapp10.dll" t="Include" />
     <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.3.1/build/netcoreapp1.0/xunit.runner.visualstudio.dotnetcore.testadapter.dll" t="Include" />
+    <e p="$USER_HOME$/Library/Caches/Rider2018.1/resharper-host/local/Transient/ReSharperHost/v12/SolutionCaches/_Alexandria.net.-1113668252.00" t="ExcludeRecursive" />
     <e p="$PROJECT_DIR$" t="IncludeFlat">
       <e p="Alexandria.net" t="IncludeRecursive">
         <e p="Alexandria.net.csproj" t="IncludeRecursive" />
@@ -24,6 +25,7 @@
           <e p="RpcConnection.cs" t="Include" />
         </e>
         <e p="Core" t="Include">
+          <e p="Class1.cs" t="Include" />
           <e p="Daemon.cs" t="Include" />
           <e p="SophiaClient.cs" t="Include" />
           <e p="Wallet.cs" t="Include" />
@@ -48,6 +50,7 @@
           <e p="Logger.cs" t="Include" />
           <e p="loggingType.cs" t="Include" />
         </e>
+        <e p="logging.config" t="Include" />
         <e p="Mapping" t="Include">
           <e p="CSharpToCPP.cs" t="Include" />
         </e>
@@ -78,6 +81,7 @@
               <e p="ActiveWitnessResponse.cs" t="Include" />
               <e p="BlockData.cs" t="Include" />
               <e p="BlockResponse.cs" t="Include" />
+              <e p="CreateAccountResponse.cs" t="Include" />
               <e p="CurrentMedianHistory.cs" t="Include" />
               <e p="DataRequestResponse.cs" t="Include" />
               <e p="DataResponse.cs" t="Include" />
@@ -97,7 +101,9 @@
               <e p="Result.cs" t="Include" />
               <e p="RightsToPublish.cs" t="Include" />
               <e p="SendResponseResult.cs" t="Include" />
-              <e p="SignedTrasnactionResponse.cs" t="Include" />
+              <e p="SignedTransactionResponse.cs" t="Include" />
+              <e p="TransactionData.cs" t="Include" />
+              <e p="TransactionResponse.cs" t="Include" />
             </e>
           </e>
         </e>
@@ -134,6 +140,5 @@
       </e>
       <e p="Tests" t="Include" />
     </e>
-    <e p="$USER_HOME$/Library/Caches/Rider2018.1/resharper-host/local/Transient/ReSharperHost/v12/SolutionCaches/_Alexandria.net.980360794.00" t="ExcludeRecursive" />
   </component>
 </project>

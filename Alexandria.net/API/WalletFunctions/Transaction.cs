@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using Alexandria.net.Communication;
 using Alexandria.net.Logging;
@@ -10,9 +12,10 @@ using Newtonsoft.Json;
 namespace Alexandria.net.API.WalletFunctions
 {
 	/// <inheritdoc />
-	/// <summary>
-	/// All wallet calls to the SophiaTX Blockchain
-	/// </summary>
+	/// <para>
+	/// Wallet Transaction Functions
+	/// </para>
+	
 	public class  Transaction : RpcConnection
 	{	
 		private readonly ILogger _logger;
@@ -61,7 +64,7 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <param name="challenger"></param>
 		/// <param name="challenged"></param>
 		/// <returns></returns>
-		public string Challenge(string challenger, string challenged)
+		private string Challenge(string challenger, string challenged)
 		{
 			try
 			{
@@ -99,9 +102,9 @@ namespace Alexandria.net.API.WalletFunctions
 		}
 
 		/// <summary>
-		/// return the current price feed history
+		/// get current feed history
 		/// </summary>
-		/// <returns></returns>
+		/// <returns>Returns object with Feed details</returns>
 		public FeedHistoryResponse get_feed_history()
 		{
 			try
@@ -119,10 +122,10 @@ namespace Alexandria.net.API.WalletFunctions
 		}
 
 		/// <summary>
-		/// Returns transaction by ID.
+		/// Get transaction by ID.
 		/// </summary>
 		/// <param name="trxId"></param>
-		/// <returns></returns>
+		/// <returns>Returns object with transaction details</returns>
 		public string get_transaction(string trxId)
 		{
 			try
@@ -137,14 +140,18 @@ namespace Alexandria.net.API.WalletFunctions
 			}
 			
 		}
-		
-		public FeedHistoryResponse broadcast_transaction(string signed_tx)
+		/// <summary>
+		/// Broadcasts transaction once it is created, helps to register Transactions on the Blockchain
+		/// </summary>
+		/// <param name="signed_tx"></param>
+		/// <returns>Returns Object with Transaction id and other details</returns>
+		public TransactionResponse broadcast_transaction(SignedTransactionResponse signed_tx)
 		{
 			try
 			{
 				var @params = new ArrayList {signed_tx};
 				var result= SendRequest(MethodBase.GetCurrentMethod().Name, @params);
-				var contentdata = JsonConvert.DeserializeObject<FeedHistoryResponse>(result);
+				var contentdata = JsonConvert.DeserializeObject<TransactionResponse>(result);
 				return contentdata;
 			}
 			catch(Exception ex)
@@ -153,6 +160,47 @@ namespace Alexandria.net.API.WalletFunctions
 				throw ;
 			}
 			
+		}
+		
+		/// <summary>
+		/// Creates Transaction for all the operations created
+		/// </summary>
+		/// <param name="operation"></param>
+		/// <returns>Returns Object with block number and other trnasaction details</returns>
+		public TransactionResponse create_simple_transaction(CreateAccountResponse operation)
+		{
+			Key newKey=new Key(Config);
+			try
+			{
+                
+				var @params = new ArrayList {operation.result};
+				var result= SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+				var contentdata = JsonConvert.DeserializeObject<TransactionResponse>(result);
+				//var digest=newKey.get_transaction_digest_c(result, "00000000000000000000000000000000", new byte[64]);
+				//var signature=newKey.sign_digest_c(digest, "5JPwY3bwFgfsGtxMeLkLqXzUrQDMAsqSyAZDnMBkg7PDDRhQgaV", new byte[130]);
+				//newKey.add_signature_c(contentdata.result.ToString(), signature, new byte[contentdata.result.ToString().Length + 200]);
+				return contentdata;
+			}
+			catch(Exception ex)
+			{
+				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+				throw ;
+			}
+		}
+		public BlockResponse create_transaction(List<List<CreateAccountResponse>> operation)
+		{
+			try
+			{
+				var @params = new ArrayList {operation};
+				var result= SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+				var contentdata = JsonConvert.DeserializeObject<BlockResponse>(result);
+				return contentdata;
+			}
+			catch(Exception ex)
+			{
+				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+				throw ;
+			}
 		}
 
 		/// <summary>
@@ -295,5 +343,13 @@ namespace Alexandria.net.API.WalletFunctions
 		}
 
 		#endregion
+
+		public void get_ops_in_block()
+		{
+			//throw new NotImplementedException();
+		}
+
+		
+		
 	}
 }

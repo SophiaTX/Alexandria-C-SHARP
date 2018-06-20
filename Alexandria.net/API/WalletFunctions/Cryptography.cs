@@ -76,7 +76,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="operation"></param>
         /// <param name="privateKey"></param>
         /// <returns>Returns true is it was properly signes and accepted, false otherwise.</returns>
-        private bool signAndSendOperation(string operation, string privateKey)
+        public bool signAndSendOperation(string operation, string privateKey)
         {
             try
             {
@@ -99,7 +99,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="transaction"></param>
         /// <param name="privateKey"></param>
         /// <remarks>Returns true is it was properly signes and accepted, false otherwise.</remarks>
-        private bool signAndSendTransaction(string transaction, string privateKey)
+        public bool signAndSendTransaction(string transaction, string privateKey)
         {
             try
             {

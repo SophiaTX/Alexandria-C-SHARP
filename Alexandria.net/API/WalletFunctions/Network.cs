@@ -8,6 +8,7 @@ using Alexandria.net.Messaging.Responses.DTO;
 using Alexandria.net.Settings;
 using Newtonsoft.Json;
 
+
 namespace Alexandria.net.API.WalletFunctions
 {
     /// <inheritdoc />
@@ -28,7 +29,7 @@ namespace Alexandria.net.API.WalletFunctions
             base(config)
         {
             var assemblyname = Assembly.GetExecutingAssembly().GetName().Name;
-            _logger = new Logger(loggingType.server, assemblyname);
+            _logger = new Logger(LoggingType.Server, assemblyname);
         }
 
         #endregion
@@ -104,7 +105,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="appId">ulong appId</param>
         /// <param name="document">string document</param>
         /// <returns></returns>
-        private string makeCustomJsonOperation(string sender, List<string> recipients, ulong appId, string document)
+        public string makeCustomJsonOperation(string sender, List<string> recipients, ulong appId, string document)
         {
             try
             {
@@ -128,7 +129,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="appId"></param>
         /// <param name="document"></param>
         /// <returns></returns>
-        private string makeCustomBinaryOperation(string sender, List<string> recipients, ulong appId,
+        public string makeCustomBinaryOperation(string sender, List<string> recipients, ulong appId,
             List<char> document)
         {
             try
@@ -153,7 +154,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="appId"></param>
         /// <param name="document"></param>
         /// <returns></returns>
-        private string makeCustomBinaryBase58Operation(string sender, List<string> recipients, ulong appId,
+        public string makeCustomBinaryBase58Operation(string sender, List<string> recipients, ulong appId,
             string document)
         {
             try
@@ -179,7 +180,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="start"></param>
         /// <param name="count"></param>
         /// <returns></returns>
-        private Dictionary<ulong, ReceiverRecipe> get_received_documents(ulong appId, string searchType,
+        public Dictionary<ulong, ReceiverRecipe> get_received_documents(ulong appId, string searchType,
             string account, string start, uint count)
         {
             try
