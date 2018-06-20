@@ -181,7 +181,11 @@
             <param name="blockKey">Input byte[] blockKey</param>
             <returns>Returns true if success or false for failed try</returns>
         </member>
+<<<<<<< HEAD
         <member name="M:Alexandria.net.API.WalletFunctions.Account.createAccount(System.String,System.String,Alexandria.net.Messaging.Responses.Authority,Alexandria.net.Messaging.Responses.Authority,System.Byte[])">
+=======
+        <member name="M:Alexandria.net.API.WalletFunctions.Account.create_account(System.String,System.String,System.String,System.Boolean)">
+>>>>>>> b31c49050a58a9c9562c49ba1cfee9e2830d6ebe
             <summary>
             Creates new account in the SophiaTX blockchain.
             </summary>
@@ -420,7 +424,7 @@
             <summary>
             </summary>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Key.generate_private_key(System.Byte[])">
+        <member name="M:Alexandria.net.API.WalletFunctions.Key.generate_private_key(System.Byte[],System.Byte[])">
             <summary>
             Create a private key
             </summary>
@@ -459,7 +463,13 @@
             </summary>
             <param name="config"></param>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Key.generate_private_key_c(System.Byte[])">
+        <member name="M:Alexandria.net.API.WalletFunctions.Key.list_keys">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Key.generate_private_key_c(System.Byte[],System.Byte[])">
             <summary>
             Generates the Private Keys
             </summary>
@@ -1077,7 +1087,11 @@
             
             </summary>
         </member>
+<<<<<<< HEAD
         <member name="M:Alexandria.net.Core.Wallet.#ctor(Alexandria.net.Settings.IConfig,Alexandria.net.Settings.IBlockchainConfig)">
+=======
+        <member name="M:Alexandria.net.Core.Wallet.#ctor(Alexandria.net.Settings.IConfig)">
+>>>>>>> b31c49050a58a9c9562c49ba1cfee9e2830d6ebe
             <summary>
             
             </summary>

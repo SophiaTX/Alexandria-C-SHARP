@@ -37,11 +37,14 @@ namespace Alexandria.net.API.WalletFunctions
 		/// Gets the compile time info
 		/// </summary>
 		/// <returns>Returns compile time info And client And dependencies versions</returns>
-		public string About()
+		public AboutResponse About()
 		{
 			try
 			{
-				return SendRequest(MethodBase.GetCurrentMethod().Name.ToLower());
+				var result= SendRequest(MethodBase.GetCurrentMethod().Name.ToLower());
+				var contentdata = JsonConvert.DeserializeObject<AboutResponse>(result);
+				return contentdata;
+
 			}
 			catch(Exception ex)
 			{
@@ -50,6 +53,7 @@ namespace Alexandria.net.API.WalletFunctions
 			}
 			
 		}
+		
 
 		/// <summary>
 		/// 
@@ -125,6 +129,23 @@ namespace Alexandria.net.API.WalletFunctions
 			{
 				var @params = new ArrayList {trxId};
 				return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+			}
+			catch(Exception ex)
+			{
+				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+				throw ;
+			}
+			
+		}
+		
+		public FeedHistoryResponse broadcast_transaction(string signed_tx)
+		{
+			try
+			{
+				var @params = new ArrayList {signed_tx};
+				var result= SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+				var contentdata = JsonConvert.DeserializeObject<FeedHistoryResponse>(result);
+				return contentdata;
 			}
 			catch(Exception ex)
 			{

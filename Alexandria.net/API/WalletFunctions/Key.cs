@@ -24,7 +24,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="privateKey">byte[52] private_key</param>
         /// <returns>Returns true if success or false for failed try</returns>
         [DllImport(Libpath)]
-        private static extern bool generate_private_key([MarshalAs(UnmanagedType.LPArray)]byte[] privateKey);
+        private static extern bool generate_private_key([MarshalAs(UnmanagedType.LPArray)]byte[] privateKey, [MarshalAs(UnmanagedType.LPArray)]byte[] publickey);
         /// <summary>
         /// Create a Transaction digest of the given transaction
         /// </summary>
@@ -69,17 +69,36 @@ namespace Alexandria.net.API.WalletFunctions
             var assemblyname = Assembly.GetExecutingAssembly().GetName().Name;
             _logger = new Logger(LoggingType.Server, assemblyname);
         }
-
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public string list_keys()          
+        {
+            try
+            {
+                var result= SendRequest(MethodBase.GetCurrentMethod().Name);
+                return result;
+            }
+            catch(Exception ex)
+            {
+                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+                throw ;
+            }
+        }
+        
         /// <summary>
         /// Generates the Private Keys
         /// </summary>
         /// <param name="privatekey">the key bytes</param>
         /// <returns>Returns true if success or false for failed try</returns>
-        public string generate_private_key_c(byte[] privatekey)
+        public string generate_private_key_c(byte[] privatekey,byte[] publickey)
         {
             try
             {
-                return generate_private_key(privatekey) ? System.Text.Encoding.Default.GetString(privatekey) : string.Empty;
+                var result=generate_private_key(privatekey,publickey) ? System.Text.Encoding.Default.GetString(privatekey) : string.Empty;
+                return result;
             }
             catch(Exception ex)
             {
@@ -108,6 +127,7 @@ namespace Alexandria.net.API.WalletFunctions
             }
             
         }
+        
 
         /// <summary>
         /// Creates a signature for the given private key and transaction digest
