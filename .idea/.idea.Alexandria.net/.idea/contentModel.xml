@@ -26,9 +26,24 @@
           <e p="RpcConnection.cs" t="Include" />
         </e>
         <e p="Core" t="Include">
+          <e p="Class1.cs" t="Include" />
           <e p="Daemon.cs" t="Include" />
           <e p="SophiaClient.cs" t="Include" />
           <e p="Wallet.cs" t="Include" />
+        </e>
+        <e p="Enums" t="Include">
+          <e p="AccountOwner.cs" t="Include" />
+          <e p="BuildMode.cs" t="Include" />
+          <e p="ErrorType.cs" t="Include" />
+          <e p="SearchType.cs" t="Include" />
+          <e p="StartBy.cs" t="Include" />
+          <e p="TransactionType.cs" t="Include" />
+        </e>
+        <e p="Extensions" t="Include">
+          <e p="EnumExtensions.cs" t="Include" />
+        </e>
+        <e p="Helpers" t="Include">
+          <e p="StringValueAttribute.cs" t="Include" />
         </e>
         <e p="libalexandria.dylib" t="Include" />
         <e p="Logging" t="Include">
@@ -38,6 +53,7 @@
           <e p="Logger.cs" t="Include" />
           <e p="loggingType.cs" t="Include" />
         </e>
+        <e p="logging.config" t="Include" />
         <e p="Mapping" t="Include">
           <e p="CSharpToCPP.cs" t="Include" />
         </e>
@@ -54,6 +70,9 @@
               <e p="ReceiveResponseResult.cs" t="Include" />
             </e>
             <e p="RecvMessageCollection.cs" t="Include" />
+          </e>
+          <e p="Receiver" t="Include">
+            <e p="SenderData.cs" t="Include" />
           </e>
           <e p="Responses" t="Include">
             <e p="DTO" t="Include">
@@ -99,7 +118,9 @@
           </e>
         </e>
         <e p="Settings" t="Include">
+          <e p="BlockchainConfig.cs" t="Include" />
           <e p="Config.cs" t="Include" />
+          <e p="IBlockchainConfig.cs" t="Include" />
           <e p="IConfig.cs" t="Include" />
         </e>
       </e>
