@@ -181,11 +181,7 @@
             <param name="blockKey">Input byte[] blockKey</param>
             <returns>Returns true if success or false for failed try</returns>
         </member>
-<<<<<<< HEAD
-        <member name="M:Alexandria.net.API.WalletFunctions.Account.createAccount(System.String,System.String,Alexandria.net.Messaging.Responses.Authority,Alexandria.net.Messaging.Responses.Authority,System.Byte[])">
-=======
         <member name="M:Alexandria.net.API.WalletFunctions.Account.create_account(System.String,System.String,System.String,System.Boolean)">
->>>>>>> b31c49050a58a9c9562c49ba1cfee9e2830d6ebe
             <summary>
             Creates new account in the SophiaTX blockchain.
             </summary>
@@ -386,21 +382,21 @@
             </summary>
             <param name="config"></param>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Data.Send(Alexandria.net.API.WalletFunctions.SenderData)">
+        <member name="M:Alexandria.net.API.WalletFunctions.Data.Send(Alexandria.net.Messaging.Receiver.SenderData)">
             <summary>
             
             </summary>
             <param name="senderdata"></param>
             <returns></returns>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Data.SendBinary(Alexandria.net.API.WalletFunctions.SenderData)">
+        <member name="M:Alexandria.net.API.WalletFunctions.Data.SendBinary(Alexandria.net.Messaging.Receiver.SenderData)">
             <summary>
             
             </summary>
             <param name="senderdata"></param>
             <returns></returns>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Data.SendBinaryBase58(Alexandria.net.API.WalletFunctions.SenderData)">
+        <member name="M:Alexandria.net.API.WalletFunctions.Data.SendBinaryBase58(Alexandria.net.Messaging.Receiver.SenderData)">
             <summary>
             
             </summary>
@@ -412,7 +408,7 @@
             Allowed options for search_type are "by_sender", "by_recipient", "by_sender_datetime", "by_recipient_datetime".
             Account is then either sender or recevier, and start is either index od ISO time stamp.
             </summary>
-            <param name="AppId">The Id of the application which we are receiving for</param>
+            <param name="appId">The Id of the application which we are receiving for</param>
             <param name="searchType">based on the Search Type Enum</param>
             <param name="account">Account Owner - sender or receiver</param>
             <param name="start">Start by value - index or ISO time stamp</param>
@@ -1087,11 +1083,7 @@
             
             </summary>
         </member>
-<<<<<<< HEAD
         <member name="M:Alexandria.net.Core.Wallet.#ctor(Alexandria.net.Settings.IConfig,Alexandria.net.Settings.IBlockchainConfig)">
-=======
-        <member name="M:Alexandria.net.Core.Wallet.#ctor(Alexandria.net.Settings.IConfig)">
->>>>>>> b31c49050a58a9c9562c49ba1cfee9e2830d6ebe
             <summary>
             
             </summary>
@@ -1194,22 +1186,22 @@
         </member>
         <member name="T:Alexandria.net.Enums.TransactionType">
             <summary>
-            
+            the transaction method type you would like use
             </summary>
         </member>
         <member name="F:Alexandria.net.Enums.TransactionType.SignAndSend">
             <summary>
-            
+            this sends a single document
             </summary>
         </member>
         <member name="F:Alexandria.net.Enums.TransactionType.MakeSignAndSend">
             <summary>
-            
+            this sends multiple documents
             </summary>
         </member>
         <member name="F:Alexandria.net.Enums.TransactionType.MakeDigestSignAndSend">
             <summary>
-            
+            this sends multiple document with digest
             </summary>
         </member>
         <member name="T:Alexandria.net.Logging.LoggingType">
@@ -1225,6 +1217,41 @@
         <member name="F:Alexandria.net.Logging.LoggingType.Server">
             <summary>
             Writes to the sophia server
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Messaging.Receiver.SenderData">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Receiver.SenderData.Sender">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Receiver.SenderData.Recipients">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Receiver.SenderData.AppId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Receiver.SenderData.Documents">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Receiver.SenderData.DocumentChars">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Receiver.SenderData.PrivateKey">
+            <summary>
+            
             </summary>
         </member>
         <member name="T:Alexandria.net.Messaging.Responses.Authority">

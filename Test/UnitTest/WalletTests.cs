@@ -66,11 +66,7 @@ namespace UnitTest
         [Fact]
         public void GetBlock()
         {
-<<<<<<< HEAD
-            var result = _client.Wallet.Transaction.get_block(1);
-=======
             var result = _client.Wallet.Transaction.get_block(8198);
->>>>>>> b31c49050a58a9c9562c49ba1cfee9e2830d6ebe
             Console.WriteLine(result);
         } 
 //        [Fact]
@@ -115,29 +111,8 @@ namespace UnitTest
         [Fact]
         public void ListKeys()
         {
-<<<<<<< HEAD
-//            _client.Wallet.Data.TestLogging("Test Message",
-//                $"{DateTime.UtcNow} : Graylog test message to see whether apprach is correct");
-            
-            //_client.Wallet.Data.TestLoggingException();
-            //var logger = new Logger(loggingType.file, "test", BuildMode.Prod);
-            //logger.WriteError("this is a test message");
-        }
-
-=======
             _client.Wallet.Key.list_keys();
 
         }
-
-//        [Fact]
-//        public void test()
-//        {
-//            _client.Wallet.Account.accountExists("");
-//            _client.Wallet.Asset.createUia("",null,0,"");
-//            _client.Wallet.Cryptography.decryptData(null, "", "");
-//            _client.Wallet.Network.connect("",0);
-//        }
-        
->>>>>>> b31c49050a58a9c9562c49ba1cfee9e2830d6ebe
     }
 }
