@@ -6,16 +6,9 @@
     <members>
         <member name="T:Alexandria.net.API.WalletFunctions.Account">
             <inheritdoc />
-            <summary>
+            <para>
             Wallet Account Functions 
-            </summary>
-        </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Account.#ctor(Alexandria.net.Settings.IConfig)">
-            <inheritdoc />
-            <summary>
-            Wallet Constructor
-            </summary>
-            <param name="config"></param>
+            </para>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Account.accountExists(System.String)">
             <summary>
@@ -181,7 +174,7 @@
             <param name="blockKey">Input byte[] blockKey</param>
             <returns>Returns true if success or false for failed try</returns>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Account.create_account(System.String,System.String,System.String,System.Boolean)">
+        <member name="M:Alexandria.net.API.WalletFunctions.Account.create_account(System.String,System.String,System.String,System.String,System.String,System.String)">
             <summary>
             Creates new account in the SophiaTX blockchain.
             </summary>
@@ -190,18 +183,26 @@
             <param name="owner">Input Authority owner</param>
             <param name="active">Input Authority active</param>
             <param name="memo">Input byte[] memo</param>
-            <returns>Returns true if success or false for failed try</returns>
+            <returns>Returns object containing information about the new operation created</returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Account.transfer_to_vesting">
+            <summary>
+            
+            </summary>
+            <exception cref="T:System.NotImplementedException"></exception>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Account.delete_account(System.String)">
+            <summary>
+            Deletes the account from the blockchain related to the given name of the account
+            </summary>
+            <param name="AccountName"></param>
+            <returns>Returns object containing information about the new operation created</returns>
         </member>
         <member name="T:Alexandria.net.API.WalletFunctions.Asset">
             <inheritdoc />
-            <summary>
-            </summary>
-        </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Asset.#ctor(Alexandria.net.Settings.IConfig)">
-            <summary>
-            Wallet Constructor
-            </summary>
-            <param name="config"></param>
+            <para>
+            Wallet Asset Functions
+            </para>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Asset.transfer(System.String,System.String,System.String,System.UInt64,System.String)">
             <summary>
@@ -290,13 +291,9 @@
         </member>
         <member name="T:Alexandria.net.API.WalletFunctions.Cryptography">
             <inheritdoc />
-        </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Cryptography.#ctor(Alexandria.net.Settings.IConfig)">
-            <inheritdoc />
-            <summary>
-            Wallet Constructor
-            </summary>
-            <param name="config"></param>
+            <para>
+            Wallet Cryptography Functions
+            </para>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Cryptography.generateKeyPair">
             <summary>
@@ -393,62 +390,19 @@
         </member>
         <member name="T:Alexandria.net.API.WalletFunctions.Key">
             <inheritdoc />
-            <summary>
-            </summary>
-        </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Key.generate_private_key(System.Byte[],System.Byte[])">
-            <summary>
-            Create a private key
-            </summary>
-            <param name="privateKey">byte[52] private_key</param>
-            <returns>Returns true if success or false for failed try</returns>
-        </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Key.get_transaction_digest(System.String,System.Byte[])">
-            <summary>
-            Create a Transaction digest of the given transaction
-            </summary>
-            <param name="transaction">string transaction</param>
-            <param name="digest">byte[] digest</param>
-            <returns>Returns true if success or false for failed try</returns>
-        </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Key.sign_digest(System.String,System.String,System.Byte[])">
-            <summary>
-            Creates signamture for the given transaction and digest
-            </summary>
-            <param name="digest">string digest</param>
-            <param name="privateKey">string private_key</param>
-            <param name="signedDigest">byte[] signed_digest</param>
-            <returns>Returns true if success or false for failed try</returns>
-        </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Key.add_signature(System.String,System.String,System.Byte[])">
-            <summary>
-            Sign a transcation using the given signature
-            </summary>
-            <param name="transaction">string transaction</param>
-            <param name="signature">string signature</param>
-            <param name="signedTx">byte[] signed_tx</param>
-            <returns>Returns true if success or false for failed try</returns>
-        </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Key.#ctor(Alexandria.net.Settings.IConfig)">
-            <summary>
-            
-            </summary>
-            <param name="config"></param>
-        </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Key.list_keys">
-            <summary>
-            
-            </summary>
-            <returns></returns>
+            <para>
+            Wallet Key Functions
+            </para>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Key.generate_private_key_c(System.Byte[],System.Byte[])">
             <summary>
-            Generates the Private Keys
+            Generates Public and Private keys
             </summary>
-            <param name="privatekey">the key bytes</param>
+            <param name="privatekey"></param>
+            <param name="publickey"></param>
             <returns>Returns true if success or false for failed try</returns>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Key.get_transaction_digest_c(System.String,System.Byte[])">
+        <member name="M:Alexandria.net.API.WalletFunctions.Key.get_transaction_digest_c(System.String,System.String,System.Byte[])">
             <summary>
             Gets the transaction digest
             </summary>
@@ -476,6 +430,9 @@
         </member>
         <member name="T:Alexandria.net.API.WalletFunctions.Network">
             <inheritdoc />
+            <para>
+            Wallet Network Functions
+            </para>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Network.#ctor(Alexandria.net.Settings.IConfig)">
             <inheritdoc />
@@ -583,9 +540,9 @@
         </member>
         <member name="T:Alexandria.net.API.WalletFunctions.Transaction">
             <inheritdoc />
-            <summary>
-            All wallet calls to the SophiaTX Blockchain
-            </summary>
+            <para>
+            Wallet Transaction Functions
+            </para>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Transaction.#ctor(Alexandria.net.Settings.IConfig)">
             <summary>
@@ -616,16 +573,30 @@
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Transaction.get_feed_history">
             <summary>
-            return the current price feed history
+            get current feed history
             </summary>
-            <returns></returns>
+            <returns>Returns object with Feed details</returns>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Transaction.get_transaction(System.String)">
             <summary>
-            Returns transaction by ID.
+            Get transaction by ID.
             </summary>
             <param name="trxId"></param>
-            <returns></returns>
+            <returns>Returns object with transaction details</returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Transaction.broadcast_transaction(Alexandria.net.Messaging.Responses.DTO.SignedTransactionResponse)">
+            <summary>
+            Broadcasts transaction once it is created, helps to register Transactions on the Blockchain
+            </summary>
+            <param name="signed_tx"></param>
+            <returns>Returns Object with Transaction id and other details</returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Transaction.create_simple_transaction(Alexandria.net.Messaging.Responses.DTO.CreateAccountResponse)">
+            <summary>
+            Creates Transaction for all the operations created
+            </summary>
+            <param name="operation"></param>
+            <returns>Returns Object with block number and other trnasaction details</returns>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Transaction.publish_feed(System.String,System.Decimal)">
             <summary>
@@ -687,15 +658,10 @@
             <returns></returns>
         </member>
         <member name="T:Alexandria.net.API.WalletFunctions.Witness">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Witness.#ctor(Alexandria.net.Settings.IConfig)">
-            <summary>
-            Connects Witness with default values, the runtime values inherited from base class
-            </summary>
-            <param name="config"></param>
+            <inheritdoc />
+            <para>
+            Wallet Witness Functions
+            </para>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Witness.get_active_witnesses">
             <summary>
@@ -708,7 +674,7 @@
             <summary>
             Returns the queue Of pow miners waiting To produce blocks.
             </summary>
-            <returns>...</returns>
+            <returns></returns>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Witness.get_witness(System.String)">
             <summary>
@@ -719,10 +685,7 @@
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Witness.list_witnesses(System.String,System.UInt32)">
             <summary>
-            Lists all witnesses registered In the blockchain. This returns a list Of
-            all account names that own witnesses, And the associated witness id, sorted
-            by name. This lists witnesses whether they are currently voted In Or Not.
-            Use the 'lowerbound' and limit parameters to page through the list. To
+            Lists all witnesses registered In the blockchain. To
             retrieve all witnesss, start by setting 'lowerbound' to the empty string
             '""', and then each iteration, pass the last witness name returned as the
             'lowerbound' for the next 'list_witnesss()' call.

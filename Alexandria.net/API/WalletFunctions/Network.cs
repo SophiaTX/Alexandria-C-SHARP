@@ -11,6 +11,9 @@ using Newtonsoft.Json;
 namespace Alexandria.net.API.WalletFunctions
 {
     /// <inheritdoc />
+    /// <para>
+    /// Wallet Network Functions
+    /// </para>
     public class Network : RpcConnection
     {
         private readonly ILogger _logger;
@@ -34,7 +37,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// Returns true if the library is connected to a backend.
         /// </summary>
         /// <returns>Returns true if success and false for failed try</returns>
-        public ActiveWitnessResponse isConnected()
+        private ActiveWitnessResponse isConnected()
         {
             try
             {
@@ -57,7 +60,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="host">string host</param>
         /// <param name="port">int port</param>
         /// <returns>Returns true if success and false for failed try</returns>
-        public bool connect(string host, int port)
+        private bool connect(string host, int port)
         {
             try
             {
@@ -79,7 +82,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// </summary>
         /// <param name="transaction">string transaction</param>
         /// <returns>Returns char[] transaction digest</returns>
-        public char[] getTransactionDigest(string transaction)
+        private char[] getTransactionDigest(string transaction)
         {
             try
             {
@@ -101,7 +104,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="appId">ulong appId</param>
         /// <param name="document">string document</param>
         /// <returns></returns>
-        public string makeCustomJsonOperation(string sender, List<string> recipients, ulong appId, string document)
+        private string makeCustomJsonOperation(string sender, List<string> recipients, ulong appId, string document)
         {
             try
             {
@@ -125,7 +128,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="appId"></param>
         /// <param name="document"></param>
         /// <returns></returns>
-        public string makeCustomBinaryOperation(string sender, List<string> recipients, ulong appId,
+        private string makeCustomBinaryOperation(string sender, List<string> recipients, ulong appId,
             List<char> document)
         {
             try
@@ -150,7 +153,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="appId"></param>
         /// <param name="document"></param>
         /// <returns></returns>
-        public string makeCustomBinaryBase58Operation(string sender, List<string> recipients, ulong appId,
+        private string makeCustomBinaryBase58Operation(string sender, List<string> recipients, ulong appId,
             string document)
         {
             try
@@ -176,7 +179,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="start"></param>
         /// <param name="count"></param>
         /// <returns></returns>
-        public Dictionary<ulong, ReceiverRecipe> get_received_documents(ulong appId, string searchType,
+        private Dictionary<ulong, ReceiverRecipe> get_received_documents(ulong appId, string searchType,
             string account, string start, uint count)
         {
             try
@@ -193,5 +196,6 @@ namespace Alexandria.net.API.WalletFunctions
             
         }
 
+        
     }
 }

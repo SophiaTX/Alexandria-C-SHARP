@@ -10,16 +10,14 @@ using Alexandria.net.Settings;
 
 namespace Alexandria.net.API.WalletFunctions
 {
-    /// <summary>
-    /// 
-    /// </summary>
+    /// <inheritdoc />
+    /// <para>
+    /// Wallet Witness Functions
+    /// </para>
     public class Witness : RpcConnection
     {   private readonly ILogger _logger;
 
-        /// <summary>
-        /// Connects Witness with default values, the runtime values inherited from base class
-        /// </summary>
-        /// <param name="config"></param>
+        
         public Witness(IConfig config) :
             base(config)
         {
@@ -51,8 +49,8 @@ namespace Alexandria.net.API.WalletFunctions
         /// <summary>
         /// Returns the queue Of pow miners waiting To produce blocks.
         /// </summary>
-        /// <returns>...</returns>
-        public string get_miner_queue()
+        /// <returns></returns>
+        private string get_miner_queue()
         {
             try
             {
@@ -87,10 +85,7 @@ namespace Alexandria.net.API.WalletFunctions
         }
 
         /// <summary>
-        /// Lists all witnesses registered In the blockchain. This returns a list Of
-        /// all account names that own witnesses, And the associated witness id, sorted
-        /// by name. This lists witnesses whether they are currently voted In Or Not.
-        /// Use the 'lowerbound' and limit parameters to page through the list. To
+        /// Lists all witnesses registered In the blockchain. To
         /// retrieve all witnesss, start by setting 'lowerbound' to the empty string
         /// '""', and then each iteration, pass the last witness name returned as the
         /// 'lowerbound' for the next 'list_witnesss()' call.
@@ -186,5 +181,6 @@ namespace Alexandria.net.API.WalletFunctions
                 throw ;
             }   
         }
+
     }
 }

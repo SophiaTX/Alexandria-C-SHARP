@@ -66,6 +66,7 @@
               <e p="ActiveWitnessResponse.cs" t="Include" />
               <e p="BlockData.cs" t="Include" />
               <e p="BlockResponse.cs" t="Include" />
+              <e p="CreateAccountResponse.cs" t="Include" />
               <e p="CurrentMedianHistory.cs" t="Include" />
               <e p="DataRequestResponse.cs" t="Include" />
               <e p="DataResponse.cs" t="Include" />
@@ -84,7 +85,9 @@
               <e p="Result.cs" t="Include" />
               <e p="RightsToPublish.cs" t="Include" />
               <e p="SendResponseResult.cs" t="Include" />
-              <e p="SignedTrasnactionResponse.cs" t="Include" />
+              <e p="SignedTransactionResponse.cs" t="Include" />
+              <e p="TransactionData.cs" t="Include" />
+              <e p="TransactionResponse.cs" t="Include" />
             </e>
           </e>
         </e>
