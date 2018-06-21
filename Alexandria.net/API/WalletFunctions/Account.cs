@@ -488,14 +488,16 @@ namespace Alexandria.net.API.WalletFunctions
 
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="creator"></param>
         /// <param name="newname"></param>
         /// <param name="jsonMeta"></param>
-        /// <param name="owner">Input Authority owner</param>
-        /// <param name="active">Input Authority active</param>
-        /// <param name="memo">Input byte[] memo</param>
-        /// <param name="creator"></param>
-        /// <returns>Returns object containing information about the new operation created</returns>
+        /// <param name="owner"></param>
+        /// <param name="active"></param>
+        /// <param name="memo"></param>
+        /// <returns></returns>
         public CreateAccountResponse CreateAccount(string creator, string newname, string jsonMeta, string owner,
             string active, string memo)
         {

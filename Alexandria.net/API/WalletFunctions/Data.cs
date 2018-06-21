@@ -66,7 +66,7 @@ namespace Alexandria.net.API.WalletFunctions
                 if (operations.Count == 0) return false;
                 var transaction = makeTransaction(operations);
                 if (transaction == string.Empty) return false;
-                result = _cryptography.signAndSendTransaction(transaction, senderdata.PrivateKey);
+                result = _cryptography.SignAndSendTransaction(transaction, senderdata.PrivateKey);
             }
             catch (Exception ex)
             {
@@ -101,7 +101,7 @@ namespace Alexandria.net.API.WalletFunctions
 
                 var transaction = makeTransaction(operations);
                 if (transaction == string.Empty) return false;
-                result = _cryptography.signAndSendTransaction(transaction, senderdata.PrivateKey);
+                result = _cryptography.SignAndSendTransaction(transaction, senderdata.PrivateKey);
 
             }
             catch (Exception ex)
@@ -136,7 +136,7 @@ namespace Alexandria.net.API.WalletFunctions
 
                 var transaction = makeTransaction(operations);
                 if (transaction == string.Empty) return false;
-                result = _cryptography.signAndSendTransaction(transaction, senderdata.PrivateKey);
+                result = _cryptography.SignAndSendTransaction(transaction, senderdata.PrivateKey);
             }
             catch (Exception ex)
             {

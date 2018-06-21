@@ -172,13 +172,16 @@
             <returns>the account information</returns>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Account.CreateAccount(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="creator"></param>
             <param name="newname"></param>
             <param name="jsonMeta"></param>
-            <param name="owner">Input Authority owner</param>
-            <param name="active">Input Authority active</param>
-            <param name="memo">Input byte[] memo</param>
-            <param name="creator"></param>
-            <returns>Returns object containing information about the new operation created</returns>
+            <param name="owner"></param>
+            <param name="active"></param>
+            <param name="memo"></param>
+            <returns></returns>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Account.transfer_to_vesting">
             <summary>
@@ -198,6 +201,12 @@
             <para>
             Wallet Asset Functions
             </para>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Asset.#ctor(Alexandria.net.Settings.IConfig)">
+            <summary>
+            asset constructor
+            </summary>
+            <param name="config"></param>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Asset.Transfer(System.String,System.String,System.String,System.UInt64,System.String)">
             <summary> 
@@ -270,18 +279,24 @@
             Wallet Cryptography Functions
             </para>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Cryptography.generateKeyPair">
+        <member name="M:Alexandria.net.API.WalletFunctions.Cryptography.#ctor(Alexandria.net.Settings.IConfig)">
+            <summary>
+            
+            </summary>
+            <param name="config"></param>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Cryptography.GenerateKeyPair">
             <summary>
             Generates new private/public key pair.
             </summary>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Cryptography.generateKeyPairFromBrainKey(System.String)">
+        <member name="M:Alexandria.net.API.WalletFunctions.Cryptography.GenerateKeyPairFromBrainKey(System.String)">
             <summary>
             Generates new private/public key pair from brian key.
             </summary>
             <param name="brainKey"></param>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Cryptography.signAndSendOperation(System.String,System.String)">
+        <member name="M:Alexandria.net.API.WalletFunctions.Cryptography.SignAndSendOperation(System.String,System.String)">
             <summary>
             Form a transaction containing a json-formatted operation, sign it with a given private key and send it to
             Generates new private/public key pair from brian key.
@@ -291,7 +306,7 @@
             <param name="privateKey"></param>
             <returns>Returns true is it was properly signes and accepted, false otherwise.</returns>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Cryptography.signAndSendTransaction(System.String,System.String)">
+        <member name="M:Alexandria.net.API.WalletFunctions.Cryptography.SignAndSendTransaction(System.String,System.String)">
             <summary>
             Sing a json-formatted transaction with a given private key and send it to the network.
             </summary>
@@ -299,30 +314,30 @@
             <param name="privateKey"></param>
             <remarks>Returns true is it was properly signes and accepted, false otherwise.</remarks>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Cryptography.signDigest(System.Char[],System.String)">
+        <member name="M:Alexandria.net.API.WalletFunctions.Cryptography.SignDigest(System.Char[],System.String)">
             <summary>
             Sign given digest using provided private key.
             </summary>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Cryptography.getPublicKey(System.String)">
+        <member name="M:Alexandria.net.API.WalletFunctions.Cryptography.GetPublicKey(System.String)">
             <summary>
             Generate public key part associated to the given private key.
             </summary>
             <param name="privateKey"></param>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Cryptography.fromBase58(System.String)">
+        <member name="M:Alexandria.net.API.WalletFunctions.Cryptography.FromBase58(System.String)">
             <summary>
             Decodes base58-encoded string.
             </summary>
             <param name="encodedData"></param>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Cryptography.toBase58(System.Collections.Generic.List{System.Char})">
+        <member name="M:Alexandria.net.API.WalletFunctions.Cryptography.ToBase58(System.Collections.Generic.List{System.Char})">
             <summary>
             Encodes data to base58 string.
             </summary>
             <param name="data"></param>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Cryptography.verifySignature(System.Char[],System.Byte[],System.Char[])">
+        <member name="M:Alexandria.net.API.WalletFunctions.Cryptography.VerifySignature(System.Char[],System.Byte[],System.Char[])">
             <summary>
             Verify if the given public key corresponds to the private key used to sign the digest.
             </summary>
@@ -330,7 +345,7 @@
             <param name="pubKey"></param>
             <param name="signature"></param>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Cryptography.encryptDocument(System.String,System.String,System.String)">
+        <member name="M:Alexandria.net.API.WalletFunctions.Cryptography.EncryptDocument(System.String,System.String,System.String)">
             <summary>
             Encrypts the document in plaintext using shared secret constructed via sender's private key and receveir's public key.
             </summary>
@@ -338,7 +353,7 @@
             <param name="publicKey"></param>
             <param name="privateKey"></param>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Cryptography.decryptDocument(System.String,System.String,System.String)">
+        <member name="M:Alexandria.net.API.WalletFunctions.Cryptography.DecryptDocument(System.String,System.String,System.String)">
             <summary>
             Decrypts the encrypted data using shared secret constructed via receiver's private key and sender's public key
             or receiver's public key and sender's private key.
@@ -347,7 +362,7 @@
             <param name="publicKey"></param>
             <param name="privateKey"></param>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Cryptography.encryptData(System.Collections.Generic.List{System.Byte},System.String,System.String)">
+        <member name="M:Alexandria.net.API.WalletFunctions.Cryptography.EncryptData(System.Collections.Generic.List{System.Byte},System.String,System.String)">
             <summary>
             Encrypts the data in plain using shared secret constructed via sender's private key and receveir's public key.
             </summary>
@@ -355,7 +370,7 @@
             <param name="publicKey"></param>
             <param name="privateKey"></param>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Cryptography.decryptData(System.Collections.Generic.List{System.Byte},System.String,System.String)">
+        <member name="M:Alexandria.net.API.WalletFunctions.Cryptography.DecryptData(System.Collections.Generic.List{System.Byte},System.String,System.String)">
             <summary>
             Decrypts the encrypted data using shared secret constructed via receiver's private key and sender's public key or receiver's public key and sender's privatekey.
             </summary>
@@ -421,6 +436,12 @@
             <param name="privateKey">byte[52] private_key</param>
             <param name="publickey">the public key</param>
             <returns>Returns true if success or false for failed try</returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Key.#ctor(Alexandria.net.Settings.IConfig)">
+            <summary>
+            
+            </summary>
+            <param name="config"></param>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Key.list_keys">
             <summary>

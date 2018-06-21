@@ -35,7 +35,26 @@
         private const string  GetUiaAuthority = "getUiaAuthority";
         private const string HasUiaPrivateKey = "hasUiaPrivateKey";
         private const string DeleteAccount = "delete_account";
-
+        private const string GenerateKeyPair = "generateKeyPair";
+        private const string GenerateKeyPairFromBrainKey = "generateKeyPairFromBrainKey";
+        private const string SignAndSendOperation = "signAndSendOperation";
+        private const string SignAndSendTransaction = "signAndSendTransaction";
+        private const string SignDigest = "signDigest";
+        private const string GetPublicKey = "getPublicKey";
+        private const string FromBase58 = "fromBase58";
+        private const string ToBase58 = "toBase58";
+        private const string VerifySignature = "verifySignature";
+        private const string EncryptDocument = "encryptDocument";
+        private const string DecryptDocument = "decryptDocument";
+        private const string EncryptData = "encryptData";
+        private const string DecryptData = "decryptData";
+        
+        
+        
+        
+        
+        
+        
         /// <summary>
         /// 
         /// </summary>
@@ -103,6 +122,32 @@
                     return HasUiaPrivateKey;
                 case DeleteAccount:
                     return DeleteAccount;
+                case GenerateKeyPair:
+                    return GenerateKeyPair;
+                case GenerateKeyPairFromBrainKey:
+                    return GenerateKeyPairFromBrainKey;
+                case SignAndSendOperation:
+                    return SignAndSendOperation;
+                case SignAndSendTransaction:
+                    return SignAndSendTransaction;
+                case SignDigest:
+                    return SignDigest;
+                case GetPublicKey:
+                    return GetPublicKey;
+                case FromBase58:
+                    return FromBase58;
+                case ToBase58:
+                    return ToBase58;
+                case VerifySignature:
+                    return VerifySignature;
+                case EncryptDocument:
+                    return EncryptDocument;
+                case DecryptDocument:
+                    return DecryptDocument;
+                case EncryptData:
+                    return EncryptData;
+                case DecryptData:
+                    return DecryptData;
             }
 
             return string.Empty;

@@ -35,11 +35,12 @@ namespace Alexandria.net.API.WalletFunctions
         /// <summary>
         /// Generates new private/public key pair.
         /// </summary>
-        private Tuple<string, byte[]> generateKeyPair()
+        private Tuple<string, byte[]> GenerateKeyPair()
         {
             try
             {
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name);
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
+                var result = SendRequest(reqname);
                 return JsonConvert.DeserializeObject<Tuple<string, byte[]>>(result);
             }
             catch (Exception ex)
@@ -55,12 +56,13 @@ namespace Alexandria.net.API.WalletFunctions
         /// Generates new private/public key pair from brian key.
         /// </summary>
         /// <param name="brainKey"></param>
-        private Tuple<string, byte[]> generateKeyPairFromBrainKey(string brainKey)
+        private Tuple<string, byte[]> GenerateKeyPairFromBrainKey(string brainKey)
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
                 var @params = new ArrayList {brainKey};
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                var result = SendRequest(reqname, @params);
                 return JsonConvert.DeserializeObject<Tuple<string, byte[]>>(result);
             }
             catch (Exception ex)
@@ -80,12 +82,13 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="operation"></param>
         /// <param name="privateKey"></param>
         /// <returns>Returns true is it was properly signes and accepted, false otherwise.</returns>
-        public bool signAndSendOperation(string operation, string privateKey)
+        public bool SignAndSendOperation(string operation, string privateKey)
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
                 var @params = new ArrayList {operation, privateKey};
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                var result = SendRequest(reqname, @params);
                 return result == "true";
             }
             catch (Exception ex)
@@ -103,12 +106,13 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="transaction"></param>
         /// <param name="privateKey"></param>
         /// <remarks>Returns true is it was properly signes and accepted, false otherwise.</remarks>
-        public bool signAndSendTransaction(string transaction, string privateKey)
+        public bool SignAndSendTransaction(string transaction, string privateKey)
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
                 var @params = new ArrayList {transaction, privateKey};
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                var result = SendRequest(reqname, @params);
                 return result == "true";
             }
             catch (Exception ex)
@@ -123,12 +127,13 @@ namespace Alexandria.net.API.WalletFunctions
         /// <summary>
         /// Sign given digest using provided private key.
         /// </summary>
-        private char[] signDigest(char[] digest, string privateKey)
+        private char[] SignDigest(char[] digest, string privateKey)
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
                 var @params = new ArrayList {digest, privateKey};
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                var result = SendRequest(reqname, @params);
                 return JsonConvert.DeserializeObject<char[]>(result);
             }
             catch (Exception ex)
@@ -145,12 +150,13 @@ namespace Alexandria.net.API.WalletFunctions
         /// Generate public key part associated to the given private key.
         /// </summary>
         /// <param name="privateKey"></param>
-        private byte[] getPublicKey(string privateKey)
+        private byte[] GetPublicKey(string privateKey)
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
                 var @params = new ArrayList {privateKey};
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                var result = SendRequest(reqname, @params);
                 return JsonConvert.DeserializeObject<byte[]>(result);
             }
             catch (Exception ex)
@@ -167,12 +173,13 @@ namespace Alexandria.net.API.WalletFunctions
         /// Decodes base58-encoded string.
         /// </summary>
         /// <param name="encodedData"></param>
-        private List<char> fromBase58(string encodedData)
+        private List<char> FromBase58(string encodedData)
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
                 var @params = new ArrayList {encodedData};
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                var result = SendRequest(reqname, @params);
                 return JsonConvert.DeserializeObject<List<char>>(result);
             }
             catch (Exception ex)
@@ -189,12 +196,13 @@ namespace Alexandria.net.API.WalletFunctions
         /// Encodes data to base58 string.
         /// </summary>
         /// <param name="data"></param>
-        private string toBase58(List<char> data)
+        private string ToBase58(List<char> data)
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
                 var @params = new ArrayList {data};
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                var result = SendRequest(reqname, @params);
                 return JsonConvert.DeserializeObject<string>(result);
             }
             catch (Exception ex)
@@ -212,12 +220,13 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="digest"></param>
         /// <param name="pubKey"></param>
         /// <param name="signature"></param>
-        private bool verifySignature(char[] digest, byte[] pubKey, char[] signature)
+        private bool VerifySignature(char[] digest, byte[] pubKey, char[] signature)
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
                 var @params = new ArrayList {digest, pubKey, signature};
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                var result = SendRequest(reqname, @params);
                 return result == "true";
             }
             catch (Exception ex)
@@ -236,12 +245,13 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="plaintext"></param>
         /// <param name="publicKey"></param>
         /// <param name="privateKey"></param>
-        private string encryptDocument(string plaintext, string publicKey, string privateKey)
+        private string EncryptDocument(string plaintext, string publicKey, string privateKey)
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
                 var @params = new ArrayList {plaintext, publicKey, privateKey};
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                var result = SendRequest(reqname, @params);
                 return JsonConvert.DeserializeObject<string>(result);
             }
             catch (Exception ex)
@@ -260,12 +270,13 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="encryptedText"></param>
         /// <param name="publicKey"></param>
         /// <param name="privateKey"></param>
-        private string decryptDocument(string encryptedText, string publicKey, string privateKey)
+        private string DecryptDocument(string encryptedText, string publicKey, string privateKey)
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
                 var @params = new ArrayList {encryptedText, publicKey, privateKey};
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                var result = SendRequest(reqname, @params);
                 return JsonConvert.DeserializeObject<string>(result);
             }
             catch (Exception ex)
@@ -282,12 +293,13 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="plaindata"></param>
         /// <param name="publicKey"></param>
         /// <param name="privateKey"></param>
-        private List<byte> encryptData(List<byte> plaindata, string publicKey, string privateKey)
+        private List<byte> EncryptData(List<byte> plaindata, string publicKey, string privateKey)
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
                 var @params = new ArrayList {plaindata, publicKey, privateKey};
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                var result = SendRequest(reqname, @params);
                 return JsonConvert.DeserializeObject<List<byte>>(result);
             }
             catch (Exception ex)
@@ -305,12 +317,13 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="encryptedText"></param>
         /// <param name="publicKey"></param>
         /// <param name="privateKey"></param>
-        private List<byte> decryptData(List<byte> encryptedText, string publicKey, string privateKey)
+        private List<byte> DecryptData(List<byte> encryptedText, string publicKey, string privateKey)
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
                 var @params = new ArrayList {encryptedText, publicKey, privateKey};
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                var result = SendRequest(reqname, @params);
                 return JsonConvert.DeserializeObject<List<byte>>(result);
             }
             catch (Exception ex)
