@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using Alexandria.net.Communication;
@@ -18,10 +16,8 @@ namespace Alexandria.net.API.WalletFunctions
     public class Key :RpcConnection
     {
         private readonly ILogger _logger;
-        //todo - lib path needs to be solved
         private const string Libpath = "../../../../../Alexandria.net/libalexandria";
         #region DllImports
-<<<<<<< HEAD
 
         /// <summary>
         /// Creates a private key
@@ -29,9 +25,6 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="privateKey">byte[52] private_key</param>
         /// <param name="publickey">the public key</param>
         /// <returns>Returns true if success or false for failed try</returns>
-=======
-        
->>>>>>> 9093ca9f14c8bddbfdbb6a994379e84d62cf8578
         [DllImport(Libpath)]
         private static extern bool generate_private_key([MarshalAs(UnmanagedType.LPArray)]byte[] privateKey, [MarshalAs(UnmanagedType.LPArray)]byte[] publickey);
         
@@ -51,6 +44,10 @@ namespace Alexandria.net.API.WalletFunctions
         #endregion
 
        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="config"></param>
         public Key(IConfig config) :
             base(config)
         {
@@ -61,7 +58,6 @@ namespace Alexandria.net.API.WalletFunctions
             
         }
         
-<<<<<<< HEAD
         /// <summary>
         /// 
         /// </summary>
@@ -80,37 +76,28 @@ namespace Alexandria.net.API.WalletFunctions
             }
         }
 
-=======
-        
->>>>>>> 9093ca9f14c8bddbfdbb6a994379e84d62cf8578
         /// <summary>
         /// Generates Public and Private keys
         /// </summary>
-<<<<<<< HEAD
-        /// <param name="privatekey">the key bytes</param>
-        /// <param name="publickey">the public key</param>
-=======
         /// <param name="privatekey"></param>
         /// <param name="publickey"></param>
->>>>>>> 9093ca9f14c8bddbfdbb6a994379e84d62cf8578
         /// <returns>Returns true if success or false for failed try</returns>
-        public string generate_private_key_c(byte[] privatekey,byte[] publickey)
+        public string generate_private_key_c(byte[] privatekey, byte[] publickey)
         {
+            var result = string.Empty;
             try
             {
-               
-                var result = generate_private_key(privatekey, publickey);
-                var PublicKey = System.Text.Encoding.Default.GetString(publickey);
-                var PrivateKey = System.Text.Encoding.Default.GetString(privatekey);
-                
-                return PublicKey;
+                result = generate_private_key(privatekey, publickey)
+                    ? System.Text.Encoding.Default.GetString(privatekey)
+                    : string.Empty;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
-           
+
+            return result;
         }
 
         /// <summary>

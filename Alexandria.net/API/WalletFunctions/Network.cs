@@ -198,5 +198,67 @@ namespace Alexandria.net.API.WalletFunctions
         }
 
         
+        /// <summary>
+        /// Form a transaction out of existing operations.
+        /// </summary>
+        /// <param name="operations"></param>
+        /// <returns></returns>
+        public string makeTransaction(List<string> operations)
+        {
+            try
+            {
+                var @params = new ArrayList {operations};
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return JsonConvert.DeserializeObject<string>(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+                throw;
+            }
+        }
+
+
+        /// <summary>
+        /// Add signature to the transaction. Useful fo rmulti-sig transactions,
+        /// where all the signatures have to be calculated and added one by one.
+        /// </summary>
+        /// <param name="transaction"></param>
+        /// <param name="signature"></param>
+        /// <returns></returns>
+        public string addSingature(string transaction, char[] signature)
+        {
+            try
+            {
+                var @params = new ArrayList {transaction, signature};
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return JsonConvert.DeserializeObject<string>(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="transaction"></param>
+        /// <returns></returns>
+        public bool sendSignedTransaction(string transaction)
+        {
+            try
+            {
+                var @params = new ArrayList {transaction};
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return JsonConvert.DeserializeObject<bool>(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+                throw;
+            }
+        }
     }
 }

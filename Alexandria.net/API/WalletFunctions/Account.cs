@@ -23,6 +23,10 @@ namespace Alexandria.net.API.WalletFunctions
         #region Constructors
 
         
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="config"></param>
         public Account(IConfig config) :
             base(config)
         {
@@ -484,49 +488,27 @@ namespace Alexandria.net.API.WalletFunctions
 
         }
 
-        /// <summary>
-        /// Creates new account in the SophiaTX blockchain.
-        /// </summary>
-        /// <param name="creator"></param>
-        /// <param name="newAccountName">Input string newAccountName</param>
-<<<<<<< HEAD
-        /// <param name="jsonData"></param>
-        /// <returns>Returns true if success or false for failed try</returns>
-        public bool CreateAccount(string creator, string newAccountName, string jsonData)
-=======
+
+        /// <param name="newname"></param>
+        /// <param name="jsonMeta"></param>
         /// <param name="owner">Input Authority owner</param>
         /// <param name="active">Input Authority active</param>
         /// <param name="memo">Input byte[] memo</param>
+        /// <param name="creator"></param>
         /// <returns>Returns object containing information about the new operation created</returns>
-        public CreateAccountResponse create_account(string creator,
-            string newname,
-            string json_meta,
-            string owner,
-            string active,
-            string memo)
->>>>>>> 9093ca9f14c8bddbfdbb6a994379e84d62cf8578
+        public CreateAccountResponse CreateAccount(string creator, string newname, string jsonMeta, string owner,
+            string active, string memo)
         {
-            Transaction newTransaction=new Transaction(Config);
+            var trans = new Transaction(Config);
             try
             {
-<<<<<<< HEAD
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
-                var @params = new ArrayList {creator, newAccountName, jsonData};
+                var @params = new ArrayList {creator, newname, jsonMeta, owner, active, memo};
                 var result = SendRequest(reqname, @params);
-                return result == "true";
-=======
-                var @params = new ArrayList {creator, newname, json_meta, owner,active,memo};
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
                 var contentdata = JsonConvert.DeserializeObject<CreateAccountResponse>(result);
-//                List<List<CreateAccountResponse>> Operations =new List<List<CreateAccountResponse>>();
-//                List<CreateAccountResponse> operation=new List<CreateAccountResponse>();
-//                operation.Add(contentdata);
-//                Operations.Add(operation);
-//                newTransaction.create_transaction(Operations);
-                newTransaction.create_simple_transaction(contentdata);
+                trans.create_simple_transaction(contentdata);
                 return contentdata;
-               
->>>>>>> 9093ca9f14c8bddbfdbb6a994379e84d62cf8578
+
             }
             catch (Exception ex)
             {
@@ -534,6 +516,7 @@ namespace Alexandria.net.API.WalletFunctions
                 throw;
             }
         }
+
         /// <summary>
         /// 
         /// </summary>
@@ -542,17 +525,19 @@ namespace Alexandria.net.API.WalletFunctions
         {
             throw new NotImplementedException();
         }
+        
         /// <summary>
         /// Deletes the account from the blockchain related to the given name of the account
         /// </summary>
-        /// <param name="AccountName"></param>
+        /// <param name="accountName"></param>
         /// <returns>Returns object containing information about the new operation created</returns>
-        public BlockResponse delete_account(string AccountName)
+        public BlockResponse DeleteAccount(string accountName)
         {
             try
             {
-                var @params = new ArrayList {AccountName};
-                var result= SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
+                var @params = new ArrayList {accountName};
+                var result= SendRequest(reqname, @params);
                 var contentdata = JsonConvert.DeserializeObject<BlockResponse>(result);
                 
                 return contentdata;

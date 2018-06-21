@@ -140,22 +140,13 @@ namespace Alexandria.net.API.WalletFunctions
 			}
 			
 		}
-<<<<<<< HEAD
-		
-		/// <summary>
-		/// 
-		/// </summary>
-		/// <param name="signed_tx"></param>
-		/// <returns></returns>
-		public FeedHistoryResponse broadcast_transaction(string signed_tx)
-=======
+
 		/// <summary>
 		/// Broadcasts transaction once it is created, helps to register Transactions on the Blockchain
 		/// </summary>
 		/// <param name="signed_tx"></param>
 		/// <returns>Returns Object with Transaction id and other details</returns>
 		public TransactionResponse broadcast_transaction(SignedTransactionResponse signed_tx)
->>>>>>> 9093ca9f14c8bddbfdbb6a994379e84d62cf8578
 		{
 			try
 			{
@@ -179,16 +170,12 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <returns>Returns Object with block number and other trnasaction details</returns>
 		public TransactionResponse create_simple_transaction(CreateAccountResponse operation)
 		{
-			Key newKey=new Key(Config);
 			try
 			{
                 
 				var @params = new ArrayList {operation.result};
 				var result= SendRequest(MethodBase.GetCurrentMethod().Name, @params);
 				var contentdata = JsonConvert.DeserializeObject<TransactionResponse>(result);
-				//var digest=newKey.get_transaction_digest_c(result, "00000000000000000000000000000000", new byte[64]);
-				//var signature=newKey.sign_digest_c(digest, "5JPwY3bwFgfsGtxMeLkLqXzUrQDMAsqSyAZDnMBkg7PDDRhQgaV", new byte[130]);
-				//newKey.add_signature_c(contentdata.result.ToString(), signature, new byte[contentdata.result.ToString().Length + 200]);
 				return contentdata;
 			}
 			catch(Exception ex)
@@ -197,6 +184,7 @@ namespace Alexandria.net.API.WalletFunctions
 				throw ;
 			}
 		}
+		
 		public BlockResponse create_transaction(List<List<CreateAccountResponse>> operation)
 		{
 			try

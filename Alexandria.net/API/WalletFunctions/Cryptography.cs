@@ -19,6 +19,10 @@ namespace Alexandria.net.API.WalletFunctions
         #region Constructors
 
       
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="config"></param>
         public Cryptography(IConfig config) : base(config)
         {
             var assemblyname = Assembly.GetExecutingAssembly().GetName().Name;

@@ -19,6 +19,10 @@ namespace Alexandria.net.API.WalletFunctions
 
         #region Constructors
 
+        /// <summary>
+        /// asset constructor
+        /// </summary>
+        /// <param name="config"></param>
         public Asset(IConfig config) :
             base(config)
         {
@@ -49,11 +53,9 @@ namespace Alexandria.net.API.WalletFunctions
             }
             catch (Exception ex)
             {
-                
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
-            
         }
 
         /// <summary>

@@ -34,6 +34,7 @@
         private const string BurnUia = "burnUia";
         private const string  GetUiaAuthority = "getUiaAuthority";
         private const string HasUiaPrivateKey = "hasUiaPrivateKey";
+        private const string DeleteAccount = "delete_account";
 
         /// <summary>
         /// 
@@ -100,6 +101,8 @@
                     return GetUiaAuthority;
                 case HasUiaPrivateKey:
                     return HasUiaPrivateKey;
+                case DeleteAccount:
+                    return DeleteAccount;
             }
 
             return string.Empty;

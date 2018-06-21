@@ -13,7 +13,7 @@ namespace UnitTest
         private readonly string _digest="fe7ee427286c25eb48a39218f4415fd64f59b25aac2978a8a534b542cf8059c9";
         private readonly string _sign="1f7d9cb0bf47d052a35b2f8534e46b0197abc636c0627e9f5ef54fedbd5c5b1d1318ae0983a7281633da849045a267b6f4acbb178d2533ce6d9807f8074f2b6099";
         private readonly string _key="5JPwY3bwFgfsGtxMeLkLqXzUrQDMAsqSyAZDnMBkg7PDDRhQgaV";
-        private readonly string _signedTransaction =  "{\"ref_block_num\":53889,\"ref_block_prefix\":3757496330,\"expiration\":\"2018-06-19T15:57:27\",\"operations\":[[\"account_create\",{\"fee\":\"0.100000 SPHTX\",\"creator\":\"initminer\",\"new_account_name\":\"sanjiv\",\"owner\":{\"weight_threshold\":1,\"account_auths\":[],\"key_auths\":[[\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",1]]},\"active\":{\"weight_threshold\":1,\"account_auths\":[],\"key_auths\":[[\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",1]]},\"memo_key\":\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",\"json_metadata\":\"{}\"}]],\"extensions\":[],\"signatures\":[\"1f6c5326bc2f3ed482ad72ecae706c627754427eda292b9a100d192a884bb4f3072ddd188773ed5ba4afab36863d74a80abdcdde50adcaaa5fe6754558e3c078f0\"]}";
+        //private readonly string _signedTransaction =  "{\"ref_block_num\":53889,\"ref_block_prefix\":3757496330,\"expiration\":\"2018-06-19T15:57:27\",\"operations\":[[\"account_create\",{\"fee\":\"0.100000 SPHTX\",\"creator\":\"initminer\",\"new_account_name\":\"sanjiv\",\"owner\":{\"weight_threshold\":1,\"account_auths\":[],\"key_auths\":[[\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",1]]},\"active\":{\"weight_threshold\":1,\"account_auths\":[],\"key_auths\":[[\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",1]]},\"memo_key\":\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",\"json_metadata\":\"{}\"}]],\"extensions\":[],\"signatures\":[\"1f6c5326bc2f3ed482ad72ecae706c627754427eda292b9a100d192a884bb4f3072ddd188773ed5ba4afab36863d74a80abdcdde50adcaaa5fe6754558e3c078f0\"]}";
         private readonly string chainID="00000000000000000000000000000000";
         
         
@@ -42,16 +42,11 @@ namespace UnitTest
         }
         
         [Fact]
-<<<<<<< HEAD
-        public void CreateAccount()
-        {
-            _client.Wallet.Account.CreateAccount("initminer","sanjiv","{}");
-        }
-        [Fact]
         public void GetAccountBalance()
         {
             _client.Wallet.Account.GetAccount("sanjiv");
         }
+        
         [Fact]
         public void CreateSimpleAuthority()
         {
@@ -59,8 +54,6 @@ namespace UnitTest
         }
 
         [Fact]
-=======
->>>>>>> 9093ca9f14c8bddbfdbb6a994379e84d62cf8578
         public void GetAbout()
         {
             _client.Wallet.Transaction.About();
@@ -126,14 +119,14 @@ namespace UnitTest
         [Fact]
         public void serialize_transaction()
         {
-            _client.Wallet.Account.withdrawVestings("sanjiv",67557);
+            _client.Wallet.Account.WithdrawVestings("sanjiv",67557);
 
         }
         //--------operations
         [Fact]
         public void get_prototype_operation()
         {
-            _client.Wallet.Account.withdrawVestings("sanjiv",67557);
+            _client.Wallet.Account.WithdrawVestings("sanjiv",67557);
 
         }
         [Fact]
@@ -161,13 +154,13 @@ namespace UnitTest
         [Fact]
         public void CreateAccount()
         {
-            _client.Wallet.Account.create_account("initminer","sanjiv9999","{}","STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz","STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz","STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz");
+            _client.Wallet.Account.CreateAccount("initminer","sanjiv9999","{}","STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz","STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz","STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz");
         }
         
         [Fact]
         public void get_account()
         {
-            _client.Wallet.Account.get_account("sanjivoneone");
+            _client.Wallet.Account.GetAccount("sanjivoneone");
 
         }
         
@@ -180,7 +173,7 @@ namespace UnitTest
         [Fact]
         public void delete_account()
         {
-            _client.Wallet.Account.delete_account("sanjiv");
+            _client.Wallet.Account.DeleteAccount("sanjiv");
 
         }
         [Fact]
@@ -197,9 +190,9 @@ namespace UnitTest
 
         }
         [Fact]
-        public void transfer()
+        public void Transfer()
         {
-            _client.Wallet.Asset.transfer("from","to","memo",1233,"symbol");
+            _client.Wallet.Asset.Transfer("from","to","memo",1233,"symbol");
 
         }
         [Fact]
@@ -208,8 +201,8 @@ namespace UnitTest
             _client.Wallet.Account.transfer_to_vesting();
 
         }
-        [Fact]
-        public void withdrawVestings()
+        //[Fact]
+        /*public void withdrawVestings()
         {
             _client.Wallet.Account.withdrawVestings("sanjiv",67557);
 
@@ -269,7 +262,7 @@ namespace UnitTest
         {
             _client.Wallet.Account.withdrawVestings("sanjiv",67557);
 
-        }
+        }*/
         
         
     }
