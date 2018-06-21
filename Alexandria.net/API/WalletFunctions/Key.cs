@@ -114,6 +114,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// Gets the transaction digest
         /// </summary>
         /// <param name="transaction">the transaction to digest</param>
+        /// <param name="chainId">the id in the blockchain</param>
         /// <param name="digest">the digest bytes</param>
         /// <returns>Returns true if success or false for failed try</returns>
         public string GetTransactionDigest(string transaction, string chainId, byte[] digest)
@@ -329,6 +330,11 @@ namespace Alexandria.net.API.WalletFunctions
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="brainKey"></param>
+        /// <returns></returns>
         public string NormalizeBrainKey(string brainKey)
         {
             try

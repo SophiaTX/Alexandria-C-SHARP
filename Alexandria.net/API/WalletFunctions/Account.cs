@@ -497,7 +497,8 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="ownerkey">the owner key</param>
         /// <param name="activekey">the active key</param>
         /// <param name="memokey">the memo key</param>
-        /// <returns></returns>
+        /// <param name="pk">the private key used for the digest</param>
+        /// <returns>the account creation response details</returns>
         public CreateAccountResponse CreateAccount(string accountname, string jsonMeta, string ownerkey,
             string activekey, string memokey, string witnessname = "initminer",
             string pk = "5JPwY3bwFgfsGtxMeLkLqXzUrQDMAsqSyAZDnMBkg7PDDRhQgaV")

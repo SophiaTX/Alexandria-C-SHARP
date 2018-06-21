@@ -191,6 +191,11 @@ namespace Alexandria.net.API.WalletFunctions
 			}
 		}
 		
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="operation"></param>
+		/// <returns></returns>
 		public BlockResponse CreateTransaction(List<List<CreateAccountResponse>> operation)
 		{
 			try

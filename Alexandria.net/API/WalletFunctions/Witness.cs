@@ -18,6 +18,10 @@ namespace Alexandria.net.API.WalletFunctions
     {   private readonly ILogger _logger;
 
         
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="config"></param>
         public Witness(IConfig config) :
             base(config)
         {
