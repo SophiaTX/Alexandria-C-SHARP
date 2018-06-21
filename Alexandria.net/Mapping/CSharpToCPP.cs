@@ -23,7 +23,7 @@
         private const string UpdateAccount = "updateAccount";
         private const string DepositVesting = "depositVesting";
         private const string WithdrawVestings = "withdrawVestings";
-        private const string VoteForWitness = "voteForWitness";
+        private const string VoteForWitness = "voteForWitness";  
         private const string UpdateToWitness = "updateToWitness";
         private const string GetAccount = "get_account";
         private const string CreateAccount = "create_account";
@@ -35,39 +35,8 @@
         private const string GetUiaAuthority = "getUiaAuthority";
         private const string HasUiaPrivateKey = "hasUiaPrivateKey";
         private const string DeleteAccount = "delete_account";
-        private const string GenerateKeyPair = "generateKeyPair";
-        private const string GenerateKeyPairFromBrainKey = "generateKeyPairFromBrainKey";
-        private const string SignAndSendOperation = "signAndSendOperation";
-        private const string SignAndSendTransaction = "signAndSendTransaction";
-        private const string SignDigest = "signDigest";
-        private const string GetPublicKey = "getPublicKey";
-        private const string FromBase58 = "fromBase58";
-        private const string ToBase58 = "toBase58";
-        private const string VerifySignature = "verifySignature";
-        private const string EncryptDocument = "encryptDocument";
-        private const string DecryptDocument = "decryptDocument";
-        private const string EncryptData = "encryptData";
-        private const string DecryptData = "decryptData";
-        private const string ListKeys = "list_keys";
-        private const string SuggestBrainKey = "suggest_brain_key";
-        private const string NormalizeBrainKey = "normalize_brain_key";
-        private const string IsConnected = "isConnected";
-        private const string Connect = "connect";
-        private const string GetTransactionDigest = "getTransactionDigest";
-        private const string MakeCustomJsonOperation = "makeCustomJsonOperation";
-        private const string MakeCustomBinaryOperation = "makeCustomBinaryOperation";
-        private const string MakeCustomBinaryBase58Operation = "makeCustomBinaryBase58Operation";
-        private const string GetReceivedDocuments = "get_received_documents";
-        private const string MakeTransaction = "makeTransaction";
-        private const string AddSingature = "addSingature";
-        private const string SendSignedTransaction = "sendSignedTransaction";
-
-
-
-
-
-
-
+        private const string SuggestBrainKey="suggest_brain_key";
+        private const string NormalizeBrainKey="normalize_brain_key";
 
         /// <summary>
         /// 
@@ -78,116 +47,68 @@
         {
             switch (value)
             {
-                case Vote:
+                case "Vote":
                     return Vote;
-                case AccountExists:
+                case "AccountExists":
                     return AccountExists;
-                case HasPrivateKeys:
+                case "HasPrivateKeys":
                     return HasPrivateKeys;
-                case HasAccountOwnerPrivateKey:
+                case "HasAccountOwnerPrivateKey":
                     return HasAccountActivePrivateKey;
-                case HasAccountMemoPrivateKey:
+                case "HasAccountMemoPrivateKey":
                     return HasAccountMemoPrivateKey;
-                case GetActiveAuthority:
+                case "GetActiveAuthority":
                     return GetActiveAuthority;
-                case GetOwnerAuthority:
+                case "GetOwnerAuthority":
                     return GetOwnerAuthority;
-                case GetMemoKey:
+                case "GetMemoKey":
                     return GetMemoKey;
-                case GetAccountBalance:
+                case "GetAccountBalance":
                     return GetAccountBalance;
-                case GetVestingBalance:
+                case "GetVestingBalance":
                     return GetVestingBalance;
-                case CreateSimpleAuthority:
+                case "CreateSimpleAuthority":
                     return CreateSimpleAuthority;
-                case CreateSimpleMultisigAuthority:
+                case "CreateSimpleMultisigAuthority":
                     return CreateSimpleMultisigAuthority;
-                case CreateSimpleManagedAuthority:
+                case "CreateSimpleManagedAuthority":
                     return CreateSimpleManagedAuthority;
-                case CreateSimpleMultiManagedAuthority:
+                case "CreateSimpleMultiManagedAuthority":
                     return CreateSimpleMultiManagedAuthority;
-                case UpdateAccount:
+                case "UpdateAccount":
                     return UpdateAccount;
-                case DepositVesting:
+                case "DepositVesting":
                     return DepositVesting;
-                case WithdrawVestings:
+                case "WithdrawVestings":
                     return WithdrawVestings;
-                case VoteForWitness:
+                case "VoteForWitness":
                     return VoteForWitness;
-                case UpdateToWitness:
+                case "UpdateToWitness":
                     return UpdateToWitness;
-                case GetAccount:
+                case "GetAccount":
                     return GetAccount;
                 case "CreateAccount":
                     return CreateAccount;
-                case Transfer:
+                case "Transfer":
                     return Transfer;
-                case GetAccountUiaBalance:
+                case "GetAccountUiaBalance":
                     return GetAccountUiaBalance;
-                case CreateUia:
+                case "CreateUia":
                     return CreateUia;
-                case IssueUia:
+                case "IssueUia":
                     return IssueUia;
-                case BurnUia:
+                case "BurnUia":
                     return BurnUia;
-                case GetUiaAuthority:
+                case "GetUiaAuthority":
                     return GetUiaAuthority;
-                case HasUiaPrivateKey:
+                case "HasUiaPrivateKey":
                     return HasUiaPrivateKey;
-                case DeleteAccount:
+                case "DeleteAccount":
                     return DeleteAccount;
-                case GenerateKeyPair:
-                    return GenerateKeyPair;
-                case GenerateKeyPairFromBrainKey:
-                    return GenerateKeyPairFromBrainKey;
-                case SignAndSendOperation:
-                    return SignAndSendOperation;
-                case SignAndSendTransaction:
-                    return SignAndSendTransaction;
-                case SignDigest:
-                    return SignDigest;
-                case GetPublicKey:
-                    return GetPublicKey;
-                case FromBase58:
-                    return FromBase58;
-                case ToBase58:
-                    return ToBase58;
-                case VerifySignature:
-                    return VerifySignature;
-                case EncryptDocument:
-                    return EncryptDocument;
-                case DecryptDocument:
-                    return DecryptDocument;
-                case EncryptData:
-                    return EncryptData;
-                case DecryptData:
-                    return DecryptData;
-                case ListKeys:
-                    return ListKeys;
-                case SuggestBrainKey:
+                case "SuggestBrainKey":
                     return SuggestBrainKey;
-                case NormalizeBrainKey:
+                case "NormalizeBrainKey":
                     return NormalizeBrainKey;
-                case IsConnected:
-                    return IsConnected;
-                case Connect:
-                    return Connect;
-                case GetTransactionDigest:
-                    return GetTransactionDigest;
-                case MakeCustomJsonOperation:
-                    return MakeCustomJsonOperation;
-                case MakeCustomBinaryOperation:
-                    return MakeCustomBinaryOperation;
-                case MakeCustomBinaryBase58Operation:
-                    return MakeCustomBinaryBase58Operation;
-                case GetReceivedDocuments:
-                    return GetReceivedDocuments;
-                case MakeTransaction:
-                    return MakeTransaction;
-                case AddSingature:
-                    return AddSingature;
-                case SendSignedTransaction:
-                    return SendSignedTransaction;
             }
 
             return string.Empty;

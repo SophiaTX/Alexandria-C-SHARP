@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -43,7 +44,16 @@ namespace Alexandria.net.API.WalletFunctions
         [DllImport(Libpath)]
         private static extern bool add_signature([MarshalAs(UnmanagedType.LPStr)] string transaction,
             [MarshalAs(UnmanagedType.LPStr)] string signature, [MarshalAs(UnmanagedType.LPArray)] byte[] signedTx);
-
+        [DllImport(Libpath)]
+        private static extern bool get_public_key([MarshalAs(UnmanagedType.LPStr)] string private_key, [MarshalAs(UnmanagedType.LPArray)]byte[] public_key);
+        [DllImport(Libpath)]
+        private static extern bool generate_key_pair_from_brain_key([MarshalAs(UnmanagedType.LPStr)] string brain_key, [MarshalAs(UnmanagedType.LPArray)]byte[] private_key, [MarshalAs(UnmanagedType.LPArray)]byte[] public_key);
+        [DllImport(Libpath)]
+        private static extern bool verify_signature([MarshalAs(UnmanagedType.LPStr)] string digest, [MarshalAs(UnmanagedType.LPStr)] string public_key, [MarshalAs(UnmanagedType.LPStr)] string signed_digest);
+        [DllImport(Libpath)]
+        private static extern bool encrypt_memo([MarshalAs(UnmanagedType.LPStr)] string memo, [MarshalAs(UnmanagedType.LPStr)] string private_key, [MarshalAs(UnmanagedType.LPStr)] string public_key, [MarshalAs(UnmanagedType.LPArray)]byte[] encrypted_memo );
+        [DllImport(Libpath)]
+        private static extern bool decrypt_memo([MarshalAs(UnmanagedType.LPStr)] string memo, [MarshalAs(UnmanagedType.LPStr)] string private_key, [MarshalAs(UnmanagedType.LPStr)] string public_key, [MarshalAs(UnmanagedType.LPArray)]byte[] decrypted_memo);
         #endregion
 
 
@@ -180,8 +190,127 @@ namespace Alexandria.net.API.WalletFunctions
             }
 
         }
-
-
+        /// <summary>
+         /// 
+         /// </summary>
+         /// <param name="privateKey"></param>
+         /// <param name="publicKey"></param>
+         /// <returns></returns>
+        public string GetPublicKey(string privateKey, byte[] publicKey)
+        {
+            try
+            {
+                
+                var result= get_public_key(privateKey, publicKey)
+                    ? System.Text.Encoding.Default.GetString(publicKey)
+                    : string.Empty;
+                
+                return result;
+            }
+            catch(Exception ex)
+            {
+                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+                throw ;
+            }
+            
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="brain_key"></param>
+        /// <param name="private_key"></param>
+        /// <param name="public_key"></param>
+        /// <returns></returns>
+        public bool GenerateKeyPairFromBrainKey(string brain_key, byte[] private_key, byte[] public_key)
+        {
+            try
+            {
+                var result = generate_key_pair_from_brain_key(brain_key, private_key, public_key);
+                var PublicKey= System.Text.Encoding.Default.GetString(public_key);
+                var PrivateKey= System.Text.Encoding.Default.GetString(private_key);  
+                    
+                
+                return result;
+            }
+            catch(Exception ex)
+            {
+                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+                throw ;
+            }
+            
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="digest"></param>
+        /// <param name="public_key"></param>
+        /// <param name="signed_digest"></param>
+        /// <returns></returns>
+        public bool VeriFySignature(string digest,string public_key,string signed_digest)
+        {
+            try
+            {
+                var result = verify_signature(digest, public_key, signed_digest);
+                  
+                return result;
+            }
+            catch(Exception ex)
+            {
+                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+                throw ;
+            }
+            
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="memo"></param>
+        /// <param name="private_key"></param>
+        /// <param name="public_key"></param>
+        /// <param name="encrypted_memo"></param>
+        /// <returns></returns>
+        public string EncryptMemo( string memo,  string private_key,  string public_key, byte[] encrypted_memo)
+        {
+            try
+            {
+                var result= encrypt_memo(memo, private_key, public_key,encrypted_memo)
+                    ? System.Text.Encoding.Default.GetString(encrypted_memo)
+                    : string.Empty;
+                
+                return result;
+            }
+            catch(Exception ex)
+            {
+                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+                throw ;
+            }
+            
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="memo"></param>
+        /// <param name="private_key"></param>
+        /// <param name="public_key"></param>
+        /// <param name="decrypted_memo"></param>
+        /// <returns></returns>
+        public string DecryptMemo( string memo,  string private_key,  string public_key, byte[] decrypted_memo)
+        {
+            try
+            {
+                var result= decrypt_memo(memo, private_key, public_key,decrypted_memo)
+                    ? System.Text.Encoding.Default.GetString(decrypted_memo)
+                    : string.Empty;
+                
+                return result;
+            }
+            catch(Exception ex)
+            {
+                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+                throw ;
+            }
+            
+        }
         /// <summary>
         /// 
         /// </summary>
@@ -191,7 +320,7 @@ namespace Alexandria.net.API.WalletFunctions
             try
             {
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                var result = SendRequest(reqname);
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name);
                 return result;
             }
             catch (Exception ex)
@@ -201,13 +330,22 @@ namespace Alexandria.net.API.WalletFunctions
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public void NormalizeBrainKey()
+        public string NormalizeBrainKey(string brainKey)
         {
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            //throw new NotImplementedException();
+            try
+            {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+                var @params = new ArrayList {brainKey};
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name,@params);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+                throw;
+            }
         }
+
+        
     }
 }
