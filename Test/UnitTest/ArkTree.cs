@@ -8,7 +8,7 @@ namespace UnitTest
         [Fact]
         public void Test()
         {
-            var key = _client.Wallet.Key.GeneratePrivateKey(new byte[51], new byte[53]);
+            var key =  _client.Wallet.Key.GeneratePrivateKey(new byte[51], new byte[53]);
 
             var reponse = _client.Wallet.Account.CreateAccount("initminer", "Martyn", "{}", key, key, key);
             //if(reponse == null) return false;

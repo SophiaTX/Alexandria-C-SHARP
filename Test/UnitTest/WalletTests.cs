@@ -12,8 +12,8 @@ namespace UnitTest
         "{\"ref_block_num\":16364,\"ref_block_prefix\":2217467278,\"expiration\":\"2018-06-20T15:24:06\",\"operations\":[[\"account_create\",{\"fee\":\"0.100000 SPHTX\",\"creator\":\"initminer\",\"new_account_name\":\"sanjiv9999\",\"owner\":{\"weight_threshold\":1,\"account_auths\":[],\"key_auths\":[[\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",1]]},\"active\":{\"weight_threshold\":1,\"account_auths\":[],\"key_auths\":[[\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",1]]},\"memo_key\":\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",\"json_metadata\":\"{}\"}]],\"extensions\":[],\"signatures\":[]}";
         private readonly string _digest="fe7ee427286c25eb48a39218f4415fd64f59b25aac2978a8a534b542cf8059c9";
         private readonly string _sign="1f7d9cb0bf47d052a35b2f8534e46b0197abc636c0627e9f5ef54fedbd5c5b1d1318ae0983a7281633da849045a267b6f4acbb178d2533ce6d9807f8074f2b6099";
-        private readonly string _private_key="5JEhygBY1VAeCrGyLtUin59CVMgrkaTDMH85p4jkEKmNzK7dwvn";//"5JPwY3bwFgfsGtxMeLkLqXzUrQDMAsqSyAZDnMBkg7PDDRhQgaV";
-        private readonly string _public_key = "8Scq8njrvjHRqh5jV7DR6C6n3KTiFtQVk4tcHs8uYLNA1mUH97";
+        private readonly string _private_key=/*"5JEhygBY1VAeCrGyLtUin59CVMgrkaTDMH85p4jkEKmNzK7dwvn";//*/"5JPwY3bwFgfsGtxMeLkLqXzUrQDMAsqSyAZDnMBkg7PDDRhQgaV";
+        private readonly string _public_key = /*"8Scq8njrvjHRqh5jV7DR6C6n3KTiFtQVk4tcHs8uYLNA1mUH97";//*/"8Xg6cEbqPCY8jrWFccgbCq5Fjw1okivwwmLDDgqQCQeAgWn8Fr";
         //private readonly string _signedTransaction =  "{\"ref_block_num\":53889,\"ref_block_prefix\":3757496330,\"expiration\":\"2018-06-19T15:57:27\",\"operations\":[[\"account_create\",{\"fee\":\"0.100000 SPHTX\",\"creator\":\"initminer\",\"new_account_name\":\"sanjiv\",\"owner\":{\"weight_threshold\":1,\"account_auths\":[],\"key_auths\":[[\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",1]]},\"active\":{\"weight_threshold\":1,\"account_auths\":[],\"key_auths\":[[\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",1]]},\"memo_key\":\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",\"json_metadata\":\"{}\"}]],\"extensions\":[],\"signatures\":[\"1f6c5326bc2f3ed482ad72ecae706c627754427eda292b9a100d192a884bb4f3072ddd188773ed5ba4afab36863d74a80abdcdde50adcaaa5fe6754558e3c078f0\"]}";
         private readonly string _chainID="00000000000000000000000000000000";
         private readonly string _Brain = "DERRIDE BASCULE NIMBUS DOXA BURL AURALLY OER GOSSIPY BEHALE PINKER INVOKER YAULD HOYLE POTTY TITE WHUD";
@@ -21,13 +21,13 @@ namespace UnitTest
         [Fact]
         public void GetActiveWitness()
         {
-            _client.Wallet.Witness.get_active_witnesses();
+            _client.Wallet.Witness.GetActiveWitnesses();
         }
         
         [Fact]
         public void GetFeedHistory()
         {
-            _client.Wallet.Transaction.get_feed_history();
+            _client.Wallet.Transaction.GetFeedHistory();
         }
         [Fact]
         public void GetAbout()
@@ -38,7 +38,7 @@ namespace UnitTest
         [Fact]
         public void GetBlock()
         {
-            _client.Wallet.Transaction.get_block(8198);
+            _client.Wallet.Transaction.GetBlock(8198);
             
         } 
         [Fact]
@@ -54,7 +54,7 @@ namespace UnitTest
         }[Fact]
         public void GetPublicKey()
         {           
-            _client.Wallet.Key.GetPublicKey("5JPwY3bwFgfsGtxMeLkLqXzUrQDMAsqSyAZDnMBkg7PDDRhQgaV",new byte[63]);
+            _client.Wallet.Key.GetPublicKey("5KGL7MNAfwCzQ8DAq7DXJsneXagka3KNcjgkRayJoeJUucSLkev",new byte[63]);
              
         }[Fact]
         public void GenerateKeyPairFromBrainKey()
@@ -78,7 +78,7 @@ namespace UnitTest
             _client.Wallet.Key.EncryptMemo("Hello World",_private_key,_public_key,new byte[100]);
              
         }
-        //    [Fact]
+           // [Fact]
            //        public void DecryptMemo()
            //        {           
            //            _client.Wallet.Key.DecryptMemo(_memo,_private_key,_public_key,new byte[100]);
@@ -106,10 +106,12 @@ namespace UnitTest
         [Fact]
         public void CreateAccount()
         {
-            _client.Wallet.Account.CreateAccount("test101", "{}",
+            _client.Wallet.Account.CreateAccount("test102", "{}",
                 "STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz",
                 "STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz",
                 "STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz");
+           
+            
         }
         [Fact]
         public void GetAccount()
@@ -121,13 +123,13 @@ namespace UnitTest
         }
         
         
-        [Fact]
-        public void DeleteAccount()
-        {
-           var response =  _client.Wallet.Account.DeleteAccount("test101");
-            Console.WriteLine(response);
-
-        }
+//        [Fact]
+//        public void DeleteAccount()
+//        {
+//           var response =  _client.Wallet.Account.DeleteAccount("test101");
+//            Console.WriteLine(response);
+//
+//        }
 //        [Fact]
 //        public void update_account()
 //        {
