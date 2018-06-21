@@ -5,10 +5,22 @@ using Serilog.Formatting.Compact;
 
 namespace Alexandria.net.Logging
 {
+    /// <summary>
+    /// The logger object
+    /// </summary>
     public class Logger :ILogger
     {
+        /// <summary>
+        /// the build mode to use: Production or Test
+        /// </summary>
         public BuildMode BuildMode { get; set; }
-        
+
+        /// <summary>
+        /// the Logger constructor
+        /// </summary>
+        /// <param name="loggingtype">the type of logging: file or server</param>
+        /// <param name="appname">the name of the calling application</param>
+        /// <param name="mode">the buildmode: Prod or Testr</param>
         public Logger(LoggingType loggingtype, string appname, BuildMode mode = BuildMode.Prod)
         {
             switch (loggingtype)
@@ -19,8 +31,6 @@ namespace Alexandria.net.Logging
                 case LoggingType.Server:
                     CreateLoggerToServer(appname);
                     break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(loggingtype), loggingtype, null);
             }
 
             BuildMode = mode;
@@ -63,33 +73,56 @@ namespace Alexandria.net.Logging
             }
         }
 
+        /// <summary>
+        /// Closes the logger connection
+        /// </summary>
         public void Close()
         {
             Log.CloseAndFlush();
         }
 
+        /// <summary>
+        /// Writes an error to the log
+        /// </summary>
+        /// <param name="data">the data to write</param>
         public void WriteError(string data)
         {
             Write(data, ErrorType.Error);
         }
 
+        /// <summary>
+        /// writes a warning to the log
+        /// </summary>
+        /// <param name="data">the data to write</param>
         public void WriteWarning(string data)
         {
             Write(data, ErrorType.Warning);
         }
 
+        /// <summary>
+        /// writes the information to the log
+        /// </summary>
+        /// <param name="data">the data to write</param>
         public void WriteInfo(string data)
         {
             Write(data, ErrorType.Debug);
         }
 
+        /// <summary>
+        /// writes the test data to the sophia test analysis server
+        /// </summary>
+        /// <param name="data">the data to write</param>
         public void WriteTestData(string data)
         {
             Write(data, ErrorType.Verbose);
         }
 
-
-        public void Write(string info, ErrorType errortype)
+        /// <summary>
+        /// Writes the data to the log
+        /// </summary>
+        /// <param name="data">the data to write</param>
+        /// <param name="errortype">the severity of the log item</param>
+        public void Write(string data, ErrorType errortype)
         {
             switch (BuildMode)
             {
@@ -97,16 +130,16 @@ namespace Alexandria.net.Logging
                     switch (errortype)
                     {
                         case ErrorType.Debug:
-                            Log.Debug(info);
+                            Log.Debug(data);
                             break;
                         case ErrorType.Error:
-                            Log.Error(info);
+                            Log.Error(data);
                             break;
                         case ErrorType.Warning:
-                            Log.Warning(info);
+                            Log.Warning(data);
                             break;
                         case ErrorType.Verbose:
-                            Log.Verbose(info);
+                            Log.Verbose(data);
                             break;
                         default:
                             throw new ArgumentOutOfRangeException(nameof(errortype), errortype, null);
@@ -117,13 +150,13 @@ namespace Alexandria.net.Logging
                     switch (errortype)
                     {
                         case ErrorType.Debug:
-                            Log.Debug(info);
+                            Log.Debug(data);
                             break;
                         case ErrorType.Error:
-                            Log.Error(info);
+                            Log.Error(data);
                             break;
                         case ErrorType.Warning:
-                            Log.Warning(info);
+                            Log.Warning(data);
                             break;
                         default:
                             throw new ArgumentOutOfRangeException(nameof(errortype), errortype, null);

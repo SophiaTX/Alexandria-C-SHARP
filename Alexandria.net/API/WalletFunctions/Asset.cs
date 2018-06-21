@@ -32,7 +32,7 @@ namespace Alexandria.net.API.WalletFunctions
         #endregion
         
         
-        /// <summary>
+        /// <summary> 
         /// Trnasfer given assets from one user to other one.
         /// </summary>
         /// <param name="from">string from</param>
@@ -41,12 +41,13 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="balance">ulong balance</param>
         /// <param name="assetSymbol">string assetSymbol</param>
         /// <returns>Returns true if success or false for failed try</returns>
-        public bool transfer(string from, string to, string memo, ulong balance, string assetSymbol)
+        public bool Transfer(string from, string to, string memo, ulong balance, string assetSymbol)
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
                 var @params = new ArrayList {from, to, memo, balance, assetSymbol};
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                var result = SendRequest(reqname, @params);
                 return result == "true";
             }
             catch (Exception ex)
@@ -64,12 +65,13 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="accountName">string accountName</param>
         /// <param name="assetSymbol">string assetSymbol</param>
         /// <returns>Returns retruns ulong Accournt balance</returns>
-        public ulong getAccountUiaBalance(string accountName, string assetSymbol)
+        public ulong GetAccountUiaBalance(string accountName, string assetSymbol)
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
                 var @params = new ArrayList {accountName, assetSymbol};
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                var result = SendRequest(reqname, @params);
                 return Convert.ToUInt64(result);
             }
             catch (Exception ex)
@@ -89,12 +91,13 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="maxSupply">ulong maxSupply</param>
         /// <param name="assetSymbol">string assetSymbol</param>
         /// <returns>Returns true if success or false for failed try</returns>
-        public bool createUia(string ownerAccountName, Authority managementAuthority, ulong maxSupply, string assetSymbol)
+        public bool CreateUia(string ownerAccountName, Authority managementAuthority, ulong maxSupply, string assetSymbol)
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
                 var @params = new ArrayList {ownerAccountName, managementAuthority, maxSupply, assetSymbol};
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                var result = SendRequest(reqname, @params);
                 return result == "true";
             }
             catch (Exception ex)
@@ -112,12 +115,13 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="amount">ulong amount</param>
         /// <param name="assetSymbol">string assetSymbol</param>
         /// <returns>Returns true if success or false for failed try</returns>
-        public bool issueUia(string reveiverAccountName, ulong amount, string assetSymbol)
+        public bool IssueUia(string reveiverAccountName, ulong amount, string assetSymbol)
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
                 var @params = new ArrayList {reveiverAccountName, amount, assetSymbol};
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                var result = SendRequest(reqname, @params);
                 return result == "true";
             }
             catch (Exception ex)
@@ -135,12 +139,13 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="amount">ulong amount</param>
         /// <param name="assetSymbol">string assetSymbol</param>
         /// <returns>Returns true if success or false for failed try</returns>
-        public bool burnUia(string accountName, ulong amount, string assetSymbol)
+        public bool BurnUia(string accountName, ulong amount, string assetSymbol)
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
                 var @params = new ArrayList {accountName, amount, assetSymbol};
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);   
+                var result = SendRequest(reqname, @params);   
                 return result == "true";
             }
             catch (Exception ex)
@@ -160,12 +165,13 @@ namespace Alexandria.net.API.WalletFunctions
         /// -AccountAuths
         /// -KeyAuths
         /// </returns>
-        public Authority getUiaAuthority(string assetSymbol)
+        public Authority GetUiaAuthority(string assetSymbol)
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
                 var @params = new ArrayList {assetSymbol};
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                var result = SendRequest(reqname, @params);
                 return JsonConvert.DeserializeObject<Authority>(result);
             }
             catch (Exception ex)
@@ -181,12 +187,13 @@ namespace Alexandria.net.API.WalletFunctions
         /// </summary>
         /// <param name="assetSymbol">string assetSymbol</param>
         /// <returns>Returns true if success or false for failed try</returns>
-        public bool hasUiaPrivateKey(string assetSymbol)
+        public bool HasUiaPrivateKey(string assetSymbol)
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
                 var @params = new ArrayList {assetSymbol};
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                var result = SendRequest(reqname, @params);
                 return result == "true";
             }
             catch (Exception ex)

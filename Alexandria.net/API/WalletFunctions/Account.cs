@@ -17,6 +17,7 @@ namespace Alexandria.net.API.WalletFunctions
     public class Account : RpcConnection
     {
         private readonly ILogger _logger;
+
         #region Constructors
 
         /// <inheritdoc />
@@ -32,25 +33,26 @@ namespace Alexandria.net.API.WalletFunctions
         }
 
         #endregion
-        
+
         /// <summary>
         /// Returns true if an account with given name exists.
         /// </summary>
         /// <param name="accountName">Input string accountName</param>
         /// <returns>Returns true if success and false for failed try</returns>
-        public bool accountExists(string accountName)
+        public bool AccountExists(string accountName)
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
                 var @params = new ArrayList {accountName};
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                var result = SendRequest(reqname, @params);
                 return result == "true";
             }
             catch (Exception ex)
-             {
-                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
-                 throw;
-             }
+            {
+                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+                throw;
+            }
         }
 
         /// <summary>
@@ -58,12 +60,13 @@ namespace Alexandria.net.API.WalletFunctions
         /// </summary>
         /// <param name="key">Input byte[] key</param>
         /// <returns>Returns true if success and false for failed try</returns>
-        public bool hasPrivateKeys(byte[] key)
+        public bool HasPrivateKeys(byte[] key)
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
                 var @params = new ArrayList {key};
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                var result = SendRequest(reqname, @params);
                 return result == "true";
             }
             catch (Exception ex)
@@ -80,12 +83,13 @@ namespace Alexandria.net.API.WalletFunctions
         /// </summary>
         /// <param name="accountName">Input string accountName</param>
         /// <returns>Returns true if success and false for failed try</returns>
-        public bool hasAccountOwnerPrivateKey(string accountName)
+        public bool HasAccountOwnerPrivateKey(string accountName)
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
                 var @params = new ArrayList {accountName};
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                var result = SendRequest(reqname, @params);
                 return result == "true";
             }
             catch (Exception ex)
@@ -93,7 +97,7 @@ namespace Alexandria.net.API.WalletFunctions
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
-            
+
         }
 
         /// <summary>
@@ -103,12 +107,13 @@ namespace Alexandria.net.API.WalletFunctions
         /// </summary>
         /// <param name="accountName">Input string accountName</param>
         /// <returns>Returns true if success and false for failed try</returns>
-        public bool hasAccountActivePrivateKey(string accountName)
+        public bool HasAccountActivePrivateKey(string accountName)
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
                 var @params = new ArrayList {accountName};
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                var result = SendRequest(reqname, @params);
                 return result == "true";
             }
             catch (Exception ex)
@@ -116,7 +121,7 @@ namespace Alexandria.net.API.WalletFunctions
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
-            
+
         }
 
         /// <summary>
@@ -124,12 +129,13 @@ namespace Alexandria.net.API.WalletFunctions
         /// </summary>
         /// <param name="accountName">Input string accountName</param>
         /// <returns>Returns true if success and false for failed try</returns>
-        public bool hasAccountMemoPrivateKey(string accountName)
+        public bool HasAccountMemoPrivateKey(string accountName)
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
                 var @params = new ArrayList {accountName};
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                var result = SendRequest(reqname, @params);
                 return result == "true";
             }
             catch (Exception ex)
@@ -137,7 +143,7 @@ namespace Alexandria.net.API.WalletFunctions
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
-            
+
         }
 
         /// <summary>
@@ -145,12 +151,13 @@ namespace Alexandria.net.API.WalletFunctions
         /// </summary>
         /// <param name="accountName">Input string accountName</param>
         /// <returns>Returns the Json object with the details about the active authority</returns>
-        public Authority getActiveAuthority(string accountName)
+        public Authority GetActiveAuthority(string accountName)
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
                 var @params = new ArrayList {accountName};
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                var result = SendRequest(reqname, @params);
                 return JsonConvert.DeserializeObject<Authority>(result);
             }
             catch (Exception ex)
@@ -165,12 +172,13 @@ namespace Alexandria.net.API.WalletFunctions
         /// </summary>
         /// <param name="accountName">Input string accountName</param>
         /// <returns>Returns the Json object with the deails about the owner authority</returns>
-        public Authority getOwnerAuthority(string accountName)
+        public Authority GetOwnerAuthority(string accountName)
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
                 var @params = new ArrayList {accountName};
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                var result = SendRequest(reqname, @params);
                 return JsonConvert.DeserializeObject<Authority>(result);
             }
             catch (Exception ex)
@@ -185,12 +193,13 @@ namespace Alexandria.net.API.WalletFunctions
         /// </summary>
         /// <param name="accountName">Input string accountName</param>
         /// <returns>Returns the Memo Key of the corresponding account</returns>
-        public byte[] getMemoKey(string accountName)
+        public byte[] GetMemoKey(string accountName)
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
                 var @params = new ArrayList {accountName};
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                var result = SendRequest(reqname, @params);
                 return JsonConvert.DeserializeObject<byte[]>(result);
             }
             catch (Exception ex)
@@ -198,7 +207,7 @@ namespace Alexandria.net.API.WalletFunctions
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
-           
+
         }
 
 
@@ -207,12 +216,13 @@ namespace Alexandria.net.API.WalletFunctions
         /// </summary>
         /// <param name="accountName">Input string accountName</param>
         /// <returns>Returns the account balance as a Json object</returns>
-        public ulong getAccountBalance(string accountName)
+        public ulong GetAccountBalance(string accountName)
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
                 var @params = new ArrayList {accountName};
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                var result = SendRequest(reqname, @params);
                 return JsonConvert.DeserializeObject<ulong>(result);
             }
             catch (Exception ex)
@@ -220,7 +230,7 @@ namespace Alexandria.net.API.WalletFunctions
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
-            
+
         }
 
         /// <summary>
@@ -228,12 +238,13 @@ namespace Alexandria.net.API.WalletFunctions
         /// </summary>
         /// <param name="accountName">Input string accountName</param>
         /// <returns>Returns the account balance as a Json object</returns>
-        public ulong getVestingBalance(string accountName)
+        public ulong GetVestingBalance(string accountName)
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
                 var @params = new ArrayList {accountName};
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                var result = SendRequest(reqname, @params);
                 return JsonConvert.DeserializeObject<ulong>(result);
             }
             catch (Exception ex)
@@ -241,24 +252,21 @@ namespace Alexandria.net.API.WalletFunctions
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
-            
+
         }
 
         /// <summary>
         /// Creates authority resolvable with signature corresponding to the given pub_key.
         /// </summary>
         /// <param name="pubKey">Input byte[] pubKey</param>
-        /// <returns>Returns Json object with details combining
-        /// -WeightThreshold
-        /// -AccountAuths
-        /// -KeyAuths
-        /// </returns>
-        public Authority createSimpleAuthority(byte[] pubKey)
+        /// <returns>Returns Json object with details combining</returns>
+        public Authority CreateSimpleAuthority(byte[] pubKey)
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
                 var @params = new ArrayList {pubKey};
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                var result = SendRequest(reqname, @params);
                 return JsonConvert.DeserializeObject<Authority>(result);
             }
             catch (Exception ex)
@@ -266,7 +274,7 @@ namespace Alexandria.net.API.WalletFunctions
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
-            
+
         }
 
         /// <summary>
@@ -274,17 +282,14 @@ namespace Alexandria.net.API.WalletFunctions
         /// </summary>
         /// <param name="pubKeys">Input List of Byte[] pubKeys</param>
         /// <param name="requiredSignatures">Input ulong requiredSignatures</param>
-        /// <returns>Returns Json object with details combining
-        /// -WeightThreshold
-        /// -AccountAuths
-        /// -KeyAuths
-        /// </returns>
-        public Authority createSimpleMultisigAuthority(List<byte[]> pubKeys, ulong requiredSignatures)
+        /// <returns>Returns Json object with details combining</returns>
+        public Authority CreateSimpleMultisigAuthority(List<byte[]> pubKeys, ulong requiredSignatures)
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
                 var @params = new ArrayList {pubKeys, requiredSignatures};
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                var result = SendRequest(reqname, @params);
                 return JsonConvert.DeserializeObject<Authority>(result);
             }
             catch (Exception ex)
@@ -292,32 +297,29 @@ namespace Alexandria.net.API.WalletFunctions
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
-            
+
         }
 
         /// <summary>
         /// Creates authority resolvable with a given managing account.
         /// </summary>
         /// <param name="managingAccountName">string managingAccountName</param>
-        /// <returns>Returns Json object with details combining
-        /// -WeightThreshold
-        /// -AccountAuths
-        /// -KeyAuths
-        /// </returns>
-        public Authority createSimpleManagedAuthority(string managingAccountName)
+        /// <returns>Returns Json object with details combining</returns>
+        public Authority CreateSimpleManagedAuthority(string managingAccountName)
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
                 var @params = new ArrayList {managingAccountName};
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                var result = SendRequest(reqname, @params);
                 return JsonConvert.DeserializeObject<Authority>(result);
             }
             catch (Exception ex)
             {
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
-                throw ;
+                throw;
             }
-           
+
         }
 
         /// <summary>
@@ -325,17 +327,14 @@ namespace Alexandria.net.API.WalletFunctions
         /// </summary>
         /// <param name="managingAccounts">Input List of string managingAccounts</param>
         /// <param name="requiredSignatures">Input uint requiredSignatures</param>
-        /// <returns>Returns Json object with details combining
-        /// -WeightThreshold
-        /// -AccountAuths
-        /// -KeyAuths
-        /// </returns>
-        public Authority createSimpleMultiManagedAuthority(List<string> managingAccounts, uint requiredSignatures)
+        /// <returns>Returns Json object with details combining</returns>
+        public Authority CreateSimpleMultiManagedAuthority(List<string> managingAccounts, uint requiredSignatures)
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
                 var @params = new ArrayList {managingAccounts, requiredSignatures};
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                var result = SendRequest(reqname, @params);
                 return JsonConvert.DeserializeObject<Authority>(result);
             }
             catch (Exception ex)
@@ -343,7 +342,7 @@ namespace Alexandria.net.API.WalletFunctions
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
-            
+
         }
 
         /// <summary>
@@ -354,12 +353,13 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="active">Input Authority active</param>
         /// <param name="memo">Input byte[] memo</param>
         /// <returns>Returns true if success or false for failed try</returns>
-        public bool updateAccount(string accountName, Authority owner, Authority active, byte[] memo)
+        public bool UpdateAccount(string accountName, Authority owner, Authority active, byte[] memo)
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
                 var @params = new ArrayList {accountName, owner, active, memo};
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                var result = SendRequest(reqname, @params);
                 return result == "true";
             }
             catch (Exception ex)
@@ -367,7 +367,7 @@ namespace Alexandria.net.API.WalletFunctions
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
-            
+
         }
 
         /// <summary>
@@ -376,12 +376,13 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="accountName">Input string accountName</param>
         /// <param name="toVestings">Input ulong toVestings</param>
         /// <returns>Returns true if success or false for failed try</returns>
-        public bool depositVesting(string accountName, ulong toVestings)
+        public bool DepositVesting(string accountName, ulong toVestings)
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
                 var @params = new ArrayList {accountName, toVestings};
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                var result = SendRequest(reqname, @params);
                 return result == "true";
             }
             catch (Exception ex)
@@ -389,7 +390,7 @@ namespace Alexandria.net.API.WalletFunctions
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
-           
+
         }
 
         /// <summary>
@@ -398,12 +399,13 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="accountName">Input string accountName</param>
         /// <param name="fromVestings">Input ulong fromVestings</param>
         /// <returns>Returns true if success or false for failed try</returns>
-        public bool withdrawVestings(string accountName, ulong fromVestings)
+        public bool WithdrawVestings(string accountName, ulong fromVestings)
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
                 var @params = new ArrayList {accountName, fromVestings};
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                var result = SendRequest(reqname, @params);
                 return result == "true";
             }
             catch (Exception ex)
@@ -411,7 +413,7 @@ namespace Alexandria.net.API.WalletFunctions
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
-            
+
         }
 
         /// <summary>
@@ -421,12 +423,13 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="votedAccountName">Input string votedAccountName</param>
         /// <param name="approve">Input string approve</param>
         /// <returns></returns>
-        public bool voteForWitness(string votingAccountName, string votedAccountName, string approve)
+        public bool VoteForWitness(string votingAccountName, string votedAccountName, string approve)
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
                 var @params = new ArrayList {votingAccountName, votedAccountName, approve};
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                var result = SendRequest(reqname, @params);
                 return result == "true";
             }
             catch (Exception ex)
@@ -434,7 +437,7 @@ namespace Alexandria.net.API.WalletFunctions
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
-            
+
         }
 
         /// <summary>
@@ -444,12 +447,13 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="url">Input string url</param>
         /// <param name="blockKey">Input byte[] blockKey</param>
         /// <returns>Returns true if success or false for failed try</returns>
-        public bool updateToWitness(string accountName, string url, byte[] blockKey)
+        public bool UpdateToWitness(string accountName, string url, byte[] blockKey)
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
                 var @params = new ArrayList {accountName, url, blockKey};
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                var result = SendRequest(reqname, @params);
                 return result == "true";
             }
             catch (Exception ex)
@@ -457,14 +461,21 @@ namespace Alexandria.net.API.WalletFunctions
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
-            
+
         }
-        public bool get_account(string AccountName)
+
+        /// <summary>
+        /// Gets the account information
+        /// </summary>
+        /// <param name="accountName">the account name the information is required for</param>
+        /// <returns>the account information</returns>
+        public bool GetAccount(string accountName)
         {
             try
             {
-                var @params = new ArrayList {AccountName};
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
+                var @params = new ArrayList {accountName};
+                var result = SendRequest(reqname, @params);
                 return result == "true";
             }
             catch (Exception ex)
@@ -472,24 +483,23 @@ namespace Alexandria.net.API.WalletFunctions
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
-           
+
         }
 
         /// <summary>
         /// Creates new account in the SophiaTX blockchain.
         /// </summary>
-        /// <param name="registeringAccountName">Input string registeringAccountName</param>
+        /// <param name="creator"></param>
         /// <param name="newAccountName">Input string newAccountName</param>
-        /// <param name="owner">Input Authority owner</param>
-        /// <param name="active">Input Authority active</param>
-        /// <param name="memo">Input byte[] memo</param>
+        /// <param name="jsonData"></param>
         /// <returns>Returns true if success or false for failed try</returns>
-        public bool create_account(string Creator, string newAccountName, string JSONData,bool broadcast)
+        public bool CreateAccount(string creator, string newAccountName, string jsonData)
         {
             try
             {
-                var @params = new ArrayList {Creator, newAccountName, JSONData, broadcast};
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
+                var @params = new ArrayList {creator, newAccountName, jsonData};
+                var result = SendRequest(reqname, @params);
                 return result == "true";
             }
             catch (Exception ex)
@@ -497,7 +507,6 @@ namespace Alexandria.net.API.WalletFunctions
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
-           
         }
     }
 }

@@ -39,6 +39,9 @@ namespace Alexandria.net.Core
 		/// </summary>
 		public Witness Witness { get; }
 		
+		/// <summary>
+		/// 
+		/// </summary>
 		public Data Data { get; }
 
 		#endregion

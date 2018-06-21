@@ -18,10 +18,12 @@ namespace Alexandria.net.API.WalletFunctions
         //todo - lib path needs to be solved
         private const string Libpath = "/Users/sanjivjha/RiderProjects/Alexandria/Alexandria.net/libalexandria.dylib";
         #region DllImports
+
         /// <summary>
-        /// Create a private key
+        /// Creates a private key
         /// </summary>
         /// <param name="privateKey">byte[52] private_key</param>
+        /// <param name="publickey">the public key</param>
         /// <returns>Returns true if success or false for failed try</returns>
         [DllImport(Libpath)]
         private static extern bool generate_private_key([MarshalAs(UnmanagedType.LPArray)]byte[] privateKey, [MarshalAs(UnmanagedType.LPArray)]byte[] publickey);
@@ -87,11 +89,12 @@ namespace Alexandria.net.API.WalletFunctions
                 throw ;
             }
         }
-        
+
         /// <summary>
         /// Generates the Private Keys
         /// </summary>
         /// <param name="privatekey">the key bytes</param>
+        /// <param name="publickey">the public key</param>
         /// <returns>Returns true if success or false for failed try</returns>
         public string generate_private_key_c(byte[] privatekey,byte[] publickey)
         {

@@ -44,12 +44,12 @@ namespace UnitTest
         [Fact]
         public void CreateAccount()
         {
-            _client.Wallet.Account.create_account("initminer","sanjiv","{}",true);
+            _client.Wallet.Account.CreateAccount("initminer","sanjiv","{}");
         }
         [Fact]
         public void GetAccountBalance()
         {
-            _client.Wallet.Account.get_account("sanjiv");
+            _client.Wallet.Account.GetAccount("sanjiv");
         }
         [Fact]
         public void CreateSimpleAuthority()

@@ -22,13 +22,19 @@ namespace Alexandria.net.Communication
         private readonly string _uri;
         private readonly HttpClient _client;
         private readonly string _jsonRpc;
-        protected readonly CSharpToCPP CSharpToCpp = new CSharpToCPP();
+        /// <summary>
+        /// 
+        /// </summary>
+        protected readonly CSharpToCpp CSharpToCpp = new CSharpToCpp();
         private readonly ILogger _logger;
         private readonly BuildMode _buildMode;
         #endregion
 
         #region Properties
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected IConfig Config { get; private set; }
 
         #endregion
@@ -39,6 +45,7 @@ namespace Alexandria.net.Communication
         /// RPCConnection Constructor
         /// </summary>
         /// <param name="config"></param>
+        /// <param name="Wallet"></param>
         protected RpcConnection(IConfig config, bool Wallet = true)
         {
             Config = config;

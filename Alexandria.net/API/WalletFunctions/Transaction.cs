@@ -138,6 +138,11 @@ namespace Alexandria.net.API.WalletFunctions
 			
 		}
 		
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="signed_tx"></param>
+		/// <returns></returns>
 		public FeedHistoryResponse broadcast_transaction(string signed_tx)
 		{
 			try

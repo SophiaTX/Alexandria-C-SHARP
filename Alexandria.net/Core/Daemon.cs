@@ -296,6 +296,13 @@ namespace Alexandria.net.Core
 		//
 		// from - the absolute sequence number, -1 means most recent, limit Is the number of operations before from.
 		// limit - the maximum number of items that can be queried (0 to 1000], must be less than from
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="account"></param>
+		/// <param name="from"></param>
+		/// <param name="limit"></param>
+		/// <returns></returns>
 		public string get_account_history(string account, ulong from, uint limit)
 		{
 			var @params = new ArrayList {account, from, limit};
