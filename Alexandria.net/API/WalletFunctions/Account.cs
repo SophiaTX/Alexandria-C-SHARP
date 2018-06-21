@@ -471,15 +471,14 @@ namespace Alexandria.net.API.WalletFunctions
         /// </summary>
         /// <param name="accountName">the account name the information is required for</param>
         /// <returns>the account information</returns>
-        public GetAccountResponse GetAccount(string accountName)
+        public bool GetAccount(string accountName)
         {
             try
             {
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {accountName};
                 var result = SendRequest(reqname, @params);
-                var contentdata = JsonConvert.DeserializeObject<GetAccountResponse>(result);
-                return contentdata;
+                return result == "true";
             }
             catch (Exception ex)
             {
@@ -498,8 +497,9 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="ownerkey">the owner key</param>
         /// <param name="activekey">the active key</param>
         /// <param name="memokey">the memo key</param>
-        /// <returns></returns>
-        public AccountResponse CreateAccount(string accountname, string jsonMeta, string ownerkey,
+        /// <param name="pk">the private key used for the digest</param>
+        /// <returns>the account creation response details</returns>
+        public CreateAccountResponse CreateAccount(string accountname, string jsonMeta, string ownerkey,
             string activekey, string memokey, string witnessname = "initminer",
             string pk = "5JPwY3bwFgfsGtxMeLkLqXzUrQDMAsqSyAZDnMBkg7PDDRhQgaV")
         {
@@ -511,9 +511,9 @@ namespace Alexandria.net.API.WalletFunctions
                 var @params = new ArrayList {witnessname, accountname, jsonMeta, ownerkey, activekey, memokey};
                 var result = SendRequest(reqname, @params);
                 
-                var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
+                var contentdata = JsonConvert.DeserializeObject<CreateAccountResponse>(result);
                 
-                var transresponse = trans.create_simple_transaction(contentdata);
+                var transresponse = trans.CreateSimpleTransaction(contentdata);
                 if (transresponse == null) return null;
                 
                 var aboutresponse = trans.About();
@@ -548,32 +548,16 @@ namespace Alexandria.net.API.WalletFunctions
         /// </summary>
         /// <param name="accountName"></param>
         /// <returns>Returns object containing information about the new operation created</returns>
-        public AccountResponse DeleteAccount(string accountName)
+        public BlockResponse DeleteAccount(string accountName)
         {
-            var trans = new Transaction(Config);
-            var key = new Key(Config);
-            string pk = "5JPwY3bwFgfsGtxMeLkLqXzUrQDMAsqSyAZDnMBkg7PDDRhQgaV";
             try
             {
-                
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {accountName};
                 var result= SendRequest(reqname, @params);
-                var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
-                var transresponse = trans.create_simple_transaction(contentdata);
-                if (transresponse == null) return null;
+                var contentdata = JsonConvert.DeserializeObject<BlockResponse>(result);
                 
-                var aboutresponse = trans.About();
-                if (aboutresponse == null) return null;
-                
-                var transaction = JsonConvert.SerializeObject(transresponse.result);
-                var digest = key.GetTransactionDigest(transaction, aboutresponse.result.chain_id, new byte[64]);
-
-                var signature = key.SignDigest(digest, pk, new byte[130]);
-                var response = key.AddSignature(transaction, signature, new byte[transaction.Length + 200]);
-                
-                return response == null ? null : contentdata;
-                
+                return contentdata;
             }
             catch(Exception ex)
             {

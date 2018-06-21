@@ -5,7 +5,7 @@
     /// </summary>
     public class CSharpToCpp
     {
-        private const string Vote = "vote_for_witness";
+        private const string Vote = "vote";
         private const string AccountExists = "accountExists";
         private const string HasPrivateKeys = "hasPrivateKeys";
         private const string HasAccountOwnerPrivateKey = "hasAccountOwnerPrivateKey";
@@ -23,7 +23,7 @@
         private const string UpdateAccount = "updateAccount";
         private const string DepositVesting = "depositVesting";
         private const string WithdrawVestings = "withdrawVestings";
-        private const string VoteForWitness = "voteForWitness";  
+        private const string VoteForWitness = "vote_for_witness";
         private const string UpdateToWitness = "updateToWitness";
         private const string GetAccount = "get_account";
         private const string CreateAccount = "create_account";
@@ -35,8 +35,28 @@
         private const string GetUiaAuthority = "getUiaAuthority";
         private const string HasUiaPrivateKey = "hasUiaPrivateKey";
         private const string DeleteAccount = "delete_account";
-        private const string SuggestBrainKey="suggest_brain_key";
-        private const string NormalizeBrainKey="normalize_brain_key";
+        private const string SuggestBrainKey = "suggest_brain_key";
+        private const string NormalizeBrainKey = "normalize_brain_key";
+        private const string About = "about";
+        private const string Challenge = "challenge";
+        private const string GetBlock = "get_block";
+        private const string GetFeedHistory = "get_feed_history";
+        private const string GetTransaction = "get_transaction";
+        private const string BroadcastTransaction = "broadcast_transaction";
+        private const string CreateSimpleTransaction = "create_simple_transaction";
+        private const string CreateTransaction = "create_transaction";
+        private const string PublishFeed = "publish_feed";
+        private const string SetTransactionExpiration = "set_transaction_expiration";
+        private const string SetVotingProxy = "set_voting_proxy";
+        private const string WithdrawVesting = "withdraw_vesting";
+        private const string TransferToVesting = "transfer_to_vesting";
+        private const string GetOpsInBlock = "get_ops_in_block";
+        private const string GetActiveWitnesses = "get_active_witnesses";
+        private const string GetMinerQueue  = "get_miner_queue";
+        private const string GetWitness  = "get_witness";
+        private const string ListWitnesses  = "list_witnesses";
+        private const string UpdateWitness  = "update_witness";
+
 
         /// <summary>
         /// 
@@ -109,6 +129,45 @@
                     return SuggestBrainKey;
                 case "NormalizeBrainKey":
                     return NormalizeBrainKey;
+                case "About":
+                    return About;
+                case "Challenge":
+                    return Challenge;
+                case "GetBlock":
+                    return GetBlock;
+                case "GetFeedHistory":
+                    return GetFeedHistory;
+                case "GetTransaction":
+                    return GetTransaction;
+                case "BroadcastTransaction":
+                    return BroadcastTransaction;
+                case "CreateSimpleTransaction":
+                    return CreateSimpleTransaction;
+                case "CreateTransaction":
+                    return CreateTransaction;
+                case "PublishFeed":
+                    return PublishFeed;
+                case "SetTransactionExpiration":
+                    return SetTransactionExpiration;
+                case "SetVotingProxy":
+                    return SetVotingProxy;
+                case "WithdrawVesting":
+                    return WithdrawVesting;
+                case "TransferToVesting":
+                    return TransferToVesting;
+                case "GetOpsInBlock":
+                    return GetOpsInBlock;
+                case "GetActiveWitnesses":
+                    return GetActiveWitnesses;
+                case "GetMinerQueue":
+                    return GetMinerQueue;
+                case "GetWitness":
+                    return GetWitness;
+                case "ListWitnesses":
+                    return ListWitnesses;
+                case "UpdateWitness":
+                    return UpdateWitness;
+
             }
 
             return string.Empty;

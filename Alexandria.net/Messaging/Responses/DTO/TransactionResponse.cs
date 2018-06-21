@@ -1,11 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace Alexandria.net.Messaging.Responses.DTO
+﻿namespace Alexandria.net.Messaging.Responses.DTO
 {
-    public class TransactionResponse
+    /// <summary>
+    /// 
+    /// </summary>
+    public abstract class TransactionResponse
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public int id { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
         public TransactionData result { get; set; }
     }
 

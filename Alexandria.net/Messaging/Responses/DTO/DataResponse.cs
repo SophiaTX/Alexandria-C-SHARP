@@ -2,11 +2,20 @@
 
 namespace Alexandria.net.Messaging.Responses.DTO
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class DataResponse
     {
+        /// <summary>
+        /// 
+        /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         [JsonProperty("result")]
         public SendResponseResult Result { get; set; }
 

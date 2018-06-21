@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using Alexandria.net.Communication;
@@ -115,6 +114,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// Gets the transaction digest
         /// </summary>
         /// <param name="transaction">the transaction to digest</param>
+        /// <param name="chainId">the id in the blockchain</param>
         /// <param name="digest">the digest bytes</param>
         /// <returns>Returns true if success or false for failed try</returns>
         public string GetTransactionDigest(string transaction, string chainId, byte[] digest)
@@ -179,7 +179,7 @@ namespace Alexandria.net.API.WalletFunctions
                 var signedTransaction = System.Text.Encoding.Default.GetString(signedtx);
 
                 var result = JsonConvert.DeserializeObject<SignedTransactionResponse>(signedTransaction);
-                trans.broadcast_transaction(result);
+                trans.BroadcastTransaction(result);
                 return result;
             }
             catch (Exception ex)
@@ -334,6 +334,11 @@ namespace Alexandria.net.API.WalletFunctions
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="brainKey"></param>
+        /// <returns></returns>
         public string NormalizeBrainKey(string brainKey)
         {
             try

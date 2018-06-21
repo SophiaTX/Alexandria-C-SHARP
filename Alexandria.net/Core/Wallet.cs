@@ -52,6 +52,7 @@ namespace Alexandria.net.Core
 		/// 
 		/// </summary>
 		/// <param name="config"></param>
+		/// <param name="blockchainConfig"></param>
 		public Wallet(IConfig config, IBlockchainConfig blockchainConfig)
 		{
 			Account = new Account(config);
