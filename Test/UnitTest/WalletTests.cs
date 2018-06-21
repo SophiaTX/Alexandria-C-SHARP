@@ -29,7 +29,7 @@ namespace UnitTest
         [Fact]
         public void GetActiveWitness()//ListWitness//GetWitness
         {
-            _client.Wallet.Witness.get_active_witnesses();
+            _client.Wallet.Witness.GetActiveWitnesses();
         }
         
         [Fact]

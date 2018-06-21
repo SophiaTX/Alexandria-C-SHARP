@@ -5,7 +5,7 @@
     /// </summary>
     public class CSharpToCpp
     {
-        private const string Vote = "vote_for_witness";
+        private const string Vote = "vote";
         private const string AccountExists = "accountExists";
         private const string HasPrivateKeys = "hasPrivateKeys";
         private const string HasAccountOwnerPrivateKey = "hasAccountOwnerPrivateKey";
@@ -23,7 +23,7 @@
         private const string UpdateAccount = "updateAccount";
         private const string DepositVesting = "depositVesting";
         private const string WithdrawVestings = "withdrawVestings";
-        private const string VoteForWitness = "voteForWitness";
+        private const string VoteForWitness = "vote_for_witness";
         private const string UpdateToWitness = "updateToWitness";
         private const string GetAccount = "get_account";
         private const string CreateAccount = "create_account";
@@ -51,10 +51,11 @@
         private const string WithdrawVesting = "withdraw_vesting";
         private const string TransferToVesting = "transfer_to_vesting";
         private const string GetOpsInBlock = "get_ops_in_block";
-
-
-
-
+        private const string GetActiveWitnesses = "get_active_witnesses";
+        private const string GetMinerQueue  = "get_miner_queue";
+        private const string GetWitness  = "get_witness";
+        private const string ListWitnesses  = "list_witnesses";
+        private const string UpdateWitness  = "update_witness";
 
 
         /// <summary>
@@ -156,6 +157,17 @@
                     return TransferToVesting;
                 case "GetOpsInBlock":
                     return GetOpsInBlock;
+                case "GetActiveWitnesses":
+                    return GetActiveWitnesses;
+                case "GetMinerQueue":
+                    return GetMinerQueue;
+                case "GetWitness":
+                    return GetWitness;
+                case "ListWitnesses":
+                    return ListWitnesses;
+                case "UpdateWitness":
+                    return UpdateWitness;
+
             }
 
             return string.Empty;

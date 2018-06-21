@@ -30,11 +30,12 @@ namespace Alexandria.net.API.WalletFunctions
         /// </summary>
         /// <returns>Returns json object combining list of active witnesses 
         /// </returns>
-        public ActiveWitnessResponse get_active_witnesses()
+        public ActiveWitnessResponse GetActiveWitnesses()
         {
             try
             {
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name);
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);  
+                var result = SendRequest(reqname);
                 var contentdata = JsonConvert.DeserializeObject<ActiveWitnessResponse>(result);
                 return contentdata;
             }
@@ -50,11 +51,12 @@ namespace Alexandria.net.API.WalletFunctions
         /// Returns the queue Of pow miners waiting To produce blocks.
         /// </summary>
         /// <returns></returns>
-        private string get_miner_queue()
+        private string GetMinerQueue()
         {
             try
             {
-                return SendRequest(MethodBase.GetCurrentMethod().Name);
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);  
+                return SendRequest(reqname);
             }
             catch(Exception ex)
             {
@@ -69,12 +71,13 @@ namespace Alexandria.net.API.WalletFunctions
         /// </summary>
         /// <param name="ownerAccount">the name Or id Of the witness account owner, Or the id of the witness</param>
         /// <returns>the information about the witness stored In the block chain</returns>
-        public string get_witness(string ownerAccount)
+        public string GetWitness(string ownerAccount)
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);  
                 var @params = new ArrayList {ownerAccount};
-                return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return SendRequest(reqname, @params);
             }
             catch(Exception ex)
             {
@@ -94,12 +97,13 @@ namespace Alexandria.net.API.WalletFunctions
         /// If the named witness does Not exist, the list will start at the witness thatcomes after 'lowerbound'</param>
         /// <param name="limit">the maximum number Of witnesss To return (max: 1000)</param>
         /// <returns>Returns a list Of witnesss mapping witness names To witness ids</returns>
-        public string list_witnesses(string lowerbound, uint limit)
+        public string ListWitnesses(string lowerbound, uint limit)
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);  
                 var @params = new ArrayList {lowerbound, limit};
-                return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return SendRequest(reqname, @params);
             }
             catch(Exception ex)
             {
@@ -118,12 +122,13 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="blockSigningKey">The New block signing public key. The empty string makes it remain the same.</param>
         /// <param name="props">The chain properties the witness Is voting On. </param>
         /// <returns></returns>
-        public string update_witness(string witnessName, string url, string blockSigningKey, JArray props)
+        public string UpdateWitness(string witnessName, string url, string blockSigningKey, JArray props)
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);  
                 var @params = new ArrayList {witnessName, url, blockSigningKey, props};
-                return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return SendRequest(reqname, @params);
             }
             catch (Exception ex)
             {
@@ -144,8 +149,9 @@ namespace Alexandria.net.API.WalletFunctions
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);  
                 var @params = new ArrayList {voter, author, permlink, weight};
-                return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return SendRequest(reqname, @params);
             }
             catch(Exception ex)
             {
@@ -168,8 +174,7 @@ namespace Alexandria.net.API.WalletFunctions
         {
             try
             {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);      
                 var @params = new ArrayList {accountToVoteWith, witnessToVoteFor, approve};
                 var result = SendRequest(reqname, @params);
                 var contentdata = JsonConvert.DeserializeObject<ActiveWitnessResponse>(result);
