@@ -19,5 +19,6 @@
     <EmbeddedResource Include="libalexandria.dylib">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <Compile Remove="Messaging\Responses\DTO\CreateAccountResponse.cs" />
   </ItemGroup>
 </Project>

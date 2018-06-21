@@ -298,6 +298,7 @@ namespace Alexandria.net.API.WalletFunctions
         {
             try
             {
+                
                 var result= decrypt_memo(memo, private_key, public_key,decrypted_memo)
                     ? System.Text.Encoding.Default.GetString(decrypted_memo)
                     : string.Empty;
@@ -315,13 +316,16 @@ namespace Alexandria.net.API.WalletFunctions
         /// 
         /// </summary>
         /// <returns></returns>
-        public string SuggestBrainKey()
+        public BrainKeySuggestion SuggestBrainKey()
         {
             try
             {
+                
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name);
-                return result;
+                var result = SendRequest(reqname);
+                var contentdata = JsonConvert.DeserializeObject<BrainKeySuggestion>(result);
+                return contentdata;
+                
             }
             catch (Exception ex)
             {
@@ -336,7 +340,7 @@ namespace Alexandria.net.API.WalletFunctions
             {
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {brainKey};
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name,@params);
+                var result = SendRequest(reqname,@params);
                 return result;
             }
             catch (Exception ex)

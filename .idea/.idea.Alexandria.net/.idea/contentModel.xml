@@ -75,18 +75,22 @@
               <e p="AboutData.cs" t="Include" />
               <e p="AboutResponse.cs" t="Include" />
               <e p="Account.cs" t="Include" />
+              <e p="AccountDetails.cs" t="Include" />
               <e p="AccountHistoryResponse.cs" t="Include" />
               <e p="AccountRequestResponse.cs" t="Include" />
+              <e p="AccountResponse.cs" t="Include" />
               <e p="Active.cs" t="Include" />
               <e p="ActiveWitnessResponse.cs" t="Include" />
+              <e p="BainKey.cs" t="Include" />
               <e p="BlockData.cs" t="Include" />
               <e p="BlockResponse.cs" t="Include" />
-              <e p="CreateAccountResponse.cs" t="Include" />
+              <e p="BrainKeySuggestion.cs" t="Include" />
               <e p="CurrentMedianHistory.cs" t="Include" />
               <e p="DataRequestResponse.cs" t="Include" />
               <e p="DataResponse.cs" t="Include" />
               <e p="FeedData.cs" t="Include" />
               <e p="FeedHistoryResponse.cs" t="Include" />
+              <e p="GetAccountResponse.cs" t="Include" />
               <e p="InfoData.cs" t="Include" />
               <e p="InfoResponse.cs" t="Include" />
               <e p="KeyFromPassword.cs" t="Include" />

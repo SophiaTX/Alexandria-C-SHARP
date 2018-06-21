@@ -2,6 +2,8 @@
 
 namespace Alexandria.net.Messaging.Responses.DTO
 {
+  
+
     public class Active
     {
         public int weight_threshold { get; set; }
