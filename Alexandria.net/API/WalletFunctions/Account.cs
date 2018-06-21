@@ -512,7 +512,7 @@ namespace Alexandria.net.API.WalletFunctions
                 
                 var contentdata = JsonConvert.DeserializeObject<CreateAccountResponse>(result);
                 
-                var transresponse = trans.create_simple_transaction(contentdata);
+                var transresponse = trans.CreateSimpleTransaction(contentdata);
                 if (transresponse == null) return null;
                 
                 var aboutresponse = trans.About();

@@ -44,7 +44,8 @@ namespace Alexandria.net.API.WalletFunctions
 		{
 			try
 			{
-				var result= SendRequest(MethodBase.GetCurrentMethod().Name.ToLower());
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+				var result= SendRequest(reqname);
 				var contentdata = JsonConvert.DeserializeObject<AboutResponse>(result);
 				return contentdata;
 
@@ -68,8 +69,9 @@ namespace Alexandria.net.API.WalletFunctions
 		{
 			try
 			{
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
 				var @params = new ArrayList {challenger, challenged};
-				return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+				return SendRequest(reqname, @params);
 			}
 			catch(Exception ex)
 			{
@@ -84,12 +86,13 @@ namespace Alexandria.net.API.WalletFunctions
 		/// </summary>
 		/// <param name="num">the block num</param>
 		/// <returns>Public block data On the blockchain</returns>
-		public BlockResponse get_block(int num)
+		public BlockResponse GetBlock(int num)
 		{
 			try
 			{
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
 				var @params = new ArrayList {num};
-				var result =  SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+				var result =  SendRequest(reqname, @params);
 				var contentdata = JsonConvert.DeserializeObject<BlockResponse>(result);
 				return contentdata;
 			}
@@ -105,11 +108,12 @@ namespace Alexandria.net.API.WalletFunctions
 		/// get current feed history
 		/// </summary>
 		/// <returns>Returns object with Feed details</returns>
-		public FeedHistoryResponse get_feed_history()
+		public FeedHistoryResponse GetFeedHistory()
 		{
 			try
 			{
-				var result= SendRequest(MethodBase.GetCurrentMethod().Name);
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+				var result= SendRequest(reqname);
 				var contentdata = JsonConvert.DeserializeObject<FeedHistoryResponse>(result);
 				return contentdata;
 			}
@@ -126,12 +130,13 @@ namespace Alexandria.net.API.WalletFunctions
 		/// </summary>
 		/// <param name="trxId"></param>
 		/// <returns>Returns object with transaction details</returns>
-		public string get_transaction(string trxId)
+		public string GetTransaction(string trxId)
 		{
 			try
 			{
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
 				var @params = new ArrayList {trxId};
-				return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+				return SendRequest(reqname, @params);
 			}
 			catch(Exception ex)
 			{
@@ -146,12 +151,13 @@ namespace Alexandria.net.API.WalletFunctions
 		/// </summary>
 		/// <param name="signed_tx"></param>
 		/// <returns>Returns Object with Transaction id and other details</returns>
-		public TransactionResponse broadcast_transaction(SignedTransactionResponse signed_tx)
+		public TransactionResponse BroadcastTransaction(SignedTransactionResponse signed_tx)
 		{
 			try
 			{
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
 				var @params = new ArrayList {signed_tx};
-				var result= SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+				var result= SendRequest(reqname, @params);
 				var contentdata = JsonConvert.DeserializeObject<TransactionResponse>(result);
 				return contentdata;
 			}
@@ -168,13 +174,13 @@ namespace Alexandria.net.API.WalletFunctions
 		/// </summary>
 		/// <param name="operation"></param>
 		/// <returns>Returns Object with block number and other trnasaction details</returns>
-		public TransactionResponse create_simple_transaction(CreateAccountResponse operation)
+		public TransactionResponse CreateSimpleTransaction(CreateAccountResponse operation)
 		{
 			try
 			{
-                
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
 				var @params = new ArrayList {operation.result};
-				var result= SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+				var result= SendRequest(reqname, @params);
 				var contentdata = JsonConvert.DeserializeObject<TransactionResponse>(result);
 				return contentdata;
 			}
@@ -185,12 +191,13 @@ namespace Alexandria.net.API.WalletFunctions
 			}
 		}
 		
-		public BlockResponse create_transaction(List<List<CreateAccountResponse>> operation)
+		public BlockResponse CreateTransaction(List<List<CreateAccountResponse>> operation)
 		{
 			try
 			{
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
 				var @params = new ArrayList {operation};
-				var result= SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+				var result= SendRequest(reqname, @params);
 				var contentdata = JsonConvert.DeserializeObject<BlockResponse>(result);
 				return contentdata;
 			}
@@ -208,12 +215,13 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <param name="witness">The witness publishing the price feed </param>
 		/// <param name="exchangeRate">The desired exchange rate</param>
 		/// <returns></returns>
-		private string publish_feed(string witness, decimal exchangeRate)
+		private string PublishFeed(string witness, decimal exchangeRate)
 		{
 			try
 			{
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
 				var @params = new ArrayList {witness, exchangeRate};
-				return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+				return SendRequest(reqname, @params);
 			}
 			catch(Exception ex)
 			{
@@ -227,12 +235,13 @@ namespace Alexandria.net.API.WalletFunctions
 		/// 
 		/// </summary>
 		/// <param name="seconds"></param>
-		private void set_transaction_expiration(uint seconds)
+		private void SetTransactionExpiration(uint seconds)
 		{
 			try
 			{
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
 				var @params = new ArrayList {seconds};
-				SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+				SendRequest(reqname, @params);
 			}
 			catch(Exception ex)
 			{
@@ -252,12 +261,13 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <param name="accountToModify">the name Or id Of the account To update</param>
 		/// <param name="proxy">the name Of account that should proxy To, Or empty String To have no proxy </param>
 		/// <returns></returns>
-		public string set_voting_proxy(string accountToModify, string proxy)
+		public string SetVotingProxy(string accountToModify, string proxy)
 		{
 			try
 			{
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
 				var @params = new ArrayList {accountToModify, proxy};
-				return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+				return SendRequest(reqname, @params);
 			}
 			catch(Exception ex)
 			{
@@ -275,12 +285,13 @@ namespace Alexandria.net.API.WalletFunctions
 		///        years. Each week (amount/104) shares are withdrawn And depositted
 		///        back as STEEM. i.e. "10.000000 VESTS" </param>
 		/// <returns></returns>
-		public LockUnlockResponse withdraw_vesting(string from, decimal vestingShares)
+		public LockUnlockResponse WithdrawVesting(string from, decimal vestingShares)
 		{
 			try
 			{
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
 				var @params = new ArrayList {from, vestingShares};
-				var result= SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+				var result= SendRequest(reqname, @params);
 				var contentdata = JsonConvert.DeserializeObject<LockUnlockResponse>(result);
 				return contentdata;
 			}
@@ -304,8 +315,9 @@ namespace Alexandria.net.API.WalletFunctions
 		{
 			try
 			{
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
 				var @params = new ArrayList {@from, to, amount, memo};
-				return SendRequest(MethodBase.GetCurrentMethod().Name.ToLower(), @params);
+				return SendRequest(reqname, @params);
 			}
 			catch(Exception ex)
 			{
@@ -325,12 +337,13 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <param name="to">The account getting the VESTS </param>
 		/// <param name="amount">The amount Of STEEM To vest i.e. "100.00 SPHTX" </param>
 		/// <returns></returns>
-		public string transfer_to_vesting(string from, string to, decimal amount)
+		public string TransferToVesting(string from, string to, decimal amount)
 		{
 			try
 			{
-				var @params = new ArrayList {@from, to, amount};
-				return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+				var @params = new ArrayList {from, to, amount};
+				return SendRequest(reqname, @params);
 			}
 			catch(Exception ex)
 			{
@@ -340,14 +353,15 @@ namespace Alexandria.net.API.WalletFunctions
 			
 		}
 
-		#endregion
-
-		public void get_ops_in_block()
+		/// <summary>
+		/// 
+		/// </summary>
+		public void GetOpsInBlock()
 		{
+			var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
 			//throw new NotImplementedException();
 		}
 
-		
-		
+		#endregion
 	}
 }

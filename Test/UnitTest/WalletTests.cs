@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Xunit;
 
 
@@ -26,7 +23,7 @@ namespace UnitTest
         [Fact]
         public void WithdrawVesting()
         {
-            _client.Wallet.Transaction.withdraw_vesting("initminer",10); //add some shares for vesting test
+            _client.Wallet.Transaction.WithdrawVesting("initminer",10); //add some shares for vesting test
         }
         
         [Fact]
@@ -38,7 +35,7 @@ namespace UnitTest
         [Fact]
         public void GetFeedHistory()
         {
-            _client.Wallet.Transaction.get_feed_history();
+            _client.Wallet.Transaction.GetFeedHistory();
         }
         
         [Fact]
@@ -62,7 +59,7 @@ namespace UnitTest
         [Fact]
         public void GetBlock()
         {
-            _client.Wallet.Transaction.get_block(8198);
+            _client.Wallet.Transaction.GetBlock(8198);
             
         } 
 
@@ -132,7 +129,7 @@ namespace UnitTest
         [Fact]
         public void get_ops_in_block()
         {
-            _client.Wallet.Transaction.get_ops_in_block();
+            _client.Wallet.Transaction.GetOpsInBlock();
 
         }
         //----------keys
@@ -167,7 +164,7 @@ namespace UnitTest
         [Fact]
         public void get_account()
         {
-            _client.Wallet.Account.GetAccount("sanjivoneone");
+            _client.Wallet.Account.GetAccount("sanjiv9999");
 
         }
         
@@ -193,7 +190,7 @@ namespace UnitTest
         
         public void set_voting_proxy()
         {
-            _client.Wallet.Transaction.set_voting_proxy("sanjiv","proxy");
+            _client.Wallet.Transaction.SetVotingProxy("sanjiv","proxy");
 
         }
         [Fact]

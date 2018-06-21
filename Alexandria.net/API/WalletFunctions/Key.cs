@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using Alexandria.net.Communication;
@@ -179,7 +178,7 @@ namespace Alexandria.net.API.WalletFunctions
                 var signedTransaction = System.Text.Encoding.Default.GetString(signedtx);
 
                 var result = JsonConvert.DeserializeObject<SignedTransactionResponse>(signedTransaction);
-                trans.broadcast_transaction(result);
+                trans.BroadcastTransaction(result);
                 return result;
             }
             catch (Exception ex)
