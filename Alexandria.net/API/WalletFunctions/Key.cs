@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using Alexandria.net.Communication;
@@ -10,14 +12,16 @@ using Newtonsoft.Json;
 namespace Alexandria.net.API.WalletFunctions
 {
     /// <inheritdoc />
-    /// <summary>
-    /// </summary>
+    /// <para>
+    /// Wallet Key Functions
+    /// </para>
     public class Key :RpcConnection
     {
         private readonly ILogger _logger;
         //todo - lib path needs to be solved
-        private const string Libpath = "/Users/sanjivjha/RiderProjects/Alexandria/Alexandria.net/libalexandria.dylib";
+        private const string Libpath = "../../../../../Alexandria.net/libalexandria";
         #region DllImports
+<<<<<<< HEAD
 
         /// <summary>
         /// Creates a private key
@@ -25,53 +29,39 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="privateKey">byte[52] private_key</param>
         /// <param name="publickey">the public key</param>
         /// <returns>Returns true if success or false for failed try</returns>
+=======
+        
+>>>>>>> 9093ca9f14c8bddbfdbb6a994379e84d62cf8578
         [DllImport(Libpath)]
         private static extern bool generate_private_key([MarshalAs(UnmanagedType.LPArray)]byte[] privateKey, [MarshalAs(UnmanagedType.LPArray)]byte[] publickey);
-        /// <summary>
-        /// Create a Transaction digest of the given transaction
-        /// </summary>
-        /// <param name="transaction">string transaction</param>
-        /// <param name="digest">byte[] digest</param>
-        /// <returns>Returns true if success or false for failed try</returns>
+        
         [DllImport(Libpath)]
-        private static extern bool get_transaction_digest([MarshalAs(UnmanagedType.LPStr)] string transaction,
+        private static extern bool get_transaction_digest([MarshalAs(UnmanagedType.LPStr)] string transaction,[MarshalAs(UnmanagedType.LPStr)] string chain_id,
             [MarshalAs(UnmanagedType.LPArray)] byte[] digest);
         
-        /// <summary>
-        /// Creates signamture for the given transaction and digest
-        /// </summary>
-        /// <param name="digest">string digest</param>
-        /// <param name="privateKey">string private_key</param>
-        /// <param name="signedDigest">byte[] signed_digest</param>
-        /// <returns>Returns true if success or false for failed try</returns>
+        
         [DllImport(Libpath)]
         private static extern bool sign_digest([MarshalAs(UnmanagedType.LPStr)] string digest,
             [MarshalAs(UnmanagedType.LPStr)] string privateKey, [MarshalAs(UnmanagedType.LPArray)] byte[] signedDigest);        
         
-        /// <summary>
-        /// Sign a transcation using the given signature
-        /// </summary>
-        /// <param name="transaction">string transaction</param>
-        /// <param name="signature">string signature</param>
-        /// <param name="signedTx">byte[] signed_tx</param>
-        /// <returns>Returns true if success or false for failed try</returns>
+        
         [DllImport(Libpath)]
         private static extern bool add_signature([MarshalAs(UnmanagedType.LPStr)] string transaction,
             [MarshalAs(UnmanagedType.LPStr)] string signature, [MarshalAs(UnmanagedType.LPArray)] byte[] signedTx);
         #endregion
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="config"></param>
+       
         public Key(IConfig config) :
             base(config)
         {
+            
 
             var assemblyname = Assembly.GetExecutingAssembly().GetName().Name;
             _logger = new Logger(LoggingType.Server, assemblyname);
+            
         }
         
+<<<<<<< HEAD
         /// <summary>
         /// 
         /// </summary>
@@ -90,18 +80,30 @@ namespace Alexandria.net.API.WalletFunctions
             }
         }
 
+=======
+        
+>>>>>>> 9093ca9f14c8bddbfdbb6a994379e84d62cf8578
         /// <summary>
-        /// Generates the Private Keys
+        /// Generates Public and Private keys
         /// </summary>
+<<<<<<< HEAD
         /// <param name="privatekey">the key bytes</param>
         /// <param name="publickey">the public key</param>
+=======
+        /// <param name="privatekey"></param>
+        /// <param name="publickey"></param>
+>>>>>>> 9093ca9f14c8bddbfdbb6a994379e84d62cf8578
         /// <returns>Returns true if success or false for failed try</returns>
         public string generate_private_key_c(byte[] privatekey,byte[] publickey)
         {
             try
             {
-                var result=generate_private_key(privatekey,publickey) ? System.Text.Encoding.Default.GetString(privatekey) : string.Empty;
-                return result;
+               
+                var result = generate_private_key(privatekey, publickey);
+                var PublicKey = System.Text.Encoding.Default.GetString(publickey);
+                var PrivateKey = System.Text.Encoding.Default.GetString(privatekey);
+                
+                return PublicKey;
             }
             catch(Exception ex)
             {
@@ -117,11 +119,15 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="transaction">the transaction to digest</param>
         /// <param name="digest">the digest bytes</param>
         /// <returns>Returns true if success or false for failed try</returns>
-        public bool get_transaction_digest_c(string transaction, byte[] digest)
+        public string get_transaction_digest_c(string transaction, string chainId, byte[] digest)
         {
             try
             {
-                return get_transaction_digest(transaction, digest);
+                var result= get_transaction_digest(transaction,chainId, digest)?
+                    System.Text.Encoding.Default.GetString(digest)
+                    :String.Empty;
+                
+                return result;
             }
             catch(Exception ex)
             {
@@ -143,9 +149,11 @@ namespace Alexandria.net.API.WalletFunctions
         {
             try
             {
-                return sign_digest(digest, privatekey, signeddigest)
+                var result= sign_digest(digest, privatekey, signeddigest)
                     ? System.Text.Encoding.Default.GetString(signeddigest)
                     : string.Empty;
+                
+                return result;
             }
             catch(Exception ex)
             {
@@ -162,15 +170,19 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="signature">string signature</param>
         /// <param name="signedtx">byte[] signedtx</param>
         /// <returns>Returns true if success or false for failed try</returns>
-        public SendResponseResult add_signature_c(string transaction, string signature, byte[] signedtx)
+        public SignedTransactionResponse add_signature_c(string transaction, string signature, byte[] signedtx)
         {
-            SendResponseResult result;
+            Transaction newTransaction=new Transaction(Config);
             try
             {
                 var value = add_signature(transaction, signature, signedtx);
-                if (!value) return null;
-                result = JsonConvert.DeserializeObject<SendResponseResult>(
-                    System.Text.Encoding.Default.GetString(signedtx));
+                //if (!value) return null;
+
+                var signedTransaction = System.Text.Encoding.Default.GetString(signedtx);
+                
+                var result = JsonConvert.DeserializeObject<SignedTransactionResponse>(signedTransaction);
+                newTransaction.broadcast_transaction(result);
+                return result;
             }
             catch (Exception ex)
             {
@@ -178,8 +190,30 @@ namespace Alexandria.net.API.WalletFunctions
                 
                 throw;
             }
-            return result;
+            
+        }
+         
+
+        public string suggest_brain_key()
+        {
+            try
+            {
+               
+                var result = SendRequest(MethodBase.GetCurrentMethod().Name);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+                throw;
+            }
         }
 
+        public void normalize_brain_key()
+        {
+            //throw new NotImplementedException();
+        }
+
+        
     }
 }

@@ -10,18 +10,15 @@ using Newtonsoft.Json;
 namespace Alexandria.net.API.WalletFunctions
 {
     /// <inheritdoc />
-    /// <summary>
-    /// </summary>
+    /// <para>
+    /// Wallet Asset Functions
+    /// </para>
     public class Asset : RpcConnection
     {
         private readonly ILogger _logger;
 
         #region Constructors
 
-        /// <summary>
-        /// Wallet Constructor
-        /// </summary>
-        /// <param name="config"></param>
         public Asset(IConfig config) :
             base(config)
         {

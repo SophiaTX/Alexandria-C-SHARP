@@ -15,5 +15,6 @@
         public string server_blockchain_version { get; set; }
         public string server_steem_revision { get; set; }
         public string server_fc_revision { get; set; }
+        public string chain_id { get; set; }
     }
 }

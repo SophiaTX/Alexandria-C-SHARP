@@ -10,16 +10,15 @@ using Newtonsoft.Json;
 namespace Alexandria.net.API.WalletFunctions
 {
     /// <inheritdoc />
+    /// <para>
+    /// Wallet Cryptography Functions
+    /// </para>
     public class Cryptography : RpcConnection
     {
         private readonly ILogger _logger;
         #region Constructors
 
-        /// <inheritdoc />
-        /// <summary>
-        /// Wallet Constructor
-        /// </summary>
-        /// <param name="config"></param>
+      
         public Cryptography(IConfig config) : base(config)
         {
             var assemblyname = Assembly.GetExecutingAssembly().GetName().Name;
@@ -32,7 +31,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <summary>
         /// Generates new private/public key pair.
         /// </summary>
-        public Tuple<string, byte[]> generateKeyPair()
+        private Tuple<string, byte[]> generateKeyPair()
         {
             try
             {
@@ -52,7 +51,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// Generates new private/public key pair from brian key.
         /// </summary>
         /// <param name="brainKey"></param>
-        public Tuple<string, byte[]> generateKeyPairFromBrainKey(string brainKey)
+        private Tuple<string, byte[]> generateKeyPairFromBrainKey(string brainKey)
         {
             try
             {
@@ -120,7 +119,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <summary>
         /// Sign given digest using provided private key.
         /// </summary>
-        public char[] signDigest(char[] digest, string privateKey)
+        private char[] signDigest(char[] digest, string privateKey)
         {
             try
             {
@@ -142,7 +141,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// Generate public key part associated to the given private key.
         /// </summary>
         /// <param name="privateKey"></param>
-        public byte[] getPublicKey(string privateKey)
+        private byte[] getPublicKey(string privateKey)
         {
             try
             {
@@ -164,7 +163,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// Decodes base58-encoded string.
         /// </summary>
         /// <param name="encodedData"></param>
-        public List<char> fromBase58(string encodedData)
+        private List<char> fromBase58(string encodedData)
         {
             try
             {
@@ -186,7 +185,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// Encodes data to base58 string.
         /// </summary>
         /// <param name="data"></param>
-        public string toBase58(List<char> data)
+        private string toBase58(List<char> data)
         {
             try
             {
@@ -209,7 +208,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="digest"></param>
         /// <param name="pubKey"></param>
         /// <param name="signature"></param>
-        public bool verifySignature(char[] digest, byte[] pubKey, char[] signature)
+        private bool verifySignature(char[] digest, byte[] pubKey, char[] signature)
         {
             try
             {
@@ -233,7 +232,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="plaintext"></param>
         /// <param name="publicKey"></param>
         /// <param name="privateKey"></param>
-        public string encryptDocument(string plaintext, string publicKey, string privateKey)
+        private string encryptDocument(string plaintext, string publicKey, string privateKey)
         {
             try
             {
@@ -257,7 +256,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="encryptedText"></param>
         /// <param name="publicKey"></param>
         /// <param name="privateKey"></param>
-        public string decryptDocument(string encryptedText, string publicKey, string privateKey)
+        private string decryptDocument(string encryptedText, string publicKey, string privateKey)
         {
             try
             {
@@ -279,7 +278,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="plaindata"></param>
         /// <param name="publicKey"></param>
         /// <param name="privateKey"></param>
-        public List<byte> encryptData(List<byte> plaindata, string publicKey, string privateKey)
+        private List<byte> encryptData(List<byte> plaindata, string publicKey, string privateKey)
         {
             try
             {
@@ -302,7 +301,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="encryptedText"></param>
         /// <param name="publicKey"></param>
         /// <param name="privateKey"></param>
-        public List<byte> decryptData(List<byte> encryptedText, string publicKey, string privateKey)
+        private List<byte> decryptData(List<byte> encryptedText, string publicKey, string privateKey)
         {
             try
             {
