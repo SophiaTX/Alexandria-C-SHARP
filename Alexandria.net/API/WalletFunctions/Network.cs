@@ -38,11 +38,12 @@ namespace Alexandria.net.API.WalletFunctions
         /// Returns true if the library is connected to a backend.
         /// </summary>
         /// <returns>Returns true if success and false for failed try</returns>
-        private ActiveWitnessResponse isConnected()
+        private ActiveWitnessResponse IsConnected()
         {
             try
             {
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name);
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+                var result = SendRequest(reqname);
                 
                 var contentdata = JsonConvert.DeserializeObject<ActiveWitnessResponse>(result);
                 return contentdata;
@@ -61,12 +62,13 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="host">string host</param>
         /// <param name="port">int port</param>
         /// <returns>Returns true if success and false for failed try</returns>
-        private bool connect(string host, int port)
+        private bool Connect(string host, int port)
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {host, port};
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                var result = SendRequest(reqname, @params);
                 return result == "true";
             }
             catch(Exception ex)
@@ -83,12 +85,13 @@ namespace Alexandria.net.API.WalletFunctions
         /// </summary>
         /// <param name="transaction">string transaction</param>
         /// <returns>Returns char[] transaction digest</returns>
-        private char[] getTransactionDigest(string transaction)
+        private char[] GetTransactionDigest(string transaction)
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {transaction};
-                return SendRequest(MethodBase.GetCurrentMethod().Name, @params).ToCharArray();
+                return SendRequest(reqname, @params).ToCharArray();
             }
             catch(Exception ex)
             {
@@ -105,12 +108,13 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="appId">ulong appId</param>
         /// <param name="document">string document</param>
         /// <returns></returns>
-        public string makeCustomJsonOperation(string sender, List<string> recipients, ulong appId, string document)
+        public string MakeCustomJsonOperation(string sender, List<string> recipients, ulong appId, string document)
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {sender, recipients, appId, document};
-                return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return SendRequest(reqname, @params);
             }
             catch(Exception ex)
             {
@@ -129,13 +133,14 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="appId"></param>
         /// <param name="document"></param>
         /// <returns></returns>
-        public string makeCustomBinaryOperation(string sender, List<string> recipients, ulong appId,
+        public string MakeCustomBinaryOperation(string sender, List<string> recipients, ulong appId,
             List<char> document)
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {sender, recipients, appId, document};
-                return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return SendRequest(reqname, @params);
             }
             catch(Exception ex)
             {
@@ -154,13 +159,14 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="appId"></param>
         /// <param name="document"></param>
         /// <returns></returns>
-        public string makeCustomBinaryBase58Operation(string sender, List<string> recipients, ulong appId,
+        public string MakeCustomBinaryBase58Operation(string sender, List<string> recipients, ulong appId,
             string document)
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {sender, recipients, appId, document};
-                return SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                return SendRequest(reqname, @params);
             }
             catch(Exception ex)
             {
@@ -180,13 +186,14 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="start"></param>
         /// <param name="count"></param>
         /// <returns></returns>
-        public Dictionary<ulong, ReceiverRecipe> get_received_documents(ulong appId, string searchType,
+        public Dictionary<ulong, ReceiverRecipe> GetReceivedDocuments(ulong appId, string searchType,
             string account, string start, uint count)
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {appId, searchType, account, start, count};
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                var result = SendRequest(reqname, @params);
                 return JsonConvert.DeserializeObject<Dictionary<ulong, ReceiverRecipe>>(result);
             }
             catch(Exception ex)
@@ -203,12 +210,13 @@ namespace Alexandria.net.API.WalletFunctions
         /// </summary>
         /// <param name="operations"></param>
         /// <returns></returns>
-        public string makeTransaction(List<string> operations)
+        public string MakeTransaction(List<string> operations)
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {operations};
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                var result = SendRequest(reqname, @params);
                 return JsonConvert.DeserializeObject<string>(result);
             }
             catch (Exception ex)
@@ -226,12 +234,13 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="transaction"></param>
         /// <param name="signature"></param>
         /// <returns></returns>
-        public string addSingature(string transaction, char[] signature)
+        public string AddSignature(string transaction, char[] signature)
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {transaction, signature};
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                var result = SendRequest(reqname, @params);
                 return JsonConvert.DeserializeObject<string>(result);
             }
             catch (Exception ex)
@@ -246,12 +255,13 @@ namespace Alexandria.net.API.WalletFunctions
         /// </summary>
         /// <param name="transaction"></param>
         /// <returns></returns>
-        public bool sendSignedTransaction(string transaction)
+        public bool SendSignedTransaction(string transaction)
         {
             try
             {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {transaction};
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name, @params);
+                var result = SendRequest(reqname, @params);
                 return JsonConvert.DeserializeObject<bool>(result);
             }
             catch (Exception ex)

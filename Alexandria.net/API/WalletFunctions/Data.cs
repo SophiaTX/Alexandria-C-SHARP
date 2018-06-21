@@ -57,14 +57,14 @@ namespace Alexandria.net.API.WalletFunctions
                 var operations = new List<string>();
                 foreach (var doc in senderdata.Documents)
                 {
-                    var operation = makeCustomJsonOperation(senderdata.Sender, senderdata.Recipients, senderdata.AppId,
+                    var operation = MakeCustomJsonOperation(senderdata.Sender, senderdata.Recipients, senderdata.AppId,
                         doc);
                     if (operation != string.Empty)
                         operations.Add(operation);
                 }
 
                 if (operations.Count == 0) return false;
-                var transaction = makeTransaction(operations);
+                var transaction = MakeTransaction(operations);
                 if (transaction == string.Empty) return false;
                 result = _cryptography.SignAndSendTransaction(transaction, senderdata.PrivateKey);
             }
@@ -90,7 +90,7 @@ namespace Alexandria.net.API.WalletFunctions
                 var operations = new List<string>();
                 foreach (var doc in senderdata.DocumentChars)
                 {
-                    var operation = makeCustomBinaryOperation(senderdata.Sender, senderdata.Recipients,
+                    var operation = MakeCustomBinaryOperation(senderdata.Sender, senderdata.Recipients,
                         senderdata.AppId,
                         doc);
                     if (operation != string.Empty)
@@ -99,7 +99,7 @@ namespace Alexandria.net.API.WalletFunctions
 
                 if (operations.Count == 0) return false;
 
-                var transaction = makeTransaction(operations);
+                var transaction = MakeTransaction(operations);
                 if (transaction == string.Empty) return false;
                 result = _cryptography.SignAndSendTransaction(transaction, senderdata.PrivateKey);
 
@@ -127,14 +127,14 @@ namespace Alexandria.net.API.WalletFunctions
                 var operations = new List<string>();
                 foreach (var doc in senderdata.Documents)
                 {
-                    var operation = makeCustomBinaryBase58Operation(senderdata.Sender, senderdata.Recipients,
+                    var operation = MakeCustomBinaryBase58Operation(senderdata.Sender, senderdata.Recipients,
                         senderdata.AppId, doc);
                     operations.Add(operation);
                 }
 
                 if (operations.Count == 0) return false;
 
-                var transaction = makeTransaction(operations);
+                var transaction = MakeTransaction(operations);
                 if (transaction == string.Empty) return false;
                 result = _cryptography.SignAndSendTransaction(transaction, senderdata.PrivateKey);
             }
@@ -164,7 +164,7 @@ namespace Alexandria.net.API.WalletFunctions
             Dictionary<ulong, ReceiverRecipe> result;
             try
             {
-                result = get_received_documents(appId, searchType.GetStringValue(), account.GetStringValue(),
+                result = GetReceivedDocuments(appId, searchType.GetStringValue(), account.GetStringValue(),
                     start.GetStringValue(),
                     count);
             }

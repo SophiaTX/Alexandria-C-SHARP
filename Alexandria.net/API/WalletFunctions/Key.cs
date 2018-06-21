@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using Alexandria.net.Communication;
@@ -16,7 +17,7 @@ namespace Alexandria.net.API.WalletFunctions
     public class Key : RpcConnection
     {
         private readonly ILogger _logger;
-        private const string Libpath = "../../../../../Alexandria.net/libalexandria";
+        private const string Libpath = "libalexandria";
 
         #region DllImports
 
@@ -53,11 +54,8 @@ namespace Alexandria.net.API.WalletFunctions
         public Key(IConfig config) :
             base(config)
         {
-
-
             var assemblyname = Assembly.GetExecutingAssembly().GetName().Name;
             _logger = new Logger(LoggingType.Server, assemblyname);
-
         }
 
         /// <summary>
@@ -68,7 +66,7 @@ namespace Alexandria.net.API.WalletFunctions
         {
             try
             {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var result = SendRequest(reqname);
                 return result;
             }
@@ -192,7 +190,7 @@ namespace Alexandria.net.API.WalletFunctions
         {
             try
             {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var result = SendRequest(reqname);
                 return result;
             }
@@ -208,7 +206,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// </summary>
         public void NormalizeBrainKey()
         {
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
+            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
             //throw new NotImplementedException();
         }
     }

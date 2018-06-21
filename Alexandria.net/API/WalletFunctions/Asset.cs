@@ -46,7 +46,7 @@ namespace Alexandria.net.API.WalletFunctions
         {
             try
             {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {from, to, memo, balance, assetSymbol};
                 var result = SendRequest(reqname, @params);
                 return result == "true";
@@ -68,7 +68,7 @@ namespace Alexandria.net.API.WalletFunctions
         {
             try
             {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {accountName, assetSymbol};
                 var result = SendRequest(reqname, @params);
                 return Convert.ToUInt64(result);
@@ -94,7 +94,7 @@ namespace Alexandria.net.API.WalletFunctions
         {
             try
             {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {ownerAccountName, managementAuthority, maxSupply, assetSymbol};
                 var result = SendRequest(reqname, @params);
                 return result == "true";
@@ -118,7 +118,7 @@ namespace Alexandria.net.API.WalletFunctions
         {
             try
             {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {reveiverAccountName, amount, assetSymbol};
                 var result = SendRequest(reqname, @params);
                 return result == "true";
@@ -142,7 +142,7 @@ namespace Alexandria.net.API.WalletFunctions
         {
             try
             {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {accountName, amount, assetSymbol};
                 var result = SendRequest(reqname, @params);   
                 return result == "true";
@@ -168,7 +168,7 @@ namespace Alexandria.net.API.WalletFunctions
         {
             try
             {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {assetSymbol};
                 var result = SendRequest(reqname, @params);
                 return JsonConvert.DeserializeObject<Authority>(result);
@@ -190,7 +190,7 @@ namespace Alexandria.net.API.WalletFunctions
         {
             try
             {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {assetSymbol};
                 var result = SendRequest(reqname, @params);
                 return result == "true";

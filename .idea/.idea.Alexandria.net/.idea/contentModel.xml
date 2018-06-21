@@ -123,6 +123,7 @@
       <e p="Alexandria.net.sln" t="IncludeFlat" />
       <e p="packages" t="ExcludeRecursive" />
       <e p="Test/UnitTest" t="IncludeRecursive">
+        <e p="ArkTree.cs" t="Include" />
         <e p="BaseTest.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="DeamonTest.cs" t="Include" />

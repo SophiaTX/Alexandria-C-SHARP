@@ -171,16 +171,16 @@
             <param name="accountName">the account name the information is required for</param>
             <returns>the account information</returns>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Account.CreateAccount(System.String,System.String,System.String,System.String,System.String,System.String)">
+        <member name="M:Alexandria.net.API.WalletFunctions.Account.CreateAccount(System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
             <summary>
-            
+            Creates the new sophiatx account
             </summary>
-            <param name="creator"></param>
-            <param name="newname"></param>
-            <param name="jsonMeta"></param>
-            <param name="owner"></param>
-            <param name="active"></param>
-            <param name="memo"></param>
+            <param name="witnessname">the name of the witness who will create the account.  Please use initminer as default</param>
+            <param name="accountname">the account name to create</param>
+            <param name="jsonMeta">json formatted details of account</param>
+            <param name="ownerkey">the owner key</param>
+            <param name="activekey">the active key</param>
+            <param name="memokey">the memo key</param>
             <returns></returns>
         </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Account.transfer_to_vesting">
@@ -507,13 +507,13 @@
             </summary>
             <param name="config"></param>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Network.isConnected">
+        <member name="M:Alexandria.net.API.WalletFunctions.Network.IsConnected">
             <summary>
             Returns true if the library is connected to a backend.
             </summary>
             <returns>Returns true if success and false for failed try</returns>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Network.connect(System.String,System.Int32)">
+        <member name="M:Alexandria.net.API.WalletFunctions.Network.Connect(System.String,System.Int32)">
             <summary>
             Connects to the WS endpoint.
             </summary>
@@ -521,14 +521,14 @@
             <param name="port">int port</param>
             <returns>Returns true if success and false for failed try</returns>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Network.getTransactionDigest(System.String)">
+        <member name="M:Alexandria.net.API.WalletFunctions.Network.GetTransactionDigest(System.String)">
             <summary>
             Get hash including chain ID (digest), ready to be signed, of a JSON formatted transaction.
             </summary>
             <param name="transaction">string transaction</param>
             <returns>Returns char[] transaction digest</returns>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Network.makeCustomJsonOperation(System.String,System.Collections.Generic.List{System.String},System.UInt64,System.String)">
+        <member name="M:Alexandria.net.API.WalletFunctions.Network.MakeCustomJsonOperation(System.String,System.Collections.Generic.List{System.String},System.UInt64,System.String)">
             <summary>
             </summary>
             <param name="sender">string sender</param>
@@ -537,7 +537,7 @@
             <param name="document">string document</param>
             <returns></returns>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Network.makeCustomBinaryOperation(System.String,System.Collections.Generic.List{System.String},System.UInt64,System.Collections.Generic.List{System.Char})">
+        <member name="M:Alexandria.net.API.WalletFunctions.Network.MakeCustomBinaryOperation(System.String,System.Collections.Generic.List{System.String},System.UInt64,System.Collections.Generic.List{System.Char})">
             <summary>
             
             </summary>
@@ -547,7 +547,7 @@
             <param name="document"></param>
             <returns></returns>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Network.makeCustomBinaryBase58Operation(System.String,System.Collections.Generic.List{System.String},System.UInt64,System.String)">
+        <member name="M:Alexandria.net.API.WalletFunctions.Network.MakeCustomBinaryBase58Operation(System.String,System.Collections.Generic.List{System.String},System.UInt64,System.String)">
             <summary>
             
             </summary>
@@ -557,7 +557,7 @@
             <param name="document"></param>
             <returns></returns>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Network.get_received_documents(System.UInt64,System.String,System.String,System.String,System.UInt32)">
+        <member name="M:Alexandria.net.API.WalletFunctions.Network.GetReceivedDocuments(System.UInt64,System.String,System.String,System.String,System.UInt32)">
             <summary>
             Allowed options for search_type are "by_sender", "by_recipient", "by_sender_datetime", "by_recipient_datetime".
             Account is then either sender or recevier, and start is either index od ISO time stamp.
@@ -569,14 +569,14 @@
             <param name="count"></param>
             <returns></returns>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Network.makeTransaction(System.Collections.Generic.List{System.String})">
+        <member name="M:Alexandria.net.API.WalletFunctions.Network.MakeTransaction(System.Collections.Generic.List{System.String})">
             <summary>
             Form a transaction out of existing operations.
             </summary>
             <param name="operations"></param>
             <returns></returns>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Network.addSingature(System.String,System.Char[])">
+        <member name="M:Alexandria.net.API.WalletFunctions.Network.AddSignature(System.String,System.Char[])">
             <summary>
             Add signature to the transaction. Useful fo rmulti-sig transactions,
             where all the signatures have to be calculated and added one by one.
@@ -585,7 +585,7 @@
             <param name="signature"></param>
             <returns></returns>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Network.sendSignedTransaction(System.String)">
+        <member name="M:Alexandria.net.API.WalletFunctions.Network.SendSignedTransaction(System.String)">
             <summary>
             
             </summary>

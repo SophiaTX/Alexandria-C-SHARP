@@ -39,7 +39,7 @@ namespace Alexandria.net.API.WalletFunctions
         {
             try
             {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var result = SendRequest(reqname);
                 return JsonConvert.DeserializeObject<Tuple<string, byte[]>>(result);
             }
@@ -60,7 +60,7 @@ namespace Alexandria.net.API.WalletFunctions
         {
             try
             {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {brainKey};
                 var result = SendRequest(reqname, @params);
                 return JsonConvert.DeserializeObject<Tuple<string, byte[]>>(result);
@@ -86,7 +86,7 @@ namespace Alexandria.net.API.WalletFunctions
         {
             try
             {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {operation, privateKey};
                 var result = SendRequest(reqname, @params);
                 return result == "true";
@@ -110,7 +110,7 @@ namespace Alexandria.net.API.WalletFunctions
         {
             try
             {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {transaction, privateKey};
                 var result = SendRequest(reqname, @params);
                 return result == "true";
@@ -131,7 +131,7 @@ namespace Alexandria.net.API.WalletFunctions
         {
             try
             {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {digest, privateKey};
                 var result = SendRequest(reqname, @params);
                 return JsonConvert.DeserializeObject<char[]>(result);
@@ -154,7 +154,7 @@ namespace Alexandria.net.API.WalletFunctions
         {
             try
             {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {privateKey};
                 var result = SendRequest(reqname, @params);
                 return JsonConvert.DeserializeObject<byte[]>(result);
@@ -177,7 +177,7 @@ namespace Alexandria.net.API.WalletFunctions
         {
             try
             {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {encodedData};
                 var result = SendRequest(reqname, @params);
                 return JsonConvert.DeserializeObject<List<char>>(result);
@@ -200,7 +200,7 @@ namespace Alexandria.net.API.WalletFunctions
         {
             try
             {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {data};
                 var result = SendRequest(reqname, @params);
                 return JsonConvert.DeserializeObject<string>(result);
@@ -224,7 +224,7 @@ namespace Alexandria.net.API.WalletFunctions
         {
             try
             {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {digest, pubKey, signature};
                 var result = SendRequest(reqname, @params);
                 return result == "true";
@@ -249,7 +249,7 @@ namespace Alexandria.net.API.WalletFunctions
         {
             try
             {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {plaintext, publicKey, privateKey};
                 var result = SendRequest(reqname, @params);
                 return JsonConvert.DeserializeObject<string>(result);
@@ -274,7 +274,7 @@ namespace Alexandria.net.API.WalletFunctions
         {
             try
             {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {encryptedText, publicKey, privateKey};
                 var result = SendRequest(reqname, @params);
                 return JsonConvert.DeserializeObject<string>(result);
@@ -297,7 +297,7 @@ namespace Alexandria.net.API.WalletFunctions
         {
             try
             {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {plaindata, publicKey, privateKey};
                 var result = SendRequest(reqname, @params);
                 return JsonConvert.DeserializeObject<List<byte>>(result);
@@ -321,7 +321,7 @@ namespace Alexandria.net.API.WalletFunctions
         {
             try
             {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name.ToLower());
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {encryptedText, publicKey, privateKey};
                 var result = SendRequest(reqname, @params);
                 return JsonConvert.DeserializeObject<List<byte>>(result);

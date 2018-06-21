@@ -23,7 +23,7 @@
         private const string UpdateAccount = "updateAccount";
         private const string DepositVesting = "depositVesting";
         private const string WithdrawVestings = "withdrawVestings";
-        private const string VoteForWitness = "voteForWitness";  
+        private const string VoteForWitness = "voteForWitness";
         private const string UpdateToWitness = "updateToWitness";
         private const string GetAccount = "get_account";
         private const string CreateAccount = "create_account";
@@ -32,7 +32,7 @@
         private const string CreateUia = "createUia";
         private const string IssueUia = "issueUia";
         private const string BurnUia = "burnUia";
-        private const string  GetUiaAuthority = "getUiaAuthority";
+        private const string GetUiaAuthority = "getUiaAuthority";
         private const string HasUiaPrivateKey = "hasUiaPrivateKey";
         private const string DeleteAccount = "delete_account";
         private const string GenerateKeyPair = "generateKeyPair";
@@ -51,15 +51,24 @@
         private const string ListKeys = "list_keys";
         private const string SuggestBrainKey = "suggest_brain_key";
         private const string NormalizeBrainKey = "normalize_brain_key";
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        private const string IsConnected = "isConnected";
+        private const string Connect = "connect";
+        private const string GetTransactionDigest = "getTransactionDigest";
+        private const string MakeCustomJsonOperation = "makeCustomJsonOperation";
+        private const string MakeCustomBinaryOperation = "makeCustomBinaryOperation";
+        private const string MakeCustomBinaryBase58Operation = "makeCustomBinaryBase58Operation";
+        private const string GetReceivedDocuments = "get_received_documents";
+        private const string MakeTransaction = "makeTransaction";
+        private const string AddSingature = "addSingature";
+        private const string SendSignedTransaction = "sendSignedTransaction";
+
+
+
+
+
+
+
+
         /// <summary>
         /// 
         /// </summary>
@@ -109,7 +118,7 @@
                     return UpdateToWitness;
                 case GetAccount:
                     return GetAccount;
-                case CreateAccount:
+                case "CreateAccount":
                     return CreateAccount;
                 case Transfer:
                     return Transfer;
@@ -159,7 +168,26 @@
                     return SuggestBrainKey;
                 case NormalizeBrainKey:
                     return NormalizeBrainKey;
-
+                case IsConnected:
+                    return IsConnected;
+                case Connect:
+                    return Connect;
+                case GetTransactionDigest:
+                    return GetTransactionDigest;
+                case MakeCustomJsonOperation:
+                    return MakeCustomJsonOperation;
+                case MakeCustomBinaryOperation:
+                    return MakeCustomBinaryOperation;
+                case MakeCustomBinaryBase58Operation:
+                    return MakeCustomBinaryBase58Operation;
+                case GetReceivedDocuments:
+                    return GetReceivedDocuments;
+                case MakeTransaction:
+                    return MakeTransaction;
+                case AddSingature:
+                    return AddSingature;
+                case SendSignedTransaction:
+                    return SendSignedTransaction;
             }
 
             return string.Empty;
