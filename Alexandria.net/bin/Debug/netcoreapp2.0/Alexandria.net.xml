@@ -443,13 +443,13 @@
             </summary>
             <param name="config"></param>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Key.list_keys">
+        <member name="M:Alexandria.net.API.WalletFunctions.Key.ListKeys">
             <summary>
             
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Key.generate_private_key_c(System.Byte[],System.Byte[])">
+        <member name="M:Alexandria.net.API.WalletFunctions.Key.GeneratePrivateKey(System.Byte[],System.Byte[])">
             <summary>
             Generates Public and Private keys
             </summary>
@@ -457,7 +457,7 @@
             <param name="publickey"></param>
             <returns>Returns true if success or false for failed try</returns>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Key.get_transaction_digest_c(System.String,System.String,System.Byte[])">
+        <member name="M:Alexandria.net.API.WalletFunctions.Key.GetTransactionDigest(System.String,System.String,System.Byte[])">
             <summary>
             Gets the transaction digest
             </summary>
@@ -465,7 +465,7 @@
             <param name="digest">the digest bytes</param>
             <returns>Returns true if success or false for failed try</returns>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Key.sign_digest_c(System.String,System.String,System.Byte[])">
+        <member name="M:Alexandria.net.API.WalletFunctions.Key.SignDigest(System.String,System.String,System.Byte[])">
             <summary>
             Creates a signature for the given private key and transaction digest
             </summary>
@@ -474,7 +474,7 @@
             <param name="signeddigest"> byte[] signeddigest</param>
             <returns>Returns true if success or false for failed try</returns>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Key.add_signature_c(System.String,System.String,System.Byte[])">
+        <member name="M:Alexandria.net.API.WalletFunctions.Key.AddSignature(System.String,System.String,System.Byte[])">
             <summary>
             Signs the given transactions and returns true for success
             </summary>
@@ -482,6 +482,17 @@
             <param name="signature">string signature</param>
             <param name="signedtx">byte[] signedtx</param>
             <returns>Returns true if success or false for failed try</returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Key.SuggestBrainKey">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Key.NormalizeBrainKey">
+            <summary>
+            
+            </summary>
         </member>
         <member name="T:Alexandria.net.API.WalletFunctions.Network">
             <inheritdoc />

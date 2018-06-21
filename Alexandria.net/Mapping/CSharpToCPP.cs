@@ -48,6 +48,11 @@
         private const string DecryptDocument = "decryptDocument";
         private const string EncryptData = "encryptData";
         private const string DecryptData = "decryptData";
+        private const string ListKeys = "list_keys";
+        private const string SuggestBrainKey = "suggest_brain_key";
+        private const string NormalizeBrainKey = "normalize_brain_key";
+        
+        
         
         
         
@@ -148,6 +153,13 @@
                     return EncryptData;
                 case DecryptData:
                     return DecryptData;
+                case ListKeys:
+                    return ListKeys;
+                case SuggestBrainKey:
+                    return SuggestBrainKey;
+                case NormalizeBrainKey:
+                    return NormalizeBrainKey;
+
             }
 
             return string.Empty;

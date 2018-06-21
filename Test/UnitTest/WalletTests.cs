@@ -71,24 +71,24 @@ namespace UnitTest
         [Fact]
         public void GeneratePrivateKey()
         {                     
-            _client.Wallet.Key.generate_private_key_c(new byte[51],new byte[53]);      
+            _client.Wallet.Key.GeneratePrivateKey(new byte[51],new byte[53]);      
         }
         [Fact]
         public void GetTransactionDigest()
         {           
-           _client.Wallet.Key.get_transaction_digest_c(Transaction,chainID,new byte[64]);
+           _client.Wallet.Key.GetTransactionDigest(Transaction,chainID,new byte[64]);
              
         }
         [Fact]
         public void SignedDigest()
         {           
-            _client.Wallet.Key.sign_digest_c(_digest,_key,new byte[130]);
+            _client.Wallet.Key.SignDigest(_digest,_key,new byte[130]);
             
         }
         [Fact]
         public void AddSignature()
         {           
-            _client.Wallet.Key.add_signature_c(Transaction,_sign,new byte[Transaction.Length+200]);
+            _client.Wallet.Key.AddSignature(Transaction,_sign,new byte[Transaction.Length+200]);
             
         }
         //---------Transaction
@@ -140,14 +140,14 @@ namespace UnitTest
         [Fact]
         public void suggest_brain_key()
         {
-            _client.Wallet.Key.suggest_brain_key();
+            _client.Wallet.Key.SuggestBrainKey();
 
         }
 
         [Fact]
         public void normalize_brain_key()
         {
-            _client.Wallet.Key.normalize_brain_key();
+            _client.Wallet.Key.NormalizeBrainKey();
 
         }
        //---------Accounts
