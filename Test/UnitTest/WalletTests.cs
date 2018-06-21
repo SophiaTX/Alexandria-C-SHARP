@@ -147,10 +147,15 @@ namespace UnitTest
         [Fact]
         public void normalize_brain_key()
         {
-            _client.Wallet.Key.NormalizeBrainKey();
+            _client.Wallet.Key.NormalizeBrainKey("HALL Galc");
 
         }
        //---------Accounts
+//        [Fact]
+//        public void CreateAccount()
+//        {
+//            _client.Wallet.Account.CreateAccount("initminer","sanjiv9999","{}","STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz","STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz","STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz");
+//        }
         [Fact]
         public void CreateAccount()
         {
@@ -159,7 +164,6 @@ namespace UnitTest
                 "STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz",
                 "STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz");
         }
-
         [Fact]
         public void get_account()
         {

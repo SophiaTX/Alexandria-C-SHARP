@@ -34,3 +34,4 @@
 /Users/martynharler/GitHub/Alexandria/Test/UnitTest/obj/Debug/netcoreapp2.0/UnitTest.csproj.CopyComplete
 /Users/martynharler/GitHub/Alexandria/Test/UnitTest/obj/Debug/netcoreapp2.0/UnitTest.dll
 /Users/martynharler/GitHub/Alexandria/Test/UnitTest/obj/Debug/netcoreapp2.0/UnitTest.pdb
+/Users/sanjivjha/RiderProjects/Alexandria/Test/UnitTest/bin/Debug/netcoreapp2.0/libalexandria.dylib

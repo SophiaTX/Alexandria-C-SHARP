@@ -483,16 +483,57 @@
             <param name="signedtx">byte[] signedtx</param>
             <returns>Returns true if success or false for failed try</returns>
         </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Key.GetPublicKey(System.String,System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="privateKey"></param>
+            <param name="publicKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Key.GenerateKeyPairFromBrainKey(System.String,System.Byte[],System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="brain_key"></param>
+            <param name="private_key"></param>
+            <param name="public_key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Key.VeriFySignature(System.String,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="digest"></param>
+            <param name="public_key"></param>
+            <param name="signed_digest"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Key.EncryptMemo(System.String,System.String,System.String,System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="memo"></param>
+            <param name="private_key"></param>
+            <param name="public_key"></param>
+            <param name="encrypted_memo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.Key.DecryptMemo(System.String,System.String,System.String,System.Byte[])">
+            <summary>
+            
+            </summary>
+            <param name="memo"></param>
+            <param name="private_key"></param>
+            <param name="public_key"></param>
+            <param name="decrypted_memo"></param>
+            <returns></returns>
+        </member>
         <member name="M:Alexandria.net.API.WalletFunctions.Key.SuggestBrainKey">
             <summary>
             
             </summary>
             <returns></returns>
-        </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Key.NormalizeBrainKey">
-            <summary>
-            
-            </summary>
         </member>
         <member name="T:Alexandria.net.API.WalletFunctions.Network">
             <inheritdoc />
