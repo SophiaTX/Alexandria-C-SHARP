@@ -4,6 +4,7 @@ using System.Reflection;
 using Alexandria.net.Communication;
 using Alexandria.net.Logging;
 using Alexandria.net.Messaging.Responses;
+using Alexandria.net.Messaging.Responses.DTO;
 using Alexandria.net.Settings;
 using Newtonsoft.Json;
 
@@ -41,15 +42,21 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="memo">string memo</param>
         /// <param name="balance">ulong balance</param>
         /// <param name="assetSymbol">string assetSymbol</param>
-        /// <returns>Returns true if success or false for failed try</returns>
-        public bool Transfer(string from, string to, string memo, ulong balance, string assetSymbol)
+        /// <returns>Returns Transaction object</returns>
+        public AccountResponse Transfer(string from, string to, string memo,string amount )
         {
             try
             {
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                var @params = new ArrayList {from, to, memo, balance, assetSymbol};
+                var @params = new ArrayList {from, to, memo, amount};
                 var result = SendRequest(reqname, @params);
-                return result == "true";
+                
+                var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
+                BroadCastTransactionProcess newProcess = new BroadCastTransactionProcess(Config);
+                
+                var response = newProcess.StartBroadcasting(contentdata);
+                
+                return response == null ? null : contentdata;
             }
             catch (Exception ex)
             {
@@ -57,7 +64,37 @@ namespace Alexandria.net.API.WalletFunctions
                 throw;
             }
         }
-
+        /// <summary>
+        /// Transfer STEEM into a vesting fund represented by vesting shares (VESTS). VESTS are required to vesting
+        /// for a minimum of one coin year and can be withdrawn once a week over a two year withdraw period.
+        /// VESTS are protected against dilution up until 90% of STEEM is vesting.
+        /// </summary>
+        /// <param name="from">The account the STEEM is coming fro</param>
+        /// <param name="to">The account getting the VESTS</param>
+        /// <param name="amount">The amount of STEEM to vest i.e. "100.00 STEEM"</param>
+        /// <returns>Returns Transaction object</returns>
+        public AccountResponse TransferToVesting(string from, string to, string amount)
+        {
+            try
+            {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+                var @params = new ArrayList {from, to, amount};
+                var result = SendRequest(reqname, @params);
+                
+                var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
+                BroadCastTransactionProcess newProcess = new BroadCastTransactionProcess(Config);
+                
+                var response = newProcess.StartBroadcasting(contentdata);
+                
+                return response == null ? null : contentdata;
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+                throw;
+            }
+        }
+        
         /// <summary>
         /// Returns the balance of the given account and UIA
         /// </summary>

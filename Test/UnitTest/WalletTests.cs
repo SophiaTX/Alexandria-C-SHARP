@@ -23,7 +23,17 @@ namespace UnitTest
         {
             _client.Wallet.Witness.GetActiveWitnesses();
         }
-        
+        [Fact]
+        public void ListWitnesses()
+        {
+            _client.Wallet.Witness.ListWitnesses("initminer",10);
+        }
+
+        [Fact]
+        public void GetWitness()
+        {
+            _client.Wallet.Witness.GetWitness("initminer");
+        }
         [Fact]
         public void GetFeedHistory()
         {
@@ -34,13 +44,27 @@ namespace UnitTest
         {
             _client.Wallet.Transaction.About();
         }
-        
+        [Fact]
+        public void Help()
+        {
+            _client.Wallet.Transaction.Help();
+        }
+        [Fact]
+        public void Info()
+        {
+            _client.Wallet.Transaction.Info();
+        }
         [Fact]
         public void GetBlock()
         {
-            _client.Wallet.Transaction.GetBlock(8198);
+            _client.Wallet.Transaction.GetBlock(1983);
             
         } 
+        [Fact]
+        public void get_ops_in_block()
+        {
+            _client.Wallet.Transaction.GetOpsInBlock(1983,true);
+        }
         [Fact]
         public void GeneratePrivateKey()
         {                     
@@ -54,7 +78,7 @@ namespace UnitTest
         }[Fact]
         public void GetPublicKey()
         {           
-            _client.Wallet.Key.GetPublicKey("5KGL7MNAfwCzQ8DAq7DXJsneXagka3KNcjgkRayJoeJUucSLkev",new byte[63]);
+            _client.Wallet.Key.GetPublicKey("5KGL7MNAfwCzQ8DAq7DXJsneXagka3KNcjgkRayJoeJUucSLkev",new byte[53]);
              
         }[Fact]
         public void GenerateKeyPairFromBrainKey()
@@ -106,7 +130,7 @@ namespace UnitTest
         [Fact]
         public void CreateAccount()
         {
-            _client.Wallet.Account.CreateAccount("test102", "{}",
+            _client.Wallet.Account.CreateAccount("test108", "{}",
                 "STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz",
                 "STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz",
                 "STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz");
@@ -116,124 +140,69 @@ namespace UnitTest
         [Fact]
         public void GetAccount()
         {
-            var response = _client.Wallet.Account.GetAccount("test101");
-
-            Assert.Equal(response.result.name, "test101");
+            _client.Wallet.Account.GetAccount("test106");
 
         }
         
-        
-//        [Fact]
-//        public void DeleteAccount()
-//        {
-//           var response =  _client.Wallet.Account.DeleteAccount("test101");
-//            Console.WriteLine(response);
-//
-//        }
-//        [Fact]
-//        public void update_account()
-//        {
-//            _client.Wallet.Account.updateAccount("sanjiv",7888,"active","memo");
-//
-//        }
-//        [Fact]
-//        public void VoteForWitness()
-//        {
-//            _client.Wallet.Witness.Vote("initminer","temp",true); //{"id":0,"error":{"code":1,"message":"0 exception: unspecified\nmissing required active authority:Missing Active Authority initminer\n    {\"error\":\"missing required active authority:Missing Active Authority initminer\",\"data\":{\"id\":3,\"error\":{\"code\":-32000,\"message\":\"missing required active authority:Missing Active Authority initminer\",\"data\":{\"code\":3010000,\"name\":\"tx_missing_active_auth\",\"message\":\"missing required active authority\",\"stack\":[{\"context\":{\"level\":\"error\",\"file\":\"transaction_util.hpp\",\"line\":45,\"method\":\"verify_authority\",\"hostname\":\"\",\"timestamp\":\"2018-06-13T07:04:09\"},\"format\":\"Missing Active Authority ${id}\",\"data\":{\"id\":\"initminer\",\"auth\":{\"weight_threshold\":1,\"account_auths\":[],\"key_auths\":[[\"STM8Xg6cEbqPCY8jrWFccgbCq5Fjw1okivwwmLDDgqQCQeAk7jedu\",1]]},\"owner\":{\"weight_threshold\":1,\"account_auths\":[],\"key_auths\":[[\"STM8Xg6cEbqPCY8jrWFccgbCq5Fjw1okivwwmLDDgqQCQeAk7jedu\",1]]}}},{\"context\":{\"level\":\"warn\",\"file\":\"transaction_util.hpp\",\"line\":60,\"method\":\"verify_authority\",\"hostname\":\"\",\"timestamp\":\"2018-06-13T07:04:09\"},\"format\":\"\",\"data\":{\"auth_containers\":[[\"account_witness_vote\",{\"account\":\"initminer\",\"witness\":\"temp\",\"approve\":true}]],\"sigs\":[]}},{\"context\":{\"level\":\"warn\",\"file\":\"transaction.cpp\",\"line\":169,\"method\":\"verify_authority\",\"hostname\":\"\",\"timestamp\":\"2018-06-13T07:04:09\"},\"format\":\"\",\"data\":{\"*this\":{\"ref_block_num\":19802,\"ref_block_prefix\":746503726,\"expiration\":\"2018-06-13T07:04:39\",\"operations\":[[\"account_witness_vote\",{\"account\":\"initminer\",\"witness\":\"temp\",\"approve\":true}]],\"extensions\":[],\"signatures\":[]}}},{\"context\":{\"level\":\"warn\",\"file\":\"database.cpp\",\"line\":2112,\"method\":\"_apply_transaction\",\"hostname\":\"\",\"timestamp\":\"2018-06-13T07:04:09\"},\"format\":\"\",\"data\":{\"trx\":{\"ref_block_num\":19802,\"ref_block_prefix\":746503726,\"expiration\":\"2018-06-13T07:04:39\",\"operations\":[[\"account_witness_vote\",{\"account\":\"initminer\",\"witness\":\"temp\",\"approve\":true}]],\"extensions\":[],\"signatures\":[]}}},{\"context\":{\"level\":\"warn\",\"file\":\"database.cpp\",\"line\":654,\"method\":\"push_transaction\",\"hostname\":\"\",\"timestamp\":\"2018-06-13T07:04:09\"},\"format\":\"\",\"data\":{\"trx\":{\"ref_block_num\":19802,\"ref_block_prefix\":746503726,\"expiration\":\"2018-06-13T07:04:39\",\"operations\":[[\"account_witness_vote\",{\"account\":\"initminer\",\"witness\":\"temp\",\"approve\":true}]],\"extensions\":[],\"signatures\":[]}}}]}}}}\n    state.cpp:38 handle_reply\n\n    {\"voting_account\":\"initminer\",\"witness_to_vote_for\":\"temp\",\"approve\":true,\"broadcast\":true}\n    wallet.cpp:1455 vote_for_witness\n\n    {\"call.method\":\"vote_for_witness\",\"call.params\":[\"initminer\",\"temp\",true,true]}\n    websocket_api.cpp:138 on_message","data":{"code":0,"name":"exception","message":"unspecified","stack":[{"context":{"level":"error","file":"state.cpp","line":38,"method":"handle_reply","hostname":"","timestamp":"2018-06-13T07:04:09"},"format":"${error}","data":{"error":"missing required active authority:Missing Active Authority initminer","data":{"id":3,"error":{"code":-32000,"message":"missing required active authority:Missing Active Authority initminer","data":{"code":3010000,"name":"tx_missing_active_auth","message":"missing required active authority","stack":[{"context":{"level":"error","file":"transaction_util.hpp","line":45,"method":"verify_authority","hostname":"","timestamp":"2018-06-13T07:04:09"},"format":"Missing Active Authority ${id}","data":{"id":"initminer","auth":{"weight_threshold":1,"account_auths":[],"key_auths":[["STM8Xg6cEbqPCY8jrWFccgbCq5Fjw1okivwwmLDDgqQCQeAk7jedu",1]]},"owner":{"weight_threshold":1,"account_auths":[],"key_auths":[["STM8Xg6cEbqPCY8jrWFccgbCq5Fjw1okivwwmLDDgqQCQeAk7jedu",1]]}}},{"context":{"level":"warn","file":"transaction_util.hpp","line":60,"method":"verify_authority","hostname":"","timestamp":"2018-06-13T07:04:09"},"format":"","data":{"auth_containers":[["account_witness_vote",{"account":"initminer","witness":"temp","approve":true}]],"sigs":[]}},{"context":{"level":"warn","file":"transaction.cpp","line":169,"method":"verify_authority","hostname":"","timestamp":"2018-06-13T07:04:09"},"format":"","data":{"*this":{"ref_block_num":19802,"ref_block_prefix":746503726,"expiration":"2018-06-13T07:04:39","operations":[["account_witness_vote",{"account":"initminer","witness":"temp","approve":true}]],"extensions":[],"signatures":[]}}},{"context":{"level":"warn","file":"database.cpp","line":2112,"method":"_apply_transaction","hostname":"","timestamp":"2018-06-13T07:04:09"},"format":"","data":{"trx":{"ref_block_num":19802,"ref_block_prefix":746503726,"expiration":"2018-06-13T07:04:39","operations":[["account_witness_vote",{"account":"initminer","witness":"temp","approve":true}]],"extensions":[],"signatures":[]}}},{"context":{"level":"warn","file":"database.cpp","line":654,"method":"push_transaction","hostname":"","timestamp":"2018-06-13T07:04:09"},"format":"","data":{"trx":{"ref_block_num":19802,"ref_block_prefix":746503726,"expiration":"2018-06-13T07:04:39","operations":[["account_witness_vote",{"account":"initminer","witness":"temp","approve":true}]],"extensions":[],"signatures":[]}}}]}}}}},{"context":{"level":"warn","file":"wallet.cpp","line":1455,"method":"vote_for_witness","hostname":"","timestamp":"2018-06-13T07:04:09"},"format":"","data":{"voting_account":"initminer","witness_to_vote_for":"temp","approve":true,"broadcast":true}},{"context":{"level":"warn","file":"websocket_api.cpp","line":138,"method":"on_message","hostname":"","timestamp":"2018-06-13T07:04:09"},"format":"","data":{"call.method":"vote_for_witness","call.params":["initminer","temp",true,true]}}]}}}
-//        }
-        
-//        [Fact]
-//        public void WithdrawVesting()
-//        {
-//            _client.Wallet.Transaction.withdraw_vesting("initminer",10); //add some shares for vesting test
-//        }
-        
-        
-        
-//        [Fact]
-//        public void GetAccountBalance()
-//        {
-//            _client.Wallet.Account.GetAccount("sanjiv");
-//        }
-        
-//        [Fact]
-//        public void CreateSimpleAuthority()
-//        {
-//            //_client.Wallet.Account.createSimpleAuthority();
-//        }
-
-        
-
-        //----------LocalFunctions
-        
-        
-        //---------Transaction
-
-        
-        
-//        [Fact]
-//        public void get_transaction()
-//        {
-//            //_client.Wallet.Transaction.broadcast_transaction(_signedTransaction);
-//
-//        }
-        
-//        [Fact]
-//        public void serialize_transaction()
-//        {
-//            _client.Wallet.Account.WithdrawVestings("sanjiv",67557);
-//
-//        }
-        //--------operations
-//        [Fact]
-//        public void get_prototype_operation()
-//        {
-//            _client.Wallet.Account.WithdrawVestings("sanjiv",67557);
-//
-//        }
-//        [Fact]
-//        public void get_ops_in_block()
-//        {
-//            _client.Wallet.Transaction.get_ops_in_block();
-//
-//        }
-        //----------keys
-        
-        
-       //---------Accounts
-//        
-        
-//        [Fact]
-//        public void update_witness()
-//        {
-//           // _client.Wallet.Account.updateAccount("sanjiv",7888,"active","memo");
-//
-//        }
-//        [Fact]
-//        
-//        public void set_voting_proxy()
-//        {
-//            _client.Wallet.Transaction.set_voting_proxy("sanjiv","proxy");
-//
-//        }
-//        [Fact]
-//        public void Transfer()
-//        {
-//            _client.Wallet.Asset.Transfer("from","to","memo",1233,"symbol");
-//
-//        }
-//        [Fact]
-//        public void transfer_to_vesting()
-//        {
-//            _client.Wallet.Account.transfer_to_vesting();
-//
-//        }
-        //[Fact]
-        /*public void withdrawVestings()
+        [Fact]
+        public void DeleteAccount()
         {
-            _client.Wallet.Account.withdrawVestings("sanjiv",67557);
+           _client.Wallet.Account.DeleteAccount("test102");
 
         }
+        [Fact]
+        public void update_account()
+        {
+            _client.Wallet.Account.UpdateAccount("test101","{}","STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz","STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz","STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz");
+
+        }
+        [Fact]
+        public void VoteForWitness()
+        {
+            _client.Wallet.Witness.VoteForWitness("test101","initminer",true);
+        }
+        
+        [Fact]
+        public void WithdrawVesting()
+        {
+            _client.Wallet.Transaction.WithdrawVesting("test106","10.000000 VESTS"); 
+        }
+        
+        
+        [Fact]
+        public void GetTransaction()
+        {
+            _client.Wallet.Transaction.GetTransaction("2095fecb2a679dd8a1cee16472c4c5fe9edcc01d");
+
+        }
+                      
+        [Fact]
+        public void update_witness()
+        {
+           _client.Wallet.Account.UpdateWitness("test101","url","blockkey","pros");
+
+        }
+        [Fact]
+        
+        public void set_voting_proxy()
+        {
+            _client.Wallet.Transaction.SetVotingProxy("test101","test103");
+
+        }
+        [Fact]
+        public void Transfer()
+        {
+            _client.Wallet.Asset.Transfer("test106","test101","100.000 STEEM","STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz");
+
+        }
+        [Fact]
+        public void TransferToVesting()
+        {
+            _client.Wallet.Asset.TransferToVesting("test106","test101","100.000 STEEM");
+
+        }
+       
+        /*
        //--------Application
         [Fact]
         public void create_application()
@@ -295,58 +264,3 @@ namespace UnitTest
     }
 }
 
-///// wallet api
-//(help)(gethelp)
-//(about)
-//
-///// key api
-//(suggest_brain_key)
-//(normalize_brain_key)
-//
-///// query api
-//(info)
-//(list_witnesses)
-//(get_witness)
-//(get_account)
-//(get_block)
-//(get_ops_in_block)
-//(get_feed_history)
-
-//
-///// transaction api
-//(create_account)
-//(update_account)
-//(delete_account)
-//(update_witness)
-//(set_voting_proxy)
-//(vote_for_witness)
-//(transfer)
-////        (escrow_transfer)
-////        (escrow_approve)
-////        (escrow_dispute)
-////        (escrow_release)
-//(transfer_to_vesting)
-//(withdraw_vesting)
-////        (request_account_recovery)
-////        (recover_account)
-////        (change_recovery_account)
-//(create_application)
-//(update_application)
-//(delete_application)
-//(buy_application)
-//(cancel_application_buying)
-//(get_application_buyings)
-//
-///// helper api
-//(get_prototype_operation)
-//(serialize_transaction)
-//(broadcast_transaction)
-//(create_transaction)
-//(get_digest)
-//
-//(get_active_witnesses)
-//(get_transaction)
-//
-//(send_custom_json_document)
-//(send_custom_binary_document)
-//(get_received_documents)

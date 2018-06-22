@@ -12,6 +12,7 @@
           <e p="WalletFunctions" t="Include">
             <e p="Account.cs" t="Include" />
             <e p="Asset.cs" t="Include" />
+            <e p="BroadCastTransactionProcess.cs" t="Include" />
             <e p="Cryptography.cs" t="Include" />
             <e p="Data.cs" t="Include" />
             <e p="Key.cs" t="Include" />
@@ -25,7 +26,6 @@
           <e p="RpcConnection.cs" t="Include" />
         </e>
         <e p="Core" t="Include">
-          <e p="Class1.cs" t="Include" />
           <e p="Daemon.cs" t="Include" />
           <e p="SophiaClient.cs" t="Include" />
           <e p="Wallet.cs" t="Include" />
@@ -91,13 +91,17 @@
               <e p="FeedData.cs" t="Include" />
               <e p="FeedHistoryResponse.cs" t="Include" />
               <e p="GetAccountResponse.cs" t="Include" />
-              <e p="InfoData.cs" t="Include" />
+              <e p="GetOperationsResponse.cs" t="Include" />
+              <e p="GetWitnessResponse.cs" t="Include" />
+              <e p="HelpResponse.cs" t="Include" />
+              <e p="InfoDetails.cs" t="Include" />
               <e p="InfoResponse.cs" t="Include" />
               <e p="KeyFromPassword.cs" t="Include" />
               <e p="ListAccountsResponse.cs" t="Include" />
               <e p="LockUnlockRequestResponse.cs" t="Include" />
               <e p="LockUnlockResponse.cs" t="Include" />
               <e p="MedianSbdPrice.cs" t="Include" />
+              <e p="Operations.cs" t="Include" />
               <e p="Options.cs" t="Include" />
               <e p="Owner.cs" t="Include" />
               <e p="PricePerSubscribe.cs" t="Include" />
@@ -105,9 +109,11 @@
               <e p="Result.cs" t="Include" />
               <e p="RightsToPublish.cs" t="Include" />
               <e p="SendResponseResult.cs" t="Include" />
+              <e p="SerializedTransaction.cs" t="Include" />
               <e p="SignedTransactionResponse.cs" t="Include" />
               <e p="TransactionData.cs" t="Include" />
               <e p="TransactionResponse.cs" t="Include" />
+              <e p="WitnessDetails.cs" t="Include" />
             </e>
           </e>
         </e>

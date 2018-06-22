@@ -3,7 +3,7 @@
     /// <summary>
     /// 
     /// </summary>
-    public abstract class TransactionResponse
+    public class TransactionResponse
     {
         /// <summary>
         /// 
