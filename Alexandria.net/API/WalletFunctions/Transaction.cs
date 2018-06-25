@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
 using Alexandria.net.Communication;
 using Alexandria.net.Logging;
@@ -58,7 +57,6 @@ namespace Alexandria.net.API.WalletFunctions
 			
 		}
 		
-
 		/// <summary>
 		/// 
 		/// </summary>
@@ -152,14 +150,14 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <summary>
 		/// Broadcasts transaction once it is created, helps to register Transactions on the Blockchain
 		/// </summary>
-		/// <param name="signed_tx"></param>
+		/// <param name="signedTx"></param>
 		/// <returns>Returns Object with Transaction id and other details</returns>
-		public TransactionResponse BroadcastTransaction(SignedTransactionResponse signed_tx)
+		public TransactionResponse BroadcastTransaction(SignedTransactionResponse signedTx)
 		{
 			try
 			{
 				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-				var @params = new ArrayList {signed_tx};
+				var @params = new ArrayList {signedTx};
 				var result= SendRequest(reqname, @params);
 				var contentdata = JsonConvert.DeserializeObject<TransactionResponse>(result);
 				return contentdata;
@@ -270,9 +268,7 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <param name="proxy">the name Of account that should proxy To, Or empty String To have no proxy </param>
 		/// <returns></returns>
 		public AccountResponse SetVotingProxy(string accountToModify, string proxy)
-		{
-			
-			
+		{	
 			try
 			{
 				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
@@ -280,18 +276,15 @@ namespace Alexandria.net.API.WalletFunctions
 				var result= SendRequest(reqname, @params);
 				var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
 				
-				BroadCastTransactionProcess newProcess = new BroadCastTransactionProcess(Config);
-                
-				var response = newProcess.StartBroadcasting(contentdata);
-                
-				return response == null ? null : contentdata;
+				var broadcast = new BroadCastTransactionProcess(Config);
+                var response = broadcast.StartBroadcasting(contentdata);
+                return response == null ? null : contentdata;
 			}
 			catch(Exception ex)
 			{
 				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
 				throw ;
 			}
-			
 		}
 
 		/// <summary>
@@ -305,29 +298,26 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <returns></returns>
 		public AccountResponse WithdrawVesting(string from, string vestingShares)
 		{
-			var trans = new Transaction(Config);
-			var key = new Key(Config);
-			var pk = "5KGL7MNAfwCzQ8DAq7DXJsneXagka3KNcjgkRayJoeJUucSLkev";
+			//var trans = new Transaction(Config);
+			//var key = new Key(Config);
+			//var pk = "5KGL7MNAfwCzQ8DAq7DXJsneXagka3KNcjgkRayJoeJUucSLkev";
 			try
 			{
 				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
 				var @params = new ArrayList {from, vestingShares};
-				var result= SendRequest(reqname, @params);
-				
+				var result = SendRequest(reqname, @params);
+
 				var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
-                
-				BroadCastTransactionProcess newProcess = new BroadCastTransactionProcess(Config);
-                
-				var response = newProcess.StartBroadcasting(contentdata);
-                
+
+				var broadcast = new BroadCastTransactionProcess(Config);
+				var response = broadcast.StartBroadcasting(contentdata);
 				return response == null ? null : contentdata;
 			}
-			catch(Exception ex)
+			catch (Exception ex)
 			{
 				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
-				throw ;
+				throw;
 			}
-			
 		}
 
 		/// <summary>
@@ -388,11 +378,19 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <returns>Returns sequence of operations included/generated in a specified block</returns>
 		public GetOperationsResponse GetOpsInBlock(int BlockNumber,bool OnlyVirtual)
 		{
-			var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-			var @params = new ArrayList {BlockNumber,OnlyVirtual};
-			var result =  SendRequest(reqname, @params);
-			var contentdata = JsonConvert.DeserializeObject<GetOperationsResponse>(result);
-			return contentdata;
+			try
+			{
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+				var @params = new ArrayList {BlockNumber,OnlyVirtual};
+				var result =  SendRequest(reqname, @params);
+				var contentdata = JsonConvert.DeserializeObject<GetOperationsResponse>(result);
+				return contentdata;
+			}
+			catch (Exception ex)
+			{
+				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+				throw;
+			}
 		}
 
 		#endregion

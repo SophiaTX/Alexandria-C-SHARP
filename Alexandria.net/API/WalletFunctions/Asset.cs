@@ -32,16 +32,15 @@ namespace Alexandria.net.API.WalletFunctions
         }
 
         #endregion
-        
-        
+
+
         /// <summary> 
         /// Trnasfer given assets from one user to other one.
         /// </summary>
         /// <param name="from">string from</param>
         /// <param name="to">string to</param>
         /// <param name="memo">string memo</param>
-        /// <param name="balance">ulong balance</param>
-        /// <param name="assetSymbol">string assetSymbol</param>
+        /// <param name="amount">the amount to transfer</param>
         /// <returns>Returns Transaction object</returns>
         public AccountResponse Transfer(string from, string to, string memo,string amount )
         {
@@ -52,10 +51,8 @@ namespace Alexandria.net.API.WalletFunctions
                 var result = SendRequest(reqname, @params);
                 
                 var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
-                BroadCastTransactionProcess newProcess = new BroadCastTransactionProcess(Config);
-                
-                var response = newProcess.StartBroadcasting(contentdata);
-                
+                var broadcast = new BroadCastTransactionProcess(Config);
+                var response = broadcast.StartBroadcasting(contentdata);
                 return response == null ? null : contentdata;
             }
             catch (Exception ex)
@@ -82,10 +79,8 @@ namespace Alexandria.net.API.WalletFunctions
                 var result = SendRequest(reqname, @params);
                 
                 var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
-                BroadCastTransactionProcess newProcess = new BroadCastTransactionProcess(Config);
-                
-                var response = newProcess.StartBroadcasting(contentdata);
-                
+                var broadcast = new BroadCastTransactionProcess(Config);
+                var response = broadcast.StartBroadcasting(contentdata);
                 return response == null ? null : contentdata;
             }
             catch (Exception ex)
@@ -127,7 +122,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="maxSupply">ulong maxSupply</param>
         /// <param name="assetSymbol">string assetSymbol</param>
         /// <returns>Returns true if success or false for failed try</returns>
-        public bool CreateUia(string ownerAccountName, Authority managementAuthority, ulong maxSupply, string assetSymbol)
+        private bool CreateUia(string ownerAccountName, Authority managementAuthority, ulong maxSupply, string assetSymbol)
         {
             try
             {
@@ -151,7 +146,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="amount">ulong amount</param>
         /// <param name="assetSymbol">string assetSymbol</param>
         /// <returns>Returns true if success or false for failed try</returns>
-        public bool IssueUia(string reveiverAccountName, ulong amount, string assetSymbol)
+        private bool IssueUia(string reveiverAccountName, ulong amount, string assetSymbol)
         {
             try
             {
@@ -175,7 +170,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="amount">ulong amount</param>
         /// <param name="assetSymbol">string assetSymbol</param>
         /// <returns>Returns true if success or false for failed try</returns>
-        public bool BurnUia(string accountName, ulong amount, string assetSymbol)
+        private bool BurnUia(string accountName, ulong amount, string assetSymbol)
         {
             try
             {
@@ -197,7 +192,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// Check for the authority assigned to given UIA, identify by Symbol
         /// </summary>
         /// <param name="assetSymbol">string assetSymbol</param>
-        /// <returns>Returns Json object with details combining
+        /// <returns>Returns Json object with details combining</returns>
         public Authority GetUiaAuthority(string assetSymbol)
         {
             try
@@ -221,7 +216,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// </summary>
         /// <param name="assetSymbol">string assetSymbol</param>
         /// <returns>Returns true if success or false for failed try</returns>
-        public bool HasUiaPrivateKey(string assetSymbol)
+        private bool HasUiaPrivateKey(string assetSymbol)
         {
             try
             {

@@ -1,7 +1,6 @@
-﻿using System.Reflection;
-
+﻿using System;
+using System.Reflection;
 using Alexandria.net.Messaging.Responses.DTO;
-
 using Alexandria.net.Communication;
 using Alexandria.net.Settings;
 using Alexandria.net.Logging;
@@ -24,24 +23,30 @@ namespace Alexandria.net.API.WalletFunctions
             var trans = new Transaction(Config);
             var key = new Key(Config);
             var pk = "5KGL7MNAfwCzQ8DAq7DXJsneXagka3KNcjgkRayJoeJUucSLkev";
-            
-            var transresponse = trans.CreateSimpleTransaction(contentdata);
-            if (transresponse == null) return null;
-                
-            var aboutresponse = trans.About();
-            if (aboutresponse == null) return null;
-                
-            var transaction = JsonConvert.SerializeObject(transresponse.result);
-            var digest = key.GetTransactionDigest(transaction, aboutresponse.result.chain_id, new byte[64]);
+            TransactionResponse finalResponse = null;
+            try
+            {
+                var transresponse = trans.CreateSimpleTransaction(contentdata);
+                if (transresponse == null) return null;
 
-            var signature = key.SignDigest(digest, pk, new byte[130]);
-            var response = key.AddSignature(transaction, signature, new byte[transaction.Length + 200]);
-            var finalResponse=trans.BroadcastTransaction(response);
-            trans.SerializeTransaction(response);
-                
+                var aboutresponse = trans.About();
+                if (aboutresponse == null) return null;
+
+                var transaction = JsonConvert.SerializeObject(transresponse.result);
+                var digest = key.GetTransactionDigest(transaction, aboutresponse.result.chain_id, new byte[64]);
+
+                var signature = key.SignDigest(digest, pk, new byte[130]);
+                var response = key.AddSignature(transaction, signature, new byte[transaction.Length + 200]);
+                finalResponse = trans.BroadcastTransaction(response);
+                trans.SerializeTransaction(response);
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+                throw;
+            }
+
             return finalResponse == null ? null : contentdata;
         }
-        
-        
     }
 }

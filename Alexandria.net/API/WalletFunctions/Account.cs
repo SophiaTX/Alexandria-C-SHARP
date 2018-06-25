@@ -41,7 +41,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// </summary>
         /// <param name="accountName">Input string accountName</param>
         /// <returns>Returns true if success and false for failed try</returns>
-        public bool AccountExists(string accountName)
+        private bool AccountExists(string accountName)
         {
             try
             {
@@ -62,7 +62,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// </summary>
         /// <param name="key">Input byte[] key</param>
         /// <returns>Returns true if success and false for failed try</returns>
-        public bool HasPrivateKeys(byte[] key)
+        private bool HasPrivateKeys(byte[] key)
         {
             try
             {
@@ -85,7 +85,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// </summary>
         /// <param name="accountName">Input string accountName</param>
         /// <returns>Returns true if success and false for failed try</returns>
-        public bool HasAccountOwnerPrivateKey(string accountName)
+        private bool HasAccountOwnerPrivateKey(string accountName)
         {
             try
             {
@@ -109,7 +109,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// </summary>
         /// <param name="accountName">Input string accountName</param>
         /// <returns>Returns true if success and false for failed try</returns>
-        public bool HasAccountActivePrivateKey(string accountName)
+        private bool HasAccountActivePrivateKey(string accountName)
         {
             try
             {
@@ -131,7 +131,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// </summary>
         /// <param name="accountName">Input string accountName</param>
         /// <returns>Returns true if success and false for failed try</returns>
-        public bool HasAccountMemoPrivateKey(string accountName)
+        private bool HasAccountMemoPrivateKey(string accountName)
         {
             try
             {
@@ -357,7 +357,6 @@ namespace Alexandria.net.API.WalletFunctions
         /// <returns>Returns true if success or false for failed try</returns>
         public AccountResponse UpdateAccount(string accountName,string json_meta,string owner,string active,string memo)
         {
-            
             try
             {
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
@@ -365,19 +364,15 @@ namespace Alexandria.net.API.WalletFunctions
                 var result = SendRequest(reqname, @params);
                 var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
                 
-                BroadCastTransactionProcess newProcess = new BroadCastTransactionProcess(Config);
-                
-                var response = newProcess.StartBroadcasting(contentdata);
-                
+                var broadcast = new BroadCastTransactionProcess(Config);
+                var response = broadcast.StartBroadcasting(contentdata);
                 return response == null ? null : contentdata;
-
             }
             catch (Exception ex)
             {
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
-
         }
 
         /// <summary>
@@ -386,7 +381,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="accountName">Input string accountName</param>
         /// <param name="toVestings">Input ulong toVestings</param>
         /// <returns>Returns true if success or false for failed try</returns>
-        public bool DepositVesting(string accountName, ulong toVestings)
+        private bool DepositVesting(string accountName, ulong toVestings)
         {
             try
             {
@@ -409,7 +404,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="accountName">Input string accountName</param>
         /// <param name="fromVestings">Input ulong fromVestings</param>
         /// <returns>Returns true if success or false for failed try</returns>
-        public bool WithdrawVestings(string accountName, ulong fromVestings)
+        private bool WithdrawVestings(string accountName, ulong fromVestings)
         {
             try
             {
@@ -433,7 +428,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="votedAccountName">Input string votedAccountName</param>
         /// <param name="approve">Input string approve</param>
         /// <returns></returns>
-        public bool VoteForWitness(string votingAccountName, string votedAccountName, string approve)
+        private bool VoteForWitness(string votingAccountName, string votedAccountName, string approve)
         {
             try
             {
@@ -523,8 +518,6 @@ namespace Alexandria.net.API.WalletFunctions
 
                 var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
 
-//                var transresponse =
-//                    trans.CreateTransaction(new List<AccountResponse> {contentdata});
                 var transresponse = trans.CreateSimpleTransaction(contentdata);
                 if (transresponse == null) return null;
 
@@ -553,27 +546,21 @@ namespace Alexandria.net.API.WalletFunctions
         /// <returns>Returns object containing information about the new operation created</returns>
         public AccountResponse DeleteAccount(string accountName)
         {
-            
             try
             {
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {accountName};
-                var result= SendRequest(reqname, @params);
+                var result = SendRequest(reqname, @params);
                 var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
-                BroadCastTransactionProcess newProcess = new BroadCastTransactionProcess(Config);
-                
-                var response = newProcess.StartBroadcasting(contentdata);
-                
+                var broadcast = new BroadCastTransactionProcess(Config);
+                var response = broadcast.StartBroadcasting(contentdata);
                 return response == null ? null : contentdata;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
-                throw ;
+                throw;
             }
-            
         }
-
-        
     }
 }

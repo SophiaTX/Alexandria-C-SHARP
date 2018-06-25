@@ -192,19 +192,14 @@ namespace Alexandria.net.API.WalletFunctions
         /// <returns></returns>
         public AccountResponse VoteForWitness(string accountToVoteWith, string witnessToVoteFor, bool approve)
         {
-            var trans = new Transaction(Config);
-            var key = new Key(Config);
-            var pk = "5KGL7MNAfwCzQ8DAq7DXJsneXagka3KNcjgkRayJoeJUucSLkev";
             try
             {
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);      
                 var @params = new ArrayList {accountToVoteWith, witnessToVoteFor, approve};
                 var result = SendRequest(reqname, @params);
                 var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
-                BroadCastTransactionProcess newProcess = new BroadCastTransactionProcess(Config);
-                
-                var response = newProcess.StartBroadcasting(contentdata);
-                
+                var broadcast = new BroadCastTransactionProcess(Config);
+                var response = broadcast.StartBroadcasting(contentdata);
                 return response == null ? null : contentdata;
             }
             catch(Exception ex)
