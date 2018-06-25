@@ -143,7 +143,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="approve">true if the account Is voting for the account to be able to be a block produce</param>
         /// <param name="privateKey"></param>
         /// <returns></returns>
-        public AccountResponse VoteForWitness(string accountToVoteWith, string witnessToVoteFor, bool approve,
+        public TransactionResponse VoteForWitness(string accountToVoteWith, string witnessToVoteFor, bool approve,
             string privateKey)
         {
             try
@@ -154,7 +154,7 @@ namespace Alexandria.net.API.WalletFunctions
                 var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
 
                 var response = StartBroadcasting(contentdata, privateKey);
-                return response == null ? null : contentdata;
+                return response;
             }
             catch (Exception ex)
             {

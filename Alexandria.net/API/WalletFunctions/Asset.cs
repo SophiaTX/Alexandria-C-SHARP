@@ -43,7 +43,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="amount">the amount to transfer</param>
         /// <param name="privateKey"></param>
         /// <returns>Returns Transaction object</returns>
-        public AccountResponse Transfer(string from, string to, string memo, string amount, string privateKey)
+        public TransactionResponse Transfer(string from, string to, string memo, string amount, string privateKey)
         {
             try
             {
@@ -53,7 +53,7 @@ namespace Alexandria.net.API.WalletFunctions
 
                 var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
                 var response = StartBroadcasting(contentdata, privateKey);
-                return response == null ? null : contentdata;
+                return response;
             }
             catch (Exception ex)
             {
@@ -72,7 +72,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="amount">The amount of STEEM to vest i.e. "100.00 STEEM"</param>
         /// <param name="privateKey"></param>
         /// <returns>Returns Transaction object</returns>
-        public AccountResponse TransferToVesting(string from, string to, string amount, string privateKey)
+        public TransactionResponse TransferToVesting(string from, string to, string amount, string privateKey)
         {
             try
             {
@@ -82,7 +82,7 @@ namespace Alexandria.net.API.WalletFunctions
 
                 var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
                 var response = StartBroadcasting(contentdata, privateKey);
-                return response == null ? null : contentdata;
+                return response;
             }
             catch (Exception ex)
             {
@@ -101,7 +101,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="vestingShares"> The amount should be in the format "10.0000 VESTS" showing amount and currency symbol</param>
         /// <param name="privateKey"></param>
         /// <returns></returns>
-        public AccountResponse WithdrawVesting(string @from, string vestingShares, string privateKey)
+        public TransactionResponse WithdrawVesting(string @from, string vestingShares, string privateKey)
         {
             try
             {
@@ -111,7 +111,7 @@ namespace Alexandria.net.API.WalletFunctions
 
                 var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
                 var response = StartBroadcasting(contentdata, privateKey);
-                return response == null ? null : contentdata;
+                return response;
             }
             catch (Exception ex)
             {

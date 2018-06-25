@@ -355,7 +355,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="active">Input Authority active</param>
         /// <param name="memo">Input byte[] memo</param>
         /// <returns>Returns true if success or false for failed try</returns>
-        public AccountResponse UpdateAccount(string accountName, string json_meta, string owner, string active,
+        public TransactionResponse UpdateAccount(string accountName, string json_meta, string owner, string active,
             string memo, string privateKey)
         {
             try
@@ -366,7 +366,7 @@ namespace Alexandria.net.API.WalletFunctions
                 var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
 
                 var response = StartBroadcasting(contentdata, privateKey);
-                return response == null ? null : contentdata;
+                return response;
             }
             catch (Exception ex)
             {
@@ -386,7 +386,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="proxy">the name Of account that should proxy To, Or empty String To have no proxy </param>
         /// <param name="privateKey"></param>
         /// <returns></returns>
-        public AccountResponse SetVotingProxy(string accountToModify, string proxy, string privateKey)
+        public TransactionResponse SetVotingProxy(string accountToModify, string proxy, string privateKey)
         {	
             try
             {
@@ -396,7 +396,7 @@ namespace Alexandria.net.API.WalletFunctions
                 var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
 				
                 var response = StartBroadcasting(contentdata, privateKey);
-                return response == null ? null : contentdata;
+                return response;
             }
             catch(Exception ex)
             {
@@ -439,7 +439,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="memokey">the memo key</param>
         /// <param name="privatekey">the private key used for the digest</param>
         /// <returns>the account creation response details</returns>
-        public AccountResponse CreateAccount(string accountname, string jsonMeta, string ownerkey,
+        public TransactionResponse CreateAccount(string accountname, string jsonMeta, string ownerkey,
             string activekey, string memokey, string witnessname = "initminer",
             string privatekey = "5JPwY3bwFgfsGtxMeLkLqXzUrQDMAsqSyAZDnMBkg7PDDRhQgaV")
         {
@@ -451,7 +451,8 @@ namespace Alexandria.net.API.WalletFunctions
 
                 var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
 
-                return StartBroadcasting(contentdata, privatekey);
+                var response = StartBroadcasting(contentdata, privatekey);
+                return response;
             }
             catch (Exception ex)
             {
@@ -466,7 +467,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="accountName"></param>
         /// <param name="privateKey"></param>
         /// <returns>Returns object containing information about the new operation created</returns>
-        public AccountResponse DeleteAccount(string accountName, string privateKey)
+        public TransactionResponse DeleteAccount(string accountName, string privateKey)
         {
             try
             {
@@ -476,7 +477,7 @@ namespace Alexandria.net.API.WalletFunctions
                 var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
 
                 var response = StartBroadcasting(contentdata, privateKey);
-                return response == null ? null : contentdata;
+                return response;
             }
             catch (Exception ex)
             {

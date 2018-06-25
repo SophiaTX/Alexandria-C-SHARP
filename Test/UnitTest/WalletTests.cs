@@ -207,7 +207,7 @@ namespace UnitTest
         [Fact]
         public void CreateAccount()
         {
-            _client.Wallet.Account.CreateAccount("test110", "{}",
+            _client.Wallet.Account.CreateAccount("test116", "{}",
                 "SPH6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz",
                 "SPH6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz",
                 "SPH6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz");

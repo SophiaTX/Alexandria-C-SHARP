@@ -33,7 +33,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="URL">The url of the new application</param>
         /// <param name="MetaData">The meta data of new application</param>
         /// <param name="PriceParam">The price parameter that specifies billing for the app (1 or 0)</param>
-        public AccountResponse CreateApplication(string Author, string AppName, string URL, string MetaData, byte PriceParam, string privateKey)
+        public TransactionResponse CreateApplication(string Author, string AppName, string URL, string MetaData, byte PriceParam, string privateKey)
         {
             try
             {
@@ -42,7 +42,7 @@ namespace Alexandria.net.API.WalletFunctions
                 var result= SendRequest(reqname, @params);
                 var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
                 var response = StartBroadcasting(contentdata, privateKey);
-                return response == null ? null : contentdata;
+                return response;
             }
             catch(Exception ex)
             {
@@ -60,7 +60,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="MetaData">Updated meta data</param>
         /// <param name="PriceParam">Updated price param</param>
         
-        public AccountResponse UpdateApplication(string Author, string AppName, string NewAuthor, string URL, string MetaData,
+        public TransactionResponse UpdateApplication(string Author, string AppName, string NewAuthor, string URL, string MetaData,
                                                       int PriceParam, string privateKey)
         {
             try
@@ -70,7 +70,7 @@ namespace Alexandria.net.API.WalletFunctions
                 var result= SendRequest(reqname, @params);
                 var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
                 var response = StartBroadcasting(contentdata, privateKey);
-                return response == null ? null : contentdata;
+                return response;
             }
             catch(Exception ex)
             {
@@ -84,7 +84,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="Author">The author of application that will be deleted</param>
         /// <param name="AppName">The name of app that will be deleted</param>
         
-        public AccountResponse DeleteApplication(string Author, string AppName, string privateKey)
+        public TransactionResponse DeleteApplication(string Author, string AppName, string privateKey)
         {
             try
             {
@@ -93,7 +93,7 @@ namespace Alexandria.net.API.WalletFunctions
                 var result= SendRequest(reqname, @params);
                 var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
                 var response = StartBroadcasting(contentdata, privateKey);
-                return response == null ? null : contentdata;
+                return response;
             }
             catch(Exception ex)
             {
@@ -107,7 +107,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="Buyer">The buyer of application</param>
         /// <param name="AppId">The id of app that buyer will buy</param>
        
-        public AccountResponse BuyApplication(string Buyer, int AppId, string privateKey)
+        public TransactionResponse BuyApplication(string Buyer, int AppId, string privateKey)
         {
             try
             {
@@ -116,7 +116,7 @@ namespace Alexandria.net.API.WalletFunctions
                 var result= SendRequest(reqname, @params);
                 var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
                 var response = StartBroadcasting(contentdata, privateKey);
-                return response == null ? null : contentdata;
+                return response;
             }
             catch(Exception ex)
             {
@@ -132,7 +132,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="Buyer">The buyer of application</param>
         /// <param name="AppId">The id of bought app</param>
        
-        public AccountResponse CancelApplicationBuying(string AppOwner, string Buyer, int AppId,string privateKey)
+        public TransactionResponse CancelApplicationBuying(string AppOwner, string Buyer, int AppId,string privateKey)
         {
             try
             {
@@ -141,7 +141,7 @@ namespace Alexandria.net.API.WalletFunctions
                 var result= SendRequest(reqname, @params);
                 var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
                 var response = StartBroadcasting(contentdata, privateKey);
-                return response == null ? null : contentdata;
+                return response;
             }
             catch(Exception ex)
             {

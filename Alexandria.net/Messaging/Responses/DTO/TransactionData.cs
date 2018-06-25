@@ -8,29 +8,14 @@ namespace Alexandria.net.Messaging.Responses.DTO
     /// </summary>
     public class TransactionData
     {
-        /// <summary>
-        /// 
-        /// </summary>
         public int ref_block_num { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
         public long ref_block_prefix { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
         public DateTime expiration { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
         public List<List<object>> operations { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
         public List<object> extensions { get; set; }
-        /// <summary>
-        /// 
-        /// </summary>
-        public List<object> signatures { get; set; }
+        public List<string> signatures { get; set; }
+        public string transaction_id { get; set; }
+        public int block_num { get; set; }
+        public int transaction_num { get; set; }
     }
 }

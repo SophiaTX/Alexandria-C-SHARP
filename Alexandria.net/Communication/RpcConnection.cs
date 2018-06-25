@@ -106,7 +106,7 @@ namespace Alexandria.net.Communication
             return finalResponse == null ? default(T) : contentdata;
         }
         
-        protected AccountResponse StartBroadcasting(AccountResponse contentdata, string privateKey)
+        protected TransactionResponse StartBroadcasting(AccountResponse contentdata, string privateKey)
         {
             var trans = new Transaction(Config);
             var key = new Key(Config);
@@ -133,7 +133,7 @@ namespace Alexandria.net.Communication
                 throw;
             }
 
-            return finalResponse == null ? null : contentdata;
+            return finalResponse;
         }
         #endregion
 
