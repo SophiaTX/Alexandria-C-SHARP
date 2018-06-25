@@ -41,18 +41,18 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="to">string to</param>
         /// <param name="memo">string memo</param>
         /// <param name="amount">the amount to transfer</param>
+        /// <param name="privateKey"></param>
         /// <returns>Returns Transaction object</returns>
-        public AccountResponse Transfer(string from, string to, string memo,string amount )
+        public AccountResponse Transfer(string from, string to, string memo, string amount, string privateKey)
         {
             try
             {
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {from, to, memo, amount};
                 var result = SendRequest(reqname, @params);
-                
+
                 var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
-                var broadcast = new BroadCastTransactionProcess(Config);
-                var response = broadcast.StartBroadcasting(contentdata);
+                var response = StartBroadcasting(contentdata, privateKey);
                 return response == null ? null : contentdata;
             }
             catch (Exception ex)
@@ -61,6 +61,7 @@ namespace Alexandria.net.API.WalletFunctions
                 throw;
             }
         }
+
         /// <summary>
         /// Transfer STEEM into a vesting fund represented by vesting shares (VESTS). VESTS are required to vesting
         /// for a minimum of one coin year and can be withdrawn once a week over a two year withdraw period.
@@ -69,18 +70,18 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="from">The account the STEEM is coming fro</param>
         /// <param name="to">The account getting the VESTS</param>
         /// <param name="amount">The amount of STEEM to vest i.e. "100.00 STEEM"</param>
+        /// <param name="privateKey"></param>
         /// <returns>Returns Transaction object</returns>
-        public AccountResponse TransferToVesting(string from, string to, string amount)
+        public AccountResponse TransferToVesting(string from, string to, string amount, string privateKey)
         {
             try
             {
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {from, to, amount};
                 var result = SendRequest(reqname, @params);
-                
+
                 var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
-                var broadcast = new BroadCastTransactionProcess(Config);
-                var response = broadcast.StartBroadcasting(contentdata);
+                var response = StartBroadcasting(contentdata, privateKey);
                 return response == null ? null : contentdata;
             }
             catch (Exception ex)
@@ -91,12 +92,42 @@ namespace Alexandria.net.API.WalletFunctions
         }
         
         /// <summary>
+        /// Set up a vesting withdraw request. The request Is fulfilled once a week over the next two years (104 weeks).
+        /// The amount of vests to withdrawover the Next two
+        ///        years. Each week (amount/104) shares are withdrawn And depositted
+        ///        back as STEEM. i.e. "10.000000 VESTS"
+        /// </summary>
+        /// <param name="from">account vests are drawn from </param>
+        /// <param name="vestingShares"> The amount should be in the format "10.0000 VESTS" showing amount and currency symbol</param>
+        /// <param name="privateKey"></param>
+        /// <returns></returns>
+        public AccountResponse WithdrawVesting(string @from, string vestingShares, string privateKey)
+        {
+            try
+            {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+                var @params = new ArrayList {from, vestingShares};
+                var result = SendRequest(reqname, @params);
+
+                var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
+                var response = StartBroadcasting(contentdata, privateKey);
+                return response == null ? null : contentdata;
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+                throw;
+            }
+        }
+
+
+        /// <summary>
         /// Returns the balance of the given account and UIA
         /// </summary>
         /// <param name="accountName">string accountName</param>
         /// <param name="assetSymbol">string assetSymbol</param>
         /// <returns>Returns retruns ulong Accournt balance</returns>
-        public ulong GetAccountUiaBalance(string accountName, string assetSymbol)
+        private ulong GetAccountUiaBalance(string accountName, string assetSymbol)
         {
             try
             {
@@ -193,7 +224,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// </summary>
         /// <param name="assetSymbol">string assetSymbol</param>
         /// <returns>Returns Json object with details combining</returns>
-        public Authority GetUiaAuthority(string assetSymbol)
+        private Authority GetUiaAuthority(string assetSymbol)
         {
             try
             {

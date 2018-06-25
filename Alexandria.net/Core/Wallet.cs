@@ -21,15 +21,7 @@ namespace Alexandria.net.Core
 		/// <summary>
 		/// 
 		/// </summary>
-		public Cryptography Cryptography { get; }
-		/// <summary>
-		/// 
-		/// </summary>
 		public Key Key { get; }
-		/// <summary>
-		/// 
-		/// </summary>
-		public Network Network { get; }
 		/// <summary>
 		/// 
 		/// </summary>
@@ -57,9 +49,7 @@ namespace Alexandria.net.Core
 		{
 			Account = new Account(config);
 			Asset = new Asset(config);
-			Cryptography = new Cryptography(config);
 			Key = new Key(config);
-			Network = new Network(config);
 			Transaction = new Transaction(config);
 			Witness = new Witness(config);
 			Data = new Data(config, blockchainConfig);

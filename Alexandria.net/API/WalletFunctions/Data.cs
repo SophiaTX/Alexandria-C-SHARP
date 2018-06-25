@@ -1,12 +1,15 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using Alexandria.net.Communication;
 using Alexandria.net.Enums;
 using Alexandria.net.Extensions;
 using Alexandria.net.Logging;
 using Alexandria.net.Messaging.Receiver;
 using Alexandria.net.Messaging.Responses.DTO;
 using Alexandria.net.Settings;
+using Newtonsoft.Json;
 using ILogger = Alexandria.net.Logging.ILogger;
 using Logger = Alexandria.net.Logging.Logger;
 
@@ -15,12 +18,11 @@ namespace Alexandria.net.API.WalletFunctions
     /// <inheritdoc />
     /// <summary>
     /// </summary>
-    public class Data : Network
+    public class Data : RpcConnection
     {
         #region member variables
 
         private readonly ILogger _logger;
-        private readonly Cryptography _cryptography;
         private readonly IBlockchainConfig _blockchainConfig;
 
         #endregion
@@ -36,37 +38,48 @@ namespace Alexandria.net.API.WalletFunctions
         {
             var assemblyname = Assembly.GetExecutingAssembly().GetName().Name;
             _logger = new Logger(LoggingType.Server, assemblyname);
-            _cryptography = new Cryptography(config);
             _blockchainConfig = blockchainConfig;
         }
 
         #endregion
 
-        #region methods - public
+        #region PublicMethods
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="senderdata"></param>
+        /// <param name="privateKey"></param>
         /// <returns></returns>
         public bool Send(SenderData senderdata)
         {
-            bool result;
+            var result = false;
             try
             {
-                var operations = new List<string>();
+                var operations = new List<AccountResponse>();
                 foreach (var doc in senderdata.Documents)
                 {
                     var operation = MakeCustomJsonOperation(senderdata.Sender, senderdata.Recipients, senderdata.AppId,
                         doc);
-                    if (operation != string.Empty)
+                    if (operation != null)
                         operations.Add(operation);
                 }
 
                 if (operations.Count == 0) return false;
-                var transaction = MakeTransaction(operations);
-                if (transaction == string.Empty) return false;
-                result = _cryptography.SignAndSendTransaction(transaction, senderdata.PrivateKey);
+
+                foreach (var operation in operations)
+                {
+                    var resp = StartBroadcasting(operation, senderdata.PrivateKey);
+                    if (resp != null)
+                    {
+                        result = true;
+                    }
+                    else
+                    {
+                        result = false;
+                        break;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -81,28 +94,38 @@ namespace Alexandria.net.API.WalletFunctions
         /// 
         /// </summary>
         /// <param name="senderdata"></param>
+        /// <param name="privateKey"></param>
         /// <returns></returns>
-        public bool SendBinary(SenderData senderdata)
+        public bool SendBinary(SenderData senderdata, string privateKey)
         {
-            bool result;
+            var result = false;
             try
             {
-                var operations = new List<string>();
+                var operations = new List<AccountResponse>();
                 foreach (var doc in senderdata.DocumentChars)
                 {
                     var operation = MakeCustomBinaryOperation(senderdata.Sender, senderdata.Recipients,
                         senderdata.AppId,
                         doc);
-                    if (operation != string.Empty)
+                    if (operation != null)
                         operations.Add(operation);
                 }
 
                 if (operations.Count == 0) return false;
-
-                var transaction = MakeTransaction(operations);
-                if (transaction == string.Empty) return false;
-                result = _cryptography.SignAndSendTransaction(transaction, senderdata.PrivateKey);
-
+                
+                foreach (var operation in operations)
+                {
+                    var resp = StartBroadcasting(operation, privateKey);
+                    if (resp != null)
+                    {
+                        result = true;
+                    }
+                    else
+                    {
+                        result = false;
+                        break;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -118,13 +141,14 @@ namespace Alexandria.net.API.WalletFunctions
         /// 
         /// </summary>
         /// <param name="senderdata"></param>
+        /// <param name="privateKey"></param>
         /// <returns></returns>
-        public bool SendBinaryBase58(SenderData senderdata)
+        public bool SendBinaryBase58(SenderData senderdata, string privateKey)
         {
-            bool result;
+            var result = false;
             try
             {
-                var operations = new List<string>();
+                var operations = new List<AccountResponse>();
                 foreach (var doc in senderdata.Documents)
                 {
                     var operation = MakeCustomBinaryBase58Operation(senderdata.Sender, senderdata.Recipients,
@@ -134,9 +158,19 @@ namespace Alexandria.net.API.WalletFunctions
 
                 if (operations.Count == 0) return false;
 
-                var transaction = MakeTransaction(operations);
-                if (transaction == string.Empty) return false;
-                result = _cryptography.SignAndSendTransaction(transaction, senderdata.PrivateKey);
+                foreach (var operation in operations)
+                {
+                    var resp = StartBroadcasting(operation, privateKey);
+                    if (resp != null)
+                    {
+                        result = true;
+                    }
+                    else
+                    {
+                        result = false;
+                        break;
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -177,6 +211,114 @@ namespace Alexandria.net.API.WalletFunctions
             return result;
         }
 
+        #endregion
+        
+        #region PrivateMethods
+                /// <summary>
+        /// </summary>
+        /// <param name="sender">string sender</param>
+        /// <param name="recipients">List of string recipients</param>
+        /// <param name="appId">ulong appId</param>
+        /// <param name="document">string document</param>
+        /// <returns></returns>
+        private AccountResponse MakeCustomJsonOperation(string sender, List<string> recipients, ulong appId,
+            string document)
+        {
+            try
+            {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+                var @params = new ArrayList {sender, recipients, appId, document};
+                var response = SendRequest(reqname, @params);
+                return JsonConvert.DeserializeObject<AccountResponse>(response);
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+                throw;
+            }
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="recipients"></param>
+        /// <param name="appId"></param>
+        /// <param name="document"></param>
+        /// <returns></returns>
+        private AccountResponse MakeCustomBinaryOperation(string sender, List<string> recipients, ulong appId,
+            List<char> document)
+        {
+            try
+            {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+                var @params = new ArrayList {sender, recipients, appId, document};
+                var response = SendRequest(reqname, @params);
+                return JsonConvert.DeserializeObject<AccountResponse>(response);
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+                throw;
+            }
+
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="recipients"></param>
+        /// <param name="appId"></param>
+        /// <param name="document"></param>
+        /// <returns></returns>
+        private AccountResponse MakeCustomBinaryBase58Operation(string sender, List<string> recipients, ulong appId,
+            string document)
+        {
+            try
+            {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+                var @params = new ArrayList {sender, recipients, appId, document};
+                var response = SendRequest(reqname, @params);
+                return JsonConvert.DeserializeObject<AccountResponse>(response);
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+                throw;
+            }
+
+        }
+
+        /// <summary>
+        /// Allowed options for search_type are "by_sender", "by_recipient", "by_sender_datetime", "by_recipient_datetime".
+        /// Account is then either sender or recevier, and start is either index od ISO time stamp.
+        /// </summary>
+        /// <param name="appId"></param>
+        /// <param name="searchType"></param>
+        /// <param name="account"></param>
+        /// <param name="start"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        private Dictionary<ulong, ReceiverRecipe> GetReceivedDocuments(ulong appId, string searchType,
+            string account, string start, uint count)
+        {
+            try
+            {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+                var @params = new ArrayList {appId, searchType, account, start, count};
+                var result = SendRequest(reqname, @params);
+                return JsonConvert.DeserializeObject<Dictionary<ulong, ReceiverRecipe>>(result);
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+                throw;
+            }
+
+        }
         #endregion
     }
 }

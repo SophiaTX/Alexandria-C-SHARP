@@ -1,6 +1,7 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Data;
+using Alexandria.net.Messaging.Receiver;
 using Xunit;
 
 
@@ -9,32 +10,36 @@ namespace UnitTest
     public class WalletTests : BaseTest
     {
         #region Member Variables
+
         private const string Transaction =
-        "{\"ref_block_num\":16364,\"ref_block_prefix\":2217467278,\"expiration\":\"2018-06-20T15:24:06\",\"operations\":[[\"account_create\",{\"fee\":\"0.100000 SPHTX\",\"creator\":\"initminer\",\"new_account_name\":\"sanjiv9999\",\"owner\":{\"weight_threshold\":1,\"account_auths\":[],\"key_auths\":[[\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",1]]},\"active\":{\"weight_threshold\":1,\"account_auths\":[],\"key_auths\":[[\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",1]]},\"memo_key\":\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",\"json_metadata\":\"{}\"}]],\"extensions\":[],\"signatures\":[]}";
+            "{\"ref_block_num\":16364,\"ref_block_prefix\":2217467278,\"expiration\":\"2018-06-20T15:24:06\",\"operations\":[[\"account_create\",{\"fee\":\"0.100000 SPHTX\",\"creator\":\"initminer\",\"new_account_name\":\"sanjiv9999\",\"owner\":{\"weight_threshold\":1,\"account_auths\":[],\"key_auths\":[[\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",1]]},\"active\":{\"weight_threshold\":1,\"account_auths\":[],\"key_auths\":[[\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",1]]},\"memo_key\":\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",\"json_metadata\":\"{}\"}]],\"extensions\":[],\"signatures\":[]}";
 
-        private const string _digest = "fe7ee427286c25eb48a39218f4415fd64f59b25aac2978a8a534b542cf8059c9";
-        private const string _sign = "1f7d9cb0bf47d052a35b2f8534e46b0197abc636c0627e9f5ef54fedbd5c5b1d1318ae0983a7281633da849045a267b6f4acbb178d2533ce6d9807f8074f2b6099";
-        private const string _privateKey = /*"5JEhygBY1VAeCrGyLtUin59CVMgrkaTDMH85p4jkEKmNzK7dwvn";//*/"5JPwY3bwFgfsGtxMeLkLqXzUrQDMAsqSyAZDnMBkg7PDDRhQgaV";
+        private const string Digest = "fe7ee427286c25eb48a39218f4415fd64f59b25aac2978a8a534b542cf8059c9";
 
-        private const string _publicKey = /*"8Scq8njrvjHRqh5jV7DR6C6n3KTiFtQVk4tcHs8uYLNA1mUH97";//*/"8Xg6cEbqPCY8jrWFccgbCq5Fjw1okivwwmLDDgqQCQeAgWn8Fr";
+        private const string Sign =
+            "1f7d9cb0bf47d052a35b2f8534e46b0197abc636c0627e9f5ef54fedbd5c5b1d1318ae0983a7281633da849045a267b6f4acbb178d2533ce6d9807f8074f2b6099";
 
-        //private readonly string _signedTransaction =  "{\"ref_block_num\":53889,\"ref_block_prefix\":3757496330,\"expiration\":\"2018-06-19T15:57:27\",\"operations\":[[\"account_create\",{\"fee\":\"0.100000 SPHTX\",\"creator\":\"initminer\",\"new_account_name\":\"sanjiv\",\"owner\":{\"weight_threshold\":1,\"account_auths\":[],\"key_auths\":[[\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",1]]},\"active\":{\"weight_threshold\":1,\"account_auths\":[],\"key_auths\":[[\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",1]]},\"memo_key\":\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",\"json_metadata\":\"{}\"}]],\"extensions\":[],\"signatures\":[\"1f6c5326bc2f3ed482ad72ecae706c627754427eda292b9a100d192a884bb4f3072ddd188773ed5ba4afab36863d74a80abdcdde50adcaaa5fe6754558e3c078f0\"]}";
-        private const string _chainId = "00000000000000000000000000000000";
-        private const string _Brain = "DERRIDE BASCULE NIMBUS DOXA BURL AURALLY OER GOSSIPY BEHALE PINKER INVOKER YAULD HOYLE POTTY TITE WHUD";
-        //private readonly string _memo = "JL6LMz5u6hk2tAHRergn9Esnyg8gXAnPRhbLUszRW4pqoBjf8BynbfzXWjGzyehZKvdM5w3FSrN4kUfQyPeYqmCGivdMkU7TjKaU";
+        private const string PrivateKey = "5KGL7MNAfwCzQ8DAq7DXJsneXagka3KNcjgkRayJoeJUucSLkev";
+        private const string PublicKey = "8Xg6cEbqPCY8jrWFccgbCq5Fjw1okivwwmLDDgqQCQeAgWn8Fr";
+        private const string ChainId = "00000000000000000000000000000000";
+
+        private const string Brain =
+            "DERRIDE BASCULE NIMBUS DOXA BURL AURALLY OER GOSSIPY BEHALE PINKER INVOKER YAULD HOYLE POTTY TITE WHUD";
+
         #endregion
-        
+
         #region Witness Methods
-        
+
         [Fact]
         public void GetActiveWitness()
         {
             _client.Wallet.Witness.GetActiveWitnesses();
         }
+
         [Fact]
         public void ListWitnesses()
         {
-            _client.Wallet.Witness.ListWitnesses("initminer",10);
+            _client.Wallet.Witness.ListWitnesses("initminer", 10);
         }
 
         [Fact]
@@ -42,118 +47,133 @@ namespace UnitTest
         {
             _client.Wallet.Witness.GetWitness("initminer");
         }
-        
+
         [Fact]
         public void VoteForWitness()
         {
-            _client.Wallet.Witness.VoteForWitness("test101","initminer",true);
+            _client.Wallet.Witness.VoteForWitness("test101", "initminer", true, PrivateKey);
         }
-        
+
         #endregion
-        
+
         #region Transaction Methods
-        
+
         [Fact]
         public void GetFeedHistory()
         {
             _client.Wallet.Transaction.GetFeedHistory();
         }
+
         [Fact]
         public void GetAbout()
         {
             _client.Wallet.Transaction.About();
         }
+
         [Fact]
         public void Help()
         {
             _client.Wallet.Transaction.Help();
         }
+
         [Fact]
         public void Info()
         {
             _client.Wallet.Transaction.Info();
         }
+
         [Fact]
         public void GetBlock()
         {
             _client.Wallet.Transaction.GetBlock(1983);
-            
-        } 
+
+        }
+
         [Fact]
         public void get_ops_in_block()
         {
-            _client.Wallet.Transaction.GetOpsInBlock(1983,true);
+            _client.Wallet.Transaction.GetOpsInBlock(1983, true);
         }
-        
+
         [Fact]
         public void WithdrawVesting()
         {
-            _client.Wallet.Transaction.WithdrawVesting("test106","10.000000 VESTS"); 
+            _client.Wallet.Asset.WithdrawVesting("test106", "10.000000 VESTS", PrivateKey);
         }
-        
-        
+
         [Fact]
         public void GetTransaction()
         {
             _client.Wallet.Transaction.GetTransaction("2095fecb2a679dd8a1cee16472c4c5fe9edcc01d");
 
         }
-        
+
         [Fact]
         public void set_voting_proxy()
         {
-            _client.Wallet.Transaction.SetVotingProxy("test101","test103");
+            _client.Wallet.Account.SetVotingProxy("test101", "test103", PrivateKey);
 
         }
-        
+
         #endregion
-        
+
         #region Key Methods
-        
+
         [Fact]
         public void GeneratePrivateKey()
-        {                     
-            _client.Wallet.Key.GeneratePrivateKey(new byte[51],new byte[53]);      
+        {
+            _client.Wallet.Key.GeneratePrivateKey(new byte[51], new byte[53]);
         }
+
         [Fact]
         public void GetTransactionDigest()
-        {           
-            _client.Wallet.Key.GetTransactionDigest(Transaction,_chainId,new byte[64]);
-             
-        }[Fact]
-        public void GetPublicKey()
-        {           
-            _client.Wallet.Key.GetPublicKey("5KGL7MNAfwCzQ8DAq7DXJsneXagka3KNcjgkRayJoeJUucSLkev",new byte[53]);
-             
-        }[Fact]
-        public void GenerateKeyPairFromBrainKey()
-        {           
-            _client.Wallet.Key.GenerateKeyPairFromBrainKey(_Brain,new byte[51],new byte[53]);
-             
-        }[Fact]
-        public void VerifySignaturet()
-        {           
-            _client.Wallet.Key.VeriFySignature(_digest,_publicKey,_sign);
-             
+        {
+            _client.Wallet.Key.GetTransactionDigest(Transaction, ChainId, new byte[64]);
+
         }
+
+        [Fact]
+        public void GetPublicKey()
+        {
+            _client.Wallet.Key.GetPublicKey("5KGL7MNAfwCzQ8DAq7DXJsneXagka3KNcjgkRayJoeJUucSLkev", new byte[53]);
+
+        }
+
+        [Fact]
+        public void GenerateKeyPairFromBrainKey()
+        {
+            _client.Wallet.Key.GenerateKeyPairFromBrainKey(Brain, new byte[51], new byte[53]);
+
+        }
+
+        [Fact]
+        public void VerifySignaturet()
+        {
+            _client.Wallet.Key.VerifySignature(Digest, PublicKey, Sign);
+
+        }
+
         [Fact]
         public void SignedDigest()
-        {           
-            _client.Wallet.Key.SignDigest(_digest,_privateKey,new byte[130]);
-            
-        }[Fact]
+        {
+            _client.Wallet.Key.SignDigest(Digest, PrivateKey, new byte[130]);
+
+        }
+
+        [Fact]
         public void EncryptMemo()
-        {           
-            _client.Wallet.Key.EncryptMemo("Hello World",_privateKey,_publicKey,new byte[100]);
-             
+        {
+            _client.Wallet.Key.EncryptMemo("Hello World", PrivateKey, PublicKey, new byte[100]);
+
         }
 
         [Fact]
         public void AddSignature()
-        {           
-            _client.Wallet.Key.AddSignature(Transaction,_sign,new byte[Transaction.Length+200]);
-            
+        {
+            _client.Wallet.Key.AddSignature(Transaction, Sign, new byte[Transaction.Length + 200]);
+
         }
+
         [Fact]
         public void SuggestBrainKey()
         {
@@ -164,13 +184,14 @@ namespace UnitTest
         [Fact]
         public void NormalizeBrainKey()
         {
-            _client.Wallet.Key.NormalizeBrainKey(_Brain);
+            _client.Wallet.Key.NormalizeBrainKey(Brain);
 
         }
-        
+
         #endregion
-        
+
         #region Account Methods
+
         [Fact]
         public void CreateAccount()
         {
@@ -178,113 +199,99 @@ namespace UnitTest
                 "STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz",
                 "STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz",
                 "STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz");
-           
-            
         }
+
         [Fact]
         public void GetAccount()
         {
             _client.Wallet.Account.GetAccount("test106");
 
         }
-        
+
         [Fact]
         public void DeleteAccount()
         {
-           _client.Wallet.Account.DeleteAccount("test102");
+            _client.Wallet.Account.DeleteAccount("test102", PrivateKey);
 
         }
+
         [Fact]
         public void update_account()
         {
-            _client.Wallet.Account.UpdateAccount("test101","{}","STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz","STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz","STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz");
-
+            _client.Wallet.Account.UpdateAccount("test101", "{}",
+                "STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz",
+                "STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz",
+                "STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz", PrivateKey);
         }
-        
+
         [Fact]
         public void update_witness()
         {
             //todo - test this function
-            _client.Wallet.Account.UpdateWitness("test101","url","blockkey","pros");
+            _client.Wallet.Witness.UpdateWitness("test101", "url", "blockkey", "pros");
 
         }
+
         #endregion
-        
+
         #region Asset Methods
 
         [Fact]
         public void Transfer()
         {
-            _client.Wallet.Asset.Transfer("test106","test101","100.000 STEEM","STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz");
+            _client.Wallet.Asset.Transfer("test106", "test101", "100.000 STEEM",
+                "STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz", PrivateKey);
 
         }
+
         [Fact]
         public void TransferToVesting()
         {
-            _client.Wallet.Asset.TransferToVesting("test106","test101","100.000 STEEM");
+            _client.Wallet.Asset.TransferToVesting("test106", "test101", "100.000 STEEM", PrivateKey);
 
         }
+
         #endregion
-       
-        /*
-       //--------Application
-        [Fact]
-        public void create_application()
-        {
-            _client.Wallet.Account.withdrawVestings("sanjiv",67557);
 
+
+        #region Data Methods
+
+        [Fact]
+        public void Send()
+        {
+            var data = new SenderData
+            {
+                AppId = 1,
+                PrivateKey = PrivateKey,
+                Recipients = new List<string> {"test101"},
+                Sender = "test103",
+                Documents = new List<string> {"the quick brown fox jumped over something..."}
+            };
+            var result = _client.Wallet.Data.Send(data);
+            Console.WriteLine(result);
         }
-        [Fact]
-        public void update_application()
-        {
-            _client.Wallet.Account.withdrawVestings("sanjiv",67557);
 
+        [Fact]
+        public void SendBinary()
+        {
+            //_client.Wallet.Data.SendBinary();
         }
-        [Fact]
-        public void delete_application()
-        {
-            _client.Wallet.Account.withdrawVestings("sanjiv",67557);
 
+        [Fact]
+        public void SendBinaryBase58()
+        {
+            //_client.Wallet.Data.SendBinaryBase58();
         }
-        [Fact]
-        public void buy_application()
-        {
-            _client.Wallet.Account.withdrawVestings("sanjiv",67557);
 
+        [Fact]
+        public void Receive()
+        {
+            //_client.Wallet.Data.Receive();
         }
-        [Fact]
-        public void cancel_application_buying()
-        {
-            _client.Wallet.Account.withdrawVestings("sanjiv",67557);
 
-        }
-        [Fact]
-        public void get_application_buyings()
-        {
-            _client.Wallet.Account.withdrawVestings("sanjiv",67557);
+        #endregion
 
-        }
-        //----------custom_api
-        [Fact]
-        public void send_custom_json_document()
-        {
-            _client.Wallet.Account.withdrawVestings("sanjiv",67557);
 
-        }
-        [Fact]
-        public void send_custom_binary_document()
-        {
-            _client.Wallet.Account.withdrawVestings("sanjiv",67557);
-
-        }
-        [Fact]
-        public void get_received_documents()
-        {
-            _client.Wallet.Account.withdrawVestings("sanjiv",67557);
-
-        }*/
-        
-        
     }
 }
 

@@ -15,11 +15,12 @@ namespace Alexandria.net.API.WalletFunctions
     /// Wallet Witness Functions
     /// </para>
     public class Witness : RpcConnection
-    {   private readonly ILogger _logger;
+    {
+        private readonly ILogger _logger;
 
-        
+
+        /// <inheritdoc />
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="config">the Configuration paramaters for the endpoint and ports</param>
         public Witness(IConfig config) :
@@ -38,43 +39,23 @@ namespace Alexandria.net.API.WalletFunctions
         {
             try
             {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);  
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var result = SendRequest(reqname);
                 var contentdata = JsonConvert.DeserializeObject<ActiveWitnessResponse>(result);
                 return contentdata;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
-            
-        }
 
-        /// <summary>
-        /// Returns the queue Of pow miners waiting To produce blocks.
-        /// </summary>
-        /// <returns></returns>
-        private string GetMinerQueue()
-        {
-            try
-            {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);  
-                return SendRequest(reqname);
-            }
-            catch(Exception ex)
-            {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
-                throw;
-            }
-            
         }
 
         /// <summary>
         /// Returns information about the given witness.
         /// @param owner_account the name or id of the witness account owner, or the id of the witness
-       /// @returns the information about the witness stored in the block chain
-         
+        /// @returns the information about the witness stored in the block chain
         /// </summary>
         /// <param name="ownerAccount">the name Or id Of the witness account owner, Or the id of the witness</param>
         /// <returns>the information about the witness stored In the block chain</returns>
@@ -82,34 +63,28 @@ namespace Alexandria.net.API.WalletFunctions
         {
             try
             {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);  
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {ownerAccount};
-                var result= SendRequest(reqname, @params);
+                var result = SendRequest(reqname, @params);
                 var contentdata = JsonConvert.DeserializeObject<GetWitnessResponse>(result);
                 return contentdata;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
-            
+
         }
 
         /// <summary>
-       /// Lists all witnesses registered in the blockchain.
-       /// This returns a list of all account names that own witnesses, and the associated witness id,
-      /// sorted by name.  This lists witnesses whether they are currently voted in or not.
-       ///
-       /// Use the \c lowerbound and limit parameters to page through the list.  To retrieve all witnesss,
-       /// start by setting \c lowerbound to the empty string \c "", and then each iteration, pass
-       /// the last witness name returned as the \c lowerbound for the next \c list_witnesss() call.
-       ///
-       /// @param lowerbound the name of the first witness to return.  If the named witness does not exist,
-       ///                   the list will start at the witness that comes after \c lowerbound
-       /// @param limit the maximum number of witnesss to return (max: 1000)
-       /// @returns a list of witnesss mapping witness names to witness ids
-       
+        /// Lists all witnesses registered in the blockchain.
+        /// This returns a list of all account names that own witnesses, and the associated witness id,
+        /// sorted by name.  This lists witnesses whether they are currently voted in or not.
+        ///
+        /// Use the \c lowerbound and limit parameters to page through the list.  To retrieve all witnesss,
+        /// start by setting \c lowerbound to the empty string \c "", and then each iteration, pass
+        /// the last witness name returned as the \c lowerbound for the next \c list_witnesss() call.
         /// </summary>
         /// <param name="lowerbound">the name Of the first witness To Return.
         /// If the named witness does Not exist, the list will start at the witness thatcomes after 'lowerbound'</param>
@@ -119,44 +94,21 @@ namespace Alexandria.net.API.WalletFunctions
         {
             try
             {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);  
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {lowerbound, limit};
-                var result= SendRequest(reqname, @params);
+                var result = SendRequest(reqname, @params);
                 var contentdata = JsonConvert.DeserializeObject<ActiveWitnessResponse>(result);
                 return contentdata;
-            }
-            catch(Exception ex)
-            {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
-                throw;
-            }
-            
-        }
-
-        /// <summary>
-        /// Update a witness Object owned by the given account.
-        /// </summary>
-        /// <param name="witnessName">The name Of the witness's owner account.
-        /// Also accepts the ID of the owner account Or the ID of the witness.</param>
-        /// <param name="url">Same as for create_witness. The empty string makes it remain the same.</param>
-        /// <param name="blockSigningKey">The New block signing public key. The empty string makes it remain the same.</param>
-        /// <param name="props">The chain properties the witness Is voting On. </param>
-        /// <returns></returns>
-        public string UpdateWitness(string witnessName, string url, string blockSigningKey, JArray props)
-        {
-            try
-            {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);  
-                var @params = new ArrayList {witnessName, url, blockSigningKey, props};
-                return SendRequest(reqname, @params);
             }
             catch (Exception ex)
             {
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
+
         }
 
+        
         /// <summary>
         /// Vote on a comment to be paid Sophia
         /// </summary>
@@ -169,16 +121,16 @@ namespace Alexandria.net.API.WalletFunctions
         {
             try
             {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);  
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {voter, author, permlink, weight};
                 return SendRequest(reqname, @params);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
-                throw ;
+                throw;
             }
-           
+
         }
 
         /// <summary>
@@ -189,25 +141,51 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="accountToVoteWith">The account voting For a witness</param>
         /// <param name="witnessToVoteFor">The witness that Is being voted For</param>
         /// <param name="approve">true if the account Is voting for the account to be able to be a block produce</param>
+        /// <param name="privateKey"></param>
         /// <returns></returns>
-        public AccountResponse VoteForWitness(string accountToVoteWith, string witnessToVoteFor, bool approve)
+        public AccountResponse VoteForWitness(string accountToVoteWith, string witnessToVoteFor, bool approve,
+            string privateKey)
         {
             try
             {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);      
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {accountToVoteWith, witnessToVoteFor, approve};
                 var result = SendRequest(reqname, @params);
                 var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
-                var broadcast = new BroadCastTransactionProcess(Config);
-                var response = broadcast.StartBroadcasting(contentdata);
+
+                var response = StartBroadcasting(contentdata, privateKey);
                 return response == null ? null : contentdata;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
-                throw ;
-            }   
+                throw;
+            }
         }
+        
+        /// <summary>
+        /// Update an account to witness.Requires XXX vested SPHTX before updating.
+        /// </summary>
+        /// <param name="WitnessAccountName">Inout string accountName</param>
+        /// <param name="url">A URL containing some information about the witness.  The empty string makes it remain the same.</param>
+        /// <param name="blockKey">The new block signing public key.  The empty string disables block production.</param>
+        /// <param name="pros">The chain properties the witness is voting on</param>
+        /// <returns>Returns true if success or false for failed try</returns>
+        public bool UpdateWitness(string WitnessAccountName, string url, string blockKey,string pros)
+        {
+            try
+            {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+                var @params = new ArrayList {WitnessAccountName, url, blockKey};
+                var result = SendRequest(reqname, @params);
+                return result == "true";
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+                throw;
+            }
 
+        }
     }
 }

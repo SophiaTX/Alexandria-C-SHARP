@@ -4,9 +4,11 @@ using System.Net.Http;
  using System.Reflection;
  using System.Text;
 using System.Threading.Tasks;
+ using Alexandria.net.API.WalletFunctions;
  using Alexandria.net.Enums;
  using Alexandria.net.Logging;
  using Alexandria.net.Mapping;
+ using Alexandria.net.Messaging.Responses.DTO;
  using Alexandria.net.Settings;
  using Newtonsoft.Json;
 
@@ -45,11 +47,11 @@ namespace Alexandria.net.Communication
         /// RPCConnection Constructor
         /// </summary>
         /// <param name="config">the Configuration paramaters for the endpoint and ports</param>
-        /// <param name="Wallet"></param>
-        protected RpcConnection(IConfig config, bool Wallet = true)
+        /// <param name="wallet"></param>
+        protected RpcConnection(IConfig config, bool wallet = true)
         {
             Config = config;
-            _uri = string.Format("http://{0}:{1}{2}", Config.Hostname, Wallet ? Config.WalletPort : config.DaemonPort,
+            _uri = string.Format("http://{0}:{1}{2}", Config.Hostname, wallet ? Config.WalletPort : config.DaemonPort,
                 config.Api);
             _client = new HttpClient();
             _jsonRpc = Config.Version;
@@ -74,7 +76,35 @@ namespace Alexandria.net.Communication
             return resp.Result;
         }
 
+        protected AccountResponse StartBroadcasting(AccountResponse contentdata, string privateKey)
+        {
+            var trans = new Transaction(Config);
+            var key = new Key(Config);
+            TransactionResponse finalResponse;
+            try
+            {
+                var transresponse = trans.CreateSimpleTransaction(contentdata);
+                if (transresponse == null) return null;
 
+                var aboutresponse = trans.About();
+                if (aboutresponse == null) return null;
+
+                var transaction = JsonConvert.SerializeObject(transresponse.result);
+                var digest = key.GetTransactionDigest(transaction, aboutresponse.result.chain_id, new byte[64]);
+
+                var signature = key.SignDigest(digest, privateKey, new byte[130]);
+                var response = key.AddSignature(transaction, signature, new byte[transaction.Length + 200]);
+                finalResponse = trans.BroadcastTransaction(response);
+                trans.SerializeTransaction(response);
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+                throw;
+            }
+
+            return finalResponse == null ? null : contentdata;
+        }
         #endregion
 
         #region private methods
