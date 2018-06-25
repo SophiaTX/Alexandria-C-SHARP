@@ -1,15 +1,10 @@
 ﻿using System;
-using System.ComponentModel;
 using System.IO;
 using System.Reflection;
 using Alexandria.net.Enums;
 using Alexandria.net.Logging;
 using Alexandria.net.Settings;
 using Newtonsoft.Json;
-
-//todo - link in the send and receive
-//todo - timeout period to be cojnfigurable :: specified in the config file
-
 
 namespace Alexandria.net.Core
 {
@@ -18,19 +13,7 @@ namespace Alexandria.net.Core
     /// </summary>
     public class SophiaClient
     {
-        #region Member Variables
-
-        private Config _config;
-        private BlockchainConfig _blockchainConfig;
-
-        #endregion
-
         #region Properties
-
-        /// <summary>
-        /// The blockchain daemon
-        /// </summary>
-        public Daemon Daemon { get; }
 
         /// <summary>
         /// the blockchain wallet
@@ -49,19 +32,19 @@ namespace Alexandria.net.Core
         /// <param name="walletPort">the wallet rpc endpoint post</param>
         public SophiaClient(string hostname = "", ushort daemonPort = 0, ushort walletPort = 0)
         {
-            _config = LoadJson<Config>("config.json");
-            _blockchainConfig = LoadJson<BlockchainConfig>("blockchainconfig.json");
-            if (_config != null)
+            var config = LoadJson<Config>("config.json");
+            var blockchainConfig = LoadJson<BlockchainConfig>("blockchainconfig.json");
+            if (config != null)
             {
                 if (hostname != "")
-                    _config.Hostname = hostname;
+                    config.Hostname = hostname;
                 if (daemonPort != 0)
-                    _config.DaemonPort = daemonPort;
+                    config.DaemonPort = daemonPort;
                 if (walletPort != 0)
-                    _config.WalletPort = walletPort;
+                    config.WalletPort = walletPort;
 
-                Daemon = new Daemon(_config);
-                Wallet = new Wallet(_config, _blockchainConfig);
+                //Daemon = new Daemon(_config);
+                Wallet = new Wallet(config, blockchainConfig);
             }
             else
             {
@@ -74,38 +57,16 @@ namespace Alexandria.net.Core
 
         #region Methods
 
-        private void LoadJson()
+        private static T LoadJson<T>(string filename)
         {
-            var filename = $"{AssemblyDirectory}/config.json";
-            if (File.Exists(filename))
+            try
             {
-                _config = JsonConvert.DeserializeObject<Config>(File.ReadAllText(filename));
-            }
-            else
-            {
-                _config = new Config
+                var fullfilename = $"{AssemblyDirectory}/{filename}";
+                if (File.Exists(fullfilename))
                 {
-                    LoggingType = LoggingType.File,
-                    BuildMode = BuildMode.Prod,
-                    Hostname = "127.0.0.1",
-                    DaemonPort = 8091,
-                    WalletPort = 8091,
-                    Api = "/rpc",
-                    Version = "2.0"
-                };
-                File.WriteAllText(filename, JsonConvert.SerializeObject(_config));
-            }
-        }
+                    return JsonConvert.DeserializeObject<T>(File.ReadAllText(fullfilename));
+                }
 
-        private T LoadJson<T>(string filename)
-        {
-            var fullfilename = $"{AssemblyDirectory}/{filename}";
-            if (File.Exists(fullfilename))
-            {
-                return JsonConvert.DeserializeObject<T>(File.ReadAllText(fullfilename));
-            }
-            else
-            {
                 if (typeof(T) == typeof(Config))
                 {
                     var config = new Config
@@ -133,7 +94,12 @@ namespace Alexandria.net.Core
                     File.WriteAllText(fullfilename, JsonConvert.SerializeObject(blockchainconfig));
                 }
             }
-
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            
             return default(T);
         }
 
