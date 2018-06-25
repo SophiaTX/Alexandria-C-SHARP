@@ -20,11 +20,11 @@ namespace UnitTest
             "1f7d9cb0bf47d052a35b2f8534e46b0197abc636c0627e9f5ef54fedbd5c5b1d1318ae0983a7281633da849045a267b6f4acbb178d2533ce6d9807f8074f2b6099";
         //-----client1
         private const string PrivateKey = "5KGL7MNAfwCzQ8DAq7DXJsneXagka3KNcjgkRayJoeJUucSLkev";
-        private const string PublicKey = "STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz";
+        private const string PublicKey = "SPH6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz";
         
         //-----client2
         private const string PrivateKey2 = "5HqnQB5R8Yfaq4mALL33kkBGFuSv2kMPxGsjFygHPhk8EqunmXZ";
-        private const string PublicKey2 = "STM6eJ4GcGtay4qvZ7eebXaLkGcXsMhq3WC1GgyQbTLbEd6EVisSm";
+        private const string PublicKey2 = "SPH6eJ4GcGtay4qvZ7eebXaLkGcXsMhq3WC1GgyQbTLbEd6EVisSm";
         
         private const string ChainId = "00000000000000000000000000000000";
 
@@ -207,16 +207,16 @@ namespace UnitTest
         [Fact]
         public void CreateAccount()
         {
-            _client.Wallet.Account.CreateAccount("test101", "{}",
-                "STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz",
-                "STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz",
-                "STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz");
+            _client.Wallet.Account.CreateAccount("test110", "{}",
+                "SPH6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz",
+                "SPH6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz",
+                "SPH6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz");
         }
 
         [Fact]
         public void GetAccount()
         {
-            _client.Wallet.Account.GetAccount("test101");
+            _client.Wallet.Account.GetAccount("test110");
 
         }
 
@@ -230,10 +230,10 @@ namespace UnitTest
         [Fact]
         public void update_account()
         {
-            _client.Wallet.Account.UpdateAccount("test101", "{}",
-                "STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz",
-                "STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz",
-                "STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz", PrivateKey);
+            _client.Wallet.Account.UpdateAccount("test110", "{}",
+                "SPH6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz",
+                "SPH6eJ4GcGtay4qvZ7eebXaLkGcXsMhq3WC1GgyQbTLbEd6EVisSm",
+                "SPH6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz", PrivateKey);
         }
 
         
@@ -303,47 +303,46 @@ namespace UnitTest
 
         #region Application Methods
 
-//        [Fact]
-//        public void create_application()
-//        {
-//            _client.Wallet.Account.withdrawVestings("sanjiv", 67557);
-//
-//        }
-//
-//        [Fact]
-//        public void update_application()
-//        {
-//            _client.Wallet.Account.withdrawVestings("sanjiv", 67557);
-//
-//        }
-//
-//        [Fact]
-//        public void delete_application()
-//        {
-//            _client.Wallet.Account.withdrawVestings("sanjiv", 67557);
-//
-//        }
-//
-//        [Fact]
-//        public void buy_application()
-//        {
-//            _client.Wallet.Account.withdrawVestings("sanjiv", 67557);
-//
-//        }
-//
-//        [Fact]
-//        public void cancel_application_buying()
-//        {
-//            _client.Wallet.Account.withdrawVestings("sanjiv", 67557);
-//
-//        }
-//
-//        [Fact]
-//        public void get_application_buyings()
-//        {
-//            _client.Wallet.Account.withdrawVestings("sanjiv", 67557);
-//
-//        }
+        [Fact]
+        public void CreateApplication()
+        {
+            _client.Wallet.Application.CreateApplication("test101","BoxGame4","http://boxgame.com","genre: Adventure, requirements: Mac OS Sierra",1,PrivateKey);
+
+        }
+        [Fact]
+        public void UpdateApplication()
+        {
+            _client.Wallet.Application.UpdateApplication("test101","BoxGame","test106","http://boxGamers.com","Genre:Action",1,PrivateKey);
+
+        }
+
+        [Fact]
+        public void DeleteApplication()
+        {
+            _client.Wallet.Application.DeleteApplication("test101","BoxGame",PrivateKey);
+
+        }
+
+        [Fact]
+        public void BuyApplication()
+        {
+            _client.Wallet.Application.BuyApplication("test105",10100101,PrivateKey);
+
+        }
+
+        [Fact]
+        public void CancelApplicationBuying()
+        {
+            _client.Wallet.Application.CancelApplicationBuying("test101","test105",10100101,PrivateKey);
+
+        }
+
+        [Fact]
+        public void GetApplicationBuyings()
+        {
+            _client.Wallet.Application.GetApplicationBuyings("test103","by_buyer",10,PrivateKey);
+
+        }
 
 
 

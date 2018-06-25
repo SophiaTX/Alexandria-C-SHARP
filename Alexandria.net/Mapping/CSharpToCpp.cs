@@ -58,10 +58,16 @@
         private const string UpdateWitness  = "update_witness";
         private const string Help  = "help";
         private const string Info  = "info";
-        private string SerializeTransaction = "serialize_transaction";
-        private string MakeCustomJsonOperation = "make_custom_json_operation";
-        private string GetReceivedDocuments = "get_received_documents";
-        private string MakeCustomBinaryOperation = "make_custom_binary_operation";
+        private const string SerializeTransaction = "serialize_transaction";
+        private const string MakeCustomJsonOperation = "make_custom_json_operation";
+        private const string GetReceivedDocuments = "get_received_documents";
+        private const string MakeCustomBinaryOperation = "make_custom_binary_operation";
+        private const string CreateApplication = "create_application";
+        private const string UpdateApplication = "update_application";
+        private const string BuyApplication = "buy_application";
+        private const string DeleteApplication = "delete_application";
+        private const string CancelApplicationBuying = "cancel_application_buying";
+        private const string GetApplicationBuyings = "get_application_buyings";
 
         /// <summary>
         /// 
@@ -183,10 +189,19 @@
                 case "GetReceivedDocuments":
                     return GetReceivedDocuments;
                 case "MakeCustomBinaryOperation":
-                    return "MakeCustomBinaryOperation";
-                
-                
-
+                    return MakeCustomBinaryOperation;
+                case "CreateApplication":
+                    return CreateApplication ;
+                case "DeleteApplication":
+                    return DeleteApplication;
+                case "UpdateApplication":
+                    return UpdateApplication;
+                case "BuyApplication":
+                    return BuyApplication;
+                case "CancelApplicationBuying":
+                    return CancelApplicationBuying;
+                case "GetApplicationBuyings":
+                    return GetApplicationBuyings;               
             }
 
             return string.Empty;

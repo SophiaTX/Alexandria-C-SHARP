@@ -35,6 +35,10 @@ namespace Alexandria.net.Core
 		/// 
 		/// </summary>
 		public Data Data { get; }
+		/// <summary>
+		/// 
+		/// </summary>
+		public Application Application { get; }
 
 		#endregion
 		
@@ -53,6 +57,8 @@ namespace Alexandria.net.Core
 			Transaction = new Transaction(config);
 			Witness = new Witness(config);
 			Data = new Data(config, blockchainConfig);
+			Application=new Application(config);
+			
 		}	
 		#endregion
     }

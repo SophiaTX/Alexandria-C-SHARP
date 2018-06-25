@@ -56,6 +56,38 @@ namespace Alexandria.net.API.WalletFunctions
             var result = false;
             try
             {
+                //var operations = new List<AccountResponse>();
+                foreach (var doc in senderdata.Documents)
+                {
+                    var operation = MakeCustomJsonOperation(senderdata.Sender, senderdata.Recipients, senderdata.AppId,
+                        doc);
+                    if (operation == null) continue;
+                    var resp = StartBroadcasting(operation, senderdata.PrivateKey);
+                    if (resp != null)
+                    {
+                        result = true;
+                    }
+                    else
+                    {
+                        result = false;
+                        break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+                throw;
+            }
+
+            return result;
+        }
+        
+        public bool SendOriginal(SenderData senderdata)
+        {
+            var result = false;
+            try
+            {
                 var operations = new List<AccountResponse>();
                 foreach (var doc in senderdata.Documents)
                 {
@@ -221,15 +253,16 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="appId">ulong appId</param>
         /// <param name="document">string document</param>
         /// <returns></returns>
-        private AccountResponse MakeCustomJsonOperation(string sender, List<string> recipients, ulong appId,
+        private AccountResponse MakeCustomJsonOperation(string sender, List<string> recipients, uint appId,
             string document)
         {
             try
             {
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                var @params = new ArrayList {sender, recipients, appId, document};
+                var @params = new ArrayList {appId, sender, recipients, document};
                 var response = SendRequest(reqname, @params);
-                return JsonConvert.DeserializeObject<AccountResponse>(response);
+                var rrrrrr = JsonConvert.DeserializeObject<CustomJsonResponse>(response).result;
+                return null;
             }
             catch (Exception ex)
             {

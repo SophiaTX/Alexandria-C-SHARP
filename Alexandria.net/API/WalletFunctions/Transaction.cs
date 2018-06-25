@@ -153,6 +153,24 @@ namespace Alexandria.net.API.WalletFunctions
 		/// </summary>
 		/// <param name="operation"></param>
 		/// <returns>Returns Object with block number and other trnasaction details</returns>
+		public TransactionResponse CreateSimpleTransactionTest<T>(T operation)
+		{
+			try
+			{
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+				var @params = new ArrayList {operation};
+				var result= SendRequest(reqname, @params);
+				var contentdata = JsonConvert.DeserializeObject<TransactionResponse>(result);
+				return contentdata;
+			}
+			catch(Exception ex)
+			{
+				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+				throw ;
+			}
+		}
+		
+		
 		public TransactionResponse CreateSimpleTransaction(AccountResponse operation)
 		{
 			try

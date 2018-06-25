@@ -18,7 +18,7 @@ namespace Alexandria.net.Messaging.Receiver
         /// <summary>
         /// 
         /// </summary>
-        public ulong AppId { get; set; }
+        public uint AppId { get; set; }
         /// <summary>
         /// 
         /// </summary>
