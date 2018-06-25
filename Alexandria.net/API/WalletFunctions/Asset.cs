@@ -23,7 +23,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <summary>
         /// asset constructor
         /// </summary>
-        /// <param name="config"></param>
+        /// <param name="config">the Configuration paramaters for the endpoint and ports</param>
         public Asset(IConfig config) :
             base(config)
         {
@@ -192,15 +192,12 @@ namespace Alexandria.net.API.WalletFunctions
             }
             
         }
+        
         /// <summary>
         /// Check for the authority assigned to given UIA, identify by Symbol
         /// </summary>
         /// <param name="assetSymbol">string assetSymbol</param>
         /// <returns>Returns Json object with details combining
-        /// -WeightThreshold
-        /// -AccountAuths
-        /// -KeyAuths
-        /// </returns>
         public Authority GetUiaAuthority(string assetSymbol)
         {
             try
@@ -218,6 +215,7 @@ namespace Alexandria.net.API.WalletFunctions
             }
             
         }
+        
         /// <summary>
         /// Checks if the given UIA has a private key, identify by Sumbol
         /// </summary>

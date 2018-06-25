@@ -1,5 +1,4 @@
-﻿using Alexandria.net.Messaging.Receive.DTO;
-using Xunit;
+﻿using Xunit;
 
 namespace UnitTest
 {

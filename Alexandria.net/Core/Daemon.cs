@@ -17,7 +17,7 @@ namespace Alexandria.net.Core
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="config"></param>
+		/// <param name="config">the Configuration paramaters for the endpoint and ports</param>
 		public Daemon(IConfig config) :
 			base(config)
 		{

@@ -51,7 +51,7 @@ namespace Alexandria.net.Core
 		/// <summary>
 		/// 
 		/// </summary>
-		/// <param name="config"></param>
+		/// <param name="config">the Configuration paramaters for the endpoint and ports</param>
 		/// <param name="blockchainConfig"></param>
 		public Wallet(IConfig config, IBlockchainConfig blockchainConfig)
 		{

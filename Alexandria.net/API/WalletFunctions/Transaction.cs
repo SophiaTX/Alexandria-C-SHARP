@@ -25,7 +25,7 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <summary>
 		/// Wallet Constructor
 		/// </summary>
-		/// <param name="config"></param>
+		/// <param name="config">the Configuration paramaters for the endpoint and ports</param>
 		public Transaction(IConfig config) : base(config)
 		{
 			var assemblyname = Assembly.GetExecutingAssembly().GetName().Name;

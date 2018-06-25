@@ -30,7 +30,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="config"></param>
+        /// <param name="config">the Configuration paramaters for the endpoint and ports</param>
         /// <param name="blockchainConfig"></param>
         public Data(IConfig config, IBlockchainConfig blockchainConfig) : base(config)
         {

@@ -44,7 +44,7 @@ namespace Alexandria.net.Communication
         /// <summary>
         /// RPCConnection Constructor
         /// </summary>
-        /// <param name="config"></param>
+        /// <param name="config">the Configuration paramaters for the endpoint and ports</param>
         /// <param name="Wallet"></param>
         protected RpcConnection(IConfig config, bool Wallet = true)
         {
