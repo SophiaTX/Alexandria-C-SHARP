@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.0",
-    "signature": "179ba0b58a6de0ddb44947c38085d09dd4c70c28"
+    "signature": "d61c4a6c70b1ee7dfae28909d5769b5c9a1881bd"
   },
   "compilationOptions": {},
   "targets": {
@@ -16,46 +16,6 @@
         },
         "runtime": {
           "UnitTest.dll": {}
-        }
-      },
-      "Microsoft.AspNetCore.Hosting.Abstractions/2.0.0": {
-        "dependencies": {
-          "Microsoft.AspNetCore.Hosting.Server.Abstractions": "2.0.0",
-          "Microsoft.AspNetCore.Http.Abstractions": "2.0.0",
-          "Microsoft.Extensions.Configuration.Abstractions": "2.0.0",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.0.0",
-          "Microsoft.Extensions.FileProviders.Abstractions": "2.0.0",
-          "Microsoft.Extensions.Hosting.Abstractions": "2.0.0",
-          "Microsoft.Extensions.Logging.Abstractions": "2.0.0"
-        },
-        "runtime": {
-          "lib/netstandard2.0/Microsoft.AspNetCore.Hosting.Abstractions.dll": {}
-        }
-      },
-      "Microsoft.AspNetCore.Hosting.Server.Abstractions/2.0.0": {
-        "dependencies": {
-          "Microsoft.AspNetCore.Http.Features": "2.0.0",
-          "Microsoft.Extensions.Configuration.Abstractions": "2.0.0"
-        },
-        "runtime": {
-          "lib/netstandard2.0/Microsoft.AspNetCore.Hosting.Server.Abstractions.dll": {}
-        }
-      },
-      "Microsoft.AspNetCore.Http.Abstractions/2.0.0": {
-        "dependencies": {
-          "Microsoft.AspNetCore.Http.Features": "2.0.0",
-          "System.Text.Encodings.Web": "4.4.0"
-        },
-        "runtime": {
-          "lib/netstandard2.0/Microsoft.AspNetCore.Http.Abstractions.dll": {}
-        }
-      },
-      "Microsoft.AspNetCore.Http.Features/2.0.0": {
-        "dependencies": {
-          "Microsoft.Extensions.Primitives": "2.0.0"
-        },
-        "runtime": {
-          "lib/netstandard2.0/Microsoft.AspNetCore.Http.Features.dll": {}
         }
       },
       "Microsoft.CodeCoverage/1.0.3": {
@@ -78,22 +38,6 @@
           "lib/netstandard1.3/Microsoft.DotNet.PlatformAbstractions.dll": {}
         }
       },
-      "Microsoft.Extensions.Configuration.Abstractions/2.0.0": {
-        "dependencies": {
-          "Microsoft.Extensions.Primitives": "2.0.0"
-        },
-        "runtime": {
-          "lib/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.dll": {}
-        }
-      },
-      "Microsoft.Extensions.DependencyInjection/2.0.0": {
-        "dependencies": {
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.0.0"
-        },
-        "runtime": {
-          "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.dll": {}
-        }
-      },
       "Microsoft.Extensions.DependencyInjection.Abstractions/2.0.0": {
         "runtime": {
           "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {}
@@ -109,19 +53,6 @@
         },
         "runtime": {
           "lib/netstandard1.6/Microsoft.Extensions.DependencyModel.dll": {}
-        }
-      },
-      "Microsoft.Extensions.FileProviders.Abstractions/2.0.0": {
-        "dependencies": {
-          "Microsoft.Extensions.Primitives": "2.0.0"
-        },
-        "runtime": {
-          "lib/netstandard2.0/Microsoft.Extensions.FileProviders.Abstractions.dll": {}
-        }
-      },
-      "Microsoft.Extensions.Hosting.Abstractions/2.0.0": {
-        "runtime": {
-          "lib/netstandard2.0/Microsoft.Extensions.Hosting.Abstractions.dll": {}
         }
       },
       "Microsoft.Extensions.Logging/2.0.0": {
@@ -546,7 +477,7 @@
           }
         }
       },
-      "Serilog/2.7.2-dev-01005": {
+      "Serilog/2.7.1": {
         "dependencies": {
           "System.Collections.NonGeneric": "4.3.0"
         },
@@ -554,28 +485,26 @@
           "lib/netstandard1.3/Serilog.dll": {}
         }
       },
-      "Serilog.Extensions.Logging/2.1.0-dev-10193": {
+      "Serilog.Extensions.Logging/2.0.2": {
         "dependencies": {
-          "Microsoft.AspNetCore.Hosting.Abstractions": "2.0.0",
-          "Microsoft.Extensions.DependencyInjection": "2.0.0",
           "Microsoft.Extensions.Logging": "2.0.0",
-          "Serilog": "2.7.2-dev-01005"
+          "Serilog": "2.7.1"
         },
         "runtime": {
           "lib/netstandard2.0/Serilog.Extensions.Logging.dll": {}
         }
       },
-      "Serilog.Formatting.Compact/1.0.1-dev-00922": {
+      "Serilog.Formatting.Compact/1.0.0": {
         "dependencies": {
-          "Serilog": "2.7.2-dev-01005"
+          "Serilog": "2.7.1"
         },
         "runtime": {
           "lib/netstandard1.1/Serilog.Formatting.Compact.dll": {}
         }
       },
-      "Serilog.Sinks.File/4.0.1-dev-00796": {
+      "Serilog.Sinks.File/4.0.0": {
         "dependencies": {
-          "Serilog": "2.7.2-dev-01005",
+          "Serilog": "2.7.1",
           "System.IO": "4.3.0",
           "System.IO.FileSystem": "4.3.0",
           "System.IO.FileSystem.Primitives": "4.3.0",
@@ -590,7 +519,7 @@
       },
       "Serilog.Sinks.PeriodicBatching/2.1.1": {
         "dependencies": {
-          "Serilog": "2.7.2-dev-01005",
+          "Serilog": "2.7.1",
           "System.Collections.Concurrent": "4.3.0",
           "System.Threading.Timer": "4.0.1"
         },
@@ -598,11 +527,11 @@
           "lib/netstandard1.2/Serilog.Sinks.PeriodicBatching.dll": {}
         }
       },
-      "Serilog.Sinks.Seq/4.0.1-dev-00155": {
+      "Serilog.Sinks.Seq/4.0.0": {
         "dependencies": {
-          "Serilog": "2.7.2-dev-01005",
-          "Serilog.Formatting.Compact": "1.0.1-dev-00922",
-          "Serilog.Sinks.File": "4.0.1-dev-00796",
+          "Serilog": "2.7.1",
+          "Serilog.Formatting.Compact": "1.0.0",
+          "Serilog.Sinks.File": "4.0.0",
           "Serilog.Sinks.PeriodicBatching": "2.1.1",
           "System.Net.Http": "4.3.2"
         },
@@ -1334,11 +1263,6 @@
           "System.Text.Encoding": "4.3.0"
         }
       },
-      "System.Text.Encodings.Web/4.4.0": {
-        "runtime": {
-          "lib/netstandard2.0/System.Text.Encodings.Web.dll": {}
-        }
-      },
       "System.Text.RegularExpressions/4.1.0": {
         "dependencies": {
           "System.Collections": "4.3.0",
@@ -1518,11 +1442,11 @@
       "Alexandria.net/1.0.0": {
         "dependencies": {
           "Newtonsoft.Json": "11.0.2",
-          "Serilog": "2.7.2-dev-01005",
-          "Serilog.Extensions.Logging": "2.1.0-dev-10193",
-          "Serilog.Formatting.Compact": "1.0.1-dev-00922",
-          "Serilog.Sinks.File": "4.0.1-dev-00796",
-          "Serilog.Sinks.Seq": "4.0.1-dev-00155"
+          "Serilog": "2.7.1",
+          "Serilog.Extensions.Logging": "2.0.2",
+          "Serilog.Formatting.Compact": "1.0.0",
+          "Serilog.Sinks.File": "4.0.0",
+          "Serilog.Sinks.Seq": "4.0.0"
         },
         "runtime": {
           "Alexandria.net.dll": {}
@@ -1535,34 +1459,6 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
-    },
-    "Microsoft.AspNetCore.Hosting.Abstractions/2.0.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-IR2zlm3d/CmYbkw+cMM7M6mUAi+xsFUPfWqGYqzZVC5o6jX3xD2Z4Uf44UBaWKMBf5Z7q9dodIdXxwFPF2Hxhg==",
-      "path": "microsoft.aspnetcore.hosting.abstractions/2.0.0",
-      "hashPath": "microsoft.aspnetcore.hosting.abstractions.2.0.0.nupkg.sha512"
-    },
-    "Microsoft.AspNetCore.Hosting.Server.Abstractions/2.0.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-v2H65ix/O11HKoxhKQpljtozsD5/1tqeXr3TYnrLgfAPIsp6kTFxIcTSENoxtew7h9X14ENqUf2lBCkyCNRUuQ==",
-      "path": "microsoft.aspnetcore.hosting.server.abstractions/2.0.0",
-      "hashPath": "microsoft.aspnetcore.hosting.server.abstractions.2.0.0.nupkg.sha512"
-    },
-    "Microsoft.AspNetCore.Http.Abstractions/2.0.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-pblZLY7IfNqhQ5wwGQ0vNq2mG6W5YgZI1fk7suEuwZsGxGEADNBAyNlTALM9L8nMXdvbp6aHP/t4wHrFpcL3Sw==",
-      "path": "microsoft.aspnetcore.http.abstractions/2.0.0",
-      "hashPath": "microsoft.aspnetcore.http.abstractions.2.0.0.nupkg.sha512"
-    },
-    "Microsoft.AspNetCore.Http.Features/2.0.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-yk62muzFTZTKCQuo3nmVPkPvGBlM2qbdSxbX62TufuONuKQrTGQ/SwhwBbYutk5/YY7u4HETu0n9BKOn7mMgmA==",
-      "path": "microsoft.aspnetcore.http.features/2.0.0",
-      "hashPath": "microsoft.aspnetcore.http.features.2.0.0.nupkg.sha512"
     },
     "Microsoft.CodeCoverage/1.0.3": {
       "type": "package",
@@ -1578,20 +1474,6 @@
       "path": "microsoft.dotnet.platformabstractions/1.0.3",
       "hashPath": "microsoft.dotnet.platformabstractions.1.0.3.nupkg.sha512"
     },
-    "Microsoft.Extensions.Configuration.Abstractions/2.0.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-rHFrXqMIvQNq51H8RYTO4IWmDOYh8NUzyqGlh0xHWTP6XYnKk7Ryinys2uDs+Vu88b3AMlM3gBBSs78m6OQpYQ==",
-      "path": "microsoft.extensions.configuration.abstractions/2.0.0",
-      "hashPath": "microsoft.extensions.configuration.abstractions.2.0.0.nupkg.sha512"
-    },
-    "Microsoft.Extensions.DependencyInjection/2.0.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-wakg18gHYiUL1pcjjyZuYk6OvDpbSw1E7IWxm78TMepsr+gQ8W0tWzuRm0q/9RFblngwPwo15rrgZSUV51W5Iw==",
-      "path": "microsoft.extensions.dependencyinjection/2.0.0",
-      "hashPath": "microsoft.extensions.dependencyinjection.2.0.0.nupkg.sha512"
-    },
     "Microsoft.Extensions.DependencyInjection.Abstractions/2.0.0": {
       "type": "package",
       "serviceable": true,
@@ -1605,20 +1487,6 @@
       "sha512": "sha512-Z3o19EnheuegmvgpCzwoSlnCWxYA6qIUhvKJ7ifKHHvU7U+oYR/gliLiL3LVYOOeGMEEzkpJ5W67sOcXizGtlw==",
       "path": "microsoft.extensions.dependencymodel/1.0.3",
       "hashPath": "microsoft.extensions.dependencymodel.1.0.3.nupkg.sha512"
-    },
-    "Microsoft.Extensions.FileProviders.Abstractions/2.0.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-Z0AK+hmLO33WAXQ5P1uPzhH7z5yjDHX/XnUefXxE//SyvCb9x4cVjND24dT5566t/yzGp8/WLD7EG9KQKZZklQ==",
-      "path": "microsoft.extensions.fileproviders.abstractions/2.0.0",
-      "hashPath": "microsoft.extensions.fileproviders.abstractions.2.0.0.nupkg.sha512"
-    },
-    "Microsoft.Extensions.Hosting.Abstractions/2.0.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-qPG6Ip/AdHxMJ7j3z8FkkpCbV8yjtiFpf/aOpN3TwfJWbtYpN+BKV8Q+pqPMgk7XZivcju9yARaEVCS++hWopA==",
-      "path": "microsoft.extensions.hosting.abstractions/2.0.0",
-      "hashPath": "microsoft.extensions.hosting.abstractions.2.0.0.nupkg.sha512"
     },
     "Microsoft.Extensions.Logging/2.0.0": {
       "type": "package",
@@ -1802,33 +1670,33 @@
       "path": "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl/4.3.0",
       "hashPath": "runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512"
     },
-    "Serilog/2.7.2-dev-01005": {
+    "Serilog/2.7.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-7SiMLTItWyIKZpbYoJP9YrdIiMqq2RWMYTzZb6NzD09PKEgJP4UA7ul5t5Z8/skmAU8GtiPPpo0yPUegdKWwDw==",
-      "path": "serilog/2.7.2-dev-01005",
-      "hashPath": "serilog.2.7.2-dev-01005.nupkg.sha512"
+      "sha512": "sha512-5eS6AD4hesOYvlwYqjntLaOonDnEiY22QiMUKueJHPrm5vm1k4tzXgOgCb2mJoMnj6l5Wt6AXV5liXzXymvarg==",
+      "path": "serilog/2.7.1",
+      "hashPath": "serilog.2.7.1.nupkg.sha512"
     },
-    "Serilog.Extensions.Logging/2.1.0-dev-10193": {
+    "Serilog.Extensions.Logging/2.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-xfVUQEQGCi34MFSHpF6yRYRaHo0BDQVrCEnv51Gl8wE0GBi1R7t2QMmllkvp0KDAjwD/qGzKzrxYvL4b46uchQ==",
-      "path": "serilog.extensions.logging/2.1.0-dev-10193",
-      "hashPath": "serilog.extensions.logging.2.1.0-dev-10193.nupkg.sha512"
+      "sha512": "sha512-PYAkzUn/VV16Es7U06BfEhNZEltnYWu0WFCM4d2lLY/dvlA7xMwFXBuGRxR0XvEBPoOxPorjhFLy9txwiMO6rg==",
+      "path": "serilog.extensions.logging/2.0.2",
+      "hashPath": "serilog.extensions.logging.2.0.2.nupkg.sha512"
     },
-    "Serilog.Formatting.Compact/1.0.1-dev-00922": {
+    "Serilog.Formatting.Compact/1.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-V6/GYzBtnv9B7OGx7QW9pzy6dRwV0/O09+b0FxG0OQqs1uwt3w/e07KKkg+Ggi+V2WcFg/ZoY86r4GbhuJm5+Q==",
-      "path": "serilog.formatting.compact/1.0.1-dev-00922",
-      "hashPath": "serilog.formatting.compact.1.0.1-dev-00922.nupkg.sha512"
+      "sha512": "sha512-r3QYz02y7+B7Ng30hyJM929OJhem7SsJ4XDUE0Zfptj2MRiQfpPUb5f58juAFjp/TnNeSX2QNzZEnHwLeoJfHQ==",
+      "path": "serilog.formatting.compact/1.0.0",
+      "hashPath": "serilog.formatting.compact.1.0.0.nupkg.sha512"
     },
-    "Serilog.Sinks.File/4.0.1-dev-00796": {
+    "Serilog.Sinks.File/4.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-JuQGhrb1ejK9JJLgZ8B6Ef7Z6iwq6dHXaj1rOuBVTY3zz12Qg2w6YYTCxw4tvka2A8wOGz1C3ZCN4GmKtxpK7w==",
-      "path": "serilog.sinks.file/4.0.1-dev-00796",
-      "hashPath": "serilog.sinks.file.4.0.1-dev-00796.nupkg.sha512"
+      "sha512": "sha512-vBj43RkAbeP1dzoPFR2+LfV5GevDRPDq6265JJBv223lMvT9rfdwe/S/I9ow7aZSLYKfw4qPDw6NW8YwjbDbvg==",
+      "path": "serilog.sinks.file/4.0.0",
+      "hashPath": "serilog.sinks.file.4.0.0.nupkg.sha512"
     },
     "Serilog.Sinks.PeriodicBatching/2.1.1": {
       "type": "package",
@@ -1837,12 +1705,12 @@
       "path": "serilog.sinks.periodicbatching/2.1.1",
       "hashPath": "serilog.sinks.periodicbatching.2.1.1.nupkg.sha512"
     },
-    "Serilog.Sinks.Seq/4.0.1-dev-00155": {
+    "Serilog.Sinks.Seq/4.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-KDtdlTACM5IWWDw2JDieOZUSFKYFjC/e8ezhx1YryjR9nSgH43yWjX5kl3GA6RugbCImP3aeZGvsUo4AqPKXxQ==",
-      "path": "serilog.sinks.seq/4.0.1-dev-00155",
-      "hashPath": "serilog.sinks.seq.4.0.1-dev-00155.nupkg.sha512"
+      "sha512": "sha512-02HTAboPlG6+/u63+o4bffS5f9VOLMn0/76OsK+Ii90IufoTO6YWIEzZ84KUYjmQnjToe0lrVbLa7qOJdUCYbg==",
+      "path": "serilog.sinks.seq/4.0.0",
+      "hashPath": "serilog.sinks.seq.4.0.0.nupkg.sha512"
     },
     "System.AppContext/4.1.0": {
       "type": "package",
@@ -2242,13 +2110,6 @@
       "sha512": "sha512-jtbiTDtvfLYgXn8PTfWI+SiBs51rrmO4AAckx4KR6vFK9Wzf6tI8kcRdsYQNwriUeQ1+CtQbM1W4cMbLXnj/OQ==",
       "path": "system.text.encoding.extensions/4.0.11",
       "hashPath": "system.text.encoding.extensions.4.0.11.nupkg.sha512"
-    },
-    "System.Text.Encodings.Web/4.4.0": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-l/tYeikqMHX2MD2jzrHDfR9ejrpTTF7wvAEbR51AMvzip1wSJgiURbDik4iv/w7ZgytmTD/hlwpplEhF9bmFNw==",
-      "path": "system.text.encodings.web/4.4.0",
-      "hashPath": "system.text.encodings.web.4.4.0.nupkg.sha512"
     },
     "System.Text.RegularExpressions/4.1.0": {
       "type": "package",

@@ -38,23 +38,23 @@
         },
         "Serilog": {
           "target": "Package",
-          "version": "[2.7.2-dev-01005, )"
+          "version": "[2.7.1, )"
         },
         "Serilog.Extensions.Logging": {
           "target": "Package",
-          "version": "[2.1.0-dev-10193, )"
+          "version": "[2.0.2, )"
         },
         "Serilog.Formatting.Compact": {
           "target": "Package",
-          "version": "[1.0.1-dev-00922, )"
+          "version": "[1.0.0, )"
         },
         "Serilog.Sinks.File": {
           "target": "Package",
-          "version": "[4.0.1-dev-00796, )"
+          "version": "[4.0.0, )"
         },
         "Serilog.Sinks.Seq": {
           "target": "Package",
-          "version": "[4.0.1-dev-00155, )"
+          "version": "[4.0.0, )"
         }
       },
       "imports": [
