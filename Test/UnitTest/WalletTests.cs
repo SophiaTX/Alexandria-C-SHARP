@@ -58,7 +58,13 @@ namespace UnitTest
         {
             _client.Wallet.Witness.VoteForWitness("test101", "initminer", true, PrivateKey);
         }
-
+        [Fact]
+        public void update_witness()
+        {
+            //todo - test this function
+            _client.Wallet.Witness.UpdateWitness("test101", "url", "blockkey", "pros");
+        
+        }
         #endregion
 
         #region Transaction Methods
@@ -230,13 +236,7 @@ namespace UnitTest
                 "STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz", PrivateKey);
         }
 
-        [Fact]
-        public void update_witness()
-        {
-            //todo - test this function
-            _client.Wallet.Witness.UpdateWitness("test101", "url", "blockkey", "pros");
-
-        }
+        
 
         #endregion
 

@@ -59,6 +59,9 @@
         private const string Help  = "help";
         private const string Info  = "info";
         private string SerializeTransaction = "serialize_transaction";
+        private string MakeCustomJsonOperation = "make_custom_json_operation";
+        private string GetReceivedDocuments = "get_received_documents";
+        private string MakeCustomBinaryOperation = "make_custom_binary_operation";
 
         /// <summary>
         /// 
@@ -175,6 +178,13 @@
                     return Info;
                 case "SerializeTransaction":
                     return SerializeTransaction;
+                case "MakeCustomJsonOperation":
+                    return MakeCustomJsonOperation;
+                case "GetReceivedDocuments":
+                    return GetReceivedDocuments;
+                case "MakeCustomBinaryOperation":
+                    return "MakeCustomBinaryOperation";
+                
                 
 
             }

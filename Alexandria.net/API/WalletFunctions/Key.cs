@@ -107,14 +107,20 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="privatekey">returns parameter of size 51</param>
         /// <param name="publickey">returns parameter of size 53</param>
         /// <returns>Returns true if success or false for failed try</returns>
-        public string GeneratePrivateKey(byte[] privatekey, byte[] publickey)
+        public KeyResponse GeneratePrivateKey(byte[] privatekey, byte[] publickey)
         {
-            string result;
+            
+            KeyResponse result = null;
             try
             {
-                result = generate_private_key(privatekey, publickey)
-                    ? System.Text.Encoding.Default.GetString(publickey)
-                    : string.Empty;
+                if (generate_private_key(privatekey, publickey))
+                {
+                    result = new KeyResponse
+                    {
+                        PrivateKey = System.Text.Encoding.Default.GetString(privatekey),
+                        PublicKey = System.Text.Encoding.Default.GetString(publickey)
+                    };
+                }
             }
             catch (Exception ex)
             {
@@ -283,7 +289,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="memo">memo that should be encrypted</param>
         /// <param name="privateKey">Private key of sender of memo</param>
         /// <param name="publicKey">Public key of recipient</param>
-        /// <param name="encryptedMemo">return value of encrypted memo</param>
+        /// <param name="encryptedMemo">return value of encrypted memo, byte[1024]</param>
         /// <returns>true if signature is correct</returns>
         public string EncryptMemo(string memo, string privateKey, string publicKey, byte[] encryptedMemo)
         {
@@ -309,7 +315,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="memo">memo that should be encrypted</param>
         /// <param name="privateKey">Private key of recipient of memo</param>
         /// <param name="publicKey">Public key of sender</param>
-        /// <param name="decryptedMemo">decrypted memo</param>
+        /// <param name="decryptedMemo">decrypted memo, byte[1024]</param>
         /// <returns>true if signature is correct</returns>
         public string DecryptMemo(string memo, string privateKey, string publicKey, byte[] decryptedMemo)
         {
