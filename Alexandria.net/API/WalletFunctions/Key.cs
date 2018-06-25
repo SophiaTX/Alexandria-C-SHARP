@@ -87,10 +87,12 @@ namespace Alexandria.net.API.WalletFunctions
         }
 
         /// <summary>
-        /// Generates Public and Private keys
+         
+        /// Generates private_key in WIF format based on random seed.
+         
         /// </summary>
-        /// <param name="privatekey"></param>
-        /// <param name="publickey"></param>
+        /// <param name="privatekey">returns parameter of size 51</param>
+        /// <param name="publickey">returns parameter of size 53</param>
         /// <returns>Returns true if success or false for failed try</returns>
         public string GeneratePrivateKey(byte[] privatekey, byte[] publickey)
         {
@@ -98,7 +100,7 @@ namespace Alexandria.net.API.WalletFunctions
             try
             {
                 result = generate_private_key(privatekey, publickey)
-                    ? System.Text.Encoding.Default.GetString(privatekey)
+                    ? System.Text.Encoding.Default.GetString(publickey)
                     : string.Empty;
             }
             catch (Exception ex)
@@ -111,11 +113,11 @@ namespace Alexandria.net.API.WalletFunctions
         }
 
         /// <summary>
-        /// Gets the transaction digest
+        /// Creates digest of JSON formatted transaction
         /// </summary>
         /// <param name="transaction">the transaction to digest</param>
         /// <param name="chainId">the id in the blockchain</param>
-        /// <param name="digest">the digest bytes</param>
+        /// <param name="digest">the digest bytes, returned digest of transaction (size 64)</param>
         /// <returns>Returns true if success or false for failed try</returns>
         public string GetTransactionDigest(string transaction, string chainId, byte[] digest)
         {
@@ -141,7 +143,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// </summary>
         /// <param name="digest">string digest</param>
         /// <param name="privatekey">string privatekey</param>
-        /// <param name="signeddigest"> byte[] signeddigest</param>
+        /// <param name="signeddigest"> byte[] signeddigest, returns signature (size 130)</param>
         /// <returns>Returns true if success or false for failed try</returns>
         public string SignDigest(string digest, string privatekey, byte[] signeddigest)
         {
@@ -162,11 +164,11 @@ namespace Alexandria.net.API.WalletFunctions
         }
 
         /// <summary>
-        /// Signs the given transactions and returns true for success
+        /// Adds signature to JSON formatted transaction
         /// </summary>
         /// <param name="transaction">string transaction</param>
         /// <param name="signature">string signature</param>
-        /// <param name="signedtx">byte[] signedtx</param>
+        /// <param name="signedtx">byte[] signedtx, returned signed transaction (size variable, depends on size of transaction on input_)</param>
         /// <returns>Returns true if success or false for failed try</returns>
         public SignedTransactionResponse AddSignature(string transaction, string signature, byte[] signedtx)
         {
@@ -179,7 +181,7 @@ namespace Alexandria.net.API.WalletFunctions
                 var signedTransaction = System.Text.Encoding.Default.GetString(signedtx);
 
                 var result = JsonConvert.DeserializeObject<SignedTransactionResponse>(signedTransaction);
-                trans.BroadcastTransaction(result);
+                
                 return result;
             }
             catch (Exception ex)
@@ -191,11 +193,11 @@ namespace Alexandria.net.API.WalletFunctions
 
         }
         /// <summary>
-         /// 
+         /// Returns public_key for given private_key
          /// </summary>
-         /// <param name="privateKey"></param>
-         /// <param name="publicKey"></param>
-         /// <returns></returns>
+         /// <param name="privateKey">Private key in WIF format</param>
+         /// <param name="publicKey">return paramter public key derived from private_key size 53</param>
+         /// <returns>return paramter public key derived from private_key</returns>
         public string GetPublicKey(string privateKey, byte[] publicKey)
         {
             try
@@ -215,7 +217,7 @@ namespace Alexandria.net.API.WalletFunctions
             
         }
         /// <summary>
-        /// 
+        /// Generates new private/public key pair from brian key.
         /// </summary>
         /// <param name="brain_key"></param>
         /// <param name="private_key"></param>
@@ -240,12 +242,12 @@ namespace Alexandria.net.API.WalletFunctions
             
         }
         /// <summary>
-        /// 
+        /// Function for verifying signature base on digest and public key
         /// </summary>
-        /// <param name="digest"></param>
-        /// <param name="public_key"></param>
-        /// <param name="signed_digest"></param>
-        /// <returns></returns>
+        /// <param name="digest">digest that will be singed</param>
+        /// <param name="public_key">corresponding public key to private_key used fo signing</param>
+        /// <param name="signed_digest">digest singed by private_key</param>
+        /// <returns>true if signature is correct</returns>
         public bool VeriFySignature(string digest,string public_key,string signed_digest)
         {
             try
@@ -262,13 +264,13 @@ namespace Alexandria.net.API.WalletFunctions
             
         }
         /// <summary>
-        /// 
+        /// Returns the encrypted memo
         /// </summary>
-        /// <param name="memo"></param>
-        /// <param name="private_key"></param>
-        /// <param name="public_key"></param>
-        /// <param name="encrypted_memo"></param>
-        /// <returns></returns>
+        /// <param name="memo">memo that should be encrypted</param>
+        /// <param name="private_key">Private key of sender of memo</param>
+        /// <param name="public_key">Public key of recipient</param>
+        /// <param name="encrypted_memo">return value of encrypted memo</param>
+        /// <returns>true if signature is correct</returns>
         public string EncryptMemo( string memo,  string private_key,  string public_key, byte[] encrypted_memo)
         {
             try
@@ -287,17 +289,18 @@ namespace Alexandria.net.API.WalletFunctions
             
         }
         /// <summary>
-        /// 
+        /// Returns the decrypted memo if possible given private keys
         /// </summary>
-        /// <param name="memo"></param>
-        /// <param name="private_key"></param>
-        /// <param name="public_key"></param>
-        /// <param name="decrypted_memo"></param>
-        /// <returns></returns>
+        /// <param name="memo">memo that should be encrypted</param>
+        /// <param name="private_key">Private key of recipient of memo</param>
+        /// <param name="public_key">Public key of sender</param>
+        /// <param name="decrypted_memo">decrypted memo</param>
+        /// <returns>true if signature is correct</returns>
         public string DecryptMemo( string memo,  string private_key,  string public_key, byte[] decrypted_memo)
         {
             try
             {
+                
                 var result= decrypt_memo(memo, private_key, public_key,decrypted_memo)
                     ? System.Text.Encoding.Default.GetString(decrypted_memo)
                     : string.Empty;
@@ -312,16 +315,19 @@ namespace Alexandria.net.API.WalletFunctions
             
         }
         /// <summary>
-        /// 
+        /// Create a passphrase for users to remember easily and use ot to generate corresponding public and private keys
         /// </summary>
-        /// <returns></returns>
-        public string SuggestBrainKey()
+        /// <returns>Returns a passphrase</returns>
+        public BrainKeySuggestion SuggestBrainKey()
         {
             try
             {
+                
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name);
-                return result;
+                var result = SendRequest(reqname);
+                var contentdata = JsonConvert.DeserializeObject<BrainKeySuggestion>(result);
+                return contentdata;
+                
             }
             catch (Exception ex)
             {
@@ -331,17 +337,17 @@ namespace Alexandria.net.API.WalletFunctions
         }
 
         /// <summary>
-        /// 
+        /// Normalizes the case of passphrase for correct key generation
         /// </summary>
-        /// <param name="brainKey"></param>
-        /// <returns></returns>
+        /// <param name="brainKey">distorted passphrase</param>
+        /// <returns>Returns normalized Passphrase</returns>
         public string NormalizeBrainKey(string brainKey)
         {
             try
             {
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {brainKey};
-                var result = SendRequest(MethodBase.GetCurrentMethod().Name,@params);
+                var result = SendRequest(reqname,@params);
                 return result;
             }
             catch (Exception ex)

@@ -30,7 +30,7 @@ namespace Alexandria.net.API.WalletFunctions
         }
 
         /// <summary>
-        /// Returns the list Of witnesses producing blocks In the current round 
+        /// Returns the list of witnesses producing blocks in the current round (21 Blocks)
         /// </summary>
         /// <returns>Returns json object combining list of active witnesses 
         /// </returns>
@@ -72,16 +72,21 @@ namespace Alexandria.net.API.WalletFunctions
 
         /// <summary>
         /// Returns information about the given witness.
+        /// @param owner_account the name or id of the witness account owner, or the id of the witness
+       /// @returns the information about the witness stored in the block chain
+         
         /// </summary>
         /// <param name="ownerAccount">the name Or id Of the witness account owner, Or the id of the witness</param>
         /// <returns>the information about the witness stored In the block chain</returns>
-        public string GetWitness(string ownerAccount)
+        public GetWitnessResponse GetWitness(string ownerAccount)
         {
             try
             {
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);  
                 var @params = new ArrayList {ownerAccount};
-                return SendRequest(reqname, @params);
+                var result= SendRequest(reqname, @params);
+                var contentdata = JsonConvert.DeserializeObject<GetWitnessResponse>(result);
+                return contentdata;
             }
             catch(Exception ex)
             {
@@ -92,22 +97,33 @@ namespace Alexandria.net.API.WalletFunctions
         }
 
         /// <summary>
-        /// Lists all witnesses registered In the blockchain. To
-        /// retrieve all witnesss, start by setting 'lowerbound' to the empty string
-        /// '""', and then each iteration, pass the last witness name returned as the
-        /// 'lowerbound' for the next 'list_witnesss()' call.
+       /// Lists all witnesses registered in the blockchain.
+       /// This returns a list of all account names that own witnesses, and the associated witness id,
+      /// sorted by name.  This lists witnesses whether they are currently voted in or not.
+       ///
+       /// Use the \c lowerbound and limit parameters to page through the list.  To retrieve all witnesss,
+       /// start by setting \c lowerbound to the empty string \c "", and then each iteration, pass
+       /// the last witness name returned as the \c lowerbound for the next \c list_witnesss() call.
+       ///
+       /// @param lowerbound the name of the first witness to return.  If the named witness does not exist,
+       ///                   the list will start at the witness that comes after \c lowerbound
+       /// @param limit the maximum number of witnesss to return (max: 1000)
+       /// @returns a list of witnesss mapping witness names to witness ids
+       
         /// </summary>
         /// <param name="lowerbound">the name Of the first witness To Return.
         /// If the named witness does Not exist, the list will start at the witness thatcomes after 'lowerbound'</param>
         /// <param name="limit">the maximum number Of witnesss To return (max: 1000)</param>
         /// <returns>Returns a list Of witnesss mapping witness names To witness ids</returns>
-        public string ListWitnesses(string lowerbound, uint limit)
+        public ActiveWitnessResponse ListWitnesses(string lowerbound, uint limit)
         {
             try
             {
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);  
                 var @params = new ArrayList {lowerbound, limit};
-                return SendRequest(reqname, @params);
+                var result= SendRequest(reqname, @params);
+                var contentdata = JsonConvert.DeserializeObject<ActiveWitnessResponse>(result);
+                return contentdata;
             }
             catch(Exception ex)
             {
@@ -174,15 +190,22 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="witnessToVoteFor">The witness that Is being voted For</param>
         /// <param name="approve">true if the account Is voting for the account to be able to be a block produce</param>
         /// <returns></returns>
-        public ActiveWitnessResponse Vote(string accountToVoteWith, string witnessToVoteFor, bool approve)
+        public AccountResponse VoteForWitness(string accountToVoteWith, string witnessToVoteFor, bool approve)
         {
+            var trans = new Transaction(Config);
+            var key = new Key(Config);
+            var pk = "5KGL7MNAfwCzQ8DAq7DXJsneXagka3KNcjgkRayJoeJUucSLkev";
             try
             {
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);      
                 var @params = new ArrayList {accountToVoteWith, witnessToVoteFor, approve};
                 var result = SendRequest(reqname, @params);
-                var contentdata = JsonConvert.DeserializeObject<ActiveWitnessResponse>(result);
-                return contentdata;
+                var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
+                BroadCastTransactionProcess newProcess = new BroadCastTransactionProcess(Config);
+                
+                var response = newProcess.StartBroadcasting(contentdata);
+                
+                return response == null ? null : contentdata;
             }
             catch(Exception ex)
             {

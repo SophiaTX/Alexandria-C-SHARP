@@ -174,7 +174,7 @@ namespace Alexandria.net.API.WalletFunctions
 		/// </summary>
 		/// <param name="operation"></param>
 		/// <returns>Returns Object with block number and other trnasaction details</returns>
-		public TransactionResponse CreateSimpleTransaction(CreateAccountResponse operation)
+		public TransactionResponse CreateSimpleTransaction(AccountResponse operation)
 		{
 			try
 			{
@@ -196,7 +196,7 @@ namespace Alexandria.net.API.WalletFunctions
 		/// </summary>
 		/// <param name="operation"></param>
 		/// <returns></returns>
-		public BlockResponse CreateTransaction(List<List<CreateAccountResponse>> operation)
+		public BlockResponse CreateTransaction(List<List<AccountResponse>> operation)
 		{
 			try
 			{

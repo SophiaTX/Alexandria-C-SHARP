@@ -686,7 +686,7 @@
             <param name="signed_tx"></param>
             <returns>Returns Object with Transaction id and other details</returns>
         </member>
-        <member name="M:Alexandria.net.API.WalletFunctions.Transaction.create_simple_transaction(Alexandria.net.Messaging.Responses.DTO.CreateAccountResponse)">
+        <member name="M:Alexandria.net.API.WalletFunctions.Transaction.create_simple_transaction(Alexandria.net.Messaging.Responses.DTO.AccountResponse)">
             <summary>
             Creates Transaction for all the operations created
             </summary>
