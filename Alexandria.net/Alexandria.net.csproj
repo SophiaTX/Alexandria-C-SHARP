@@ -7,17 +7,17 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
-    <PackageReference Include="Serilog" Version="2.7.2-dev-01005" />
-    <PackageReference Include="Serilog.Extensions.Logging" Version="2.1.0-dev-10193" />
-    <PackageReference Include="Serilog.Formatting.Compact" Version="1.0.1-dev-00922" />
-    <PackageReference Include="Serilog.Sinks.File" Version="4.0.1-dev-00796" />
-    <PackageReference Include="Serilog.Sinks.Seq" Version="4.0.1-dev-00155" />
+    <PackageReference Include="Serilog" Version="2.7.1" />
+    <PackageReference Include="Serilog.Extensions.Logging" Version="2.0.2" />
+    <PackageReference Include="Serilog.Formatting.Compact" Version="1.0.0" />
+    <PackageReference Include="Serilog.Sinks.File" Version="4.0.0" />
+    <PackageReference Include="Serilog.Sinks.Seq" Version="4.0.0" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="API\SphTxApi.cs" />
     <None Remove="libalexandria.dylib" />
-    <EmbeddedResource Include="libalexandria.dylib">
+    <Content Include="libalexandria.dylib">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Content>
   </ItemGroup>
 </Project>

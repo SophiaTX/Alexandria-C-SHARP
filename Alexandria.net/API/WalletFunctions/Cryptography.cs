@@ -16,13 +16,14 @@ namespace Alexandria.net.API.WalletFunctions
     public class Cryptography : RpcConnection
     {
         private readonly ILogger _logger;
+        
         #region Constructors
 
       
         /// <summary>
-        /// 
+        /// Cryptography Constructor
         /// </summary>
-        /// <param name="config"></param>
+        /// <param name="config">the Configuration paramaters for the endpoint and ports</param>
         public Cryptography(IConfig config) : base(config)
         {
             var assemblyname = Assembly.GetExecutingAssembly().GetName().Name;
@@ -30,11 +31,11 @@ namespace Alexandria.net.API.WalletFunctions
         }
 
         #endregion
-
-
+   
         /// <summary>
         /// Generates new private/public key pair.
         /// </summary>
+        /// <returns>The keypair values</returns>
         private Tuple<string, byte[]> GenerateKeyPair()
         {
             try
@@ -55,7 +56,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <summary>
         /// Generates new private/public key pair from brian key.
         /// </summary>
-        /// <param name="brainKey"></param>
+        /// <param name="brainKey">the brain key to use to generate the Key Pair</param>
         private Tuple<string, byte[]> GenerateKeyPairFromBrainKey(string brainKey)
         {
             try
@@ -75,12 +76,12 @@ namespace Alexandria.net.API.WalletFunctions
 
 
         /// <summary>
-        /// Form a transaction containing a json-formatted operation, sign it with a given private key and send it to
+        /// Form a transaction containing a json-formatted operation,
+        /// sign it with a given private key and send it to
         /// Generates new private/public key pair from brian key.
-        /// 
         /// </summary>
-        /// <param name="operation"></param>
-        /// <param name="privateKey"></param>
+        /// <param name="operation">the operation to send</param>
+        /// <param name="privateKey">the key used for signing the operation</param>
         /// <returns>Returns true is it was properly signes and accepted, false otherwise.</returns>
         public bool SignAndSendOperation(string operation, string privateKey)
         {
@@ -103,8 +104,8 @@ namespace Alexandria.net.API.WalletFunctions
         /// <summary>
         /// Sing a json-formatted transaction with a given private key and send it to the network.
         /// </summary>
-        /// <param name="transaction"></param>
-        /// <param name="privateKey"></param>
+        /// <param name="transaction">the transaction to send</param>
+        /// <param name="privateKey">the key used for signing the transaction</param>
         /// <remarks>Returns true is it was properly signes and accepted, false otherwise.</remarks>
         public bool SignAndSendTransaction(string transaction, string privateKey)
         {
@@ -127,6 +128,9 @@ namespace Alexandria.net.API.WalletFunctions
         /// <summary>
         /// Sign given digest using provided private key.
         /// </summary>
+        /// <param name="digest">the digest to sign</param>
+        /// <param name="privateKey">the key used for signing the digest</param>
+        /// <returns>the signed digest</returns>
         private char[] SignDigest(char[] digest, string privateKey)
         {
             try
@@ -144,12 +148,11 @@ namespace Alexandria.net.API.WalletFunctions
             
         }
 
-
-
         /// <summary>
         /// Generate public key part associated to the given private key.
         /// </summary>
-        /// <param name="privateKey"></param>
+        /// <param name="privateKey">the key used for retreiving the public key</param>
+        /// <returns>the public key</returns>
         private byte[] GetPublicKey(string privateKey)
         {
             try
@@ -172,7 +175,8 @@ namespace Alexandria.net.API.WalletFunctions
         /// <summary>
         /// Decodes base58-encoded string.
         /// </summary>
-        /// <param name="encodedData"></param>
+        /// <param name="encodedData">the data to decode</param>
+        /// <returns>the decoded data</returns>
         private List<char> FromBase58(string encodedData)
         {
             try
@@ -195,7 +199,8 @@ namespace Alexandria.net.API.WalletFunctions
         /// <summary>
         /// Encodes data to base58 string.
         /// </summary>
-        /// <param name="data"></param>
+        /// <param name="data">the data to encode</param>
+        /// <returns>the encoded data</returns>
         private string ToBase58(List<char> data)
         {
             try

@@ -24,9 +24,9 @@ namespace Alexandria.net.API.WalletFunctions
 
         
         /// <summary>
-        /// 
+        /// Account Constructor
         /// </summary>
-        /// <param name="config"></param>
+        /// <param name="config">the Configuration paramaters for the endpoint and ports</param>
         public Account(IConfig config) :
             base(config)
         {
@@ -510,21 +510,21 @@ namespace Alexandria.net.API.WalletFunctions
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {witnessname, accountname, jsonMeta, ownerkey, activekey, memokey};
                 var result = SendRequest(reqname, @params);
-                
+
                 var contentdata = JsonConvert.DeserializeObject<CreateAccountResponse>(result);
-                
+
                 var transresponse = trans.CreateSimpleTransaction(contentdata);
                 if (transresponse == null) return null;
-                
+
                 var aboutresponse = trans.About();
                 if (aboutresponse == null) return null;
-                
+
                 var transaction = JsonConvert.SerializeObject(transresponse.result);
                 var digest = key.GetTransactionDigest(transaction, aboutresponse.result.chain_id, new byte[64]);
 
                 var signature = key.SignDigest(digest, pk, new byte[130]);
                 var response = key.AddSignature(transaction, signature, new byte[transaction.Length + 200]);
-                
+
                 return response == null ? null : contentdata;
             }
             catch (Exception ex)
