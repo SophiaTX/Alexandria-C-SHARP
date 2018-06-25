@@ -37,7 +37,7 @@ namespace Alexandria.net.API.WalletFunctions
 		#region Public Methods
 
 		/// <summary>
-		/// Gets the compile time info
+		/// Returns info such as client version, git version of graphene/fc, version of boost, openssl.
 		/// </summary>
 		/// <returns>Returns compile time info And client And dependencies versions</returns>
 		public AboutResponse About()
@@ -105,7 +105,8 @@ namespace Alexandria.net.API.WalletFunctions
 		}
 
 		/// <summary>
-		/// get current feed history
+		/// get current price feed history
+		/// @returns Price feed history data on the blockchain
 		/// </summary>
 		/// <returns>Returns object with Feed details</returns>
 		public FeedHistoryResponse GetFeedHistory()
@@ -130,13 +131,15 @@ namespace Alexandria.net.API.WalletFunctions
 		/// </summary>
 		/// <param name="trxId"></param>
 		/// <returns>Returns object with transaction details</returns>
-		public string GetTransaction(string trxId)
+		public TransactionResponse GetTransaction(string trxId)
 		{
 			try
 			{
 				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
 				var @params = new ArrayList {trxId};
-				return SendRequest(reqname, @params);
+				var result= SendRequest(reqname, @params);
+				var contentdata = JsonConvert.DeserializeObject<TransactionResponse>(result);
+				return contentdata;
 			}
 			catch(Exception ex)
 			{
@@ -196,14 +199,14 @@ namespace Alexandria.net.API.WalletFunctions
 		/// </summary>
 		/// <param name="operation"></param>
 		/// <returns></returns>
-		public BlockResponse CreateTransaction(List<List<AccountResponse>> operation)
+		public TransactionResponse CreateTransaction(List<AccountResponse> operation)
 		{
 			try
 			{
 				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
 				var @params = new ArrayList {operation};
 				var result= SendRequest(reqname, @params);
-				var contentdata = JsonConvert.DeserializeObject<BlockResponse>(result);
+				var contentdata = JsonConvert.DeserializeObject<TransactionResponse>(result);
 				return contentdata;
 			}
 			catch(Exception ex)
@@ -266,13 +269,22 @@ namespace Alexandria.net.API.WalletFunctions
 		/// <param name="accountToModify">the name Or id Of the account To update</param>
 		/// <param name="proxy">the name Of account that should proxy To, Or empty String To have no proxy </param>
 		/// <returns></returns>
-		public string SetVotingProxy(string accountToModify, string proxy)
+		public AccountResponse SetVotingProxy(string accountToModify, string proxy)
 		{
+			
+			
 			try
 			{
 				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
 				var @params = new ArrayList {accountToModify, proxy};
-				return SendRequest(reqname, @params);
+				var result= SendRequest(reqname, @params);
+				var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
+				
+				BroadCastTransactionProcess newProcess = new BroadCastTransactionProcess(Config);
+                
+				var response = newProcess.StartBroadcasting(contentdata);
+                
+				return response == null ? null : contentdata;
 			}
 			catch(Exception ex)
 			{
@@ -283,22 +295,32 @@ namespace Alexandria.net.API.WalletFunctions
 		}
 
 		/// <summary>
-		/// Set up a vesting withdraw request. The request Is fulfilled once a week over the next two years (104 weeks)
-		/// </summary>
-		/// <param name="from">account vests are drawn from</param>
-		/// <param name="vestingShares">the amount of vests to withdrawover the Next two
+		/// Set up a vesting withdraw request. The request Is fulfilled once a week over the next two years (104 weeks).
+		/// The amount of vests to withdrawover the Next two
 		///        years. Each week (amount/104) shares are withdrawn And depositted
-		///        back as STEEM. i.e. "10.000000 VESTS" </param>
+		///        back as STEEM. i.e. "10.000000 VESTS"
+		/// </summary>
+		/// <param name="from">account vests are drawn from </param>
+		/// <param name="vestingShares"> The amount should be in the format "10.0000 VESTS" showing amount and currency symbol</param>
 		/// <returns></returns>
-		public LockUnlockResponse WithdrawVesting(string from, decimal vestingShares)
+		public AccountResponse WithdrawVesting(string from, string vestingShares)
 		{
+			var trans = new Transaction(Config);
+			var key = new Key(Config);
+			var pk = "5KGL7MNAfwCzQ8DAq7DXJsneXagka3KNcjgkRayJoeJUucSLkev";
 			try
 			{
 				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
 				var @params = new ArrayList {from, vestingShares};
 				var result= SendRequest(reqname, @params);
-				var contentdata = JsonConvert.DeserializeObject<LockUnlockResponse>(result);
-				return contentdata;
+				
+				var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
+                
+				BroadCastTransactionProcess newProcess = new BroadCastTransactionProcess(Config);
+                
+				var response = newProcess.StartBroadcasting(contentdata);
+                
+				return response == null ? null : contentdata;
 			}
 			catch(Exception ex)
 			{
@@ -359,14 +381,77 @@ namespace Alexandria.net.API.WalletFunctions
 		}
 
 		/// <summary>
-		/// 
+		/// Sequence of operations included/generated in a specified block
 		/// </summary>
-		public void GetOpsInBlock()
+		/// <param name="BlockNumber">Integer Block Number </param>
+		/// <param name="OnlyVirtual">Boolean Only Virtual operation listing</param>
+		/// <returns>Returns sequence of operations included/generated in a specified block</returns>
+		public GetOperationsResponse GetOpsInBlock(int BlockNumber,bool OnlyVirtual)
 		{
 			var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-			//throw new NotImplementedException();
+			var @params = new ArrayList {BlockNumber,OnlyVirtual};
+			var result =  SendRequest(reqname, @params);
+			var contentdata = JsonConvert.DeserializeObject<GetOperationsResponse>(result);
+			return contentdata;
 		}
 
 		#endregion
+		/// <summary>
+		/// Returns a list of all commands supported by the wallet API.
+		/// This lists each command, along with its arguments and return types.
+		/// @returns a multi-line string suitable for displaying on a terminal
+		/// </summary>
+		/// <returns>Returns a list of all commands supported by the wallet API</returns>
+		public HelpResponse Help()
+		{
+			try
+			{
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+				var result= SendRequest(reqname);
+				var contentdata = JsonConvert.DeserializeObject<HelpResponse>(result);
+				return contentdata;
+			}
+			catch(Exception ex)
+			{
+				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+				throw ;
+			}
+		}
+		/// <summary>
+		/// Info about the current state of the blockchain
+		/// </summary>
+		/// <returns>Returns info about the current state of the blockchain</returns>
+		public InfoResponse Info()
+		{
+			try
+			{
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+				var result= SendRequest(reqname);
+				var contentdata = JsonConvert.DeserializeObject<InfoResponse>(result);
+				return contentdata;
+			}
+			catch(Exception ex)
+			{
+				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+				throw ;
+			}
+		}
+
+		public SerializedTransaction SerializeTransaction(SignedTransactionResponse signed_tx)
+		{
+			try
+			{
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+				var @params = new ArrayList {signed_tx};
+				var result= SendRequest(reqname, @params);
+				var contentdata = JsonConvert.DeserializeObject<SerializedTransaction>(result);
+				return contentdata;
+			}
+			catch(Exception ex)
+			{
+				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+				throw ;
+			}
+		}
 	}
 }

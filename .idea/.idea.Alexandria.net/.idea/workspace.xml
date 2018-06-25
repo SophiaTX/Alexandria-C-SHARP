@@ -2,24 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ea3b2ade-501a-4815-a8c3-d1edd46d493e" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/BroadCastTransactionProcess.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/GetOperationsResponse.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/GetWitnessResponse.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/HelpResponse.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/InfoDetails.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/Operations.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/SerializedTransaction.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/WitnessDetails.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Alexandria.net/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Alexandria.net/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Alexandria.net/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Alexandria.net/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Asset.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Asset.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Key.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Key.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Witness.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandria.net/API/WalletFunctions/Witness.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/InfoData.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/InfoResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/InfoResponse.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/TransactionResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandria.net/Messaging/Responses/DTO/TransactionResponse.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Alexandria.net/obj/Debug/netcoreapp2.0/Alexandria.net.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/Alexandria.net/obj/Debug/netcoreapp2.0/Alexandria.net.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test/UnitTest/WalletTests.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Test/UnitTest/WalletTests.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Test/UnitTest/bin/Debug/netcoreapp2.0/Alexandria.net.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Test/UnitTest/bin/Debug/netcoreapp2.0/Alexandria.net.dll" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Test/UnitTest/bin/Debug/netcoreapp2.0/Alexandria.net.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/Test/UnitTest/bin/Debug/netcoreapp2.0/Alexandria.net.pdb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Test/UnitTest/bin/Debug/netcoreapp2.0/Alexandria.net.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Test/UnitTest/bin/Debug/netcoreapp2.0/Alexandria.net.xml" afterDir="false" />
@@ -970,7 +954,8 @@
     <MESSAGE value="Completed Create Account Testing and Refactoring" />
     <MESSAGE value="Libpath corrected" />
     <MESSAGE value="Create Account and New Functions added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Create Account and New Functions added" />
+    <MESSAGE value="Account and New Functions Tested" />
+    <option name="LAST_COMMIT_MESSAGE" value="Account and New Functions Tested" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

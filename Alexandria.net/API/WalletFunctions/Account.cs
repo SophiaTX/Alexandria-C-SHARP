@@ -19,7 +19,7 @@ namespace Alexandria.net.API.WalletFunctions
     public class Account : RpcConnection
     {
         private readonly ILogger _logger;
-
+    
         #region Constructors
 
         
@@ -355,14 +355,22 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="active">Input Authority active</param>
         /// <param name="memo">Input byte[] memo</param>
         /// <returns>Returns true if success or false for failed try</returns>
-        public bool UpdateAccount(string accountName, Authority owner, Authority active, byte[] memo)
+        public AccountResponse UpdateAccount(string accountName,string json_meta,string owner,string active,string memo)
         {
+            
             try
             {
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                var @params = new ArrayList {accountName, owner, active, memo};
+                var @params = new ArrayList {accountName,json_meta, owner, active, memo};
                 var result = SendRequest(reqname, @params);
-                return result == "true";
+                var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
+                
+                BroadCastTransactionProcess newProcess = new BroadCastTransactionProcess(Config);
+                
+                var response = newProcess.StartBroadcasting(contentdata);
+                
+                return response == null ? null : contentdata;
+
             }
             catch (Exception ex)
             {
@@ -445,16 +453,17 @@ namespace Alexandria.net.API.WalletFunctions
         /// <summary>
         /// Update an account to witness.Requires XXX vested SPHTX before updating.
         /// </summary>
-        /// <param name="accountName">Inout string accountName</param>
-        /// <param name="url">Input string url</param>
-        /// <param name="blockKey">Input byte[] blockKey</param>
+        /// <param name="WitnessAccountName">Inout string accountName</param>
+        /// <param name="url">A URL containing some information about the witness.  The empty string makes it remain the same.</param>
+        /// <param name="blockKey">The new block signing public key.  The empty string disables block production.</param>
+        /// <param name="pros">The chain properties the witness is voting on</param>
         /// <returns>Returns true if success or false for failed try</returns>
-        public bool UpdateToWitness(string accountName, string url, byte[] blockKey)
+        public bool UpdateWitness(string WitnessAccountName, string url, string blockKey,string pros)
         {
             try
             {
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                var @params = new ArrayList {accountName, url, blockKey};
+                var @params = new ArrayList {WitnessAccountName, url, blockKey};
                 var result = SendRequest(reqname, @params);
                 return result == "true";
             }
@@ -471,14 +480,15 @@ namespace Alexandria.net.API.WalletFunctions
         /// </summary>
         /// <param name="accountName">the account name the information is required for</param>
         /// <returns>the account information</returns>
-        public bool GetAccount(string accountName)
+        public GetAccountResponse GetAccount(string accountName)
         {
             try
             {
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {accountName};
                 var result = SendRequest(reqname, @params);
-                return result == "true";
+                var contentdata = JsonConvert.DeserializeObject<GetAccountResponse>(result);
+                return contentdata;
             }
             catch (Exception ex)
             {
@@ -499,7 +509,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="memokey">the memo key</param>
         /// <param name="pk">the private key used for the digest</param>
         /// <returns>the account creation response details</returns>
-        public CreateAccountResponse CreateAccount(string accountname, string jsonMeta, string ownerkey,
+        public AccountResponse CreateAccount(string accountname, string jsonMeta, string ownerkey,
             string activekey, string memokey, string witnessname = "initminer",
             string pk = "5JPwY3bwFgfsGtxMeLkLqXzUrQDMAsqSyAZDnMBkg7PDDRhQgaV")
         {
@@ -510,21 +520,23 @@ namespace Alexandria.net.API.WalletFunctions
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {witnessname, accountname, jsonMeta, ownerkey, activekey, memokey};
                 var result = SendRequest(reqname, @params);
-                
-                var contentdata = JsonConvert.DeserializeObject<CreateAccountResponse>(result);
-                
+
+                var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
+
+//                var transresponse =
+//                    trans.CreateTransaction(new List<AccountResponse> {contentdata});
                 var transresponse = trans.CreateSimpleTransaction(contentdata);
                 if (transresponse == null) return null;
-                
+
                 var aboutresponse = trans.About();
                 if (aboutresponse == null) return null;
-                
+
                 var transaction = JsonConvert.SerializeObject(transresponse.result);
                 var digest = key.GetTransactionDigest(transaction, aboutresponse.result.chain_id, new byte[64]);
 
                 var signature = key.SignDigest(digest, pk, new byte[130]);
                 var response = key.AddSignature(transaction, signature, new byte[transaction.Length + 200]);
-                
+
                 return response == null ? null : contentdata;
             }
             catch (Exception ex)
@@ -535,29 +547,24 @@ namespace Alexandria.net.API.WalletFunctions
         }
 
         /// <summary>
-        /// 
-        /// </summary>
-        /// <exception cref="NotImplementedException"></exception>
-        public void transfer_to_vesting()
-        {
-            throw new NotImplementedException();
-        }
-        
-        /// <summary>
         /// Deletes the account from the blockchain related to the given name of the account
         /// </summary>
         /// <param name="accountName"></param>
         /// <returns>Returns object containing information about the new operation created</returns>
-        public BlockResponse DeleteAccount(string accountName)
+        public AccountResponse DeleteAccount(string accountName)
         {
+            
             try
             {
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {accountName};
                 var result= SendRequest(reqname, @params);
-                var contentdata = JsonConvert.DeserializeObject<BlockResponse>(result);
+                var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
+                BroadCastTransactionProcess newProcess = new BroadCastTransactionProcess(Config);
                 
-                return contentdata;
+                var response = newProcess.StartBroadcasting(contentdata);
+                
+                return response == null ? null : contentdata;
             }
             catch(Exception ex)
             {
@@ -566,5 +573,7 @@ namespace Alexandria.net.API.WalletFunctions
             }
             
         }
+
+        
     }
 }

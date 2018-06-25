@@ -20,7 +20,7 @@
         private const string CreateSimpleMultisigAuthority = "createSimpleMultisigAuthority";
         private const string CreateSimpleManagedAuthority = "createSimpleManagedAuthority";
         private const string CreateSimpleMultiManagedAuthority = "createSimpleMultiManagedAuthority";
-        private const string UpdateAccount = "updateAccount";
+        private const string UpdateAccount = "update_account";
         private const string DepositVesting = "depositVesting";
         private const string WithdrawVestings = "withdrawVestings";
         private const string VoteForWitness = "vote_for_witness";
@@ -56,7 +56,9 @@
         private const string GetWitness  = "get_witness";
         private const string ListWitnesses  = "list_witnesses";
         private const string UpdateWitness  = "update_witness";
-
+        private const string Help  = "help";
+        private const string Info  = "info";
+        private string SerializeTransaction = "serialize_transaction";
 
         /// <summary>
         /// 
@@ -167,6 +169,13 @@
                     return ListWitnesses;
                 case "UpdateWitness":
                     return UpdateWitness;
+                case "Help":
+                    return Help;
+                case "Info":
+                    return Info;
+                case "SerializeTransaction":
+                    return SerializeTransaction;
+                
 
             }
 
