@@ -61,8 +61,8 @@ namespace UnitTest
         [Fact]
         public void update_witness()
         {
-            //todo - test this function
-            _client.Wallet.Witness.UpdateWitness("test101", "url", "blockkey", "pros");
+            
+            _client.Wallet.Witness.UpdateWitness("test101", "http://wwww.testminer.com", PublicKey, "10.000000 VESTS",PrivateKey);
         
         }
         #endregion
@@ -306,7 +306,7 @@ namespace UnitTest
         [Fact]
         public void CreateApplication()
         {
-            _client.Wallet.Application.CreateApplication("test101","BoxGame4","http://boxgame.com","genre: Adventure, requirements: Mac OS Sierra",1,PrivateKey);
+            _client.Wallet.Application.CreateApplication("test101","BoxGame5","http://boxgame.com","genre: Adventure, requirements: Mac OS Sierra",1,PrivateKey);
 
         }
         [Fact]
@@ -326,24 +326,29 @@ namespace UnitTest
         [Fact]
         public void BuyApplication()
         {
-            _client.Wallet.Application.BuyApplication("test105",10100101,PrivateKey);
+            _client.Wallet.Application.BuyApplication("test110",4,PrivateKey);
 
         }
 
         [Fact]
         public void CancelApplicationBuying()
         {
-            _client.Wallet.Application.CancelApplicationBuying("test101","test105",10100101,PrivateKey);
+            _client.Wallet.Application.CancelApplicationBuying("test101","test110",4,PrivateKey);
 
         }
 
         [Fact]
         public void GetApplicationBuyings()
         {
-            _client.Wallet.Application.GetApplicationBuyings("test103","by_buyer",10,PrivateKey);
+            _client.Wallet.Application.GetApplicationBuyings("test110","by_buyer",10,PrivateKey);
 
         }
+        [Fact]
+        public void GetApplications()
+        {
+            _client.Wallet.Application.GetApplications("BoxGame5");
 
+        }
 
 
         #endregion
