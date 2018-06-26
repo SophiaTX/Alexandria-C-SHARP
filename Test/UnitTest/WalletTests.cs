@@ -62,7 +62,7 @@ namespace UnitTest
         public void update_witness()
         {
             
-            _client.Wallet.Witness.UpdateWitness("test101", "http://wwww.testminer.com", PublicKey, "10.000000 VESTS",PrivateKey);
+            _client.Wallet.Witness.UpdateWitness("initminer", "http://www.testminer.com", PublicKey, "10.000000 VESTS",PrivateKey);
         
         }
         #endregion
@@ -263,40 +263,36 @@ namespace UnitTest
 
         #endregion
 
-
         #region Data Methods
 
         [Fact]
         public void Send()
         {
-            var data = new SenderData
-            {
-                AppId = 1,
-                PrivateKey = PrivateKey,
-                Recipients = new List<string> {"test101"},
-                Sender = "test103",
-                Documents = new List<string> {"the quick brown fox jumped over something..."}
-            };
-            var result = _client.Wallet.Data.Send(data);
+//            var data = new SenderData
+//            {
+//                AppId = 1,
+//                PrivateKey = PrivateKey,
+//                Recipients = new List<string> {"test101"},
+//                Sender = "test103",
+//                Documents = "the quick brown fox jumped over something...",
+//            }
+            var result = _client.Wallet.Data.MakeCustomJsonOperation(4,"test101","test110","{}",PrivateKey);
             Console.WriteLine(result);
         }
 
         [Fact]
         public void SendBinary()
         {
-            //_client.Wallet.Data.SendBinary();
+            var result = _client.Wallet.Data.MakeCustomBinaryOperation(4,"test101","test110","2ZJ8RsXVNcNEoWPr6U5XYcjJeEfuz8cZbUNKxi6UQcgpxch5K1rRqagDHTv3C9vZLDJpSD9WYss6VHAWWvWVNCtCNmWD1BT7R2zQg98nKq5pMJt7Y2y2Ks6MqT6KLqFnBtL2P1E",PrivateKey);
+            Console.WriteLine(result);
         }
 
-        [Fact]
-        public void SendBinaryBase58()
-        {
-            //_client.Wallet.Data.SendBinaryBase58();
-        }
-
+        
         [Fact]
         public void Receive()
         {
-            //_client.Wallet.Data.Receive();
+            var result = _client.Wallet.Data.GetReceivedDocuments(4,"by_sender","test101","2018-06-22T13:39:34",10);
+            Console.WriteLine(result);
         }
 
         #endregion
@@ -340,7 +336,7 @@ namespace UnitTest
         [Fact]
         public void GetApplicationBuyings()
         {
-            _client.Wallet.Application.GetApplicationBuyings("test110","by_buyer",10,PrivateKey);
+            _client.Wallet.Application.GetApplicationBuyings("test110","by_buyer",10);
 
         }
         [Fact]

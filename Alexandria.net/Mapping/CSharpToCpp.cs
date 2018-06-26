@@ -69,6 +69,7 @@
         private const string CancelApplicationBuying = "cancel_application_buying";
         private const string GetApplicationBuyings = "get_application_buyings";
         private const string GetApplications = "get_applications";
+        
 
         /// <summary>
         /// 

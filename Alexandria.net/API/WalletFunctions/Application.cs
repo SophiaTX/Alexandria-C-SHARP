@@ -161,7 +161,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="SearchType">search_type One of "by_buyer", "by_app_id"</param>
         /// <param name="Count">count Number of items to retrieve</param>
        
-        public ApplicationSearchResponse GetApplicationBuyings(string BuyerName, string SearchType, int Count,string privateKey)
+        public ApplicationSearchResponse GetApplicationBuyings(string BuyerName, string SearchType, int Count)
         {
             try
             {
