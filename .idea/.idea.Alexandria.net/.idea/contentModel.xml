@@ -4,19 +4,17 @@
     <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.3.1/build/netcoreapp1.0/xunit.runner.reporters.netcoreapp10.dll" t="Include" />
     <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.3.1/build/netcoreapp1.0/xunit.runner.utility.netcoreapp10.dll" t="Include" />
     <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.3.1/build/netcoreapp1.0/xunit.runner.visualstudio.dotnetcore.testadapter.dll" t="Include" />
-    <e p="$USER_HOME$/Library/Caches/Rider2018.1/resharper-host/local/Transient/ReSharperHost/v12/SolutionCaches/_Alexandria.net.-1113668252.00" t="ExcludeRecursive" />
+    <e p="$USER_HOME$/Library/Caches/Rider2018.1/resharper-host/local/Transient/ReSharperHost/v12/SolutionCaches/_Alexandria.net.-1519402999.00" t="ExcludeRecursive" />
     <e p="$PROJECT_DIR$" t="IncludeFlat">
       <e p="Alexandria.net" t="IncludeRecursive">
         <e p="Alexandria.net.csproj" t="IncludeRecursive" />
         <e p="API" t="Include">
           <e p="WalletFunctions" t="Include">
             <e p="Account.cs" t="Include" />
+            <e p="Application.cs" t="Include" />
             <e p="Asset.cs" t="Include" />
-            <e p="BroadCastTransactionProcess.cs" t="Include" />
-            <e p="Cryptography.cs" t="Include" />
             <e p="Data.cs" t="Include" />
             <e p="Key.cs" t="Include" />
-            <e p="Network.cs" t="Include" />
             <e p="Transaction.cs" t="Include" />
             <e p="Witness.cs" t="Include" />
           </e>
@@ -61,6 +59,8 @@
             <e p="ErrorMessage.cs" t="Include" />
           </e>
           <e p="Receiver" t="Include">
+            <e p="AssetType.cs" t="Include" />
+            <e p="ChainProperties.cs" t="Include" />
             <e p="SenderData.cs" t="Include" />
           </e>
           <e p="Responses" t="Include">
@@ -75,17 +75,22 @@
               <e p="AccountResponse.cs" t="Include" />
               <e p="Active.cs" t="Include" />
               <e p="ActiveWitnessResponse.cs" t="Include" />
+              <e p="ApplicationData.cs" t="Include" />
+              <e p="ApplicationSearchResponse.cs" t="Include" />
               <e p="BainKey.cs" t="Include" />
               <e p="BlockData.cs" t="Include" />
               <e p="BlockResponse.cs" t="Include" />
               <e p="BrainKeySuggestion.cs" t="Include" />
               <e p="CreateAccountResponse.cs" t="Include" />
               <e p="CurrentMedianHistory.cs" t="Include" />
+              <e p="CustomJsonResponse.cs" t="Include" />
               <e p="DataRequestResponse.cs" t="Include" />
               <e p="DataResponse.cs" t="Include" />
+              <e p="ErrorHandler.cs" t="Include" />
               <e p="FeedData.cs" t="Include" />
               <e p="FeedHistoryResponse.cs" t="Include" />
               <e p="GetAccountResponse.cs" t="Include" />
+              <e p="GetApplicationResponse.cs" t="Include" />
               <e p="GetOperationsResponse.cs" t="Include" />
               <e p="GetWitnessResponse.cs" t="Include" />
               <e p="HelpResponse.cs" t="Include" />
@@ -93,6 +98,7 @@
               <e p="InfoDetails.cs" t="Include" />
               <e p="InfoResponse.cs" t="Include" />
               <e p="KeyFromPassword.cs" t="Include" />
+              <e p="KeyResponse.cs" t="Include" />
               <e p="ListAccountsResponse.cs" t="Include" />
               <e p="LockUnlockRequestResponse.cs" t="Include" />
               <e p="LockUnlockResponse.cs" t="Include" />
@@ -101,6 +107,7 @@
               <e p="Options.cs" t="Include" />
               <e p="Owner.cs" t="Include" />
               <e p="PricePerSubscribe.cs" t="Include" />
+              <e p="ReceivedDocumentResponse.cs" t="Include" />
               <e p="ReceiverRecipe.cs" t="Include" />
               <e p="Result.cs" t="Include" />
               <e p="RightsToPublish.cs" t="Include" />
@@ -114,7 +121,7 @@
           </e>
         </e>
         <e p="obj" t="ExcludeRecursive">
-          <e p="Debug" t="Include">
+          <e p="Release" t="Include">
             <e p="netcoreapp2.0" t="Include">
               <e p="Alexandria.net.AssemblyInfo.cs" t="Include" />
             </e>
@@ -135,7 +142,7 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="DeamonTest.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
-          <e p="Debug" t="Include">
+          <e p="Release" t="Include">
             <e p="netcoreapp2.0" t="Include">
               <e p="UnitTest.AssemblyInfo.cs" t="Include" />
               <e p="UnitTest.Program.cs" t="Include" />

@@ -154,6 +154,7 @@
                     return GetTransaction;
                 case "BroadcastTransaction":
                     return BroadcastTransaction;
+                case "CreateSimpleTransactionTest":
                 case "CreateSimpleTransaction":
                     return CreateSimpleTransaction;
                 case "CreateTransaction":
