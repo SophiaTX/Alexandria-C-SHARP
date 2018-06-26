@@ -15,9 +15,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="API\SphTxApi.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <None Remove="libalexandria.dylib" />
-    <Content Include="libalexandria.dylib">
+    <EmbeddedResource Include="libalexandria.dylib">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

@@ -52,25 +52,21 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="senderdata"></param>
         /// <param name="privateKey"></param>
         /// <returns></returns>
-        public bool Send(SenderData senderdata)
+        public TransactionResponse Send(SenderData senderdata)
         {
-            var result = false;
             try
             {
                 var customjsonrpc = MakeCustomJsonOperation(senderdata.Sender, senderdata.Recipients, senderdata.AppId,
                     senderdata.FormattedDoc);
-                if (customjsonrpc == null) return false;
+                if (customjsonrpc == null) return null;
                 var resp = StartBroadcasting(customjsonrpc.result, senderdata.PrivateKey);
-                if (resp != null)
-                    result = true;
+                return resp;
             }
             catch (Exception ex)
             {
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
-
-            return result;
         }
 
         /// <summary>

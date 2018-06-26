@@ -207,17 +207,18 @@ namespace UnitTest
         [Fact]
         public void CreateAccount()
         {
-            _client.Wallet.Account.CreateAccount("test116", "{}",
+           var result= _client.Wallet.Account.CreateAccount("test116", "{}",
                 "SPH6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz",
                 "SPH6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz",
                 "SPH6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz");
+            Console.WriteLine(result);
         }
 
         [Fact]
         public void GetAccount()
         {
-            _client.Wallet.Account.GetAccount("test110");
-
+            var result=_client.Wallet.Account.GetAccount("test110");
+            Console.WriteLine(result);
         }
 
         [Fact]
@@ -230,10 +231,11 @@ namespace UnitTest
         [Fact]
         public void update_account()
         {
-            _client.Wallet.Account.UpdateAccount("test110", "{}",
+            var result=_client.Wallet.Account.UpdateAccount("test110", "{}",
                 "SPH6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz",
-                "SPH6eJ4GcGtay4qvZ7eebXaLkGcXsMhq3WC1GgyQbTLbEd6EVisSm",
+                "SPH6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz",
                 "SPH6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz", PrivateKey);
+            Console.WriteLine(result);
         }
 
         
@@ -282,20 +284,21 @@ namespace UnitTest
             Console.WriteLine(result);
         }
 
-        [Fact]
-        public void SendBinary()
-        {
-            var result = _client.Wallet.Data.MakeCustomBinaryOperation(4,"test101","test110","2ZJ8RsXVNcNEoWPr6U5XYcjJeEfuz8cZbUNKxi6UQcgpxch5K1rRqagDHTv3C9vZLDJpSD9WYss6VHAWWvWVNCtCNmWD1BT7R2zQg98nKq5pMJt7Y2y2Ks6MqT6KLqFnBtL2P1E",PrivateKey);
-            Console.WriteLine(result);
-        }
-
-        
-        [Fact]
-        public void Receive()
-        {
-            var result = _client.Wallet.Data.GetReceivedDocuments(4,"by_sender","test101","2018-06-22T13:39:34",10);
-            Console.WriteLine(result);
-        }
+//        [Fact]
+//        public void SendBinary()
+//        {
+//            
+//            var result = _client.Wallet.Data.MakeCustomBinaryOperation(4,"test101",Recipients,"2ZJ8RsXVNcNEoWPr6U5XYcjJeEfuz8cZbUNKxi6UQcgpxch5K1rRqagDHTv3C9vZLDJpSD9WYss6VHAWWvWVNCtCNmWD1BT7R2zQg98nKq5pMJt7Y2y2Ks6MqT6KLqFnBtL2P1E",PrivateKey);
+//            Console.WriteLine(result);
+//        }
+//
+//        
+//        [Fact]
+//        public void Receive()
+//        {
+//            var result = _client.Wallet.Data.GetReceivedDocuments(4,"by_sender","test101","2018-06-22T13:39:34",10);
+//            Console.WriteLine(result);
+//        }
 
         #endregion
 

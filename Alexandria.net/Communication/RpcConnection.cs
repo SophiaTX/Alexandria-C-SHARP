@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
  using Alexandria.net.API.WalletFunctions;
  using Alexandria.net.Enums;
+ using Alexandria.net.Exceptions;
  using Alexandria.net.Logging;
  using Alexandria.net.Mapping;
  using Alexandria.net.Messaging.Responses.DTO;
@@ -138,6 +139,12 @@ namespace Alexandria.net.Communication
                 {
                     _logger.WriteTestData(
                         $"Date & Time: {DateTime.UtcNow} || Method: {methodname} || Request Data: {json} || Response Data: {response}");
+                }
+                
+                //todo - think about this a bit more
+                if (response.Contains("Error"))
+                {
+                    throw new SophiaBlockchainException(response);
                 }
             }
             catch (HttpRequestException ex)
