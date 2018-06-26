@@ -153,7 +153,7 @@ namespace Alexandria.net.API.WalletFunctions
                 var result = SendRequest(reqname, @params);
                 var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
 
-                var response = StartBroadcasting(contentdata, privateKey);
+                var response = StartBroadcasting(contentdata.result, privateKey);
                 return response;
             }
             catch (Exception ex)

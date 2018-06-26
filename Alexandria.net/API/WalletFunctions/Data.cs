@@ -10,6 +10,7 @@ using Alexandria.net.Messaging.Receiver;
 using Alexandria.net.Messaging.Responses.DTO;
 using Alexandria.net.Settings;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using ILogger = Alexandria.net.Logging.ILogger;
 using Logger = Alexandria.net.Logging.Logger;
 
@@ -56,62 +57,12 @@ namespace Alexandria.net.API.WalletFunctions
             var result = false;
             try
             {
-                //var operations = new List<AccountResponse>();
-                foreach (var doc in senderdata.Documents)
-                {
-                    var operation = MakeCustomJsonOperation(senderdata.Sender, senderdata.Recipients, senderdata.AppId,
-                        doc);
-                    if (operation == null) continue;
-                    var resp = StartBroadcasting(operation, senderdata.PrivateKey);
-                    if (resp != null)
-                    {
-                        result = true;
-                    }
-                    else
-                    {
-                        result = false;
-                        break;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
-                throw;
-            }
-
-            return result;
-        }
-        
-        public bool SendOriginal(SenderData senderdata)
-        {
-            var result = false;
-            try
-            {
-                var operations = new List<AccountResponse>();
-                foreach (var doc in senderdata.Documents)
-                {
-                    var operation = MakeCustomJsonOperation(senderdata.Sender, senderdata.Recipients, senderdata.AppId,
-                        doc);
-                    if (operation != null)
-                        operations.Add(operation);
-                }
-
-                if (operations.Count == 0) return false;
-
-                foreach (var operation in operations)
-                {
-                    var resp = StartBroadcasting(operation, senderdata.PrivateKey);
-                    if (resp != null)
-                    {
-                        result = true;
-                    }
-                    else
-                    {
-                        result = false;
-                        break;
-                    }
-                }
+                var customjsonrpc = MakeCustomJsonOperation(senderdata.Sender, senderdata.Recipients, senderdata.AppId,
+                    senderdata.FormattedDoc);
+                if (customjsonrpc == null) return false;
+                var resp = StartBroadcasting(customjsonrpc.result, senderdata.PrivateKey);
+                if (resp != null)
+                    result = true;
             }
             catch (Exception ex)
             {
@@ -147,7 +98,7 @@ namespace Alexandria.net.API.WalletFunctions
                 
                 foreach (var operation in operations)
                 {
-                    var resp = StartBroadcasting(operation, privateKey);
+                    var resp = StartBroadcasting(operation.result, privateKey);
                     if (resp != null)
                     {
                         result = true;
@@ -169,49 +120,7 @@ namespace Alexandria.net.API.WalletFunctions
         }
 
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="senderdata"></param>
-        /// <param name="privateKey"></param>
-        /// <returns></returns>
-        public bool SendBinaryBase58(SenderData senderdata, string privateKey)
-        {
-            var result = false;
-            try
-            {
-                var operations = new List<AccountResponse>();
-                foreach (var doc in senderdata.Documents)
-                {
-                    var operation = MakeCustomBinaryBase58Operation(senderdata.Sender, senderdata.Recipients,
-                        senderdata.AppId, doc);
-                    operations.Add(operation);
-                }
-
-                if (operations.Count == 0) return false;
-
-                foreach (var operation in operations)
-                {
-                    var resp = StartBroadcasting(operation, privateKey);
-                    if (resp != null)
-                    {
-                        result = true;
-                    }
-                    else
-                    {
-                        result = false;
-                        break;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
-                throw;
-            }
-
-            return result;
-        }
+       
 
         /// <summary>
         /// Allowed options for search_type are "by_sender", "by_recipient", "by_sender_datetime", "by_recipient_datetime".
@@ -246,14 +155,15 @@ namespace Alexandria.net.API.WalletFunctions
         #endregion
         
         #region PrivateMethods
-                /// <summary>
+
+        /// <summary>
         /// </summary>
         /// <param name="sender">string sender</param>
         /// <param name="recipients">List of string recipients</param>
         /// <param name="appId">ulong appId</param>
         /// <param name="document">string document</param>
         /// <returns></returns>
-        private AccountResponse MakeCustomJsonOperation(string sender, List<string> recipients, uint appId,
+        private CustomJsonResponse MakeCustomJsonOperation(string sender, List<string> recipients, uint appId,
             string document)
         {
             try
@@ -261,8 +171,7 @@ namespace Alexandria.net.API.WalletFunctions
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {appId, sender, recipients, document};
                 var response = SendRequest(reqname, @params);
-                var rrrrrr = JsonConvert.DeserializeObject<CustomJsonResponse>(response).result;
-                return null;
+                return JsonConvert.DeserializeObject<CustomJsonResponse>(response);
             }
             catch (Exception ex)
             {

@@ -19,10 +19,15 @@ namespace Alexandria.net.Messaging.Receiver
         /// 
         /// </summary>
         public uint AppId { get; set; }
+
         /// <summary>
         /// 
         /// </summary>
-        public List<string> Documents { get; set; }
+        public string Document
+        {
+            set => FormattedDoc = "[\"" + $"{value}" + "\"]";
+        }
+        public string FormattedDoc { get; private set; }
         /// <summary>
         /// 
         /// </summary>

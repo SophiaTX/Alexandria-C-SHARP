@@ -75,38 +75,8 @@ namespace Alexandria.net.Communication
             var resp = ProcessRequest(method, @params);
             return resp.Result;
         }
-
-        protected T StartBroadcastingTest<T>(T contentdata, string privateKey)
-        {
-            var trans = new Transaction(Config);
-            var key = new Key(Config);
-            TransactionResponse finalResponse;
-            try
-            {
-                var transresponse = trans.CreateSimpleTransactionTest(contentdata);
-                if (transresponse == null) return default(T);
-
-                var aboutresponse = trans.About();
-                if (aboutresponse == null) return default(T);
-
-                var transaction = JsonConvert.SerializeObject(transresponse.result);
-                var digest = key.GetTransactionDigest(transaction, aboutresponse.result.chain_id, new byte[64]);
-
-                var signature = key.SignDigest(digest, privateKey, new byte[130]);
-                var response = key.AddSignature(transaction, signature, new byte[transaction.Length + 200]);
-                finalResponse = trans.BroadcastTransaction(response);
-                trans.SerializeTransaction(response);
-            }
-            catch (Exception ex)
-            {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
-                throw;
-            }
-
-            return finalResponse == null ? default(T) : contentdata;
-        }
         
-        protected TransactionResponse StartBroadcasting(AccountResponse contentdata, string privateKey)
+        protected TransactionResponse StartBroadcasting<T>(T contentdata, string privateKey)
         {
             var trans = new Transaction(Config);
             var key = new Key(Config);

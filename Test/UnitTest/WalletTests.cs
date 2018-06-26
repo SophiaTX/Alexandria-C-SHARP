@@ -269,13 +269,15 @@ namespace UnitTest
         [Fact]
         public void Send()
         {
+            var test = "this is some text that i would like to send";
+           
             var data = new SenderData
             {
                 AppId = 1,
                 PrivateKey = PrivateKey,
                 Recipients = new List<string> {"test101"},
                 Sender = "test103",
-                Documents = new List<string> {"the quick brown fox jumped over something..."}
+                Document = test//"[\"" + $"{test}" + "\"]"
             };
             var result = _client.Wallet.Data.Send(data);
             Console.WriteLine(result);
