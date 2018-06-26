@@ -62,7 +62,7 @@ namespace UnitTest
         public void update_witness()
         {
             
-            _client.Wallet.Witness.UpdateWitness("initminer", "http://www.testminer.com", PublicKey, "10.000000 VESTS",PrivateKey);
+            _client.Wallet.Witness.UpdateWitness("test101", "http://www.testminer.com", PublicKey, "SPHTX",1,PrivateKey);
         
         }
         #endregion
@@ -244,7 +244,8 @@ namespace UnitTest
         [Fact]
         public void WithdrawVesting()
         {
-            _client.Wallet.Asset.WithdrawVesting("test101", "10.000000 VESTS", PrivateKey);
+            
+            _client.Wallet.Asset.WithdrawVesting("test101", "10.00000 VESTS", PrivateKey);
         }
         [Fact]
         public void Transfer()
