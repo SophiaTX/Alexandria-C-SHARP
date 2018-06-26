@@ -3,6 +3,7 @@ using System.Collections;
 using System.Reflection;
 using Alexandria.net.Communication;
 using Alexandria.net.Logging;
+using Alexandria.net.Messaging.Receiver;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Alexandria.net.Messaging.Responses.DTO;
@@ -169,12 +170,20 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="WitnessAccountName">Input string accountName</param>
         /// <param name="url">A URL containing some information about the witness.  The empty string makes it remain the same.</param>
         /// <param name="blockKey">The new block signing public key.  The empty string disables block production.</param>
-        /// <param name="pros">The chain properties the witness is voting on</param>
+        /// <param name="Symbol">Token Symbol</param>
+        /// <param name="AccountCreatePrice">Ammount require to create an Account</param>
         /// <returns>Returns true if success or false for failed try</returns>
-        public TransactionResponse UpdateWitness(string WitnessAccountName, string url, string blockKey,string pros,string privateKey)
+        public TransactionResponse UpdateWitness(string WitnessAccountName, string url, string blockKey,string Symbol,int AccountCreatePrice,string privateKey)
         {
             try
             {
+                var pros=new ChainProperties();
+                var newAsset = new AssetType
+                {
+                    Amount = AccountCreatePrice,
+                    Symbol = Symbol
+                };
+                pros.AccountCreationFee = newAsset;
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {WitnessAccountName, url, blockKey,pros};
                 var result = SendRequest(reqname, @params);
