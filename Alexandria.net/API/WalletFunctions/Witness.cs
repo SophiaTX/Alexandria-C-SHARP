@@ -166,19 +166,22 @@ namespace Alexandria.net.API.WalletFunctions
         /// <summary>
         /// Update an account to witness.Requires XXX vested SPHTX before updating.
         /// </summary>
-        /// <param name="WitnessAccountName">Inout string accountName</param>
+        /// <param name="WitnessAccountName">Input string accountName</param>
         /// <param name="url">A URL containing some information about the witness.  The empty string makes it remain the same.</param>
         /// <param name="blockKey">The new block signing public key.  The empty string disables block production.</param>
         /// <param name="pros">The chain properties the witness is voting on</param>
         /// <returns>Returns true if success or false for failed try</returns>
-        public bool UpdateWitness(string WitnessAccountName, string url, string blockKey,string pros)
+        public TransactionResponse UpdateWitness(string WitnessAccountName, string url, string blockKey,string pros,string privateKey)
         {
             try
             {
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                var @params = new ArrayList {WitnessAccountName, url, blockKey};
+                var @params = new ArrayList {WitnessAccountName, url, blockKey,pros};
                 var result = SendRequest(reqname, @params);
-                return result == "true";
+                var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
+
+                var response = StartBroadcasting(contentdata, privateKey);
+                return response;
             }
             catch (Exception ex)
             {

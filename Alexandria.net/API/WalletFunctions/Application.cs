@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Reflection;
 using Alexandria.net.Communication;
 using Alexandria.net.Logging;
@@ -9,7 +10,11 @@ using Newtonsoft.Json;
 
 namespace Alexandria.net.API.WalletFunctions
 {
-    public class Application : RpcConnection
+    /// <inheritdoc />
+    /// <para>
+    /// Wallet Application Functions
+    /// </para>
+    public class Application:RpcConnection
     {
         private readonly ILogger _logger;
 
@@ -180,8 +185,27 @@ namespace Alexandria.net.API.WalletFunctions
                 var @params = new ArrayList {buyerName, searchType, count};
                 var result = SendRequest(reqname, @params);
                 var contentdata = JsonConvert.DeserializeObject<ApplicationSearchResponse>(result);
-
+ 
                 return contentdata;
+            }
+            catch(Exception ex)
+            {
+                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+                throw ;
+            }
+        }
+
+        public GetApplicationResponse GetApplications(string ApplicationNames)
+        {
+            try
+            {
+                List<string> Names=new List<string>{ApplicationNames};
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+                var @params = new ArrayList {Names};
+                var result= SendRequest(reqname, @params);
+                var response = JsonConvert.DeserializeObject<GetApplicationResponse>(result);
+
+                return response;
             }
             catch (Exception ex)
             {
@@ -190,6 +214,10 @@ namespace Alexandria.net.API.WalletFunctions
             }
         }
     }
+
+    #region Public Methods
+    
+    
 
     #endregion
 }

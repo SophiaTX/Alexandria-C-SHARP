@@ -68,6 +68,8 @@
         private const string DeleteApplication = "delete_application";
         private const string CancelApplicationBuying = "cancel_application_buying";
         private const string GetApplicationBuyings = "get_application_buyings";
+        private const string GetApplications = "get_applications";
+        
 
         /// <summary>
         /// 
@@ -201,7 +203,9 @@
                 case "CancelApplicationBuying":
                     return CancelApplicationBuying;
                 case "GetApplicationBuyings":
-                    return GetApplicationBuyings;               
+                    return GetApplicationBuyings; 
+                case "GetApplications":
+                    return GetApplications;
             }
 
             return string.Empty;

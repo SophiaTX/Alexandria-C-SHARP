@@ -155,8 +155,7 @@ namespace Alexandria.net.API.WalletFunctions
         #endregion
         
         #region PrivateMethods
-
-        /// <summary>
+                /// <summary>
         /// </summary>
         /// <param name="sender">string sender</param>
         /// <param name="recipients">List of string recipients</param>
