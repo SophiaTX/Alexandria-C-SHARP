@@ -70,16 +70,19 @@ namespace Alexandria.net.API.WalletFunctions
         }
 
         /// <summary>
-        /// 
+        /// Send custom data data
         /// </summary>
-        /// <param name="senderdata"></param>
+        /// <param name="sender">from Sender</param>
+        /// <param name="recipients">to List of receivers</param>
+        /// <param name="appId">app_id Application ID</param>
+        /// <param name="document">data Data formatted in base58</param>
         /// <returns></returns>
         public TransactionResponse SendBinary(SenderData senderdata)
         {
             try
             {
-                var customjsonrpc = MakeCustomBinaryOperation(senderdata.Sender, senderdata.Recipients,
-                    senderdata.AppId,
+                var customjsonrpc = MakeCustomBinaryOperation(senderdata.AppId, senderdata.Sender, senderdata.Recipients,
+                    
                     senderdata.DocumentChars);
                 if (customjsonrpc == null) return null;
                 var resp = StartBroadcasting(customjsonrpc.result, senderdata.PrivateKey);
@@ -101,28 +104,32 @@ namespace Alexandria.net.API.WalletFunctions
         /// </summary>
         /// <param name="appId">The Id of the application which we are receiving for</param>
         /// <param name="searchType">based on the Search Type Enum</param>
-        /// <param name="account">Account Owner - sender or receiver</param>
-        /// <param name="start">Start by value - index or ISO time stamp</param>
+        /// <param name="accountName">Account Owner - sender or receiver</param>
+        /// <param name="start">Start by value - index or ISO timestamps</param>
         /// <param name="count"></param>
         /// <returns></returns>
-        public Dictionary<ulong, ReceiverRecipe> Receive(ulong appId, SearchType searchType, AccountOwner account,
-            StartBy start,
+        public  ReceivedDocumentResponse Receive(ulong appId,  string accountName,SearchType searchType,
+            string start,
             uint count)
         {
-            Dictionary<ulong, ReceiverRecipe> result;
+            ReceivedDocumentResponse result;
+            
             try
             {
-                result = GetReceivedDocuments(appId, searchType.GetStringValue(), account.GetStringValue(),
-                    start.GetStringValue(),
+               result = GetReceivedDocuments(appId,  accountName,searchType,
+                    start,
                     count);
+                
+                
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
                 throw;
             }
-
             return result;
+
+            
         }
 
         #endregion
@@ -161,13 +168,13 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="appId"></param>
         /// <param name="document"></param>
         /// <returns></returns>
-        private AccountResponse MakeCustomBinaryOperation(string sender, List<string> recipients, ulong appId,
-            List<char> document)
+        private AccountResponse MakeCustomBinaryOperation(ulong appId, string sender, List<string> recipients, 
+            string document)
         {
             try
             {
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                var @params = new ArrayList {sender, recipients, appId, document};
+                var @params = new ArrayList {appId, sender, recipients, document};
                 var response = SendRequest(reqname, @params);
                 return JsonConvert.DeserializeObject<AccountResponse>(response);
             }
@@ -216,15 +223,15 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="start"></param>
         /// <param name="count"></param>
         /// <returns></returns>
-        private Dictionary<ulong, ReceiverRecipe> GetReceivedDocuments(ulong appId, string searchType,
-            string account, string start, uint count)
+        private ReceivedDocumentResponse GetReceivedDocuments(ulong appId, 
+            string account,SearchType searchType, string start, uint count)
         {
             try
             {
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                var @params = new ArrayList {appId, searchType, account, start, count};
+                var @params = new ArrayList {appId, account,searchType.GetStringValue(),  start, count};
                 var result = SendRequest(reqname, @params);
-                return JsonConvert.DeserializeObject<Dictionary<ulong, ReceiverRecipe>>(result);
+                return JsonConvert.DeserializeObject<ReceivedDocumentResponse>(result);
             }
             catch (Exception ex)
             {

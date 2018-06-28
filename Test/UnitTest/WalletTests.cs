@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using Alexandria.net.Enums;
 using Alexandria.net.Messaging.Receiver;
 using Xunit;
 
@@ -207,7 +208,7 @@ namespace UnitTest
         [Fact]
         public void CreateAccount()
         {
-           var result= _client.Wallet.Account.CreateAccount("test116", "{}",
+           var result= _client.Wallet.Account.CreateAccount("test117", "{}",
                 "SPH6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz",
                 "SPH6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz",
                 "SPH6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz");
@@ -274,31 +275,41 @@ namespace UnitTest
            
             var data = new SenderData
             {
-                AppId = 1,
+                AppId = 2,
                 PrivateKey = PrivateKey,
                 Recipients = new List<string> {"test101"},
-                Sender = "test103",
+                Sender = "test110",
                 Document = test//"[\"" + $"{test}" + "\"]"
             };
             var result = _client.Wallet.Data.Send(data);
             Console.WriteLine(result);
         }
 
-//        [Fact]
-//        public void SendBinary()
-//        {
-//            
-//            var result = _client.Wallet.Data.MakeCustomBinaryOperation(4,"test101",Recipients,"2ZJ8RsXVNcNEoWPr6U5XYcjJeEfuz8cZbUNKxi6UQcgpxch5K1rRqagDHTv3C9vZLDJpSD9WYss6VHAWWvWVNCtCNmWD1BT7R2zQg98nKq5pMJt7Y2y2Ks6MqT6KLqFnBtL2P1E",PrivateKey);
-//            Console.WriteLine(result);
-//        }
-//
-//        
-//        [Fact]
-//        public void Receive()
-//        {
-//            var result = _client.Wallet.Data.GetReceivedDocuments(4,"by_sender","test101","2018-06-22T13:39:34",10);
-//            Console.WriteLine(result);
-//        }
+        [Fact]
+        public void SendBinary()
+        {
+            var test = "this is some text that i would like to send";
+           
+            var data = new SenderData
+            {
+                AppId = 2,
+                PrivateKey = PrivateKey,
+                Recipients = new List<string> {"test101"},
+                Sender = "test110",
+                DocumentChars = "2ZJ8RsXVNcNEoWPr6U5XYcjJeEfuz8cZbUNKxi6UQcgpxch5K1rRqagDHTv3C9vZLDJpSD9WYss6VHAWWvWVNCtCNkadKEcvaSV9SecRUnFeomX9HDTvhTXLW6BAAvuLRBMFLo1" //"[\"" + $"{test}" + "\"]"
+            };
+            
+            var result = _client.Wallet.Data.SendBinary(data);
+            Console.WriteLine(result);
+        }
+        
+        
+        [Fact]
+        public void Receive()
+        {
+            var result = _client.Wallet.Data.Receive(2,"test110",SearchType.BySender,"2018-06-22T13:39:34",10);
+            Console.WriteLine(result);
+        }
 
         #endregion
 
@@ -341,7 +352,7 @@ namespace UnitTest
         [Fact]
         public void GetApplicationBuyings()
         {
-            _client.Wallet.Application.GetApplicationBuyings("test110","by_buyer",10);
+            _client.Wallet.Application.GetApplicationBuyings("test110",SearchType.ByBuyer,10);
 
         }
         [Fact]

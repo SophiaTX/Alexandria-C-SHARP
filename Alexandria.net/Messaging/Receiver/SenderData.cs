@@ -32,7 +32,7 @@ namespace Alexandria.net.Messaging.Receiver
         /// <summary>
         /// 
         /// </summary>
-        public List<char> DocumentChars { get; set; }
+        public string DocumentChars { get; set; }
         /// <summary>
         /// 
         /// </summary>

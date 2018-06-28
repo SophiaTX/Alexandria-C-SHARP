@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using Alexandria.net.Communication;
+using Alexandria.net.Enums;
+using Alexandria.net.Extensions;
 using Alexandria.net.Logging;
 using Alexandria.net.Messaging.Responses.DTO;
 using Alexandria.net.Settings;
@@ -176,12 +178,12 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="searchType">search_type One of "by_buyer", "by_app_id"</param>
         /// <param name="count">count Number of items to retrieve</param>
         /// <param name="privateKey"></param>
-        public ApplicationSearchResponse GetApplicationBuyings(string buyerName, string searchType, int count)
+        public ApplicationSearchResponse GetApplicationBuyings(string buyerName, SearchType searchType, int count)
         {
             try
             {
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                var @params = new ArrayList {buyerName, searchType, count};
+                var @params = new ArrayList {buyerName, searchType.GetStringValue(), count};
                 var result = SendRequest(reqname, @params);
                 var contentdata = JsonConvert.DeserializeObject<ApplicationSearchResponse>(result);
  

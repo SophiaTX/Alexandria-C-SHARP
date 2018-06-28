@@ -17,6 +17,7 @@ namespace Alexandria.net.Enums
         /// </summary>
         [StringValue("by_recipient")]
         ByRecipient = 1, 
+       
         /// <summary>
         /// Search by Sender DateTime (UTC)
         /// </summary>
@@ -26,7 +27,17 @@ namespace Alexandria.net.Enums
         /// Search by Receipient DateTime (UTC)
         /// </summary>
         [StringValue("by_recipient_datetime")]
-        ByRecipientDatetime = 3
+        ByRecipientDatetime = 3,
+            /// <summary>
+            /// Search by buyer name
+            /// </summary>
+        [StringValue("by_buyer")]
+        ByBuyer = 2, 
+        /// <summary>
+        /// Search by App id
+        /// </summary>
+        [StringValue("by_app_id")]
+        ByAppId = 3
     }
 
     // Account is then either sender or recevier, and start is either index od ISO time stamp.
