@@ -22,6 +22,7 @@ namespace UnitTest
         [Fact]
         public bool Test()
         {
+            
             //generate keys
 //            var keyResponse =  _client.Wallet.Key.GeneratePrivateKey(new byte[51], new byte[53]);
 //            if(keyResponse == null) return false;

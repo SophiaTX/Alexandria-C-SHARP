@@ -73,46 +73,23 @@ namespace Alexandria.net.API.WalletFunctions
         /// 
         /// </summary>
         /// <param name="senderdata"></param>
-        /// <param name="privateKey"></param>
         /// <returns></returns>
-        public bool SendBinary(SenderData senderdata, string privateKey)
+        public TransactionResponse SendBinary(SenderData senderdata)
         {
-            var result = false;
             try
             {
-                var operations = new List<AccountResponse>();
-                foreach (var doc in senderdata.DocumentChars)
-                {
-                    var operation = MakeCustomBinaryOperation(senderdata.Sender, senderdata.Recipients,
-                        senderdata.AppId,
-                        doc);
-                    if (operation != null)
-                        operations.Add(operation);
-                }
-
-                if (operations.Count == 0) return false;
-                
-                foreach (var operation in operations)
-                {
-                    var resp = StartBroadcasting(operation.result, privateKey);
-                    if (resp != null)
-                    {
-                        result = true;
-                    }
-                    else
-                    {
-                        result = false;
-                        break;
-                    }
-                }
+                var customjsonrpc = MakeCustomBinaryOperation(senderdata.Sender, senderdata.Recipients,
+                    senderdata.AppId,
+                    senderdata.DocumentChars);
+                if (customjsonrpc == null) return null;
+                var resp = StartBroadcasting(customjsonrpc.result, senderdata.PrivateKey);
+                return resp;
             }
             catch (Exception ex)
             {
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
-
-            return result;
         }
 
 

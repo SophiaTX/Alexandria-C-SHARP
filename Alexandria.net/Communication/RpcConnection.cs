@@ -65,6 +65,7 @@ namespace Alexandria.net.Communication
         #endregion
 
         #region public methods
+
         /// <summary>
         /// Sends the request to the blockchain
         /// </summary>
@@ -73,8 +74,17 @@ namespace Alexandria.net.Communication
         /// <returns>the http response from ther server</returns>
         protected string SendRequest(string method, ArrayList @params = null)
         {
-            var resp = ProcessRequest(method, @params);
-            return resp.Result;
+            var result = string.Empty;
+            try
+            {
+                result = ProcessRequest(method, @params).Result;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            return result;
         }
         
         protected TransactionResponse StartBroadcasting<T>(T contentdata, string privateKey)
@@ -140,9 +150,9 @@ namespace Alexandria.net.Communication
                     _logger.WriteTestData(
                         $"Date & Time: {DateTime.UtcNow} || Method: {methodname} || Request Data: {json} || Response Data: {response}");
                 }
-                
+
                 //todo - think about this a bit more
-                if (response.Contains("Error"))
+                if (response.Contains("error"))
                 {
                     throw new SophiaBlockchainException(response);
                 }
@@ -150,7 +160,14 @@ namespace Alexandria.net.Communication
             catch (HttpRequestException ex)
             {
                 response = $"{ex.Message}";
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+                _logger.WriteError($"Message: {ex.Message} | StackTrace: {ex.StackTrace}");
+                throw;
+            }
+            catch (SophiaBlockchainException sx)
+            {
+                response = sx.ErrMsg;
+                _logger.WriteError($"Message: {sx.Message} | StackTrace: {sx.StackTrace}");
+                throw;
             }
 
             return response;

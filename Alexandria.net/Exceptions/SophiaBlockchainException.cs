@@ -4,9 +4,11 @@ namespace Alexandria.net.Exceptions
 {
     public class SophiaBlockchainException : Exception
     {
+        public string ErrMsg { get; set; }
+        
         public SophiaBlockchainException(string errorresponse)
         {
-            //todo - generate the erro object
+            ErrMsg = errorresponse;
         }
 
     }

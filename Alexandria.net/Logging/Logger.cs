@@ -62,7 +62,7 @@ namespace Alexandria.net.Logging
                 Log.Logger = new LoggerConfiguration()
                     .MinimumLevel.Debug()
                     .Enrich.WithProperty("Application", appname)
-                    .WriteTo.Seq("http://195.48.9.127:5341")
+                    .WriteTo.Seq("http://195.48.9.135:5341")
                     .CreateLogger();
 
             }
