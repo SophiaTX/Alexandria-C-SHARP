@@ -218,7 +218,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// </summary>
         /// <param name="accountName">Input string accountName</param>
         /// <returns>Returns the account balance as a Json object</returns>
-        private ulong GetAccountBalance(string accountName)
+        public ulong GetAccountBalance(string accountName)
         {
             try
             {

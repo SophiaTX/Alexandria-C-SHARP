@@ -41,15 +41,15 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="from">string from</param>
         /// <param name="to">string to</param>
         /// <param name="memo">string memo</param>
-        /// <param name="amount">the amount to transfer</param>
+        /// <param name="amount">the amount to transfer "10.0000 SPHTX"</param>
         /// <param name="privateKey"></param>
         /// <returns>Returns Transaction object</returns>
-        public TransactionResponse Transfer(string from, string to, string memo, string amount, string privateKey)
+        public TransactionResponse Transfer(string from, string to,  string amount,string memo, string privateKey)
         {
             try
             {
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                var @params = new ArrayList {from, to, memo, amount};
+                var @params = new ArrayList {from, to, amount,memo };
                 var result = SendRequest(reqname, @params);
 
                 var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);

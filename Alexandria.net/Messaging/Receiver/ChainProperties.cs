@@ -19,15 +19,17 @@ namespace Alexandria.net.Messaging.Receiver
         /// 
         /// </summary>
         //public uint MaximumBlockSize { get; set; }
-        //private Tuple<AssetSymbolType, Price> PriceFeeds { get; set; }
+       // private Tuple<AssetSymbolType, Price> PriceFeeds { get; set; }
     }
 
-//    internal class Price
+//    internal abstract class Price
 //    {
+//        public long Amount { get; set; }
 //    }
 //
-//    internal class AssetSymbolType
+//    internal abstract class AssetSymbolType
 //    {
+//        public string Symbol { get; set; }
 //    }
 
     

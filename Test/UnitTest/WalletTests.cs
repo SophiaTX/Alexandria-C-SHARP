@@ -170,13 +170,13 @@ namespace UnitTest
         [Fact]
         public void EncryptMemo()
         {
-            _client.Wallet.Key.EncryptMemo("Hello World", PrivateKey, PublicKey2, new byte[1024]);
+            _client.Wallet.Key.EncryptMemo("{Hello:World}", PrivateKey, PublicKey2, new byte[1024]);
 
         }
         [Fact]
         public void DecryptMemo()
         {
-            _client.Wallet.Key.DecryptMemo("2ZJ8RsXVNcNEoWPr6U5XYcjJeEfuz8cZbUNKxi6UQcgpxch5K1rRqagDHTv3C9vZLDJpSD9WYss6VHAWWvWVNCtCNmWD1BT7R2zQg98nKq5pMJt7Y2y2Ks6MqT6KLqFnBtL2P1E", PrivateKey2, PublicKey, new byte[1024]);
+            _client.Wallet.Key.DecryptMemo("2ZJ8RsXVNcNEoWPr6U5XYcjJeEfuz8cZbUNKxi6UQcgpxch5K1rRqagDHTv3C9vZLDJpSD9WYss6VHAWWvWVNCtCNkadKEcvaSV9SecRUnFeomX9HDTvhTXLW6BAAvuLRBMFLo1", PrivateKey2, PublicKey, new byte[1024]);
 
         }
         [Fact]
@@ -213,7 +213,7 @@ namespace UnitTest
                 "SPH6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz");
             Console.WriteLine(result);
         }
-
+        
         [Fact]
         public void GetAccount()
         {
@@ -251,8 +251,8 @@ namespace UnitTest
         [Fact]
         public void Transfer()
         {
-            _client.Wallet.Asset.Transfer("test106", "test101", "100.000 STEEM",
-                "STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz", PrivateKey);
+            _client.Wallet.Asset.Transfer("test101", "test110", "10.000 SPHTX",
+                "SPH6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz", PrivateKey);
 
         }
 
@@ -347,7 +347,8 @@ namespace UnitTest
         [Fact]
         public void GetApplications()
         {
-            _client.Wallet.Application.GetApplications("BoxGame5");
+            List<string> Names=new List<string>{"BoxGame5","BoxGame4"};
+            _client.Wallet.Application.GetApplications(Names);
 
         }
 

@@ -194,13 +194,13 @@ namespace Alexandria.net.API.WalletFunctions
             }
         }
 
-        public GetApplicationResponse GetApplications(string ApplicationNames)
+        public GetApplicationResponse GetApplications(List<string> ApplicationNames)
         {
             try
             {
-                List<string> Names=new List<string>{ApplicationNames};
+                
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                var @params = new ArrayList {Names};
+                var @params = new ArrayList {ApplicationNames};
                 var result= SendRequest(reqname, @params);
                 var response = JsonConvert.DeserializeObject<GetApplicationResponse>(result);
 

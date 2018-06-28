@@ -173,7 +173,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="Symbol">Token Symbol</param>
         /// <param name="AccountCreatePrice">Ammount require to create an Account</param>
         /// <returns>Returns true if success or false for failed try</returns>
-        public TransactionResponse UpdateWitness(string WitnessAccountName, string url, string blockKey,string Symbol,int AccountCreatePrice,string privateKey)
+        public TransactionResponse UpdateWitness(string WitnessAccountName, string url, string blockKey,string Symbol,int AccountCreatePrice, string privateKey)
         {
             try
             {
