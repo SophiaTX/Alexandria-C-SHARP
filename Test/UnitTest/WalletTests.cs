@@ -130,7 +130,8 @@ namespace UnitTest
         [Fact]
         public void GeneratePrivateKey()
         {
-            _client.Wallet.Key.GeneratePrivateKey(new byte[51], new byte[53]);
+           var result= _client.Wallet.Key.GeneratePrivateKey(new byte[51], new byte[53]);
+           Console.WriteLine(result);
         }
 
         [Fact]
