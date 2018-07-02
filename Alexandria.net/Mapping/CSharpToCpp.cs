@@ -69,6 +69,31 @@
         private const string CancelApplicationBuying = "cancel_application_buying";
         private const string GetApplicationBuyings = "get_application_buyings";
         private const string GetApplications = "get_applications";
+        private const string GetConfig = "get_config";
+        private const string GetDynamicGlobalProperties = "get_dynamic_global_properties";
+        private const string GetChainProperties = "get_chain_properties";
+        private const string GetCurrentMedianHistoryPrice = "get_current_median_history_price";
+        private const string GetWitnessSchedule = "get_witness_schedule";
+        private const string GetHardForkVersion = "get_hardfork_version";
+        private const string GetNextScheduledHardfork = "get_next_scheduled_hardfork";
+        private const string GetAccounts = "get_accounts";
+        private const string LookupAccountNames = "lookup_account_names";
+        private const string LookupAccounts = "lookup_accounts";
+        private const string GetAccountCount = "get_account_count";
+        private const string GetOwnerHistory = "get_owner_history";
+        private const string GetRecoveryRequest = "get_recovery_request";
+        private const string GetBlockHeader = "get_block_header";
+        private const string GetWitnesses = "get_witnesses";
+        private const string GetConversionRequests = "get_conversion_requests";
+        private const string GetWitnessByAccount = "get_witness_by_account";
+        private const string GetWitnessesByVote = "get_witnesses_by_vote";
+        private const string GetWitnessCount = "get_witness_count";
+        private const string GetActiveVotes = "get_active_votes";
+        private const string GetContent = "get_content";
+        private const string GetContentReplies = "get_content_replies";
+        private const string GetRepliesByLastUpdate = "get_replies_by_last_update";
+        private const string GetDiscussionsByAuthorBeforeDate = "get_discussions_by_author_before_date";
+        private const string GetAccountHistory = "get_account_history";
         
 
         /// <summary>
@@ -207,8 +232,57 @@
                     return GetApplicationBuyings; 
                 case "GetApplications":
                     return GetApplications;
+                case "GetConfig":
+                    return GetConfig;
+                case "GetDynamicGlobalProperties":
+                    return GetDynamicGlobalProperties;
+                case "GetChainProperties":
+                    return GetChainProperties;
+                case "GetCurrentMedianHistoryPrice":
+                    return GetCurrentMedianHistoryPrice;
+                case "GetWitnessSchedule":
+                    return GetWitnessSchedule;
+                case "GetHardforkVersion":
+                    return GetHardForkVersion;
+                case "GetNextScheduledHardfork":
+                    return GetNextScheduledHardfork;
+                case "GetAccounts":
+                    return GetAccounts; 
+                case "LookupAccountNames":
+                    return LookupAccountNames; 
+                case "LookupAccounts":
+                    return LookupAccounts;
+                case "GetAccountCount":
+                    return GetAccountCount; 
+                case "GetOwnerHistory":
+                    return GetOwnerHistory;
+                case "GetRecoveryRequest":
+                    return GetRecoveryRequest; 
+                case "GetBlockHeader":
+                    return GetBlockHeader; 
+                case "GetWitnesses":
+                    return GetWitnesses;
+                case "GetConversionRequests":
+                    return GetConversionRequests; 
+                case "GetWitnessByAccount":
+                    return GetWitnessByAccount;
+                case "GetWitnessesByVote":
+                    return GetWitnessesByVote;
+                case "GetWitnessCount":
+                    return GetWitnessCount;
+                case "GetActiveVotes":
+                    return GetActiveVotes;
+                case "GetContent":
+                    return GetContent;
+                case "GetContentReplies":
+                    return GetContentReplies;
+                case "GetRepliesByLastUpdate":
+                    return GetRepliesByLastUpdate;
+                case "GetDiscussionsByAuthorBeforeDate":
+                    return GetDiscussionsByAuthorBeforeDate;
+                case "GetAccountHistory":
+                    return GetAccountHistory;
             }
-
             return string.Empty;
         }
     }

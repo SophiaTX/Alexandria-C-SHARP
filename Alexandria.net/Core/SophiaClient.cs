@@ -15,6 +15,8 @@ namespace Alexandria.net.Core
     {
         #region Properties
 
+        public Daemon Daemon { get; set; }
+
         /// <summary>
         /// the blockchain wallet
         /// </summary>
@@ -43,7 +45,7 @@ namespace Alexandria.net.Core
                 if (walletPort != 0)
                     config.WalletPort = walletPort;
 
-                //Daemon = new Daemon(_config);
+                Daemon = new Daemon(config);
                 Wallet = new Wallet(config, blockchainConfig);
             }
             else

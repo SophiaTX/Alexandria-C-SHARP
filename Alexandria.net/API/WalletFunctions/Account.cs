@@ -425,7 +425,6 @@ namespace Alexandria.net.API.WalletFunctions
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
-
         }
 
         /// <summary>
