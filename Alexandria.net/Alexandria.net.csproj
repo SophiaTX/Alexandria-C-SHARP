@@ -17,9 +17,33 @@
     <Compile Remove="API\SphTxApi.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="libalexandria.dylib" />
-    <EmbeddedResource Include="libalexandria.dylib">
+    <EmbeddedResource Include="Lib\libalexandria.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="Lib\libalexandria.dylib">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lib\libalexandria.so">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <None Remove="libalexandria.dylib" />
+  </ItemGroup>
+  <ItemGroup>
+    <DocFileItem Remove="bin\Debug\netcoreapp2.0\Alexandria.net.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <_OutputPathItem Remove="bin\Debug\netcoreapp2.0\" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppConfigFileDestination Remove="bin\Debug\netcoreapp2.0\Alexandria.net.dll.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <FinalDocFile Remove="bin\Debug\netcoreapp2.0\bin\Debug\netcoreapp2.0\Alexandria.net.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <_DebugSymbolsOutputPath Remove="bin\Debug\netcoreapp2.0\obj\Debug\netcoreapp2.0\Alexandria.net.pdb" />
+  </ItemGroup>
+  <ItemGroup>
+    <_ApplicationManifestFinal Remove="bin\Debug\netcoreapp2.0\Native.Alexandria.net.manifest" />
   </ItemGroup>
 </Project>
