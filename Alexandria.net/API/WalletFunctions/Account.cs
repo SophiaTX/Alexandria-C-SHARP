@@ -410,12 +410,12 @@ namespace Alexandria.net.API.WalletFunctions
         /// </summary>
         /// <param name="accountName">the account name the information is required for</param>
         /// <returns>the account information</returns>
-        public GetAccountResponse GetAccount(string accountName)
+        public GetAccountResponse GetAccount(string seed)
         {
             try
             {
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                var @params = new ArrayList {accountName};
+                var @params = new ArrayList {seed};
                 var result = SendRequest(reqname, @params);
                 var contentdata = JsonConvert.DeserializeObject<GetAccountResponse>(result);
                 return contentdata;
@@ -438,14 +438,14 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="memokey">the memo key</param>
         /// <param name="privatekey">the private key used for the digest</param>
         /// <returns>the account creation response details</returns>
-        public TransactionResponse CreateAccount(string accountname, string jsonMeta, string ownerkey,
+        public TransactionResponse CreateAccount(string seed, string jsonMeta, string ownerkey,
             string activekey, string memokey, string witnessname = "initminer",
             string privatekey = "5JPwY3bwFgfsGtxMeLkLqXzUrQDMAsqSyAZDnMBkg7PDDRhQgaV")
         {
             try
             {
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                var @params = new ArrayList {witnessname, accountname, jsonMeta, ownerkey, activekey, memokey};
+                var @params = new ArrayList {witnessname, seed, jsonMeta, ownerkey, activekey, memokey};
                 var result = SendRequest(reqname, @params);
 
                 var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Alexandria.net.Messaging.Receiver
 {
@@ -14,23 +15,16 @@ namespace Alexandria.net.Messaging.Receiver
         /// <summary>
         /// 
         /// </summary>
-        public AssetType AccountCreationFee { get; set; } // = asset(SOPHIATX_MIN_ACCOUNT_CREATION_FEE, SOPHIATX_SYMBOL);
-        /// <summary>
-        /// 
-        /// </summary>
-        //public uint MaximumBlockSize { get; set; }
-       // private Tuple<AssetSymbolType, Price> PriceFeeds { get; set; }
+//        public AssetType AccountCreationFee { get; set; } // = asset(SOPHIATX_MIN_ACCOUNT_CREATION_FEE, SOPHIATX_SYMBOL);
+//
+//        public uint MaximumBlockSize { get; set; }
+//        public Tuple<AssetType> PriceFeeds { get; set; }
+        public string account_creation_fee { get; set; }
+        public int maximum_block_size { get; set; }
+        public List<object> price_feeds { get; set; }
     }
 
-//    internal abstract class Price
-//    {
-//        public long Amount { get; set; }
-//    }
-//
-//    internal abstract class AssetSymbolType
-//    {
-//        public string Symbol { get; set; }
-//    }
+   
 
     
 }

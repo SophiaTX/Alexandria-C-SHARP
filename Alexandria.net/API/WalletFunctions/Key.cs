@@ -17,7 +17,7 @@ namespace Alexandria.net.API.WalletFunctions
     public class Key : RpcConnection
     {
         private readonly ILogger _logger;
-        private const string Libpath = "libalexandria";
+        private const string Libpath = "Lib/libalexandria";
 
         #region DllImports
 

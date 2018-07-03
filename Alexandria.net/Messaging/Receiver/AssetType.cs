@@ -4,5 +4,7 @@
     {
         public long Amount { get; set; }
         public string Symbol { get; set; }
+
+        
     }
 }
