@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Reflection;
 using Alexandria.net.Communication;
 using Alexandria.net.Logging;
@@ -163,7 +164,7 @@ namespace Alexandria.net.API.WalletFunctions
                 throw;
             }
         }
-        
+
         /// <summary>
         /// Update an account to witness.Requires XXX vested SPHTX before updating.
         /// </summary>
@@ -172,18 +173,22 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="blockKey">The new block signing public key.  The empty string disables block production.</param>
         /// <param name="Symbol">Token Symbol</param>
         /// <param name="AccountCreatePrice">Ammount require to create an Account</param>
+        /// <param name="MinBlockSizeLimit"></param>
+        /// <param name="PriceFeed"></param>
+        /// <param name="privateKey"></param>
         /// <returns>Returns true if success or false for failed try</returns>
-        public TransactionResponse UpdateWitness(string WitnessAccountName, string url, string blockKey,string Symbol,int AccountCreatePrice, string privateKey)
+        public TransactionResponse UpdateWitness(string WitnessAccountName, string url, string blockKey,string AccountCreationPrice, int MinBlockSizeLimit, List<object> PriceFeed, string privateKey)
         {
             try
             {
-                var pros=new ChainProperties();
-                var newAsset = new AssetType
+                var pros = new ChainProperties
                 {
-                    Amount = AccountCreatePrice,
-                    Symbol = Symbol
+                    account_creation_fee = AccountCreationPrice,
+                    maximum_block_size = MinBlockSizeLimit * 2,
+                    price_feeds = PriceFeed
                 };
-                pros.AccountCreationFee = newAsset;
+
+
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {WitnessAccountName, url, blockKey,pros};
                 var result = SendRequest(reqname, @params);

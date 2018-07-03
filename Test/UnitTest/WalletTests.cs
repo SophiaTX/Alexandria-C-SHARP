@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Data;
 using Alexandria.net.Enums;
 using Alexandria.net.Messaging.Receiver;
 using Xunit;
@@ -62,9 +61,15 @@ namespace UnitTest
         [Fact]
         public void update_witness()
         {
+            int amount;
+            string symbol;
+         //  var price=new object(){amount=1,symbol="SPHTX"};
             
-            _client.Wallet.Witness.UpdateWitness("test101", "http://www.testminer.com", PublicKey, "SPHTX",1,PrivateKey);
-        
+            var pricefeed = new List<object> {};
+
+            //var pricefeedtuple=new Tuple<AssetType>(pricefeed);
+            var result=_client.Wallet.Witness.UpdateWitness("test101", "http://www.testminer.com", PublicKey, "10.000 SPHTX",900,pricefeed,PrivateKey);
+            Console.WriteLine(result);
         }
         #endregion
 
@@ -73,7 +78,8 @@ namespace UnitTest
         [Fact]
         public void GetFeedHistory()
         {
-            _client.Wallet.Transaction.GetFeedHistory();
+            //var feedSymbol = new AssetType {Symbol = "SPT1"};
+            _client.Wallet.Transaction.GetFeedHistory("SPHTX");
         }
 
         [Fact]
@@ -191,8 +197,8 @@ namespace UnitTest
         [Fact]
         public void SuggestBrainKey()
         {
-            _client.Wallet.Key.SuggestBrainKey();
-
+            var result=_client.Wallet.Key.SuggestBrainKey();
+            Console.WriteLine(result);
         }
 
         [Fact]
@@ -209,7 +215,7 @@ namespace UnitTest
         [Fact]
         public void CreateAccount()
         {
-           var result= _client.Wallet.Account.CreateAccount("test117", "{}",
+           var result= _client.Wallet.Account.CreateAccount("tasty", "{}",
                 "SPH6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz",
                 "SPH6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz",
                 "SPH6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz");
@@ -219,7 +225,7 @@ namespace UnitTest
         [Fact]
         public void GetAccount()
         {
-            var result=_client.Wallet.Account.GetAccount("test110");
+            var result=_client.Wallet.Account.GetAccount("test101");
             Console.WriteLine(result);
         }
 
@@ -253,6 +259,7 @@ namespace UnitTest
         [Fact]
         public void Transfer()
         {
+            
             _client.Wallet.Asset.Transfer("test101", "test110", "10.000 SPHTX",
                 "SPH6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz", PrivateKey);
 
@@ -289,8 +296,6 @@ namespace UnitTest
         [Fact]
         public void SendBinary()
         {
-            var test = "this is some text that i would like to send";
-           
             var data = new SenderData
             {
                 AppId = 2,
@@ -359,9 +364,8 @@ namespace UnitTest
         [Fact]
         public void GetApplications()
         {
-            List<string> Names=new List<string>{"BoxGame5","BoxGame4"};
-            _client.Wallet.Application.GetApplications(Names);
-
+            var names = new List<string>{"BoxGame5","BoxGame4"};
+            _client.Wallet.Application.GetApplications(names);
         }
 
 
