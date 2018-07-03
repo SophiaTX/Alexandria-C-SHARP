@@ -45,7 +45,11 @@
         <e p="Helpers" t="Include">
           <e p="StringValueAttribute.cs" t="Include" />
         </e>
-        <e p="libalexandria.dylib" t="Include" />
+        <e p="lib" t="Include">
+          <e p="libalexandria.dll" t="Include" />
+          <e p="libalexandria.dylib" t="Include" />
+          <e p="libalexandria.so" t="Include" />
+        </e>
         <e p="Logging" t="Include">
           <e p="ILogger.cs" t="Include" />
           <e p="Logger.cs" t="Include" />
