@@ -20,3 +20,14 @@
 /Users/martynharler/GitHub/Alexandria/Alexandria.net/obj/Debug/netcoreapp2.0/Alexandria.net.dll
 /Users/martynharler/GitHub/Alexandria/Alexandria.net/obj/Debug/netcoreapp2.0/Alexandria.net.pdb
 /Users/sanjivjha/RiderProjects/Alexandria/Alexandria.net/bin/Debug/netcoreapp2.0/libalexandria.dylib
+/Users/martynharler/RiderProjects/Alexandria/Alexandria.net/bin/Debug/netcoreapp2.0/libalexandria.dylib
+/Users/martynharler/RiderProjects/Alexandria/Alexandria.net/bin/Debug/netcoreapp2.0/Alexandria.net.xml
+/Users/martynharler/RiderProjects/Alexandria/Alexandria.net/bin/Debug/netcoreapp2.0/Alexandria.net.deps.json
+/Users/martynharler/RiderProjects/Alexandria/Alexandria.net/bin/Debug/netcoreapp2.0/Alexandria.net.dll
+/Users/martynharler/RiderProjects/Alexandria/Alexandria.net/bin/Debug/netcoreapp2.0/Alexandria.net.pdb
+/Users/martynharler/RiderProjects/Alexandria/Alexandria.net/obj/Debug/netcoreapp2.0/Alexandria.net.csprojAssemblyReference.cache
+/Users/martynharler/RiderProjects/Alexandria/Alexandria.net/obj/Debug/netcoreapp2.0/Alexandria.net.csproj.CoreCompileInputs.cache
+/Users/martynharler/RiderProjects/Alexandria/Alexandria.net/obj/Debug/netcoreapp2.0/Alexandria.net.AssemblyInfoInputs.cache
+/Users/martynharler/RiderProjects/Alexandria/Alexandria.net/obj/Debug/netcoreapp2.0/Alexandria.net.AssemblyInfo.cs
+/Users/martynharler/RiderProjects/Alexandria/Alexandria.net/obj/Debug/netcoreapp2.0/Alexandria.net.dll
+/Users/martynharler/RiderProjects/Alexandria/Alexandria.net/obj/Debug/netcoreapp2.0/Alexandria.net.pdb

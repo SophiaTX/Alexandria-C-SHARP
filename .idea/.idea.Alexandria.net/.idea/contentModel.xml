@@ -4,7 +4,7 @@
     <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.3.1/build/netcoreapp1.0/xunit.runner.reporters.netcoreapp10.dll" t="Include" />
     <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.3.1/build/netcoreapp1.0/xunit.runner.utility.netcoreapp10.dll" t="Include" />
     <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.3.1/build/netcoreapp1.0/xunit.runner.visualstudio.dotnetcore.testadapter.dll" t="Include" />
-    <e p="$USER_HOME$/Library/Caches/Rider2018.1/resharper-host/local/Transient/ReSharperHost/v12/SolutionCaches/_Alexandria.net.-1113668252.00" t="ExcludeRecursive" />
+    <e p="$USER_HOME$/Library/Caches/Rider2018.1/resharper-host/local/Transient/ReSharperHost/v12/SolutionCaches/_Alexandria.net.-1519402999.00" t="ExcludeRecursive" />
     <e p="$PROJECT_DIR$" t="IncludeFlat">
       <e p="Alexandria.net" t="IncludeRecursive">
         <e p="Alexandria.net.csproj" t="IncludeRecursive" />
@@ -79,6 +79,7 @@
               <e p="Active.cs" t="Include" />
               <e p="ActiveWitnessResponse.cs" t="Include" />
               <e p="ApplicationData.cs" t="Include" />
+              <e p="ApplicationSearchData.cs" t="Include" />
               <e p="ApplicationSearchResponse.cs" t="Include" />
               <e p="BainKey.cs" t="Include" />
               <e p="BlockData.cs" t="Include" />
@@ -124,7 +125,7 @@
           </e>
         </e>
         <e p="obj" t="ExcludeRecursive">
-          <e p="Debug" t="Include">
+          <e p="Release" t="Include">
             <e p="netcoreapp2.0" t="Include">
               <e p="Alexandria.net.AssemblyInfo.cs" t="Include" />
             </e>
@@ -146,7 +147,7 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="DeamonTest.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
-          <e p="Debug" t="Include">
+          <e p="Release" t="Include">
             <e p="netcoreapp2.0" t="Include">
               <e p="UnitTest.AssemblyInfo.cs" t="Include" />
               <e p="UnitTest.Program.cs" t="Include" />
