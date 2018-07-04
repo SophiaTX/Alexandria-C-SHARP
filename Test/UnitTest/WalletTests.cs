@@ -38,39 +38,37 @@ namespace UnitTest
         [Fact]
         public void GetActiveWitness()
         {
-            _client.Wallet.Witness.GetActiveWitnesses();
+            _client.Witness.GetActiveWitnesses();
         }
 
         [Fact]
         public void ListWitnesses()
         {
-            _client.Wallet.Witness.ListWitnesses("initminer", 10);
+            _client.Witness.ListWitnesses("initminer", 10);
         }
 
         [Fact]
         public void GetWitness()
         {
-            _client.Wallet.Witness.GetWitness("initminer");
+            _client.Witness.GetWitness("initminer");
         }
 
         [Fact]
         public void VoteForWitness()
         {
-            _client.Wallet.Witness.VoteForWitness("test101", "initminer", true, PrivateKey);
+            _client.Witness.VoteForWitness("test101", "initminer", true, PrivateKey);
         }
+
         [Fact]
         public void update_witness()
         {
-            int amount;
-            string symbol;
-         //  var price=new object(){amount=1,symbol="SPHTX"};
-            
-            var pricefeed = new List<object> {};
+            var pricefeed = new List<object>();
 
-            //var pricefeedtuple=new Tuple<AssetType>(pricefeed);
-            var result=_client.Wallet.Witness.UpdateWitness("test101", "http://www.testminer.com", PublicKey, "10.000 SPHTX",900,pricefeed,PrivateKey);
+            var result = _client.Witness.UpdateWitness("test101", "http://www.testminer.com", PublicKey, "10.000 SPHTX",
+                900, pricefeed, PrivateKey);
             Console.WriteLine(result);
         }
+
         #endregion
 
         #region Transaction Methods
@@ -78,39 +76,38 @@ namespace UnitTest
         [Fact]
         public void GetFeedHistory()
         {
-            //var feedSymbol = new AssetType {Symbol = "SPT1"};
-            _client.Wallet.Transaction.GetFeedHistory("SPHTX");
+            _client.Transaction.GetFeedHistory("SPHTX");
         }
 
         [Fact]
         public void GetAbout()
         {
-            _client.Wallet.Transaction.About();
+            _client.Transaction.About();
         }
 
         [Fact]
         public void Help()
         {
-            _client.Wallet.Transaction.Help();
+            _client.Transaction.Help();
         }
 
         [Fact]
         public void Info()
         {
-            _client.Wallet.Transaction.Info();
+            _client.Transaction.Info();
         }
 
         [Fact]
         public void GetBlock()
         {
-            _client.Wallet.Transaction.GetBlock(1983);
+            _client.Transaction.GetBlock(1983);
 
         }
 
         [Fact]
         public void get_ops_in_block()
         {
-            _client.Wallet.Transaction.GetOpsInBlock(1983, true);
+            _client.Transaction.GetOpsInBlock(1983, true);
         }
 
         
@@ -118,14 +115,14 @@ namespace UnitTest
         [Fact]
         public void GetTransaction()
         {
-            _client.Wallet.Transaction.GetTransaction("2095fecb2a679dd8a1cee16472c4c5fe9edcc01d");
+            _client.Transaction.GetTransaction("2095fecb2a679dd8a1cee16472c4c5fe9edcc01d");
 
         }
 
         [Fact]
         public void set_voting_proxy()
         {
-            _client.Wallet.Account.SetVotingProxy("test101", "test103", PrivateKey);
+            _client.Account.SetVotingProxy("test101", "test103", PrivateKey);
 
         }
 
@@ -136,75 +133,75 @@ namespace UnitTest
         [Fact]
         public void GeneratePrivateKey()
         {
-           var result= _client.Wallet.Key.GeneratePrivateKey(new byte[51], new byte[53]);
+           var result= _client.Key.GeneratePrivateKey(new byte[51], new byte[53]);
            Console.WriteLine(result);
         }
 
         [Fact]
         public void GetTransactionDigest()
         {
-            _client.Wallet.Key.GetTransactionDigest(Transaction, ChainId, new byte[64]);
+            _client.Key.GetTransactionDigest(Transaction, ChainId, new byte[64]);
 
         }
 
         [Fact]
         public void GetPublicKey()
         {
-            _client.Wallet.Key.GetPublicKey("5KGL7MNAfwCzQ8DAq7DXJsneXagka3KNcjgkRayJoeJUucSLkev", new byte[53]);
+            _client.Key.GetPublicKey("5KGL7MNAfwCzQ8DAq7DXJsneXagka3KNcjgkRayJoeJUucSLkev", new byte[53]);
 
         }
 
         [Fact]
         public void GenerateKeyPairFromBrainKey()
         {
-            _client.Wallet.Key.GenerateKeyPairFromBrainKey(Brain, new byte[51], new byte[53]);
+            _client.Key.GenerateKeyPairFromBrainKey(Brain, new byte[51], new byte[53]);
 
         }
 
         [Fact]
         public void VerifySignaturet()
         {
-            _client.Wallet.Key.VerifySignature(Digest, PublicKey, Sign);
+            _client.Key.VerifySignature(Digest, PublicKey, Sign);
 
         }
 
         [Fact]
         public void SignedDigest()
         {
-            _client.Wallet.Key.SignDigest(Digest, PrivateKey, new byte[130]);
+            _client.Key.SignDigest(Digest, PrivateKey, new byte[130]);
 
         }
 
         [Fact]
         public void EncryptMemo()
         {
-            _client.Wallet.Key.EncryptMemo("{Hello:World}", PrivateKey, PublicKey2, new byte[1024]);
+            _client.Key.EncryptMemo("{Hello:World}", PrivateKey, PublicKey2, new byte[1024]);
 
         }
         [Fact]
         public void DecryptMemo()
         {
-            _client.Wallet.Key.DecryptMemo("2ZJ8RsXVNcNEoWPr6U5XYcjJeEfuz8cZbUNKxi6UQcgpxch5K1rRqagDHTv3C9vZLDJpSD9WYss6VHAWWvWVNCtCNkadKEcvaSV9SecRUnFeomX9HDTvhTXLW6BAAvuLRBMFLo1", PrivateKey2, PublicKey, new byte[1024]);
+            _client.Key.DecryptMemo("2ZJ8RsXVNcNEoWPr6U5XYcjJeEfuz8cZbUNKxi6UQcgpxch5K1rRqagDHTv3C9vZLDJpSD9WYss6VHAWWvWVNCtCNkadKEcvaSV9SecRUnFeomX9HDTvhTXLW6BAAvuLRBMFLo1", PrivateKey2, PublicKey, new byte[1024]);
 
         }
         [Fact]
         public void AddSignature()
         {
-            _client.Wallet.Key.AddSignature(Transaction, Sign, new byte[Transaction.Length + 200]);
+            _client.Key.AddSignature(Transaction, Sign, new byte[Transaction.Length + 200]);
 
         }
 
         [Fact]
         public void SuggestBrainKey()
         {
-            var result=_client.Wallet.Key.SuggestBrainKey();
+            var result=_client.Key.SuggestBrainKey();
             Console.WriteLine(result);
         }
 
         [Fact]
         public void NormalizeBrainKey()
         {
-            _client.Wallet.Key.NormalizeBrainKey(Brain);
+            _client.Key.NormalizeBrainKey(Brain);
 
         }
 
@@ -215,7 +212,7 @@ namespace UnitTest
         [Fact]
         public void CreateAccount()
         {
-           var result= _client.Wallet.Account.CreateAccount("tasty", "{}",
+           var result= _client.Account.CreateAccount("tasty", "{}",
                 "SPH6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz",
                 "SPH6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz",
                 "SPH6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz");
@@ -225,21 +222,21 @@ namespace UnitTest
         [Fact]
         public void GetAccount()
         {
-            var result=_client.Wallet.Account.GetAccount("test101");
+            var result=_client.Account.GetAccount("test101");
             Console.WriteLine(result);
         }
 
         [Fact]
         public void DeleteAccount()
         {
-            _client.Wallet.Account.DeleteAccount("test106", PrivateKey);
+            _client.Account.DeleteAccount("test106", PrivateKey);
 
         }
 
         [Fact]
         public void update_account()
         {
-            var result=_client.Wallet.Account.UpdateAccount("test110", "{}",
+            var result=_client.Account.UpdateAccount("test110", "{}",
                 "SPH6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz",
                 "SPH6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz",
                 "SPH6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz", PrivateKey);
@@ -254,13 +251,13 @@ namespace UnitTest
         [Fact]
         public void WithdrawVesting()
         {
-            _client.Wallet.Asset.WithdrawVesting("test101", "10.000000 VESTS", PrivateKey);
+            _client.Asset.WithdrawVesting("test101", "10.000000 VESTS", PrivateKey);
         }
         [Fact]
         public void Transfer()
         {
             
-            _client.Wallet.Asset.Transfer("test101", "test110", "10.000 SPHTX",
+            _client.Asset.Transfer("test101", "test110", "10.000 SPHTX",
                 "SPH6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz", PrivateKey);
 
         }
@@ -268,7 +265,7 @@ namespace UnitTest
         [Fact]
         public void TransferToVesting()
         {
-            _client.Wallet.Asset.TransferToVesting("test101", "test101", "100.000 SPHTX", PrivateKey);
+            _client.Asset.TransferToVesting("test101", "test101", "100.000 SPHTX", PrivateKey);
 
         }
 
@@ -289,7 +286,7 @@ namespace UnitTest
                 Sender = "test110",
                 Document = test//"[\"" + $"{test}" + "\"]"
             };
-            var result = _client.Wallet.Data.Send(data);
+            var result = _client.Data.Send(data);
             Console.WriteLine(result);
         }
 
@@ -305,7 +302,7 @@ namespace UnitTest
                 DocumentChars = "2ZJ8RsXVNcNEoWPr6U5XYcjJeEfuz8cZbUNKxi6UQcgpxch5K1rRqagDHTv3C9vZLDJpSD9WYss6VHAWWvWVNCtCNkadKEcvaSV9SecRUnFeomX9HDTvhTXLW6BAAvuLRBMFLo1" //"[\"" + $"{test}" + "\"]"
             };
             
-            var result = _client.Wallet.Data.SendBinary(data);
+            var result = _client.Data.SendBinary(data);
             Console.WriteLine(result);
         }
         
@@ -313,7 +310,7 @@ namespace UnitTest
         [Fact]
         public void Receive()
         {
-            var result = _client.Wallet.Data.Receive(2,"test110",SearchType.BySender,"2018-06-22T13:39:34",10);
+            var result = _client.Data.Receive(2,"test110",SearchType.BySender,"2018-06-22T13:39:34",10);
             Console.WriteLine(result);
         }
 
@@ -324,48 +321,48 @@ namespace UnitTest
         [Fact]
         public void CreateApplication()
         {
-            _client.Wallet.Application.CreateApplication("test101","BoxGame5","http://boxgame.com","genre: Adventure, requirements: Mac OS Sierra",1,PrivateKey);
+            _client.Application.CreateApplication("test101","BoxGame5","http://boxgame.com","genre: Adventure, requirements: Mac OS Sierra",1,PrivateKey);
 
         }
         [Fact]
         public void UpdateApplication()
         {
-            _client.Wallet.Application.UpdateApplication("test101","BoxGame","test106","http://boxGamers.com","Genre:Action",1,PrivateKey);
+            _client.Application.UpdateApplication("test101","BoxGame","test106","http://boxGamers.com","Genre:Action",1,PrivateKey);
 
         }
 
         [Fact]
         public void DeleteApplication()
         {
-            _client.Wallet.Application.DeleteApplication("test101","BoxGame",PrivateKey);
+            _client.Application.DeleteApplication("test101","BoxGame",PrivateKey);
 
         }
 
         [Fact]
         public void BuyApplication()
         {
-            _client.Wallet.Application.BuyApplication("test110",4,PrivateKey);
+            _client.Application.BuyApplication("test110",4,PrivateKey);
 
         }
 
         [Fact]
         public void CancelApplicationBuying()
         {
-            _client.Wallet.Application.CancelApplicationBuying("test101","test110",4,PrivateKey);
+            _client.Application.CancelApplicationBuying("test101","test110",4,PrivateKey);
 
         }
 
         [Fact]
         public void GetApplicationBuyings()
         {
-            _client.Wallet.Application.GetApplicationBuyings("test110",SearchType.ByBuyer,10);
+            _client.Application.GetApplicationBuyings("test110",SearchType.ByBuyer,10);
 
         }
         [Fact]
         public void GetApplications()
         {
             var names = new List<string>{"BoxGame5","BoxGame4"};
-            _client.Wallet.Application.GetApplications(names);
+            _client.Application.GetApplications(names);
         }
 
 

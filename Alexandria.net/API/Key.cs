@@ -8,11 +8,11 @@ using Alexandria.net.Messaging.Responses.DTO;
 using Alexandria.net.Settings;
 using Newtonsoft.Json;
 
-namespace Alexandria.net.API.WalletFunctions
+namespace Alexandria.net.API
 {
     /// <inheritdoc />
     /// <para>
-    /// Wallet Key Functions
+    /// Sophia Blockchain Key functions
     /// </para>
     public class Key : RpcConnection
     {

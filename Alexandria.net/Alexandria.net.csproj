@@ -1,5 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
+    <Version>1.0.0-alpha</Version>
+    <Authors>Martyn Cranfield Harler;Saniv Jha</Authors>
+    <Company>Equidato Technologies AG</Company>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <AssemblyTitle>Alexandria.net</AssemblyTitle>
+    <Description>.net library for accessing the SophiaTX Blockchain</Description>
+    <Copyright>Equidato Technologies AG</Copyright>
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">

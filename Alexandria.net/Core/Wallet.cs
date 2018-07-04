@@ -1,4 +1,5 @@
-﻿using Alexandria.net.API.WalletFunctions;
+﻿using Alexandria.net.API;
+using Alexandria.net.API.WalletFunctions;
 using Alexandria.net.Settings;
 
 namespace Alexandria.net.Core

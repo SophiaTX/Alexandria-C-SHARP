@@ -10,14 +10,14 @@ using Alexandria.net.Messaging.Receiver;
 using Alexandria.net.Messaging.Responses.DTO;
 using Alexandria.net.Settings;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using ILogger = Alexandria.net.Logging.ILogger;
 using Logger = Alexandria.net.Logging.Logger;
 
-namespace Alexandria.net.API.WalletFunctions
+namespace Alexandria.net.API
 {
     /// <inheritdoc />
     /// <summary>
+    /// Sophia Blockchain Data functions
     /// </summary>
     public class Data : RpcConnection
     {

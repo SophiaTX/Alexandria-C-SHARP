@@ -16,7 +16,6 @@ namespace UnitTest
         private const string PublicKey = "SPH59weyKqJJvECS6EG4t2qbd5LbnZDcsLq5Eq2CxWv9peUeN2cwp";
         private const string PrivateKey = "5Kb3xDUMJ6QoDGEq3gsXU9KRQDDvLBXqaT3P8bp1jPcfctAvagZ";
 
-        private const string PrivateKey2 = "5HqnQB5R8Yfaq4mALL33kkBGFuSv2kMPxGsjFygHPhk8EqunmXZ";
         private const string PublicKey2 = "SPH6eJ4GcGtay4qvZ7eebXaLkGcXsMhq3WC1GgyQbTLbEd6EVisSm";
 
         [Fact]
@@ -66,17 +65,17 @@ namespace UnitTest
                 Sender = "marc1",
                 Document = json
             };
-            var transresponse = _client.Wallet.Data.Send(data);
+            var transresponse = _client.Data.Send(data);
 
             if (transresponse == null) return false;
 
-            var blockresponse = _client.Wallet.Transaction.GetBlock(transresponse.result.block_num);
+            var blockresponse = _client.Transaction.GetBlock(transresponse.result.block_num);
             if (blockresponse == null) return false;
 
             loaner.Blockdata = blockresponse;
             //data to be persisted somwhere
 
-            _client.Wallet.Transaction.GetTransaction(loaner.Blockdata.Result.block_id);
+            _client.Transaction.GetTransaction(loaner.Blockdata.Result.block_id);
             Console.WriteLine(blockresponse.Result);
             return true;
         }
