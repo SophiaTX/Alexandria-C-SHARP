@@ -78,7 +78,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="priceParam">Updated price param</param>
         /// <param name="privateKey"></param>
         public TransactionResponse UpdateApplication(string author, string appName, string newAuthor, string url,
-            string metaData, int priceParam, string privateKey)
+            string metaData, byte priceParam, string privateKey)
         {
             try
             {
@@ -126,7 +126,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="buyer">The buyer of application</param>
         /// <param name="appId">The id of app that buyer will buy</param>
         /// <param name="privateKey"></param>
-        public TransactionResponse BuyApplication(string buyer, int appId, string privateKey)
+        public TransactionResponse BuyApplication(string buyer, long appId, string privateKey)
         {
             try
             {
@@ -152,7 +152,7 @@ namespace Alexandria.net.API.WalletFunctions
         ///  <param name="buyer">The buyer of application</param>
         ///  <param name="appId">The id of bought app</param>
         /// <param name="privateKey"></param>
-        public TransactionResponse CancelApplicationBuying(string appOwner, string buyer, int appId, string privateKey)
+        public TransactionResponse CancelApplicationBuying(string appOwner, string buyer, long appId, string privateKey)
         {
             try
             {
@@ -178,7 +178,7 @@ namespace Alexandria.net.API.WalletFunctions
         /// <param name="searchType">search_type One of "by_buyer", "by_app_id"</param>
         /// <param name="count">count Number of items to retrieve</param>
         /// <param name="privateKey"></param>
-        public ApplicationSearchResponse GetApplicationBuyings(string buyerName, SearchType searchType, int count)
+        public ApplicationSearchResponse GetApplicationBuyings(string buyerName, SearchType searchType, uint count)
         {
             try
             {

@@ -70,7 +70,7 @@ namespace UnitTest
 
             if (transresponse == null) return false;
 
-            var blockresponse = _client.Wallet.Transaction.GetBlock(transresponse.result.block_num);
+            var blockresponse = _client.Wallet.Transaction.GetBlock((uint)transresponse.result.block_num);
             if (blockresponse == null) return false;
 
             loaner.Blockdata = blockresponse;

@@ -215,7 +215,7 @@ namespace UnitTest
         [Fact]
         public void CreateAccount()
         {
-           var result= _client.Wallet.Account.CreateAccount("tasty", "{}",
+           var result= _client.Wallet.Account.CreateAccount("martyn2", "{}",
                 "SPH6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz",
                 "SPH6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz",
                 "SPH6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz");
@@ -225,7 +225,7 @@ namespace UnitTest
         [Fact]
         public void GetAccount()
         {
-            var result=_client.Wallet.Account.GetAccount("test101");
+            var result=_client.Wallet.Account.GetAccount("sanjiv");
             Console.WriteLine(result);
         }
 
