@@ -107,7 +107,7 @@ namespace Alexandria.net.Communication
                 var signature = key.SignDigest(digest, privateKey, new byte[130]);
                 var response = key.AddSignature(transaction, signature, new byte[transaction.Length + 200]);
                 finalResponse = trans.BroadcastTransaction(response);
-                trans.SerializeTransaction(response);
+                
             }
             catch (Exception ex)
             {

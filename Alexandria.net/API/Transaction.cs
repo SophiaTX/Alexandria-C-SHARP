@@ -61,7 +61,7 @@ namespace Alexandria.net.API
 		/// </summary>
 		/// <param name="num">the block num</param>
 		/// <returns>Public block data On the blockchain</returns>
-		public BlockResponse GetBlock(int num)
+		public BlockResponse GetBlock(uint num)
 		{
 			try
 			{
@@ -199,7 +199,7 @@ namespace Alexandria.net.API
 		/// <param name="BlockNumber">Integer Block Number </param>
 		/// <param name="OnlyVirtual">Boolean Only Virtual operation listing</param>
 		/// <returns>Returns sequence of operations included/generated in a specified block</returns>
-		public GetOperationsResponse GetOpsInBlock(int BlockNumber,bool OnlyVirtual)
+		public GetOperationsResponse GetOpsInBlock(uint BlockNumber,bool OnlyVirtual)
 		{
 			try
 			{
@@ -257,7 +257,7 @@ namespace Alexandria.net.API
 			}
 		}
 
-		public SerializedTransaction SerializeTransaction(SignedTransactionResponse signedTx)
+		private SerializedTransaction SerializeTransaction(SignedTransactionResponse signedTx)
 		{
 			try
 			{

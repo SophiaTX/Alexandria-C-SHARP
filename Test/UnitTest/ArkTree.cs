@@ -66,17 +66,17 @@ namespace UnitTest
                 Sender = "marc1",
                 Document = json
             };
-            var transresponse = _client.Wallet.Data.Send(data);
+            var transresponse = _client.Data.Send(data);
 
             if (transresponse == null) return false;
 
-            var blockresponse = _client.Wallet.Transaction.GetBlock((uint)transresponse.result.block_num);
+            var blockresponse = _client.Transaction.GetBlock((uint)transresponse.result.block_num);
             if (blockresponse == null) return false;
 
             loaner.Blockdata = blockresponse;
             //data to be persisted somwhere
 
-            _client.Wallet.Transaction.GetTransaction(loaner.Blockdata.Result.block_id);
+            _client.Transaction.GetTransaction(loaner.Blockdata.Result.block_id);
             Console.WriteLine(blockresponse.Result);
             return true;
         }

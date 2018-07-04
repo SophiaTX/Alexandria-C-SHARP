@@ -24,15 +24,6 @@
     <Compile Remove="API\SphTxApi.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Lib\libalexandria.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Lib\libalexandria.dylib">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Lib\libalexandria.so">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
     <None Remove="libalexandria.dylib" />
   </ItemGroup>
   <ItemGroup>
@@ -52,5 +43,19 @@
   </ItemGroup>
   <ItemGroup>
     <_ApplicationManifestFinal Remove="bin\Debug\netcoreapp2.0\Native.Alexandria.net.manifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Lib\libalexandria.dll" />
+    <EmbeddedResource Include="Lib\libalexandria.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <None Remove="Lib\libalexandria.dylib" />
+    <EmbeddedResource Include="Lib\libalexandria.dylib">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <None Remove="Lib\libalexandria.so" />
+    <EmbeddedResource Include="Lib\libalexandria.so">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>
