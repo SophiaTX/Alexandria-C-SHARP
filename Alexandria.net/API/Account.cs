@@ -3,18 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using Alexandria.net.Communication;
-using Newtonsoft.Json;
 using Alexandria.net.Logging;
 using Alexandria.net.Messaging.Responses;
 using Alexandria.net.Messaging.Responses.DTO;
 using Alexandria.net.Settings;
+using Newtonsoft.Json;
 
-
-namespace Alexandria.net.API.WalletFunctions
+namespace Alexandria.net.API
 {
     /// <inheritdoc />
     /// <para>
-    /// Wallet Account Functions 
+    /// Sophia Blockchain Account functions
     /// </para>
     public class Account : RpcConnection
     {

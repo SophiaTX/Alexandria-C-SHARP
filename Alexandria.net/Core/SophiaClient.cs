@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
+using Alexandria.net.API;
+using Alexandria.net.API.WalletFunctions;
 using Alexandria.net.Enums;
 using Alexandria.net.Logging;
 using Alexandria.net.Settings;
@@ -15,12 +17,35 @@ namespace Alexandria.net.Core
     {
         #region Properties
 
-        public Daemon Daemon { get; set; }
-
         /// <summary>
-        /// the blockchain wallet
+        /// Sophia Blockchain Account functions
         /// </summary>
-        public Wallet Wallet { get; }
+        public Account Account { get; }
+        /// <summary>
+        /// Sophia Blockchain Asset functions
+        /// </summary>
+        public Asset Asset { get; }
+        /// <summary>
+        /// Sophia Blockchain Key functions
+        /// </summary>
+        public Key Key { get; }
+        /// <summary>
+        /// Sophia Blockchain Transaction functions
+        /// </summary>
+        public Transaction Transaction { get; }
+        /// <summary>
+        /// Sophia Blockchain Witness functions
+        /// </summary>
+        public Witness Witness { get; }
+		
+        /// <summary>
+        /// Sophia Blockchain Data functions
+        /// </summary>
+        public Data Data { get; }
+        /// <summary>
+        /// Sophia Blockchain Application functions
+        /// </summary>
+        public Application Application { get; }
 
         #endregion
 
@@ -45,8 +70,13 @@ namespace Alexandria.net.Core
                 if (walletPort != 0)
                     config.WalletPort = walletPort;
 
-                Daemon = new Daemon(config);
-                Wallet = new Wallet(config, blockchainConfig);
+                Account = new Account(config);
+                Asset = new Asset(config);
+                Key = new Key(config);
+                Transaction = new Transaction(config);
+                Witness = new Witness(config);
+                Data = new Data(config, blockchainConfig);
+                Application=new Application(config);
             }
             else
             {

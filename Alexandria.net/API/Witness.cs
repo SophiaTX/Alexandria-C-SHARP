@@ -5,16 +5,15 @@ using System.Reflection;
 using Alexandria.net.Communication;
 using Alexandria.net.Logging;
 using Alexandria.net.Messaging.Receiver;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using Alexandria.net.Messaging.Responses.DTO;
 using Alexandria.net.Settings;
+using Newtonsoft.Json;
 
-namespace Alexandria.net.API.WalletFunctions
+namespace Alexandria.net.API
 {
     /// <inheritdoc />
     /// <para>
-    /// Wallet Witness Functions
+    /// Sophia Blockchain Witness functions
     /// </para>
     public class Witness : RpcConnection
     {

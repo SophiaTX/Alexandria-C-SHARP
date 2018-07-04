@@ -10,11 +10,11 @@ using Alexandria.net.Messaging.Responses.DTO;
 using Alexandria.net.Settings;
 using Newtonsoft.Json;
 
-namespace Alexandria.net.API.WalletFunctions
+namespace Alexandria.net.API
 {
     /// <inheritdoc />
     /// <para>
-    /// Wallet Application Functions
+    /// WSophia Blockchain Wallet functions
     /// </para>
     public class Application:RpcConnection
     {

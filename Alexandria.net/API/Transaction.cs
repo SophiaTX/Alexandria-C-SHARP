@@ -4,18 +4,16 @@ using System.Collections.Generic;
 using System.Reflection;
 using Alexandria.net.Communication;
 using Alexandria.net.Logging;
-using Alexandria.net.Messaging.Receiver;
 using Alexandria.net.Messaging.Responses.DTO;
 using Alexandria.net.Settings;
 using Newtonsoft.Json;
 
-namespace Alexandria.net.API.WalletFunctions
+namespace Alexandria.net.API
 {
 	/// <inheritdoc />
 	/// <para>
-	/// Wallet Transaction Functions
+	/// Sophia Blockchain transaction functions
 	/// </para>
-	
 	public class  Transaction : RpcConnection
 	{	
 		private readonly ILogger _logger;
