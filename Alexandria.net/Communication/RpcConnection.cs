@@ -5,7 +5,6 @@ using System.Net.Http;
  using System.Text;
 using System.Threading.Tasks;
  using Alexandria.net.API;
- using Alexandria.net.API.WalletFunctions;
  using Alexandria.net.Enums;
  using Alexandria.net.Exceptions;
  using Alexandria.net.Logging;

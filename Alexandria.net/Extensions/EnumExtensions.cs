@@ -1,5 +1,5 @@
 ﻿using System;
-using Alexandria.net.API.WalletFunctions;
+using Alexandria.net.Helpers;
 
 namespace Alexandria.net.Extensions
 {

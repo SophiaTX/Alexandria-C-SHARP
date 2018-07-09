@@ -6,6 +6,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{605F974E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest", "Test\UnitTest\UnitTest.csproj", "{A029E2AE-993F-4307-A5F5-AAFE6611F855}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Alexandria.abapwrapper", "Alexandria.abapwrapper\Alexandria.abapwrapper.csproj", "{53D0FB06-4149-414A-94EC-4B3A2117DC67}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,6 +22,10 @@ Global
 		{A029E2AE-993F-4307-A5F5-AAFE6611F855}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A029E2AE-993F-4307-A5F5-AAFE6611F855}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A029E2AE-993F-4307-A5F5-AAFE6611F855}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53D0FB06-4149-414A-94EC-4B3A2117DC67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53D0FB06-4149-414A-94EC-4B3A2117DC67}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53D0FB06-4149-414A-94EC-4B3A2117DC67}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53D0FB06-4149-414A-94EC-4B3A2117DC67}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{A029E2AE-993F-4307-A5F5-AAFE6611F855} = {605F974E-C8BD-4DD0-8E83-B80D4C83AB2D}

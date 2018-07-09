@@ -100,9 +100,7 @@ namespace Alexandria.net.API
         }
 
         /// <summary>
-
         /// Generates private_key in WIF format based on random seed.
-
         /// </summary>
         /// <param name="privatekey">returns parameter of size 51</param>
         /// <param name="publickey">returns parameter of size 53</param>
