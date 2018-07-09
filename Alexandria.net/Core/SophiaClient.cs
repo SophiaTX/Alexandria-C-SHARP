@@ -2,7 +2,6 @@
 using System.IO;
 using System.Reflection;
 using Alexandria.net.API;
-using Alexandria.net.API.WalletFunctions;
 using Alexandria.net.Enums;
 using Alexandria.net.Logging;
 using Alexandria.net.Settings;

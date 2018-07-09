@@ -1,4 +1,4 @@
-﻿using Alexandria.net.API.WalletFunctions;
+﻿using Alexandria.net.Helpers;
 
 namespace Alexandria.net.Enums
 {

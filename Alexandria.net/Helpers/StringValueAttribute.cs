@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Alexandria.net.API.WalletFunctions
+namespace Alexandria.net.Helpers
 {
     /// <summary>
     /// 

@@ -22,6 +22,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="API\SphTxApi.cs" />
+    <Compile Remove="Core\Daemon.cs" />
+    <Compile Remove="Core\Wallet.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="libalexandria.dylib" />

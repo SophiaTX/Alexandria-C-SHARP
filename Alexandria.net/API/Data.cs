@@ -44,22 +44,40 @@ namespace Alexandria.net.API
 
         #endregion
 
-        #region PublicMethods
+        #region Public Methods
 
         /// <summary>
-        /// 
+        /// Sends the parsed data to the blockchain
         /// </summary>
-        /// <param name="senderdata"></param>
-        /// <param name="privateKey"></param>
+        /// <param name="data">the data to send, this is a type parameter, so any data type can be sent</param>
+        /// <param name="senderinfo">the sender info required for the transaction</param>
+        /// <param></param>
         /// <returns></returns>
-        public TransactionResponse Send(SenderData senderdata)
+        public TransactionResponse Send<T>(T data, SenderData senderinfo)
         {
             try
             {
-                var customjsonrpc = MakeCustomJsonOperation(senderdata.Sender, senderdata.Recipients, senderdata.AppId,
-                    senderdata.FormattedDoc);
+                var customjsonrpc = MakeCustomJsonOperation(senderinfo.Sender, senderinfo.Recipients, senderinfo.AppId,
+                    senderinfo.FormattedDoc);
                 if (customjsonrpc == null) return null;
-                var resp = StartBroadcasting(customjsonrpc.result, senderdata.PrivateKey);
+                var resp = StartBroadcasting(customjsonrpc.result, senderinfo.PrivateKey);
+                return resp;
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+                throw;
+            }
+        }
+        
+        public TransactionResponse Send(SenderData senderinfo)
+        {
+            try
+            {
+                var customjsonrpc = MakeCustomJsonOperation(senderinfo.Sender, senderinfo.Recipients, senderinfo.AppId,
+                    senderinfo.FormattedDoc);
+                if (customjsonrpc == null) return null;
+                var resp = StartBroadcasting(customjsonrpc.result, senderinfo.PrivateKey);
                 return resp;
             }
             catch (Exception ex)
@@ -96,7 +114,7 @@ namespace Alexandria.net.API
         }
 
 
-       
+
 
         /// <summary>
         /// Allowed options for search_type are "by_sender", "by_recipient", "by_sender_datetime", "by_recipient_datetime".
@@ -108,28 +126,37 @@ namespace Alexandria.net.API
         /// <param name="start">Start by value - index or ISO timestamps</param>
         /// <param name="count"></param>
         /// <returns></returns>
-        public  ReceivedDocumentResponse Receive(ulong appId,  string accountName,SearchType searchType,
-            string start,
+        public ReceivedDocumentResponse Receive(ulong appId, string accountName, SearchType searchType, string start,
             uint count)
         {
             ReceivedDocumentResponse result;
-            
             try
             {
-               result = GetReceivedDocuments(appId,  accountName,searchType,
+                result = GetReceivedDocuments(appId, accountName, searchType,
                     start,
                     count);
-                
-                
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
                 throw;
             }
-            return result;
 
-            
+            return result;
+        }
+
+        public T Receive<T>(T type, ulong appId, string accountName, SearchType searchType, string start, uint count)
+        {
+            try
+            {
+                var result = GetReceivedDocuments(appId, accountName, searchType, start, count);
+                return JsonConvert.DeserializeAnonymousType(result.result.ToString(), type);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
         #endregion

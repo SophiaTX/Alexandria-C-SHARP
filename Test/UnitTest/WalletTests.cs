@@ -58,19 +58,16 @@ namespace UnitTest
         {
             _client.Witness.VoteForWitness("test101", "initminer", true, PrivateKey);
         }
+
         [Fact]
         public void update_witness()
         {
-            int amount;
-            string symbol;
-         //  var price=new object(){amount=1,symbol="SPHTX"};
-            
-            var pricefeed = new List<object> {};
-
-            //var pricefeedtuple=new Tuple<AssetType>(pricefeed);
-            var result=_client.Witness.UpdateWitness("test101", "http://www.testminer.com", PublicKey, "10.000 SPHTX",900,pricefeed,PrivateKey);
+            var pricefeed = new List<object> { };
+            var result = _client.Witness.UpdateWitness("test101", "http://www.testminer.com", PublicKey, "10.000 SPHTX",
+                900, pricefeed, PrivateKey);
             Console.WriteLine(result);
         }
+
         #endregion
 
         #region Transaction Methods
@@ -290,6 +287,7 @@ namespace UnitTest
                 Sender = "rumGMWVHCxedjhSHMBQYk3o9LVD",
                 Document = test//"[\"" + $"{test}" + "\"]"
             };
+
             var result = _client.Data.Send(data);
             Console.WriteLine(result);
         }
