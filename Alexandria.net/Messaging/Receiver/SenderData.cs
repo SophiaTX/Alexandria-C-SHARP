@@ -26,7 +26,7 @@ namespace Alexandria.net.Messaging.Receiver
         public string Document
         {
             //get;
-            set => FormattedDoc = "[\"" + $"{value}" + "\"]";
+            set => FormattedDoc = value;
         }
         public string FormattedDoc { get; private set; }
         /// <summary>

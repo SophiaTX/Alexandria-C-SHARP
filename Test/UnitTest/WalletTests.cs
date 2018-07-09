@@ -215,7 +215,7 @@ namespace UnitTest
         [Fact]
         public void CreateAccount()
         {
-           var result= _client.Account.CreateAccount("martyn3", "{}",
+           var result= _client.Account.CreateAccount("martyn6", "{}",
                 "SPH6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz",
                 "SPH6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz",
                 "SPH6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz");
@@ -225,7 +225,7 @@ namespace UnitTest
         [Fact]
         public void GetAccount()
         {
-            var result=_client.Account.GetAccount("KYuCvn8F9dTZkEyz8yNkT1oNGS3");
+            var result=_client.Account.GetAccount("martyn");
             Console.WriteLine(result);
         }
 
@@ -279,14 +279,15 @@ namespace UnitTest
         [Fact]
         public void Send()
         {
-            var test = "this is some text that i would like to send";
+            var test = "{\"ref_block_num\":16364,\"ref_block_prefix\":2217467278,\"expiration\":\"2018-06-20T15:24:06\",\"operations\":[[\"account_create\",{\"fee\":\"0.100000 SPHTX\",\"creator\":\"initminer\",\"new_account_name\":\"sanjiv9999\",\"owner\":{\"weight_threshold\":1,\"account_auths\":[],\"key_auths\":[[\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",1]]},\"active\":{\"weight_threshold\":1,\"account_auths\":[],\"key_auths\":[[\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",1]]},\"memo_key\":\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",\"json_metadata\":\"{}\"}]],\"extensions\":[],\"signatures\":[]}";
+            
            
             var data = new SenderData
             {
                 AppId = 2,
                 PrivateKey = PrivateKey,
-                Recipients = new List<string> {"test101"},
-                Sender = "test110",
+                Recipients = new List<string> {"2hPgEeeuitiNeM8bCCQWTKx9u6wx"},
+                Sender = "rumGMWVHCxedjhSHMBQYk3o9LVD",
                 Document = test//"[\"" + $"{test}" + "\"]"
             };
             var result = _client.Data.Send(data);
