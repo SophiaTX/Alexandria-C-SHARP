@@ -2223,7 +2223,7 @@
           "build/netcoreapp1.0/xunit.runner.visualstudio.props": {}
         }
       },
-      "Alexandria.net/1.0.0": {
+      "Alexandria.net/1.0.0-alpha": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.0",
         "dependencies": {
@@ -2679,7 +2679,7 @@
       ]
     },
     "Microsoft.NETCore.Targets/1.1.0": {
-      "sha512": "8vWZLKev0CESZwK2kj5eLF+YkMZNDTNIJxKRDsXm9+r/egbMR23lCBhPBKy/4pmVhHB6geCTOjqk8l0mYOmjrA==",
+      "sha512": "aOZA3BWfz9RXjpzt0sRJJMjAscAUm3Hoa4UWAfceV9UTYxgwZ1lZt5nO2myFf+/jetYQo4uTP7zS8sJY67BBxg==",
       "type": "package",
       "path": "microsoft.netcore.targets/1.1.0",
       "files": [
@@ -2906,7 +2906,7 @@
       ]
     },
     "Microsoft.Win32.Primitives/4.0.1": {
-      "sha512": "dmqIRQgSSCclllciSy1V6Nww7YNC0Z3xwKUF2Lq/BatX25tiXnTgzko3zjbr/R7VaENueOwRrDgYva+y2pP0mA==",
+      "sha512": "fQnBHO9DgcmkC9dYSJoBqo6sH1VJwJprUHh8F3hbcRlxiQiBUuTntdk8tUwV490OqC2kQUrinGwZyQHTieuXRA==",
       "type": "package",
       "path": "microsoft.win32.primitives/4.0.1",
       "files": [
@@ -2942,7 +2942,7 @@
       ]
     },
     "Microsoft.Win32.Registry/4.0.0": {
-      "sha512": "X3CevY+/W5LFY6eVLqspiMi6/wmh7H81nVqhGcKoARD7Cm01FIlUhzKtswHK2MS1ccjcULeDmMDBS4oBSZDGgA==",
+      "sha512": "q+eLtROUAQ3OxYA5mpQrgyFgzLQxIyrfT2eLpYX5IEPlHmIio2nh4F5bgOaQoGOV865kFKZZso9Oq9RlazvXtg==",
       "type": "package",
       "path": "microsoft.win32.registry/4.0.0",
       "files": [
@@ -3455,7 +3455,7 @@
       ]
     },
     "System.Collections/4.3.0": {
-      "sha512": "mbuSb9B1SBADkhVFmtd9G1l/DNN38hDMj+mcFvQDxrIqyZsP/Accih3AXrvYiMB2aaUnyKCOibdI6+QSN88uuA==",
+      "sha512": "3Dcj85/TBdVpL5Zr+gEEBUuFe2icOnLalmEh9hfck1PTYbbyWuZgh4fmm2ysCLTrqLQw6t3TgTyJ+VLp+Qb+Lw==",
       "type": "package",
       "path": "system.collections/4.3.0",
       "files": [
@@ -3587,7 +3587,7 @@
       ]
     },
     "System.Collections.Immutable/1.2.0": {
-      "sha512": "MntraMqxot6aMObPeujOE/HrSAX4dd8/h8cwC9OlmiYQkET3lwUJC/h/TSdxvY4qc2iHhoURCh2+RFPgjcfqRg==",
+      "sha512": "Cma8cBW6di16ZLibL8LYQ+cLjGzoKxpOTu/faZfDcx94ZjAGq6Nv5RO7+T1YZXqEXTZP9rt1wLVEONVpURtUqw==",
       "type": "package",
       "path": "system.collections.immutable/1.2.0",
       "files": [
@@ -4193,7 +4193,7 @@
       ]
     },
     "System.Dynamic.Runtime/4.0.11": {
-      "sha512": "tF6wZsnfKLQ+XU28yNGB6RrwIfXatJrrxQDNMJK63C/ybbU2igRoorpWXmPkY9s4sMbLEVGdYQ1iEsOOn3D6QQ==",
+      "sha512": "db34f6LHYM0U0JpE+sOmjar27BnqTVkbLJhgfwMpTdgTigG/Hna3m2MYVwnFzGGKnEJk2UXFuoVTr8WUbU91/A==",
       "type": "package",
       "path": "system.dynamic.runtime/4.0.11",
       "files": [
@@ -4364,7 +4364,7 @@
       ]
     },
     "System.Globalization.Extensions/4.3.0": {
-      "sha512": "mi7IcNYZLsBvN0RqVCIbYw5lWwS1KrMCKOZQFDdf0x/RBc5PYLGPVqAB6HVKE8EoGsFmlUH3qIsU7RtbJ5BMWQ==",
+      "sha512": "FhKmdR6MPG+pxow6wGtNAWdZh7noIOpdD5TwQ3CprzgIE1bBBoim0vbR1+AWsWjQmU7zXHgQo4TWSP6lCeiWcQ==",
       "type": "package",
       "path": "system.globalization.extensions/4.3.0",
       "files": [
@@ -4985,7 +4985,7 @@
       ]
     },
     "System.Reflection.Emit/4.0.1": {
-      "sha512": "1BlPFGrZ5dpLvwCU3i/yMw8l5TRg2vdNffbM7SRlf8ZVI7o2reqVeQBKCms0SEu1r4TvP7J9qcyV9MhBphX+gQ==",
+      "sha512": "P2wqAj72fFjpP6wb9nSfDqNBMab+2ovzSDzUZK7MVIm54tBJEPr9jWfSjjoTpPwj1LeKcmX3vr0ttyjSSFM47g==",
       "type": "package",
       "path": "system.reflection.emit/4.0.1",
       "files": [
@@ -5015,7 +5015,7 @@
       ]
     },
     "System.Reflection.Emit.ILGeneration/4.0.1": {
-      "sha512": "T4Fxmfex5NCm1zlug5RgedUdFq6gKajHD7SIfSXdcTU4QjyGs+0gaebDrPr+ae4Gec6bLmUdtvy2v2/+yKsaMA==",
+      "sha512": "Ov6dU8Bu15Bc7zuqttgHF12J5lwSWyTf1S+FJouUXVMSqImLZzYaQ+vRr1rQ0OZ0HqsrwWl4dsKHELckQkVpgA==",
       "type": "package",
       "path": "system.reflection.emit.ilgeneration/4.0.1",
       "files": [
@@ -5046,7 +5046,7 @@
       ]
     },
     "System.Reflection.Emit.Lightweight/4.0.1": {
-      "sha512": "sKguzrtU/f+zy2VJdw/d+bqlnPkrxzVh4eUW7MoFNI4hSmIafQWPoDTxpSYZ2tfYhJr2MyPZYGPUzIgUk2/+sg==",
+      "sha512": "sSzHHXueZ5Uh0OLpUQprhr+ZYJrLPA2Cmr4gn0wj9+FftNKXx8RIMKvO9qnjk2ebPYUjZ+F2ulGdPOsvj+MEjA==",
       "type": "package",
       "path": "system.reflection.emit.lightweight/4.0.1",
       "files": [
@@ -5132,7 +5132,7 @@
       ]
     },
     "System.Reflection.Metadata/1.3.0": {
-      "sha512": "Rjmpv0aTy2b6Fch9GGlp0SUxYUjgdDnVQIlvh6yu4O5N7Xnc/lozv8qrp77nQPooQ6wwn8dNxkwSdo/N/15CKQ==",
+      "sha512": "jMSCxA4LSyKBGRDm/WtfkO03FkcgRzHxwvQRib1bm2GZ8ifKM1MX1al6breGCEQK280mdl9uQS7JNPXRYk90jw==",
       "type": "package",
       "path": "system.reflection.metadata/1.3.0",
       "files": [
@@ -5499,7 +5499,7 @@
       ]
     },
     "System.Runtime.Handles/4.3.0": {
-      "sha512": "4DZ6vbd4hU8srvncdSAD+AxzbHHmsrE/SEoIQc0WWth9euYO9lBNmsginpvuMY9Fp/rInF8YoUiyYwhcgddgLw==",
+      "sha512": "OKiSUN7DmTWeYb3l51A7EYaeNMnvxwE249YtZz7yooT4gOZhmTjIn48KgSsw2k2lYdLgTKNJw/ZIfSElwDRVgg==",
       "type": "package",
       "path": "system.runtime.handles/4.3.0",
       "files": [
@@ -5658,7 +5658,7 @@
       ]
     },
     "System.Runtime.Loader/4.0.0": {
-      "sha512": "oIkY6j5MSiikgBvdRrTiw/7EYnO4ABJ9pKIOyNRk1j7DOUfP6R3IwOH4KyASbPSwzXboTlezmBaLX5UeHHRbRg==",
+      "sha512": "4UN78GOVU/mbDFcXkEWtetJT/sJ0yic2gGk1HSlSpWI0TDf421xnrZTDZnwNBapk1GQeYN7U1lTj/aQB1by6ow==",
       "type": "package",
       "path": "system.runtime.loader/4.0.0",
       "files": [
@@ -5794,7 +5794,7 @@
       ]
     },
     "System.Runtime.Serialization.Primitives/4.1.1": {
-      "sha512": "x1VY8gBQ/PaRaE2Y+nbgdmsQfPo5plJIQritXXUT/Aoe5ZRBzTQnrVUZAwcQVztNuizlkJcvp8LHn9IgrWSDPw==",
+      "sha512": "HZ6Du5QrTG8MNJbf4e4qMO3JRAkIboGT5Fk804uZtg3Gq516S7hAqTm2UZKUHa7/6HUGdVy3AqMQKbns06G/cg==",
       "type": "package",
       "path": "system.runtime.serialization.primitives/4.1.1",
       "files": [
@@ -6094,7 +6094,7 @@
       ]
     },
     "System.Text.Encoding/4.3.0": {
-      "sha512": "g++++fCPlztGm2UmePVQXztM1n+PDcvTHNjj15jHmIIVhq+HoL5Qd0sePuP4qag+/qiop7cob6LMINRevawY5w==",
+      "sha512": "BiIg+KWaSDOITze6jGQynxg64naAPtqGHBwDrLaCtixsa5bKiR8dpPOHA7ge3C0JJQizJE+sfkz1wV+BAKAYZw==",
       "type": "package",
       "path": "system.text.encoding/4.3.0",
       "files": [
@@ -6376,7 +6376,7 @@
       ]
     },
     "System.Threading.Tasks/4.3.0": {
-      "sha512": "0J1SFAjrgGeGNVh4gDvqML131A7AflJ96LXqi3HwGO+m/lbWeQUK83OYOTlgMr1e4D7Yv0YKXGcMoSB9CB/qRw==",
+      "sha512": "LbSxKEdOUhVe8BezB/9uOGGppt+nZf6e1VFyw6v3DN6lqitm0OSn2uXMOdtP0M3W4iMcqcivm2J6UgqiwwnXiA==",
       "type": "package",
       "path": "system.threading.tasks/4.3.0",
       "files": [
@@ -6442,7 +6442,7 @@
       ]
     },
     "System.Threading.Tasks.Extensions/4.0.0": {
-      "sha512": "zpjK3xZalbXhHvwAr0BwMwhgO1CGVBS6ct7UlJ6OXsNZxmBLYcHpeptqniu/loadNESU9n62/stk0cN1mC5k/A==",
+      "sha512": "pH4FZDsZQ/WmgJtN4LWYmRdJAEeVkyriSwrv2Teoe5FOU0Yxlb6II6GL8dBPOfRmutHGATduj3ooMt7dJ2+i+w==",
       "type": "package",
       "path": "system.threading.tasks.extensions/4.0.0",
       "files": [
@@ -6495,7 +6495,7 @@
       ]
     },
     "System.Threading.ThreadPool/4.0.10": {
-      "sha512": "dh9sJNrJpGRRKz94hjdqz6aeuGUdGxAxqSFZSibxvJEu9qmqiXmIEcwuyF2ypzq2Vp579UVBkhpYACx62E6xMw==",
+      "sha512": "IMXgB5Vf/5Qw1kpoVgJMOvUO1l32aC+qC3OaIZjWJOjvcxuxNWOK2ZTWWYXfij22NHxT2j1yWX5vlAeQWld9vA==",
       "type": "package",
       "path": "system.threading.threadpool/4.0.10",
       "files": [
@@ -6760,7 +6760,7 @@
       ]
     },
     "System.Xml.XPath/4.0.1": {
-      "sha512": "d+9LjI1iCiu92Xcd/iIb7KFCjvSjCtgItNTic6qiZ4JmemcbkXPaIgyorAklJ5ADnqMRDVJvq7E4zVbPGpthiA==",
+      "sha512": "UWd1H+1IJ9Wlq5nognZ/XJdyj8qPE4XufBUkAW59ijsCPjZkZe0MUzKKJFBr+ZWBe5Wq1u1d5f2CYgE93uH7DA==",
       "type": "package",
       "path": "system.xml.xpath/4.0.1",
       "files": [
@@ -7020,7 +7020,7 @@
         "xunit.runner.visualstudio.nuspec"
       ]
     },
-    "Alexandria.net/1.0.0": {
+    "Alexandria.net/1.0.0-alpha": {
       "type": "project",
       "path": "../../Alexandria.net/Alexandria.net.csproj",
       "msbuildProject": "../../Alexandria.net/Alexandria.net.csproj"
@@ -7028,7 +7028,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v2.0": [
-      "Alexandria.net >= 1.0.0",
+      "Alexandria.net >= 1.0.0-alpha",
       "Microsoft.NET.Test.Sdk >= 15.5.0",
       "Microsoft.NETCore.App >= 2.0.0",
       "xunit >= 2.3.1",
@@ -7037,35 +7037,36 @@
     ]
   },
   "packageFolders": {
-    "/Users/martynharler/.nuget/packages/": {},
+    "/Users/sanjivjha/.nuget/packages/": {},
     "/usr/local/share/dotnet/sdk/NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/martynharler/RiderProjects/Alexandria/Test/UnitTest/UnitTest.csproj",
+      "projectUniqueName": "/Users/sanjivjha/RiderProjects/Alexandria/Test/UnitTest/UnitTest.csproj",
       "projectName": "UnitTest",
-      "projectPath": "/Users/martynharler/RiderProjects/Alexandria/Test/UnitTest/UnitTest.csproj",
-      "packagesPath": "/Users/martynharler/.nuget/packages/",
-      "outputPath": "/Users/martynharler/RiderProjects/Alexandria/Test/UnitTest/obj/",
+      "projectPath": "/Users/sanjivjha/RiderProjects/Alexandria/Test/UnitTest/UnitTest.csproj",
+      "packagesPath": "/Users/sanjivjha/.nuget/packages/",
+      "outputPath": "/Users/sanjivjha/RiderProjects/Alexandria/Test/UnitTest/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "/Users/martynharler/.config/NuGet/NuGet.Config"
+        "/Users/sanjivjha/.config/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.0"
       ],
       "sources": {
-        "https://api.nuget.org/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {},
+        "https://www.nuget.org/": {}
       },
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "/Users/martynharler/RiderProjects/Alexandria/Alexandria.net/Alexandria.net.csproj": {
-              "projectPath": "/Users/martynharler/RiderProjects/Alexandria/Alexandria.net/Alexandria.net.csproj"
+            "/Users/sanjivjha/RiderProjects/Alexandria/Alexandria.net/Alexandria.net.csproj": {
+              "projectPath": "/Users/sanjivjha/RiderProjects/Alexandria/Alexandria.net/Alexandria.net.csproj"
             }
           }
         }

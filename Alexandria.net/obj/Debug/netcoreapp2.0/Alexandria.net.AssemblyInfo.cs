@@ -7,10 +7,13 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("Alexandria.net")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("Equidato Technologies AG")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
+[assembly: System.Reflection.AssemblyCopyrightAttribute("Equidato Technologies AG")]
+[assembly: System.Reflection.AssemblyDescriptionAttribute(".net library for accessing the SophiaTX Blockchain")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0-alpha")]
 [assembly: System.Reflection.AssemblyProductAttribute("Alexandria.net")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Alexandria.net")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
+[assembly: System.Resources.NeutralResourcesLanguageAttribute("en-US")]
