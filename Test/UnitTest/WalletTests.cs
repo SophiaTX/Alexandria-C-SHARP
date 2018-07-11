@@ -147,7 +147,7 @@ namespace UnitTest
         [Fact]
         public void GetPublicKey()
         {
-            _client.Key.GetPublicKey("5KGL7MNAfwCzQ8DAq7DXJsneXagka3KNcjgkRayJoeJUucSLkev", new byte[53]);
+            _client.Key.GetPublicKey("5JPwY3bwFgfsGtxMeLkLqXzUrQDMAsqSyAZDnMBkg7PDDRhQgaV", new byte[53]);
 
         }
 
@@ -168,7 +168,7 @@ namespace UnitTest
         [Fact]
         public void SignedDigest()
         {
-            _client.Key.SignDigest(Digest, PrivateKey, new byte[130]);
+            _client.Key.SignDigest("d139b5e917536aa3951916752df88d5cb28b27a27d266ad4bc1c920f1524187d", "5JPwY3bwFgfsGtxMeLkLqXzUrQDMAsqSyAZDnMBkg7PDDRhQgaV", new byte[130]);
 
         }
 

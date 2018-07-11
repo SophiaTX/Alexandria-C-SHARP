@@ -102,7 +102,6 @@ namespace Alexandria.net.Communication
 
                 var transaction = JsonConvert.SerializeObject(transresponse.result);
                 var digest = key.GetTransactionDigest(transaction, aboutresponse.result.chain_id, new byte[64]);
-
                 var signature = key.SignDigest(digest, privateKey, new byte[130]);
                 var response = key.AddSignature(transaction, signature, new byte[transaction.Length + 200]);
                 finalResponse = trans.BroadcastTransaction(response);
