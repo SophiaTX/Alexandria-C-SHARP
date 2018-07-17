@@ -56,7 +56,7 @@ namespace Alexandria.net.API
                 var @params = new ArrayList {author, appName, url, metaData, priceParam};
                 var result = SendRequest(reqname, @params);
                 var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
-                var response = StartBroadcasting(contentdata.result, privateKey);
+                var response = StartBroadcasting(contentdata.Result, privateKey);
                 return response;
             }
             catch (Exception ex)
@@ -86,7 +86,7 @@ namespace Alexandria.net.API
                 var @params = new ArrayList {author, appName, newAuthor, url, metaData, priceParam};
                 var result = SendRequest(reqname, @params);
                 var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
-                var response = StartBroadcasting(contentdata.result, privateKey);
+                var response = StartBroadcasting(contentdata.Result, privateKey);
                 return response;
             }
             catch (Exception ex)
@@ -110,7 +110,7 @@ namespace Alexandria.net.API
                 var @params = new ArrayList {author, appName};
                 var result = SendRequest(reqname, @params);
                 var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
-                var response = StartBroadcasting(contentdata.result, privateKey);
+                var response = StartBroadcasting(contentdata.Result, privateKey);
                 return response;
             }
             catch (Exception ex)
@@ -134,7 +134,7 @@ namespace Alexandria.net.API
                 var @params = new ArrayList {buyer, appId};
                 var result = SendRequest(reqname, @params);
                 var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
-                var response = StartBroadcasting(contentdata.result, privateKey);
+                var response = StartBroadcasting(contentdata.Result, privateKey);
                 return response;
             }
             catch (Exception ex)
@@ -160,7 +160,7 @@ namespace Alexandria.net.API
                 var @params = new ArrayList {appOwner, buyer, appId};
                 var result = SendRequest(reqname, @params);
                 var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
-                var response = StartBroadcasting(contentdata.result, privateKey);
+                var response = StartBroadcasting(contentdata.Result, privateKey);
                 return response;
             }
             catch (Exception ex)

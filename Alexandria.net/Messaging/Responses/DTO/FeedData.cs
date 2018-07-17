@@ -1,23 +1,27 @@
 ﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Alexandria.net.Messaging.Responses.DTO
 {
     /// <summary>
-    /// 
+    /// The feed data return in the getfeed response
     /// </summary>
     public class FeedData
     {
         /// <summary>
-        /// 
+        /// the transdaction id
         /// </summary>
-        public int id { get; set; }
+        [JsonProperty("id")]
+        public int Id { get; set; }
         /// <summary>
-        /// 
+        /// the median history data
         /// </summary>
-        public CurrentMedianHistory current_median_history { get; set; }
+        [JsonProperty("current_median_history")]
+        public CurrentMedianHistory CurrentMedianHistory { get; set; }
         /// <summary>
-        /// 
+        /// the price history data
         /// </summary>
-        public List<object> price_history { get; set; }
+        [JsonProperty("price_history")]
+        public List<object> PriceHistory { get; set; }
     }
 }

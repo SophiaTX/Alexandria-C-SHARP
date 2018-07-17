@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Alexandria.net.Messaging.Responses.DTO
 {
@@ -11,10 +12,12 @@ namespace Alexandria.net.Messaging.Responses.DTO
         /// <summary>
         /// 
         /// </summary>
-        public int id { get; set; }
+        [JsonProperty("id")]
+        public int Id { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public List<object> result { get; set; }
+        [JsonProperty("result")]
+        public List<object> Result { get; set; }
     }
 }

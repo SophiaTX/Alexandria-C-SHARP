@@ -1,11 +1,23 @@
 ﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Alexandria.net.Messaging.Responses.DTO
 {
+    /// <summary>
+    /// response data for the MakeCustomJsonOperation method call
+    /// </summary>
     public class CustomJsonResponse
     {
-        public int id { get; set; }
-        public List<object> result { get; set; }
+        /// <summary>
+        /// the transaction id
+        /// </summary>
+        [JsonProperty("id")]
+        public int Id { get; set; }
+        /// <summary>
+        /// the transction results
+        /// </summary>
+        [JsonProperty("result")]
+        public List<object> Result { get; set; }
     }
 }
 

@@ -1,17 +1,21 @@
-﻿namespace Alexandria.net.Messaging.Responses.DTO
+﻿using Newtonsoft.Json;
+
+namespace Alexandria.net.Messaging.Responses.DTO
 {
     /// <summary>
-    /// 
+    /// The price for subscription
     /// </summary>
     public class PricePerSubscribe
     {
         /// <summary>
-        /// 
+        /// the amount for the subscription
         /// </summary>
-        public int amount { get; set; }
+        [JsonProperty("amount")]
+        public int Amount { get; set; }
         /// <summary>
-        /// 
+        /// the id of the asset
         /// </summary>
-        public string asset_id { get; set; }
+        [JsonProperty("asset_id")]
+        public string AssetId { get; set; }
     }
 }

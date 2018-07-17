@@ -1,17 +1,21 @@
-﻿namespace Alexandria.net.Messaging.Responses.DTO
+﻿using Newtonsoft.Json;
+
+namespace Alexandria.net.Messaging.Responses.DTO
 {
     /// <summary>
-    /// 
+    /// the response to the GetFeedHistory nmethod call
     /// </summary>
     public class FeedHistoryResponse
     {
         /// <summary>
-        /// 
+        /// the transaction id
         /// </summary>
-        public int id { get; set; }
+        [JsonProperty("id")]
+        public int Id { get; set; }
         /// <summary>
-        /// 
+        /// the feed data information
         /// </summary>
-        public FeedData result { get; set; }
+        [JsonProperty("result")]
+        public FeedData Result { get; set; }
     }
 }

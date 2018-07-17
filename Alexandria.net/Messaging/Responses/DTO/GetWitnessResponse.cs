@@ -1,8 +1,21 @@
-﻿namespace Alexandria.net.Messaging.Responses.DTO
+﻿using Newtonsoft.Json;
+
+namespace Alexandria.net.Messaging.Responses.DTO
 {
+    /// <summary>
+    /// The respoinse data for the GetWithness call
+    /// </summary>
     public class GetWitnessResponse
     {
-        public int id { get; set; }
-        public WitnessDetails result { get; set; }
+        /// <summary>
+        /// the transaction id
+        /// </summary>
+        [JsonProperty("id")]
+        public int Id { get; set; }
+        /// <summary>
+        /// the witness details
+        /// </summary>
+        [JsonProperty("result")]
+        public WitnessDetails Result { get; set; }
     }
 }

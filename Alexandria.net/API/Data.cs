@@ -58,9 +58,9 @@ namespace Alexandria.net.API
             try
             {
                 var customjsonrpc = MakeCustomJsonOperation(senderinfo.Sender, senderinfo.Recipients, senderinfo.AppId,
-                    senderinfo.FormattedDoc);
+                    senderinfo.Document);
                 if (customjsonrpc == null) return null;
-                var resp = StartBroadcasting(customjsonrpc.result, senderinfo.PrivateKey);
+                var resp = StartBroadcasting(customjsonrpc.Result, senderinfo.PrivateKey);
                 return resp;
             }
             catch (Exception ex)
@@ -75,9 +75,9 @@ namespace Alexandria.net.API
             try
             {
                 var customjsonrpc = MakeCustomJsonOperation(senderinfo.Sender, senderinfo.Recipients, senderinfo.AppId,
-                    senderinfo.FormattedDoc);
+                    senderinfo.Document);
                 if (customjsonrpc == null) return null;
-                var resp = StartBroadcasting(customjsonrpc.result, senderinfo.PrivateKey);
+                var resp = StartBroadcasting(customjsonrpc.Result, senderinfo.PrivateKey);
                 return resp;
             }
             catch (Exception ex)
@@ -103,7 +103,7 @@ namespace Alexandria.net.API
                     
                     senderdata.DocumentChars);
                 if (customjsonrpc == null) return null;
-                var resp = StartBroadcasting(customjsonrpc.result, senderdata.PrivateKey);
+                var resp = StartBroadcasting(customjsonrpc.Result, senderdata.PrivateKey);
                 return resp;
             }
             catch (Exception ex)

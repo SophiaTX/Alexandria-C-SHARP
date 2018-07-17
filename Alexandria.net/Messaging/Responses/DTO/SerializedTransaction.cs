@@ -1,8 +1,21 @@
-﻿namespace Alexandria.net.Messaging.Responses.DTO
+﻿using Newtonsoft.Json;
+
+namespace Alexandria.net.Messaging.Responses.DTO
 {
+    /// <summary>
+    /// Response from the serialise transaction call
+    /// </summary>
     public class SerializedTransaction
     {
-        public int id { get; set; }
-        public string result { get; set; }
+        /// <summary>
+        /// the response id
+        /// </summary>
+        [JsonProperty("id")]
+        public int Id { get; set; }
+        /// <summary>
+        /// the result from the blockchain:: error or ok
+        /// </summary>
+        [JsonProperty("result")]
+        public string Result { get; set; }
     }
 }

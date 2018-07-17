@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Alexandria.net.Messaging.Responses.DTO
 {
@@ -11,42 +12,52 @@ namespace Alexandria.net.Messaging.Responses.DTO
         /// <summary>
         /// 
         /// </summary>
-        public string previous { get; set; }
+        [JsonProperty("previous")]
+        public string Previous { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public DateTime timestamp { get; set; }
+        [JsonProperty("timestamp")]
+        public DateTime Timestamp { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public string witness { get; set; }
+        [JsonProperty("witness")]
+        public string Witness { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public string transaction_merkle_root { get; set; }
+        [JsonProperty("transaction_merkle_root")]
+        public string TransactionMerkleRoot { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public List<object> extensions { get; set; }
+        [JsonProperty("extensions")]
+        public List<object> Extensions { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public string witness_signature { get; set; }
+        [JsonProperty("witness_signature")]
+        public string WitnessSignature { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public List<object> transactions { get; set; }
+        [JsonProperty("transactions")]
+        public List<object> Transactions { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public string block_id { get; set; }
+        [JsonProperty("block_id")]
+        public string BlockId { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public string signing_key { get; set; }
+        [JsonProperty("signing_key")]
+        public string SigningKey { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public List<object> transaction_ids { get; set; }
+        [JsonProperty("transaction_ids")]
+        public List<object> TransactionIds { get; set; }
     }
 }

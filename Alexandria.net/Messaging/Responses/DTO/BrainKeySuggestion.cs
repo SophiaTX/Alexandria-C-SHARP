@@ -1,8 +1,21 @@
-﻿namespace Alexandria.net.Messaging.Responses.DTO
+﻿using Newtonsoft.Json;
+
+namespace Alexandria.net.Messaging.Responses.DTO
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class BrainKeySuggestion
     {
-        public int id { get; set; }
-        public Result result { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("id")]
+        public int Id { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("result")]
+        public BrainKeySuggestionData Result { get; set; }
     }
 }

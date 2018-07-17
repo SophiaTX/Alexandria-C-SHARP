@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Alexandria.net.Messaging.Responses.DTO
 {
     public class AccountResponse
     {
-        public int id { get; set; }
-        public List<object> result { get; set; }
+        [JsonProperty("id")]
+        public int Id { get; set; }
+        [JsonProperty("resulty")]
+        public List<object> Result { get; set; }
     }
 }

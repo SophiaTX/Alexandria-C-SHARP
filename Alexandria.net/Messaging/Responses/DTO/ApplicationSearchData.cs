@@ -1,12 +1,32 @@
 ﻿using System;
+using Newtonsoft.Json;
 
 namespace Alexandria.net.Messaging.Responses.DTO
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class ApplicationSearchData
     {
-        public int id { get; set; }
-        public int app_id { get; set; }
-        public string buyer { get; set; }
-        public DateTime created { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("id")]
+        public int Id { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("app_id")]
+        public int AppId { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("buyer")]
+        public string Buyer { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        [JsonProperty("created")]
+        public DateTime Created { get; set; }
     }
 }

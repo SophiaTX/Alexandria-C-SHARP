@@ -107,7 +107,7 @@ namespace Alexandria.net.API
         /// <returns>Returns true if success or false for failed try</returns>
         public KeyResponse GeneratePrivateKey(byte[] privatekey, byte[] publickey)
         {
-            
+
             KeyResponse result = null;
             try
             {
@@ -177,7 +177,6 @@ namespace Alexandria.net.API
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
-
         }
 
         /// <summary>
@@ -226,7 +225,6 @@ namespace Alexandria.net.API
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
-
         }
 
         /// <summary>
@@ -271,7 +269,6 @@ namespace Alexandria.net.API
             try
             {
                 var result = verify_signature(digest, publicKey, signedDigest);
-
                 return result;
             }
             catch (Exception ex)

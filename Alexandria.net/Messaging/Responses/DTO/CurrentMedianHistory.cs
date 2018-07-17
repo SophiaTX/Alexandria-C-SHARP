@@ -1,4 +1,6 @@
-﻿namespace Alexandria.net.Messaging.Responses.DTO
+﻿using Newtonsoft.Json;
+
+namespace Alexandria.net.Messaging.Responses.DTO
 {
     
     /// <summary>
@@ -9,10 +11,13 @@
         /// <summary>
         /// 
         /// </summary>
-        public string @base { get; set; }
+        [JsonProperty("base")]
+        public string Base { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public string quote { get; set; }
+        [JsonProperty("quote")]
+        public string Quote { get; set; }
     }
 }
+//jkjkjk

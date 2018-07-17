@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Alexandria.net.Messaging.Responses.DTO
 {
@@ -10,14 +11,17 @@ namespace Alexandria.net.Messaging.Responses.DTO
         /// <summary>
         /// 
         /// </summary>
-        public int weight_threshold { get; set; }
+        [JsonProperty("weight_threshold")]
+        public int WeightThreshold { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public List<object> account_auths { get; set; }
+        [JsonProperty("account_auths")]
+        public List<object> AccountAuths { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        public List<List<object>> key_auths { get; set; }
+        [JsonProperty("key_auths")]
+        public List<List<object>> KeyAuths { get; set; }
     }
 }

@@ -1,10 +1,22 @@
 ﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Alexandria.net.Messaging.Responses.DTO
 {
+    /// <summary>
+    /// the response data for the GetOperationsInBlock method
+    /// </summary>
     public class GetOperationsResponse
     {
-        public int id { get; set; }
-        public List<Operations> result { get; set; }
+        /// <summary>
+        /// the tyransaction id
+        /// </summary>
+        [JsonProperty("id")]
+        public int Id { get; set; }
+        /// <summary>
+        /// the operations data result
+        /// </summary>
+        [JsonProperty("result")]
+        public List<Operations> Result { get; set; }
     }
 }

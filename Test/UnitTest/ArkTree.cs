@@ -70,13 +70,13 @@ namespace UnitTest
 
             if (transresponse == null) return false;
 
-            var blockresponse = _client.Transaction.GetBlock((uint)transresponse.result.block_num);
+            var blockresponse = _client.Transaction.GetBlock((uint)transresponse.Result.block_num);
             if (blockresponse == null) return false;
 
             loaner.Blockdata = blockresponse;
             //data to be persisted somwhere
 
-            _client.Transaction.GetTransaction(loaner.Blockdata.Result.block_id);
+            _client.Transaction.GetTransaction(loaner.Blockdata.Result.BlockId);
             Console.WriteLine(blockresponse.Result);
             return true;
         }

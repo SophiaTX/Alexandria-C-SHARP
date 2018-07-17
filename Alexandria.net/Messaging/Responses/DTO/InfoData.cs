@@ -1,95 +1,117 @@
 ﻿using System;
+using Newtonsoft.Json;
 
 namespace Alexandria.net.Messaging.Responses.DTO
 {
     /// <summary>
-    /// 
+    /// The data response from the Info method
     /// </summary>
     public class InfoData
     {
         /// <summary>
-        /// 
+        /// the head block number
         /// </summary>
-        public int head_block_number { get; set; }
+        [JsonProperty("head_block_number")]
+        public int HeadBlockNumber { get; set; }
         /// <summary>
-        /// 
+        /// the head block id
         /// </summary>
-        public string head_block_id { get; set; }
+        [JsonProperty("head_block_id")]
+        public string HeadBlockId { get; set; }
         /// <summary>
-        /// 
+        /// the time of the info call
         /// </summary>
-        public DateTime time { get; set; }
+        [JsonProperty("time")]
+        public DateTime Time { get; set; }
         /// <summary>
-        /// 
+        /// the name of the current witness of the current block
         /// </summary>
-        public string current_witness { get; set; }
+        [JsonProperty("current_witness")]
+        public string CurrentWitness { get; set; }
         /// <summary>
-        /// 
+        /// the virtual supply
         /// </summary>
-        public string virtual_supply { get; set; }
+        [JsonProperty("virtual_supply")]
+        public string VirtualSupply { get; set; }
         /// <summary>
-        /// 
+        /// the actual supply
         /// </summary>
-        public string current_supply { get; set; }
+        [JsonProperty("current_supply")]
+        public string CurrentSupply { get; set; }
         /// <summary>
-        /// 
+        /// the number of total tokens in vesting
         /// </summary>
-        public string total_vesting_shares { get; set; }
+        [JsonProperty("total_vesting_shares")]
+        public string TotalVestingShares { get; set; }
         /// <summary>
-        /// 
+        /// the total reward fund
         /// </summary>
-        public string total_reward_fund { get; set; }
+        [JsonProperty("total_reward_fund")]
+        public string TotalRewardFund { get; set; }
         /// <summary>
-        /// 
+        /// the maximum block size
         /// </summary>
-        public int maximum_block_size { get; set; }
+        [JsonProperty("maximum_block_size")]
+        public int MaximumBlockSize { get; set; }
         /// <summary>
-        /// 
+        /// the current slot number
         /// </summary>
-        public int current_aslot { get; set; }
+        [JsonProperty("current_aslot")]
+        public int CurrentAslot { get; set; }
         /// <summary>
-        /// 
+        /// the number of recent slots filled
         /// </summary>
-        public string recent_slots_filled { get; set; }
+        [JsonProperty("recent_slots_filled")]
+        public string RecentSlotsFilled { get; set; }
         /// <summary>
-        /// 
+        /// the participant count
         /// </summary>
-        public int participation_count { get; set; }
+        [JsonProperty("participation_count")]
+        public int ParticipationCount { get; set; }
         /// <summary>
-        /// 
+        /// the last irresiverible block number
         /// </summary>
-        public int last_irreversible_block_num { get; set; }
+        [JsonProperty("last_irreversible_block_num")]
+        public int LastIrreversibleBlockNum { get; set; }
         /// <summary>
-        /// 
+        /// the average size of all blocks
         /// </summary>
-        public int average_block_size { get; set; }
+        [JsonProperty("expiration")]
+        public int AverageBlockSize { get; set; }
         /// <summary>
-        /// 
+        /// the virtual bandwidth availability
         /// </summary>
-        public string max_virtual_bandwidth { get; set; }
+        [JsonProperty("average_block_size")]
+        public string MaxVirtualBandwidth { get; set; }
         /// <summary>
-        /// 
+        /// the version of the witness majority
         /// </summary>
-        public string witness_majority_version { get; set; }
+        [JsonProperty("witness_majority_version")]
+        public string WitnessMajorityVersion { get; set; }
         /// <summary>
-        /// 
+        /// the hardfork version number
         /// </summary>
-        public string hardfork_version { get; set; }
+        [JsonProperty("hardfork_version")]
+        public string HardforkVersion { get; set; }
         /// <summary>
-        /// 
+        /// the age of the head block
         /// </summary>
-        public string head_block_age { get; set; }
+        [JsonProperty("head_block_age")]
+        public string HeadBlockAge { get; set; }
         /// <summary>
-        /// 
+        /// the participation value
         /// </summary>
-        public string participation { get; set; }
+        [JsonProperty("participation")]
+        public string Participation { get; set; }
         /// <summary>
-        /// 
+        /// gives the median of the currency (sbd)
         /// </summary>
-        public MedianSbdPrice median_sbd_price { get; set; }
+        [JsonProperty("median_sbd_price")]
+        public MedianSbdPrice MedianSbdPrice { get; set; }
         /// <summary>
-        /// 
+        /// the fee associated with account creation
         /// </summary>
-        public string account_creation_fee { get; set; }
+        [JsonProperty("account_creation_fee")]
+        public string AccountCreationFee { get; set; }
     }
 }

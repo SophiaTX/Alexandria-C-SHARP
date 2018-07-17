@@ -1,43 +1,52 @@
 ﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Alexandria.net.Messaging.Responses.DTO
 {
     /// <summary>
-    /// 
+    /// the options available with the transaction
     /// </summary>
     public class Options
     {
         /// <summary>
-        /// 
+        /// the memo key value
         /// </summary>
-        public string memo_key { get; set; }
+        [JsonProperty("memo_key")]
+        public string MemoKey { get; set; }
         /// <summary>
-        /// 
+        /// the voting account address
         /// </summary>
-        public string voting_account { get; set; }
+        [JsonProperty("voting_account")]
+        public string VotingAccount { get; set; }
         /// <summary>
-        /// 
+        /// the miner number
         /// </summary>
-        public int num_miner { get; set; }
+        [JsonProperty("num_miner")]
+        public int NumMiner { get; set; }
         /// <summary>
-        /// 
+        /// the list of votes 
         /// </summary>
-        public List<object> votes { get; set; }
+        [JsonProperty("votes")]
+        public List<object> Votes { get; set; }
         /// <summary>
-        /// 
+        /// the extensions associated with the options
         /// </summary>
-        public List<object> extensions { get; set; }
+        [JsonProperty("extensions")]
+        public List<object> Extensions { get; set; }
         /// <summary>
-        /// 
+        /// subscription allowed
         /// </summary>
-        public bool allow_subscription { get; set; }
+        [JsonProperty("allow_subscription")]
+        public bool AllowSubscription { get; set; }
         /// <summary>
-        /// 
+        /// the price for subscribing
         /// </summary>
-        public PricePerSubscribe price_per_subscribe { get; set; }
+        [JsonProperty("price_per_subscribe")]
+        public PricePerSubscribe PricePerSubscribe { get; set; }
         /// <summary>
-        /// 
+        /// the subscription period
         /// </summary>
-        public int subscription_period { get; set; }
+        [JsonProperty("subscription_period")]
+        public int SubscriptionPeriod { get; set; }
     }
 }

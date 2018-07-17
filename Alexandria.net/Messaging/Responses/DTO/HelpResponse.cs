@@ -1,8 +1,21 @@
-﻿namespace Alexandria.net.Messaging.Responses.DTO
+﻿using Newtonsoft.Json;
+
+namespace Alexandria.net.Messaging.Responses.DTO
 {
+    /// <summary>
+    /// teh response from the help method call
+    /// </summary>
     public class HelpResponse
     {
-        public int id { get; set; }
-        public string result { get; set; }
+        /// <summary>
+        /// the id of the transaction
+        /// </summary>
+        [JsonProperty("id")]
+        public int Id { get; set; }
+        /// <summary>
+        /// the resultat data from the help call
+        /// </summary>
+        [JsonProperty("result")]
+        public string Result { get; set; }
     }
 }

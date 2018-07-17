@@ -1,23 +1,27 @@
 ﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Alexandria.net.Messaging.Responses.DTO
 {
     /// <summary>
-    /// 
+    /// The owner details
     /// </summary>
     public class Owner
     {
         /// <summary>
-        /// 
+        /// the weighting threshold of the owner
         /// </summary>
-        public int weight_threshold { get; set; }
+        [JsonProperty("weight_threshold")]
+        public int WeightThreshold { get; set; }
         /// <summary>
-        /// 
+        /// the account authority
         /// </summary>
-        public List<object> account_auths { get; set; }
+        [JsonProperty("account_auths")]
+        public List<object> AccountAuths { get; set; }
         /// <summary>
-        /// 
+        /// the key authtorisations
         /// </summary>
-        public List<List<object>> key_auths { get; set; }
+        [JsonProperty("key_auths")]
+        public List<List<object>> KeyAuths { get; set; }
     }
 }

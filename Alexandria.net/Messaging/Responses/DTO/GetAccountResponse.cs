@@ -1,8 +1,21 @@
-﻿namespace Alexandria.net.Messaging.Responses.DTO
+﻿using Newtonsoft.Json;
+
+namespace Alexandria.net.Messaging.Responses.DTO
 {
+    /// <summary>
+    /// the data reposnse from the GetAccount method call
+    /// </summary>
     public class GetAccountResponse
     {
-        public int id { get; set; }
-        public AccountDetails result { get; set; }
+        /// <summary>
+        /// the transaction id
+        /// </summary>
+        [JsonProperty("id")]
+        public int Id { get; set; }
+        /// <summary>
+        /// the account details result data
+        /// </summary>
+        [JsonProperty("result")]
+        public AccountDetails Result { get; set; }
     }
 }

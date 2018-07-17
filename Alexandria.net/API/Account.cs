@@ -364,7 +364,7 @@ namespace Alexandria.net.API
                 var result = SendRequest(reqname, @params);
                 var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
 
-                var response = StartBroadcasting(contentdata.result, privateKey);
+                var response = StartBroadcasting(contentdata.Result, privateKey);
                 return response;
             }
             catch (Exception ex)
@@ -394,7 +394,7 @@ namespace Alexandria.net.API
                 var result= SendRequest(reqname, @params);
                 var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
 				
-                var response = StartBroadcasting(contentdata.result, privateKey);
+                var response = StartBroadcasting(contentdata.Result, privateKey);
                 return response;
             }
             catch(Exception ex)
@@ -449,7 +449,7 @@ namespace Alexandria.net.API
 
                 var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
 
-                var response = StartBroadcasting(contentdata.result, privatekey);
+                var response = StartBroadcasting(contentdata.Result, privatekey);
                 return response;
             }
             catch (Exception ex)
@@ -474,7 +474,7 @@ namespace Alexandria.net.API
                 var result = SendRequest(reqname, @params);
                 var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
 
-                var response = StartBroadcasting(contentdata.result, privateKey);
+                var response = StartBroadcasting(contentdata.Result, privateKey);
                 return response;
             }
             catch (Exception ex)

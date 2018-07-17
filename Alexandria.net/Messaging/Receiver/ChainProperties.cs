@@ -1,5 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace Alexandria.net.Messaging.Receiver
 {
@@ -11,17 +12,21 @@ namespace Alexandria.net.Messaging.Receiver
     /// </summary>
     public class ChainProperties
     {
-
         /// <summary>
-        /// 
+        /// the creation fee that was offered in SPHTX
+        /// </summary
+        [JsonProperty("account_creation_fee")]
+        public string AccountCreationFee { get; set; }
+        /// <summary>
+        /// the last block in the chain
         /// </summary>
-//        public AssetType AccountCreationFee { get; set; } // = asset(SOPHIATX_MIN_ACCOUNT_CREATION_FEE, SOPHIATX_SYMBOL);
-//
-//        public uint MaximumBlockSize { get; set; }
-//        public Tuple<AssetType> PriceFeeds { get; set; }
-        public string account_creation_fee { get; set; }
-        public int maximum_block_size { get; set; }
-        public List<object> price_feeds { get; set; }
+        [JsonProperty("maximum_block_size")]
+        public int MaximumBlockSize { get; set; }
+        /// <summary>
+        /// The price feed information
+        /// </summary>
+        [JsonProperty("price_feeds")]
+        public List<object> PriceFeeds { get; set; }
     }
 
    

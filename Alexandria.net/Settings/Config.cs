@@ -20,27 +20,27 @@ namespace Alexandria.net.Settings
         /// </summary>
         public LoggingType LoggingType { get; set; }
         /// <summary>
-        /// 
+        /// The receiver interval (ms) for checking for new transactions
         /// </summary>
         public int ReceiveInterval { get; set; }
         /// <summary>
-        /// 
+        /// The connection hostname to connect to the blockchain
         /// </summary>
         public string Hostname { get; set; }
         /// <summary>
-        /// 
+        /// the daemon port number
         /// </summary>
         public ushort DaemonPort { get; set; }
         /// <summary>
-        /// 
+        /// the wallet port number
         /// </summary>
         public ushort WalletPort { get; set; }
         /// <summary>
-        /// 
+        /// the rpc api string
         /// </summary>
         public string Api { get; set; }
         /// <summary>
-        /// 
+        /// the json version
         /// </summary>
         public string Version { get; set; }
 
