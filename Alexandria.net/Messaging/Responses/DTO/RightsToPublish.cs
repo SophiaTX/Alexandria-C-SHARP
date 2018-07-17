@@ -11,17 +11,17 @@ namespace Alexandria.net.Messaging.Responses.DTO
         /// <summary>
         /// 
         /// </summary>
-        [JsonProperty("expiration")]
-        public bool is_publishing_manager { get; set; }
+        [JsonProperty("is_publishing_manager")]
+        public bool IsPublishingManager { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        [JsonProperty("expiration")]
-        public List<object> publishing_rights_received { get; set; }
+        [JsonProperty("publishing_rights_received")]
+        public List<object> PublishingRightsReceived { get; set; }
         /// <summary>
         /// 
         /// </summary>
-        [JsonProperty("expiration")]
-        public List<object> publishing_rights_forwarded { get; set; }
+        [JsonProperty("publishing_rights_forwarded")]
+        public List<object> PublishingRightsForwarded { get; set; }
     }
 }

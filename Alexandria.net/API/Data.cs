@@ -150,7 +150,7 @@ namespace Alexandria.net.API
             try
             {
                 var result = GetReceivedDocuments(appId, accountName, searchType, start, count);
-                return JsonConvert.DeserializeAnonymousType(result.result.ToString(), type);
+                return JsonConvert.DeserializeAnonymousType(result.Result.ToString(), type);
             }
             catch (Exception e)
             {

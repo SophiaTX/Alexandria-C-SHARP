@@ -1,12 +1,14 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace Alexandria.net.Messaging.Responses.DTO
 {
+   
     /// <summary>
     /// 
     /// </summary>
-    public class ReceivedDocumentResponse
+    public class AccountHistoryResponse
     {
         /// <summary>
         /// 

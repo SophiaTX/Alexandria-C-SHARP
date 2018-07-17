@@ -131,7 +131,7 @@ namespace UnitTest
         public void GetTransaction()
         {
             var trx=_client.Transaction.GetTransaction("4895dec7aa4b08837eeb2d8cc1cc33ae10f6acfa");
-            Console.WriteLine(trx.result.operations);
+            Console.WriteLine(trx.Result.Operations);
         }
 
         [Fact]
@@ -340,7 +340,7 @@ namespace UnitTest
         public void Receive()
         {
             var result = _client.Data.Receive(1,"45fR5HHoV2XA7NyvKdc3CK4WrixE",SearchType.ByRecipient,"2018-06-22T13:39:34",10);
-            Console.WriteLine(result.result);
+            Console.WriteLine(result.Result);
         }
 
         #endregion
