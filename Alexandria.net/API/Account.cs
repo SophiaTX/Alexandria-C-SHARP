@@ -425,7 +425,50 @@ namespace Alexandria.net.API
                 throw;
             }
         }
-
+       /// <summary>
+       /// Get transaction history of the account
+       /// </summary>
+       /// <param name="accountName">name of the account</param>
+       /// <param name="from">start</param>
+       /// <param name="to">until</param>
+       /// <returns></returns>
+        public AccountHistoryResponse GetAccountHistory(string accountName, uint from, uint to)
+        {
+            try
+            {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+                var @params = new ArrayList {accountName, from, to};
+                var result = SendRequest(reqname, @params);
+                var contentdata = JsonConvert.DeserializeObject<AccountHistoryResponse>(result);
+                return contentdata;
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+                throw;
+            }
+        }
+        /// <summary>
+        /// Get account name given by the system using seed provided by the user during account creation
+        /// </summary>
+        /// <param name="seed">seed name used while creating the account</param>
+        /// <returns></returns>
+        public AccountNameFromSeedResponse GetAccountNameFromSeed(string seed)
+        {
+            try
+            {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+                var @params = new ArrayList {seed};
+                var result = SendRequest(reqname, @params);
+                var contentdata = JsonConvert.DeserializeObject<AccountNameFromSeedResponse>(result);
+                return contentdata;
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+                throw;
+            }
+        }
         /// <summary>
         /// Creates the new sophiatx account
         /// </summary>
@@ -438,7 +481,7 @@ namespace Alexandria.net.API
         /// <param name="privatekey">the private key used for the digest</param>
         /// <returns>the account creation response details</returns>
         public TransactionResponse CreateAccount(string seed, string jsonMeta, string ownerkey,
-            string activekey, string memokey, string witnessname = "initminer",
+            string activekey, string memokey, string witnessname = "GN3Ug8ou6tiE4kWvyopJBJmZgcw",
             string privatekey = "5JPwY3bwFgfsGtxMeLkLqXzUrQDMAsqSyAZDnMBkg7PDDRhQgaV")
         {
             try

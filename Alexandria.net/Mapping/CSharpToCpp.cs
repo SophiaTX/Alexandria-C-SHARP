@@ -94,6 +94,8 @@
         private const string GetRepliesByLastUpdate = "get_replies_by_last_update";
         private const string GetDiscussionsByAuthorBeforeDate = "get_discussions_by_author_before_date";
         private const string GetAccountHistory = "get_account_history";
+        private const string GetAccountNameFromSeed = "get_account_name_from_seed";
+        
         
 
         /// <summary>
@@ -282,6 +284,8 @@
                     return GetDiscussionsByAuthorBeforeDate;
                 case "GetAccountHistory":
                     return GetAccountHistory;
+                case "GetAccountNameFromSeed":
+                    return GetAccountNameFromSeed;
             }
             return string.Empty;
         }

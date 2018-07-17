@@ -62,9 +62,23 @@ namespace UnitTest
         [Fact]
         public void update_witness()
         {
-            var pricefeed = new List<object> { };
-            var result = _client.Witness.UpdateWitness("test101", "http://www.testminer.com", PublicKey, "10.000 SPHTX",
-                900, pricefeed, PrivateKey);
+            var pricefeed = new List<object>
+            {
+                new PrizeFeedvalue()
+                {
+                    value = 456788,
+                    
+                },
+                new PrizeFeedQuote()
+                {
+                    @base = "120.000 EUR",
+                    quote = "10.000 SPHTX"
+                   
+                }
+            };
+           
+            var result = _client.Witness.UpdateWitness("32KHRSaU8djTceiu7KCtth86TVW3", "http://www.testminer.com", PublicKey, "10.000 SPHTX",
+                1024*67, pricefeed, "5KMk75baVwnjmKoEaKxioxNy4BXjLzfbCVqUdE1yUo48tgzU5FF");
             Console.WriteLine(result);
         }
 
@@ -76,7 +90,8 @@ namespace UnitTest
         public void GetFeedHistory()
         {
             //var feedSymbol = new AssetType {Symbol = "SPT1"};
-            _client.Transaction.GetFeedHistory("SPHTX");
+            var result=_client.Transaction.GetFeedHistory("SPHTX");
+            Console.WriteLine(result);
         }
 
         [Fact]
@@ -115,8 +130,8 @@ namespace UnitTest
         [Fact]
         public void GetTransaction()
         {
-            _client.Transaction.GetTransaction("2095fecb2a679dd8a1cee16472c4c5fe9edcc01d");
-
+            var trx=_client.Transaction.GetTransaction("4895dec7aa4b08837eeb2d8cc1cc33ae10f6acfa");
+            Console.WriteLine(trx.result.operations);
         }
 
         [Fact]
@@ -243,6 +258,18 @@ namespace UnitTest
             Console.WriteLine(result);
         }
 
+        [Fact]
+        public void getAccountHistory()
+        {
+            var result=_client.Account.GetAccountHistory("2hPgEeeuitiNeM8bCCQWTKx9u6wx", 10,6);
+            Console.WriteLine(result);           
+        }
+        [Fact]
+        public void GetAccountNameFromSeed()
+        {
+            var result=_client.Account.GetAccountNameFromSeed("martyn");
+            Console.WriteLine(result);       
+        }
         
 
         #endregion
@@ -283,7 +310,7 @@ namespace UnitTest
             {
                 AppId = 2,
                 PrivateKey = PrivateKey,
-                Recipients = new List<string> {"2hPgEeeuitiNeM8bCCQWTKx9u6wx"},
+                Recipients = new List<string> {"45fR5HHoV2XA7NyvKdc3CK4WrixE"},
                 Sender = "rumGMWVHCxedjhSHMBQYk3o9LVD",
                 Document = test//"[\"" + $"{test}" + "\"]"
             };
@@ -299,8 +326,8 @@ namespace UnitTest
             {
                 AppId = 2,
                 PrivateKey = PrivateKey,
-                Recipients = new List<string> {"test101"},
-                Sender = "test110",
+                Recipients = new List<string> {"45fR5HHoV2XA7NyvKdc3CK4WrixE"},
+                Sender = "45fR5HHoV2XA7NyvKdc3CK4WrixE",
                 DocumentChars = "2ZJ8RsXVNcNEoWPr6U5XYcjJeEfuz8cZbUNKxi6UQcgpxch5K1rRqagDHTv3C9vZLDJpSD9WYss6VHAWWvWVNCtCNkadKEcvaSV9SecRUnFeomX9HDTvhTXLW6BAAvuLRBMFLo1" //"[\"" + $"{test}" + "\"]"
             };
             
@@ -312,8 +339,8 @@ namespace UnitTest
         [Fact]
         public void Receive()
         {
-            var result = _client.Data.Receive(2,"test110",SearchType.BySender,"2018-06-22T13:39:34",10);
-            Console.WriteLine(result);
+            var result = _client.Data.Receive(1,"45fR5HHoV2XA7NyvKdc3CK4WrixE",SearchType.ByRecipient,"2018-06-22T13:39:34",10);
+            Console.WriteLine(result.result);
         }
 
         #endregion
