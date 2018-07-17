@@ -24,6 +24,13 @@
     <Compile Remove="API\SphTxApi.cs" />
     <Compile Remove="Core\Daemon.cs" />
     <Compile Remove="Core\Wallet.cs" />
+    <Compile Remove="Messaging\Responses\DTO\AccountRequestResponse.cs" />
+    <Compile Remove="Messaging\Responses\DTO\BainKey.cs" />
+    <Compile Remove="Messaging\Responses\DTO\DataRequestResponse.cs" />
+    <Compile Remove="Messaging\Responses\DTO\KeyFromPassword.cs" />
+    <Compile Remove="Messaging\Responses\DTO\ListAccountsResponse.cs" />
+    <Compile Remove="Messaging\Responses\DTO\LockUnlockRequestResponse.cs" />
+    <Compile Remove="Messaging\Responses\DTO\ReceiverRecipe.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="libalexandria.dylib" />

@@ -1,10 +1,10 @@
 ﻿{
   "version": "1.0.0",
   "restore": {
-    "projectUniqueName": "/Users/martynharler/RiderProjects/Alexandria/Test/UnitTest/UnitTest.csproj",
+    "projectUniqueName": "/Users/sanjivjha/RiderProjects/Alexandria/Test/UnitTest/UnitTest.csproj",
     "projectName": "UnitTest",
-    "projectPath": "/Users/martynharler/RiderProjects/Alexandria/Test/UnitTest/UnitTest.csproj",
-    "outputPath": "/Users/martynharler/RiderProjects/Alexandria/Test/UnitTest/obj/",
+    "projectPath": "/Users/sanjivjha/RiderProjects/Alexandria/Test/UnitTest/UnitTest.csproj",
+    "outputPath": "/Users/sanjivjha/RiderProjects/Alexandria/Test/UnitTest/obj/",
     "projectStyle": "PackageReference",
     "fallbackFolders": [
       "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
@@ -15,8 +15,8 @@
     "frameworks": {
       "netcoreapp2.0": {
         "projectReferences": {
-          "/Users/martynharler/RiderProjects/Alexandria/Alexandria.net/Alexandria.net.csproj": {
-            "projectPath": "/Users/martynharler/RiderProjects/Alexandria/Alexandria.net/Alexandria.net.csproj"
+          "/Users/sanjivjha/RiderProjects/Alexandria/Alexandria.net/Alexandria.net.csproj": {
+            "projectPath": "/Users/sanjivjha/RiderProjects/Alexandria/Alexandria.net/Alexandria.net.csproj"
           }
         }
       }
