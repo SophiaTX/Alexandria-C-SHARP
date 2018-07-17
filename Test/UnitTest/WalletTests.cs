@@ -259,7 +259,7 @@ namespace UnitTest
         }
 
         [Fact]
-        public void getAccountHistory()
+        public void GetAccountHistory()
         {
             var result=_client.Account.GetAccountHistory("2hPgEeeuitiNeM8bCCQWTKx9u6wx", 10,6);
             Console.WriteLine(result);           
