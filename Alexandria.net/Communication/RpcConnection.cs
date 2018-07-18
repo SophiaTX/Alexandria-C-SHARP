@@ -9,7 +9,7 @@ using Alexandria.net.Enums;
 using Alexandria.net.Exceptions;
 using Alexandria.net.Logging;
 using Alexandria.net.Mapping;
-using Alexandria.net.Messaging.Responses.DTO;
+using Alexandria.net.Messaging.Responses;
 using Alexandria.net.Settings;
 using Newtonsoft.Json;
 

@@ -7,7 +7,7 @@ using Alexandria.net.Enums;
 using Alexandria.net.Extensions;
 using Alexandria.net.Logging;
 using Alexandria.net.Messaging.Receiver;
-using Alexandria.net.Messaging.Responses.DTO;
+using Alexandria.net.Messaging.Responses;
 using Alexandria.net.Settings;
 using Newtonsoft.Json;
 using ILogger = Alexandria.net.Logging.ILogger;

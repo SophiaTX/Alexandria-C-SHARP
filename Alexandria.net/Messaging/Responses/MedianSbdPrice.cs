@@ -1,20 +1,19 @@
 ﻿using Newtonsoft.Json;
 
-namespace Alexandria.net.Messaging.Receiver
+namespace Alexandria.net.Messaging.Responses
 {
     /// <summary>
-    /// the price feed quote object
+    /// gives the median of the currency (sbd)
     /// </summary>
-    public class PrizeFeedQuote
+    public class MedianSbdPrice
     {
         /// <summary>
-        /// the base price
+        /// the currency symbol
         /// </summary>
         [JsonProperty("base")]
         public string Base { get; set; }
-
         /// <summary>
-        /// the quote price
+        /// the data of the sbd
         /// </summary>
         [JsonProperty("quote")]
         public string Quote { get; set; }
