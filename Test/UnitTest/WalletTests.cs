@@ -50,7 +50,8 @@ namespace UnitTest
         [Fact]
         public void GetWitness()
         {
-            _client.Witness.GetWitness("initminer");
+           var witness= _client.Witness.GetWitness("initminer");
+           Console.WriteLine(witness);
         }
 
         [Fact]
@@ -120,9 +121,10 @@ namespace UnitTest
         }
 
         [Fact]
-        public void get_ops_in_block()
+        public void GetOpsInBlock()
         {
-            _client.Transaction.GetOpsInBlock(1983, true);
+            var trx=_client.Transaction.GetOpsInBlock(1983, true);
+            Console.WriteLine(trx);
         }
 
         
@@ -247,7 +249,6 @@ namespace UnitTest
             _client.Account.DeleteAccount("test106", PrivateKey);
 
         }
-
         [Fact]
         public void update_account()
         {
@@ -257,7 +258,6 @@ namespace UnitTest
                 "SPH6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz", PrivateKey);
             Console.WriteLine(result);
         }
-
         [Fact]
         public void GetAccountHistory()
         {
@@ -271,7 +271,58 @@ namespace UnitTest
             Console.WriteLine(result);       
         }
         
-
+        [Fact]
+        public void GetVestingBalance()
+        {
+            var result=_client.Account.GetVestingBalance("2hPgEeeuitiNeM8bCCQWTKx9u6wx");
+            Console.WriteLine(result);       
+        }
+        [Fact]
+        public void AccountExists()
+        {
+            var result=_client.Account.AccountExists("2hPgEeeuitiNeM8bCCQWTKx9u6wx");
+            Console.WriteLine(result);       
+        }
+        [Fact]
+        public void GetActiveAuthority()
+        {
+            var result=_client.Account.GetActiveAuthority("2hPgEeeuitiNeM8bCCQWTKx9u6wx");
+            Console.WriteLine(result);       
+        }
+        [Fact]
+        public void GetMemoKey()
+        {
+            var result=_client.Account.GetMemoKey("2hPgEeeuitiNeM8bCCQWTKx9u6wx");
+            Console.WriteLine(result);       
+        }
+        [Fact]
+        public void GetOwnerAuthority()
+        {
+            var result=_client.Account.GetOwnerAuthority("2hPgEeeuitiNeM8bCCQWTKx9u6wx");
+            Console.WriteLine(result);       
+        }
+        [Fact]
+        public void CreateSimpleMultisigAuthority()
+        {
+            List<string> pubkeys = new List<string>();
+            pubkeys.Add("SPH5o2V32evStYJwAgewNmsvtk7n178CygWmwdEVR6uyThATBwVwi");
+            var result=_client.Account.CreateSimpleMultisigAuthority(pubkeys,4);
+            Console.WriteLine(result);       
+        }
+        [Fact]
+        public void CreateSimpleManagedAuthority()
+        {
+            var result=_client.Account.CreateSimpleManagedAuthority("SPH5o2V32evStYJwAgewNmsvtk7n178CygWmwdEVR6uyThATBwVwi");
+            Console.WriteLine(result);       
+        }
+        [Fact]
+        public void CreateSimpleAuthority()
+        {
+            List<string> pubkeys = new List<string>();
+            pubkeys.Add("SPH5o2V32evStYJwAgewNmsvtk7n178CygWmwdEVR6uyThATBwVwi");
+            var result=_client.Account.CreateSimpleMultiManagedAuthority(pubkeys,5);
+            Console.WriteLine(result);       
+        }
         #endregion
 
         #region Asset Methods

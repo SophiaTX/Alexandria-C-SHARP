@@ -6,19 +6,17 @@
     public class CSharpToCpp
     {
         private const string Vote = "vote";
-        private const string AccountExists = "accountExists";
+        private const string AccountExists = "account_exist";
         private const string HasPrivateKeys = "hasPrivateKeys";
-        private const string HasAccountActivePrivateKey = "hasAccountActivePrivateKey";
-        private const string HasAccountMemoPrivateKey = "hasAccountMemoPrivateKey";
-        private const string GetActiveAuthority = "getActiveAuthority";
-        private const string GetOwnerAuthority = "getOwnerAuthority";
-        private const string GetMemoKey = "getMemoKey";
-        private const string GetAccountBalance = "getAccountBalance";
-        private const string GetVestingBalance = "getVestingBalance";
-        private const string CreateSimpleAuthority = "createSimpleAuthority";
-        private const string CreateSimpleMultisigAuthority = "createSimpleMultisigAuthority";
-        private const string CreateSimpleManagedAuthority = "createSimpleManagedAuthority";
-        private const string CreateSimpleMultiManagedAuthority = "createSimpleMultiManagedAuthority";
+        private const string GetActiveAuthority = "get_active_authority";
+        private const string GetOwnerAuthority = "get_owner_authority";
+        private const string GetMemoKey = "get_memo_key";
+        private const string GetAccountBalance = "get_account_balance";
+        private const string GetVestingBalance = "get_vesting_balance";
+        private const string CreateSimpleAuthority = "create_simple_authority";
+        private const string CreateSimpleMultisigAuthority = "create_simple_multisig_authority";
+        private const string CreateSimpleManagedAuthority = "create_simple_managed_authority";
+        private const string CreateSimpleMultiManagedAuthority = "create_simple_multisig_managed_authority";
         private const string UpdateAccount = "update_account";
         private const string DepositVesting = "depositVesting";
         private const string WithdrawVestings = "withdrawVestings";
@@ -111,11 +109,7 @@
                 case "AccountExists":
                     return AccountExists;
                 case "HasPrivateKeys":
-                    return HasPrivateKeys;
-                case "HasAccountOwnerPrivateKey":
-                    return HasAccountActivePrivateKey;
-                case "HasAccountMemoPrivateKey":
-                    return HasAccountMemoPrivateKey;
+                    return HasPrivateKeys;               
                 case "GetActiveAuthority":
                     return GetActiveAuthority;
                 case "GetOwnerAuthority":
