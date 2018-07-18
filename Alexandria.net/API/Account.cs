@@ -19,17 +19,16 @@ namespace Alexandria.net.API
         private readonly ILogger _logger;
     
         #region Constructors
-
         
         /// <summary>
-        /// 
+        /// Account Constructor
         /// </summary>
-        /// <param name="config"></param>
+        /// <param name="config">the config file parameters</param>
         public Account(IConfig config) :
             base(config)
         {
             var assemblyname = Assembly.GetExecutingAssembly().GetName().Name;
-            _logger = new Logger(LoggingType.Server, assemblyname);
+            _logger = new Logger(config, LoggingType.Server, assemblyname);
         }
 
         #endregion
@@ -39,7 +38,7 @@ namespace Alexandria.net.API
         /// </summary>
         /// <param name="accountName">Input string accountName</param>
         /// <returns>Returns true if success and false for failed try</returns>
-        private bool AccountExists(string accountName)
+        public bool AccountExists(string accountName)
         {
             try
             {
@@ -55,100 +54,13 @@ namespace Alexandria.net.API
             }
         }
 
-        /// <summary>
-        /// Returns true if the library has imported the private key corresponding to the given public key.
-        /// </summary>
-        /// <param name="key">Input byte[] key</param>
-        /// <returns>Returns true if success and false for failed try</returns>
-        private bool HasPrivateKeys(byte[] key)
-        {
-            try
-            {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                var @params = new ArrayList {key};
-                var result = SendRequest(reqname, @params);
-                return result == "true";
-            }
-            catch (Exception ex)
-            {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// Returns true if the library has imported the private key corresponding to the account's owner key.In case of
-        /// authorities consisting of more than one key(mutlisig), it returns true if and only if the library has
-        /// sufificient keys to resolve the owner autority.
-        /// </summary>
-        /// <param name="accountName">Input string accountName</param>
-        /// <returns>Returns true if success and false for failed try</returns>
-        private bool HasAccountOwnerPrivateKey(string accountName)
-        {
-            try
-            {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                var @params = new ArrayList {accountName};
-                var result = SendRequest(reqname, @params);
-                return result == "true";
-            }
-            catch (Exception ex)
-            {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// Returns true if the library has imported the private key corresponding to the account's active key.In case of
-        /// authorities consisting of more than one key(mutlisig), it returns true if and only if the library has
-        /// sufficient keys to resolve the active autority.
-        /// </summary>
-        /// <param name="accountName">Input string accountName</param>
-        /// <returns>Returns true if success and false for failed try</returns>
-        private bool HasAccountActivePrivateKey(string accountName)
-        {
-            try
-            {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                var @params = new ArrayList {accountName};
-                var result = SendRequest(reqname, @params);
-                return result == "true";
-            }
-            catch (Exception ex)
-            {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
-                throw;
-            }
-        }
-
-        /// <summary>
-        /// Returns true if the library has imported the private key corresponding to the account's memo key.
-        /// </summary>
-        /// <param name="accountName">Input string accountName</param>
-        /// <returns>Returns true if success and false for failed try</returns>
-        private bool HasAccountMemoPrivateKey(string accountName)
-        {
-            try
-            {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                var @params = new ArrayList {accountName};
-                var result = SendRequest(reqname, @params);
-                return result == "true";
-            }
-            catch (Exception ex)
-            {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
-                throw;
-            }
-        }
 
         /// <summary>
         /// Returns the active authority of the given account.Object authority has the following structure:
         /// </summary>
         /// <param name="accountName">Input string accountName</param>
         /// <returns>Returns the Json object with the details about the active authority</returns>
-        private Authority GetActiveAuthority(string accountName)
+        public Authority GetActiveAuthority(string accountName)
         {
             try
             {
@@ -169,7 +81,7 @@ namespace Alexandria.net.API
         /// </summary>
         /// <param name="accountName">Input string accountName</param>
         /// <returns>Returns the Json object with the deails about the owner authority</returns>
-        private Authority GetOwnerAuthority(string accountName)
+        public Authority GetOwnerAuthority(string accountName)
         {
             try
             {
@@ -190,7 +102,7 @@ namespace Alexandria.net.API
         /// </summary>
         /// <param name="accountName">Input string accountName</param>
         /// <returns>Returns the Memo Key of the corresponding account</returns>
-        private byte[] GetMemoKey(string accountName)
+        public byte[] GetMemoKey(string accountName)
         {
             try
             {
@@ -206,7 +118,6 @@ namespace Alexandria.net.API
             }
 
         }
-
 
         /// <summary>
         /// Get SPHTX balance of the account.
@@ -234,7 +145,7 @@ namespace Alexandria.net.API
         /// </summary>
         /// <param name="accountName">Input string accountName</param>
         /// <returns>Returns the account balance as a Json object</returns>
-        private ulong GetVestingBalance(string accountName)
+        public ulong GetVestingBalance(string accountName)
         {
             try
             {
@@ -255,7 +166,7 @@ namespace Alexandria.net.API
         /// </summary>
         /// <param name="pubKey">Input byte[] pubKey</param>
         /// <returns>Returns Json object with details combining</returns>
-        private Authority CreateSimpleAuthority(byte[] pubKey)
+        public Authority CreateSimpleAuthority(byte[] pubKey)
         {
             try
             {
@@ -277,7 +188,7 @@ namespace Alexandria.net.API
         /// <param name="pubKeys">Input List of Byte[] pubKeys</param>
         /// <param name="requiredSignatures">Input ulong requiredSignatures</param>
         /// <returns>Returns Json object with details combining</returns>
-        private Authority CreateSimpleMultisigAuthority(List<byte[]> pubKeys, ulong requiredSignatures)
+        public Authority CreateSimpleMultisigAuthority(List<byte[]> pubKeys, ulong requiredSignatures)
         {
             try
             {
@@ -298,7 +209,7 @@ namespace Alexandria.net.API
         /// </summary>
         /// <param name="managingAccountName">string managingAccountName</param>
         /// <returns>Returns Json object with details combining</returns>
-        private Authority CreateSimpleManagedAuthority(string managingAccountName)
+        public Authority CreateSimpleManagedAuthority(string managingAccountName)
         {
             try
             {
@@ -320,7 +231,7 @@ namespace Alexandria.net.API
         /// <param name="managingAccounts">Input List of string managingAccounts</param>
         /// <param name="requiredSignatures">Input uint requiredSignatures</param>
         /// <returns>Returns Json object with details combining</returns>
-        private Authority CreateSimpleMultiManagedAuthority(List<string> managingAccounts, uint requiredSignatures)
+        public Authority CreateSimpleMultiManagedAuthority(List<string> managingAccounts, uint requiredSignatures)
         {
             try
             {
@@ -440,6 +351,7 @@ namespace Alexandria.net.API
                 throw;
             }
         }
+        
         /// <summary>
         /// Get account name given by the system using seed provided by the user during account creation
         /// </summary>

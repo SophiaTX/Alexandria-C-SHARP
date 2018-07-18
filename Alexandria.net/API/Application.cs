@@ -29,7 +29,7 @@ namespace Alexandria.net.API
         public Application(IConfig config, bool wallet = true) : base(config, wallet)
         {
             var assemblyname = Assembly.GetExecutingAssembly().GetName().Name;
-            _logger = new Logger(LoggingType.Server, assemblyname);
+            _logger = new Logger(config, LoggingType.Server, assemblyname);
         }
 
         #endregion
@@ -216,11 +216,6 @@ namespace Alexandria.net.API
                 throw;
             }
         }
+        #endregion
     }
-
-   
-    
-    
-
-    #endregion
 }

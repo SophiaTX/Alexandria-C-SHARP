@@ -17,19 +17,25 @@ namespace Alexandria.net.API
     /// </para>
     public class Witness : RpcConnection
     {
+        #region Member Variables
         private readonly ILogger _logger;
-
-
+        #endregion
+        
+        #region Constructor
         /// <inheritdoc />
         /// <summary>
+        /// Witness constructor
         /// </summary>
         /// <param name="config">the Configuration paramaters for the endpoint and ports</param>
         public Witness(IConfig config) :
             base(config)
         {
             var assemblyname = Assembly.GetExecutingAssembly().GetName().Name;
-            _logger = new Logger(LoggingType.Server, assemblyname);
+            _logger = new Logger(config, LoggingType.Server, assemblyname);
         }
+        #endregion
+        
+        #region Methods
 
         /// <summary>
         /// Returns the list of witnesses producing blocks in the current round (21 Blocks)
@@ -186,7 +192,6 @@ namespace Alexandria.net.API
                     PriceFeeds = priceFeed
                 };
 
-
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {witnessAccountName, url, blockKey, pros};
                 var result = SendRequest(reqname, @params);
@@ -201,5 +206,6 @@ namespace Alexandria.net.API
                 throw;
             }
         }
+        #endregion
     }
 }

@@ -20,6 +20,10 @@ namespace Alexandria.net.Settings
         /// </summary>
         public LoggingType LoggingType { get; set; }
         /// <summary>
+        /// the ip address and port of the logging server
+        /// </summary>
+        public string LoggingServer { get; set; }
+        /// <summary>
         /// The receiver interval (ms) for checking for new transactions
         /// </summary>
         public int ReceiveInterval { get; set; }

@@ -59,7 +59,6 @@ namespace Alexandria.net.Core
         public SophiaClient(string hostname = "", ushort daemonPort = 0, ushort walletPort = 0)
         {
             var config = LoadJson<Config>("config.json");
-            var blockchainConfig = LoadJson<BlockchainConfig>("blockchainconfig.json");
             if (config != null)
             {
                 if (hostname != "")
@@ -75,11 +74,11 @@ namespace Alexandria.net.Core
                 Transaction = new Transaction(config);
                 Witness = new Witness(config);
                 Data = new Data(config);
-                Application=new Application(config);
+                Application = new Application(config);
             }
             else
             {
-                var logger = new Logger(LoggingType.Server, Assembly.GetExecutingAssembly().GetName().Name);
+                var logger = new Logger(config, LoggingType.Server, Assembly.GetExecutingAssembly().GetName().Name);
                 logger.WriteError("Error with the config file");
             }
         }
@@ -103,6 +102,7 @@ namespace Alexandria.net.Core
                     var config = new Config
                     {
                         LoggingType = LoggingType.File,
+                        LoggingServer = "http://195.48.9.135:5341",
                         BuildMode = BuildMode.Prod,
                         Hostname = "195.48.9.208",
                         DaemonPort = 8095,

@@ -3,7 +3,6 @@ using System.Collections;
 using System.Reflection;
 using Alexandria.net.Communication;
 using Alexandria.net.Logging;
-using Alexandria.net.Messaging.Responses;
 using Alexandria.net.Messaging.Responses.DTO;
 using Alexandria.net.Settings;
 using Newtonsoft.Json;
@@ -28,12 +27,12 @@ namespace Alexandria.net.API
             base(config)
         {
             var assemblyname = Assembly.GetExecutingAssembly().GetName().Name;
-            _logger = new Logger(LoggingType.Server, assemblyname);
+            _logger = new Logger(config, LoggingType.Server, assemblyname);
         }
 
         #endregion
 
-
+        #region Methods
         /// <summary> 
         /// Trnasfer given assets from one user to other one.
         /// </summary>
@@ -262,7 +261,7 @@ namespace Alexandria.net.API
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw ;
             }
-            
         }
+        #endregion
     }
 }

@@ -71,8 +71,8 @@ namespace UnitTest
                 },
                 new PrizeFeedQuote()
                 {
-                    @base = "120.000 EUR",
-                    quote = "10.000 SPHTX"
+                    Base = "120.000 EUR",
+                    Quote = "10.000 SPHTX"
                    
                 }
             };

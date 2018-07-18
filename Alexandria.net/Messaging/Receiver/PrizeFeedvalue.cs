@@ -1,5 +1,8 @@
-﻿namespace Alexandria.net.Messaging.Receiver
+﻿using Newtonsoft.Json;
+
+namespace Alexandria.net.Messaging.Receiver
 {
+    //todo - finalise object description 
     /// <summary>
     /// Prize feed value class
     /// </summary>
@@ -8,6 +11,7 @@
         /// <summary>
         /// value of the prize feed
         /// </summary>
+        [JsonProperty("")]
         public ulong value { get; set; }
         
     }

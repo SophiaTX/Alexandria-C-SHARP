@@ -1,5 +1,6 @@
 ﻿using System;
 using Alexandria.net.Enums;
+using Alexandria.net.Settings;
 using Serilog;
 using Serilog.Formatting.Compact;
 
@@ -15,14 +16,18 @@ namespace Alexandria.net.Logging
         /// </summary>
         public BuildMode BuildMode { get; set; }
 
+        private readonly IConfig _config;
+
         /// <summary>
         /// the Logger constructor
         /// </summary>
+        /// <param name="config"></param>
         /// <param name="loggingtype">the type of logging: file or server</param>
         /// <param name="appname">the name of the calling application</param>
         /// <param name="mode">the buildmode: Prod or Testr</param>
-        public Logger(LoggingType loggingtype, string appname, BuildMode mode = BuildMode.Prod)
+        public Logger(IConfig config, LoggingType loggingtype, string appname, BuildMode mode = BuildMode.Prod)
         {
+            _config = config;
             switch (loggingtype)
             {
                 case LoggingType.File:
@@ -62,7 +67,7 @@ namespace Alexandria.net.Logging
                 Log.Logger = new LoggerConfiguration()
                     .MinimumLevel.Debug()
                     .Enrich.WithProperty("Application", appname)
-                    .WriteTo.Seq("http://195.48.9.135:5341")
+                    .WriteTo.Seq(_config.LoggingServer)
                     .CreateLogger();
 
             }

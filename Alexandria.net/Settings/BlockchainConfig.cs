@@ -6,6 +6,7 @@ namespace Alexandria.net.Settings
     /// <summary>
     /// The blockchain configuration for searching
     /// </summary>
+    //todo - check whether this can be finally removed 
     public class BlockchainConfig : IBlockchainConfig
     {
         /// <summary>

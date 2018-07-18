@@ -58,7 +58,7 @@ namespace Alexandria.net.Communication
             _jsonRpc = Config.Version;
 
             var assemblyname = Assembly.GetExecutingAssembly().GetName().Name;
-            _logger = new Logger(LoggingType.Server, assemblyname);
+            _logger = new Logger(config, LoggingType.Server, assemblyname);
             _buildMode = Config.BuildMode;
         }
 
@@ -168,7 +168,7 @@ namespace Alexandria.net.Communication
             }
             catch (SophiaBlockchainException sx)
             {
-                _logger.WriteError($"Message: {sx.Message} | StackTrace: {sx.StackTrace}");
+                _logger.WriteError($"Message: {sx.Message} | StackTrace: {sx.StackTrace} | Response: {sx.ErrMsg}");
                 throw;
             }
 

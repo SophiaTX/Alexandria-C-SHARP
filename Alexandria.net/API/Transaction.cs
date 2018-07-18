@@ -27,7 +27,7 @@ namespace Alexandria.net.API
 		public Transaction(IConfig config) : base(config)
 		{
 			var assemblyname = Assembly.GetExecutingAssembly().GetName().Name;
-			_logger = new Logger(LoggingType.Server, assemblyname);
+			_logger = new Logger(config, LoggingType.Server, assemblyname);
 		}
 
 		#endregion
@@ -196,15 +196,15 @@ namespace Alexandria.net.API
 		/// <summary>
 		/// Sequence of operations included/generated in a specified block
 		/// </summary>
-		/// <param name="BlockNumber">Integer Block Number </param>
-		/// <param name="OnlyVirtual">Boolean Only Virtual operation listing</param>
+		/// <param name="blockNumber">Integer Block Number </param>
+		/// <param name="onlyVirtual">Boolean Only Virtual operation listing</param>
 		/// <returns>Returns sequence of operations included/generated in a specified block</returns>
-		public GetOperationsResponse GetOpsInBlock(uint BlockNumber,bool OnlyVirtual)
+		public GetOperationsResponse GetOpsInBlock(uint blockNumber,bool onlyVirtual)
 		{
 			try
 			{
 				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-				var @params = new ArrayList {BlockNumber,OnlyVirtual};
+				var @params = new ArrayList {blockNumber,onlyVirtual};
 				var result =  SendRequest(reqname, @params);
 				var contentdata = JsonConvert.DeserializeObject<GetOperationsResponse>(result);
 				return contentdata;
@@ -261,7 +261,7 @@ namespace Alexandria.net.API
 		/// </summary>
 		/// <param name="signedTx">Already signed transaction</param>
 		/// <returns>object</returns>
-		private SerializedTransaction SerializeTransaction(SignedTransactionResponse signedTx)
+		public SerializedTransaction SerializeTransaction(SignedTransactionResponse signedTx)
 		{
 			try
 			{
