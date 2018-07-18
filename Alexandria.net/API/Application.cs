@@ -173,11 +173,9 @@ namespace Alexandria.net.API
         /// <summary>
         /// Get all app buyings by app_name or buyer
         /// </summary>
-        /// <param name="Name">Application id or buyers name</param>
         /// <param name="buyerName"></param>
         /// <param name="searchType">search_type One of "by_buyer", "by_app_id"</param>
         /// <param name="count">count Number of items to retrieve</param>
-        /// <param name="privateKey"></param>
         public ApplicationSearchResponse GetApplicationBuyings(string buyerName, SearchType searchType, uint count)
         {
             try
@@ -195,14 +193,18 @@ namespace Alexandria.net.API
                 throw ;
             }
         }
-
-        public GetApplicationResponse GetApplications(List<string> ApplicationNames)
+        /// <summary>
+        /// Get list of published applications on the blockchain
+        /// </summary>
+        /// <param name="applicationNames">list of names of appictions to be searched</param>
+        /// <returns></returns>
+        public GetApplicationResponse GetApplications(List<string> applicationNames)
         {
             try
             {
                 
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                var @params = new ArrayList {ApplicationNames};
+                var @params = new ArrayList {applicationNames};
                 var result= SendRequest(reqname, @params);
                 var response = JsonConvert.DeserializeObject<GetApplicationResponse>(result);
 

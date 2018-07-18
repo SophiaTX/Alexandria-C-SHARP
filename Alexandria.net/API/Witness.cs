@@ -116,7 +116,7 @@ namespace Alexandria.net.API
         /// <param name="author">The author Of the comment To be voted On</param>
         /// <param name="permlink">The permlink Of the comment To be voted On. (author, permlink) Is a unique pair</param>
         /// <param name="weight">The weight [-100,100] Of the vote</param>
-        /// <returns></returns>
+        /// <returns>object</returns>
         public string Vote(string voter, string author, string permlink, short weight)
         {
             try
@@ -142,7 +142,7 @@ namespace Alexandria.net.API
         /// <param name="witnessToVoteFor">The witness that Is being voted For</param>
         /// <param name="approve">true if the account Is voting for the account to be able to be a block produce</param>
         /// <param name="privateKey"></param>
-        /// <returns></returns>
+        /// <returns>object</returns>
         public TransactionResponse VoteForWitness(string accountToVoteWith, string witnessToVoteFor, bool approve,
             string privateKey)
         {
@@ -166,29 +166,28 @@ namespace Alexandria.net.API
         /// <summary>
         /// Update an account to witness.Requires XXX vested SPHTX before updating.
         /// </summary>
-        /// <param name="WitnessAccountName">Input string accountName</param>
+        /// <param name="witnessAccountName">Input string accountName</param>
         /// <param name="url">A URL containing some information about the witness.  The empty string makes it remain the same.</param>
         /// <param name="blockKey">The new block signing public key.  The empty string disables block production.</param>
-        /// <param name="Symbol">Token Symbol</param>
-        /// <param name="AccountCreatePrice">Ammount require to create an Account</param>
-        /// <param name="MinBlockSizeLimit"></param>
-        /// <param name="PriceFeed"></param>
+        /// <param name="accountCreationPrice"></param>
+        /// <param name="minBlockSizeLimit"></param>
+        /// <param name="priceFeed"></param>
         /// <param name="privateKey"></param>
         /// <returns>Returns true if success or false for failed try</returns>
-        public TransactionResponse UpdateWitness(string WitnessAccountName, string url, string blockKey,string AccountCreationPrice, int MinBlockSizeLimit, List<object> PriceFeed, string privateKey)
+        public TransactionResponse UpdateWitness(string witnessAccountName, string url, string blockKey,string accountCreationPrice, int minBlockSizeLimit, List<object> priceFeed, string privateKey)
         {
             try
             {
                 var pros = new ChainProperties
                 {
-                    account_creation_fee = AccountCreationPrice,
-                    maximum_block_size = MinBlockSizeLimit * 2,
-                    price_feeds = PriceFeed
+                    account_creation_fee = accountCreationPrice,
+                    maximum_block_size = minBlockSizeLimit * 2,
+                    price_feeds = priceFeed
                 };
 
 
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                var @params = new ArrayList {WitnessAccountName, url, blockKey,pros};
+                var @params = new ArrayList {witnessAccountName, url, blockKey,pros};
                 var result = SendRequest(reqname, @params);
                 var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
 

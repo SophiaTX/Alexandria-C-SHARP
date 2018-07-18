@@ -20,27 +20,27 @@ namespace Alexandria.net.Settings
         /// </summary>
         public LoggingType LoggingType { get; set; }
         /// <summary>
-        /// 
+        /// Receive Interval
         /// </summary>
         public int ReceiveInterval { get; set; }
         /// <summary>
-        /// 
+        /// Host name
         /// </summary>
         public string Hostname { get; set; }
         /// <summary>
-        /// 
+        /// Daemon Port
         /// </summary>
         public ushort DaemonPort { get; set; }
         /// <summary>
-        /// 
+        /// Wallet Port
         /// </summary>
         public ushort WalletPort { get; set; }
         /// <summary>
-        /// 
+        /// Api
         /// </summary>
         public string Api { get; set; }
         /// <summary>
-        /// 
+        /// Version
         /// </summary>
         public string Version { get; set; }
 

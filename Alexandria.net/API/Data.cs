@@ -24,7 +24,6 @@ namespace Alexandria.net.API
         #region member variables
 
         private readonly ILogger _logger;
-        private readonly IBlockchainConfig _blockchainConfig;
 
         #endregion
 
@@ -34,12 +33,10 @@ namespace Alexandria.net.API
         /// 
         /// </summary>
         /// <param name="config">the Configuration paramaters for the endpoint and ports</param>
-        /// <param name="blockchainConfig"></param>
-        public Data(IConfig config, IBlockchainConfig blockchainConfig) : base(config)
+        public Data(IConfig config) : base(config)
         {
             var assemblyname = Assembly.GetExecutingAssembly().GetName().Name;
             _logger = new Logger(LoggingType.Server, assemblyname);
-            _blockchainConfig = blockchainConfig;
         }
 
         #endregion
@@ -90,10 +87,7 @@ namespace Alexandria.net.API
         /// <summary>
         /// Send custom data data
         /// </summary>
-        /// <param name="sender">from Sender</param>
-        /// <param name="recipients">to List of receivers</param>
-        /// <param name="appId">app_id Application ID</param>
-        /// <param name="document">data Data formatted in base58</param>
+        /// <param name="senderdata">Data collection</param>
         /// <returns></returns>
         public TransactionResponse SendBinary(SenderData senderdata)
         {
