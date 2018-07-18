@@ -68,9 +68,9 @@ namespace Alexandria.net.API
 
         #endregion
 
-
+        #region ctor
         /// <summary>
-        /// 
+        /// Key Constructor
         /// </summary>
         /// <param name="config">the Configuration paramaters for the endpoint and ports</param>
         public Key(IConfig config) :
@@ -79,11 +79,13 @@ namespace Alexandria.net.API
             var assemblyname = Assembly.GetExecutingAssembly().GetName().Name;
             _logger = new Logger(config, LoggingType.Server, assemblyname);
         }
-
+        #endregion
+        
+        
         /// <summary>
-        /// 
+        /// gets the list of keys
         /// </summary>
-        /// <returns></returns>
+        /// <returns>the keys result</returns>
         public string ListKeys()
         {
             try
@@ -153,7 +155,6 @@ namespace Alexandria.net.API
             }
 
         }
-
 
         /// <summary>
         /// Creates a signature for the given private key and transaction digest
@@ -330,7 +331,8 @@ namespace Alexandria.net.API
         }
 
         /// <summary>
-        /// Create a passphrase for users to remember easily and use ot to generate corresponding public and private keys
+        /// Create a passphrase for users to remember easily and use ot to generate
+        /// corresponding public and private keys
         /// </summary>
         /// <returns>Returns a passphrase</returns>
         public BrainKeySuggestion SuggestBrainKey()

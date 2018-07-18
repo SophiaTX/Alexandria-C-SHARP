@@ -4,15 +4,15 @@ using Alexandria.net.Helpers;
 namespace Alexandria.net.Extensions
 {
     /// <summary>
-    /// 
+    /// enumerator extensions
     /// </summary>
     public static class EnumExtensions
     {
         /// <summary>
-        /// 
+        /// gets the enum as a string value
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
+        /// <param name="value">the name of the enum, value</param>
+        /// <returns>the string value of the enum</returns>
         public static string GetStringValue(this Enum value)
         {
             string output = null;

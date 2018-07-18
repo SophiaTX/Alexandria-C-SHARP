@@ -62,13 +62,13 @@ namespace Alexandria.net.API
         }
 
         /// <summary>
-        /// Transfer STEEM into a vesting fund represented by vesting shares (VESTS). VESTS are required to vesting
+        /// Transfer SPHTX into a vesting fund represented by vesting shares (VESTS). VESTS are required to vesting
         /// for a minimum of one coin year and can be withdrawn once a week over a two year withdraw period.
-        /// VESTS are protected against dilution up until 90% of STEEM is vesting.
+        /// VESTS are protected against dilution up until 90% of SPHTX is vesting.
         /// </summary>
-        /// <param name="from">The account the STEEM is coming fro</param>
+        /// <param name="from">The account the SPHTX is coming from</param>
         /// <param name="to">The account getting the VESTS</param>
-        /// <param name="amount">The amount of STEEM to vest i.e. "100.00 STEEM"</param>
+        /// <param name="amount">The amount of SPHTX to vest i.e. "100.00 SPHTX"</param>
         /// <param name="privateKey"></param>
         /// <returns>Returns Transaction object</returns>
         public TransactionResponse TransferToVesting(string from, string to, string amount, string privateKey)
@@ -93,14 +93,14 @@ namespace Alexandria.net.API
         /// <summary>
         /// Set up a vesting withdraw request. The request Is fulfilled once a week over the next two years (104 weeks).
         /// The amount of vests to withdrawover the Next two
-        ///        years. Each week (amount/104) shares are withdrawn And depositted
-        ///        back as STEEM. i.e. "10.000000 VESTS"
+        /// years. Each week (amount/104) shares are withdrawn And deposited
+        /// back as SPHTX. i.e. "10.000000 VESTS"
         /// </summary>
         /// <param name="from">account vests are drawn from </param>
         /// <param name="vestingShares"> The amount should be in the format "10.0000 VESTS" showing amount and currency symbol</param>
         /// <param name="privateKey"></param>
         /// <returns></returns>
-        public TransactionResponse WithdrawVesting(string @from, string vestingShares, string privateKey)
+        public TransactionResponse WithdrawVesting(string from, string vestingShares, string privateKey)
         {
             try
             {
