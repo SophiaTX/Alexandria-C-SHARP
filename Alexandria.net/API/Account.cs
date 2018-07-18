@@ -61,14 +61,14 @@ namespace Alexandria.net.API
         /// </summary>
         /// <param name="accountName">Input string accountName</param>
         /// <returns>Returns the Json object with the details about the active authority</returns>
-        public CreateSimpleAuthorityResponse GetActiveAuthority(string accountName)
+        public SimpleAuthorityResponse GetActiveAuthority(string accountName)
         {
             try
             {
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {accountName};
                 var result = SendRequest(reqname, @params);
-                return JsonConvert.DeserializeObject<CreateSimpleAuthorityResponse>(result);
+                return JsonConvert.DeserializeObject<SimpleAuthorityResponse>(result);
             }
             catch (Exception ex)
             {
@@ -82,14 +82,14 @@ namespace Alexandria.net.API
         /// </summary>
         /// <param name="accountName">Input string accountName</param>
         /// <returns>Returns the Json object with the deails about the owner authority</returns>
-        public Authority GetOwnerAuthority(string accountName)
+        public SimpleAuthorityResponse GetOwnerAuthority(string accountName)
         {
             try
             {
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {accountName};
                 var result = SendRequest(reqname, @params);
-                return JsonConvert.DeserializeObject<Authority>(result);
+                return JsonConvert.DeserializeObject<SimpleAuthorityResponse>(result);
             }
             catch (Exception ex)
             {
@@ -103,14 +103,14 @@ namespace Alexandria.net.API
         /// </summary>
         /// <param name="accountName">Input string accountName</param>
         /// <returns>Returns the Memo Key of the corresponding account</returns>
-        public byte[] GetMemoKey(string accountName)
+        public getMemoKeyresponse GetMemoKey(string accountName)
         {
             try
             {
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {accountName};
                 var result = SendRequest(reqname, @params);
-                return JsonConvert.DeserializeObject<byte[]>(result);
+                return JsonConvert.DeserializeObject<getMemoKeyresponse>(result);
             }
             catch (Exception ex)
             {
@@ -167,14 +167,14 @@ namespace Alexandria.net.API
         /// </summary>
         /// <param name="pubKey">Input byte[] pubKey</param>
         /// <returns>Returns Json object with details combining</returns>
-        public CreateSimpleAuthorityResponse CreateSimpleAuthority(string pubKey)
+        public SimpleAuthorityResponse CreateSimpleAuthority(string pubKey)
         {
             try
             {
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {pubKey};
                 var result = SendRequest(reqname, @params);
-                return JsonConvert.DeserializeObject<CreateSimpleAuthorityResponse>(result);
+                return JsonConvert.DeserializeObject<SimpleAuthorityResponse>(result);
             }
             catch (Exception ex)
             {
@@ -189,14 +189,14 @@ namespace Alexandria.net.API
         /// <param name="pubKeys">Input List of Byte[] pubKeys</param>
         /// <param name="requiredSignatures">Input ulong requiredSignatures</param>
         /// <returns>Returns Json object with details combining</returns>
-        public Authority CreateSimpleMultisigAuthority(List<string> pubKeys, ulong requiredSignatures)
+        public SimpleAuthorityResponse CreateSimpleMultisigAuthority(List<string> pubKeys, ulong requiredSignatures)
         {
             try
             {
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {pubKeys, requiredSignatures};
                 var result = SendRequest(reqname, @params);
-                return JsonConvert.DeserializeObject<Authority>(result);
+                return JsonConvert.DeserializeObject<SimpleAuthorityResponse>(result);
             }
             catch (Exception ex)
             {
@@ -210,14 +210,14 @@ namespace Alexandria.net.API
         /// </summary>
         /// <param name="managingAccountName">string managingAccountName</param>
         /// <returns>Returns Json object with details combining</returns>
-        public Authority CreateSimpleManagedAuthority(string managingAccountName)
+        public object CreateSimpleManagedAuthority(string managingAccountName)
         {
             try
             {
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {managingAccountName};
                 var result = SendRequest(reqname, @params);
-                return JsonConvert.DeserializeObject<Authority>(result);
+                return JsonConvert.DeserializeObject<object>(result);
             }
             catch (Exception ex)
             {
@@ -232,14 +232,14 @@ namespace Alexandria.net.API
         /// <param name="managingAccounts">Input List of string managingAccounts</param>
         /// <param name="requiredSignatures">Input uint requiredSignatures</param>
         /// <returns>Returns Json object with details combining</returns>
-        public Authority CreateSimpleMultiManagedAuthority(List<string> managingAccounts, uint requiredSignatures)
+        public ManagedAuthorityResponse CreateSimpleMultiManagedAuthority(List<string> managingAccounts, uint requiredSignatures)
         {
             try
             {
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {managingAccounts, requiredSignatures};
                 var result = SendRequest(reqname, @params);
-                return JsonConvert.DeserializeObject<Authority>(result);
+                return JsonConvert.DeserializeObject<ManagedAuthorityResponse>(result);
             }
             catch (Exception ex)
             {
