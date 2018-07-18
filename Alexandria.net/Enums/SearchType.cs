@@ -17,7 +17,6 @@ namespace Alexandria.net.Enums
         /// </summary>
         [StringValue("by_recipient")]
         ByRecipient = 1, 
-       
         /// <summary>
         /// Search by Sender DateTime (UTC)
         /// </summary>

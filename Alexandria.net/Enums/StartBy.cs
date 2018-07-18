@@ -3,17 +3,17 @@
 namespace Alexandria.net.Enums
 {
     /// <summary>
-    /// 
+    /// The start by search type
     /// </summary>
     public enum StartBy
     {
         /// <summary>
-        /// Search by Sender
+        /// start by index
         /// </summary>
         [StringValue("index")]
         Index = 0,
         /// <summary>
-        /// Search by Recipient
+        /// start by time stamp
         /// </summary>
         [StringValue("ISO")]
         IsoTimeStamp = 1

@@ -46,7 +46,6 @@ namespace Alexandria.net.API
 				var result= SendRequest(reqname);
 				var contentdata = JsonConvert.DeserializeObject<AboutResponse>(result);
 				return contentdata;
-
 			}
 			catch(Exception ex)
 			{
@@ -76,7 +75,6 @@ namespace Alexandria.net.API
 				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
 				throw ;
 			}
-			
 		}
 
 		/// <summary>
@@ -99,7 +97,6 @@ namespace Alexandria.net.API
 				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
 				throw ;
 			}
-			
 		}
 
 		/// <summary>
@@ -121,8 +118,7 @@ namespace Alexandria.net.API
 			{
 				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
 				throw ;
-			}
-			
+			}		
 		}
 
 		/// <summary>
@@ -144,8 +140,7 @@ namespace Alexandria.net.API
 			{
 				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
 				throw ;
-			}
-			
+			}		
 		}
 		
 		/// <summary>
@@ -171,10 +166,10 @@ namespace Alexandria.net.API
 		}
 		
 		/// <summary>
-		/// 
+		/// Creates the transaqction
 		/// </summary>
-		/// <param name="operation"></param>
-		/// <returns></returns>
+		/// <param name="operation">the namne of the operation to be created</param>
+		/// <returns>the transactio nresponbse from the call</returns>
 		public TransactionResponse CreateTransaction(List<AccountResponse> operation)
 		{
 			try
@@ -219,7 +214,6 @@ namespace Alexandria.net.API
 		/// <summary>
 		/// Returns a list of all commands supported by the wallet API.
 		/// This lists each command, along with its arguments and return types.
-		/// @returns a multi-line string suitable for displaying on a terminal
 		/// </summary>
 		/// <returns>Returns a list of all commands supported by the wallet API</returns>
 		public HelpResponse Help()
@@ -237,6 +231,7 @@ namespace Alexandria.net.API
 				throw ;
 			}
 		}
+		
 		/// <summary>
 		/// Info about the current state of the blockchain
 		/// </summary>
@@ -256,6 +251,7 @@ namespace Alexandria.net.API
 				throw ;
 			}
 		}
+		
 		/// <summary>
 		/// Serialize currently generated transaction on to the blockchain with other transactions
 		/// </summary>
@@ -274,7 +270,7 @@ namespace Alexandria.net.API
 			catch(Exception ex)
 			{
 				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
-				throw ;
+				throw;
 			}
 		}
 		#endregion

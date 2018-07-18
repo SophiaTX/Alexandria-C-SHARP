@@ -40,8 +40,7 @@ namespace Alexandria.net.API
         /// <summary>
         /// Returns the list of witnesses producing blocks in the current round (21 Blocks)
         /// </summary>
-        /// <returns>Returns json object combining list of active witnesses 
-        /// </returns>
+        /// <returns>Returns json object combining list of active witnesses</returns>
         public ActiveWitnessResponse GetActiveWitnesses()
         {
             try
@@ -60,8 +59,6 @@ namespace Alexandria.net.API
 
         /// <summary>
         /// Returns information about the given witness.
-        /// @param owner_account the name or id of the witness account owner, or the id of the witness
-        /// @returns the information about the witness stored in the block chain
         /// </summary>
         /// <param name="ownerAccount">the name Or id Of the witness account owner, Or the id of the witness</param>
         /// <returns>the information about the witness stored In the block chain</returns>
@@ -87,15 +84,11 @@ namespace Alexandria.net.API
         /// Lists all witnesses registered in the blockchain.
         /// This returns a list of all account names that own witnesses, and the associated witness id,
         /// sorted by name.  This lists witnesses whether they are currently voted in or not.
-        ///
-        /// Use the \c lowerbound and limit parameters to page through the list.  To retrieve all witnesss,
-        /// start by setting \c lowerbound to the empty string \c "", and then each iteration, pass
-        /// the last witness name returned as the \c lowerbound for the next \c list_witnesss() call.
         /// </summary>
         /// <param name="lowerbound">the name Of the first witness To Return.
         /// If the named witness does Not exist, the list will start at the witness thatcomes after 'lowerbound'</param>
         /// <param name="limit">the maximum number Of witnesss To return (max: 1000)</param>
-        /// <returns>Returns a list Of witnesss mapping witness names To witness ids</returns>
+        /// <returns>Returns a list of witnesss mapping witness names To witness ids</returns>
         public ActiveWitnessResponse ListWitnesses(string lowerbound, uint limit)
         {
             try
@@ -111,7 +104,6 @@ namespace Alexandria.net.API
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
-
         }
 
         
@@ -122,7 +114,7 @@ namespace Alexandria.net.API
         /// <param name="author">The author Of the comment To be voted On</param>
         /// <param name="permlink">The permlink Of the comment To be voted On. (author, permlink) Is a unique pair</param>
         /// <param name="weight">The weight [-100,100] Of the vote</param>
-        /// <returns>object</returns>
+        /// <returns>the vote response data</returns>
         public string Vote(string voter, string author, string permlink, short weight)
         {
             try
@@ -136,7 +128,6 @@ namespace Alexandria.net.API
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
-
         }
 
         /// <summary>
@@ -148,7 +139,7 @@ namespace Alexandria.net.API
         /// <param name="witnessToVoteFor">The witness that Is being voted For</param>
         /// <param name="approve">true if the account Is voting for the account to be able to be a block produce</param>
         /// <param name="privateKey"></param>
-        /// <returns>object</returns>
+        /// <returns>the transacxtion response data</returns>
         public TransactionResponse VoteForWitness(string accountToVoteWith, string witnessToVoteFor, bool approve,
             string privateKey)
         {

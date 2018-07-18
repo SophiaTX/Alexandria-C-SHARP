@@ -23,6 +23,7 @@ namespace Alexandria.net.API
         #region constructor
 
         /// <summary>
+        /// Application Constructor
         /// </summary>
         /// <param name="config"></param>
         /// <param name="wallet"></param>
@@ -197,12 +198,11 @@ namespace Alexandria.net.API
         /// Get list of published applications on the blockchain
         /// </summary>
         /// <param name="applicationNames">list of names of appictions to be searched</param>
-        /// <returns></returns>
+        /// <returns>the application response data</returns>
         public GetApplicationResponse GetApplications(List<string> applicationNames)
         {
             try
             {
-                
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {applicationNames};
                 var result= SendRequest(reqname, @params);

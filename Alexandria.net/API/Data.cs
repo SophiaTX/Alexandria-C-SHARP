@@ -30,7 +30,7 @@ namespace Alexandria.net.API
         #region ctor
 
         /// <summary>
-        /// 
+        /// Data object constructor
         /// </summary>
         /// <param name="config">the Configuration paramaters for the endpoint and ports</param>
         public Data(IConfig config) : base(config)
@@ -49,7 +49,7 @@ namespace Alexandria.net.API
         /// <param name="data">the data to send, this is a type parameter, so any data type can be sent</param>
         /// <param name="senderinfo">the sender info required for the transaction</param>
         /// <param></param>
-        /// <returns></returns>
+        /// <returns>the transaction response data</returns>
         public TransactionResponse Send<T>(T data, SenderData senderinfo)
         {
             try
@@ -66,7 +66,13 @@ namespace Alexandria.net.API
                 throw;
             }
         }
-        
+
+        /// <summary>
+        /// Sends the parsed data to the blockchain
+        /// </summary>
+        /// <param name="senderinfo">the sender info required for the transaction</param>
+        /// <param></param>
+        /// <returns>the transaction response data</returns>
         public TransactionResponse Send(SenderData senderinfo)
         {
             try
@@ -107,9 +113,6 @@ namespace Alexandria.net.API
             }
         }
 
-
-
-
         /// <summary>
         /// Allowed options for search_type are "by_sender", "by_recipient", "by_sender_datetime", "by_recipient_datetime".
         /// Account is then either sender or recevier, and start is either index od ISO time stamp.
@@ -119,7 +122,7 @@ namespace Alexandria.net.API
         /// <param name="accountName">Account Owner - sender or receiver</param>
         /// <param name="start">Start by value - index or ISO timestamps</param>
         /// <param name="count"></param>
-        /// <returns></returns>
+        /// <returns>the received document response data</returns>
         public ReceivedDocumentResponse Receive(ulong appId, string accountName, SearchType searchType, string start,
             uint count)
         {
@@ -135,10 +138,20 @@ namespace Alexandria.net.API
                 Console.WriteLine(e);
                 throw;
             }
-
             return result;
         }
 
+        /// <summary>
+        /// Allowed options for search_type are "by_sender", "by_recipient", "by_sender_datetime", "by_recipient_datetime".
+        /// Account is then either sender or recevier, and start is either index od ISO time stamp.
+        /// </summary>
+        /// <param name="type">the receive type object</param>
+        /// <param name="appId">The Id of the application which we are receiving for</param>
+        /// <param name="searchType">based on the Search Type Enum</param>
+        /// <param name="accountName">Account Owner - sender or receiver</param>
+        /// <param name="start">Start by value - index or ISO timestamps</param>
+        /// <param name="count"></param>
+        /// <returns>the received document response data</returns>
         public T Receive<T>(T type, ulong appId, string accountName, SearchType searchType, string start, uint count)
         {
             try
@@ -155,14 +168,15 @@ namespace Alexandria.net.API
 
         #endregion
         
-        #region PrivateMethods
-                /// <summary>
+        #region Private Methods
+        /// <summary>
+        /// creates the custom json operation 
         /// </summary>
         /// <param name="sender">string sender</param>
         /// <param name="recipients">List of string recipients</param>
         /// <param name="appId">ulong appId</param>
         /// <param name="document">string document</param>
-        /// <returns></returns>
+        /// <returns>the json response data response</returns>
         private CustomJsonResponse MakeCustomJsonOperation(string sender, List<string> recipients, uint appId,
             string document)
         {
@@ -178,17 +192,16 @@ namespace Alexandria.net.API
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
-
         }
 
         /// <summary>
-        /// 
+        /// creates the custom json operation 
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="recipients"></param>
-        /// <param name="appId"></param>
-        /// <param name="document"></param>
-        /// <returns></returns>
+        /// <param name="sender">string sender</param>
+        /// <param name="recipients">List of string recipients</param>
+        /// <param name="appId">the application id</param>
+        /// <param name="document">string document</param>
+        /// <returns>the account response data </returns>
         private AccountResponse MakeCustomBinaryOperation(ulong appId, string sender, List<string> recipients, 
             string document)
         {
@@ -204,18 +217,17 @@ namespace Alexandria.net.API
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
-
         }
 
 
         /// <summary>
-        /// 
+        /// creates the custom json operation 
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="recipients"></param>
-        /// <param name="appId"></param>
-        /// <param name="document"></param>
-        /// <returns></returns>
+        /// <param name="sender">string sender</param>
+        /// <param name="recipients">List of string recipients</param>
+        /// <param name="appId">the application id</param>
+        /// <param name="document">string document</param>
+        /// <returns>the account response data </returns>
         private AccountResponse MakeCustomBinaryBase58Operation(string sender, List<string> recipients, ulong appId,
             string document)
         {
@@ -231,14 +243,13 @@ namespace Alexandria.net.API
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
-
         }
 
         /// <summary>
         /// Allowed options for search_type are "by_sender", "by_recipient", "by_sender_datetime", "by_recipient_datetime".
         /// Account is then either sender or recevier, and start is either index od ISO time stamp.
         /// </summary>
-        /// <param name="appId"></param>
+        /// <param name="appId">the application id</param>
         /// <param name="searchType"></param>
         /// <param name="account"></param>
         /// <param name="start"></param>
@@ -259,7 +270,6 @@ namespace Alexandria.net.API
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
-
         }
         #endregion
     }
