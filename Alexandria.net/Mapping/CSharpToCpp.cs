@@ -1,14 +1,13 @@
 ﻿namespace Alexandria.net.Mapping
 {
     /// <summary>
-    /// 
+    /// C-Sharp to cpp converter class
     /// </summary>
     public class CSharpToCpp
     {
         private const string Vote = "vote";
         private const string AccountExists = "accountExists";
         private const string HasPrivateKeys = "hasPrivateKeys";
-        private const string HasAccountOwnerPrivateKey = "hasAccountOwnerPrivateKey";
         private const string HasAccountActivePrivateKey = "hasAccountActivePrivateKey";
         private const string HasAccountMemoPrivateKey = "hasAccountMemoPrivateKey";
         private const string GetActiveAuthority = "getActiveAuthority";
@@ -99,10 +98,10 @@
         
 
         /// <summary>
-        /// 
+        /// Switch case to choose cpp calls depending on the c-sharp function names supplied
         /// </summary>
-        /// <param name="value"></param>
-        /// <returns></returns>
+        /// <param name="value">C-Sharp function name</param>
+        /// <returns>CPP function name</returns>
         public string GetValue(string value)
         {
             switch (value)

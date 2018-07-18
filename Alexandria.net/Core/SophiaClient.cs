@@ -74,7 +74,7 @@ namespace Alexandria.net.Core
                 Key = new Key(config);
                 Transaction = new Transaction(config);
                 Witness = new Witness(config);
-                Data = new Data(config, blockchainConfig);
+                Data = new Data(config);
                 Application=new Application(config);
             }
             else

@@ -256,7 +256,11 @@ namespace Alexandria.net.API
 				throw ;
 			}
 		}
-
+		/// <summary>
+		/// Serialize currently generated transaction on to the blockchain with other transactions
+		/// </summary>
+		/// <param name="signedTx">Already signed transaction</param>
+		/// <returns>object</returns>
 		private SerializedTransaction SerializeTransaction(SignedTransactionResponse signedTx)
 		{
 			try

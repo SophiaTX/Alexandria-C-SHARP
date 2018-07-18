@@ -7,8 +7,8 @@ namespace Alexandria.net.Helpers
     /// </summary>
     public class StringValueAttribute : Attribute
     {
-        /// <inheritdoc />
         /// <summary>
+        /// 
         /// </summary>
         /// <param name="value"></param>
         public StringValueAttribute(string value)
