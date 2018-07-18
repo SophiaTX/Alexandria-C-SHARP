@@ -174,20 +174,21 @@ namespace Alexandria.net.API
         /// <param name="priceFeed"></param>
         /// <param name="privateKey"></param>
         /// <returns>Returns true if success or false for failed try</returns>
-        public TransactionResponse UpdateWitness(string witnessAccountName, string url, string blockKey,string accountCreationPrice, int minBlockSizeLimit, List<object> priceFeed, string privateKey)
+        public TransactionResponse UpdateWitness(string witnessAccountName, string url, string blockKey,
+            string accountCreationPrice, int minBlockSizeLimit, List<object> priceFeed, string privateKey)
         {
             try
             {
                 var pros = new ChainProperties
                 {
-                    AccountCreationFee = AccountCreationPrice,
-                    MaximumBlockSize = MinBlockSizeLimit * 2,
-                    PriceFeeds = PriceFeed
+                    AccountCreationFee = accountCreationPrice,
+                    MaximumBlockSize = minBlockSizeLimit * 2,
+                    PriceFeeds = priceFeed
                 };
 
 
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                var @params = new ArrayList {witnessAccountName, url, blockKey,pros};
+                var @params = new ArrayList {witnessAccountName, url, blockKey, pros};
                 var result = SendRequest(reqname, @params);
                 var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
 
@@ -199,7 +200,6 @@ namespace Alexandria.net.API
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
-
         }
     }
 }
