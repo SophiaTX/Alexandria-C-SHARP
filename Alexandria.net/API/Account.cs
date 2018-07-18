@@ -38,14 +38,15 @@ namespace Alexandria.net.API
         /// </summary>
         /// <param name="accountName">Input string accountName</param>
         /// <returns>Returns true if success and false for failed try</returns>
-        public bool AccountExists(string accountName)
+        public AccountExistResponse AccountExists(string accountName)
         {
             try
             {
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {accountName};
                 var result = SendRequest(reqname, @params);
-                return result == "true";
+                return JsonConvert.DeserializeObject<AccountExistResponse>(result);
+                
             }
             catch (Exception ex)
             {
@@ -60,14 +61,14 @@ namespace Alexandria.net.API
         /// </summary>
         /// <param name="accountName">Input string accountName</param>
         /// <returns>Returns the Json object with the details about the active authority</returns>
-        public Authority GetActiveAuthority(string accountName)
+        public CreateSimpleAuthorityResponse GetActiveAuthority(string accountName)
         {
             try
             {
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {accountName};
                 var result = SendRequest(reqname, @params);
-                return JsonConvert.DeserializeObject<Authority>(result);
+                return JsonConvert.DeserializeObject<CreateSimpleAuthorityResponse>(result);
             }
             catch (Exception ex)
             {
@@ -145,14 +146,14 @@ namespace Alexandria.net.API
         /// </summary>
         /// <param name="accountName">Input string accountName</param>
         /// <returns>Returns the account balance as a Json object</returns>
-        public ulong GetVestingBalance(string accountName)
+        public VestingBalanceResponse GetVestingBalance(string accountName)
         {
             try
             {
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {accountName};
                 var result = SendRequest(reqname, @params);
-                return JsonConvert.DeserializeObject<ulong>(result);
+                return JsonConvert.DeserializeObject<VestingBalanceResponse>(result);
             }
             catch (Exception ex)
             {
@@ -166,14 +167,14 @@ namespace Alexandria.net.API
         /// </summary>
         /// <param name="pubKey">Input byte[] pubKey</param>
         /// <returns>Returns Json object with details combining</returns>
-        public Authority CreateSimpleAuthority(byte[] pubKey)
+        public CreateSimpleAuthorityResponse CreateSimpleAuthority(string pubKey)
         {
             try
             {
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {pubKey};
                 var result = SendRequest(reqname, @params);
-                return JsonConvert.DeserializeObject<Authority>(result);
+                return JsonConvert.DeserializeObject<CreateSimpleAuthorityResponse>(result);
             }
             catch (Exception ex)
             {
@@ -188,7 +189,7 @@ namespace Alexandria.net.API
         /// <param name="pubKeys">Input List of Byte[] pubKeys</param>
         /// <param name="requiredSignatures">Input ulong requiredSignatures</param>
         /// <returns>Returns Json object with details combining</returns>
-        public Authority CreateSimpleMultisigAuthority(List<byte[]> pubKeys, ulong requiredSignatures)
+        public Authority CreateSimpleMultisigAuthority(List<string> pubKeys, ulong requiredSignatures)
         {
             try
             {
@@ -312,14 +313,14 @@ namespace Alexandria.net.API
         /// </summary>
         /// <param name="seed">the account to get</param>
         /// <returns>the account information</returns>
-        public GetAccountResponse GetAccount(string seed)
+        public object GetAccount(string seed)
         {
             try
             {
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {seed};
                 var result = SendRequest(reqname, @params);
-                var contentdata = JsonConvert.DeserializeObject<GetAccountResponse>(result);
+                var contentdata = JsonConvert.DeserializeObject<object>(result);
                 return contentdata;
             }
             catch (Exception ex)
