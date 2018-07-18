@@ -4,9 +4,8 @@
     <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.3.1/build/netcoreapp1.0/xunit.runner.reporters.netcoreapp10.dll" t="Include" />
     <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.3.1/build/netcoreapp1.0/xunit.runner.utility.netcoreapp10.dll" t="Include" />
     <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.3.1/build/netcoreapp1.0/xunit.runner.visualstudio.dotnetcore.testadapter.dll" t="Include" />
-    <e p="$USER_HOME$/Library/Caches/Rider2018.1/resharper-host/local/Transient/ReSharperHost/v12/SolutionCaches/_Alexandria.net.-1113668252.00" t="ExcludeRecursive" />
+    <e p="$USER_HOME$/Library/Caches/Rider2018.1/resharper-host/local/Transient/ReSharperHost/v12/SolutionCaches/_Alexandria.net.-1519402999.00" t="ExcludeRecursive" />
     <e p="$PROJECT_DIR$" t="IncludeFlat">
-      <e p="Alexandria.abapwrapper/Alexandria.abapwrapper.csproj" t="IncludeRecursive" />
       <e p="Alexandria.net" t="IncludeRecursive">
         <e p="Alexandria.net.csproj" t="IncludeRecursive" />
         <e p="API" t="Include">
@@ -70,11 +69,9 @@
             <e p="SenderData.cs" t="Include" />
           </e>
           <e p="Responses" t="Include">
-            <e p="Authority.cs" t="Include" />
             <e p="DTO" t="Include">
               <e p="AboutData.cs" t="Include" />
               <e p="AboutResponse.cs" t="Include" />
-              <e p="Account.cs" t="Include" />
               <e p="AccountDetails.cs" t="Include" />
               <e p="AccountHistoryResponse.cs" t="Include" />
               <e p="AccountNameFromSeedResponse.cs" t="Include" />
@@ -84,14 +81,14 @@
               <e p="ApplicationData.cs" t="Include" />
               <e p="ApplicationSearchData.cs" t="Include" />
               <e p="ApplicationSearchResponse.cs" t="Include" />
+              <e p="Authority.cs" t="Include" />
               <e p="BlockData.cs" t="Include" />
               <e p="BlockResponse.cs" t="Include" />
               <e p="BrainKeySuggestion.cs" t="Include" />
+              <e p="BrainKeySuggestionData.cs" t="Include" />
               <e p="CreateAccountResponse.cs" t="Include" />
               <e p="CurrentMedianHistory.cs" t="Include" />
               <e p="CustomJsonResponse.cs" t="Include" />
-              <e p="DataResponse.cs" t="Include" />
-              <e p="ErrorHandler.cs" t="Include" />
               <e p="FeedData.cs" t="Include" />
               <e p="FeedHistoryResponse.cs" t="Include" />
               <e p="GetAccountResponse.cs" t="Include" />
@@ -100,7 +97,6 @@
               <e p="GetWitnessResponse.cs" t="Include" />
               <e p="HelpResponse.cs" t="Include" />
               <e p="InfoData.cs" t="Include" />
-              <e p="InfoDetails.cs" t="Include" />
               <e p="InfoResponse.cs" t="Include" />
               <e p="KeyResponse.cs" t="Include" />
               <e p="LockUnlockResponse.cs" t="Include" />
@@ -109,8 +105,8 @@
               <e p="Options.cs" t="Include" />
               <e p="Owner.cs" t="Include" />
               <e p="PricePerSubscribe.cs" t="Include" />
+              <e p="Props.cs" t="Include" />
               <e p="ReceivedDocumentResponse.cs" t="Include" />
-              <e p="Result.cs" t="Include" />
               <e p="RightsToPublish.cs" t="Include" />
               <e p="SendResponseResult.cs" t="Include" />
               <e p="SerializedTransaction.cs" t="Include" />

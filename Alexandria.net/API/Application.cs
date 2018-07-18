@@ -173,7 +173,7 @@ namespace Alexandria.net.API
         /// <summary>
         /// Get all app buyings by app_name or buyer
         /// </summary>
-        /// <param name="buyerName"></param>
+        /// <param name="buyerName">the buyers name</param>
         /// <param name="searchType">search_type One of "by_buyer", "by_app_id"</param>
         /// <param name="count">count Number of items to retrieve</param>
         public ApplicationSearchResponse GetApplicationBuyings(string buyerName, SearchType searchType, uint count)

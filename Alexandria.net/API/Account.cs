@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Reflection;
 using Alexandria.net.Communication;
 using Alexandria.net.Logging;
-using Alexandria.net.Messaging.Responses;
 using Alexandria.net.Messaging.Responses.DTO;
 using Alexandria.net.Settings;
 using Newtonsoft.Json;
@@ -98,7 +97,6 @@ namespace Alexandria.net.API
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
-
         }
 
         /// <summary>
@@ -122,7 +120,6 @@ namespace Alexandria.net.API
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
-
         }
 
         /// <summary>
@@ -144,7 +141,6 @@ namespace Alexandria.net.API
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
-
         }
 
         /// <summary>
@@ -231,7 +227,6 @@ namespace Alexandria.net.API
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
-
         }
 
         /// <summary>
@@ -253,7 +248,6 @@ namespace Alexandria.net.API
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
-
         }
 
         /// <summary>
@@ -275,7 +269,6 @@ namespace Alexandria.net.API
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
-
         }
 
         /// <summary>
@@ -298,7 +291,6 @@ namespace Alexandria.net.API
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
-
         }
 
         /// <summary>
@@ -320,7 +312,6 @@ namespace Alexandria.net.API
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
-
         }
 
         /// <summary>
@@ -343,24 +334,25 @@ namespace Alexandria.net.API
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
-
         }
 
         /// <summary>
         /// Update account authorities.
         /// </summary>
         /// <param name="accountName">Input string accountName</param>
+        /// <param name="jsonMeta"></param>
         /// <param name="owner">Input Authority owner</param>
         /// <param name="active">Input Authority active</param>
         /// <param name="memo">Input byte[] memo</param>
+        /// <param name="privateKey">the private key associated with the account</param>
         /// <returns>Returns true if success or false for failed try</returns>
-        public TransactionResponse UpdateAccount(string accountName, string json_meta, string owner, string active,
+        public TransactionResponse UpdateAccount(string accountName, string jsonMeta, string owner, string active,
             string memo, string privateKey)
         {
             try
             {
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                var @params = new ArrayList {accountName, json_meta, owner, active, memo};
+                var @params = new ArrayList {accountName, jsonMeta, owner, active, memo};
                 var result = SendRequest(reqname, @params);
                 var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
 
@@ -384,7 +376,7 @@ namespace Alexandria.net.API
         /// <param name="accountToModify">the name Or id Of the account To update</param>
         /// <param name="proxy">the name Of account that should proxy To, Or empty String To have no proxy </param>
         /// <param name="privateKey"></param>
-        /// <returns></returns>
+        /// <returns>the transaction response from the set voting proxy</returns>
         public TransactionResponse SetVotingProxy(string accountToModify, string proxy, string privateKey)
         {	
             try
@@ -407,7 +399,7 @@ namespace Alexandria.net.API
         /// <summary>
         /// Gets the account information
         /// </summary>
-        /// <param name="accountName">the account name the information is required for</param>
+        /// <param name="seed">the account to get</param>
         /// <returns>the account information</returns>
         public GetAccountResponse GetAccount(string seed)
         {
@@ -431,7 +423,7 @@ namespace Alexandria.net.API
        /// <param name="accountName">name of the account</param>
        /// <param name="from">start</param>
        /// <param name="to">until</param>
-       /// <returns></returns>
+       /// <returns>the account history data</returns>
         public AccountHistoryResponse GetAccountHistory(string accountName, uint from, uint to)
         {
             try
@@ -452,7 +444,7 @@ namespace Alexandria.net.API
         /// Get account name given by the system using seed provided by the user during account creation
         /// </summary>
         /// <param name="seed">seed name used while creating the account</param>
-        /// <returns></returns>
+        /// <returns>the account details</returns>
         public AccountNameFromSeedResponse GetAccountNameFromSeed(string seed)
         {
             try
@@ -469,11 +461,12 @@ namespace Alexandria.net.API
                 throw;
             }
         }
+
         /// <summary>
         /// Creates the new sophiatx account
         /// </summary>
         /// <param name="witnessname">the name of the witness who will create the account.  Please use initminer as default</param>
-        /// <param name="accountname">the account name to create</param>
+        /// <param name="seed">the account name to create</param>
         /// <param name="jsonMeta">json formatted details of account</param>
         /// <param name="ownerkey">the owner key</param>
         /// <param name="activekey">the active key</param>
@@ -505,8 +498,8 @@ namespace Alexandria.net.API
         /// <summary>
         /// Deletes the account from the blockchain related to the given name of the account
         /// </summary>
-        /// <param name="accountName"></param>
-        /// <param name="privateKey"></param>
+        /// <param name="accountName">the account name to be deleted</param>
+        /// <param name="privateKey">the private key attached to the account</param>
         /// <returns>Returns object containing information about the new operation created</returns>
         public TransactionResponse DeleteAccount(string accountName, string privateKey)
         {

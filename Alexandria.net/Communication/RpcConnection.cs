@@ -1,17 +1,17 @@
-﻿ using System;
- using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Net.Http;
- using System.Reflection;
- using System.Text;
+using System.Reflection;
+using System.Text;
 using System.Threading.Tasks;
- using Alexandria.net.API;
- using Alexandria.net.Enums;
- using Alexandria.net.Exceptions;
- using Alexandria.net.Logging;
- using Alexandria.net.Mapping;
- using Alexandria.net.Messaging.Responses.DTO;
- using Alexandria.net.Settings;
- using Newtonsoft.Json;
+using Alexandria.net.API;
+using Alexandria.net.Enums;
+using Alexandria.net.Exceptions;
+using Alexandria.net.Logging;
+using Alexandria.net.Mapping;
+using Alexandria.net.Messaging.Responses.DTO;
+using Alexandria.net.Settings;
+using Newtonsoft.Json;
 
 namespace Alexandria.net.Communication
 {
@@ -38,7 +38,7 @@ namespace Alexandria.net.Communication
         /// <summary>
         /// 
         /// </summary>
-        protected IConfig Config { get; private set; }
+        private IConfig Config { get; }
 
         #endregion
 
@@ -156,7 +156,6 @@ namespace Alexandria.net.Communication
                         $"Date & Time: {DateTime.UtcNow} || Method: {methodname} || Request Data: {json} || Response Data: {response}");
                 }
 
-                //todo - think about this a bit more
                 if (response.Contains("error"))
                 {
                     throw new SophiaBlockchainException(response);
@@ -164,17 +163,11 @@ namespace Alexandria.net.Communication
             }
             catch (HttpRequestException ex)
             {
-/*
-                response = $"{ex.Message}";
-*/
                 _logger.WriteError($"Message: {ex.Message} | StackTrace: {ex.StackTrace}");
                 throw;
             }
             catch (SophiaBlockchainException sx)
             {
-/*
-                response = sx.ErrMsg;
-*/
                 _logger.WriteError($"Message: {sx.Message} | StackTrace: {sx.StackTrace}");
                 throw;
             }
