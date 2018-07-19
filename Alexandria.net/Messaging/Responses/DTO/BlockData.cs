@@ -33,7 +33,7 @@ namespace Alexandria.net.Messaging.Responses.DTO
         /// 
         /// </summary>
         [JsonProperty("extensions")]
-        public List<object> Extensions { get; set; }
+        public List<string> Extensions { get; set; }
         /// <summary>
         /// 
         /// </summary>

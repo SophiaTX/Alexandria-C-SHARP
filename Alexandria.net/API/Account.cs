@@ -329,19 +329,20 @@ namespace Alexandria.net.API
                 throw;
             }
         }
-       /// <summary>
-       /// Get transaction history of the account
-       /// </summary>
-       /// <param name="accountName">name of the account</param>
-       /// <param name="from">start</param>
-       /// <param name="to">until</param>
-       /// <returns>the account history data</returns>
-        public AccountHistoryResponse GetAccountHistory(string accountName, uint from, uint to)
+
+        /// <summary>
+        /// Get transaction history of the account
+        /// </summary>
+        /// <param name="accountName">name of the account</param>
+        /// <param name="from">start</param>
+        /// <param name="limit"></param>
+        /// <returns>the account history data</returns>
+        public AccountHistoryResponse GetAccountHistory(string accountName, uint from, uint limit)
         {
             try
             {
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                var @params = new ArrayList {accountName, from, to};
+                var @params = new ArrayList {accountName, from, limit};
                 var result = SendRequest(reqname, @params);
                 var contentdata = JsonConvert.DeserializeObject<AccountHistoryResponse>(result);
                 return contentdata;
