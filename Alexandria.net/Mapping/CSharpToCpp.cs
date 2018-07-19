@@ -92,6 +92,8 @@
         private const string GetDiscussionsByAuthorBeforeDate = "get_discussions_by_author_before_date";
         private const string GetAccountHistory = "get_account_history";
         private const string GetAccountNameFromSeed = "get_account_name_from_seed";
+        private const string CalculateFee = "calculate_fee";
+        private const string AddFee = "add_fee";
         
         
 
@@ -279,6 +281,10 @@
                     return GetAccountHistory;
                 case "GetAccountNameFromSeed":
                     return GetAccountNameFromSeed;
+                case "CalculateFee":
+                    return CalculateFee;
+                case "AddFee":
+                    return AddFee;
             }
             return string.Empty;
         }

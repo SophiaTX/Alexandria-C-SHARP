@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using Alexandria.net.Communication;
+using Alexandria.net.Enums;
 using Alexandria.net.Logging;
+using Alexandria.net.Messaging.Receiver;
 using Alexandria.net.Messaging.Responses.DTO;
 using Alexandria.net.Settings;
 using Newtonsoft.Json;
@@ -273,6 +275,53 @@ namespace Alexandria.net.API
 				throw;
 			}
 		}
+		/// <summary>
+		/// Calculate the possible fees deduction for the selected operation
+		/// </summary>
+		/// <param name="operation">Operation object</param>
+		/// <param name="Symbol">Asset Symbol</param>
+		/// <typeparam name="T">Type of operation object</typeparam>
+		/// <returns>Calculated fees for the transaction</returns>
+		public AssetType CalculateFee<T>(T operation, AssetSymbolType Symbol)
+		{
+			try
+			{
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+				var @params = new ArrayList {operation,Symbol};
+				var result= SendRequest(reqname, @params);
+				var contentdata = JsonConvert.DeserializeObject<AssetType>(result);
+				return contentdata;
+			}
+			catch(Exception ex)
+			{
+				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+				throw ;
+			}
+		}
+		/// <summary>
+		/// Add the calculated fees to the transaction
+		/// </summary>
+		/// <param name="operation">Operation object</param>
+		/// <param name="Fee">Calculated Fees</param>
+		/// <typeparam name="T">Type of operation object</typeparam>
+		/// <returns>object</returns>
+		public object AddFee<T>(T operation, AssetType Fee)
+		{
+			try
+			{
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+				var @params = new ArrayList {operation,Fee};
+				var result= SendRequest(reqname, @params);
+				var contentdata = JsonConvert.DeserializeObject<object>(result);
+				return contentdata;
+			}
+			catch(Exception ex)
+			{
+				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+				throw ;
+			}
+		}
+		
 		#endregion
 	}
 }

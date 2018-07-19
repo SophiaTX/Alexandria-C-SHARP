@@ -228,7 +228,7 @@ namespace UnitTest
         [Fact]
         public void CreateAccount()
         {
-           var result= _client.Account.CreateAccount("sanjiv", "{}",
+           var result= _client.Account.CreateAccount("sanjiv12345", "{}",
                 "SPH6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz",
                 "SPH6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz",
                 "SPH6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz");
@@ -245,16 +245,17 @@ namespace UnitTest
         [Fact]
         public void DeleteAccount()
         {
-            _client.Account.DeleteAccount("test106", PrivateKey);
+            _client.Account.DeleteAccount("sajniv", PrivateKey);
 
         }
         [Fact]
         public void update_account()
         {
-            var result=_client.Account.UpdateAccount("test110", "{}",
-                "SPH6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz",
-                "SPH6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz",
-                "SPH6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz", PrivateKey);
+            var result=_client.Account.UpdateAccount("rumGMWVHCxedjhSHMBQYk3o9LVD", "{}",
+                "SPH7GvbxZTntaqCnNSsuai1Dguejh23RKJHmu2uuR869BLbM3yWPK",
+                "SPH7GvbxZTntaqCnNSsuai1Dguejh23RKJHmu2uuR869BLbM3yWPK",
+                "SPH7GvbxZTntaqCnNSsuai1Dguejh23RKJHmu2uuR869BLbM3yWPK",
+                "5KUbCiBJac8omkwgftfkp8hUCgh5k2H3mgoqMDN7bfzDLLEK2i8");
             Console.WriteLine(result);
         }
         [Fact]
@@ -266,10 +267,9 @@ namespace UnitTest
         [Fact]
         public void GetAccountNameFromSeed()
         {
-            var result=_client.Account.GetAccountNameFromSeed("martyn");
+            var result=_client.Account.GetAccountNameFromSeed("sanjiv");
             Console.WriteLine(result);       
         }
-        
         [Fact]
         public void GetVestingBalance()
         {
@@ -277,9 +277,15 @@ namespace UnitTest
             Console.WriteLine(result);       
         }
         [Fact]
+        public void GetAccountBalance()
+        {
+            var result=_client.Account.GetAccountBalance("sanjiv");
+            Console.WriteLine(result);       
+        }
+        [Fact]
         public void AccountExists()
         {
-            var result=_client.Account.AccountExists("2hPgEeeuitiNeM8bCCQWTKx9u6wx");
+            var result=_client.Account.AccountExists("rumGMWVHCxedjhSHMBQYk3o9LVD");
             Console.WriteLine(result);       
         }
         [Fact]
