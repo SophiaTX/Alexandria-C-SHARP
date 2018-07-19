@@ -11,8 +11,8 @@ namespace Alexandria.net.Messaging.Receiver
         /// <summary>
         /// value of the prize feed
         /// </summary>
-        [JsonProperty("")]
-        public ulong value { get; set; }
+        [JsonProperty("value")]
+        public ulong Value { get; set; }
         
     }
 }

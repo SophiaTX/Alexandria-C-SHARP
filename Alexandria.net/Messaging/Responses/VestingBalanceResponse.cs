@@ -1,8 +1,21 @@
-﻿namespace Alexandria.net.Messaging.Responses
+﻿using Newtonsoft.Json;
+
+namespace Alexandria.net.Messaging.Responses
 {
+    /// <summary>
+    /// the vesting balance response
+    /// </summary>
     public class VestingBalanceResponse
     {
-        public int id { get; set; }
-        public int result { get; set; }
+        /// <summary>
+        /// the transaction id
+        /// </summary>
+        [JsonProperty("id")]
+        public int Id { get; set; }
+        /// <summary>
+        /// the amount in vesting
+        /// </summary>
+        [JsonProperty("result")]
+        public int Result { get; set; }
     }
 }

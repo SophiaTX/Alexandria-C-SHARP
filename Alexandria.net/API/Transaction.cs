@@ -194,7 +194,7 @@ namespace Alexandria.net.API
 		/// <param name="blockNumber">Integer Block Number </param>
 		/// <param name="onlyVirtual">Boolean Only Virtual operation listing</param>
 		/// <returns>Returns sequence of operations included/generated in a specified block</returns>
-		public GetOperationsResponse GetOpsInBlock(uint blockNumber,bool onlyVirtual)
+		public GetOperationsResponse GetOpsInBlock(uint blockNumber,bool onlyVirtual = false)
 		{
 			try
 			{

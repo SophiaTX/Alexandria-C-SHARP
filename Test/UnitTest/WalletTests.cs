@@ -67,7 +67,7 @@ namespace UnitTest
             {
                 new PrizeFeedvalue()
                 {
-                    value = 456788,
+                    Value = 456788,
                     
                 },
                 new PrizeFeedQuote()
@@ -90,7 +90,6 @@ namespace UnitTest
         [Fact]
         public void GetFeedHistory()
         {
-            //var feedSymbol = new AssetType {Symbol = "SPT1"};
             var result=_client.Transaction.GetFeedHistory("SPHTX");
             Console.WriteLine(result);
         }
