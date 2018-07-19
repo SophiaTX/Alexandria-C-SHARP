@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using Alexandria.net.Communication;
 using Alexandria.net.Logging;
+using Alexandria.net.Messaging.Receiver;
 using Alexandria.net.Messaging.Responses.DTO;
 using Alexandria.net.Settings;
 using Newtonsoft.Json;
@@ -125,14 +126,14 @@ namespace Alexandria.net.API
         /// </summary>
         /// <param name="accountName">Input string accountName</param>
         /// <returns>Returns the account balance as a Json object</returns>
-        public ulong GetAccountBalance(string accountName)
+        public AccountBalanceResponse GetAccountBalance(string accountName)
         {
             try
             {
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {accountName};
                 var result = SendRequest(reqname, @params);
-                return JsonConvert.DeserializeObject<ulong>(result);
+                return JsonConvert.DeserializeObject<AccountBalanceResponse>(result);
             }
             catch (Exception ex)
             {
@@ -313,14 +314,14 @@ namespace Alexandria.net.API
         /// </summary>
         /// <param name="seed">the account to get</param>
         /// <returns>the account information</returns>
-        public object GetAccount(string seed)
+        public GetAccountResponse GetAccount(string seed)
         {
             try
             {
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {seed};
                 var result = SendRequest(reqname, @params);
-                var contentdata = JsonConvert.DeserializeObject<object>(result);
+                var contentdata = JsonConvert.DeserializeObject<GetAccountResponse>(result);
                 return contentdata;
             }
             catch (Exception ex)
@@ -422,8 +423,7 @@ namespace Alexandria.net.API
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {accountName};
                 var result = SendRequest(reqname, @params);
-                var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
-
+                var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);                
                 var response = StartBroadcasting(contentdata.Result, privateKey);
                 return response;
             }
