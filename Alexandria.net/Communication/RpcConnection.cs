@@ -9,6 +9,7 @@ using Alexandria.net.Enums;
 using Alexandria.net.Exceptions;
 using Alexandria.net.Logging;
 using Alexandria.net.Mapping;
+using Alexandria.net.Messaging.Receiver;
 using Alexandria.net.Messaging.Responses.DTO;
 using Alexandria.net.Settings;
 using Newtonsoft.Json;
@@ -94,6 +95,11 @@ namespace Alexandria.net.Communication
             TransactionResponse finalResponse;
             try
             {
+//todo:test calculate and add fee functions
+//                var fees = trans.CalculateFee(contentdata, AssetSymbolType.SPHTX);
+//                Console.WriteLine(fees);
+//                var addedFees = trans.AddFee(contentdata, fees);
+//                Console.WriteLine(addedFees);
                 var transresponse = trans.CreateSimpleTransaction(contentdata);
                 if (transresponse == null) return null;
 
@@ -182,7 +188,7 @@ namespace Alexandria.net.Communication
         {
             var response =
                 await _client.PostAsync(_uri, new StringContent(data, Encoding.UTF8));
-            response.EnsureSuccessStatusCode();
+            //response.EnsureSuccessStatusCode();
             return response;
         }
 

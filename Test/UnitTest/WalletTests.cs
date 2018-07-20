@@ -64,15 +64,19 @@ namespace UnitTest
         [Fact]
         public void updateWitness()
         {
-            var feed=new KeyValuePair<string,PrizeFeedQuote>("USD",new PrizeFeedQuote{@base = "1 USD",quote = "0.5678 SPHTX"});
-            var feeds = new List<KeyValuePair<string, PrizeFeedQuote>> {feed};
+            var feed = new Dictionary<string, PrizeFeedQuote>
+            {
+                {"USD", new PrizeFeedQuote {@base = "1 USD", quote = "0.8967 SPHTX"}}
+            };
+            var feeds = new List<Dictionary<string, PrizeFeedQuote>> {feed};
 
-            var pricefeed = new List<List<KeyValuePair<string, PrizeFeedQuote>>> {feeds};
-            var result = _client.Witness.UpdateWitness("rumGMWVHCxedjhSHMBQYk3o9LVD", "http://www.testminer.com", "SPH7GvbxZTntaqCnNSsuai1Dguejh23RKJHmu2uuR869BLbM3yWPK", "1.000 SPHTX",
+            var pricefeed = new List<List<Dictionary<string, PrizeFeedQuote>>> {feeds};
+            var result = _client.Witness.UpdateWitness("rumGMWVHCxedjhSHMBQYk3o9LVD", "http://www.testminer.com",
+                "SPH7GvbxZTntaqCnNSsuai1Dguejh23RKJHmu2uuR869BLbM3yWPK", "10.000 SPHTX",
                 1024*67, pricefeed, "5KUbCiBJac8omkwgftfkp8hUCgh5k2H3mgoqMDN7bfzDLLEK2i8");
             Console.WriteLine(result);
         }
-
+        
         #endregion
 
         #region Transaction Methods
