@@ -5,9 +5,11 @@ using System.Reflection;
 using Alexandria.net.Communication;
 using Alexandria.net.Logging;
 using Alexandria.net.Messaging.Receiver;
+using Alexandria.net.Messaging.Responses;
 using Alexandria.net.Messaging.Responses.DTO;
 using Alexandria.net.Settings;
 using Newtonsoft.Json;
+using AccountResponse = Alexandria.net.Messaging.Responses.DTO.AccountResponse;
 
 namespace Alexandria.net.API
 {
