@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace Alexandria.net.Messaging.Receiver
 {
@@ -25,6 +26,7 @@ namespace Alexandria.net.Messaging.Receiver
         /// The price feed information
         /// </summary>
         [JsonProperty("price_feeds")]
-        public List<object> PriceFeeds { get; set; }
+        public List<List<Dictionary<string,PrizeFeedQuote>>> PriceFeeds { get; set; }
+        //todo - fix this object
     }
 }

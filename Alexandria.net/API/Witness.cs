@@ -161,30 +161,30 @@ namespace Alexandria.net.API
         }
 
         /// <summary>
-        /// Update an account to witness.Requires XXX vested SPHTX before updating.
+        /// Update an account to witness.Requires 250,000 vested SPHTX before updating.
         /// </summary>
-        /// <param name="witnessAccountName">Input string accountName</param>
-        /// <param name="url">A URL containing some information about the witness.  The empty string makes it remain the same.</param>
-        /// <param name="blockKey">The new block signing public key.  The empty string disables block production.</param>
+        /// <param name="accountName">Input string accountName</param>
+        /// <param name="descriptionUrl">A URL containing some information about the witness.  The empty string makes it remain the same.</param>
+        /// <param name="blockSigningKey">The new block signing public key.  The empty string disables block production.</param>
         /// <param name="accountCreationPrice"></param>
-        /// <param name="minBlockSizeLimit"></param>
+        /// <param name="maxBlockSizeLimit"></param>
         /// <param name="priceFeed"></param>
         /// <param name="privateKey"></param>
         /// <returns>Returns true if success or false for failed try</returns>
-        public TransactionResponse UpdateWitness(string witnessAccountName, string url, string blockKey,
-            string accountCreationPrice, int minBlockSizeLimit, List<object> priceFeed, string privateKey)
+        public TransactionResponse UpdateWitness(string accountName, string descriptionUrl, string blockSigningKey,
+            string accountCreationPrice, int maxBlockSizeLimit, List<List<Dictionary<string,PrizeFeedQuote>>> priceFeed, string privateKey)
         {
             try
             {
                 var pros = new ChainProperties
                 {
                     AccountCreationFee = accountCreationPrice,
-                    MaximumBlockSize = minBlockSizeLimit * 2,
+                    MaximumBlockSize = maxBlockSizeLimit,
                     PriceFeeds = priceFeed
                 };
 
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                var @params = new ArrayList {witnessAccountName, url, blockKey, pros};
+                var @params = new ArrayList {accountName, descriptionUrl, blockSigningKey, pros};
                 var result = SendRequest(reqname, @params);
                 var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
 
