@@ -232,7 +232,7 @@ namespace UnitTest
         [Fact]
         public void GetAccount()
         {
-            var result=_client.Account.GetAccount("martyn");
+            var result=_client.Account.GetAccount("nXhMW8wWUL4d5eRFLNLzCfKvX7X");
             Console.WriteLine(result);
         }
 
@@ -255,13 +255,13 @@ namespace UnitTest
         [Fact]
         public void GetAccountHistory()
         {
-            var result=_client.Account.GetAccountHistory("2hPgEeeuitiNeM8bCCQWTKx9u6wx", 10,6);
+            var result=_client.Account.GetAccountHistory("nXhMW8wWUL4d5eRFLNLzCfKvX7X", 10,9);
             Console.WriteLine(result);           
         }
         [Fact]
         public void GetAccountNameFromSeed()
         {
-            var result=_client.Account.GetAccountNameFromSeed("sanjiv");
+            var result=_client.Account.GetAccountNameFromSeed("sanjiv12345");
             Console.WriteLine(result);       
         }
         [Fact]
@@ -334,8 +334,8 @@ namespace UnitTest
         public void Transfer()
         {
             
-            _client.Asset.Transfer("test101", "test110", "10.000 SPHTX",
-                "SPH6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz", PrivateKey);
+            _client.Asset.Transfer("rumGMWVHCxedjhSHMBQYk3o9LVD", "2hPgEeeuitiNeM8bCCQWTKx9u6wx", "10.00 SPHTX",
+                "Hello-test","5KUbCiBJac8omkwgftfkp8hUCgh5k2H3mgoqMDN7bfzDLLEK2i8");
 
         }
 

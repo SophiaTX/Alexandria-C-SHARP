@@ -96,12 +96,14 @@ namespace Alexandria.net.Communication
             TransactionResponse finalResponse;
             try
             {
-//todo:test calculate and add fee functions
-//                var fees = trans.CalculateFee(contentdata, AssetSymbolType.SPHTX);
-//                Console.WriteLine(fees);
-//                var addedFees = trans.AddFee(contentdata, fees);
-//                Console.WriteLine(addedFees);
-                var transresponse = trans.CreateSimpleTransaction(contentdata);
+               //ask for token symbol each time a transaction is performed
+               //todo:next build append a parameter as "CurrencySymbol" in each transaction functions to calculate the charges. 
+                
+                var fees = trans.CalculateFee(contentdata, "SPHTX");
+                
+                var feeAddedOperation = trans.AddFee(contentdata, fees.result);
+                
+                var transresponse = trans.CreateSimpleTransaction(feeAddedOperation.Result);
                 if (transresponse == null) return null;
 
                 var aboutresponse = trans.About();

@@ -7,6 +7,7 @@ using Alexandria.net.Enums;
 using Alexandria.net.Logging;
 using Alexandria.net.Messaging.Receiver;
 using Alexandria.net.Messaging.Responses;
+using Alexandria.net.Messaging.Responses.DTO;
 using Alexandria.net.Settings;
 using Newtonsoft.Json;
 using AccountResponse = Alexandria.net.Messaging.Responses.DTO.AccountResponse;
@@ -283,14 +284,14 @@ namespace Alexandria.net.API
 		/// <param name="Symbol">Asset Symbol</param>
 		/// <typeparam name="T">Type of operation object</typeparam>
 		/// <returns>Calculated fees for the transaction</returns>
-		public AssetType CalculateFee<T>(T operation, AssetSymbolType Symbol)
+		public FeesResponse CalculateFee<T>(T operation, string Symbol)
 		{
 			try
 			{
 				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
 				var @params = new ArrayList {operation,Symbol};
 				var result= SendRequest(reqname, @params);
-				var contentdata = JsonConvert.DeserializeObject<AssetType>(result);
+				var contentdata = JsonConvert.DeserializeObject<FeesResponse>(result);
 				return contentdata;
 			}
 			catch(Exception ex)
@@ -306,14 +307,14 @@ namespace Alexandria.net.API
 		/// <param name="Fee">Calculated Fees</param>
 		/// <typeparam name="T">Type of operation object</typeparam>
 		/// <returns>object</returns>
-		public object AddFee<T>(T operation, AssetType Fee)
+		public AccountResponse AddFee<T>(T operation, string Fee)
 		{
 			try
 			{
 				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
 				var @params = new ArrayList {operation,Fee};
 				var result= SendRequest(reqname, @params);
-				var contentdata = JsonConvert.DeserializeObject<object>(result);
+				var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
 				return contentdata;
 			}
 			catch(Exception ex)
