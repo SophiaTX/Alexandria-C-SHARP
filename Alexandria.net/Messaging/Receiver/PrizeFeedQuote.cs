@@ -2,20 +2,19 @@
 
 namespace Alexandria.net.Messaging.Receiver
 {
-    //todo - finalise object description
     /// <summary>
-    ///
+    /// the price feed quote object
     /// </summary>
     public class PrizeFeedQuote
     {
         /// <summary>
-        /// 
+        /// the base price
         /// </summary>
         
         public string @base { get; set; }
 
         /// <summary>
-        /// 
+        /// the quote price
         /// </summary>
        
         public string quote { get; set; }

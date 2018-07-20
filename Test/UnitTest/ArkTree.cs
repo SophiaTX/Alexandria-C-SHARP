@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Alexandria.net.Core;
 using Alexandria.net.Messaging.Receiver;
-using Alexandria.net.Messaging.Responses.DTO;
+using Alexandria.net.Messaging.Responses;
 using Newtonsoft.Json;
 using Xunit;
 
