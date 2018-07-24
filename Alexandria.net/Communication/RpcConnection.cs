@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 using Alexandria.net.API;
 using Alexandria.net.Enums;
 using Alexandria.net.Exceptions;
+using Alexandria.net.Extensions;
 using Alexandria.net.Logging;
 using Alexandria.net.Mapping;
 using Alexandria.net.Messaging.Receiver;
 using Alexandria.net.Messaging.Responses;
-using Alexandria.net.Messaging.Responses.DTO;
 using Alexandria.net.Settings;
 using Newtonsoft.Json;
 
@@ -68,12 +68,12 @@ namespace Alexandria.net.Communication
         /// <param name="method">the method to call</param>
         /// <param name="params">the parameters to send with the method</param>
         /// <returns>the http response from ther server</returns>
-        protected string SendRequest(string method, ArrayList @params = null)
+        protected string SendRequest(string method, ArrayList @params = null, Type type = null)
         {
             string result; 
             try
             {
-                result = ProcessRequest(method, @params).Result;
+                result = ProcessRequest(method, @params, type).Result;
             }
             catch (Exception e)
             {
@@ -134,7 +134,7 @@ namespace Alexandria.net.Communication
         /// <param name="methodname">the method name to call</param>
         /// <param name="params">the paramaters to pass with the method</param>
         /// <returns>the http response from the server</returns>
-        private async Task<string> ProcessRequest(string methodname, ArrayList @params = null)
+        private async Task<string> ProcessRequest(string methodname, ArrayList @params = null, Type type = null)
         {
             var response = string.Empty;
             try
@@ -147,8 +147,8 @@ namespace Alexandria.net.Communication
                     @params = @params ?? new ArrayList()
                 };
 
-                var json = JsonConvert.SerializeObject(request);
-
+                var json = JsonConvert.SerializeObject(request).GetJsonString(type);
+             
                 var httpResponse = await SendAsync(json);
 
                 if (httpResponse == null) return response;

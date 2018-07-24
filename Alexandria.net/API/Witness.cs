@@ -172,20 +172,20 @@ namespace Alexandria.net.API
         /// <param name="privateKey"></param>
         /// <returns>Returns true if success or false for failed try</returns>
         public TransactionResponse UpdateWitness(string accountName, string descriptionUrl, string blockSigningKey,
-            string accountCreationPrice, int maxBlockSizeLimit, List<List<Dictionary<string,PrizeFeedQuote>>> priceFeed, string privateKey)
+            string accountCreationPrice, int maxBlockSizeLimit, List<PrizeFeedQuoteMessage> priceFeed, string privateKey)
         {
             try
-            {
+            {             
                 var pros = new ChainProperties
                 {
                     AccountCreationFee = accountCreationPrice,
                     MaximumBlockSize = maxBlockSizeLimit,
-                    PriceFeeds = priceFeed
+                    PriceFeeds = new List<List<PrizeFeedQuoteMessage>> {priceFeed}
                 };
 
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {accountName, descriptionUrl, blockSigningKey, pros};
-                var result = SendRequest(reqname, @params);
+                var result = SendRequest(reqname, @params, typeof(PrizeFeedQuoteMessage));
                 var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
 
                 var response = StartBroadcasting(contentdata.Result, privateKey);

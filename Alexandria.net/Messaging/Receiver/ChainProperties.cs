@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 
 namespace Alexandria.net.Messaging.Receiver
 {
@@ -14,7 +13,7 @@ namespace Alexandria.net.Messaging.Receiver
     {
         /// <summary>
         /// the creation fee that was offered in SPHTX
-        /// </summary
+        /// </summary>
         [JsonProperty("account_creation_fee")]
         public string AccountCreationFee { get; set; }
         /// <summary>
@@ -26,7 +25,6 @@ namespace Alexandria.net.Messaging.Receiver
         /// The price feed information
         /// </summary>
         [JsonProperty("price_feeds")]
-        public List<List<Dictionary<string,PrizeFeedQuote>>> PriceFeeds { get; set; }
-        //todo - fix this object
+        public List<List<PrizeFeedQuoteMessage>> PriceFeeds { get; set; }
     }
 }
