@@ -132,7 +132,7 @@ namespace Alexandria.net.API
 			try
 			{
 				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-				var @params = new ArrayList {signedTx};
+				var @params = new ArrayList {signedTx.result};
 				var result= SendRequest(reqname, @params);
 				var contentdata = JsonConvert.DeserializeObject<TransactionResponse>(result);
 				return contentdata;

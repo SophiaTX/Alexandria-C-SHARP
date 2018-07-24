@@ -172,7 +172,7 @@ namespace Alexandria.net.API
         /// <param name="privateKey"></param>
         /// <returns>Returns true if success or false for failed try</returns>
         public TransactionResponse UpdateWitness(string accountName, string descriptionUrl, string blockSigningKey,
-            string accountCreationPrice, int maxBlockSizeLimit, List<PrizeFeedQuoteMessage> priceFeed, string privateKey)
+            string accountCreationPrice, int maxBlockSizeLimit, List<List<PrizeFeedQuoteMessage>> priceFeed, string privateKey)
         {
             try
             {             
@@ -180,7 +180,7 @@ namespace Alexandria.net.API
                 {
                     AccountCreationFee = accountCreationPrice,
                     MaximumBlockSize = maxBlockSizeLimit,
-                    PriceFeeds = new List<List<PrizeFeedQuoteMessage>> {priceFeed}
+                    PriceFeeds = priceFeed
                 };
 
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);

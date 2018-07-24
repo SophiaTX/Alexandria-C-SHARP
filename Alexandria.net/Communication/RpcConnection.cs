@@ -67,6 +67,7 @@ namespace Alexandria.net.Communication
         /// </summary>
         /// <param name="method">the method to call</param>
         /// <param name="params">the parameters to send with the method</param>
+        /// <param name="type">type of operation</param>
         /// <returns>the http response from ther server</returns>
         protected string SendRequest(string method, ArrayList @params = null, Type type = null)
         {
@@ -110,10 +111,10 @@ namespace Alexandria.net.Communication
                 if (aboutresponse == null) return null;
 
                 var transaction = JsonConvert.SerializeObject(transresponse.Result);
-                var digest = key.GetTransactionDigest(transaction, aboutresponse.Result.ChainId, new byte[64]);
+                var digest = key.GetTransactionDigestServer(transresponse);
 
-                var signature = key.SignDigest(digest, privateKey, new byte[130]);
-                var response = key.AddSignature(transaction, signature, new byte[transaction.Length + 200]);
+                var signature = key.SignDigest(digest.result, privateKey, new byte[130]);
+                var response = key.AddSignatureServer(transresponse, signature);
                 finalResponse = trans.BroadcastTransaction(response);          
             }
             catch (Exception ex)

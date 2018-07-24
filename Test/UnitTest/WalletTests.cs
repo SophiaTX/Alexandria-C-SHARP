@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Alexandria.net.Enums;
 using Alexandria.net.Messaging.Receiver;
-using Newtonsoft.Json;
 using Xunit;
 
 
@@ -63,26 +62,31 @@ namespace UnitTest
 
 
         [Fact]
-        public void updateWitness()
+        public void UpdateWitness()
         {
-            var pricefeed = new List<PrizeFeedQuoteMessage>
+            var feed1 = new List<PrizeFeedQuoteMessage>
             {
                 new PrizeFeedQuoteMessage
                 {
                     Currency = "USD",
-                    PrizeFeedQuote = new PrizeFeedQuote {Base = "1 USD", Quote = "0.8967 SPHTX"}
-                },
+                    PrizeFeedQuote = new PrizeFeedQuote {Base = "1 USD", Quote = "0.152063 SPHTX"}
+                }
+                
+            };
+            var feed2= new List<PrizeFeedQuoteMessage>
+            {
                 new PrizeFeedQuoteMessage
                 {
-                    Currency = "GBP",
-                    PrizeFeedQuote = new PrizeFeedQuote {Base = "1 GBP", Quote = "0.6967 SPHTX"}
+                    Currency = "EUR",
+                    PrizeFeedQuote = new PrizeFeedQuote {Base = "1 EUR", Quote = "0.154988 SPHTX"}
                 }
+                
             };
 
-
-            var result = _client.Witness.UpdateWitness("rumGMWVHCxedjhSHMBQYk3o9LVD", "http://www.testminer.com",
-                "SPH7GvbxZTntaqCnNSsuai1Dguejh23RKJHmu2uuR869BLbM3yWPK", "0.001 SPHTX",
-                1024 * 67, pricefeed, "5KUbCiBJac8omkwgftfkp8hUCgh5k2H3mgoqMDN7bfzDLLEK2i8");
+            var pricefeed=new List<List<PrizeFeedQuoteMessage>>{feed1,feed2};
+            var result = _client.Witness.UpdateWitness("martyn", "http://www.testminer.com",
+                "SPH6zDAKpmQFATYSFC57hMCcCXjbDwQgG8YwkxbLUokGyXwXAjhad", "0.0010 SPHTX",
+                1024676, pricefeed, "5JYeZJMfYazRE3W9w6VAofBx9s9pUCpQzcqSpAiPTirfKVb1XMM");
             Console.WriteLine(result);
         }
 
@@ -231,30 +235,30 @@ namespace UnitTest
         [Fact]
         public void CreateAccount()
         {
-           var result= _client.Account.CreateAccount("sanjiv12345", "{}",
-                "SPH6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz",
-                "SPH6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz",
-                "SPH6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz");
+           var result= _client.Account.CreateAccount("sanjiv2", "{}",
+                "SPH6zDAKpmQFATYSFC57hMCcCXjbDwQgG8YwkxbLUokGyXwXAjhad",
+                "SPH6zDAKpmQFATYSFC57hMCcCXjbDwQgG8YwkxbLUokGyXwXAjhad",
+                "SPH6zDAKpmQFATYSFC57hMCcCXjbDwQgG8YwkxbLUokGyXwXAjhad","initminer","5JKHcAHiZnPVMzzeSGrWcRPhkjFZsPy2Pf36CVaz8W2WmMP4L1w");
             Console.WriteLine(result);
         }
         
         [Fact]
         public void GetAccount()
         {
-            var result=_client.Account.GetAccount("nXhMW8wWUL4d5eRFLNLzCfKvX7X");
+            var result=_client.Account.GetAccount("sanjiv");
             Console.WriteLine(result);
         }
 
         [Fact]
         public void DeleteAccount()
         {
-            _client.Account.DeleteAccount("sajniv", PrivateKey);
+            _client.Account.DeleteAccount("sanjiv12345678910", PrivateKey);
 
         }
         [Fact]
         public void update_account()
         {
-            var result=_client.Account.UpdateAccount("rumGMWVHCxedjhSHMBQYk3o9LVD", "{}",
+            var result=_client.Account.UpdateAccount("sanjiv", "{}",
                 "SPH7GvbxZTntaqCnNSsuai1Dguejh23RKJHmu2uuR869BLbM3yWPK",
                 "SPH7GvbxZTntaqCnNSsuai1Dguejh23RKJHmu2uuR869BLbM3yWPK",
                 "SPH7GvbxZTntaqCnNSsuai1Dguejh23RKJHmu2uuR869BLbM3yWPK",
@@ -276,7 +280,7 @@ namespace UnitTest
         [Fact]
         public void GetVestingBalance()
         {
-            var result=_client.Account.GetVestingBalance("2hPgEeeuitiNeM8bCCQWTKx9u6wx");
+            var result=_client.Account.GetVestingBalance("sanjiv");
             Console.WriteLine(result);       
         }
         [Fact]
@@ -312,8 +316,7 @@ namespace UnitTest
         [Fact]
         public void CreateSimpleMultisigAuthority()
         {
-            List<string> pubkeys = new List<string>();
-            pubkeys.Add("SPH5o2V32evStYJwAgewNmsvtk7n178CygWmwdEVR6uyThATBwVwi");
+            var pubkeys = new List<string> {"SPH5o2V32evStYJwAgewNmsvtk7n178CygWmwdEVR6uyThATBwVwi"};
             var result=_client.Account.CreateSimpleMultisigAuthority(pubkeys,4);
             Console.WriteLine(result);       
         }
@@ -326,8 +329,7 @@ namespace UnitTest
         [Fact]
         public void CreateSimpleAuthority()
         {
-            List<string> pubkeys = new List<string>();
-            pubkeys.Add("SPH5o2V32evStYJwAgewNmsvtk7n178CygWmwdEVR6uyThATBwVwi");
+            var pubkeys = new List<string> {"SPH5o2V32evStYJwAgewNmsvtk7n178CygWmwdEVR6uyThATBwVwi"};
             var result=_client.Account.CreateSimpleMultiManagedAuthority(pubkeys,5);
             Console.WriteLine(result);       
         }
@@ -343,15 +345,15 @@ namespace UnitTest
         public void Transfer()
         {
             
-            _client.Asset.Transfer("rumGMWVHCxedjhSHMBQYk3o9LVD", "2hPgEeeuitiNeM8bCCQWTKx9u6wx", "10.00 SPHTX",
-                "Hello-test","5KUbCiBJac8omkwgftfkp8hUCgh5k2H3mgoqMDN7bfzDLLEK2i8");
+            _client.Asset.Transfer("rumGMWVHCxedjhSHMBQYk3o9LVD", "2hPgEeeuitiNeM8bCCQWTKx9u6wx", "250000.00 SPHTX",
+                "Hello-test","5JKHcAHiZnPVMzzeSGrWcRPhkjFZsPy2Pf36CVaz8W2WmMP4L1w");
 
         }
 
         [Fact]
         public void TransferToVesting()
         {
-            _client.Asset.TransferToVesting("test101", "test101", "100.000 SPHTX", PrivateKey);
+            _client.Asset.TransferToVesting("initminer", "martyn", "250000.000 SPHTX", "5JKHcAHiZnPVMzzeSGrWcRPhkjFZsPy2Pf36CVaz8W2WmMP4L1w");
 
         }
 

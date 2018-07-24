@@ -14,7 +14,7 @@ namespace Alexandria.net.Exceptions
         /// </summary>
         /// <param name="errorresponse"></param>
         public SophiaBlockchainException(string errorresponse)
-        {
+        {          
             ErrMsg = errorresponse;
         }
     }

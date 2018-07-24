@@ -94,6 +94,8 @@
         private const string GetAccountNameFromSeed = "get_account_name_from_seed";
         private const string CalculateFee = "calculate_fee";
         private const string AddFee = "add_fee";
+        private const string GetTransactionDigestServer = "get_transaction_digest";
+        private const string AddSignatureServer = "add_signature";
         
         
 
@@ -285,6 +287,11 @@
                     return CalculateFee;
                 case "AddFee":
                     return AddFee;
+                case "GetTransactionDigestServer":
+                    return GetTransactionDigestServer;
+                case "AddSignatureServer":
+                    return AddSignatureServer;
+                
             }
             return string.Empty;
         }

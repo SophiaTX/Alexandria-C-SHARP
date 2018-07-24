@@ -157,6 +157,30 @@ namespace Alexandria.net.API
         }
 
         /// <summary>
+        /// Creates digest of JSON formatted transaction
+        /// </summary>
+        /// <param name="transaction">the transaction to digest</param>
+        /// <returns>Returns true if success or false for failed try</returns>
+        public GetTransactionDigestResponse GetTransactionDigestServer(TransactionResponse transaction)
+        {
+           
+                try
+                {
+                    var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+                    var @params = new ArrayList {transaction.Result};
+                    var result= SendRequest(reqname, @params);
+                    var contentdata = JsonConvert.DeserializeObject<GetTransactionDigestResponse>(result);
+                    return contentdata;
+                }
+                catch (Exception ex)
+                {
+                    _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+                    throw;
+                }
+            
+
+        }
+        /// <summary>
         /// Creates a signature for the given private key and transaction digest
         /// </summary>
         /// <param name="digest">string digest</param>
@@ -179,7 +203,7 @@ namespace Alexandria.net.API
                 throw;
             }
         }
-
+        
         /// <summary>
         /// Adds signature to JSON formatted transaction
         /// </summary>
@@ -205,6 +229,28 @@ namespace Alexandria.net.API
             }
         }
 
+        /// <summary>
+        /// Adds signature to JSON formatted transaction
+        /// </summary>
+        /// <param name="transaction">string transaction</param>
+        /// <param name="signature">string signature</param>
+        /// <returns>Returns true if success or false for failed try</returns>
+        public SignedTransactionResponse AddSignatureServer(TransactionResponse transaction, string signature)
+        {
+            try
+            {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+                var @params = new ArrayList {transaction.Result,signature};
+                var signedTransaction= SendRequest(reqname, @params);
+                var result = JsonConvert.DeserializeObject<SignedTransactionResponse>(signedTransaction);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+                throw;
+            }
+        }
         /// <summary>
         /// Returns public_key for given private_key
         /// </summary>

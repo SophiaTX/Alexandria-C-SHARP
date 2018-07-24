@@ -3,6 +3,6 @@
     public class PrizeFeed
     {
         public string Value{ get; set; }
-        public string feed { get; set; }
+        public PrizeFeedQuote feed { get; set; }
     }
 }

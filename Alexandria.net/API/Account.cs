@@ -389,8 +389,8 @@ namespace Alexandria.net.API
         /// <param name="privatekey">the private key used for the digest</param>
         /// <returns>the account creation response details</returns>
         public TransactionResponse CreateAccount(string seed, string jsonMeta, string ownerkey,
-            string activekey, string memokey, string witnessname = "initminer",
-            string privatekey = "5JKHcAHiZnPVMzzeSGrWcRPhkjFZsPy2Pf36CVaz8W2WmMP4L1w")
+            string activekey, string memokey, string witnessname,
+            string privatekey)
         {
             try
             {
@@ -434,4 +434,6 @@ namespace Alexandria.net.API
             }
         }
     }
+
+   
 }

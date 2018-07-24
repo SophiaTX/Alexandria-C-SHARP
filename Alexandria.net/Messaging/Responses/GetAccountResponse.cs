@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace Alexandria.net.Messaging.Responses
 {
@@ -16,6 +17,6 @@ namespace Alexandria.net.Messaging.Responses
         /// the account details result data
         /// </summary>
         [JsonProperty("result")]
-        public AccountDetails Result { get; set; }
+        public List<AccountDetails> Result { get; set; }
     }
 }
