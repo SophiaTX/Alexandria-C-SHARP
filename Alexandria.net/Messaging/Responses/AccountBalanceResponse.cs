@@ -1,4 +1,4 @@
-﻿namespace Alexandria.net.Messaging.Responses.DTO
+﻿namespace Alexandria.net.Messaging.Responses
 {
   
         public class AccountBalanceResponse

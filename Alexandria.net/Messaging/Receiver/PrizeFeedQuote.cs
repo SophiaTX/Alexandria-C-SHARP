@@ -10,13 +10,13 @@ namespace Alexandria.net.Messaging.Receiver
         /// <summary>
         /// the base price
         /// </summary>
-        
-        public string @base { get; set; }
+        [JsonProperty("base")]
+        public string Base { get; set; }
 
         /// <summary>
         /// the quote price
         /// </summary>
-       
-        public string quote { get; set; }
+        [JsonProperty("quote")]
+        public string Quote { get; set; }
     }
 }

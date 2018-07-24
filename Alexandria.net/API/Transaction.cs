@@ -3,14 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using Alexandria.net.Communication;
-using Alexandria.net.Enums;
 using Alexandria.net.Logging;
-using Alexandria.net.Messaging.Receiver;
 using Alexandria.net.Messaging.Responses;
-using Alexandria.net.Messaging.Responses.DTO;
 using Alexandria.net.Settings;
 using Newtonsoft.Json;
-using AccountResponse = Alexandria.net.Messaging.Responses.DTO.AccountResponse;
+using AccountResponse = Alexandria.net.Messaging.Responses.AccountResponse;
 
 namespace Alexandria.net.API
 {
@@ -281,15 +278,15 @@ namespace Alexandria.net.API
 		/// Calculate the possible fees deduction for the selected operation
 		/// </summary>
 		/// <param name="operation">Operation object</param>
-		/// <param name="Symbol">Asset Symbol</param>
+		/// <param name="symbol">Asset Symbol</param>
 		/// <typeparam name="T">Type of operation object</typeparam>
 		/// <returns>Calculated fees for the transaction</returns>
-		public FeesResponse CalculateFee<T>(T operation, string Symbol)
+		public FeesResponse CalculateFee<T>(T operation, string symbol)
 		{
 			try
 			{
 				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-				var @params = new ArrayList {operation,Symbol};
+				var @params = new ArrayList {operation,symbol};
 				var result= SendRequest(reqname, @params);
 				var contentdata = JsonConvert.DeserializeObject<FeesResponse>(result);
 				return contentdata;
@@ -304,15 +301,15 @@ namespace Alexandria.net.API
 		/// Add the calculated fees to the transaction
 		/// </summary>
 		/// <param name="operation">Operation object</param>
-		/// <param name="Fee">Calculated Fees</param>
+		/// <param name="fee">Calculated Fees</param>
 		/// <typeparam name="T">Type of operation object</typeparam>
 		/// <returns>object</returns>
-		public AccountResponse AddFee<T>(T operation, string Fee)
+		public AccountResponse AddFee<T>(T operation, string fee)
 		{
 			try
 			{
 				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-				var @params = new ArrayList {operation,Fee};
+				var @params = new ArrayList {operation,fee};
 				var result= SendRequest(reqname, @params);
 				var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
 				return contentdata;

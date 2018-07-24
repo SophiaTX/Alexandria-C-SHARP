@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Alexandria.net.Enums;
 using Alexandria.net.Messaging.Receiver;
-using Alexandria.net.Messaging.Responses.DTO;
+using Newtonsoft.Json;
 using Xunit;
 
 
@@ -61,22 +61,31 @@ namespace UnitTest
             _client.Witness.VoteForWitness("test101", "initminer", true, PrivateKey);
         }
 
+
         [Fact]
         public void updateWitness()
         {
-            var feed = new Dictionary<string, PrizeFeedQuote>
+            var pricefeed = new List<PrizeFeedQuoteMessage>
             {
-                {"USD", new PrizeFeedQuote {@base = "1 USD", quote = "0.8967 SPHTX"}}
+                new PrizeFeedQuoteMessage
+                {
+                    Currency = "USD",
+                    PrizeFeedQuote = new PrizeFeedQuote {Base = "1 USD", Quote = "0.8967 SPHTX"}
+                },
+                new PrizeFeedQuoteMessage
+                {
+                    Currency = "GBP",
+                    PrizeFeedQuote = new PrizeFeedQuote {Base = "1 GBP", Quote = "0.6967 SPHTX"}
+                }
             };
-            var feeds = new List<Dictionary<string, PrizeFeedQuote>> {feed};
 
-            var pricefeed = new List<List<Dictionary<string, PrizeFeedQuote>>> {feeds};
+
             var result = _client.Witness.UpdateWitness("rumGMWVHCxedjhSHMBQYk3o9LVD", "http://www.testminer.com",
-                "SPH7GvbxZTntaqCnNSsuai1Dguejh23RKJHmu2uuR869BLbM3yWPK", "10.000 SPHTX",
-                1024*67, pricefeed, "5KUbCiBJac8omkwgftfkp8hUCgh5k2H3mgoqMDN7bfzDLLEK2i8");
+                "SPH7GvbxZTntaqCnNSsuai1Dguejh23RKJHmu2uuR869BLbM3yWPK", "0.001 SPHTX",
+                1024 * 67, pricefeed, "5KUbCiBJac8omkwgftfkp8hUCgh5k2H3mgoqMDN7bfzDLLEK2i8");
             Console.WriteLine(result);
         }
-        
+
         #endregion
 
         #region Transaction Methods

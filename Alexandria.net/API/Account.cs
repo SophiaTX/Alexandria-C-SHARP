@@ -4,12 +4,10 @@ using System.Collections.Generic;
 using System.Reflection;
 using Alexandria.net.Communication;
 using Alexandria.net.Logging;
-using Alexandria.net.Messaging.Receiver;
 using Alexandria.net.Messaging.Responses;
-using Alexandria.net.Messaging.Responses.DTO;
 using Alexandria.net.Settings;
 using Newtonsoft.Json;
-using AccountResponse = Alexandria.net.Messaging.Responses.DTO.AccountResponse;
+using AccountResponse = Alexandria.net.Messaging.Responses.AccountResponse;
 
 namespace Alexandria.net.API
 {
@@ -106,14 +104,14 @@ namespace Alexandria.net.API
         /// </summary>
         /// <param name="accountName">Input string accountName</param>
         /// <returns>Returns the Memo Key of the corresponding account</returns>
-        public getMemoKeyresponse GetMemoKey(string accountName)
+        public GetMemoKeyResponse GetMemoKey(string accountName)
         {
             try
             {
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {accountName};
                 var result = SendRequest(reqname, @params);
-                return JsonConvert.DeserializeObject<getMemoKeyresponse>(result);
+                return JsonConvert.DeserializeObject<GetMemoKeyResponse>(result);
             }
             catch (Exception ex)
             {
