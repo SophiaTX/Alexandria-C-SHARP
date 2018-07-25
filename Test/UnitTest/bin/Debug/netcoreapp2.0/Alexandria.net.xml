@@ -1,0 +1,2335 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Alexandria.net</name>
+    </assembly>
+    <members>
+        <member name="T:Alexandria.net.API.Account">
+            <inheritdoc />
+            <para>
+            Sophia Blockchain Account functions
+            </para>
+        </member>
+        <member name="M:Alexandria.net.API.Account.#ctor(Alexandria.net.Settings.IConfig)">
+            <summary>
+            
+            </summary>
+            <param name="config"></param>
+        </member>
+        <member name="M:Alexandria.net.API.Account.AccountExists(System.String)">
+            <summary>
+            Returns true if an account with given name exists.
+            </summary>
+            <param name="accountName">Input string accountName</param>
+            <returns>Returns true if success and false for failed try</returns>
+        </member>
+        <member name="M:Alexandria.net.API.Account.HasPrivateKeys(System.Byte[])">
+            <summary>
+            Returns true if the library has imported the private key corresponding to the given public key.
+            </summary>
+            <param name="key">Input byte[] key</param>
+            <returns>Returns true if success and false for failed try</returns>
+        </member>
+        <member name="M:Alexandria.net.API.Account.HasAccountOwnerPrivateKey(System.String)">
+            <summary>
+            Returns true if the library has imported the private key corresponding to the account's owner key.In case of
+            authorities consisting of more than one key(mutlisig), it returns true if and only if the library has
+            sufificient keys to resolve the owner autority.
+            </summary>
+            <param name="accountName">Input string accountName</param>
+            <returns>Returns true if success and false for failed try</returns>
+        </member>
+        <member name="M:Alexandria.net.API.Account.HasAccountActivePrivateKey(System.String)">
+            <summary>
+            Returns true if the library has imported the private key corresponding to the account's active key.In case of
+            authorities consisting of more than one key(mutlisig), it returns true if and only if the library has
+            sufficient keys to resolve the active autority.
+            </summary>
+            <param name="accountName">Input string accountName</param>
+            <returns>Returns true if success and false for failed try</returns>
+        </member>
+        <member name="M:Alexandria.net.API.Account.HasAccountMemoPrivateKey(System.String)">
+            <summary>
+            Returns true if the library has imported the private key corresponding to the account's memo key.
+            </summary>
+            <param name="accountName">Input string accountName</param>
+            <returns>Returns true if success and false for failed try</returns>
+        </member>
+        <member name="M:Alexandria.net.API.Account.GetActiveAuthority(System.String)">
+            <summary>
+            Returns the active authority of the given account.Object authority has the following structure:
+            </summary>
+            <param name="accountName">Input string accountName</param>
+            <returns>Returns the Json object with the details about the active authority</returns>
+        </member>
+        <member name="M:Alexandria.net.API.Account.GetOwnerAuthority(System.String)">
+            <summary>
+            Returns the owner authority of the given account.
+            </summary>
+            <param name="accountName">Input string accountName</param>
+            <returns>Returns the Json object with the deails about the owner authority</returns>
+        </member>
+        <member name="M:Alexandria.net.API.Account.GetMemoKey(System.String)">
+            <summary>
+            Returns the memo key of the given account.
+            </summary>
+            <param name="accountName">Input string accountName</param>
+            <returns>Returns the Memo Key of the corresponding account</returns>
+        </member>
+        <member name="M:Alexandria.net.API.Account.GetAccountBalance(System.String)">
+            <summary>
+            Get SPHTX balance of the account.
+            </summary>
+            <param name="accountName">Input string accountName</param>
+            <returns>Returns the account balance as a Json object</returns>
+        </member>
+        <member name="M:Alexandria.net.API.Account.GetVestingBalance(System.String)">
+            <summary>
+            Get SPHTX balance of the vesting account.
+            </summary>
+            <param name="accountName">Input string accountName</param>
+            <returns>Returns the account balance as a Json object</returns>
+        </member>
+        <member name="M:Alexandria.net.API.Account.CreateSimpleAuthority(System.Byte[])">
+            <summary>
+            Creates authority resolvable with signature corresponding to the given pub_key.
+            </summary>
+            <param name="pubKey">Input byte[] pubKey</param>
+            <returns>Returns Json object with details combining</returns>
+        </member>
+        <member name="M:Alexandria.net.API.Account.CreateSimpleMultisigAuthority(System.Collections.Generic.List{System.Byte[]},System.UInt64)">
+            <summary>
+            Creates authority resolvable with given number of signatures out of the given set of keys.
+            </summary>
+            <param name="pubKeys">Input List of Byte[] pubKeys</param>
+            <param name="requiredSignatures">Input ulong requiredSignatures</param>
+            <returns>Returns Json object with details combining</returns>
+        </member>
+        <member name="M:Alexandria.net.API.Account.CreateSimpleManagedAuthority(System.String)">
+            <summary>
+            Creates authority resolvable with a given managing account.
+            </summary>
+            <param name="managingAccountName">string managingAccountName</param>
+            <returns>Returns Json object with details combining</returns>
+        </member>
+        <member name="M:Alexandria.net.API.Account.CreateSimpleMultiManagedAuthority(System.Collections.Generic.List{System.String},System.UInt32)">
+            <summary>
+            Creates authority resolvable with given number of​ managing accounts.
+            </summary>
+            <param name="managingAccounts">Input List of string managingAccounts</param>
+            <param name="requiredSignatures">Input uint requiredSignatures</param>
+            <returns>Returns Json object with details combining</returns>
+        </member>
+        <member name="M:Alexandria.net.API.Account.UpdateAccount(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Update account authorities.
+            </summary>
+            <param name="accountName">Input string accountName</param>
+            <param name="owner">Input Authority owner</param>
+            <param name="active">Input Authority active</param>
+            <param name="memo">Input byte[] memo</param>
+            <returns>Returns true if success or false for failed try</returns>
+        </member>
+        <member name="M:Alexandria.net.API.Account.SetVotingProxy(System.String,System.String,System.String)">
+            <summary>
+            Set the voting proxy For an account.
+            If a user does Not wish To take an active part In voting, they can choose to allow another account to vote their stake.
+            Setting a vote proxy does Not remove your previous votes from the blockchain,
+            they remain there but are ignored. If you later null out your vote proxy, your previous votes will take effect again.
+            This setting can be changed at any time.
+            </summary>
+            <param name="accountToModify">the name Or id Of the account To update</param>
+            <param name="proxy">the name Of account that should proxy To, Or empty String To have no proxy </param>
+            <param name="privateKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.Account.GetAccount(System.String)">
+            <summary>
+            Gets the account information
+            </summary>
+            <param name="accountName">the account name the information is required for</param>
+            <returns>the account information</returns>
+        </member>
+        <member name="M:Alexandria.net.API.Account.CreateAccount(System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Creates the new sophiatx account
+            </summary>
+            <param name="witnessname">the name of the witness who will create the account.  Please use initminer as default</param>
+            <param name="accountname">the account name to create</param>
+            <param name="jsonMeta">json formatted details of account</param>
+            <param name="ownerkey">the owner key</param>
+            <param name="activekey">the active key</param>
+            <param name="memokey">the memo key</param>
+            <param name="privatekey">the private key used for the digest</param>
+            <returns>the account creation response details</returns>
+        </member>
+        <member name="M:Alexandria.net.API.Account.DeleteAccount(System.String,System.String)">
+            <summary>
+            Deletes the account from the blockchain related to the given name of the account
+            </summary>
+            <param name="accountName"></param>
+            <param name="privateKey"></param>
+            <returns>Returns object containing information about the new operation created</returns>
+        </member>
+        <member name="T:Alexandria.net.API.Application">
+            <inheritdoc />
+            <para>
+            WSophia Blockchain Wallet functions
+            </para>
+        </member>
+        <member name="M:Alexandria.net.API.Application.#ctor(Alexandria.net.Settings.IConfig,System.Boolean)">
+            <summary>
+            </summary>
+            <param name="config"></param>
+            <param name="wallet"></param>
+        </member>
+        <member name="M:Alexandria.net.API.Application.CreateApplication(System.String,System.String,System.String,System.String,System.Byte,System.String)">
+            <summary>
+             This method will create new application object. There is a fee associated with account creation
+             that is paid by the creator. The current account creation fee can be found with the
+             'info' wallet command.
+            </summary>
+            <param name="author">The account creating the new application</param>
+            <param name="appName">The unique name for new application</param>
+            <param name="url">The url of the new application</param>
+            <param name="metaData">The meta data of new application</param>
+            <param name="priceParam">The price parameter that specifies billing for the app (1 or 0)</param>
+            <param name="privateKey"></param>
+        </member>
+        <member name="M:Alexandria.net.API.Application.UpdateApplication(System.String,System.String,System.String,System.String,System.String,System.Byte,System.String)">
+            <summary>
+            This method will update existing application object.
+            </summary>
+            <param name="author">The author of application</param>
+            <param name="appName">The name of app that will be updated</param>
+            <param name="newAuthor">The new author</param>
+            <param name="url">Updated url</param>
+            <param name="metaData">Updated meta data</param>
+            <param name="priceParam">Updated price param</param>
+            <param name="privateKey"></param>
+        </member>
+        <member name="M:Alexandria.net.API.Application.DeleteApplication(System.String,System.String,System.String)">
+            <summary>
+            This method will delete specified application object.
+            </summary>
+            <param name="author">The author of application that will be deleted</param>
+            <param name="appName">The name of app that will be deleted</param>
+            <param name="privateKey"></param>
+        </member>
+        <member name="M:Alexandria.net.API.Application.BuyApplication(System.String,System.Int64,System.String)">
+            <summary>
+            This method will create application buy object
+            </summary>
+            <param name="buyer">The buyer of application</param>
+            <param name="appId">The id of app that buyer will buy</param>
+            <param name="privateKey"></param>
+        </member>
+        <member name="M:Alexandria.net.API.Application.CancelApplicationBuying(System.String,System.String,System.Int64,System.String)">
+             <summary>
+             This method will cancel application buy object
+             </summary>
+             <param name="appOwner">The owner of bought application
+            </param>
+             <param name="buyer">The buyer of application</param>
+             <param name="appId">The id of bought app</param>
+            <param name="privateKey"></param>
+        </member>
+        <member name="M:Alexandria.net.API.Application.GetApplicationBuyings(System.String,Alexandria.net.Enums.SearchType,System.UInt32)">
+            <summary>
+            Get all app buyings by app_name or buyer
+            </summary>
+            <param name="Name">Application id or buyers name</param>
+            <param name="buyerName"></param>
+            <param name="searchType">search_type One of "by_buyer", "by_app_id"</param>
+            <param name="count">count Number of items to retrieve</param>
+            <param name="privateKey"></param>
+        </member>
+        <member name="T:Alexandria.net.API.Asset">
+            <inheritdoc />
+            <para>
+            Sophia Blockchain Asset functions
+            </para>
+        </member>
+        <member name="M:Alexandria.net.API.Asset.#ctor(Alexandria.net.Settings.IConfig)">
+            <summary>
+            asset constructor
+            </summary>
+            <param name="config">the Configuration paramaters for the endpoint and ports</param>
+        </member>
+        <member name="M:Alexandria.net.API.Asset.Transfer(System.String,System.String,System.String,System.String,System.String)">
+            <summary> 
+            Trnasfer given assets from one user to other one.
+            </summary>
+            <param name="from">string from</param>
+            <param name="to">string to</param>
+            <param name="memo">string memo</param>
+            <param name="amount">the amount to transfer "10.0000 SPHTX"</param>
+            <param name="privateKey"></param>
+            <returns>Returns Transaction object</returns>
+        </member>
+        <member name="M:Alexandria.net.API.Asset.TransferToVesting(System.String,System.String,System.String,System.String)">
+            <summary>
+            Transfer STEEM into a vesting fund represented by vesting shares (VESTS). VESTS are required to vesting
+            for a minimum of one coin year and can be withdrawn once a week over a two year withdraw period.
+            VESTS are protected against dilution up until 90% of STEEM is vesting.
+            </summary>
+            <param name="from">The account the STEEM is coming fro</param>
+            <param name="to">The account getting the VESTS</param>
+            <param name="amount">The amount of STEEM to vest i.e. "100.00 STEEM"</param>
+            <param name="privateKey"></param>
+            <returns>Returns Transaction object</returns>
+        </member>
+        <member name="M:Alexandria.net.API.Asset.WithdrawVesting(System.String,System.String,System.String)">
+            <summary>
+            Set up a vesting withdraw request. The request Is fulfilled once a week over the next two years (104 weeks).
+            The amount of vests to withdrawover the Next two
+                   years. Each week (amount/104) shares are withdrawn And depositted
+                   back as STEEM. i.e. "10.000000 VESTS"
+            </summary>
+            <param name="from">account vests are drawn from </param>
+            <param name="vestingShares"> The amount should be in the format "10.0000 VESTS" showing amount and currency symbol</param>
+            <param name="privateKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.Asset.GetAccountUiaBalance(System.String,System.String)">
+            <summary>
+            Returns the balance of the given account and UIA
+            </summary>
+            <param name="accountName">string accountName</param>
+            <param name="assetSymbol">string assetSymbol</param>
+            <returns>Returns retruns ulong Accournt balance</returns>
+        </member>
+        <member name="M:Alexandria.net.API.Asset.CreateUia(System.String,Alexandria.net.Messaging.Responses.Authority,System.UInt64,System.String)">
+            <summary>
+            Create UIA for the given account authority
+            </summary>
+            <param name="ownerAccountName">string ownerAccountName</param>
+            <param name="managementAuthority">Authority managementAuthority</param>
+            <param name="maxSupply">ulong maxSupply</param>
+            <param name="assetSymbol">string assetSymbol</param>
+            <returns>Returns true if success or false for failed try</returns>
+        </member>
+        <member name="M:Alexandria.net.API.Asset.IssueUia(System.String,System.UInt64,System.String)">
+            <summary>
+            Issues an UIA for the Receiver account of given ammount
+            </summary>
+            <param name="reveiverAccountName">string reveiverAccountName</param>
+            <param name="amount">ulong amount</param>
+            <param name="assetSymbol">string assetSymbol</param>
+            <returns>Returns true if success or false for failed try</returns>
+        </member>
+        <member name="M:Alexandria.net.API.Asset.BurnUia(System.String,System.UInt64,System.String)">
+            <summary>
+             Vanish given amount of UIA 
+            </summary>
+            <param name="accountName">string accountName</param>
+            <param name="amount">ulong amount</param>
+            <param name="assetSymbol">string assetSymbol</param>
+            <returns>Returns true if success or false for failed try</returns>
+        </member>
+        <member name="M:Alexandria.net.API.Asset.GetUiaAuthority(System.String)">
+            <summary>
+            Check for the authority assigned to given UIA, identify by Symbol
+            </summary>
+            <param name="assetSymbol">string assetSymbol</param>
+            <returns>Returns Json object with details combining</returns>
+        </member>
+        <member name="M:Alexandria.net.API.Asset.HasUiaPrivateKey(System.String)">
+            <summary>
+            Checks if the given UIA has a private key, identify by Sumbol
+            </summary>
+            <param name="assetSymbol">string assetSymbol</param>
+            <returns>Returns true if success or false for failed try</returns>
+        </member>
+        <member name="T:Alexandria.net.API.Data">
+            <inheritdoc />
+            <summary>
+            Sophia Blockchain Data functions
+            </summary>
+        </member>
+        <member name="M:Alexandria.net.API.Data.#ctor(Alexandria.net.Settings.IConfig,Alexandria.net.Settings.IBlockchainConfig)">
+            <summary>
+            
+            </summary>
+            <param name="config">the Configuration paramaters for the endpoint and ports</param>
+            <param name="blockchainConfig"></param>
+        </member>
+        <member name="M:Alexandria.net.API.Data.Send(Alexandria.net.Messaging.Receiver.SenderData)">
+            <summary>
+            
+            </summary>
+            <param name="senderdata"></param>
+            <param name="privateKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.Data.SendBinary(Alexandria.net.Messaging.Receiver.SenderData)">
+            <summary>
+            Send custom data data
+            </summary>
+            <param name="sender">from Sender</param>
+            <param name="recipients">to List of receivers</param>
+            <param name="appId">app_id Application ID</param>
+            <param name="document">data Data formatted in base58</param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.Data.Receive(System.UInt64,System.String,Alexandria.net.Enums.SearchType,System.String,System.UInt32)">
+            <summary>
+            Allowed options for search_type are "by_sender", "by_recipient", "by_sender_datetime", "by_recipient_datetime".
+            Account is then either sender or recevier, and start is either index od ISO time stamp.
+            </summary>
+            <param name="appId">The Id of the application which we are receiving for</param>
+            <param name="searchType">based on the Search Type Enum</param>
+            <param name="accountName">Account Owner - sender or receiver</param>
+            <param name="start">Start by value - index or ISO timestamps</param>
+            <param name="count"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.Data.MakeCustomJsonOperation(System.String,System.Collections.Generic.List{System.String},System.UInt32,System.String)">
+            <summary>
+            </summary>
+            <param name="sender">string sender</param>
+            <param name="recipients">List of string recipients</param>
+            <param name="appId">ulong appId</param>
+            <param name="document">string document</param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.Data.MakeCustomBinaryOperation(System.UInt64,System.String,System.Collections.Generic.List{System.String},System.String)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="recipients"></param>
+            <param name="appId"></param>
+            <param name="document"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.Data.MakeCustomBinaryBase58Operation(System.String,System.Collections.Generic.List{System.String},System.UInt64,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="sender"></param>
+            <param name="recipients"></param>
+            <param name="appId"></param>
+            <param name="document"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.Data.GetReceivedDocuments(System.UInt64,System.String,Alexandria.net.Enums.SearchType,System.String,System.UInt32)">
+            <summary>
+            Allowed options for search_type are "by_sender", "by_recipient", "by_sender_datetime", "by_recipient_datetime".
+            Account is then either sender or recevier, and start is either index od ISO time stamp.
+            </summary>
+            <param name="appId"></param>
+            <param name="searchType"></param>
+            <param name="account"></param>
+            <param name="start"></param>
+            <param name="count"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Alexandria.net.API.Key">
+            <inheritdoc />
+            <para>
+            Sophia Blockchain Key functions
+            </para>
+        </member>
+        <member name="M:Alexandria.net.API.Key.generate_private_key(System.Byte[],System.Byte[])">
+            <summary>
+            Creates a private key
+            </summary>
+            <param name="privateKey">byte[52] private_key</param>
+            <param name="publickey">the public key</param>
+            <returns>Returns true if success or false for failed try</returns>
+        </member>
+        <member name="M:Alexandria.net.API.Key.#ctor(Alexandria.net.Settings.IConfig)">
+            <summary>
+            
+            </summary>
+            <param name="config">the Configuration paramaters for the endpoint and ports</param>
+        </member>
+        <member name="M:Alexandria.net.API.Key.ListKeys">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:Alexandria.net.API.Key.GeneratePrivateKey(System.Byte[],System.Byte[])" -->
+        <member name="M:Alexandria.net.API.Key.GetTransactionDigest(System.String,System.String,System.Byte[])">
+            <summary>
+            Creates digest of JSON formatted transaction
+            </summary>
+            <param name="transaction">the transaction to digest</param>
+            <param name="chainId">the id in the blockchain</param>
+            <param name="digest">the digest bytes, returned digest of transaction (size 64)</param>
+            <returns>Returns true if success or false for failed try</returns>
+        </member>
+        <member name="M:Alexandria.net.API.Key.SignDigest(System.String,System.String,System.Byte[])">
+            <summary>
+            Creates a signature for the given private key and transaction digest
+            </summary>
+            <param name="digest">string digest</param>
+            <param name="privatekey">string privatekey</param>
+            <param name="signeddigest"> byte[] signeddigest, returns signature (size 130)</param>
+            <returns>Returns true if success or false for failed try</returns>
+        </member>
+        <member name="M:Alexandria.net.API.Key.AddSignature(System.String,System.String,System.Byte[])">
+            <summary>
+            Adds signature to JSON formatted transaction
+            </summary>
+            <param name="transaction">string transaction</param>
+            <param name="signature">string signature</param>
+            <param name="signedtx">byte[] signedtx, returned signed transaction (size variable, depends on size of transaction on input_)</param>
+            <returns>Returns true if success or false for failed try</returns>
+        </member>
+        <member name="M:Alexandria.net.API.Key.GetPublicKey(System.String,System.Byte[])">
+            <summary>
+            Returns public_key for given private_key
+            </summary>
+            <param name="privateKey">Private key in WIF format</param>
+            <param name="publicKey">return paramter public key derived from private_key size 53</param>
+            <returns>return paramter public key derived from private_key</returns>
+        </member>
+        <member name="M:Alexandria.net.API.Key.GenerateKeyPairFromBrainKey(System.String,System.Byte[],System.Byte[])">
+            <summary>
+            Generates new private/public key pair from brian key.
+            </summary>
+            <param name="brainKey"></param>
+            <param name="privateKey"></param>
+            <param name="publicKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.Key.VerifySignature(System.String,System.String,System.String)">
+            <summary>
+            Function for verifying signature base on digest and public key
+            </summary>
+            <param name="digest">digest that will be singed</param>
+            <param name="publicKey">corresponding public key to private_key used fo signing</param>
+            <param name="signedDigest">digest singed by private_key</param>
+            <returns>true if signature is correct</returns>
+        </member>
+        <member name="M:Alexandria.net.API.Key.EncryptMemo(System.String,System.String,System.String,System.Byte[])">
+            <summary>
+            Returns the encrypted memo
+            </summary>
+            <param name="memo">memo that should be encrypted</param>
+            <param name="privateKey">Private key of sender of memo</param>
+            <param name="publicKey">Public key of recipient</param>
+            <param name="encryptedMemo">return value of encrypted memo, byte[1024]</param>
+            <returns>true if signature is correct</returns>
+        </member>
+        <member name="M:Alexandria.net.API.Key.DecryptMemo(System.String,System.String,System.String,System.Byte[])">
+            <summary>
+            Returns the decrypted memo if possible given private keys
+            </summary>
+            <param name="memo">memo that should be encrypted</param>
+            <param name="privateKey">Private key of recipient of memo</param>
+            <param name="publicKey">Public key of sender</param>
+            <param name="decryptedMemo">decrypted memo, byte[1024]</param>
+            <returns>true if signature is correct</returns>
+        </member>
+        <member name="M:Alexandria.net.API.Key.SuggestBrainKey">
+            <summary>
+            Create a passphrase for users to remember easily and use ot to generate corresponding public and private keys
+            </summary>
+            <returns>Returns a passphrase</returns>
+        </member>
+        <member name="M:Alexandria.net.API.Key.NormalizeBrainKey(System.String)">
+            <summary>
+            Normalizes the case of passphrase for correct key generation
+            </summary>
+            <param name="brainKey">distorted passphrase</param>
+            <returns>Returns normalized Passphrase</returns>
+        </member>
+        <member name="T:Alexandria.net.API.Transaction">
+            <inheritdoc />
+            <para>
+            Sophia Blockchain transaction functions
+            </para>
+        </member>
+        <member name="M:Alexandria.net.API.Transaction.#ctor(Alexandria.net.Settings.IConfig)">
+            <summary>
+            Wallet Constructor
+            </summary>
+            <param name="config">the Configuration paramaters for the endpoint and ports</param>
+        </member>
+        <member name="M:Alexandria.net.API.Transaction.About">
+            <summary>
+            Returns info such as client version, git version of graphene/fc, version of boost, openssl.
+            </summary>
+            <returns>Returns compile time info And client And dependencies versions</returns>
+        </member>
+        <member name="M:Alexandria.net.API.Transaction.GetBlock(System.UInt32)">
+            <summary>
+            Returns information about the block
+            </summary>
+            <param name="num">the block num</param>
+            <returns>Public block data On the blockchain</returns>
+        </member>
+        <member name="M:Alexandria.net.API.Transaction.GetFeedHistory(System.String)">
+            <summary>
+            get current price feed history
+            @returns Price feed history data on the blockchain
+            </summary>
+            <returns>Returns object with Feed details</returns>
+        </member>
+        <member name="M:Alexandria.net.API.Transaction.GetTransaction(System.String)">
+            <summary>
+            Get transaction by ID.
+            </summary>
+            <param name="trxId"></param>
+            <returns>Returns object with transaction details</returns>
+        </member>
+        <member name="M:Alexandria.net.API.Transaction.BroadcastTransaction(Alexandria.net.Messaging.Responses.DTO.SignedTransactionResponse)">
+            <summary>
+            Broadcasts transaction once it is created, helps to register Transactions on the Blockchain
+            </summary>
+            <param name="signedTx"></param>
+            <returns>Returns Object with Transaction id and other details</returns>
+        </member>
+        <member name="M:Alexandria.net.API.Transaction.CreateSimpleTransaction``1(``0)">
+            <summary>
+            Creates Transaction for all the operations created
+            </summary>
+            <param name="operation"></param>
+            <returns>Returns Object with block number and other trnasaction details</returns>
+        </member>
+        <member name="M:Alexandria.net.API.Transaction.CreateTransaction(System.Collections.Generic.List{Alexandria.net.Messaging.Responses.DTO.AccountResponse})">
+            <summary>
+            
+            </summary>
+            <param name="operation"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.Transaction.GetOpsInBlock(System.UInt32,System.Boolean)">
+            <summary>
+            Sequence of operations included/generated in a specified block
+            </summary>
+            <param name="BlockNumber">Integer Block Number </param>
+            <param name="OnlyVirtual">Boolean Only Virtual operation listing</param>
+            <returns>Returns sequence of operations included/generated in a specified block</returns>
+        </member>
+        <member name="M:Alexandria.net.API.Transaction.Help">
+            <summary>
+            Returns a list of all commands supported by the wallet API.
+            This lists each command, along with its arguments and return types.
+            @returns a multi-line string suitable for displaying on a terminal
+            </summary>
+            <returns>Returns a list of all commands supported by the wallet API</returns>
+        </member>
+        <member name="M:Alexandria.net.API.Transaction.Info">
+            <summary>
+            Info about the current state of the blockchain
+            </summary>
+            <returns>Returns info about the current state of the blockchain</returns>
+        </member>
+        <member name="T:Alexandria.net.API.Witness">
+            <inheritdoc />
+            <para>
+            Sophia Blockchain Witness functions
+            </para>
+        </member>
+        <member name="M:Alexandria.net.API.Witness.#ctor(Alexandria.net.Settings.IConfig)">
+            <inheritdoc />
+            <summary>
+            </summary>
+            <param name="config">the Configuration paramaters for the endpoint and ports</param>
+        </member>
+        <member name="M:Alexandria.net.API.Witness.GetActiveWitnesses">
+            <summary>
+            Returns the list of witnesses producing blocks in the current round (21 Blocks)
+            </summary>
+            <returns>Returns json object combining list of active witnesses 
+            </returns>
+        </member>
+        <member name="M:Alexandria.net.API.Witness.GetWitness(System.String)">
+            <summary>
+            Returns information about the given witness.
+            @param owner_account the name or id of the witness account owner, or the id of the witness
+            @returns the information about the witness stored in the block chain
+            </summary>
+            <param name="ownerAccount">the name Or id Of the witness account owner, Or the id of the witness</param>
+            <returns>the information about the witness stored In the block chain</returns>
+        </member>
+        <member name="M:Alexandria.net.API.Witness.ListWitnesses(System.String,System.UInt32)">
+             <summary>
+             Lists all witnesses registered in the blockchain.
+             This returns a list of all account names that own witnesses, and the associated witness id,
+             sorted by name.  This lists witnesses whether they are currently voted in or not.
+            
+             Use the \c lowerbound and limit parameters to page through the list.  To retrieve all witnesss,
+             start by setting \c lowerbound to the empty string \c "", and then each iteration, pass
+             the last witness name returned as the \c lowerbound for the next \c list_witnesss() call.
+             </summary>
+             <param name="lowerbound">the name Of the first witness To Return.
+             If the named witness does Not exist, the list will start at the witness thatcomes after 'lowerbound'</param>
+             <param name="limit">the maximum number Of witnesss To return (max: 1000)</param>
+             <returns>Returns a list Of witnesss mapping witness names To witness ids</returns>
+        </member>
+        <member name="M:Alexandria.net.API.Witness.Vote(System.String,System.String,System.String,System.Int16)">
+            <summary>
+            Vote on a comment to be paid Sophia
+            </summary>
+            <param name="voter">The account voting</param>
+            <param name="author">The author Of the comment To be voted On</param>
+            <param name="permlink">The permlink Of the comment To be voted On. (author, permlink) Is a unique pair</param>
+            <param name="weight">The weight [-100,100] Of the vote</param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.Witness.VoteForWitness(System.String,System.String,System.Boolean,System.String)">
+            <summary>
+            Vote for a witness to become a block producer. By default an account has not voted positively Or negatively for a witness.
+            The account can either vote for with positively votes Or against with negative votes.
+            The vote will remain until updated With another vote. Vote strength Is determined by the accounts vesting shares.
+            </summary>
+            <param name="accountToVoteWith">The account voting For a witness</param>
+            <param name="witnessToVoteFor">The witness that Is being voted For</param>
+            <param name="approve">true if the account Is voting for the account to be able to be a block produce</param>
+            <param name="privateKey"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.API.Witness.UpdateWitness(System.String,System.String,System.String,System.String,System.Int32,System.Collections.Generic.List{System.Object},System.String)">
+            <summary>
+            Update an account to witness.Requires XXX vested SPHTX before updating.
+            </summary>
+            <param name="WitnessAccountName">Input string accountName</param>
+            <param name="url">A URL containing some information about the witness.  The empty string makes it remain the same.</param>
+            <param name="blockKey">The new block signing public key.  The empty string disables block production.</param>
+            <param name="Symbol">Token Symbol</param>
+            <param name="AccountCreatePrice">Ammount require to create an Account</param>
+            <param name="MinBlockSizeLimit"></param>
+            <param name="PriceFeed"></param>
+            <param name="privateKey"></param>
+            <returns>Returns true if success or false for failed try</returns>
+        </member>
+        <member name="T:Alexandria.net.API.WalletFunctions.StringValueAttribute">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Alexandria.net.API.WalletFunctions.StringValueAttribute.#ctor(System.String)">
+            <inheritdoc />
+            <summary>
+            </summary>
+            <param name="value"></param>
+        </member>
+        <member name="P:Alexandria.net.API.WalletFunctions.StringValueAttribute.Value">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Communication.RpcConnection">
+            <summary>
+            Abstract Class which manages the sending and receiving of data to and from the blockchain
+            </summary>
+        </member>
+        <member name="F:Alexandria.net.Communication.RpcConnection.CSharpToCpp">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Communication.RpcConnection.Config">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Alexandria.net.Communication.RpcConnection.#ctor(Alexandria.net.Settings.IConfig,System.Boolean)">
+            <summary>
+            RPCConnection Constructor
+            </summary>
+            <param name="config">the Configuration paramaters for the endpoint and ports</param>
+            <param name="wallet"></param>
+        </member>
+        <member name="M:Alexandria.net.Communication.RpcConnection.SendRequest(System.String,System.Collections.ArrayList)">
+            <summary>
+            Sends the request to the blockchain
+            </summary>
+            <param name="method">the method to call</param>
+            <param name="params">the parameters to send with the method</param>
+            <returns>the http response from ther server</returns>
+        </member>
+        <member name="M:Alexandria.net.Communication.RpcConnection.ProcessRequest(System.String,System.Collections.ArrayList)">
+            <summary>
+            Processes the request and gets the response from the server
+            </summary>
+            <param name="methodname">the method name to call</param>
+            <param name="params">the paramaters to pass with the method</param>
+            <returns>the http response from the server</returns>
+        </member>
+        <member name="M:Alexandria.net.Communication.RpcConnection.SendAsync(System.String)">
+            <summary>
+                Sends the data to the blockchain
+            </summary>
+            <param name="data">the data to send</param>
+            <returns>the response from the send</returns>
+        </member>
+        <member name="T:Alexandria.net.Core.Daemon">
+            <summary>
+            Daemon implementation
+            </summary>
+            <inheritdoc cref="T:Alexandria.net.Communication.RpcConnection"/>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.#ctor(Alexandria.net.Settings.IConfig)">
+            <summary>
+            
+            </summary>
+            <param name="config">the Configuration paramaters for the endpoint and ports</param>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.GetConfig">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.GetDynamicGlobalProperties">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.GetChainProperties">
+            <summary>
+            	
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.GetCurrentMedianHistoryPrice">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.GetFeedHistory">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.GetWitnessSchedule">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.GetHardForkVersion">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.GetNextScheduledHardfork">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.GetAccounts(System.Collections.ArrayList)">
+            <summary>
+            
+            </summary>
+            <param name="accounts"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.LookupAccountNames(System.Collections.ArrayList)">
+            <summary>
+            
+            </summary>
+            <param name="accounts"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.LookupAccounts(System.String,System.UInt32)">
+            <summary>
+            
+            </summary>
+            <param name="lowerbound"></param>
+            <param name="limit"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.GetAccountCount">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.GetOwnerHistory(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="account"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.GetRecoveryRequest(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="account"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.GetBlockHeader(System.Int64)">
+            <summary>
+            
+            </summary>
+            <param name="blockId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.GetBlock(System.Int64)">
+            <summary>
+            
+            </summary>
+            <param name="blockId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.GetWitnesses(System.Collections.ArrayList)">
+            <summary>
+            
+            </summary>
+            <param name="witnesses"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.GetConversionRequests(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="account"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.GetWitnessByAccount(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="account"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.GetWitnessesByVote(System.String,System.Int32)">
+            <summary>
+            
+            </summary>
+            <param name="from"></param>
+            <param name="limit"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.GetActiveVotes(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="author"></param>
+            <param name="permlink"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.GetContent(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="author"></param>
+            <param name="permlink"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.GetContentReplies(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="parent"></param>
+            <param name="parentPermlink"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.GetRepliesByLastUpdate(System.String,System.String,System.UInt32)">
+            <summary>
+            
+            </summary>
+            <param name="startAuthor"></param>
+            <param name="startPermlink"></param>
+            <param name="limit"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.GetDiscussionsByAuthorBeforeDate(System.String,System.String,System.DateTime,System.UInt32)">
+            <summary>
+            
+            </summary>
+            <param name="author"></param>
+            <param name="startPermlink"></param>
+            <param name="beforeDate"></param>
+            <param name="limit"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Alexandria.net.Core.Daemon.GetAccountHistory(System.String,System.UInt64,System.UInt32)">
+            <summary>
+            
+            </summary>
+            <param name="account"></param>
+            <param name="from"></param>
+            <param name="limit"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Alexandria.net.Core.SophiaClient">
+            <summary>
+            The main entry point for accessing the SophiaTX Blockchain
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Core.SophiaClient.Account">
+            <summary>
+            Sophia Blockchain Account functions
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Core.SophiaClient.Asset">
+            <summary>
+            Sophia Blockchain Asset functions
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Core.SophiaClient.Key">
+            <summary>
+            Sophia Blockchain Key functions
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Core.SophiaClient.Transaction">
+            <summary>
+            Sophia Blockchain Transaction functions
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Core.SophiaClient.Witness">
+            <summary>
+            Sophia Blockchain Witness functions
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Core.SophiaClient.Data">
+            <summary>
+            Sophia Blockchain Data functions
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Core.SophiaClient.Application">
+            <summary>
+            Sophia Blockchain Application functions
+            </summary>
+        </member>
+        <member name="M:Alexandria.net.Core.SophiaClient.#ctor(System.String,System.UInt16,System.UInt16)">
+            <summary>
+            Client Constructor
+            </summary>
+            <param name="hostname">the rpc endpoint ip address</param>
+            <param name="daemonPort">the daemon rpc endpoint post</param>
+            <param name="walletPort">the wallet rpc endpoint post</param>
+        </member>
+        <member name="T:Alexandria.net.Core.Wallet">
+            <summary>
+            List of all the functionalities supported by the SophiaTX C# Wallet API
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Core.Wallet.Account">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Core.Wallet.Asset">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Core.Wallet.Key">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Core.Wallet.Transaction">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Core.Wallet.Witness">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Core.Wallet.Data">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Core.Wallet.Application">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Alexandria.net.Core.Wallet.#ctor(Alexandria.net.Settings.IConfig,Alexandria.net.Settings.IBlockchainConfig)">
+            <summary>
+            
+            </summary>
+            <param name="config">the Configuration paramaters for the endpoint and ports</param>
+            <param name="blockchainConfig"></param>
+        </member>
+        <member name="T:Alexandria.net.Enums.AccountOwner">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Alexandria.net.Enums.AccountOwner.Sender">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Alexandria.net.Enums.AccountOwner.Receiver">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Enums.BuildMode">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Alexandria.net.Enums.BuildMode.Test">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Alexandria.net.Enums.BuildMode.Prod">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Enums.ErrorType">
+            <summary>
+            e
+            </summary>
+        </member>
+        <member name="F:Alexandria.net.Enums.ErrorType.Debug">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Alexandria.net.Enums.ErrorType.Error">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Alexandria.net.Enums.ErrorType.Warning">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Alexandria.net.Enums.ErrorType.Verbose">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Enums.SearchType">
+            <summary>
+            Search Type for receiving data from the Blockchain
+            </summary>
+        </member>
+        <member name="F:Alexandria.net.Enums.SearchType.BySender">
+            <summary>
+            Search by Sender
+            </summary>
+        </member>
+        <member name="F:Alexandria.net.Enums.SearchType.ByRecipient">
+            <summary>
+            Search by Recipient
+            </summary>
+        </member>
+        <member name="F:Alexandria.net.Enums.SearchType.BySenderDatetime">
+            <summary>
+            Search by Sender DateTime (UTC)
+            </summary>
+        </member>
+        <member name="F:Alexandria.net.Enums.SearchType.ByRecipientDatetime">
+            <summary>
+            Search by Receipient DateTime (UTC)
+            </summary>
+        </member>
+        <member name="F:Alexandria.net.Enums.SearchType.ByBuyer">
+            <summary>
+            Search by buyer name
+            </summary>
+        </member>
+        <member name="F:Alexandria.net.Enums.SearchType.ByAppId">
+            <summary>
+            Search by App id
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Enums.StartBy">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="F:Alexandria.net.Enums.StartBy.Index">
+            <summary>
+            Search by Sender
+            </summary>
+        </member>
+        <member name="F:Alexandria.net.Enums.StartBy.IsoTimeStamp">
+            <summary>
+            Search by Recipient
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Enums.TransactionType">
+            <summary>
+            the transaction method type you would like use
+            </summary>
+        </member>
+        <member name="F:Alexandria.net.Enums.TransactionType.SignAndSend">
+            <summary>
+            this sends a single document
+            </summary>
+        </member>
+        <member name="F:Alexandria.net.Enums.TransactionType.MakeSignAndSend">
+            <summary>
+            this sends multiple documents
+            </summary>
+        </member>
+        <member name="F:Alexandria.net.Enums.TransactionType.MakeDigestSignAndSend">
+            <summary>
+            this sends multiple document with digest
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Extensions.EnumExtensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Alexandria.net.Extensions.EnumExtensions.GetStringValue(System.Enum)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Alexandria.net.Logging.ILogger">
+            <summary>
+            Logger Interface
+            </summary>
+        </member>
+        <member name="M:Alexandria.net.Logging.ILogger.Close">
+            <summary>
+            Closes the logger connection
+            </summary>
+        </member>
+        <member name="M:Alexandria.net.Logging.ILogger.Write(System.String,Alexandria.net.Enums.ErrorType)">
+            <summary>
+            Writes the data to the log
+            </summary>
+            <param name="data">the data to write</param>
+            <param name="errortype">the severity of the log item</param>
+        </member>
+        <member name="M:Alexandria.net.Logging.ILogger.WriteError(System.String)">
+            <summary>
+            Writes an error to the log
+            </summary>
+            <param name="data">the data to write</param>
+        </member>
+        <member name="M:Alexandria.net.Logging.ILogger.WriteWarning(System.String)">
+            <summary>
+            writes a warning to the log
+            </summary>
+            <param name="data">the data to write</param>
+        </member>
+        <member name="M:Alexandria.net.Logging.ILogger.WriteInfo(System.String)">
+            <summary>
+            writes the information to the log
+            </summary>
+            <param name="data">the data to write</param>
+        </member>
+        <member name="M:Alexandria.net.Logging.ILogger.WriteTestData(System.String)">
+            <summary>
+            writes the test data to the sophia test analysis server
+            </summary>
+            <param name="data">the data to write</param>
+        </member>
+        <member name="P:Alexandria.net.Logging.ILogger.BuildMode">
+            <summary>
+            the build mode to use: Production or Test
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Logging.Logger">
+            <summary>
+            The logger object
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Logging.Logger.BuildMode">
+            <summary>
+            the build mode to use: Production or Test
+            </summary>
+        </member>
+        <member name="M:Alexandria.net.Logging.Logger.#ctor(Alexandria.net.Logging.LoggingType,System.String,Alexandria.net.Enums.BuildMode)">
+            <summary>
+            the Logger constructor
+            </summary>
+            <param name="loggingtype">the type of logging: file or server</param>
+            <param name="appname">the name of the calling application</param>
+            <param name="mode">the buildmode: Prod or Testr</param>
+        </member>
+        <member name="M:Alexandria.net.Logging.Logger.Close">
+            <summary>
+            Closes the logger connection
+            </summary>
+        </member>
+        <member name="M:Alexandria.net.Logging.Logger.WriteError(System.String)">
+            <summary>
+            Writes an error to the log
+            </summary>
+            <param name="data">the data to write</param>
+        </member>
+        <member name="M:Alexandria.net.Logging.Logger.WriteWarning(System.String)">
+            <summary>
+            writes a warning to the log
+            </summary>
+            <param name="data">the data to write</param>
+        </member>
+        <member name="M:Alexandria.net.Logging.Logger.WriteInfo(System.String)">
+            <summary>
+            writes the information to the log
+            </summary>
+            <param name="data">the data to write</param>
+        </member>
+        <member name="M:Alexandria.net.Logging.Logger.WriteTestData(System.String)">
+            <summary>
+            writes the test data to the sophia test analysis server
+            </summary>
+            <param name="data">the data to write</param>
+        </member>
+        <member name="M:Alexandria.net.Logging.Logger.Write(System.String,Alexandria.net.Enums.ErrorType)">
+            <summary>
+            Writes the data to the log
+            </summary>
+            <param name="data">the data to write</param>
+            <param name="errortype">the severity of the log item</param>
+        </member>
+        <member name="T:Alexandria.net.Logging.LoggingType">
+            <summary>
+            Type which will be used when writing to logs
+            </summary>
+        </member>
+        <member name="F:Alexandria.net.Logging.LoggingType.File">
+            <summary>
+            Writes to a clef file
+            </summary>
+        </member>
+        <member name="F:Alexandria.net.Logging.LoggingType.Server">
+            <summary>
+            Writes to the sophia server
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Mapping.CSharpToCpp">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Alexandria.net.Mapping.CSharpToCpp.GetValue(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Alexandria.net.Messaging.Errors.ErrorBody">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Errors.ErrorBody.Data">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Errors.ErrorBody.Code">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Messaging.Errors.ErrorData">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Errors.ErrorData.Code">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Errors.ErrorData.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Errors.ErrorData.Message">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Errors.ErrorData.Stack">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Messaging.Errors.ErrorMessage">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Errors.ErrorMessage.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Errors.ErrorMessage.Error">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Messaging.Receiver.ChainProperties">
+            <summary>
+            This fee, paid in SOPHIATX, is converted into VESTING SHARES for the new account. Accounts
+            without vesting shares cannot earn usage rations and therefore are powerless. This minimum
+            fee requires all accounts to have some kind of commitment to the network that includes the
+            ability to vote and make transactions
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Receiver.ChainProperties.account_creation_fee">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Messaging.Receiver.SenderData">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Receiver.SenderData.Sender">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Receiver.SenderData.Recipients">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Receiver.SenderData.AppId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Receiver.SenderData.Document">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Receiver.SenderData.DocumentChars">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Receiver.SenderData.PrivateKey">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Messaging.Responses.Authority">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.Authority.WeightThreshold">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.Authority.AccountAuths">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.Authority.KeyAuths">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Messaging.Responses.DTO.AboutData">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Messaging.Responses.DTO.AboutResponse">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.AboutResponse.id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.AboutResponse.result">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Messaging.Responses.DTO.Account">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.Account.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.Account.AccountDetails">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Messaging.Responses.DTO.AccountHistoryResponse">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.AccountHistoryResponse.id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.AccountHistoryResponse.result">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Messaging.Responses.DTO.AccountRequestResponse">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.AccountRequestResponse.Response">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.AccountRequestResponse.Request">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Messaging.Responses.DTO.Active">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.Active.weight_threshold">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.Active.account_auths">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.Active.key_auths">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Messaging.Responses.DTO.ActiveWitnessResponse">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.ActiveWitnessResponse.id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.ActiveWitnessResponse.result">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Messaging.Responses.DTO.BlockData">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.BlockData.previous">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.BlockData.timestamp">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.BlockData.witness">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.BlockData.transaction_merkle_root">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.BlockData.extensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.BlockData.witness_signature">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.BlockData.transactions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.BlockData.block_id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.BlockData.signing_key">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.BlockData.transaction_ids">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Messaging.Responses.DTO.BlockResponse">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.BlockResponse.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.BlockResponse.Result">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Messaging.Responses.DTO.CreateAccountResponse">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.CreateAccountResponse.id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.CreateAccountResponse.result">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Messaging.Responses.DTO.CurrentMedianHistory">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.CurrentMedianHistory.base">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.CurrentMedianHistory.quote">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Messaging.Responses.DTO.DataRequestResponse">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.DataRequestResponse.Response">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.DataRequestResponse.Request">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Messaging.Responses.DTO.DataResponse">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.DataResponse.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.DataResponse.Result">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Messaging.Responses.DTO.FeedData">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.FeedData.id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.FeedData.current_median_history">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.FeedData.price_history">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Messaging.Responses.DTO.FeedHistoryResponse">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.FeedHistoryResponse.id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.FeedHistoryResponse.result">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Messaging.Responses.DTO.InfoData">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.InfoData.head_block_number">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.InfoData.head_block_id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.InfoData.time">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.InfoData.current_witness">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.InfoData.virtual_supply">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.InfoData.current_supply">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.InfoData.total_vesting_shares">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.InfoData.total_reward_fund">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.InfoData.maximum_block_size">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.InfoData.current_aslot">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.InfoData.recent_slots_filled">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.InfoData.participation_count">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.InfoData.last_irreversible_block_num">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.InfoData.average_block_size">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.InfoData.max_virtual_bandwidth">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.InfoData.witness_majority_version">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.InfoData.hardfork_version">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.InfoData.head_block_age">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.InfoData.participation">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.InfoData.median_sbd_price">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.InfoData.account_creation_fee">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Messaging.Responses.DTO.InfoResponse">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.InfoResponse.Id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.InfoResponse.Result">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Messaging.Responses.DTO.KeyFromPassword">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.KeyFromPassword.id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.KeyFromPassword.result">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Messaging.Responses.DTO.ListAccountsResponse">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.ListAccountsResponse.id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.ListAccountsResponse.result">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Messaging.Responses.DTO.LockUnlockRequestResponse">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.LockUnlockRequestResponse.Response">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.LockUnlockRequestResponse.Request">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Messaging.Responses.DTO.LockUnlockResponse">
+            <summary>
+            The wallet lock and unlock response
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.LockUnlockResponse.Id">
+            <summary>
+            the Id of the call
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.LockUnlockResponse.Result">
+            <summary>
+            the result passed back from the blockchain
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Messaging.Responses.DTO.MedianSbdPrice">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.MedianSbdPrice.base">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.MedianSbdPrice.quote">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Messaging.Responses.DTO.Options">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.Options.memo_key">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.Options.voting_account">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.Options.num_miner">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.Options.votes">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.Options.extensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.Options.allow_subscription">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.Options.price_per_subscribe">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.Options.subscription_period">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Messaging.Responses.DTO.Owner">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.Owner.weight_threshold">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.Owner.account_auths">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.Owner.key_auths">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Messaging.Responses.DTO.PricePerSubscribe">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.PricePerSubscribe.amount">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.PricePerSubscribe.asset_id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Messaging.Responses.DTO.ReceiverRecipe">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.ReceiverRecipe.AppId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.ReceiverRecipe.Sender">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.ReceiverRecipe.Recipients">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.ReceiverRecipe.Binary">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.ReceiverRecipe.Type">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.ReceiverRecipe.Document">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Messaging.Responses.DTO.Result">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.Result.id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.Result.registrar">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.Result.name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.Result.owner">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.Result.active">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.Result.options">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.Result.rights_to_publish">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.Result.statistics">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.Result.top_n_control_flags">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Messaging.Responses.DTO.RightsToPublish">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.RightsToPublish.is_publishing_manager">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.RightsToPublish.publishing_rights_received">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.RightsToPublish.publishing_rights_forwarded">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Messaging.Responses.DTO.SendResponseResult">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.SendResponseResult.RefBlockNum">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.SendResponseResult.RefBlockPrefix">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.SendResponseResult.Expiration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.SendResponseResult.Operations">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.SendResponseResult.Extentions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.SendResponseResult.Signatures">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Messaging.Responses.DTO.SignedTransactionResponse">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.SignedTransactionResponse.ref_block_num">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.SignedTransactionResponse.ref_block_prefix">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.SignedTransactionResponse.expiration">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.SignedTransactionResponse.operations">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.SignedTransactionResponse.extensions">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.SignedTransactionResponse.signatures">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Messaging.Responses.DTO.TransactionData">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Messaging.Responses.DTO.TransactionResponse">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.TransactionResponse.id">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Messaging.Responses.DTO.TransactionResponse.result">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Settings.BlockchainConfig">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Settings.BlockchainConfig.IsoTimeStamp">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Settings.BlockchainConfig.SearchType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Settings.BlockchainConfig.Account">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Settings.BlockchainConfig.Start">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Settings.BlockchainConfig.Index">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Settings.Config">
+            <summary>
+            Configuraton object for the build mode, the logging type and the endpoints
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Settings.Config.BuildMode">
+            <summary>
+            The buildmode: Prod is standard and should be used always,
+            Test should be set when the addon is presented for testing
+            before release and used to confirm with Sophia 
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Settings.Config.LoggingType">
+            <summary>
+            The logging type which will be used
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Settings.Config.ReceiveInterval">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Settings.Config.Hostname">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Settings.Config.DaemonPort">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Settings.Config.WalletPort">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Settings.Config.Api">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Settings.Config.Version">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Settings.IBlockchainConfig">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Settings.IBlockchainConfig.IsoTimeStamp">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Settings.IBlockchainConfig.SearchType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Settings.IBlockchainConfig.Account">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Settings.IBlockchainConfig.Start">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Settings.IBlockchainConfig.Index">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Alexandria.net.Settings.IConfig">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Settings.IConfig.BuildMode">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Settings.IConfig.LoggingType">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Settings.IConfig.ReceiveInterval">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Settings.IConfig.Hostname">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Settings.IConfig.DaemonPort">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Settings.IConfig.WalletPort">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Settings.IConfig.Api">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Alexandria.net.Settings.IConfig.Version">
+            <summary>
+            
+            </summary>
+        </member>
+    </members>
+</doc>

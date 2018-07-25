@@ -1,8 +1,70 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
+    <Version>1.0.0-alpha</Version>
+    <Authors>Martyn Cranfield Harler;Saniv Jha</Authors>
+    <Company>Equidato Technologies AG</Company>
+    <NeutralLanguage>en-US</NeutralLanguage>
+    <AssemblyTitle>Alexandria.net</AssemblyTitle>
+    <Description>.net library for accessing the SophiaTX Blockchain</Description>
+    <Copyright>Equidato Technologies AG</Copyright>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DocumentationFile>bin\Debug\netcoreapp2.0\Alexandria.net.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="Serilog" Version="2.7.1" />
+    <PackageReference Include="Serilog.Extensions.Logging" Version="2.0.2" />
+    <PackageReference Include="Serilog.Formatting.Compact" Version="1.0.0" />
+    <PackageReference Include="Serilog.Sinks.File" Version="4.0.0" />
+    <PackageReference Include="Serilog.Sinks.Seq" Version="4.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="API\SphTxApi.cs" />
+    <Compile Remove="Core\Daemon.cs" />
+    <Compile Remove="Core\Wallet.cs" />
+    <Compile Remove="Messaging\Responses\DTO\AccountRequestResponse.cs" />
+    <Compile Remove="Messaging\Responses\DTO\BainKey.cs" />
+    <Compile Remove="Messaging\Responses\DTO\DataRequestResponse.cs" />
+    <Compile Remove="Messaging\Responses\DTO\KeyFromPassword.cs" />
+    <Compile Remove="Messaging\Responses\DTO\ListAccountsResponse.cs" />
+    <Compile Remove="Messaging\Responses\DTO\LockUnlockRequestResponse.cs" />
+    <Compile Remove="Messaging\Responses\DTO\ReceiverRecipe.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="libalexandria.dylib" />
+  </ItemGroup>
+  <ItemGroup>
+    <DocFileItem Remove="bin\Debug\netcoreapp2.0\Alexandria.net.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <_OutputPathItem Remove="bin\Debug\netcoreapp2.0\" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppConfigFileDestination Remove="bin\Debug\netcoreapp2.0\Alexandria.net.dll.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <FinalDocFile Remove="bin\Debug\netcoreapp2.0\bin\Debug\netcoreapp2.0\Alexandria.net.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <_DebugSymbolsOutputPath Remove="bin\Debug\netcoreapp2.0\obj\Debug\netcoreapp2.0\Alexandria.net.pdb" />
+  </ItemGroup>
+  <ItemGroup>
+    <_ApplicationManifestFinal Remove="bin\Debug\netcoreapp2.0\Native.Alexandria.net.manifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Lib\libalexandria.dll" />
+    <EmbeddedResource Include="Lib\libalexandria.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <None Remove="Lib\libalexandria.dylib" />
+    <EmbeddedResource Include="Lib\libalexandria.dylib">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <None Remove="Lib\libalexandria.so" />
+    <EmbeddedResource Include="Lib\libalexandria.so">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

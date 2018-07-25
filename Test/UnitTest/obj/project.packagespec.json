@@ -1,0 +1,63 @@
+﻿{
+  "version": "1.0.0",
+  "restore": {
+    "projectUniqueName": "/Users/martynharler/RiderProjects/Alexandria/Test/UnitTest/UnitTest.csproj",
+    "projectName": "UnitTest",
+    "projectPath": "/Users/martynharler/RiderProjects/Alexandria/Test/UnitTest/UnitTest.csproj",
+    "outputPath": "/Users/martynharler/RiderProjects/Alexandria/Test/UnitTest/obj/",
+    "projectStyle": "PackageReference",
+    "fallbackFolders": [
+      "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+    ],
+    "originalTargetFrameworks": [
+      "netcoreapp2.0"
+    ],
+    "frameworks": {
+      "netcoreapp2.0": {
+        "projectReferences": {
+          "/Users/martynharler/RiderProjects/Alexandria/Alexandria.net/Alexandria.net.csproj": {
+            "projectPath": "/Users/martynharler/RiderProjects/Alexandria/Alexandria.net/Alexandria.net.csproj"
+          }
+        }
+      }
+    },
+    "warningProperties": {
+      "warnAsError": [
+        "NU1605"
+      ]
+    }
+  },
+  "frameworks": {
+    "netcoreapp2.0": {
+      "dependencies": {
+        "Microsoft.NET.Test.Sdk": {
+          "target": "Package",
+          "version": "[15.5.0, )"
+        },
+        "Microsoft.NETCore.App": {
+          "suppressParent": "All",
+          "target": "Package",
+          "version": "[2.0.0, )",
+          "autoReferenced": true
+        },
+        "xunit": {
+          "target": "Package",
+          "version": "[2.3.1, )"
+        },
+        "xunit.runner.console": {
+          "target": "Package",
+          "version": "[2.4.0-beta.2.build4010, )"
+        },
+        "xunit.runner.visualstudio": {
+          "target": "Package",
+          "version": "[2.3.1, )"
+        }
+      },
+      "imports": [
+        "net461"
+      ],
+      "assetTargetFallback": true,
+      "warn": true
+    }
+  }
+}

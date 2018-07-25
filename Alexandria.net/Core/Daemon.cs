@@ -1,182 +1,587 @@
 ﻿using System;
 using System.Collections;
 using System.Reflection;
-using Alexandria.net.API;
-using Newtonsoft.Json.Linq;
+using Alexandria.net.Communication;
+using Alexandria.net.Logging;
+using Alexandria.net.Settings;
+using Newtonsoft.Json;
 
 namespace Alexandria.net.Core
 {
-	public sealed class Daemon : SphTxApi
+	/// <summary>
+	/// Daemon implementation
+	/// </summary>
+	/// <inheritdoc cref="RpcConnection"/>
+	public class Daemon : RpcConnection
 	{
+		private readonly ILogger _logger;
+
 		#region Constructors
 
-		public Daemon(string hostname = "127.0.0.1", ushort port = 8090) : base(hostname, port)
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="config">the Configuration paramaters for the endpoint and ports</param>
+		public Daemon(IConfig config) :
+			base(config)
 		{
-		}
-
-		public Daemon(string uri) : base(uri)
-		{
+			var assemblyname = Assembly.GetExecutingAssembly().GetName().Name;
+			_logger = new Logger(LoggingType.Server, assemblyname);
 		}
 
 		#endregion
 
 		#region public Methods
 
-		public JObject get_config()
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		public string GetConfig()
 		{
-			return call_api(MethodBase.GetCurrentMethod().Name);
+			try
+			{
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+				var result = SendRequest(reqname);
+				var contentdata = JsonConvert.DeserializeObject<string>(result);
+				return contentdata;
+			}
+			catch (Exception ex)
+			{
+				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+				throw;
+			}
 		}
 
-		public JObject get_dynamic_global_properties()
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		public string GetDynamicGlobalProperties()
 		{
-			return call_api(MethodBase.GetCurrentMethod().Name);
+			try
+			{
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+				var result = SendRequest(reqname);
+				var contentdata = JsonConvert.DeserializeObject<string>(result);
+				return contentdata;
+			}
+			catch (Exception ex)
+			{
+				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+				throw;
+			}
 		}
 
-		public JObject get_chain_properties()
+		/// <summary>
+		/// 	
+		/// </summary>
+		/// <returns></returns>
+		public string GetChainProperties()
 		{
-			return call_api(MethodBase.GetCurrentMethod().Name);
+			try
+			{
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+				var result = SendRequest(reqname);
+				var contentdata = JsonConvert.DeserializeObject<string>(result);
+				return contentdata;
+			}
+			catch (Exception ex)
+			{
+				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+				throw;
+			}
 		}
 
-		public JObject get_current_median_history_price()
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		public string GetCurrentMedianHistoryPrice()
 		{
-			return call_api(MethodBase.GetCurrentMethod().Name);
+			try
+			{
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+				var result = SendRequest(reqname);
+				var contentdata = JsonConvert.DeserializeObject<string>(result);
+				return contentdata;
+			}
+			catch (Exception ex)
+			{
+				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+				throw;
+			}
 		}
 
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
 
-		public JObject get_feed_history()
+		public string GetFeedHistory()
 		{
-			return call_api(MethodBase.GetCurrentMethod().Name);
+			try
+			{
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+				var result = SendRequest(reqname);
+				var contentdata = JsonConvert.DeserializeObject<string>(result);
+				return contentdata;
+			}
+			catch (Exception ex)
+			{
+				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+				throw;
+			}
 		}
 
-		public JObject get_witness_schedule()
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		public string GetWitnessSchedule()
 		{
-			return call_api(MethodBase.GetCurrentMethod().Name);
+			try
+			{
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+				var result = SendRequest(reqname);
+				var contentdata = JsonConvert.DeserializeObject<string>(result);
+				return contentdata;
+			}
+			catch (Exception ex)
+			{
+				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+				throw;
+			}
 		}
 
-		public JObject get_hardfork_version()
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		public string GetHardForkVersion()
 		{
-			return call_api(MethodBase.GetCurrentMethod().Name);
+			try
+			{
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+				var result = SendRequest(reqname);
+				var contentdata = JsonConvert.DeserializeObject<string>(result);
+				return contentdata;
+			}
+			catch (Exception ex)
+			{
+				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+				throw;
+			}
 		}
 
-		public JObject get_next_scheduled_hardfork()
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		public string GetNextScheduledHardfork()
 		{
-			return call_api(MethodBase.GetCurrentMethod().Name);
+			try
+			{
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+				var result = SendRequest(reqname);
+				var contentdata = JsonConvert.DeserializeObject<string>(result);
+				return contentdata;
+			}
+			catch (Exception ex)
+			{
+				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+				throw;
+			}
 		}
 
-		public JArray get_accounts(ArrayList accounts)
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="accounts"></param>
+		/// <returns></returns>
+		public string GetAccounts(ArrayList accounts)
 		{
-			var arrParams = new ArrayList {accounts};
-			return call_api_array(MethodBase.GetCurrentMethod().Name, arrParams);
+			try
+			{
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+				var @params = new ArrayList {accounts};
+				var result = SendRequest(reqname, @params);
+				var contentdata = JsonConvert.DeserializeObject<string>(result);
+				return contentdata;
+			}
+			catch (Exception ex)
+			{
+				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+				throw;
+			}
 		}
 
-
-		public JArray lookup_account_names(ArrayList accounts)
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="accounts"></param>
+		/// <returns></returns>
+		public string LookupAccountNames(ArrayList accounts)
 		{
-			var arrParams = new ArrayList {accounts};
-			return call_api_array(MethodBase.GetCurrentMethod().Name, arrParams);
+			try
+			{
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+				var @params = new ArrayList {accounts};
+				var result = SendRequest(reqname, @params);
+				var contentdata = JsonConvert.DeserializeObject<string>(result);
+				return contentdata;
+			}
+			catch (Exception ex)
+			{
+				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+				throw;
+			}
 		}
 
-		public JArray lookup_accounts(string lowerbound, uint limit)
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="lowerbound"></param>
+		/// <param name="limit"></param>
+		/// <returns></returns>
+		public string LookupAccounts(string lowerbound, uint limit)
 		{
-			var arrParams = new ArrayList {lowerbound, limit};
-			return call_api_array(MethodBase.GetCurrentMethod().Name, arrParams);
+			try
+			{
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+				var @params = new ArrayList {lowerbound, limit};
+				var result = SendRequest(reqname, @params);
+				var contentdata = JsonConvert.DeserializeObject<string>(result);
+				return contentdata;
+			}
+			catch (Exception ex)
+			{
+				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+				throw;
+			}
 		}
 
-		public JValue get_account_count()
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <returns></returns>
+		public string GetAccountCount()
 		{
-			return call_api_value(MethodBase.GetCurrentMethod().Name);
+			try
+			{
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+				var result = SendRequest(reqname);
+				var contentdata = JsonConvert.DeserializeObject<string>(result);
+				return contentdata;
+			}
+			catch (Exception ex)
+			{
+				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+				throw;
+			}
 		}
 
-		public JArray get_owner_history(string account)
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="account"></param>
+		/// <returns></returns>
+		public string GetOwnerHistory(string account)
 		{
-			var arrParams = new ArrayList {account};
-			return call_api_array(MethodBase.GetCurrentMethod().Name, arrParams);
+			try
+			{
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+				var @params = new ArrayList {account};
+				var result = SendRequest(reqname, @params);
+				var contentdata = JsonConvert.DeserializeObject<string>(result);
+				return contentdata;
+			}
+			catch (Exception ex)
+			{
+				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+				throw;
+			}
 		}
 
-		public JObject get_recovery_request(string account)
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="account"></param>
+		/// <returns></returns>
+		public string GetRecoveryRequest(string account)
 		{
-			var arrParams = new ArrayList {account};
-			return call_api(MethodBase.GetCurrentMethod().Name, arrParams);
+			try
+			{
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+				var @params = new ArrayList {account};
+				var result = SendRequest(reqname, @params);
+				var contentdata = JsonConvert.DeserializeObject<string>(result);
+				return contentdata;
+			}
+			catch (Exception ex)
+			{
+				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+				throw;
+			}
 		}
 
-		public JObject get_block_header(long blockId)
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="blockId"></param>
+		/// <returns></returns>
+		public string GetBlockHeader(long blockId)
 		{
-			var arrParams = new ArrayList {blockId};
-			return call_api(MethodBase.GetCurrentMethod().Name, arrParams);
+			try
+			{
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+				var @params = new ArrayList {blockId};
+				var result = SendRequest(reqname, @params);
+				var contentdata = JsonConvert.DeserializeObject<string>(result);
+				return contentdata;
+			}
+			catch (Exception ex)
+			{
+				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+				throw;
+			}
 		}
 
-		public JObject get_block(long blockId)
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="blockId"></param>
+		/// <returns></returns>
+		public string GetBlock(long blockId)
 		{
-			var arrParams = new ArrayList {blockId};
-			return call_api(MethodBase.GetCurrentMethod().Name, arrParams);
+			try
+			{
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+				var @params = new ArrayList {blockId};
+				var result = SendRequest(reqname, @params);
+				var contentdata = JsonConvert.DeserializeObject<string>(result);
+				return contentdata;
+			}
+			catch (Exception ex)
+			{
+				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+				throw;
+			}
 		}
 
-		public JArray get_witnesses(ArrayList witnesses)
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="witnesses"></param>
+		/// <returns></returns>
+		public string GetWitnesses(ArrayList witnesses)
 		{
-			var arrParams = new ArrayList {witnesses};
-			return call_api_array(MethodBase.GetCurrentMethod().Name, arrParams);
+			try
+			{
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+				var @params = new ArrayList {witnesses};
+				var result = SendRequest(reqname, @params);
+				var contentdata = JsonConvert.DeserializeObject<string>(result);
+				return contentdata;
+			}
+			catch (Exception ex)
+			{
+				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+				throw;
+			}
 		}
 
-
-		public JArray get_conversion_requests(string account)
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="account"></param>
+		/// <returns></returns>
+		public string GetConversionRequests(string account)
 		{
-			var arrParams = new ArrayList {account};
-			return call_api_array(MethodBase.GetCurrentMethod().Name, arrParams);
+			try
+			{
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+				var @params = new ArrayList {account};
+				var result = SendRequest(reqname, @params);
+				var contentdata = JsonConvert.DeserializeObject<string>(result);
+				return contentdata;
+			}
+			catch (Exception ex)
+			{
+				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+				throw;
+			}
 		}
 
-		public JObject get_witness_by_account(string account)
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="account"></param>
+		/// <returns></returns>
+		public string GetWitnessByAccount(string account)
 		{
-			var arrParams = new ArrayList {account};
-			return call_api(MethodBase.GetCurrentMethod().Name, arrParams);
+			try
+			{
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+				var @params = new ArrayList {account};
+				var result = SendRequest(reqname, @params);
+				var contentdata = JsonConvert.DeserializeObject<string>(result);
+				return contentdata;
+			}
+			catch (Exception ex)
+			{
+				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+				throw;
+			}
 		}
 
-		public JArray get_witnesses_by_vote(string from, int limit)
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="from"></param>
+		/// <param name="limit"></param>
+		/// <returns></returns>
+		public string GetWitnessesByVote(string from, int limit)
 		{
-			var arrParams = new ArrayList {from, limit};
-			return call_api_array(MethodBase.GetCurrentMethod().Name, arrParams);
-		}
-
-		public JValue get_witness_count()
-		{
-			return call_api_value(MethodBase.GetCurrentMethod().Name);
+			try
+			{
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+				var @params = new ArrayList {from, limit};
+				var result = SendRequest(reqname, @params);
+				var contentdata = JsonConvert.DeserializeObject<string>(result);
+				return contentdata;
+			}
+			catch (Exception ex)
+			{
+				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+				throw;
+			}
 		}
 
 		// if permlink Is "" then it will return all votes for author
-		public JArray get_active_votes(string author, string permlink)
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="author"></param>
+		/// <param name="permlink"></param>
+		/// <returns></returns>
+		public string GetActiveVotes(string author, string permlink)
 		{
-			var arrParams = new ArrayList {author, permlink};
-			return call_api_array(MethodBase.GetCurrentMethod().Name, arrParams);
+			try
+			{
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+				var @params = new ArrayList {author, permlink};
+				var result = SendRequest(reqname, @params);
+				var contentdata = JsonConvert.DeserializeObject<string>(result);
+				return contentdata;
+			}
+			catch (Exception ex)
+			{
+				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+				throw;
+			}
 		}
 
-		public JObject get_content(string author, string permlink)
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="author"></param>
+		/// <param name="permlink"></param>
+		/// <returns></returns>
+		public string GetContent(string author, string permlink)
 		{
-			var arrParams = new ArrayList {author, permlink};
-			return call_api(MethodBase.GetCurrentMethod().Name, arrParams);
+			try
+			{
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+				var @params = new ArrayList {author, permlink};
+				var result = SendRequest(reqname, @params);
+				var contentdata = JsonConvert.DeserializeObject<string>(result);
+				return contentdata;
+			}
+			catch (Exception ex)
+			{
+				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+				throw;
+			}
 		}
 
-		public JArray get_content_replies(string parent, string parentPermlink)
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="parent"></param>
+		/// <param name="parentPermlink"></param>
+		/// <returns></returns>
+		public string GetContentReplies(string parent, string parentPermlink)
 		{
-			var arrParams = new ArrayList {parent, parentPermlink};
-			return call_api_array(MethodBase.GetCurrentMethod().Name, arrParams);
+			try
+			{
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+				var @params = new ArrayList {parent, parentPermlink};
+				var result = SendRequest(reqname, @params);
+				var contentdata = JsonConvert.DeserializeObject<string>(result);
+				return contentdata;
+			}
+			catch (Exception ex)
+			{
+				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+				throw;
+			}
 		}
 
 		//  return the active discussions with the highest cumulative pending payouts without respect to category, total
 		//  pending payout means the pending payout of all children as well.
-		public JArray get_replies_by_last_update(string startAuthor, string startPermlink, uint limit)
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="startAuthor"></param>
+		/// <param name="startPermlink"></param>
+		/// <param name="limit"></param>
+		/// <returns></returns>
+		public string GetRepliesByLastUpdate(string startAuthor, string startPermlink, uint limit)
 		{
-			var arrParams = new ArrayList {startAuthor, startPermlink, limit};
-			return call_api_array(MethodBase.GetCurrentMethod().Name, arrParams);
+			try
+			{
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+				var @params = new ArrayList {startAuthor, startPermlink, limit};
+				var result = SendRequest(reqname, @params);
+				var contentdata = JsonConvert.DeserializeObject<string>(result);
+				return contentdata;
+			}
+			catch (Exception ex)
+			{
+				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+				throw;
+			}
 		}
 
 		// This method Is used to fetch all posts/comments by start_author that occur after before_date And start_permlink with up to limit being returned.
 		//
 		// If start_permlink Is empty then only before_date will be considered. If both are specified the eariler to the two metrics will be used. This
 		// should allow easy pagination.
-		public JArray get_discussions_by_author_before_date(string author, string startPermlink, DateTime beforeDate,
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="author"></param>
+		/// <param name="startPermlink"></param>
+		/// <param name="beforeDate"></param>
+		/// <param name="limit"></param>
+		/// <returns></returns>
+		public string GetDiscussionsByAuthorBeforeDate(string author, string startPermlink, DateTime beforeDate,
 			uint limit)
 		{
-			var arrParams = new ArrayList {author, startPermlink, beforeDate, limit};
-			return call_api_array(MethodBase.GetCurrentMethod().Name, arrParams);
+			try
+			{
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+				var @params = new ArrayList {author, startPermlink, beforeDate, limit};
+				var result = SendRequest(reqname, @params);
+				var contentdata = JsonConvert.DeserializeObject<string>(result);
+				return contentdata;
+			}
+			catch (Exception ex)
+			{
+				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+				throw;
+			}
 		}
 
 		// Account operations have sequence numbers from 0 to N where N Is the most recent operation. This method
@@ -184,10 +589,44 @@ namespace Alexandria.net.Core
 		//
 		// from - the absolute sequence number, -1 means most recent, limit Is the number of operations before from.
 		// limit - the maximum number of items that can be queried (0 to 1000], must be less than from
-		public JToken get_account_history(string account, ulong from, uint limit)
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="account"></param>
+		/// <param name="from"></param>
+		/// <param name="limit"></param>
+		/// <returns></returns>
+		public string GetAccountHistory(string account, ulong from, uint limit)
 		{
-			var @params = new ArrayList {account, from, limit};
-			return call_api_token(MethodBase.GetCurrentMethod().Name, @params);
+			try
+			{
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+				var @params = new ArrayList {account, from, limit};
+				var result = SendRequest(reqname, @params);
+				var contentdata = JsonConvert.DeserializeObject<string>(result);
+				return contentdata;
+			}
+			catch (Exception ex)
+			{
+				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+				throw;
+			}
+		}
+
+		public string GetWitnessCount()
+		{
+			try
+			{
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+				var result = SendRequest(reqname);
+				var contentdata = JsonConvert.DeserializeObject<string>(result);
+				return contentdata;
+			}
+			catch (Exception ex)
+			{
+				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+				throw;
+			}
 		}
 
 		#endregion
