@@ -7,6 +7,7 @@ using Alexandria.net.Logging;
 using Alexandria.net.Messaging.Responses;
 using Alexandria.net.Settings;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using AccountResponse = Alexandria.net.Messaging.Responses.AccountResponse;
 
 namespace Alexandria.net.API
@@ -140,9 +141,11 @@ namespace Alexandria.net.API
 			catch(Exception ex)
 			{
 				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
-				throw ;
+				
+				throw;
 			}		
 		}
+
 		
 		/// <summary>
 		/// Creates Transaction for all the operations created

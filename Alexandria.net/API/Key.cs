@@ -17,7 +17,7 @@ namespace Alexandria.net.API
     public class Key : RpcConnection
     {
         private readonly ILogger _logger;
-        private const string Libpath = "Lib/libalexandria";
+        private const string Libpath = "libalexandria";
 
         #region DllImports
 

@@ -150,7 +150,7 @@ namespace UnitTest
         }
 
         #endregion
-
+    
         #region Key Methods
 
         [Fact]
@@ -235,7 +235,7 @@ namespace UnitTest
         [Fact]
         public void CreateAccount()
         {
-           var result= _client.Account.CreateAccount("sanjiv2", "{}",
+           var result= _client.Account.CreateAccount("sanjiv27", "{}",
                 "SPH6zDAKpmQFATYSFC57hMCcCXjbDwQgG8YwkxbLUokGyXwXAjhad",
                 "SPH6zDAKpmQFATYSFC57hMCcCXjbDwQgG8YwkxbLUokGyXwXAjhad",
                 "SPH6zDAKpmQFATYSFC57hMCcCXjbDwQgG8YwkxbLUokGyXwXAjhad","initminer","5JKHcAHiZnPVMzzeSGrWcRPhkjFZsPy2Pf36CVaz8W2WmMP4L1w");
