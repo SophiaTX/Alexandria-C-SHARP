@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Alexandria.net</id>
+    <version>1.0.2</version>
+    <title>Alexandria</title>
+    <authors>Martyn Harler, Sanjiv Jha</authors>
+    <owners>Martyn Harler</owners>
+    <licenseUrl>https://www.sophiatx.com</licenseUrl>
+    <projectUrl>https://github.com/SophiaTX/Alexandria</projectUrl>
+    <iconUrl>https://www.sophiatx.com/wp-content/uploads/2018/04/SophiaTX-Symbol-cut.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>.Net Library for SophiaTX Blockchain</description>
+    <releaseNotes>Added platform dependent native libraries.</releaseNotes>
+    <copyright>Copyright 2018</copyright>
+    <tags>Sophiatx.net Alexandria Alexandria.net</tags>
+    
+    <dependencies>
+      <dependency id="Newtonsoft.Json" version="11.0.2"></dependency>
+      <dependency id="Serilog" version="2.7.1"></dependency>
+      <dependency id="Serilog.Extensions.Logging" version="2.0.2"></dependency>
+      <dependency id="Serilog.Formatting.Compact" version="1.0.0"></dependency>
+      <dependency id="Serilog.Sinks.File" version="4.0.0"></dependency>
+      <dependency id="Serilog.Sinks.Seq" version="4.0.0"></dependency>
+
+    </dependencies>
+
+  </metadata>
+ 
+  <files>
+    <file src="lib\*.*" target="lib" />
+    <file src="build\Alexandria.net.targets" target="build" />
+    <file src="bin\Release\netcoreapp2.0\Alexandria.net.dll" target="lib\netcoreapp2.0\Alexandria.net.dll"></file>
+  </files>
+</package>
