@@ -19,10 +19,15 @@ Table of Contents
 
 Install
 =================
-````
-git clone https://github.com/SophiaTX/Alexandria.git
 
-````
+- Get the Library (Alexandria 1.0.2) as a nuget package from nuget.org
+
+- https://www.nuget.org/packages/Alexandria.net/1.0.2 (Latest stable version)
+
+- Add the nuget package into the project (using Nuget Package Manager)
+
+- Rebuild the project and use the below mentioned functions to get connected with SophiaTX Blockchain
+
 
 Create Connection
 =================
