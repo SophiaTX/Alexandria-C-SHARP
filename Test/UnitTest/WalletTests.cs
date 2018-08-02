@@ -163,8 +163,9 @@ namespace UnitTest
         [Fact]
         public void GetTransactionDigest()
         {
-            _client.Key.GetTransactionDigest(Transaction, ChainId, new byte[64]);
-
+            var Value=_client.Key.GetTransactionDigest("{ \"ref_block_num\": 2161, \"ref_block_prefix\": 855038757, \"expiration\": \"2018-07-30T16:27:18\", \"operations\": [ [ \"account_create\", { \"fee\": \"0.000000 SPHTX\", \"creator\": \"initminer\", \"name_seed\": \"test45747477ww1245565768910\", \"owner\": { \"weight_threshold\": 1, \"account_auths\": [], \"key_auths\": [ [ \"SPH7GvbxZTntaqCnNSsuai1Dguejh23RKJHmu2uuR869BLbM3yWPK\", 1 ] ] }, \"active\": { \"weight_threshold\": 1, \"account_auths\": [], \"key_auths\": [ [ \"SPH7GvbxZTntaqCnNSsuai1Dguejh23RKJHmu2uuR869BLbM3yWPK\", 1 ] ] }, \"memo_key\": \"SPH7GvbxZTntaqCnNSsuai1Dguejh23RKJHmu2uuR869BLbM3yWPK\", \"json_metadata\": \"{}\" } ] ], \"extensions\": [], \"signatures\": [] }",
+                "4f402f175fc41ab3cdd3fd2eacaf0124150a4a84854bebfb5e2f8c55696fd8d4", new byte[64]);
+            Console.WriteLine(Value);
         }
 
         [Fact]
@@ -238,7 +239,7 @@ namespace UnitTest
            var result= _client.Account.CreateAccount("sanjiv27", "{}",
                 "SPH6zDAKpmQFATYSFC57hMCcCXjbDwQgG8YwkxbLUokGyXwXAjhad",
                 "SPH6zDAKpmQFATYSFC57hMCcCXjbDwQgG8YwkxbLUokGyXwXAjhad",
-                "SPH6zDAKpmQFATYSFC57hMCcCXjbDwQgG8YwkxbLUokGyXwXAjhad","initminer","5JKHcAHiZnPVMzzeSGrWcRPhkjFZsPy2Pf36CVaz8W2WmMP4L1w");
+                "SPH6zDAKpmQFATYSFC57hMCcCXjbDwQgG8YwkxbLUokGyXwXAjhad","initminer","5JKHcAHiZnPVMzzeSGrWcRPhkjFZsPy2Pf36CVaz8W2WmMP4L1z");
             Console.WriteLine(result);
         }
         
