@@ -171,7 +171,7 @@ namespace UnitTest
         [Fact]
         public void GetPublicKey()
         {
-            _client.Key.GetPublicKey("5JPwY3bwFgfsGtxMeLkLqXzUrQDMAsqSyAZDnMBkg7PDDRhQgaV", new byte[53]);
+            _client.Key.GetPublicKey("5JKHcAHiZnPVMzzeSGrWcRPhkjFZsPy2Pf36CVaz8W2WmMP4L1z", new byte[53]);
 
         }
 

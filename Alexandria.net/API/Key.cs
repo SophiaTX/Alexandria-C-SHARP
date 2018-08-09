@@ -189,19 +189,21 @@ namespace Alexandria.net.API
         /// <returns>Returns true if success or false for failed try</returns>
         public string SignDigest(string digest, string privatekey, byte[] signeddigest)
         {
+            var result=string.Empty;
             try
             {
-                var result = sign_digest(digest, privatekey, signeddigest)
+                    result = sign_digest(digest, privatekey, signeddigest)
                     ? System.Text.Encoding.Default.GetString(signeddigest)
                     : string.Empty;
 
-                return result;
+                
             }
-            catch (Exception ex)
+            catch (Exception ex) 
             {
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
+            return result;
         }
         
         /// <summary>
