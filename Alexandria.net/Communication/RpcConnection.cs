@@ -175,19 +175,11 @@ namespace Alexandria.net.Communication
             {
                 _logger.WriteError($"Message: {sx.Message} | StackTrace: {sx.StackTrace} | Response: {sx.ErrMsg}");
                 throw;
-                Error(response);
 
             }
            return response;
         }
-        public ErrorResponse Error(string err)
-        {
-            
-                var contentdata = JsonConvert.DeserializeObject<ErrorResponse>(err);
-                return contentdata;
-            
-
-        }
+        
         private int GetRequestId()
         {
             return _requestId++;

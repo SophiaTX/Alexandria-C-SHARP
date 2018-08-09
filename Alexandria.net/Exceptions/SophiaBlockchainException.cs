@@ -16,6 +16,8 @@ namespace Alexandria.net.Exceptions
         public SophiaBlockchainException(string errorresponse)
         {          
             ErrMsg = errorresponse;
+            throw new System.ArgumentException(ErrMsg);
+            
         }
     }
 }
