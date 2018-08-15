@@ -4,7 +4,6 @@ using Alexandria.net.Enums;
 using Alexandria.net.Messaging.Receiver;
 using Xunit;
 
-
 namespace UnitTest
 {
     public class WalletTests : BaseTest
@@ -159,74 +158,76 @@ namespace UnitTest
            var result= _client.Key.GeneratePrivateKey(new byte[51], new byte[53]);
            Console.WriteLine(result);
         }
-
         [Fact]
         public void GetTransactionDigest()
         {
-            var Value=_client.Key.GetTransactionDigest("{ \"ref_block_num\": 2161, \"ref_block_prefix\": 855038757, \"expiration\": \"2018-07-30T16:27:18\", \"operations\": [ [ \"account_create\", { \"fee\": \"0.000000 SPHTX\", \"creator\": \"initminer\", \"name_seed\": \"test45747477ww1245565768910\", \"owner\": { \"weight_threshold\": 1, \"account_auths\": [], \"key_auths\": [ [ \"SPH7GvbxZTntaqCnNSsuai1Dguejh23RKJHmu2uuR869BLbM3yWPK\", 1 ] ] }, \"active\": { \"weight_threshold\": 1, \"account_auths\": [], \"key_auths\": [ [ \"SPH7GvbxZTntaqCnNSsuai1Dguejh23RKJHmu2uuR869BLbM3yWPK\", 1 ] ] }, \"memo_key\": \"SPH7GvbxZTntaqCnNSsuai1Dguejh23RKJHmu2uuR869BLbM3yWPK\", \"json_metadata\": \"{}\" } ] ], \"extensions\": [], \"signatures\": [] }",
+            var value=_client.Key.GetTransactionDigest("{ \"ref_block_num\": 2161, \"ref_block_prefix\": 855038757, \"expiration\": \"2018-07-30T16:27:18\", \"operations\": [ [ \"account_create\", { \"fee\": \"0.000000 SPHTX\", \"creator\": \"initminer\", \"name_seed\": \"test45747477ww1245565768910\", \"owner\": { \"weight_threshold\": 1, \"account_auths\": [], \"key_auths\": [ [ \"SPH7GvbxZTntaqCnNSsuai1Dguejh23RKJHmu2uuR869BLbM3yWPK\", 1 ] ] }, \"active\": { \"weight_threshold\": 1, \"account_auths\": [], \"key_auths\": [ [ \"SPH7GvbxZTntaqCnNSsuai1Dguejh23RKJHmu2uuR869BLbM3yWPK\", 1 ] ] }, \"memo_key\": \"SPH7GvbxZTntaqCnNSsuai1Dguejh23RKJHmu2uuR869BLbM3yWPK\", \"json_metadata\": \"{}\" } ] ], \"extensions\": [], \"signatures\": [] }",
                 "4f402f175fc41ab3cdd3fd2eacaf0124150a4a84854bebfb5e2f8c55696fd8d4", new byte[64]);
-            Console.WriteLine(Value);
+            Console.WriteLine(value);
         }
-
         [Fact]
         public void GetPublicKey()
         {
-            _client.Key.GetPublicKey("5JKHcAHiZnPVMzzeSGrWcRPhkjFZsPy2Pf36CVaz8W2WmMP4L1z", new byte[53]);
-
+            
+            var result =_client.Key.GetPublicKey("5K14hP7ziUNqZbp75o4oW885259T1SbCinZskXhz3XnA2ymR1Ww", new byte[53]);
+            Console.WriteLine(result);
         }
-
+        [Fact]
+        public void GetPublicKeyServer()
+        {
+            _client.Key.getPublicKeyServer("5K14hP7ziUNqZbp75o4oW885259T1SbCinZskXhz3XnA2ymR1Wz");
+        }
         [Fact]
         public void GenerateKeyPairFromBrainKey()
         {
             _client.Key.GenerateKeyPairFromBrainKey(Brain, new byte[51], new byte[53]);
-
         }
-
         [Fact]
         public void VerifySignaturet()
         {
             _client.Key.VerifySignature(Digest, PublicKey, Sign);
-
         }
-
         [Fact]
         public void SignedDigest()
         {
             _client.Key.SignDigest("d139b5e917536aa3951916752df88d5cb28b27a27d266ad4bc1c920f1524187d", "5JPwY3bwFgfsGtxMeLkLqXzUrQDMAsqSyAZDnMBkg7PDDRhQgaV", new byte[130]);
-
         }
-
         [Fact]
         public void EncryptMemo()
         {
             _client.Key.EncryptMemo("{Hello:World}", PrivateKey, PublicKey2, new byte[1024]);
-
         }
         [Fact]
         public void DecryptMemo()
         {
-            _client.Key.DecryptMemo("2ZJ8RsXVNcNEoWPr6U5XYcjJeEfuz8cZbUNKxi6UQcgpxch5K1rRqagDHTv3C9vZLDJpSD9WYss6VHAWWvWVNCtCNkadKEcvaSV9SecRUnFeomX9HDTvhTXLW6BAAvuLRBMFLo1", PrivateKey2, PublicKey, new byte[1024]);
-
+            _client.Key.DecryptMemo("G3KK7mhkR7G99gGWC5fiGu1ie7xBJSdgdpXgTDe7GAmQG", PrivateKey2, PublicKey, new byte[1024]);
+        }
+        [Fact]
+        public void EncodeBase64()
+        {
+            _client.Key.EncodeBase64("{Hello:World}", new byte[1024]);
+        }
+        [Fact]
+        public void DecodeBase64()
+        {
+            string code = "e0hlbGxvOldvcmxkfQ==";
+            _client.Key.DecodeBase64(code, new byte[code.Length+100]);
         }
         [Fact]
         public void AddSignature()
         {
             _client.Key.AddSignature(Transaction, Sign, new byte[Transaction.Length + 200]);
-
         }
-
         [Fact]
         public void SuggestBrainKey()
         {
             var result=_client.Key.SuggestBrainKey();
             Console.WriteLine(result);
         }
-
         [Fact]
         public void NormalizeBrainKey()
         {
             _client.Key.NormalizeBrainKey(Brain);
-
         }
 
         #endregion
@@ -239,14 +240,14 @@ namespace UnitTest
            var result= _client.Account.CreateAccount("sanjiv27", "{}",
                 "SPH6zDAKpmQFATYSFC57hMCcCXjbDwQgG8YwkxbLUokGyXwXAjhad",
                 "SPH6zDAKpmQFATYSFC57hMCcCXjbDwQgG8YwkxbLUokGyXwXAjhad",
-                "SPH6zDAKpmQFATYSFC57hMCcCXjbDwQgG8YwkxbLUokGyXwXAjhad","initminer","5JKHcAHiZnPVMzzeSGrWcRPhkjFZsPy2Pf36CVaz8W2WmMP4L1z");
+                "SPH6zDAKpmQFATYSFC57hMCcCXjbDwQgG8YwkxbLUokGyXwXAjhad","initminer","5JKHcAHiZnPVMzzeSGrWcRPhkjFZsPy2Pf36CVaz8W2WmMP4L1w");
             Console.WriteLine(result);
         }
         
         [Fact]
         public void GetAccount()
         {
-            var result=_client.Account.GetAccount("sanjiv");
+            var result=_client.Account.GetAccount("sanjiv2");
             Console.WriteLine(result);
         }
 
@@ -346,7 +347,7 @@ namespace UnitTest
         public void Transfer()
         {
             
-            _client.Asset.Transfer("rumGMWVHCxedjhSHMBQYk3o9LVD", "2hPgEeeuitiNeM8bCCQWTKx9u6wx", "250000.00 SPHTX",
+            _client.Asset.Transfer("initminer", "2XyeasoZcbEzJDpTNIPPwjtwFwQA", "1000.00 SPHTX",
                 "Hello-test","5JKHcAHiZnPVMzzeSGrWcRPhkjFZsPy2Pf36CVaz8W2WmMP4L1w");
 
         }
@@ -387,10 +388,10 @@ namespace UnitTest
             var data = new SenderData
             {
                 AppId = 2,
-                PrivateKey = PrivateKey,
-                Recipients = new List<string> {"45fR5HHoV2XA7NyvKdc3CK4WrixE"},
-                Sender = "45fR5HHoV2XA7NyvKdc3CK4WrixE",
-                DocumentChars = "2ZJ8RsXVNcNEoWPr6U5XYcjJeEfuz8cZbUNKxi6UQcgpxch5K1rRqagDHTv3C9vZLDJpSD9WYss6VHAWWvWVNCtCNkadKEcvaSV9SecRUnFeomX9HDTvhTXLW6BAAvuLRBMFLo1" //"[\"" + $"{test}" + "\"]"
+                PrivateKey ="5K14hP7ziUNqZbp75o4oW885259T1SbCinZskXhz3XnA2ymR1Wz",
+                Recipients = new List<string> {"hwT5jQuzKG_ZjCBnUyHP_6hk4BU"},
+                Sender = "2XyeasoZcbEzJDpTNIPPwjtwFwQA",
+                DocumentChars = "SGVsbG8=" //"[\"" + $"{test}" + "\"]"
             };
             
             var result = _client.Data.SendBinary(data);
@@ -401,7 +402,7 @@ namespace UnitTest
         [Fact]
         public void Receive()
         {
-            var result = _client.Data.Receive(1,"45fR5HHoV2XA7NyvKdc3CK4WrixE",SearchType.ByRecipient,"2018-06-22T13:39:34",10);
+            var result = _client.Data.Receive(2,"2XyeasoZcbEzJDpTNIPPwjtwFwQA",SearchType.BySender,"2018-06-22T13:39:34",10);
             Console.WriteLine(result.Result);
         }
 

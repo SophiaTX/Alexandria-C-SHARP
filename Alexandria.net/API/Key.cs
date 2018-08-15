@@ -20,13 +20,13 @@ namespace Alexandria.net.API
         private const string Libpath = "libalexandria";
 
         #region DllImports
-
-        /// <summary>
-        /// Creates a private key
-        /// </summary>
-        /// <param name="privateKey">byte[52] private_key</param>
-        /// <param name="publickey">the public key</param>
-        /// <returns>Returns true if success or false for failed try</returns>
+ 
+            /// <summary>
+            /// Creates a private key
+            /// </summary>
+            /// <param name="privateKey">byte[52] private_key</param>
+            /// <param name="publickey">the public key</param>
+            /// <returns>Returns true if success or false for failed try</returns>
         [DllImport(Libpath)]
         private static extern bool generate_private_key([MarshalAs(UnmanagedType.LPArray)] byte[] privateKey,
             [MarshalAs(UnmanagedType.LPArray)] byte[] publickey);
@@ -65,8 +65,18 @@ namespace Alexandria.net.API
         private static extern bool decrypt_memo([MarshalAs(UnmanagedType.LPStr)] string memo,
             [MarshalAs(UnmanagedType.LPStr)] string privateKey, [MarshalAs(UnmanagedType.LPStr)] string publicKey,
             [MarshalAs(UnmanagedType.LPArray)] byte[] decryptedMemo);
-
-        #endregion
+        
+        [DllImport(Libpath)]
+        private static extern bool base64_decode([MarshalAs(UnmanagedType.LPStr)] string input, 
+            [MarshalAs(UnmanagedType.LPArray)] byte[] output);
+        
+        [DllImport(Libpath)]
+        private static extern bool base64_encode([MarshalAs(UnmanagedType.LPStr)] string input, 
+            [MarshalAs(UnmanagedType.LPArray)] byte[] output);
+        
+        
+ 
+    #endregion
 
         #region ctor
         /// <summary>
@@ -189,21 +199,20 @@ namespace Alexandria.net.API
         /// <returns>Returns true if success or false for failed try</returns>
         public string SignDigest(string digest, string privatekey, byte[] signeddigest)
         {
-            var result=string.Empty;
             try
             {
-                    result = sign_digest(digest, privatekey, signeddigest)
+                var result = sign_digest(digest, privatekey, signeddigest)
                     ? System.Text.Encoding.Default.GetString(signeddigest)
                     : string.Empty;
 
-                
+                return result;
             }
             catch (Exception ex) 
             {
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
-            return result;
+           
         }
         
         /// <summary>
@@ -377,6 +386,39 @@ namespace Alexandria.net.API
                 throw;
             }
         }
+        
+        public string EncodeBase64(string input, byte[] output)
+        {
+            try
+            {
+                var result = base64_encode(input, output)
+                    ? System.Text.Encoding.Default.GetString(output)
+                    : string.Empty;
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+                throw;
+            }
+        }
+        
+        public string DecodeBase64(string input, byte[] output)
+        {
+            try
+            {
+                var result = base64_decode(input, output)? System.Text.Encoding.Default.GetString(output)
+                    : string.Empty;
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+                throw;
+            }
+        }
 
         /// <summary>
         /// Create a passphrase for users to remember easily and use ot to generate
@@ -412,6 +454,21 @@ namespace Alexandria.net.API
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
                 var @params = new ArrayList {brainKey};
                 var result = SendRequest(reqname, @params);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+                throw;
+            }
+        }
+        public string getPublicKeyServer(string privateKey)
+        {
+            try
+            {
+                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+                var @params = new ArrayList {privateKey};
+                var result = SendRequest("get_public_key", @params);
                 return result;
             }
             catch (Exception ex)

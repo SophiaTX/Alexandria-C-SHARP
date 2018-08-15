@@ -31,9 +31,11 @@
     <Compile Remove="Messaging\Responses\DTO\ListAccountsResponse.cs" />
     <Compile Remove="Messaging\Responses\DTO\LockUnlockRequestResponse.cs" />
     <Compile Remove="Messaging\Responses\DTO\ReceiverRecipe.cs" />
+    <Compile Remove="Lib\**" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="libalexandria.dylib" />
+    <None Remove="Lib\**" />
   </ItemGroup>
   <ItemGroup>
     <DocFileItem Remove="bin\Debug\netcoreapp2.0\Alexandria.net.xml" />
@@ -54,17 +56,18 @@
     <_ApplicationManifestFinal Remove="bin\Debug\netcoreapp2.0\Native.Alexandria.net.manifest" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="Lib\libalexandria.dll" />
-    <EmbeddedResource Include="Lib\libalexandria.dll">
+    <EmbeddedResource Include="libalexandria.so">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <None Remove="Lib\libalexandria.dll" />
     <None Remove="Lib\libalexandria.dylib" />
-    <EmbeddedResource Include="Lib\libalexandria.dylib">
+    <EmbeddedResource Include="libalexandria.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <None Remove="Lib\libalexandria.so" />
-    <EmbeddedResource Include="Lib\libalexandria.so">
+    <EmbeddedResource Include="libalexandria.dylib">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Remove="Lib\**" />
   </ItemGroup>
 </Project>
