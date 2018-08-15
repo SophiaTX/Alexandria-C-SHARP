@@ -169,7 +169,7 @@ namespace UnitTest
         public void GetPublicKey()
         {
             
-            var result =_client.Key.GetPublicKey("5K14hP7ziUNqZbp75o4oW885259T1SbCinZskXhz3XnA2ymR1Ww", new byte[53]);
+            var result =_client.Key.GetPublicKey("5K14hP7ziUNqZbp75o4oW885259T1SbCinZskXhz3XnA2ymR1Wz", new byte[53]);
             Console.WriteLine(result);
         }
         [Fact]
@@ -237,7 +237,7 @@ namespace UnitTest
         [Fact]
         public void CreateAccount()
         {
-           var result= _client.Account.CreateAccount("sanjiv27", "{}",
+           var result= _client.Account.CreateAccount("sanjiv278", "{}",
                 "SPH6zDAKpmQFATYSFC57hMCcCXjbDwQgG8YwkxbLUokGyXwXAjhad",
                 "SPH6zDAKpmQFATYSFC57hMCcCXjbDwQgG8YwkxbLUokGyXwXAjhad",
                 "SPH6zDAKpmQFATYSFC57hMCcCXjbDwQgG8YwkxbLUokGyXwXAjhad","initminer","5JKHcAHiZnPVMzzeSGrWcRPhkjFZsPy2Pf36CVaz8W2WmMP4L1w");
