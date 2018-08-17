@@ -1,4 +1,4 @@
-﻿using System;
+﻿﻿using System;
 using System.Collections;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -274,7 +274,7 @@ namespace Alexandria.net.API
             {
                 var result = get_public_key(privateKey, publicKey)
                     ? System.Text.Encoding.Default.GetString(publicKey)
-                    : string.Empty;
+                    : "Please enter correct a private key";
 
                 return result;
             }
@@ -386,7 +386,12 @@ namespace Alexandria.net.API
                 throw;
             }
         }
-        
+        /// <summary>
+        /// Encode the memo in base64 format
+        /// </summary>
+        /// <param name="input">data to be formatted</param>
+        /// <param name="output">base64 formatted result</param>
+        /// <returns>base64 result or empty string</returns>
         public string EncodeBase64(string input, byte[] output)
         {
             try
@@ -403,7 +408,12 @@ namespace Alexandria.net.API
                 throw;
             }
         }
-        
+        /// <summary>
+        /// Decode the memo in base64 format
+        /// </summary>
+        /// <param name="input">Base64 fromatted data</param>
+        /// <param name="output">Decoded data</param>
+        /// <returns>Decoded data or empty string</returns>
         public string DecodeBase64(string input, byte[] output)
         {
             try
@@ -462,20 +472,6 @@ namespace Alexandria.net.API
                 throw;
             }
         }
-        public string getPublicKeyServer(string privateKey)
-        {
-            try
-            {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                var @params = new ArrayList {privateKey};
-                var result = SendRequest("get_public_key", @params);
-                return result;
-            }
-            catch (Exception ex)
-            {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
-                throw;
-            }
-        }
+        
     }
 }
