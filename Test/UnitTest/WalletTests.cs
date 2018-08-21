@@ -168,11 +168,9 @@ namespace UnitTest
         [Fact]
         public void GetPublicKey()
         {
-            
             var result =_client.Key.GetPublicKey("5K14hP7ziUNqZbp75o4oW885259T1SbCinZskXhz3XnA2ymR1Wz", new byte[53]);
             Console.WriteLine(result);
         }
-       
         [Fact]
         public void GenerateKeyPairFromBrainKey()
         {
