@@ -222,15 +222,16 @@ namespace Alexandria.net.API
         /// <param name="signature">string signature</param>
         /// <param name="signedtx">byte[] signedtx, returned signed transaction (size variable, depends on size of transaction on input_)</param>
         /// <returns>Returns true if success or false for failed try</returns>
-        public SignedTransactionResponse AddSignature(string transaction, string signature, byte[] signedtx)
+        public SignedTransactionResponseData AddSignature(string transaction, string signature, byte[] signedtx)
         {
             try
             {
                 var value = add_signature(transaction, signature, signedtx);
                 if (!value) return null;
-
+                
                 var signedTransaction = System.Text.Encoding.Default.GetString(signedtx);
-                var result = JsonConvert.DeserializeObject<SignedTransactionResponse>(signedTransaction);
+                Console.WriteLine(signedTransaction);
+                var result = JsonConvert.DeserializeObject<SignedTransactionResponseData>(signedTransaction);
                 return result;
             }
             catch (Exception ex)

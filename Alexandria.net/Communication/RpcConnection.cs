@@ -115,7 +115,7 @@ namespace Alexandria.net.Communication
                 var digest = key.GetTransactionDigest(transaction,aboutresponse.Result.ChainId,new byte[64]);
 
                 var signature = key.SignDigest(digest, privateKey, new byte[130]);
-                var response = key.AddSignatureServer(transresponse, signature);
+                var response = key.AddSignature(transaction, signature,new byte[transaction.Length + 200]);
                 finalResponse = trans.BroadcastTransaction(response);          
             }
             catch (Exception ex)
@@ -124,7 +124,7 @@ namespace Alexandria.net.Communication
                 throw;
             }
 
-            return finalResponse;
+           return finalResponse;
         }
         #endregion
 

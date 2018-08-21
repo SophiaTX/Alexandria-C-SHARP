@@ -11,8 +11,7 @@ namespace UnitTest
         #region Member Variables
 
         private const string Transaction =
-            "{\"ref_block_num\":16364,\"ref_block_prefix\":2217467278,\"expiration\":\"2018-06-20T15:24:06\",\"operations\":[[\"account_create\",{\"fee\":\"0.100000 SPHTX\",\"creator\":\"initminer\",\"new_account_name\":\"sanjiv9999\",\"owner\":{\"weight_threshold\":1,\"account_auths\":[],\"key_auths\":[[\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",1]]},\"active\":{\"weight_threshold\":1,\"account_auths\":[],\"key_auths\":[[\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",1]]},\"memo_key\":\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",\"json_metadata\":\"{}\"}]],\"extensions\":[],\"signatures\":[]}";
-
+            "{ \"ref_block_num\": 34958, \"ref_block_prefix\": 4183758935, \"expiration\": \"2018-08-21T07:57:48\", \"operations\": [ [ \"account_create\", { \"fee\": \"0.000000 SPHTX\", \"creator\": \"initminer\", \"name_seed\": \"test45747477ww124556576891010234789107\", \"owner\": { \"weight_threshold\": 1, \"account_auths\": [], \"key_auths\": [ [ \"SPH7GvbxZTntaqCnNSsuai1Dguejh23RKJHmu2uuR869BLbM3yWPK\", 1 ] ] }, \"active\": { \"weight_threshold\": 1, \"account_auths\": [], \"key_auths\": [ [ \"SPH7GvbxZTntaqCnNSsuai1Dguejh23RKJHmu2uuR869BLbM3yWPK\", 1 ] ] }, \"memo_key\": \"SPH7GvbxZTntaqCnNSsuai1Dguejh23RKJHmu2uuR869BLbM3yWPK\", \"json_metadata\": \"{}\" } ] ], \"extensions\": [], \"signatures\": [] }";
         private const string Digest = "fe7ee427286c25eb48a39218f4415fd64f59b25aac2978a8a534b542cf8059c9";
 
         private const string Sign =
@@ -161,8 +160,7 @@ namespace UnitTest
         [Fact]
         public void GetTransactionDigest()
         {
-            var value=_client.Key.GetTransactionDigest("{ \"ref_block_num\": 2161, \"ref_block_prefix\": 855038757, \"expiration\": \"2018-07-30T16:27:18\", \"operations\": [ [ \"account_create\", { \"fee\": \"0.000000 SPHTX\", \"creator\": \"initminer\", \"name_seed\": \"test45747477ww1245565768910\", \"owner\": { \"weight_threshold\": 1, \"account_auths\": [], \"key_auths\": [ [ \"SPH7GvbxZTntaqCnNSsuai1Dguejh23RKJHmu2uuR869BLbM3yWPK\", 1 ] ] }, \"active\": { \"weight_threshold\": 1, \"account_auths\": [], \"key_auths\": [ [ \"SPH7GvbxZTntaqCnNSsuai1Dguejh23RKJHmu2uuR869BLbM3yWPK\", 1 ] ] }, \"memo_key\": \"SPH7GvbxZTntaqCnNSsuai1Dguejh23RKJHmu2uuR869BLbM3yWPK\", \"json_metadata\": \"{}\" } ] ], \"extensions\": [], \"signatures\": [] }",
-                "4f402f175fc41ab3cdd3fd2eacaf0124150a4a84854bebfb5e2f8c55696fd8d4", new byte[64]);
+            var value=_client.Key.GetTransactionDigest("{ \"ref_block_num\": 34958, \"ref_block_prefix\": 4183758935, \"expiration\": \"2018-08-21T07:57:48\", \"operations\": [ [ \"account_create\", { \"fee\": \"0.000000 SPHTX\", \"creator\": \"initminer\", \"name_seed\": \"test45747477ww124556576891010234789107\", \"owner\": { \"weight_threshold\": 1, \"account_auths\": [], \"key_auths\": [ [ \"SPH7GvbxZTntaqCnNSsuai1Dguejh23RKJHmu2uuR869BLbM3yWPK\", 1 ] ] }, \"active\": { \"weight_threshold\": 1, \"account_auths\": [], \"key_auths\": [ [ \"SPH7GvbxZTntaqCnNSsuai1Dguejh23RKJHmu2uuR869BLbM3yWPK\", 1 ] ] }, \"memo_key\": \"SPH7GvbxZTntaqCnNSsuai1Dguejh23RKJHmu2uuR869BLbM3yWPK\", \"json_metadata\": \"{}\" } ] ], \"extensions\": [], \"signatures\": [] }","66423e7baa1f62570784e17cb78d48329e78faa43075cc9d847c434b4bfe2dfb", new byte[64]);
             Console.WriteLine(value);
         }
         [Fact]
@@ -210,7 +208,8 @@ namespace UnitTest
         [Fact]
         public void AddSignature()
         {
-            _client.Key.AddSignature(Transaction, Sign, new byte[Transaction.Length + 200]);
+            var value=_client.Key.AddSignature(Transaction, "1f038c20c460b74676002e1e73f863f8498fd5abdb92aebc6a7af25e03c16bbf001ca01e0abe2f4e23b5740ec080ccea8051e5c370ec36fd8c0cdbcbebcdcdcb7e", new byte[Transaction.Length + 200]);
+            Console.WriteLine(value);
         }
         [Fact]
         public void SuggestBrainKey()
@@ -231,7 +230,7 @@ namespace UnitTest
         [Fact]
         public void CreateAccount()
         {
-           var result= _client.Account.CreateAccount("sanjiv278", "{}",
+           var result= _client.Account.CreateAccount("sanjiv2781", "{}",
                 "SPH6zDAKpmQFATYSFC57hMCcCXjbDwQgG8YwkxbLUokGyXwXAjhad",
                 "SPH6zDAKpmQFATYSFC57hMCcCXjbDwQgG8YwkxbLUokGyXwXAjhad",
                 "SPH6zDAKpmQFATYSFC57hMCcCXjbDwQgG8YwkxbLUokGyXwXAjhad","initminer","5JKHcAHiZnPVMzzeSGrWcRPhkjFZsPy2Pf36CVaz8W2WmMP4L1w");
@@ -241,7 +240,7 @@ namespace UnitTest
         [Fact]
         public void GetAccount()
         {
-            var result=_client.Account.GetAccount("sanjiv2");
+            var result=_client.Account.GetAccount("sanjiv2781");
             Console.WriteLine(result);
         }
 
