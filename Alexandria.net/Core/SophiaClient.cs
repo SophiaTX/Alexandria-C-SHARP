@@ -75,11 +75,6 @@ namespace Alexandria.net.Core
             Witness = new Witness(config);
             Data = new Data(config);
             Application = new Application(config);
-//            else
-//            {
-//                var logger = new Logger(config, LoggingType.Server, Assembly.GetExecutingAssembly().GetName().Name);
-//                logger.WriteError("Error with the config file");
-//            }
         }
 
         #endregion
@@ -101,7 +96,7 @@ namespace Alexandria.net.Core
         {
             try
             {
-                var fullfilename = $"{AssemblyDirectory}/{filename}";
+                var fullfilename = $"{AssemblyDirectory}\\{filename}";
                 if (File.Exists(fullfilename))
                 {
                     return JsonConvert.DeserializeObject<T>(File.ReadAllText(fullfilename));
