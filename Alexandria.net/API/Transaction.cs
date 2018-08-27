@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Threading.Tasks;
 using Alexandria.net.Communication;
 using Alexandria.net.Logging;
 using Alexandria.net.Messaging.Responses;
@@ -29,7 +30,7 @@ namespace Alexandria.net.API
 		public Transaction(IConfig config) : base(config)
 		{
 			var assemblyname = Assembly.GetExecutingAssembly().GetName().Name;
-			_logger = new Logger(config, LoggingType.Server, assemblyname);
+			_logger = new Logger(config, assemblyname);
 		}
 
 		#endregion
@@ -135,6 +136,29 @@ namespace Alexandria.net.API
 				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
 				var @params = new ArrayList {signedTx};
 				var result= SendRequest(reqname, @params);
+				var contentdata = JsonConvert.DeserializeObject<TransactionResponse>(result);
+				return contentdata;
+			}
+			catch(Exception ex)
+			{
+				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+				
+				throw;
+			}		
+		}
+		
+		/// <summary>
+		/// Broadcasts transaction once it is created, helps to register Transactions on the Blockchain asynchronously
+		/// </summary>
+		/// <param name="signedTx"></param>
+		/// <returns>Returns Object with Transaction id and other details</returns>
+		public async Task<TransactionResponse> BroadcastTransactionAsync(SignedTransactionResponse signedTx)
+		{
+			try
+			{
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+				var @params = new ArrayList {signedTx.result};
+				var result= await SendRequestAsync(reqname, @params);
 				var contentdata = JsonConvert.DeserializeObject<TransactionResponse>(result);
 				return contentdata;
 			}

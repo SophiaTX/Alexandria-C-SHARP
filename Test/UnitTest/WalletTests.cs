@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using Alexandria.net.Enums;
+using Alexandria.net.Events;
 using Alexandria.net.Messaging.Receiver;
 using Xunit;
 
@@ -355,6 +357,24 @@ namespace UnitTest
         #endregion
 
         #region Data Methods
+
+        [Fact]
+        public void TestListening()
+        {
+            _client.OnDataReceivedBlockChainEvent += ClientOnOnDataReceivedBlockChainEvent;
+            _client.Data.StartListening("mart", "cranfield", SearchType.BySender, "1", 1);
+
+            for (var index = 0; index < 50; index++)
+            {
+                Thread.Sleep(20000);
+            }
+            Console.WriteLine("test completed");
+        }
+
+        private void ClientOnOnDataReceivedBlockChainEvent(object sender, DataReceivedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
 
         [Fact]
         public void Send()

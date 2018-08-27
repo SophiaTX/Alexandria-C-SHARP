@@ -3,6 +3,8 @@ using Alexandria.net.Enums;
 using Alexandria.net.Settings;
 using Serilog;
 using Serilog.Formatting.Compact;
+using Serilog.Sinks.Graylog;
+using Serilog.Sinks.Graylog.Core;
 
 namespace Alexandria.net.Logging
 {
@@ -22,13 +24,12 @@ namespace Alexandria.net.Logging
         /// the Logger constructor
         /// </summary>
         /// <param name="config"></param>
-        /// <param name="loggingtype">the type of logging: file or server</param>
         /// <param name="appname">the name of the calling application</param>
         /// <param name="mode">the buildmode: Prod or Testr</param>
-        public Logger(IConfig config, LoggingType loggingtype, string appname, BuildMode mode = BuildMode.Prod)
+        public Logger(IConfig config, string appname, BuildMode mode = BuildMode.Prod)
         {
             _config = config;
-            switch (loggingtype)
+            switch (_config.LoggingType)
             {
                 case LoggingType.File:
                     CreateLoggerCJson(appname);
@@ -64,12 +65,19 @@ namespace Alexandria.net.Logging
         {
             try
             {
+//                Log.Logger = new LoggerConfiguration()
+//                    .MinimumLevel.Debug()
+//                    .Enrich.WithProperty("Application", appname)
+//                    .WriteTo.Seq(_config.LoggingServer)
+//                    .CreateLogger();
                 Log.Logger = new LoggerConfiguration()
                     .MinimumLevel.Debug()
                     .Enrich.WithProperty("Application", appname)
-                    .WriteTo.Seq(_config.LoggingServer)
-                    .CreateLogger();
-
+                    .WriteTo.Graylog(new GraylogSinkOptions
+                    {
+                        HostnameOrAddress = _config.LoggingServer,
+                        Port = _config.LoggingPort,
+                    }).CreateLogger();
             }
             catch (Exception e)
             {

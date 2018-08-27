@@ -29,7 +29,7 @@ namespace Alexandria.net.API
             base(config)
         {
             var assemblyname = Assembly.GetExecutingAssembly().GetName().Name;
-            _logger = new Logger(config, LoggingType.Server, assemblyname);
+            _logger = new Logger(config, assemblyname);
         }
 
         #endregion

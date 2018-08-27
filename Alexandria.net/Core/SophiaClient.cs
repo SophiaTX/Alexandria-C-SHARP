@@ -3,6 +3,7 @@ using System.IO;
 using System.Reflection;
 using Alexandria.net.API;
 using Alexandria.net.Enums;
+using Alexandria.net.Events;
 using Alexandria.net.Logging;
 using Alexandria.net.Settings;
 using Newtonsoft.Json;
@@ -59,28 +60,37 @@ namespace Alexandria.net.Core
         public SophiaClient(string hostname = "", ushort daemonPort = 0, ushort walletPort = 0)
         {
             var config = LoadJson<Config>("config.json");
-            if (config != null)
-            {
-                if (hostname != "")
-                    config.Hostname = hostname;
-                if (daemonPort != 0)
-                    config.DaemonPort = daemonPort;
-                if (walletPort != 0)
-                    config.WalletPort = walletPort;
+            if (config == null) return;
+            if (hostname != "")
+                config.Hostname = hostname;
+            if (daemonPort != 0)
+                config.DaemonPort = daemonPort;
+            if (walletPort != 0)
+                config.WalletPort = walletPort;
 
-                Account = new Account(config);
-                Asset = new Asset(config);
-                Key = new Key(config);
-                Transaction = new Transaction(config);
-                Witness = new Witness(config);
-                Data = new Data(config);
-                Application = new Application(config);
-            }
-            else
-            {
-                var logger = new Logger(config, LoggingType.Server, Assembly.GetExecutingAssembly().GetName().Name);
-                logger.WriteError("Error with the config file");
-            }
+            Account = new Account(config);
+            Asset = new Asset(config);
+            Key = new Key(config);
+            Transaction = new Transaction(config);
+            Witness = new Witness(config);
+            Data = new Data(config);
+            Application = new Application(config);
+//            else
+//            {
+//                var logger = new Logger(config, LoggingType.Server, Assembly.GetExecutingAssembly().GetName().Name);
+//                logger.WriteError("Error with the config file");
+//            }
+        }
+
+        #endregion
+        
+        #region EventHandlers
+
+        /// <summary>   Event queue for all listeners interested in accountCreated events. </summary>
+        public event DataReceivedEventHandler OnDataReceivedBlockChainEvent
+        {
+            add => Data.OnDataReceivedBlockChainEvent += value;
+            remove => Data.OnDataReceivedBlockChainEvent -= value;
         }
 
         #endregion
@@ -102,7 +112,8 @@ namespace Alexandria.net.Core
                     var config = new Config
                     {
                         LoggingType = LoggingType.File,
-                        LoggingServer = "http://195.48.9.135:5341",
+                        LoggingServer = "http://54.93.236.100",
+                        LoggingPort = 12201,
                         BuildMode = BuildMode.Prod,
                         Hostname = "195.48.9.208",
                         DaemonPort = 8095,
@@ -111,6 +122,7 @@ namespace Alexandria.net.Core
                         Version = "2.0"
                     };
                     File.WriteAllText(fullfilename, JsonConvert.SerializeObject(config));
+                    return (T) Convert.ChangeType(config, typeof(T));
                 }
                 else if (typeof(T) == typeof(BlockchainConfig))
                 {
@@ -123,6 +135,7 @@ namespace Alexandria.net.Core
                         Start = StartBy.Index
                     };
                     File.WriteAllText(fullfilename, JsonConvert.SerializeObject(blockchainconfig));
+                    return (T) Convert.ChangeType(blockchainconfig, typeof(T));
                 }
             }
             catch (Exception e)
