@@ -5,7 +5,7 @@ namespace Alexandria.net.Messaging.Receiver
     /// <summary>
     /// The Sender Object
     /// </summary>
-    public class SenderData
+    public class JsonData
     {
         /// <summary>
         /// the sender 
@@ -20,13 +20,9 @@ namespace Alexandria.net.Messaging.Receiver
         /// </summary>
         public uint AppId { get; set; }
         /// <summary>
-        /// the document to send
+        /// the document to send in json format
         /// </summary>
-        public string Document { get; set; }
-        /// <summary>
-        /// the char array to send
-        /// </summary>
-        public string DocumentChars { get; set; }
+        public string JsonDoc { get; set; }
         /// <summary>
         /// the sender private key
         /// </summary>

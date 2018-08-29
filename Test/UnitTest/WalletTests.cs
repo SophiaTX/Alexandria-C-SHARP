@@ -382,29 +382,29 @@ namespace UnitTest
             var test = "{\"ref_block_num\":16364,\"ref_block_prefix\":2217467278,\"expiration\":\"2018-06-20T15:24:06\",\"operations\":[[\"account_create\",{\"fee\":\"0.100000 SPHTX\",\"creator\":\"initminer\",\"new_account_name\":\"sanjiv9999\",\"owner\":{\"weight_threshold\":1,\"account_auths\":[],\"key_auths\":[[\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",1]]},\"active\":{\"weight_threshold\":1,\"account_auths\":[],\"key_auths\":[[\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",1]]},\"memo_key\":\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",\"json_metadata\":\"{}\"}]],\"extensions\":[],\"signatures\":[]}";
             
            
-            var data = new SenderData
+            var data = new JsonData
             {
                 AppId = 2,
                 PrivateKey = PrivateKey,
                 Recipients = new List<string> {"45fR5HHoV2XA7NyvKdc3CK4WrixE"},
                 Sender = "rumGMWVHCxedjhSHMBQYk3o9LVD",
-                Document = test//"[\"" + $"{test}" + "\"]"
+                JsonDoc = test//"[\"" + $"{test}" + "\"]"
             };
 
-            var result = _client.Data.Send(data);
+            var result = _client.Data.SendJson(data);
             Console.WriteLine(result);
         }
 
         [Fact]
         public void SendBinary()
         {
-            var data = new SenderData
+            var data = new BinaryData
             {
                 AppId = 2,
                 PrivateKey ="5K14hP7ziUNqZbp75o4oW885259T1SbCinZskXhz3XnA2ymR1Wz",
                 Recipients = new List<string> {"hwT5jQuzKG_ZjCBnUyHP_6hk4BU"},
                 Sender = "2XyeasoZcbEzJDpTNIPPwjtwFwQA",
-                DocumentChars = "SGVsbG8=" //"[\"" + $"{test}" + "\"]"
+                BinaryDoc = "SGVsbG8=" //"[\"" + $"{test}" + "\"]"
             };
             
             var result = _client.Data.SendBinary(data);

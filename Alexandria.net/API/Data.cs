@@ -111,7 +111,7 @@ namespace Alexandria.net.API
         /// <param name="senderinfo">the sender info required for the transaction</param>
         /// <param></param>
         /// <returns>the transaction response data</returns>
-        public TransactionResponse Send<T>(T data, SenderData senderinfo)
+        public TransactionResponse SendJson<T>(T data, JsonData senderinfo)
         {
             try
             {
@@ -133,19 +133,19 @@ namespace Alexandria.net.API
         /// Sends the parsed data to the blockchain
         /// </summary>
         /// <param name="data">the data to send, this is a type parameter, so any data type can be sent</param>
-        /// <param name="senderinfo">the sender info required for the transaction</param>
+        /// <param name="jsonData">the sender info required for the transaction</param>
         /// <param></param>
         /// <returns>the transaction response data</returns>
-        public async Task<TransactionResponse> SendAsync<T>(T data, SenderData senderinfo)
+        public async Task<TransactionResponse> SendJsonAsync<T>(T data, JsonData jsonData)
         {
             try
             {
                 var jsondata = JsonConvert.SerializeObject(data);
-                var customjsonrpc = await MakeCustomJsonOperationAsync(senderinfo.Sender, senderinfo.Recipients,
-                    senderinfo.AppId,
+                var customjsonrpc = await MakeCustomJsonOperationAsync(jsonData.Sender, jsonData.Recipients,
+                    jsonData.AppId,
                     jsondata);
                 if (customjsonrpc == null) return null;
-                var resp = await StartBroadcastingAsync(customjsonrpc.Result, senderinfo.PrivateKey);
+                var resp = await StartBroadcastingAsync(customjsonrpc.Result, jsonData.PrivateKey);
                 return resp;
             }
             catch (Exception ex)
@@ -158,17 +158,17 @@ namespace Alexandria.net.API
         /// <summary>
         /// Sends the parsed data to the blockchain
         /// </summary>
-        /// <param name="senderinfo">the sender info required for the transaction</param>
+        /// <param name="jsonData">the sender info required for the transaction</param>
         /// <param></param>
         /// <returns>the transaction response data</returns>
-        public TransactionResponse Send(SenderData senderinfo)
+        public TransactionResponse SendJson(JsonData jsonData)
         {
             try
             {
-                var customjsonrpc = MakeCustomJsonOperation(senderinfo.Sender, senderinfo.Recipients, senderinfo.AppId,
-                    senderinfo.Document);
+                var customjsonrpc = MakeCustomJsonOperation(jsonData.Sender, jsonData.Recipients, jsonData.AppId,
+                    jsonData.JsonDoc);
                 if (customjsonrpc == null) return null;
-                var resp = StartBroadcasting(customjsonrpc.Result, senderinfo.PrivateKey);
+                var resp = StartBroadcasting(customjsonrpc.Result, jsonData.PrivateKey);
                 return resp;
             }
             catch (Exception ex)
@@ -181,17 +181,17 @@ namespace Alexandria.net.API
         /// <summary>
         /// Sends the parsed data asynchronously to the blockchain 
         /// </summary>
-        /// <param name="senderinfo">the sender info required for the transaction</param>
+        /// <param name="jsonData">the sender info required for the transaction</param>
         /// <param></param>
         /// <returns>the transaction response data</returns>
-        public async Task<TransactionResponse> SendAsync(SenderData senderinfo)
+        public async Task<TransactionResponse> SendJsonAsync(JsonData jsonData)
         {
             try
             {
-                var customjsonrpc = await MakeCustomJsonOperationAsync(senderinfo.Sender, senderinfo.Recipients, senderinfo.AppId,
-                    senderinfo.Document);
+                var customjsonrpc = await MakeCustomJsonOperationAsync(jsonData.Sender, jsonData.Recipients, jsonData.AppId,
+                    jsonData.JsonDoc);
                 if (customjsonrpc == null) return null;
-                var resp = await StartBroadcastingAsync(customjsonrpc.Result, senderinfo.PrivateKey);
+                var resp = await StartBroadcastingAsync(customjsonrpc.Result, jsonData.PrivateKey);
                 return resp;
             }
             catch (Exception ex)
@@ -204,17 +204,16 @@ namespace Alexandria.net.API
         /// <summary>
         /// Send custom data data to the blockchain
         /// </summary>
-        /// <param name="senderdata">Data collection</param>
+        /// <param name="binaryData"></param>
         /// <returns></returns>
-        public TransactionResponse SendBinary(SenderData senderdata)
+        public TransactionResponse SendBinary(BinaryData binaryData)
         {
             try
             {
-                var customjsonrpc = MakeCustomBinaryOperation(senderdata.AppId, senderdata.Sender, senderdata.Recipients,
-                    
-                    senderdata.DocumentChars);
+                var customjsonrpc = MakeCustomBinaryOperation(binaryData.AppId, binaryData.Sender, binaryData.Recipients,
+                    binaryData.BinaryDoc);
                 if (customjsonrpc == null) return null;
-                var resp = StartBroadcasting(customjsonrpc.Result, senderdata.PrivateKey);
+                var resp = StartBroadcasting(customjsonrpc.Result, binaryData.PrivateKey);
                 return resp;
             }
             catch (Exception ex)
@@ -227,17 +226,17 @@ namespace Alexandria.net.API
         /// <summary>
         /// Send custom data data asynchronously to the blockchain
         /// </summary>
-        /// <param name="senderdata">Data collection</param>
+        /// <param name="binaryData">Data collection</param>
         /// <returns></returns>
-        public async Task<TransactionResponse> SendBinaryAsync(SenderData senderdata)
+        public async Task<TransactionResponse> SendBinaryAsync(BinaryData binaryData)
         {
             try
             {
-                var customjsonrpc = await MakeCustomBinaryOperationAsync(senderdata.AppId, senderdata.Sender, senderdata.Recipients,
+                var customjsonrpc = await MakeCustomBinaryOperationAsync(binaryData.AppId, binaryData.Sender, binaryData.Recipients,
                     
-                    senderdata.DocumentChars);
+                    binaryData.BinaryDoc);
                 if (customjsonrpc == null) return null;
-                var resp = await StartBroadcastingAsync(customjsonrpc.Result, senderdata.PrivateKey);
+                var resp = await StartBroadcastingAsync(customjsonrpc.Result, binaryData.PrivateKey);
                 return resp;
             }
             catch (Exception ex)
