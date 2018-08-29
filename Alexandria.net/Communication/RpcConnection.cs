@@ -153,7 +153,7 @@ namespace Alexandria.net.Communication
         {
             var trans = new Transaction(Config);
             var key = new Key(Config);
-            TransactionResponse finalResponse;
+            Task<TransactionResponse> finalResponse;
             try
             {
                //ask for token symbol each time a transaction is performed
@@ -175,7 +175,7 @@ namespace Alexandria.net.Communication
 
                 var signature = key.SignDigest(digest, privateKey, new byte[130]);
                 var response = key.AddSignature(transaction, signature,new byte[transaction.Length + 200]);
-                finalResponse = trans.BroadcastTransaction(response);          
+                finalResponse = trans.BroadcastTransactionAsync(response);          
             }
             catch (Exception ex)
             {
@@ -183,7 +183,7 @@ namespace Alexandria.net.Communication
                 throw;
             }
 
-            return finalResponse;
+            return finalResponse.Result;
         }
 
         #endregion

@@ -152,12 +152,12 @@ namespace Alexandria.net.API
 		/// </summary>
 		/// <param name="signedTx"></param>
 		/// <returns>Returns Object with Transaction id and other details</returns>
-		public async Task<TransactionResponse> BroadcastTransactionAsync(SignedTransactionResponse signedTx)
+		public async Task<TransactionResponse> BroadcastTransactionAsync(SignedTransactionResponseData signedTx)
 		{
 			try
 			{
-				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-				var @params = new ArrayList {signedTx.result};
+				var reqname = CSharpToCpp.GetValue("BroadcastTransactionAsync");
+				var @params = new ArrayList {signedTx};
 				var result= await SendRequestAsync(reqname, @params);
 				var contentdata = JsonConvert.DeserializeObject<TransactionResponse>(result);
 				return contentdata;

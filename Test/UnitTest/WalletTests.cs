@@ -436,7 +436,7 @@ namespace UnitTest
         {
             var data = new BinaryData
             {
-                AppId = 4,
+                AppId = 5,
                 PrivateKey =PrivateKey,
                 Recipients = new List<string> {"hwT5jQuzKG_ZjCBnUyHP_6hk4BU"},
                 Sender = "PcQ-byG-3OczM99qg1m_6zU9ArAA",
@@ -451,7 +451,7 @@ namespace UnitTest
         [Fact]
         public void Receive()
         {
-            var result = _client.Data.Receive(4,"PcQ-byG-3OczM99qg1m_6zU9ArAA",SearchType.BySender,"2018-08-25T13:39:34",10);
+            var result = _client.Data.Receive(5,"PcQ-byG-3OczM99qg1m_6zU9ArAA",SearchType.BySender,"2018-08-25T13:39:34",10);
             Console.WriteLine(result.Result);
         }
 
