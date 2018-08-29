@@ -300,7 +300,11 @@
                     return MakeCustomBinaryOperationAsync;
                 case "BroadcastTransactionAsync":
                     return BroadcastTransactionAsync;
-                   
+                case "CreateSimpleTransactionAsync":
+                    return CreateSimpleTransaction;
+                case "AboutAsync":
+                    return About;
+                    
             }
             return string.Empty;
         }

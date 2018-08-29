@@ -111,9 +111,7 @@ namespace Alexandria.net.Communication
             TransactionResponse finalResponse;
             try
             {
-               //ask for token symbol each time a transaction is performed
-               //todo:next build append a parameter as "CurrencySymbol" in each transaction functions to calculate the charges. 
-                
+               
                 var fees = trans.CalculateFee(contentdata, "SPHTX");
                 
                 var feeAddedOperation = trans.AddFee(contentdata, fees.result);
@@ -156,24 +154,18 @@ namespace Alexandria.net.Communication
             TransactionResponse finalResponse;
             try
             {
-               //ask for token symbol each time a transaction is performed
-               //todo:next build append a parameter as "CurrencySymbol" in each transaction functions to calculate the charges. 
-
+             
                 var fees = trans.CalculateFee(contentdata, "SPHTX");           
                 var feeAddedOperation = trans.AddFee(contentdata, fees.result);
-                //this
+
                 var transresponse = await trans.CreateSimpleTransactionAsync(feeAddedOperation.Result);
                 if (transresponse == null) return null;
 
-                //this
                 var aboutresponse = await trans.AboutAsync();
                 if (aboutresponse == null) return null;
 
                 var transaction = JsonConvert.SerializeObject(transresponse.Result);
-                //this - run.task
                 var digest = key.GetTransactionDigest(transaction,aboutresponse.Result.ChainId,new byte[64]);
-
-                //this run.task
                 var signature = key.SignDigest(digest, privateKey, new byte[130]);
                 var response = key.AddSignature(transaction, signature,new byte[transaction.Length + 200]);
                

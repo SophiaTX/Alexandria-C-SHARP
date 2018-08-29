@@ -65,7 +65,7 @@ namespace Alexandria.net.API
 		{
 			try
 			{
-				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+				var reqname = CSharpToCpp.GetValue("AboutAsync");
 				var result= await SendRequestAsync(reqname);
 				var contentdata = JsonConvert.DeserializeObject<AboutResponse>(result);
 				return contentdata;
@@ -221,7 +221,7 @@ namespace Alexandria.net.API
 		{
 			try
 			{
-				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+				var reqname = CSharpToCpp.GetValue("CreateSimpleTransactionAsync");
 				var @params = new ArrayList {operation};
 				var result= await SendRequestAsync(reqname, @params);
 				var contentdata = JsonConvert.DeserializeObject<TransactionResponse>(result);
