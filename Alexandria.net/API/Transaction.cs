@@ -55,7 +55,26 @@ namespace Alexandria.net.API
 				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
 				throw ;
 			}
+		}
 			
+		/// <summary>
+		/// Returns info such as client version, git version of graphene/fc, version of boost, openssl.
+		/// </summary>
+		/// <returns>Returns compile time info And client And dependencies versions</returns>
+		public async Task<AboutResponse> AboutAsync()
+		{
+			try
+			{
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+				var result= await SendRequestAsync(reqname);
+				var contentdata = JsonConvert.DeserializeObject<AboutResponse>(result);
+				return contentdata;
+			}
+			catch(Exception ex)
+			{
+				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+				throw ;
+			}
 		}
 
 		/// <summary>
@@ -183,6 +202,28 @@ namespace Alexandria.net.API
 				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
 				var @params = new ArrayList {operation};
 				var result= SendRequest(reqname, @params);
+				var contentdata = JsonConvert.DeserializeObject<TransactionResponse>(result);
+				return contentdata;
+			}
+			catch(Exception ex)
+			{
+				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+				throw ;
+			}
+		}
+		
+		/// <summary>
+		/// Creates Transaction for all the operations created
+		/// </summary>
+		/// <param name="operation"></param>
+		/// <returns>Returns Object with block number and other trnasaction details</returns>
+		public async Task<TransactionResponse> CreateSimpleTransactionAsync<T>(T operation)
+		{
+			try
+			{
+				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+				var @params = new ArrayList {operation};
+				var result= await SendRequestAsync(reqname, @params);
 				var contentdata = JsonConvert.DeserializeObject<TransactionResponse>(result);
 				return contentdata;
 			}
