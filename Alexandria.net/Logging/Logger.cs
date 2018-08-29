@@ -65,19 +65,19 @@ namespace Alexandria.net.Logging
         {
             try
             {
-//                Log.Logger = new LoggerConfiguration()
-//                    .MinimumLevel.Debug()
-//                    .Enrich.WithProperty("Application", appname)
-//                    .WriteTo.Seq(_config.LoggingServer)
-//                    .CreateLogger();
                 Log.Logger = new LoggerConfiguration()
                     .MinimumLevel.Debug()
                     .Enrich.WithProperty("Application", appname)
-                    .WriteTo.Graylog(new GraylogSinkOptions
-                    {
-                        HostnameOrAddress = _config.LoggingServer,
-                        Port = _config.LoggingPort,
-                    }).CreateLogger();
+                    .WriteTo.Seq(_config.LoggingServer)
+                    .CreateLogger();
+//                Log.Logger = new LoggerConfiguration()
+//                    .MinimumLevel.Debug()
+//                    .Enrich.WithProperty("Application", appname)
+//                    .WriteTo.Graylog(new GraylogSinkOptions
+//                    {
+//                        HostnameOrAddress = _config.LoggingServer,
+//                        Port = _config.LoggingPort,
+//                    }).CreateLogger();
             }
             catch (Exception e)
             {

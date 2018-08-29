@@ -72,6 +72,9 @@
     <EmbeddedResource Remove="Lib\**" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="lib\x64\libalexandria.dll" />
+    <Content Include="lib\x64\libalexandria.dylib" />
+    <Content Include="lib\x64\libalexandria.so" />
     <Content Include="lib\x86\libalexandria.dll" />
   </ItemGroup>
 </Project>
