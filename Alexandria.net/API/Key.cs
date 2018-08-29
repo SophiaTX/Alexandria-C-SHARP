@@ -171,13 +171,13 @@ namespace Alexandria.net.API
         /// </summary>
         /// <param name="transaction">the transaction to digest</param>
         /// <returns>Returns true if success or false for failed try</returns>
-        public GetTransactionDigestResponse GetTransactionDigestServer(TransactionResponse transaction)
+        public GetTransactionDigestResponse GetTransactionDigestServer(string transaction)
         {
            
                 try
                 {
                     var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                    var @params = new ArrayList {transaction.Result};
+                    var @params = new ArrayList {transaction};
                     var result= SendRequest(reqname, @params);
                     var contentdata = JsonConvert.DeserializeObject<GetTransactionDigestResponse>(result);
                     return contentdata;

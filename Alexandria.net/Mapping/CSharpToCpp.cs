@@ -57,8 +57,10 @@
         private const string Info  = "info";
         private const string SerializeTransaction = "serialize_transaction";
         private const string MakeCustomJsonOperation = "make_custom_json_operation";
+        private const string MakeCustomJsonOperationAsync = "make_custom_json_operation";
         private const string GetReceivedDocuments = "get_received_documents";
         private const string MakeCustomBinaryOperation = "make_custom_binary_operation";
+        private const string MakeCustomBinaryOperationAsync = "make_custom_binary_operation";
         private const string CreateApplication = "create_application";
         private const string UpdateApplication = "update_application";
         private const string BuyApplication = "buy_application";
@@ -291,6 +293,10 @@
                     return GetTransactionDigestServer;
                 case "AddSignatureServer":
                     return AddSignatureServer;
+                case "MakeCustomJsonOperationAsync":
+                    return MakeCustomJsonOperationAsync;
+                case "MakeCustomBinaryOperationAsync":
+                    return MakeCustomBinaryOperationAsync;
                 
             }
             return string.Empty;

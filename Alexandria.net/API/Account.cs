@@ -338,7 +338,7 @@ namespace Alexandria.net.API
         /// <param name="from">start</param>
         /// <param name="limit"></param>
         /// <returns>the account history data</returns>
-        public AccountHistoryResponse GetAccountHistory(string accountName, uint from, uint limit)
+        public AccountHistoryResponse GetAccountHistory(string accountName, uint from, int limit)
         {
             try
             {

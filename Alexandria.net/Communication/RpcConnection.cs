@@ -169,12 +169,13 @@ namespace Alexandria.net.Communication
                 var aboutresponse = trans.About();
                 if (aboutresponse == null) return null;
 
-                //var transaction = JsonConvert.SerializeObject(transresponse.Result);
-                var digest = key.GetTransactionDigestServer(transresponse);
+                var transaction = JsonConvert.SerializeObject(transresponse.Result);
+                
+                var digest = key.GetTransactionDigest(transaction,aboutresponse.Result.ChainId,new byte[64]);
 
-                var signature = key.SignDigest(digest.result, privateKey, new byte[130]);
-                var response = key.AddSignatureServer(transresponse, signature);
-                finalResponse = await trans.BroadcastTransactionAsync(response);          
+                var signature = key.SignDigest(digest, privateKey, new byte[130]);
+                var response = key.AddSignature(transaction, signature,new byte[transaction.Length + 200]);
+                finalResponse = trans.BroadcastTransaction(response);          
             }
             catch (Exception ex)
             {
@@ -211,7 +212,7 @@ namespace Alexandria.net.Communication
 
                 var json = JsonConvert.SerializeObject(request).GetJsonString(type);
              
-                var httpResponse = await _client.PostAsync(_uri, new StringContent(json, Encoding.UTF8));
+                var httpResponse = _client.PostAsync(_uri, new StringContent(json, Encoding.UTF8)).Result;
 
                 if (httpResponse == null) return response;
                 response = await httpResponse.Content.ReadAsStringAsync();

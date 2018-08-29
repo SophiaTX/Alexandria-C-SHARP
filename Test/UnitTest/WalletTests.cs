@@ -19,8 +19,8 @@ namespace UnitTest
         private const string Sign =
             "1f7d9cb0bf47d052a35b2f8534e46b0197abc636c0627e9f5ef54fedbd5c5b1d1318ae0983a7281633da849045a267b6f4acbb178d2533ce6d9807f8074f2b6099";
         //-----client1
-        private const string PrivateKey = "5KGL7MNAfwCzQ8DAq7DXJsneXagka3KNcjgkRayJoeJUucSLkev";
-        private const string PublicKey = "SPH6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz";
+        private const string PrivateKey = "5K14hP7ziUNqZbp75o4oW885259T1SbCinZskXhz3XnA2ymR1Wz";
+        private const string PublicKey = "SPH6zDAKpmQFATYSFC57hMCcCXjbDwQgG8YwkxbLUokGyXwXAjhad";
         
         //-----client2
         private const string PrivateKey2 = "5HqnQB5R8Yfaq4mALL33kkBGFuSv2kMPxGsjFygHPhk8EqunmXZ";
@@ -162,7 +162,7 @@ namespace UnitTest
         [Fact]
         public void GetTransactionDigest()
         {
-            var value=_client.Key.GetTransactionDigest("{ \"ref_block_num\": 34958, \"ref_block_prefix\": 4183758935, \"expiration\": \"2018-08-21T07:57:48\", \"operations\": [ [ \"account_create\", { \"fee\": \"0.000000 SPHTX\", \"creator\": \"initminer\", \"name_seed\": \"test45747477ww124556576891010234789107\", \"owner\": { \"weight_threshold\": 1, \"account_auths\": [], \"key_auths\": [ [ \"SPH7GvbxZTntaqCnNSsuai1Dguejh23RKJHmu2uuR869BLbM3yWPK\", 1 ] ] }, \"active\": { \"weight_threshold\": 1, \"account_auths\": [], \"key_auths\": [ [ \"SPH7GvbxZTntaqCnNSsuai1Dguejh23RKJHmu2uuR869BLbM3yWPK\", 1 ] ] }, \"memo_key\": \"SPH7GvbxZTntaqCnNSsuai1Dguejh23RKJHmu2uuR869BLbM3yWPK\", \"json_metadata\": \"{}\" } ] ], \"extensions\": [], \"signatures\": [] }","66423e7baa1f62570784e17cb78d48329e78faa43075cc9d847c434b4bfe2dfb", new byte[64]);
+            var value=_client.Key.GetTransactionDigest("{\"ref_block_num\":1780,\"ref_block_prefix\":247711471,\"expiration\":\"2018-08-22T11:51:39\",\"operations\":[[\"account_create\",{\"fee\":\"0.000000 SPHTX\",\"creator\":\"initminer\",\"name_seed\":\"test45747477ww124556576891010234789107\",\"owner\":{\"weight_threshold\":1,\"account_auths\":[],\"key_auths\":[[\"SPH7GvbxZTntaqCnNSsuai1Dguejh23RKJHmu2uuR869BLbM3yWPK\",1]]},\"active\":{\"weight_threshold\":1,\"account_auths\":[],\"key_auths\":[[\"SPH7GvbxZTntaqCnNSsuai1Dguejh23RKJHmu2uuR869BLbM3yWPK\",1]]},\"memo_key\":\"SPH7GvbxZTntaqCnNSsuai1Dguejh23RKJHmu2uuR869BLbM3yWPK\",\"json_metadata\":\"{}\"}]],\"extensions\":[],\"signatures\":[\"200c7a0b41d02e20218d3b919fee80e107da5de10eb84fbfb9ba9ba07fb4bca25a493073d6684cc066e4810eb60606ba166cf858559c7fc303c5ca46dfcfc65e0a\"]}","66423e7baa1f62570784e17cb78d48329e78faa43075cc9d847c434b4bfe2dfb", new byte[64]);
             Console.WriteLine(value);
         }
         [Fact]
@@ -179,7 +179,8 @@ namespace UnitTest
         [Fact]
         public void VerifySignaturet()
         {
-            _client.Key.VerifySignature(Digest, PublicKey, Sign);
+            var value=_client.Key.VerifySignature("d3a58bca45a00d2a7c5b01090000000000000000065350485458000009696e69746d696e6572267465737434353734373437377777313234353536353736383931303130323334373839313037010000000001033a559a0a3fda201f1a126551b8edcd69a227efbd8b4eb184dab6ea8c75b68ea30100010000000001033a559a0a3fda201f1a126551b8edcd69a227efbd8b4eb184dab6ea8c75b68ea30100033a559a0a3fda201f1a126551b8edcd69a227efbd8b4eb184dab6ea8c75b68ea3027b7d00", "SPH7GvbxZTntaqCnNSsuai1Dguejh23RKJHmu2uuR869BLbM3yWPK", "201968e85c9573fd56c915ce52bf227b068496d6fc1036ab652d40d625dee81e7216694f78c80bb6246456df823ede8ff5c643eee8e28b1bb3177be71134172b5a");
+            Console.WriteLine(value);
         }
         [Fact]
         public void SignedDigest()
@@ -265,7 +266,7 @@ namespace UnitTest
         [Fact]
         public void GetAccountHistory()
         {
-            var result=_client.Account.GetAccountHistory("nXhMW8wWUL4d5eRFLNLzCfKvX7X", 10,9);
+            var result=_client.Account.GetAccountHistory("nXhMW8wWUL4d5eRFLNLzCfKvX7X", 10,1);
             Console.WriteLine(result);           
         }
         [Fact]
@@ -377,7 +378,7 @@ namespace UnitTest
         }
 
         [Fact]
-        public void Send()
+        public void SendJson()
         {
             var test = "{\"ref_block_num\":16364,\"ref_block_prefix\":2217467278,\"expiration\":\"2018-06-20T15:24:06\",\"operations\":[[\"account_create\",{\"fee\":\"0.100000 SPHTX\",\"creator\":\"initminer\",\"new_account_name\":\"sanjiv9999\",\"owner\":{\"weight_threshold\":1,\"account_auths\":[],\"key_auths\":[[\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",1]]},\"active\":{\"weight_threshold\":1,\"account_auths\":[],\"key_auths\":[[\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",1]]},\"memo_key\":\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",\"json_metadata\":\"{}\"}]],\"extensions\":[],\"signatures\":[]}";
             
@@ -387,7 +388,7 @@ namespace UnitTest
                 AppId = 2,
                 PrivateKey = PrivateKey,
                 Recipients = new List<string> {"45fR5HHoV2XA7NyvKdc3CK4WrixE"},
-                Sender = "rumGMWVHCxedjhSHMBQYk3o9LVD",
+                Sender = "PcQ-byG-3OczM99qg1m_6zU9ArAA",
                 JsonDoc = test//"[\"" + $"{test}" + "\"]"
             };
 
@@ -401,9 +402,9 @@ namespace UnitTest
             var data = new BinaryData
             {
                 AppId = 2,
-                PrivateKey ="5K14hP7ziUNqZbp75o4oW885259T1SbCinZskXhz3XnA2ymR1Wz",
+                PrivateKey =PrivateKey,
                 Recipients = new List<string> {"hwT5jQuzKG_ZjCBnUyHP_6hk4BU"},
-                Sender = "2XyeasoZcbEzJDpTNIPPwjtwFwQA",
+                Sender = "PcQ-byG-3OczM99qg1m_6zU9ArAA",
                 BinaryDoc = "SGVsbG8=" //"[\"" + $"{test}" + "\"]"
             };
             
@@ -411,11 +412,46 @@ namespace UnitTest
             Console.WriteLine(result);
         }
         
+        [Fact]
+        public void SendJsonAsync()
+        {
+            var test = "{\"ref_block_num\":16364,\"ref_block_prefix\":2217467278,\"expiration\":\"2018-06-20T15:24:06\",\"operations\":[[\"account_create\",{\"fee\":\"0.100000 SPHTX\",\"creator\":\"initminer\",\"new_account_name\":\"sanjiv9999\",\"owner\":{\"weight_threshold\":1,\"account_auths\":[],\"key_auths\":[[\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",1]]},\"active\":{\"weight_threshold\":1,\"account_auths\":[],\"key_auths\":[[\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",1]]},\"memo_key\":\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",\"json_metadata\":\"{}\"}]],\"extensions\":[],\"signatures\":[]}";
+            
+           
+            var data = new JsonData
+            {
+                AppId = 3,
+                PrivateKey = PrivateKey,
+                Recipients = new List<string> {"45fR5HHoV2XA7NyvKdc3CK4WrixE"},
+                Sender = "PcQ-byG-3OczM99qg1m_6zU9ArAA",
+                JsonDoc = test//"[\"" + $"{test}" + "\"]"
+            };
+
+            var result = _client.Data.SendJsonAsync(data);
+            Console.WriteLine(result);
+        }
+
+        [Fact]
+        public void SendBinaryAsync()
+        {
+            var data = new BinaryData
+            {
+                AppId = 4,
+                PrivateKey =PrivateKey,
+                Recipients = new List<string> {"hwT5jQuzKG_ZjCBnUyHP_6hk4BU"},
+                Sender = "PcQ-byG-3OczM99qg1m_6zU9ArAA",
+                BinaryDoc = "SGVsbG8=" //"[\"" + $"{test}" + "\"]"
+            };
+            
+            var result = _client.Data.SendBinaryAsync(data);
+            Console.WriteLine(result);
+        }
+
         
         [Fact]
         public void Receive()
         {
-            var result = _client.Data.Receive(2,"2XyeasoZcbEzJDpTNIPPwjtwFwQA",SearchType.BySender,"2018-06-22T13:39:34",10);
+            var result = _client.Data.Receive(4,"PcQ-byG-3OczM99qg1m_6zU9ArAA",SearchType.BySender,"2018-08-25T13:39:34",10);
             Console.WriteLine(result.Result);
         }
 
