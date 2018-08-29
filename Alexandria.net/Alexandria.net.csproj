@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Version>1.0.1</Version>
+    <Version>1.0.3</Version>
     <Authors>Martyn Cranfield Harler;Saniv Jha</Authors>
     <Company>Equidato Technologies AG</Company>
     <NeutralLanguage>en-US</NeutralLanguage>
@@ -57,18 +57,21 @@
     <_ApplicationManifestFinal Remove="bin\Debug\netcoreapp2.0\Native.Alexandria.net.manifest" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="libalexandria.so">
+    <EmbeddedResource Include="lib\64bit\libalexandria.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="lib\64bit\libalexandria.dylib">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="lib\64bit\libalexandria.so">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <None Remove="Lib\libalexandria.dll" />
     <None Remove="Lib\libalexandria.dylib" />
-    <EmbeddedResource Include="libalexandria.dll">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
     <None Remove="Lib\libalexandria.so" />
-    <EmbeddedResource Include="libalexandria.dylib">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
     <EmbeddedResource Remove="Lib\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="lib\x86\libalexandria.dll" />
   </ItemGroup>
 </Project>
