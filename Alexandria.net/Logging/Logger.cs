@@ -8,6 +8,7 @@ using Serilog.Sinks.Graylog.Core;
 
 namespace Alexandria.net.Logging
 {
+    /// <inheritdoc />
     /// <summary>
     /// The logger object
     /// </summary>

@@ -363,7 +363,7 @@ namespace UnitTest
         public void TestListening()
         {
             _client.OnDataReceivedBlockChainEvent += ClientOnOnDataReceivedBlockChainEvent;
-            _client.Data.StartListening("mart", "cranfield", SearchType.BySender, "1", 1);
+            _client.Data.StartListening(1234, "cranfield", SearchType.BySender, DateTime.UtcNow.AddDays(-10), 1);
 
             for (var index = 0; index < 50; index++)
             {
@@ -447,11 +447,12 @@ namespace UnitTest
             Console.WriteLine(result);
         }
 
-        
+
         [Fact]
         public void Receive()
         {
-            var result = _client.Data.Receive(5,"PcQ-byG-3OczM99qg1m_6zU9ArAA",SearchType.BySender,"2018-08-25T13:39:34",10);
+            var result = _client.Data.Receive(5, "PcQ-byG-3OczM99qg1m_6zU9ArAA", SearchType.BySender,
+                DateTime.UtcNow.AddDays(-10), 10);
             Console.WriteLine(result.Result);
         }
 

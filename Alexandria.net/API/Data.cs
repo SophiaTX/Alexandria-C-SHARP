@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
@@ -32,7 +33,7 @@ namespace Alexandria.net.API
         private ulong _appId = 1;
         private string _accountName = "initminer";
         private SearchType _searchType;
-        private string _startBy;
+        private DateTime _startBy;
         private uint _count;
 
         #endregion
@@ -78,11 +79,14 @@ namespace Alexandria.net.API
         /// <param name="accountname"></param>
         /// <param name="searchtype"></param>
         /// <param name="startby"></param>
-        public void StartListening(string appid, string accountname, SearchType searchtype, string startby, uint count,
+        public void StartListening(ulong appid, string accountname, SearchType searchtype, DateTime startby, uint count,
             int frequency = 20000)
         {
             try
             {
+                _appId = appid;
+                _accountName = accountname;
+                _timeoutInMilliseconds = frequency;
                 _searchType = searchtype;
                 _startBy = startby;
                 _count = count;
@@ -106,18 +110,19 @@ namespace Alexandria.net.API
         /// Sends the parsed data to the blockchain
         /// </summary>
         /// <param name="data">the data to send, this is a type parameter, so any data type can be sent</param>
-        /// <param name="senderinfo">the sender info required for the transaction</param>
+        /// <param name="jsondata">the sender info required for the transaction</param>
         /// <param></param>
         /// <returns>the transaction response data</returns>
-        public TransactionResponse SendJson<T>(T data, JsonData senderinfo)
+        public TransactionResponse SendJson<T>(T data, JsonData jsondata)
         {
             try
             {
-                var jsondata = JsonConvert.SerializeObject(data);
-                var customjsonrpc = MakeCustomJsonOperation(senderinfo.Sender, senderinfo.Recipients, senderinfo.AppId,
-                    jsondata);
+                var serialiseddata = JsonConvert.SerializeObject(data);
+                jsondata.JsonDoc = serialiseddata;
+                var customjsonrpc = MakeCustomJsonOperation(jsondata.Sender, jsondata.Recipients, jsondata.AppId,
+                    jsondata.JsonDoc);
                 if (customjsonrpc == null) return null;
-                var resp = StartBroadcasting(customjsonrpc.Result, senderinfo.PrivateKey);
+                var resp = StartBroadcasting(customjsonrpc.Result, jsondata.PrivateKey);
                 return resp;
             }
             catch (Exception ex)
@@ -139,9 +144,9 @@ namespace Alexandria.net.API
             try
             {
                 var jsondata = JsonConvert.SerializeObject(data);
+                jsonData.JsonDoc = jsondata;
                 var customjsonrpc = await MakeCustomJsonOperationAsync(jsonData.Sender, jsonData.Recipients,
-                    jsonData.AppId,
-                    jsondata);
+                    jsonData.AppId, jsonData.JsonDoc);
                 if (customjsonrpc == null) return null;
                 var resp = await StartBroadcastingAsync(customjsonrpc.Result, jsonData.PrivateKey);
                 return resp;
@@ -251,25 +256,25 @@ namespace Alexandria.net.API
         /// <param name="searchType">based on the Search Type Enum</param>
         /// <param name="accountName">Account Owner - sender or receiver</param>
         /// <param name="start">Start by value - index or ISO timestamps</param>
-        /// <param name="count"></param>
+        /// <param name="count">Number of values which you would like to have returned</param>
         /// <returns>the received document response data</returns>
-        public ReceivedDocumentResponse Receive(ulong appId, string accountName, SearchType searchType, string start,
+        public ReceivedDocumentResponse Receive(ulong appId, string accountName, SearchType searchType, DateTime start,
             uint count)
         {
             ReceivedDocumentResponse result;
             try
             {
                 result = GetReceivedDocuments(appId, accountName, searchType,
-                    start,
-                    count);
+                    start, count);
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
                 throw;
             }
+
             return result;
-        }
+        } 
 
         /// <summary>
         /// Allowed options for search_type are "by_sender", "by_recipient", "by_sender_datetime", "by_recipient_datetime".
@@ -282,14 +287,13 @@ namespace Alexandria.net.API
         /// <param name="count"></param>
         /// <returns>the received document response data</returns>
         public async Task<ReceivedDocumentResponse> ReceiveAsync(ulong appId, string accountName, SearchType searchType,
-            string start, uint count)
+            DateTime start, uint count)
         {
             ReceivedDocumentResponse result;
             try
             {
                 result = await GetReceivedDocumentsAsync(appId, accountName, searchType,
-                    start,
-                    count);
+                    start.ToString(CultureInfo.InvariantCulture), count);
             }
             catch (Exception e)
             {
@@ -311,7 +315,7 @@ namespace Alexandria.net.API
         /// <param name="start">Start by value - index or ISO timestamps</param>
         /// <param name="count"></param>
         /// <returns>the received document response data</returns>
-        public T Receive<T>(T type, ulong appId, string accountName, SearchType searchType, string start, uint count)
+        public T Receive<T>(T type, ulong appId, string accountName, SearchType searchType, DateTime start, uint count)
         {
             try
             {
@@ -500,12 +504,12 @@ namespace Alexandria.net.API
         /// <param name="count"></param>
         /// <returns></returns>
         private ReceivedDocumentResponse GetReceivedDocuments(ulong appId, 
-            string account,SearchType searchType, string start, uint count)
+            string account,SearchType searchType, DateTime start, uint count)
         {
             try
             {
                 var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                var @params = new ArrayList {appId, account,searchType.GetStringValue(),  start, count};
+                var @params = new ArrayList {appId, account,searchType.GetStringValue(), start, count};
                 var result = SendRequest(reqname, @params);
                 return JsonConvert.DeserializeObject<ReceivedDocumentResponse>(result);
             }
