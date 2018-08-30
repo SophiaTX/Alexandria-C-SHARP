@@ -4,7 +4,7 @@
     <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.4.0/build/netcoreapp1.0/xunit.runner.reporters.netcoreapp10.dll" t="Include" />
     <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.4.0/build/netcoreapp1.0/xunit.runner.utility.netcoreapp10.dll" t="Include" />
     <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.4.0/build/netcoreapp1.0/xunit.runner.visualstudio.dotnetcore.testadapter.dll" t="Include" />
-    <e p="$USER_HOME$/Library/Caches/Rider2018.1/resharper-host/local/Transient/ReSharperHost/v12/SolutionCaches/_Alexandria.net.838542833.00" t="ExcludeRecursive" />
+    <e p="$USER_HOME$/Library/Caches/Rider2018.1/resharper-host/local/Transient/ReSharperHost/v12/SolutionCaches/_Alexandria.net.-1113668252.00" t="ExcludeRecursive" />
     <e p="$PROJECT_DIR$" t="IncludeFlat">
       <e p="Alexandria.net" t="IncludeRecursive">
         <e p="Alexandria.net.csproj" t="IncludeRecursive" />
@@ -49,7 +49,6 @@
           <e p="StringExtensions.cs" t="Include" />
         </e>
         <e p="Helpers" t="Include">
-          <e p="JsonHelper.cs" t="Include" />
           <e p="StringValueAttribute.cs" t="Include" />
         </e>
         <e p="lib" t="Include">
@@ -130,7 +129,9 @@
             <e p="PricePerSubscribe.cs" t="Include" />
             <e p="Props.cs" t="Include" />
             <e p="ReceivedDocumentResponse.cs" t="Include" />
+            <e p="ReceiveDocResultData.cs" t="Include" />
             <e p="RightsToPublish.cs" t="Include" />
+            <e p="SendOperation.cs" t="Include" />
             <e p="SendResponseResult.cs" t="Include" />
             <e p="SerializedTransaction.cs" t="Include" />
             <e p="SignedTransactionResponse.cs" t="Include" />
@@ -166,7 +167,11 @@
         </e>
       </e>
       <e p="Alexandria.net.sln" t="IncludeFlat" />
-      <e p="packages" t="ExcludeRecursive" />
+      <e p="packages" t="ExcludeRecursive">
+        <e p="MSTest.TestAdapter.1.3.2/build/_common/Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll" t="Include" />
+        <e p="MSTest.TestAdapter.1.3.2/build/_common/Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll" t="Include" />
+        <e p="MSTest.TestAdapter.1.3.2/build/_common/Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll" t="Include" />
+      </e>
       <e p="Test/UnitTest" t="IncludeRecursive">
         <e p="BaseTest.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
@@ -185,8 +190,26 @@
         <e p="WalletTests.cs" t="Include" />
       </e>
       <e p="Tests" t="Include" />
-      <e p="UnitTestProject452/UnitTestProject452.csproj" t="IncludeRecursive" />
-      <e p="UnitTestProject462/UnitTestProject462.csproj" t="IncludeRecursive" />
+      <e p="UnitTestProject452" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="packages.config" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+        <e p="UnitTest1.cs" t="Include" />
+        <e p="UnitTestProject452.csproj" t="IncludeRecursive" />
+      </e>
+      <e p="UnitTestProject462" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="packages.config" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+        <e p="UnitTest1.cs" t="Include" />
+        <e p="UnitTestProject462.csproj" t="IncludeRecursive" />
+      </e>
     </e>
   </component>
 </project>

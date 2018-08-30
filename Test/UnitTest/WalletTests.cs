@@ -451,7 +451,7 @@ namespace UnitTest
         [Fact]
         public void Receive()
         {
-            var result = _client.Data.Receive(5, "PcQ-byG-3OczM99qg1m_6zU9ArAA", SearchType.BySender,
+            var result = _client.Data.Receive(3, "PcQ-byG-3OczM99qg1m_6zU9ArAA", SearchType.BySender,
                 DateTime.UtcNow.AddDays(-10), 10);
             Console.WriteLine(result.Result);
         }

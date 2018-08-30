@@ -458,6 +458,7 @@ namespace Alexandria.net.API
                 var reqname = CSharpToCpp.GetValue("MakeCustomBinaryOperation");
                 var @params = new ArrayList {appId, sender, recipients, document};
                 var response = await SendRequestAsync(reqname, @params);
+               
                 return JsonConvert.DeserializeObject<AccountResponse>(response);
             }
             catch (Exception ex)
