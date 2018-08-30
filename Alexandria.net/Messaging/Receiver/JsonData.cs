@@ -34,11 +34,11 @@ namespace Alexandria.net.Messaging.Receiver
         /// <summary>
         /// the document to send in json format
         /// </summary>
-        public string JsonDoc
-        {
-            get => _jsondoc;
-            set => _jsondoc = JsonHelper.IsValidJson(value) ? _jsondoc : JsonConvert.SerializeObject(value);
-        }
+        public string JsonDoc{ get; set; }
+//        {
+//            get => _jsondoc;
+//            set => JsonHelper.IsValidJson(value) ? _jsondoc : JsonConvert.SerializeObject(value);
+//        }
 
         /// <summary>
         /// the sender private key
