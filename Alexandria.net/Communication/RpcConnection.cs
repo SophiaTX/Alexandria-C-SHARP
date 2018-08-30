@@ -82,6 +82,13 @@ namespace Alexandria.net.Communication
             return result;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="method"></param>
+        /// <param name="params"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
         protected string SendRequest(string method, ArrayList @params = null, Type type = null)
         {
             string result; 

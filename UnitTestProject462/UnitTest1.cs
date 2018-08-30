@@ -1,13 +1,19 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Threading;
-using Xunit;
+using Alexandria.net.Core;
+using Alexandria.net.Enums;
+using Alexandria.net.Messaging.Receiver;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace UnitTest
+namespace UnitTestProject462
 {
-    public class WalletTests : BaseTest
+    [TestClass]
+    public class UnitTest1
     {
+        protected readonly SophiaClient
+            _client = new SophiaClient("195.48.9.209", 9091, 9093);
+
         #region Member Variables
 
         private const string Transaction =
@@ -19,11 +25,11 @@ namespace UnitTest
         //-----client1
         private const string PrivateKey = "5K14hP7ziUNqZbp75o4oW885259T1SbCinZskXhz3XnA2ymR1Wz";
         private const string PublicKey = "SPH6zDAKpmQFATYSFC57hMCcCXjbDwQgG8YwkxbLUokGyXwXAjhad";
-        
+
         //-----client2
         private const string PrivateKey2 = "5HqnQB5R8Yfaq4mALL33kkBGFuSv2kMPxGsjFygHPhk8EqunmXZ";
         private const string PublicKey2 = "SPH6eJ4GcGtay4qvZ7eebXaLkGcXsMhq3WC1GgyQbTLbEd6EVisSm";
-        
+
         private const string ChainId = "00000000000000000000000000000000";
 
         private const string Brain =
@@ -33,33 +39,33 @@ namespace UnitTest
 
         #region Witness Methods
 
-        [Fact]
+        [TestMethod]
         public void GetActiveWitness()
         {
             _client.Witness.GetActiveWitnesses();
         }
 
-        [Fact]
+        [TestMethod]
         public void ListWitnesses()
         {
             _client.Witness.ListWitnesses("initminer", 10);
         }
 
-        [Fact]
+        [TestMethod]
         public void GetWitness()
         {
-           var witness= _client.Witness.GetWitness("initminer");
-           Console.WriteLine(witness);
+            var witness = _client.Witness.GetWitness("initminer");
+            Console.WriteLine(witness);
         }
 
-        [Fact]
+        [TestMethod]
         public void VoteForWitness()
         {
             _client.Witness.VoteForWitness("test101", "initminer", true, PrivateKey);
         }
 
 
-        [Fact]
+        [TestMethod]
         public void UpdateWitness()
         {
             var feed1 = new List<PrizeFeedQuoteMessage>
@@ -69,19 +75,19 @@ namespace UnitTest
                     Currency = "USD",
                     PrizeFeedQuote = new PrizeFeedQuote {Base = "1 USD", Quote = "0.152063 SPHTX"}
                 }
-                
+
             };
-            var feed2= new List<PrizeFeedQuoteMessage>
+            var feed2 = new List<PrizeFeedQuoteMessage>
             {
                 new PrizeFeedQuoteMessage
                 {
                     Currency = "EUR",
                     PrizeFeedQuote = new PrizeFeedQuote {Base = "1 EUR", Quote = "0.154988 SPHTX"}
                 }
-                
+
             };
 
-            var pricefeed=new List<List<PrizeFeedQuoteMessage>>{feed1,feed2};
+            var pricefeed = new List<List<PrizeFeedQuoteMessage>> { feed1, feed2 };
             var result = _client.Witness.UpdateWitness("martyn", "http://www.testminer.com",
                 "SPH6zDAKpmQFATYSFC57hMCcCXjbDwQgG8YwkxbLUokGyXwXAjhad", "0.0010 SPHTX",
                 1024676, pricefeed, "5JYeZJMfYazRE3W9w6VAofBx9s9pUCpQzcqSpAiPTirfKVb1XMM");
@@ -92,55 +98,55 @@ namespace UnitTest
 
         #region Transaction Methods
 
-        [Fact]
+        [TestMethod]
         public void GetFeedHistory()
         {
-            var result=_client.Transaction.GetFeedHistory("SPHTX");
+            var result = _client.Transaction.GetFeedHistory("SPHTX");
             Console.WriteLine(result);
         }
 
-        [Fact]
+        [TestMethod]
         public void GetAbout()
         {
             _client.Transaction.About();
         }
 
-        [Fact]
+        [TestMethod]
         public void Help()
         {
             _client.Transaction.Help();
         }
 
-        [Fact]
+        [TestMethod]
         public void Info()
         {
             _client.Transaction.Info();
         }
 
-        [Fact]
+        [TestMethod]
         public void GetBlock()
         {
             _client.Transaction.GetBlock(1983);
 
         }
 
-        [Fact]
+        [TestMethod]
         public void GetOpsInBlock()
         {
-            var trx=_client.Transaction.GetOpsInBlock(1983, true);
+            var trx = _client.Transaction.GetOpsInBlock(1983, true);
             Console.WriteLine(trx);
         }
 
-        
 
-        [Fact]
+
+        [TestMethod]
         public void GetTransaction()
         {
-            var trx=_client.Transaction.GetTransaction("4895dec7aa4b08837eeb2d8cc1cc33ae10f6acfa");
+            var trx = _client.Transaction.GetTransaction("4895dec7aa4b08837eeb2d8cc1cc33ae10f6acfa");
             Console.WriteLine(trx.Result.Operations);
         }
 
-        [Fact]
+        [TestMethod]
         public void set_voting_proxy()
         {
             _client.Account.SetVotingProxy("test101", "test103", PrivateKey);
@@ -148,77 +154,77 @@ namespace UnitTest
         }
 
         #endregion
-    
+
         #region Key Methods
 
-        [Fact]
+        [TestMethod]
         public void GeneratePrivateKey()
         {
-           var result= _client.Key.GeneratePrivateKey(new byte[51], new byte[53]);
-           Console.WriteLine(result);
-        }
-        [Fact]
-        public void GetTransactionDigest()
-        {
-            var value=_client.Key.GetTransactionDigest("{\"ref_block_num\":1780,\"ref_block_prefix\":247711471,\"expiration\":\"2018-08-22T11:51:39\",\"operations\":[[\"account_create\",{\"fee\":\"0.000000 SPHTX\",\"creator\":\"initminer\",\"name_seed\":\"test45747477ww124556576891010234789107\",\"owner\":{\"weight_threshold\":1,\"account_auths\":[],\"key_auths\":[[\"SPH7GvbxZTntaqCnNSsuai1Dguejh23RKJHmu2uuR869BLbM3yWPK\",1]]},\"active\":{\"weight_threshold\":1,\"account_auths\":[],\"key_auths\":[[\"SPH7GvbxZTntaqCnNSsuai1Dguejh23RKJHmu2uuR869BLbM3yWPK\",1]]},\"memo_key\":\"SPH7GvbxZTntaqCnNSsuai1Dguejh23RKJHmu2uuR869BLbM3yWPK\",\"json_metadata\":\"{}\"}]],\"extensions\":[],\"signatures\":[\"200c7a0b41d02e20218d3b919fee80e107da5de10eb84fbfb9ba9ba07fb4bca25a493073d6684cc066e4810eb60606ba166cf858559c7fc303c5ca46dfcfc65e0a\"]}","66423e7baa1f62570784e17cb78d48329e78faa43075cc9d847c434b4bfe2dfb", new byte[64]);
-            Console.WriteLine(value);
-        }
-        [Fact]
-        public void GetPublicKey()
-        {
-            var result =_client.Key.GetPublicKey("5K14hP7ziUNqZbp75o4oW885259T1SbCinZskXhz3XnA2ymR1Wz", new byte[53]);
+            var result = _client.Key.GeneratePrivateKey(new byte[51], new byte[53]);
             Console.WriteLine(result);
         }
-        [Fact]
+        [TestMethod]
+        public void GetTransactionDigest()
+        {
+            var value = _client.Key.GetTransactionDigest("{\"ref_block_num\":1780,\"ref_block_prefix\":247711471,\"expiration\":\"2018-08-22T11:51:39\",\"operations\":[[\"account_create\",{\"fee\":\"0.000000 SPHTX\",\"creator\":\"initminer\",\"name_seed\":\"test45747477ww124556576891010234789107\",\"owner\":{\"weight_threshold\":1,\"account_auths\":[],\"key_auths\":[[\"SPH7GvbxZTntaqCnNSsuai1Dguejh23RKJHmu2uuR869BLbM3yWPK\",1]]},\"active\":{\"weight_threshold\":1,\"account_auths\":[],\"key_auths\":[[\"SPH7GvbxZTntaqCnNSsuai1Dguejh23RKJHmu2uuR869BLbM3yWPK\",1]]},\"memo_key\":\"SPH7GvbxZTntaqCnNSsuai1Dguejh23RKJHmu2uuR869BLbM3yWPK\",\"json_metadata\":\"{}\"}]],\"extensions\":[],\"signatures\":[\"200c7a0b41d02e20218d3b919fee80e107da5de10eb84fbfb9ba9ba07fb4bca25a493073d6684cc066e4810eb60606ba166cf858559c7fc303c5ca46dfcfc65e0a\"]}", "66423e7baa1f62570784e17cb78d48329e78faa43075cc9d847c434b4bfe2dfb", new byte[64]);
+            Console.WriteLine(value);
+        }
+        [TestMethod]
+        public void GetPublicKey()
+        {
+            var result = _client.Key.GetPublicKey("5K14hP7ziUNqZbp75o4oW885259T1SbCinZskXhz3XnA2ymR1Wz", new byte[53]);
+            Console.WriteLine(result);
+        }
+        [TestMethod]
         public void GenerateKeyPairFromBrainKey()
         {
             _client.Key.GenerateKeyPairFromBrainKey(Brain, new byte[51], new byte[53]);
         }
-        [Fact]
+        [TestMethod]
         public void VerifySignaturet()
         {
-            var value=_client.Key.VerifySignature("d3a58bca45a00d2a7c5b01090000000000000000065350485458000009696e69746d696e6572267465737434353734373437377777313234353536353736383931303130323334373839313037010000000001033a559a0a3fda201f1a126551b8edcd69a227efbd8b4eb184dab6ea8c75b68ea30100010000000001033a559a0a3fda201f1a126551b8edcd69a227efbd8b4eb184dab6ea8c75b68ea30100033a559a0a3fda201f1a126551b8edcd69a227efbd8b4eb184dab6ea8c75b68ea3027b7d00", "SPH7GvbxZTntaqCnNSsuai1Dguejh23RKJHmu2uuR869BLbM3yWPK", "201968e85c9573fd56c915ce52bf227b068496d6fc1036ab652d40d625dee81e7216694f78c80bb6246456df823ede8ff5c643eee8e28b1bb3177be71134172b5a");
+            var value = _client.Key.VerifySignature("d3a58bca45a00d2a7c5b01090000000000000000065350485458000009696e69746d696e6572267465737434353734373437377777313234353536353736383931303130323334373839313037010000000001033a559a0a3fda201f1a126551b8edcd69a227efbd8b4eb184dab6ea8c75b68ea30100010000000001033a559a0a3fda201f1a126551b8edcd69a227efbd8b4eb184dab6ea8c75b68ea30100033a559a0a3fda201f1a126551b8edcd69a227efbd8b4eb184dab6ea8c75b68ea3027b7d00", "SPH7GvbxZTntaqCnNSsuai1Dguejh23RKJHmu2uuR869BLbM3yWPK", "201968e85c9573fd56c915ce52bf227b068496d6fc1036ab652d40d625dee81e7216694f78c80bb6246456df823ede8ff5c643eee8e28b1bb3177be71134172b5a");
             Console.WriteLine(value);
         }
-        [Fact]
+        [TestMethod]
         public void SignedDigest()
         {
             _client.Key.SignDigest("d139b5e917536aa3951916752df88d5cb28b27a27d266ad4bc1c920f1524187d", "5JPwY3bwFgfsGtxMeLkLqXzUrQDMAsqSyAZDnMBkg7PDDRhQgaV", new byte[130]);
         }
-        [Fact]
+        [TestMethod]
         public void EncryptMemo()
         {
             _client.Key.EncryptMemo("{Hello:World}", PrivateKey, PublicKey2, new byte[1024]);
         }
-        [Fact]
+        [TestMethod]
         public void DecryptMemo()
         {
             _client.Key.DecryptMemo("G3KK7mhkR7G99gGWC5fiGu1ie7xBJSdgdpXgTDe7GAmQG", PrivateKey2, PublicKey, new byte[1024]);
         }
-        [Fact]
+        [TestMethod]
         public void EncodeBase64()
         {
             _client.Key.EncodeBase64("{Hello:World}", new byte[1024]);
         }
-        [Fact]
+        [TestMethod]
         public void DecodeBase64()
         {
             string code = "e0hlbGxvOldvcmxkfQ==";
-            _client.Key.DecodeBase64(code, new byte[code.Length+100]);
+            _client.Key.DecodeBase64(code, new byte[code.Length + 100]);
         }
-        [Fact]
+        [TestMethod]
         public void AddSignature()
         {
-            var value=_client.Key.AddSignature(Transaction, "1f038c20c460b74676002e1e73f863f8498fd5abdb92aebc6a7af25e03c16bbf001ca01e0abe2f4e23b5740ec080ccea8051e5c370ec36fd8c0cdbcbebcdcdcb7e", new byte[Transaction.Length + 200]);
+            var value = _client.Key.AddSignature(Transaction, "1f038c20c460b74676002e1e73f863f8498fd5abdb92aebc6a7af25e03c16bbf001ca01e0abe2f4e23b5740ec080ccea8051e5c370ec36fd8c0cdbcbebcdcdcb7e", new byte[Transaction.Length + 200]);
             Console.WriteLine(value);
         }
-        [Fact]
+        [TestMethod]
         public void SuggestBrainKey()
         {
-            var result=_client.Key.SuggestBrainKey();
+            var result = _client.Key.SuggestBrainKey();
             Console.WriteLine(result);
         }
-        [Fact]
+        [TestMethod]
         public void NormalizeBrainKey()
         {
             _client.Key.NormalizeBrainKey(Brain);
@@ -228,125 +234,125 @@ namespace UnitTest
 
         #region Account Methods
 
-        [Fact]
+        [TestMethod]
         public void CreateAccount()
         {
-           var result= _client.Account.CreateAccount("sanjiv2781", "{}",
-                "SPH6zDAKpmQFATYSFC57hMCcCXjbDwQgG8YwkxbLUokGyXwXAjhad",
-                "SPH6zDAKpmQFATYSFC57hMCcCXjbDwQgG8YwkxbLUokGyXwXAjhad",
-                "SPH6zDAKpmQFATYSFC57hMCcCXjbDwQgG8YwkxbLUokGyXwXAjhad","initminer","5JKHcAHiZnPVMzzeSGrWcRPhkjFZsPy2Pf36CVaz8W2WmMP4L1w");
-            Console.WriteLine(result);
-        }
-        
-        [Fact]
-        public void GetAccount()
-        {
-            var result=_client.Account.GetAccount("sanjiv2781");
+            var result = _client.Account.CreateAccount("sanjiv2781", "{}",
+                 "SPH6zDAKpmQFATYSFC57hMCcCXjbDwQgG8YwkxbLUokGyXwXAjhad",
+                 "SPH6zDAKpmQFATYSFC57hMCcCXjbDwQgG8YwkxbLUokGyXwXAjhad",
+                 "SPH6zDAKpmQFATYSFC57hMCcCXjbDwQgG8YwkxbLUokGyXwXAjhad", "initminer", "5JKHcAHiZnPVMzzeSGrWcRPhkjFZsPy2Pf36CVaz8W2WmMP4L1w");
             Console.WriteLine(result);
         }
 
-        [Fact]
+        [TestMethod]
+        public void GetAccount()
+        {
+            var result = _client.Account.GetAccount("sanjiv2781");
+            Console.WriteLine(result);
+        }
+
+        [TestMethod]
         public void DeleteAccount()
         {
             _client.Account.DeleteAccount("sanjiv12345678910", PrivateKey);
 
         }
-        [Fact]
+        [TestMethod]
         public void update_account()
         {
-            var result=_client.Account.UpdateAccount("sanjiv", "{}",
+            var result = _client.Account.UpdateAccount("sanjiv", "{}",
                 "SPH7GvbxZTntaqCnNSsuai1Dguejh23RKJHmu2uuR869BLbM3yWPK",
                 "SPH7GvbxZTntaqCnNSsuai1Dguejh23RKJHmu2uuR869BLbM3yWPK",
                 "SPH7GvbxZTntaqCnNSsuai1Dguejh23RKJHmu2uuR869BLbM3yWPK",
                 "5KUbCiBJac8omkwgftfkp8hUCgh5k2H3mgoqMDN7bfzDLLEK2i8");
             Console.WriteLine(result);
         }
-        [Fact]
+        [TestMethod]
         public void GetAccountHistory()
         {
-            var result=_client.Account.GetAccountHistory("nXhMW8wWUL4d5eRFLNLzCfKvX7X", 10,1);
-            Console.WriteLine(result);           
+            var result = _client.Account.GetAccountHistory("nXhMW8wWUL4d5eRFLNLzCfKvX7X", 10, 1);
+            Console.WriteLine(result);
         }
-        [Fact]
+        [TestMethod]
         public void GetAccountNameFromSeed()
         {
-            var result=_client.Account.GetAccountNameFromSeed("sanjiv12345");
-            Console.WriteLine(result);       
+            var result = _client.Account.GetAccountNameFromSeed("sanjiv12345");
+            Console.WriteLine(result);
         }
-        [Fact]
+        [TestMethod]
         public void GetVestingBalance()
         {
-            var result=_client.Account.GetVestingBalance("sanjiv");
-            Console.WriteLine(result);       
+            var result = _client.Account.GetVestingBalance("sanjiv");
+            Console.WriteLine(result);
         }
-        [Fact]
+        [TestMethod]
         public void GetAccountBalance()
         {
-            var result=_client.Account.GetAccountBalance("sanjiv");
-            Console.WriteLine(result);       
+            var result = _client.Account.GetAccountBalance("sanjiv");
+            Console.WriteLine(result);
         }
-        [Fact]
+        [TestMethod]
         public void AccountExists()
         {
-            var result=_client.Account.AccountExists("rumGMWVHCxedjhSHMBQYk3o9LVD");
-            Console.WriteLine(result);       
+            var result = _client.Account.AccountExists("rumGMWVHCxedjhSHMBQYk3o9LVD");
+            Console.WriteLine(result);
         }
-        [Fact]
+        [TestMethod]
         public void GetActiveAuthority()
         {
-            var result=_client.Account.GetActiveAuthority("2hPgEeeuitiNeM8bCCQWTKx9u6wx");
-            Console.WriteLine(result);       
+            var result = _client.Account.GetActiveAuthority("2hPgEeeuitiNeM8bCCQWTKx9u6wx");
+            Console.WriteLine(result);
         }
-        [Fact]
+        [TestMethod]
         public void GetMemoKey()
         {
-            var result=_client.Account.GetMemoKey("2hPgEeeuitiNeM8bCCQWTKx9u6wx");
-            Console.WriteLine(result);       
+            var result = _client.Account.GetMemoKey("2hPgEeeuitiNeM8bCCQWTKx9u6wx");
+            Console.WriteLine(result);
         }
-        [Fact]
+        [TestMethod]
         public void GetOwnerAuthority()
         {
-            var result=_client.Account.GetOwnerAuthority("2hPgEeeuitiNeM8bCCQWTKx9u6wx");
-            Console.WriteLine(result);       
+            var result = _client.Account.GetOwnerAuthority("2hPgEeeuitiNeM8bCCQWTKx9u6wx");
+            Console.WriteLine(result);
         }
-        [Fact]
+        [TestMethod]
         public void CreateSimpleMultisigAuthority()
         {
-            var pubkeys = new List<string> {"SPH5o2V32evStYJwAgewNmsvtk7n178CygWmwdEVR6uyThATBwVwi"};
-            var result=_client.Account.CreateSimpleMultisigAuthority(pubkeys,4);
-            Console.WriteLine(result);       
+            var pubkeys = new List<string> { "SPH5o2V32evStYJwAgewNmsvtk7n178CygWmwdEVR6uyThATBwVwi" };
+            var result = _client.Account.CreateSimpleMultisigAuthority(pubkeys, 4);
+            Console.WriteLine(result);
         }
-        [Fact]
+        [TestMethod]
         public void CreateSimpleManagedAuthority()
         {
-            var result=_client.Account.CreateSimpleManagedAuthority("SPH5o2V32evStYJwAgewNmsvtk7n178CygWmwdEVR6uyThATBwVwi");
-            Console.WriteLine(result);       
+            var result = _client.Account.CreateSimpleManagedAuthority("SPH5o2V32evStYJwAgewNmsvtk7n178CygWmwdEVR6uyThATBwVwi");
+            Console.WriteLine(result);
         }
-        [Fact]
+        [TestMethod]
         public void CreateSimpleAuthority()
         {
-            var pubkeys = new List<string> {"SPH5o2V32evStYJwAgewNmsvtk7n178CygWmwdEVR6uyThATBwVwi"};
-            var result=_client.Account.CreateSimpleMultiManagedAuthority(pubkeys,5);
-            Console.WriteLine(result);       
+            var pubkeys = new List<string> { "SPH5o2V32evStYJwAgewNmsvtk7n178CygWmwdEVR6uyThATBwVwi" };
+            var result = _client.Account.CreateSimpleMultiManagedAuthority(pubkeys, 5);
+            Console.WriteLine(result);
         }
         #endregion
 
         #region Asset Methods
-        [Fact]
+        [TestMethod]
         public void WithdrawVesting()
         {
             _client.Asset.WithdrawVesting("test101", "10.000000 VESTS", PrivateKey);
         }
-        [Fact]
+        [TestMethod]
         public void Transfer()
         {
-            
+
             _client.Asset.Transfer("initminer", "2XyeasoZcbEzJDpTNIPPwjtwFwQA", "1000.00 SPHTX",
-                "Hello-test","5JKHcAHiZnPVMzzeSGrWcRPhkjFZsPy2Pf36CVaz8W2WmMP4L1w");
+                "Hello-test", "5JKHcAHiZnPVMzzeSGrWcRPhkjFZsPy2Pf36CVaz8W2WmMP4L1w");
 
         }
 
-        [Fact]
+        [TestMethod]
         public void TransferToVesting()
         {
             _client.Asset.TransferToVesting("initminer", "martyn", "250000.000 SPHTX", "5JKHcAHiZnPVMzzeSGrWcRPhkjFZsPy2Pf36CVaz8W2WmMP4L1w");
@@ -357,35 +363,17 @@ namespace UnitTest
 
         #region Data Methods
 
-        [Fact]
-        public void TestListening()
-        {
-            _client.OnDataReceivedBlockChainEvent += ClientOnOnDataReceivedBlockChainEvent;
-            _client.Data.StartListening("mart", "cranfield", SearchType.BySender, "1", 1);
-
-            for (var index = 0; index < 50; index++)
-            {
-                Thread.Sleep(20000);
-            }
-            Console.WriteLine("test completed");
-        }
-
-        private void ClientOnOnDataReceivedBlockChainEvent(object sender, DataReceivedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        [Fact]
+        [TestMethod]
         public void SendJson()
         {
             var test = "{\"ref_block_num\":16364,\"ref_block_prefix\":2217467278,\"expiration\":\"2018-06-20T15:24:06\",\"operations\":[[\"account_create\",{\"fee\":\"0.100000 SPHTX\",\"creator\":\"initminer\",\"new_account_name\":\"sanjiv9999\",\"owner\":{\"weight_threshold\":1,\"account_auths\":[],\"key_auths\":[[\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",1]]},\"active\":{\"weight_threshold\":1,\"account_auths\":[],\"key_auths\":[[\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",1]]},\"memo_key\":\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",\"json_metadata\":\"{}\"}]],\"extensions\":[],\"signatures\":[]}";
-            
-           
+
+
             var data = new JsonData
             {
                 AppId = 2,
                 PrivateKey = PrivateKey,
-                Recipients = new List<string> {"45fR5HHoV2XA7NyvKdc3CK4WrixE"},
+                Recipients = new List<string> { "45fR5HHoV2XA7NyvKdc3CK4WrixE" },
                 Sender = "PcQ-byG-3OczM99qg1m_6zU9ArAA",
                 JsonDoc = test//"[\"" + $"{test}" + "\"]"
             };
@@ -394,33 +382,33 @@ namespace UnitTest
             Console.WriteLine(result);
         }
 
-        [Fact]
+        [TestMethod]
         public void SendBinary()
         {
             var data = new BinaryData
             {
                 AppId = 2,
-                PrivateKey =PrivateKey,
-                Recipients = new List<string> {"hwT5jQuzKG_ZjCBnUyHP_6hk4BU"},
+                PrivateKey = PrivateKey,
+                Recipients = new List<string> { "hwT5jQuzKG_ZjCBnUyHP_6hk4BU" },
                 Sender = "PcQ-byG-3OczM99qg1m_6zU9ArAA",
                 BinaryDoc = "SGVsbG8=" //"[\"" + $"{test}" + "\"]"
             };
-            
+
             var result = _client.Data.SendBinary(data);
             Console.WriteLine(result);
         }
-        
-        [Fact]
+
+        [TestMethod]
         public void SendJsonAsync()
         {
             var test = "{\"ref_block_num\":16364,\"ref_block_prefix\":2217467278,\"expiration\":\"2018-06-20T15:24:06\",\"operations\":[[\"account_create\",{\"fee\":\"0.100000 SPHTX\",\"creator\":\"initminer\",\"new_account_name\":\"sanjiv9999\",\"owner\":{\"weight_threshold\":1,\"account_auths\":[],\"key_auths\":[[\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",1]]},\"active\":{\"weight_threshold\":1,\"account_auths\":[],\"key_auths\":[[\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",1]]},\"memo_key\":\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",\"json_metadata\":\"{}\"}]],\"extensions\":[],\"signatures\":[]}";
-            
-           
+
+
             var data = new JsonData
             {
-                AppId = 3,
+                AppId = 7,
                 PrivateKey = PrivateKey,
-                Recipients = new List<string> {"45fR5HHoV2XA7NyvKdc3CK4WrixE"},
+                Recipients = new List<string> { "45fR5HHoV2XA7NyvKdc3CK4WrixE" },
                 Sender = "PcQ-byG-3OczM99qg1m_6zU9ArAA",
                 JsonDoc = test//"[\"" + $"{test}" + "\"]"
             };
@@ -429,27 +417,27 @@ namespace UnitTest
             Console.WriteLine(result);
         }
 
-        [Fact]
+        [TestMethod]
         public void SendBinaryAsync()
         {
             var data = new BinaryData
             {
                 AppId = 6,
-                PrivateKey =PrivateKey,
-                Recipients = new List<string> {"hwT5jQuzKG_ZjCBnUyHP_6hk4BU"},
+                PrivateKey = PrivateKey,
+                Recipients = new List<string> { "hwT5jQuzKG_ZjCBnUyHP_6hk4BU" },
                 Sender = "PcQ-byG-3OczM99qg1m_6zU9ArAA",
                 BinaryDoc = "SGVsbG8=" //"[\"" + $"{test}" + "\"]"
             };
-            
+
             var result = _client.Data.SendBinaryAsync(data);
             Console.WriteLine(result);
         }
 
-        
-        [Fact]
+
+        [TestMethod]
         public void Receive()
         {
-            var result = _client.Data.Receive(5,"PcQ-byG-3OczM99qg1m_6zU9ArAA",SearchType.BySender,"2018-08-25T13:39:34",10);
+            var result = _client.Data.Receive(5, "PcQ-byG-3OczM99qg1m_6zU9ArAA", SearchType.BySender, "2018-08-25T13:39:34", 10);
             Console.WriteLine(result.Result);
         }
 
@@ -457,50 +445,50 @@ namespace UnitTest
 
         #region Application Methods
 
-        [Fact]
+        [TestMethod]
         public void CreateApplication()
         {
-            _client.Application.CreateApplication("test101","BoxGame5","http://boxgame.com","genre: Adventure, requirements: Mac OS Sierra",1,PrivateKey);
+            _client.Application.CreateApplication("test101", "BoxGame5", "http://boxgame.com", "genre: Adventure, requirements: Mac OS Sierra", 1, PrivateKey);
 
         }
-        [Fact]
+        [TestMethod]
         public void UpdateApplication()
         {
-            _client.Application.UpdateApplication("test101","BoxGame","test106","http://boxGamers.com","Genre:Action",1,PrivateKey);
+            _client.Application.UpdateApplication("test101", "BoxGame", "test106", "http://boxGamers.com", "Genre:Action", 1, PrivateKey);
 
         }
 
-        [Fact]
+        [TestMethod]
         public void DeleteApplication()
         {
-            _client.Application.DeleteApplication("test101","BoxGame",PrivateKey);
+            _client.Application.DeleteApplication("test101", "BoxGame", PrivateKey);
 
         }
 
-        [Fact]
+        [TestMethod]
         public void BuyApplication()
         {
-            _client.Application.BuyApplication("test110",4,PrivateKey);
+            _client.Application.BuyApplication("test110", 4, PrivateKey);
 
         }
 
-        [Fact]
+        [TestMethod]
         public void CancelApplicationBuying()
         {
-            _client.Application.CancelApplicationBuying("test101","test110",4,PrivateKey);
+            _client.Application.CancelApplicationBuying("test101", "test110", 4, PrivateKey);
 
         }
 
-        [Fact]
+        [TestMethod]
         public void GetApplicationBuyings()
         {
-            _client.Application.GetApplicationBuyings("test110",SearchType.ByBuyer,10);
+            _client.Application.GetApplicationBuyings("test110", SearchType.ByBuyer, 10);
 
         }
-        [Fact]
+        [TestMethod]
         public void GetApplications()
         {
-            var names = new List<string>{"BoxGame5","BoxGame4"};
+            var names = new List<string> { "BoxGame5", "BoxGame4" };
             _client.Application.GetApplications(names);
         }
 
@@ -508,4 +496,3 @@ namespace UnitTest
         #endregion
     }
 }
-

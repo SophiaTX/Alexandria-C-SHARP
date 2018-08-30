@@ -8,7 +8,6 @@ using Alexandria.net.Logging;
 using Alexandria.net.Messaging.Responses;
 using Alexandria.net.Settings;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 using AccountResponse = Alexandria.net.Messaging.Responses.AccountResponse;
 
 namespace Alexandria.net.API
@@ -65,7 +64,7 @@ namespace Alexandria.net.API
 		{
 			try
 			{
-				var reqname = CSharpToCpp.GetValue("AboutAsync");
+				var reqname = CSharpToCpp.GetValue("About");
 				var result= await SendRequestAsync(reqname);
 				var contentdata = JsonConvert.DeserializeObject<AboutResponse>(result);
 				return contentdata;
@@ -175,7 +174,7 @@ namespace Alexandria.net.API
 		{
 			try
 			{
-				var reqname = CSharpToCpp.GetValue("BroadcastTransactionAsync");
+				var reqname = CSharpToCpp.GetValue("BroadcastTransaction");
 				var @params = new ArrayList {signedTx};
 				var result= await SendRequestAsync(reqname, @params);
 				var contentdata = JsonConvert.DeserializeObject<TransactionResponse>(result);
@@ -221,7 +220,7 @@ namespace Alexandria.net.API
 		{
 			try
 			{
-				var reqname = CSharpToCpp.GetValue("CreateSimpleTransactionAsync");
+				var reqname = CSharpToCpp.GetValue("CreateSimpleTransaction");
 				var @params = new ArrayList {operation};
 				var result= await SendRequestAsync(reqname, @params);
 				var contentdata = JsonConvert.DeserializeObject<TransactionResponse>(result);

@@ -1,16 +1,13 @@
 ﻿using System;
-using System.CodeDom;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Threading;
 using System.Threading.Tasks;
 using Alexandria.net.Communication;
 using Alexandria.net.Enums;
 using Alexandria.net.Events;
 using Alexandria.net.Extensions;
-using Alexandria.net.Logging;
 using Alexandria.net.Messaging.Receiver;
 using Alexandria.net.Messaging.Responses;
 using Alexandria.net.Settings;
@@ -20,16 +17,6 @@ using Logger = Alexandria.net.Logging.Logger;
 
 namespace Alexandria.net.API
 {
-    public class InClassName
-    {
-        public InClassName(string method = "")
-        {
-            Method = method;
-        }
-
-        public string Method { get; private set; }
-    }
-
     /// <inheritdoc />
     /// <summary>
     /// Sophia Blockchain Data functions
@@ -244,7 +231,6 @@ namespace Alexandria.net.API
             try
             {
                 var customjsonrpc = await MakeCustomBinaryOperationAsync(binaryData.AppId, binaryData.Sender, binaryData.Recipients,
-                    
                     binaryData.BinaryDoc);
                 if (customjsonrpc == null) return null;
                 var resp = await StartBroadcastingAsync(customjsonrpc.Result, binaryData.PrivateKey);
@@ -465,9 +451,7 @@ namespace Alexandria.net.API
         {
             try
             {
-                
-               
-                var reqname = CSharpToCpp.GetValue("MakeCustomBinaryOperationAsync");
+                var reqname = CSharpToCpp.GetValue("MakeCustomBinaryOperation");
                 var @params = new ArrayList {appId, sender, recipients, document};
                 var response = await SendRequestAsync(reqname, @params);
                 return JsonConvert.DeserializeObject<AccountResponse>(response);
@@ -547,7 +531,7 @@ namespace Alexandria.net.API
         {
             try
             {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+                var reqname = CSharpToCpp.GetValue("GetReceivedDocuments");
                 var @params = new ArrayList {appId, account, searchType.GetStringValue(), start, count};
                 var result = await SendRequestAsync(reqname, @params);
                 return JsonConvert.DeserializeObject<ReceivedDocumentResponse>(result);

@@ -40,7 +40,6 @@
         private const string GetFeedHistory = "get_feed_history";
         private const string GetTransaction = "get_transaction";
         private const string BroadcastTransaction = "broadcast_transaction";
-        private const string BroadcastTransactionAsync = "broadcast_transaction";
         private const string CreateSimpleTransaction = "create_simple_transaction";
         private const string CreateTransaction = "create_transaction";
         private const string PublishFeed = "publish_feed";
@@ -61,7 +60,6 @@
         private const string MakeCustomJsonOperationAsync = "make_custom_json_operation";
         private const string GetReceivedDocuments = "get_received_documents";
         private const string MakeCustomBinaryOperation = "make_custom_binary_operation";
-        private const string MakeCustomBinaryOperationAsync = "make_custom_binary_operation";
         private const string CreateApplication = "create_application";
         private const string UpdateApplication = "update_application";
         private const string BuyApplication = "buy_application";
@@ -297,9 +295,9 @@
                 case "MakeCustomJsonOperationAsync":
                     return MakeCustomJsonOperationAsync;
                 case "MakeCustomBinaryOperationAsync":
-                    return MakeCustomBinaryOperationAsync;
+                    return MakeCustomBinaryOperation;
                 case "BroadcastTransactionAsync":
-                    return BroadcastTransactionAsync;
+                    return BroadcastTransaction;
                 case "CreateSimpleTransactionAsync":
                     return CreateSimpleTransaction;
                 case "AboutAsync":
