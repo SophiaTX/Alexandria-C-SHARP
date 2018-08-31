@@ -15,6 +15,6 @@ namespace Alexandria.net.Messaging.Responses
         /// <summary>
         /// the operation json data body
         /// </summary>
-        public JObject Response { get; set; }
+        public object Response { get; set; }
     }
 }

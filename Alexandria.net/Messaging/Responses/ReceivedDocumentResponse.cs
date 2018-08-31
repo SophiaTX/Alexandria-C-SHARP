@@ -1,13 +1,21 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Alexandria.net.Messaging.Responses
 {
     /// <summary>
     /// the reponse for received documents
     /// </summary>
+    /// 
     public class ReceivedDocumentResponse
     {
+        private List<List<Object>> _unstructedoperations;
+        private DocumentCollection _operations;
+        
         /// <summary>
         /// the transaction id
         /// </summary>
@@ -18,22 +26,37 @@ namespace Alexandria.net.Messaging.Responses
         /// the received documents response
         /// </summary>
         [JsonProperty("result")]
-        public List<List<object>> Result { get; set; }
-//        public List<List<object>> Result
-//        {
-//            get=>Result; 
-//            set=>SimplifiedData(Result);
-//        }
+        public List<List<object>> Result
+        {
+            get=>_unstructedoperations; 
+            set=>SimplifiedData(value);
+        }
 
-//        private void SimplifiedData(List<List<object>> result)
-//        {
-//            foreach (var r in result)
-//            {
-////                if (int.TryParse())
-////                {
-////                    
-////                }
-//            }
-//        }
-   }
+        /// <summary>
+        /// Received documents
+        /// </summary>
+        public DocumentCollection SimplifiedDocuments
+        {
+            get => _operations;
+            set => _operations = value;
+        }
+        
+        private void SimplifiedData(object value)
+        {
+            var docs = (List<List<object>>) value;
+            var doclist=new List<ArrayResponse>();
+            
+                var op = new ArrayResponse();
+
+                foreach (var pages in docs)
+                {
+                    op.Id = (long) pages[0];
+                    op.Result = JsonConvert.DeserializeObject<ReceiveDocResultData>(pages[1].ToString());
+                    doclist.Add(op);
+                }
+            _operations= new DocumentCollection {Documents = doclist};
+            _unstructedoperations = docs;
+
+        }
+    }
 }

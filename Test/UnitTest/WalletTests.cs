@@ -4,6 +4,8 @@ using System.Threading;
 using Alexandria.net.Enums;
 using Alexandria.net.Events;
 using Alexandria.net.Messaging.Receiver;
+using Alexandria.net.Messaging.Responses;
+using Newtonsoft.Json;
 using Xunit;
 
 namespace UnitTest
@@ -453,7 +455,8 @@ namespace UnitTest
         {
             var result = _client.Data.Receive(3, "PcQ-byG-3OczM99qg1m_6zU9ArAA", SearchType.BySender,
                 DateTime.UtcNow.AddDays(-10), 10);
-            Console.WriteLine(result.Result);
+            Console.WriteLine(result.SimplifiedDocuments.Documents);
+            
         }
 
         #endregion

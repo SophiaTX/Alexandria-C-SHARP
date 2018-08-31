@@ -13,6 +13,7 @@ namespace Alexandria.net.Messaging.Responses
         /// </summary>
         public List<Operation> Operations { get; set; }
         
+        /// <inheritdoc />
         /// <summary>
         /// Allow enumeration of the list of operations
         /// </summary>
