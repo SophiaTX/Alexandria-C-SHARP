@@ -3,10 +3,12 @@ using Newtonsoft.Json;
 
 namespace Alexandria.net.Messaging.Responses
 {
+    
+
     /// <summary>
     /// The owner details
     /// </summary>
-    public class Owner
+    public partial class Owner
     {
         /// <summary>
         /// the weighting threshold of the owner

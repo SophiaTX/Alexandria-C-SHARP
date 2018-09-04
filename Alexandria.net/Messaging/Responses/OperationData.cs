@@ -2,7 +2,7 @@
 
 namespace Alexandria.net.Messaging.Responses
 {
-    public class OperationData
+    public class RecieveOperation
     {
         public string fee { get; set; }
         public string sender { get; set; }
