@@ -388,7 +388,7 @@ namespace Alexandria.net.API
         /// <param name="memokey">the memo key</param>
         /// <param name="privatekey">the private key used for the digest</param>
         /// <returns>the account creation response details</returns>
-        public object CreateAccount(string seed, string jsonMeta, string ownerkey,
+        public TransactionResponse CreateAccount(string seed, string jsonMeta, string ownerkey,
             string activekey, string memokey, string witnessname,
             string privatekey)
         {

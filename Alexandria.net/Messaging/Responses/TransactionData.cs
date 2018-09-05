@@ -86,7 +86,7 @@ namespace Alexandria.net.Messaging.Responses
                     if (index == 0)
                         op.Name = operation.ToString();
                     else
-                        op.Response = JsonConvert.DeserializeObject<OperationData>(operation.ToString());
+                        op.Response = operation;//JsonConvert.DeserializeObject<RecieveOperation>(operation.ToString());
                     index++;
                 }
                 _operations = new OperationCollection {Operations = new List<Operation> {op}};

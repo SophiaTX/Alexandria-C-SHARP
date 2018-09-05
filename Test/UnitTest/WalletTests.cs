@@ -4,8 +4,6 @@ using System.Threading;
 using Alexandria.net.Enums;
 using Alexandria.net.Events;
 using Alexandria.net.Messaging.Receiver;
-using Alexandria.net.Messaging.Responses;
-using Newtonsoft.Json;
 using Xunit;
 
 namespace UnitTest
@@ -235,7 +233,7 @@ namespace UnitTest
         [Fact]
         public void CreateAccount()
         {
-           var result= _client.Account.CreateAccount("sanjiv2781", "{}",
+           var result= _client.Account.CreateAccount("sanjiv27811", "{}",
                 "SPH6zDAKpmQFATYSFC57hMCcCXjbDwQgG8YwkxbLUokGyXwXAjhad",
                 "SPH6zDAKpmQFATYSFC57hMCcCXjbDwQgG8YwkxbLUokGyXwXAjhad",
                 "SPH6zDAKpmQFATYSFC57hMCcCXjbDwQgG8YwkxbLUokGyXwXAjhad","initminer","5JKHcAHiZnPVMzzeSGrWcRPhkjFZsPy2Pf36CVaz8W2WmMP4L1w");

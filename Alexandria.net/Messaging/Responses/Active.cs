@@ -6,7 +6,7 @@ namespace Alexandria.net.Messaging.Responses
     /// <summary>
     /// the active data related to the brain key
     /// </summary>
-    public class Active
+    public partial class Active
     {
         /// <summary>
         /// the weight threshold associated with tht brain key
