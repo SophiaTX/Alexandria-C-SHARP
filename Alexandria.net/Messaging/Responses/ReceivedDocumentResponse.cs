@@ -21,7 +21,7 @@ namespace Alexandria.net.Messaging.Responses
         /// </summary>
         [JsonProperty("id")]
         public int Id { get; set; }
-
+        
         /// <summary>
         /// the received documents response
         /// </summary>
@@ -35,7 +35,7 @@ namespace Alexandria.net.Messaging.Responses
         /// <summary>
         /// Received documents
         /// </summary>
-        public DocumentCollection SimplifiedDocuments
+        public DocumentCollection ReceivedDocumentCollection
         {
             get => _operations;
             set => _operations = value;

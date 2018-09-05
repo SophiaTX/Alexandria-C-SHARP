@@ -233,7 +233,7 @@ namespace UnitTest
         [Fact]
         public void CreateAccount()
         {
-           var result= _client.Account.CreateAccount("sanjiv27811", "{}",
+           var result= _client.Account.CreateAccount("sanjiv278115", "{}",
                 "SPH6zDAKpmQFATYSFC57hMCcCXjbDwQgG8YwkxbLUokGyXwXAjhad",
                 "SPH6zDAKpmQFATYSFC57hMCcCXjbDwQgG8YwkxbLUokGyXwXAjhad",
                 "SPH6zDAKpmQFATYSFC57hMCcCXjbDwQgG8YwkxbLUokGyXwXAjhad","initminer","5JKHcAHiZnPVMzzeSGrWcRPhkjFZsPy2Pf36CVaz8W2WmMP4L1w");
@@ -453,7 +453,7 @@ namespace UnitTest
         {
             var result = _client.Data.Receive(3, "PcQ-byG-3OczM99qg1m_6zU9ArAA", SearchType.BySender,
                 DateTime.UtcNow.AddDays(-10), 10);
-            Console.WriteLine(result.SimplifiedDocuments.Documents);
+            Console.WriteLine(result.ReceivedDocumentCollection.Documents);
             
         }
 
