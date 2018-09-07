@@ -10,7 +10,7 @@ namespace UnitTestProject452
     [TestClass]
     public class UnitTest1
     {
-        protected readonly SophiaClient
+        private readonly SophiaClient
          _client = new SophiaClient("195.48.9.209", 9091, 9093);
 
         #region Member Variables
@@ -135,8 +135,6 @@ namespace UnitTestProject452
             var trx = _client.Transaction.GetOpsInBlock(1983, true);
             Console.WriteLine(trx);
         }
-
-
 
         [TestMethod]
         public void GetTransaction()
@@ -436,7 +434,7 @@ namespace UnitTestProject452
         [TestMethod]
         public void Receive()
         {
-            var result = _client.Data.Receive(5, "PcQ-byG-3OczM99qg1m_6zU9ArAA", SearchType.BySender, DateTime.MinValue, 10);
+            var result = _client.Data.Receive(5, "PcQ-byG-3OczM99qg1m_6zU9ArAA", SearchType.BySender, DateTime.UtcNow.AddDays(-10), 10);
             Console.WriteLine(result.Result);
         }
 

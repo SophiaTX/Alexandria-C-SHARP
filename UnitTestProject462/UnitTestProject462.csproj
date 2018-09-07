@@ -75,8 +75,8 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Alexandria.net, Version=1.0.3.3, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\packages\Alexandria.net.1.0.3.4\lib\net462\Alexandria.net.dll</HintPath>
+    <Reference Include="Alexandria.net, Version=1.0.3.5, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\packages\Alexandria.net.1.0.3.5\lib\net462\Alexandria.net.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
@@ -144,8 +144,8 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\MSTest.TestAdapter.1.3.2\build\net45\MSTest.TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MSTest.TestAdapter.1.3.2\build\net45\MSTest.TestAdapter.props'))" />
     <Error Condition="!Exists('..\packages\MSTest.TestAdapter.1.3.2\build\net45\MSTest.TestAdapter.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MSTest.TestAdapter.1.3.2\build\net45\MSTest.TestAdapter.targets'))" />
-    <Error Condition="!Exists('..\packages\Alexandria.net.1.0.3.4\build\Alexandria.net.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Alexandria.net.1.0.3.4\build\Alexandria.net.targets'))" />
+    <Error Condition="!Exists('..\packages\Alexandria.net.1.0.3.5\build\Alexandria.net.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Alexandria.net.1.0.3.5\build\Alexandria.net.targets'))" />
   </Target>
   <Import Project="..\packages\MSTest.TestAdapter.1.3.2\build\net45\MSTest.TestAdapter.targets" Condition="Exists('..\packages\MSTest.TestAdapter.1.3.2\build\net45\MSTest.TestAdapter.targets')" />
-  <Import Project="..\packages\Alexandria.net.1.0.3.4\build\Alexandria.net.targets" Condition="Exists('..\packages\Alexandria.net.1.0.3.4\build\Alexandria.net.targets')" />
+  <Import Project="..\packages\Alexandria.net.1.0.3.5\build\Alexandria.net.targets" Condition="Exists('..\packages\Alexandria.net.1.0.3.5\build\Alexandria.net.targets')" />
 </Project>
