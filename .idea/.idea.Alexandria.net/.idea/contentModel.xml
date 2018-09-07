@@ -4,7 +4,8 @@
     <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.4.0/build/netcoreapp1.0/xunit.runner.reporters.netcoreapp10.dll" t="Include" />
     <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.4.0/build/netcoreapp1.0/xunit.runner.utility.netcoreapp10.dll" t="Include" />
     <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.4.0/build/netcoreapp1.0/xunit.runner.visualstudio.dotnetcore.testadapter.dll" t="Include" />
-    <e p="$USER_HOME$/Library/Caches/Rider2018.1/resharper-host/local/Transient/ReSharperHost/v12/SolutionCaches/_Alexandria.net.-1113668252.00" t="ExcludeRecursive" />
+    <e p="$USER_HOME$/Library/Caches/Rider2018.2/extResources" t="IncludeRecursive" />
+    <e p="$USER_HOME$/Library/Caches/Rider2018.2/resharper-host/local/Transient/ReSharperHost/v182/SolutionCaches/_Alexandria.net.-1113668252.00" t="ExcludeRecursive" />
     <e p="$PROJECT_DIR$" t="IncludeFlat">
       <e p="Alexandria.net" t="IncludeRecursive">
         <e p="Alexandria.net.csproj" t="IncludeRecursive" />
@@ -93,16 +94,19 @@
             <e p="ApplicationData.cs" t="Include" />
             <e p="ApplicationSearchData.cs" t="Include" />
             <e p="ApplicationSearchResponse.cs" t="Include" />
+            <e p="ArrayResponse.cs" t="Include" />
             <e p="Authority.cs" t="Include" />
             <e p="BlockData.cs" t="Include" />
             <e p="BlockResponse.cs" t="Include" />
             <e p="BrainKeySuggestion.cs" t="Include" />
             <e p="BrainKeySuggestionData.cs" t="Include" />
+            <e p="CreateAccountOperation.cs" t="Include" />
             <e p="CreateAccountResponse.cs" t="Include" />
             <e p="CreateSimpleAuthorityData.cs" t="Include" />
             <e p="CreateSimpleAuthorityResponse.cs" t="Include" />
             <e p="CurrentMedianHistory.cs" t="Include" />
             <e p="CustomJsonResponse.cs" t="Include" />
+            <e p="DocumentCollection.cs" t="Include" />
             <e p="ErrorResponse.cs" t="Include" />
             <e p="FeedData.cs" t="Include" />
             <e p="FeedHistoryResponse.cs" t="Include" />
@@ -123,6 +127,7 @@
             <e p="MedianSbdPrice.cs" t="Include" />
             <e p="Operation.cs" t="Include" />
             <e p="OperationCollection.cs" t="Include" />
+            <e p="OperationData.cs" t="Include" />
             <e p="Operations.cs" t="Include" />
             <e p="Options.cs" t="Include" />
             <e p="Owner.cs" t="Include" />
@@ -145,17 +150,15 @@
           </e>
         </e>
         <e p="obj" t="ExcludeRecursive">
-          <e p="x64" t="Include">
-            <e p="Debug" t="Include">
-              <e p="net452" t="Include">
-                <e p="Alexandria.net.AssemblyInfo.cs" t="Include" />
-              </e>
-              <e p="net462" t="Include">
-                <e p="Alexandria.net.AssemblyInfo.cs" t="Include" />
-              </e>
-              <e p="netcoreapp2.0" t="Include">
-                <e p="Alexandria.net.AssemblyInfo.cs" t="Include" />
-              </e>
+          <e p="Debug" t="Include">
+            <e p="net452" t="Include">
+              <e p="Alexandria.net.AssemblyInfo.cs" t="Include" />
+            </e>
+            <e p="net462" t="Include">
+              <e p="Alexandria.net.AssemblyInfo.cs" t="Include" />
+            </e>
+            <e p="netcoreapp2.0" t="Include">
+              <e p="Alexandria.net.AssemblyInfo.cs" t="Include" />
             </e>
           </e>
         </e>
@@ -177,12 +180,10 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="DeamonTest.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
-          <e p="x64" t="Include">
-            <e p="Debug" t="Include">
-              <e p="netcoreapp2.0" t="Include">
-                <e p="UnitTest.AssemblyInfo.cs" t="Include" />
-                <e p="UnitTest.Program.cs" t="Include" />
-              </e>
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.0" t="Include">
+              <e p="UnitTest.AssemblyInfo.cs" t="Include" />
+              <e p="UnitTest.Program.cs" t="Include" />
             </e>
           </e>
         </e>
