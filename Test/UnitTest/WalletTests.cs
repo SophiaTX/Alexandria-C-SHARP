@@ -389,7 +389,7 @@ namespace UnitTest
                 PrivateKey = PrivateKey,
                 Recipients = new List<string> {"45fR5HHoV2XA7NyvKdc3CK4WrixE"},
                 Sender = "PcQ-byG-3OczM99qg1m_6zU9ArAA",
-                JsonDoc = test//"[\"" + $"{test}" + "\"]"
+                JsonDoc = test
             };
 
             var result = _client.Data.SendJson(data);
@@ -405,7 +405,7 @@ namespace UnitTest
                 PrivateKey =PrivateKey,
                 Recipients = new List<string> {"hwT5jQuzKG_ZjCBnUyHP_6hk4BU"},
                 Sender = "PcQ-byG-3OczM99qg1m_6zU9ArAA",
-                BinaryDoc = "SGVsbG8=" //"[\"" + $"{test}" + "\"]"
+                BinaryDoc = "SGVsbG8=" 
             };
             
             var result = _client.Data.SendBinary(data);
@@ -424,7 +424,7 @@ namespace UnitTest
                 PrivateKey = PrivateKey,
                 Recipients = new List<string> {"45fR5HHoV2XA7NyvKdc3CK4WrixE"},
                 Sender = "PcQ-byG-3OczM99qg1m_6zU9ArAA",
-                JsonDoc = test//"[\"" + $"{test}" + "\"]"
+                JsonDoc = test
             };
 
             var result = _client.Data.SendJsonAsync(data);
@@ -440,7 +440,7 @@ namespace UnitTest
                 PrivateKey =PrivateKey,
                 Recipients = new List<string> {"hwT5jQuzKG_ZjCBnUyHP_6hk4BU"},
                 Sender = "PcQ-byG-3OczM99qg1m_6zU9ArAA",
-                BinaryDoc = "SGVsbG8=" //"[\"" + $"{test}" + "\"]"
+                BinaryDoc = "SGVsbG8=" 
             };
             
             var result = _client.Data.SendBinaryAsync(data);
