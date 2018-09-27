@@ -8,11 +8,14 @@ using Alexandria.net.API;
 using Alexandria.net.Enums;
 using Alexandria.net.Exceptions;
 using Alexandria.net.Extensions;
-using Alexandria.net.Logging;
 using Alexandria.net.Mapping;
 using Alexandria.net.Messaging.Responses;
 using Alexandria.net.Settings;
+using Arebis.Logging.GrayLog;
 using Newtonsoft.Json;
+using ILogger = Alexandria.net.Logging.ILogger;
+using Logger = Alexandria.net.Logging.Logger;
+using System.Configuration;
 
 namespace Alexandria.net.Communication
 {
@@ -29,6 +32,7 @@ namespace Alexandria.net.Communication
         protected readonly CSharpToCpp CSharpToCpp = new CSharpToCpp();
         private readonly ILogger _logger;
         private readonly BuildMode _buildMode;
+      
         #endregion
 
         #region Properties
@@ -199,7 +203,11 @@ namespace Alexandria.net.Communication
         /// <param name="type"></param>
         /// <returns>the http response from the server</returns>
         private async Task<string> ProcessRequest(string methodname, ArrayList @params = null, Type type = null)
-        {
+        {          
+//            using (var logger = new GrayLogUdpClient())
+//            { 
+//                logger.Send("Hello World !");
+//            }
             var response = string.Empty;
             try
             {
@@ -217,16 +225,19 @@ namespace Alexandria.net.Communication
 
                 if (httpResponse == null) return response;
                 response = await httpResponse.Content.ReadAsStringAsync();
-                if (_buildMode == BuildMode.Test)
-                {
-                    _logger.WriteTestData(
-                        $"Date & Time: {DateTime.UtcNow} || Method: {methodname} || Request Data: {json} || Response Data: {response}");
-                }
 
                 if (response.Contains("error"))
                 {
-                    throw new SophiaBlockchainException(response);
+//                    using (var logger = new GrayLogUdpClient())
+//                    { 
+//                        logger.Send("Hello World !");
+//                    }
                     
+                    if (_buildMode == BuildMode.Prod)
+                    {
+                        _logger.WriteError($"Date & Time: {DateTime.UtcNow} || Method: {methodname} || Request Data: {json} || Response Data: {response}");
+                    }
+                    throw new SophiaBlockchainException(response); 
                 }
             }
             catch (HttpRequestException ex)

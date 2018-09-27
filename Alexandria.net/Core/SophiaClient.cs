@@ -106,13 +106,13 @@ namespace Alexandria.net.Core
                 {
                     var config = new Config
                     {
-                        LoggingType = LoggingType.File,
+                        LoggingType = LoggingType.Server,
                         LoggingServer = "https://logging.sophiatx.com",
                         LoggingPort = 12201,
                         BuildMode = BuildMode.Prod,
-                        Hostname = "195.48.9.208",
-                        DaemonPort = 8095,
-                        WalletPort = 8096,
+                        Hostname = "34.244.93.54",
+                        DaemonPort = 9195,
+                        WalletPort = 9195,
                         Api = "/rpc",
                         Version = "2.0"
                     };

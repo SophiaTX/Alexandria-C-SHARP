@@ -19,10 +19,12 @@ Table of Contents
 
 Install
 =================
+- As a prerequisite for the npm module please have openssl installed on your machine
+(download openssl and install on Windows environment using https://slproweb.com/products/Win32OpenSSL.html)
+("brew install openssl" on Mac environment)
+- Get the Library (Alexandria 1.0.3.5) as a nuget package from nuget.org
 
-- Get the Library (Alexandria 1.0.2) as a nuget package from nuget.org
-
-- https://www.nuget.org/packages/Alexandria.net/1.0.2 (Latest stable version)
+- https://www.nuget.org/packages/Alexandria.net/1.0.3.5 (Latest stable x64 version)
 
 - Add the nuget package into the project (using Nuget Package Manager)
 
@@ -103,10 +105,10 @@ var data = new SenderData
                 PrivateKey = PrivateKey,
                 Recipients = new List<string> {accountName1, acocuntName2},
                 Sender = accountName,
-                Document = test
+                JsonDoc = test
             };
             
-_client.Data.Send(data);
+_client.Data.SendJson(data);
 ```
 Send plain text to list of recepients
 ```c#
@@ -116,10 +118,38 @@ var data = new SenderData
                 PrivateKey = PrivateKey,
                 Recipients = new List<string> {accountName1, acocuntName2},
                 Sender = accountName,
-                DocumentChars = memo
+                BinaryDoc = memo
             };
             
 _client.Data.SendBinary(data);
+```   
+Send JSON data to list of recipients asynchronously 
+```c#
+var test = "{\"new_book_name\":\"test9999\"}";
+           
+var data = new SenderData
+            {
+                AppId = 2,
+                PrivateKey = PrivateKey,
+                Recipients = new List<string> {accountName1, acocuntName2},
+                Sender = accountName,
+                JsonDoc = test
+            };
+            
+_client.Data.SendJsonAsync(data);
+```
+Send plain text to list of recipients asynchronously 
+```c#
+var data = new SenderData
+            {
+                AppId = 2,
+                PrivateKey = PrivateKey,
+                Recipients = new List<string> {accountName1, acocuntName2},
+                Sender = accountName,
+                BinaryDoc = memo
+            };
+            
+_client.Data.SendBinaryAsync(data);
 ```   
 List recieved documents, sorted depending on the search type, start(ISOTimeStamp)    
 ```c#

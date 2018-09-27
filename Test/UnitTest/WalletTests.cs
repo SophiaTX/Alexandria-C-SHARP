@@ -233,7 +233,7 @@ namespace UnitTest
         [Fact]
         public void CreateAccount()
         {
-           var result= _client.Account.CreateAccount("sanjiv27811", "{}",
+           var result= _client.Account.CreateAccount("sanjiv278115", "{}",
                 "SPH6zDAKpmQFATYSFC57hMCcCXjbDwQgG8YwkxbLUokGyXwXAjhad",
                 "SPH6zDAKpmQFATYSFC57hMCcCXjbDwQgG8YwkxbLUokGyXwXAjhad",
                 "SPH6zDAKpmQFATYSFC57hMCcCXjbDwQgG8YwkxbLUokGyXwXAjhad","initminer","5JKHcAHiZnPVMzzeSGrWcRPhkjFZsPy2Pf36CVaz8W2WmMP4L1w");
@@ -389,7 +389,7 @@ namespace UnitTest
                 PrivateKey = PrivateKey,
                 Recipients = new List<string> {"45fR5HHoV2XA7NyvKdc3CK4WrixE"},
                 Sender = "PcQ-byG-3OczM99qg1m_6zU9ArAA",
-                JsonDoc = test//"[\"" + $"{test}" + "\"]"
+                JsonDoc = test
             };
 
             var result = _client.Data.SendJson(data);
@@ -405,7 +405,7 @@ namespace UnitTest
                 PrivateKey =PrivateKey,
                 Recipients = new List<string> {"hwT5jQuzKG_ZjCBnUyHP_6hk4BU"},
                 Sender = "PcQ-byG-3OczM99qg1m_6zU9ArAA",
-                BinaryDoc = "SGVsbG8=" //"[\"" + $"{test}" + "\"]"
+                BinaryDoc = "SGVsbG8=" 
             };
             
             var result = _client.Data.SendBinary(data);
@@ -424,7 +424,7 @@ namespace UnitTest
                 PrivateKey = PrivateKey,
                 Recipients = new List<string> {"45fR5HHoV2XA7NyvKdc3CK4WrixE"},
                 Sender = "PcQ-byG-3OczM99qg1m_6zU9ArAA",
-                JsonDoc = test//"[\"" + $"{test}" + "\"]"
+                JsonDoc = test
             };
 
             var result = _client.Data.SendJsonAsync(data);
@@ -440,7 +440,7 @@ namespace UnitTest
                 PrivateKey =PrivateKey,
                 Recipients = new List<string> {"hwT5jQuzKG_ZjCBnUyHP_6hk4BU"},
                 Sender = "PcQ-byG-3OczM99qg1m_6zU9ArAA",
-                BinaryDoc = "SGVsbG8=" //"[\"" + $"{test}" + "\"]"
+                BinaryDoc = "SGVsbG8=" 
             };
             
             var result = _client.Data.SendBinaryAsync(data);
@@ -453,7 +453,7 @@ namespace UnitTest
         {
             var result = _client.Data.Receive(3, "PcQ-byG-3OczM99qg1m_6zU9ArAA", SearchType.BySender,
                 DateTime.UtcNow.AddDays(-10), 10);
-            Console.WriteLine(result.SimplifiedDocuments.Documents);
+            Console.WriteLine(result.ReceivedDocumentCollection.Documents);
             
         }
 
@@ -464,9 +464,10 @@ namespace UnitTest
         [Fact]
         public void CreateApplication()
         {
-            _client.Application.CreateApplication("test101","BoxGame5","http://boxgame.com","genre: Adventure, requirements: Mac OS Sierra",1,PrivateKey);
-
+            var result=_client.Application.CreateApplication("PcQ-byG-3OczM99qg1m_6zU9ArAA","sphtx3456660000000000000000000000996","http://boxgame.com","genre: Adventure, requirements: Mac OS Sierra",1,PrivateKey);
+            Console.WriteLine(result);
         }
+        
         [Fact]
         public void UpdateApplication()
         {
@@ -484,7 +485,7 @@ namespace UnitTest
         [Fact]
         public void BuyApplication()
         {
-            _client.Application.BuyApplication("test110",4,PrivateKey);
+            _client.Application.BuyApplication("PcQ-byG-3OczM99qg1m_6zU9ArAA",4,PrivateKey);
 
         }
 
@@ -498,14 +499,16 @@ namespace UnitTest
         [Fact]
         public void GetApplicationBuyings()
         {
-            _client.Application.GetApplicationBuyings("test110",SearchType.ByBuyer,10);
+            var result=_client.Application.GetApplicationBuyings("4",SearchType.ByAppId,10);
+            Console.WriteLine(result);
 
         }
         [Fact]
         public void GetApplications()
         {
-            var names = new List<string>{"BoxGame5","BoxGame4"};
-            _client.Application.GetApplications(names);
+            var names = new List<string>{"sphtx345666000000000000000000000099"};
+            var result=_client.Application.GetApplications(names);
+            Console.WriteLine(result);
         }
 
 
