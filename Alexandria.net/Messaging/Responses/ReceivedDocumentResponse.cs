@@ -46,10 +46,10 @@ namespace Alexandria.net.Messaging.Responses
             var docs = (List<List<object>>) value;
             var doclist=new List<ArrayResponse>();
             
-                var op = new ArrayResponse();
+                
 
                 foreach (var pages in docs)
-                {
+                { var op = new ArrayResponse();
                     op.Id = (long) pages[0];
                     op.Result = JsonConvert.DeserializeObject<ReceiveDocResultData>(pages[1].ToString());
                     doclist.Add(op);
