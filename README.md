@@ -22,9 +22,9 @@ Install
 - As a prerequisite for the npm module please have openssl installed on your machine
 (download openssl and install on Windows environment using https://slproweb.com/products/Win32OpenSSL.html)
 ("brew install openssl" on Mac environment)
-- Get the Library (Alexandria 1.0.3.5) as a nuget package from nuget.org
+- Get the Library (Alexandria 1.0.3.7) as a nuget package from nuget.org
 
-- https://www.nuget.org/packages/Alexandria.net/1.0.3.5 (Latest stable x64 version)
+- https://www.nuget.org/packages/Alexandria.net/1.0.3.7 (Latest stable x64 version)
 
 - Add the nuget package into the project (using Nuget Package Manager)
 

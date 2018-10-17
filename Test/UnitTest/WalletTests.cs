@@ -436,7 +436,7 @@ namespace UnitTest
         {
             var data = new BinaryData
             {
-                AppId = 6,
+                AppId = 3,
                 PrivateKey =PrivateKey,
                 Recipients = new List<string> {"hwT5jQuzKG_ZjCBnUyHP_6hk4BU"},
                 Sender = "PcQ-byG-3OczM99qg1m_6zU9ArAA",
@@ -506,7 +506,7 @@ namespace UnitTest
         [Fact]
         public void GetApplications()
         {
-            var names = new List<string>{"sphtx345666000000000000000000000099"};
+            var names = new List<string>{"BoxGame"};
             var result=_client.Application.GetApplications(names);
             Console.WriteLine(result);
         }
