@@ -7,8 +7,10 @@ using Alexandria.net.Communication;
 using Alexandria.net.Logging;
 using Alexandria.net.Messaging.Responses;
 using Alexandria.net.Settings;
+using log4net.Core;
 using Newtonsoft.Json;
 using AccountResponse = Alexandria.net.Messaging.Responses.AccountResponse;
+using ILogger = Alexandria.net.Logging.ILogger;
 
 namespace Alexandria.net.API
 {
@@ -19,15 +21,16 @@ namespace Alexandria.net.API
 	public class  Transaction : RpcConnection
 	{	
 		private readonly ILogger _logger;
-		
+		private IConfig Config { get; }
 		#region Constructors
-
+			
 		/// <summary>
 		/// Wallet Constructor
 		/// </summary>
 		/// <param name="config">the Configuration paramaters for the endpoint and ports</param>
 		public Transaction(IConfig config) : base(config)
 		{
+			Config = config;
 			var assemblyname = Assembly.GetExecutingAssembly().GetName().Name;
 			_logger = new Logger(config, assemblyname);
 		}
@@ -387,7 +390,35 @@ namespace Alexandria.net.API
 				throw ;
 			}
 		}
-		
+		/// <summary>
+		///  Sign and Send the transaction 
+		/// </summary>
+		/// <param name="contentdata"></param>
+		/// <param name="privateKey"></param>
+		/// <typeparam name="T"></typeparam>
+		/// <returns></returns>
+        public TransactionResponse SignAndSendTransaction<T>(T contentdata, string privateKey)
+        {           
+            var key = new Key(Config);
+            TransactionResponse finalResponse;
+            try
+            {               
+                var chainID = "66423e7baa1f62570784e17cb78d48329e78faa43075cc9d847c434b4bfe2dfb";              
+                var transaction = JsonConvert.SerializeObject(contentdata);                
+                var digest = key.GetTransactionDigest(transaction,chainID,new byte[64]);
+                var signature = key.SignDigest(digest, privateKey, new byte[130]);
+                var response = key.AddSignature(transaction, signature,new byte[transaction.Length + 200]);
+                finalResponse = BroadcastTransaction(response);          
+            }
+            catch (Exception ex)
+            {
+                
+                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+                throw;
+            }
+
+            return finalResponse;
+        }
 		#endregion
 	}
 }

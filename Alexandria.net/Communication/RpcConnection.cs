@@ -11,11 +11,12 @@ using Alexandria.net.Extensions;
 using Alexandria.net.Mapping;
 using Alexandria.net.Messaging.Responses;
 using Alexandria.net.Settings;
-using Arebis.Logging.GrayLog;
 using Newtonsoft.Json;
 using ILogger = Alexandria.net.Logging.ILogger;
 using Logger = Alexandria.net.Logging.Logger;
 using System.Configuration;
+using log4net;
+using log4net.Core;
 
 namespace Alexandria.net.Communication
 {
@@ -29,9 +30,13 @@ namespace Alexandria.net.Communication
         private readonly string _uri;
         private readonly HttpClient _client;
         private readonly string _jsonRpc;
+        /// <summary>
+        /// 
+        /// </summary>
         protected readonly CSharpToCpp CSharpToCpp = new CSharpToCpp();
-        private readonly ILogger _logger;
+        private readonly ILogger _logger;      
         private readonly BuildMode _buildMode;
+    
       
         #endregion
 
@@ -48,7 +53,7 @@ namespace Alexandria.net.Communication
         /// </summary>
         /// <param name="config">the Configuration paramaters for the endpoint and ports</param>
         /// <param name="wallet">true if configuraing for the wallet</param>
-        protected RpcConnection(IConfig config, bool wallet = true)
+        public RpcConnection(IConfig config, bool wallet = true)
         {
             Config = config;
             _uri = $"http://{Config.Hostname}:{(wallet ? Config.WalletPort : config.DaemonPort)}{config.Api}";
@@ -56,7 +61,9 @@ namespace Alexandria.net.Communication
             _jsonRpc = Config.Version;
 
             var assemblyname = Assembly.GetExecutingAssembly().GetName().Name;
-            _logger = new Logger(config, assemblyname);
+            //_logger = new Logger(config, assemblyname);
+           
+            
             _buildMode = Config.BuildMode;
         }
 
@@ -143,11 +150,41 @@ namespace Alexandria.net.Communication
             }
             catch (Exception ex)
             {
+                
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
 
             return finalResponse;
+        }
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="contentdata"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        protected TransactionResponse GetSimpleTransaction<T>(T contentdata)
+        {
+            var trans = new Transaction(Config);
+            TransactionResponse transresponse;
+            try
+            {               
+                var fees = "0.010000 SPHTX";               
+                var feeAddedOperation = trans.AddFee(contentdata, fees);                
+                transresponse = trans.CreateSimpleTransaction(feeAddedOperation.Result);
+                if (transresponse == null) return null;
+
+                        
+            }
+            catch (Exception ex)
+            {
+              
+                
+                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+                throw;
+            }
+
+            return transresponse;
         }
         
         /// <summary>
@@ -184,6 +221,7 @@ namespace Alexandria.net.Communication
             }
             catch (Exception ex)
             {
+                
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
@@ -235,6 +273,7 @@ namespace Alexandria.net.Communication
                     
                     if (_buildMode == BuildMode.Prod)
                     {
+                       
                         _logger.WriteError($"Date & Time: {DateTime.UtcNow} || Method: {methodname} || Request Data: {json} || Response Data: {response}");
                     }
                     throw new SophiaBlockchainException(response); 
@@ -242,11 +281,13 @@ namespace Alexandria.net.Communication
             }
             catch (HttpRequestException ex)
             {
+                
                 _logger.WriteError($"Message: {ex.Message} | StackTrace: {ex.StackTrace}");
                 throw;
             }
             catch (SophiaBlockchainException sx)
             {
+               
                 _logger.WriteError($"Message: {sx.Message} | StackTrace: {sx.StackTrace} | Response: {sx.ErrMsg}");
                 throw;
 

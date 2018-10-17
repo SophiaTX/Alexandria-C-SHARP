@@ -19,7 +19,7 @@ Table of Contents
 
 Install
 =================
-- As a prerequisite for the npm module please have openssl installed on your machine
+- As a prerequisite for the nuget package to be working please have openssl installed on your machine
 (download openssl and install on Windows environment using https://slproweb.com/products/Win32OpenSSL.html)
 ("brew install openssl" on Mac environment)
 - Get the Library (Alexandria 1.0.3.7) as a nuget package from nuget.org
@@ -159,9 +159,7 @@ _client.Data.Receive(AppID, accountName, SearchType, start, numberOfEntries);
 Accounts
 ====================
 Create account using private key. Same public key can be used for all three keys required to create accoun. 
-
 Seed, can be any unique value string (have atleast 3 digits and no special characters ($, £, #, etc.)) for genrating new account name.   
-
 Creator, is an account with enough balance to pay for account creation.
 
 ```c#

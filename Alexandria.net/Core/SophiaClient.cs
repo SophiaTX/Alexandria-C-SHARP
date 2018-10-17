@@ -2,6 +2,7 @@
 using System.IO;
 using System.Reflection;
 using Alexandria.net.API;
+using Alexandria.net.Communication;
 using Alexandria.net.Enums;
 using Alexandria.net.Events;
 using Alexandria.net.Logging;
@@ -46,6 +47,7 @@ namespace Alexandria.net.Core
         /// Sophia Blockchain Application functions
         /// </summary>
         public Application Application { get; }
+        
 
         #endregion
 
@@ -104,11 +106,13 @@ namespace Alexandria.net.Core
 
                 if (typeof(T) == typeof(Config))
                 {
+                    Console.WriteLine("I am in logging zone, yay!!!!");
                     var config = new Config
                     {
+              
                         LoggingType = LoggingType.Server,
-                        LoggingServer = "https://logging.sophiatx.com",
-                        LoggingPort = 12201,
+                        LoggingServer = "http://logging.sophiatx.com",
+                        LoggingPort = 12205,
                         BuildMode = BuildMode.Prod,
                         Hostname = "34.244.93.54",
                         DaemonPort = 9195,
