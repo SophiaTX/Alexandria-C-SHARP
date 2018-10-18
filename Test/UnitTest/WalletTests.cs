@@ -234,7 +234,7 @@ namespace UnitTest
         [Fact]
         public void CreateAccount()
         {
-           var result= Client.Account.CreateAccount("kuan", "{}",
+           var result= Client.Account.CreateAccount("test457457474889", "{}",
                 "SPH6zDAKpmQFATYSFC57hMCcCXjbDwQgG8YwkxbLUokGyXwXAjhad",
                 "SPH6zDAKpmQFATYSFC57hMCcCXjbDwQgG8YwkxbLUokGyXwXAjhad",
                 "SPH6zDAKpmQFATYSFC57hMCcCXjbDwQgG8YwkxbLUokGyXwXAjhad","initminer","5JKHcAHiZnPVMzzeSGrWcRPhkjFZsPy2Pf36CVaz8W2WmMP4L1w");
@@ -251,7 +251,8 @@ namespace UnitTest
         [Fact]
         public void DeleteAccount()
         {
-            Client.Account.DeleteAccount("sanjiv12345678910", PrivateKey);
+            var result=Client.Account.DeleteAccount("sanjiv12345678910", PrivateKey);
+            Console.WriteLine(result);
 
         }
         [Fact]
@@ -285,7 +286,7 @@ namespace UnitTest
         [Fact]
         public void GetAccountBalance()
         {
-            var result=Client.Account.GetAccountBalance("sanjiv");
+            var result=Client.Account.GetAccountBalance("yofVXV_6Rdaun-yWM7U1I0m8G0w");
             Console.WriteLine(result);       
         }
         [Fact]
@@ -401,10 +402,10 @@ namespace UnitTest
         {
             var data = new BinaryData
             {
-                AppId = 2,
-                PrivateKey =PrivateKey,
-                Recipients = new List<string> {"hwT5jQuzKG_ZjCBnUyHP_6hk4BU"},
-                Sender = "PcQ-byG-3OczM99qg1m_6zU9ArAA",
+                AppId = 20009,
+                PrivateKey ="5KUbCiBJac8omkwgftfkp8hUCgh5k2H3mgoqMDN7bfzDLLEK2i8",
+                Recipients = new List<string> {"yofVXV_6Rdaun-yWM7U1I0m8G0w"},
+                Sender = "sanjiv",
                 BinaryDoc = "e0hlbGxvOldvcmxkfQ==" 
             };
             
@@ -515,7 +516,7 @@ namespace UnitTest
 
         #endregion
 
-        #region rpcfunction
+        #region Rpc Function
 
         [Fact]
         public void SignAndSendTransaction()

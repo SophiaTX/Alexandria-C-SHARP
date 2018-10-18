@@ -402,10 +402,9 @@ namespace Alexandria.net.API
             var key = new Key(Config);
             TransactionResponse finalResponse;
             try
-            {               
-                var chainID = "66423e7baa1f62570784e17cb78d48329e78faa43075cc9d847c434b4bfe2dfb";              
+            {                           
                 var transaction = JsonConvert.SerializeObject(contentdata);                
-                var digest = key.GetTransactionDigest(transaction,chainID,new byte[64]);
+                var digest = key.GetTransactionDigest(transaction,ChainId,new byte[64]);
                 var signature = key.SignDigest(digest, privateKey, new byte[130]);
                 var response = key.AddSignature(transaction, signature,new byte[transaction.Length + 200]);
                 finalResponse = BroadcastTransaction(response);          

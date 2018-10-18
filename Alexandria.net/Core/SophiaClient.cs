@@ -77,6 +77,11 @@ namespace Alexandria.net.Core
             Witness = new Witness(config);
             Data = new Data(config);
             Application = new Application(config);
+
+            var aboutResponse = Transaction.About();
+
+            if (aboutResponse != null)
+                RpcConnection.ChainId = aboutResponse.Result.ChainId;            
         }
 
         #endregion

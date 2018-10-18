@@ -36,6 +36,7 @@ namespace Alexandria.net.Communication
         protected readonly CSharpToCpp CSharpToCpp = new CSharpToCpp();
         private readonly ILogger _logger;      
         private readonly BuildMode _buildMode;
+        public static string ChainId;
     
       
         #endregion
@@ -61,12 +62,13 @@ namespace Alexandria.net.Communication
             _jsonRpc = Config.Version;
 
             var assemblyname = Assembly.GetExecutingAssembly().GetName().Name;
+            
             //_logger = new Logger(config, assemblyname);
            
             
             _buildMode = Config.BuildMode;
         }
-
+        
         #endregion
 
         #region public methods
@@ -124,33 +126,25 @@ namespace Alexandria.net.Communication
         /// <returns> transaction response data</returns>
         protected TransactionResponse StartBroadcasting<T>(T contentdata, string privateKey)
         {
+            
             var trans = new Transaction(Config);
             var key = new Key(Config);
             TransactionResponse finalResponse;
             try
-            {
-               
-                var fees = trans.CalculateFee(contentdata, "SPHTX");
-                
-                var feeAddedOperation = trans.AddFee(contentdata, fees.result);
-                
-                var transresponse = trans.CreateSimpleTransaction(feeAddedOperation.Result);
+            {                             
+                var transresponse = trans.CreateSimpleTransaction(contentdata);
                 if (transresponse == null) return null;
-
-                var aboutresponse = trans.About();
-                if (aboutresponse == null) return null;
 
                 var transaction = JsonConvert.SerializeObject(transresponse.Result);
                 
-                var digest = key.GetTransactionDigest(transaction,aboutresponse.Result.ChainId,new byte[64]);
-
+                var digest = key.GetTransactionDigest(transaction,ChainId,new byte[64]);
+           
                 var signature = key.SignDigest(digest, privateKey, new byte[130]);
                 var response = key.AddSignature(transaction, signature,new byte[transaction.Length + 200]);
                 finalResponse = trans.BroadcastTransaction(response);          
             }
             catch (Exception ex)
-            {
-                
+            {                
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
@@ -169,12 +163,8 @@ namespace Alexandria.net.Communication
             TransactionResponse transresponse;
             try
             {               
-                var fees = "0.010000 SPHTX";               
-                var feeAddedOperation = trans.AddFee(contentdata, fees);                
-                transresponse = trans.CreateSimpleTransaction(feeAddedOperation.Result);
-                if (transresponse == null) return null;
-
-                        
+                transresponse = trans.CreateSimpleTransaction(contentdata);
+                if (transresponse == null) return null;                        
             }
             catch (Exception ex)
             {
@@ -203,17 +193,17 @@ namespace Alexandria.net.Communication
             try
             {
              
-                var fees = trans.CalculateFee(contentdata, "SPHTX");           
-                var feeAddedOperation = trans.AddFee(contentdata, fees.result);
+//                var fees = trans.CalculateFee(contentdata, "SPHTX");           
+//                var feeAddedOperation = trans.AddFee(contentdata, fees.result);
 
-                var transresponse = await trans.CreateSimpleTransactionAsync(feeAddedOperation.Result);
+                var transresponse = await trans.CreateSimpleTransactionAsync(contentdata);
                 if (transresponse == null) return null;
 
-                var aboutresponse = await trans.AboutAsync();
-                if (aboutresponse == null) return null;
+//                var aboutresponse = await trans.AboutAsync();
+//                if (aboutresponse == null) return null;
 
                 var transaction = JsonConvert.SerializeObject(transresponse.Result);
-                var digest = key.GetTransactionDigest(transaction,aboutresponse.Result.ChainId,new byte[64]);
+                var digest = key.GetTransactionDigest(transaction,ChainId,new byte[64]);
                 var signature = key.SignDigest(digest, privateKey, new byte[130]);
                 var response = key.AddSignature(transaction, signature,new byte[transaction.Length + 200]);
                

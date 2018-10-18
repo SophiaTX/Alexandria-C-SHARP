@@ -9,6 +9,7 @@
     <Copyright>Equidato Technologies AG</Copyright>
     <TargetFrameworks>net452;net462;netcoreapp2.0</TargetFrameworks>
     <Platforms>AnyCPU;x64;x86</Platforms>
+    <chainId>66423e7baa1f62570784e17cb78d48329e78faa43075cc9d847c434b4bfe2dfb</chainId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DocumentationFile>bin\Debug\netcoreapp2.0\Alexandria.net.xml</DocumentationFile>
