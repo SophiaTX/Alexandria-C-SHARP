@@ -381,12 +381,12 @@ namespace UnitTest
         public void SendJson()
         {
             var test = "{\"ref_block_num\":16364,\"ref_block_prefix\":2217467278,\"expiration\":\"2018-06-20T15:24:06\",\"operations\":[[\"account_create\",{\"fee\":\"0.100000 SPHTX\",\"creator\":\"initminer\",\"new_account_name\":\"sanjiv9999\",\"owner\":{\"weight_threshold\":1,\"account_auths\":[],\"key_auths\":[[\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",1]]},\"active\":{\"weight_threshold\":1,\"account_auths\":[],\"key_auths\":[[\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",1]]},\"memo_key\":\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",\"json_metadata\":\"{}\"}]],\"extensions\":[],\"signatures\":[]}";
-            
+            //var test = "hello Error";
            
             var data = new JsonData
             {
-                AppId = 2,
-                PrivateKey = PrivateKey,
+                AppId = 300089,
+                PrivateKey = "5K14hP7ziUNqZbp75o4oW885259T1SbCinZskXhz3XnA1ymR1Wz",
                 Recipients = new List<string> {"45fR5HHoV2XA7NyvKdc3CK4WrixE"},
                 Sender = "PcQ-byG-3OczM99qg1m_6zU9ArAA",
                 JsonDoc = test
@@ -416,11 +416,11 @@ namespace UnitTest
         public void SendJsonAsync()
         {
             var test = "{\"ref_block_num\":16364,\"ref_block_prefix\":2217467278,\"expiration\":\"2018-06-20T15:24:06\",\"operations\":[[\"account_create\",{\"fee\":\"0.100000 SPHTX\",\"creator\":\"initminer\",\"new_account_name\":\"sanjiv9999\",\"owner\":{\"weight_threshold\":1,\"account_auths\":[],\"key_auths\":[[\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",1]]},\"active\":{\"weight_threshold\":1,\"account_auths\":[],\"key_auths\":[[\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",1]]},\"memo_key\":\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",\"json_metadata\":\"{}\"}]],\"extensions\":[],\"signatures\":[]}";
-            
+           
            
             var data = new JsonData
             {
-                AppId = 3,
+                AppId = 300089,
                 PrivateKey = PrivateKey,
                 Recipients = new List<string> {"45fR5HHoV2XA7NyvKdc3CK4WrixE"},
                 Sender = "PcQ-byG-3OczM99qg1m_6zU9ArAA",

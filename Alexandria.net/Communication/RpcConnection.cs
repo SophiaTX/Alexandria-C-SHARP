@@ -15,8 +15,6 @@ using Arebis.Logging.GrayLog;
 using Newtonsoft.Json;
 using ILogger = Alexandria.net.Logging.ILogger;
 using Logger = Alexandria.net.Logging.Logger;
-using System.Configuration;
-
 namespace Alexandria.net.Communication
 {
     /// <summary>
@@ -143,7 +141,11 @@ namespace Alexandria.net.Communication
             }
             catch (Exception ex)
             {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+                using (var logger = new GrayLogUdpClient())
+                {
+                    logger.Send("log from.net");
+                }
+                //_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
 
@@ -184,6 +186,10 @@ namespace Alexandria.net.Communication
             }
             catch (Exception ex)
             {
+                using (var logger = new GrayLogUdpClient())
+                {
+                    logger.Send("log from.net");
+                }
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
