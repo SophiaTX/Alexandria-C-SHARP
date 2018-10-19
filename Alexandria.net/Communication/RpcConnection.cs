@@ -116,6 +116,27 @@ namespace Alexandria.net.Communication
             }
             return result;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="method"></param>
+        /// <param name="params"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        protected string SendRequestToDaemon(string method, object @params, Type type = null)
+        {
+            string result; 
+            try
+            {
+                result = ProcessRequestOnDaemon(method, @params, type).Result;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            return result;
+        }
         
         /// <summary>
         /// The method is used to broadcast the transaction over the blockchain using the account of the user
@@ -262,29 +283,82 @@ namespace Alexandria.net.Communication
 //                    }
                     
                     if (_buildMode == BuildMode.Prod)
-                    {
-                       
+                    {                       
                         _logger.WriteError($"Date & Time: {DateTime.UtcNow} || Method: {methodname} || Request Data: {json} || Response Data: {response}");
                     }
                     throw new SophiaBlockchainException(response); 
                 }
             }
             catch (HttpRequestException ex)
-            {
-                
+            {               
                 _logger.WriteError($"Message: {ex.Message} | StackTrace: {ex.StackTrace}");
                 throw;
             }
             catch (SophiaBlockchainException sx)
-            {
-               
+            {               
                 _logger.WriteError($"Message: {sx.Message} | StackTrace: {sx.StackTrace} | Response: {sx.ErrMsg}");
                 throw;
-
             }
            return response;
         }
         
+        /// <summary>
+        /// Processes the request and gets the response from the server
+        /// </summary>
+        /// <param name="methodname">the method name to call</param>
+        /// <param name="params">the paramaters to pass with the method</param>
+        /// <param name="type"></param>
+        /// <returns>the http response from the server</returns>
+        private async Task<string> ProcessRequestOnDaemon(string methodname,  object @params , Type type = null)
+        {          
+//            using (var logger = new GrayLogUdpClient())
+//            { 
+//                logger.Send("Hello World !");
+//            }
+            var response = string.Empty;
+            try
+            {
+                var request = new
+                {
+                    jsonrpc = _jsonRpc,
+                    id = GetRequestId(),
+                    method = methodname,
+                    @params = @params ?? new ArrayList()
+                };
+
+                var json = JsonConvert.SerializeObject(request).GetJsonString(type);
+             
+                var httpResponse = _client.PostAsync("http://devnet.sophiatx.com:9193", new StringContent(json, Encoding.UTF8)).Result;
+
+                if (httpResponse == null) return response;
+                response = await httpResponse.Content.ReadAsStringAsync();
+
+                if (response.Contains("error"))
+                {
+//                    using (var logger = new GrayLogUdpClient())
+//                    { 
+//                        logger.Send("Hello World !");
+//                    }
+                    
+                    if (_buildMode == BuildMode.Prod)
+                    {                       
+                        _logger.WriteError($"Date & Time: {DateTime.UtcNow} || Method: {methodname} || Request Data: {json} || Response Data: {response}");
+                    }
+                    throw new SophiaBlockchainException(response); 
+                }
+            }
+            catch (HttpRequestException ex)
+            {               
+                _logger.WriteError($"Message: {ex.Message} | StackTrace: {ex.StackTrace}");
+                throw;
+            }
+            catch (SophiaBlockchainException sx)
+            {               
+                _logger.WriteError($"Message: {sx.Message} | StackTrace: {sx.StackTrace} | Response: {sx.ErrMsg}");
+                throw;
+            }
+           return response;
+        }
         private int GetRequestId()
         {
             return _requestId++;
@@ -293,4 +367,5 @@ namespace Alexandria.net.Communication
         #endregion
 
     }  
+    
 }

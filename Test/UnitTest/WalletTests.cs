@@ -4,6 +4,8 @@ using System.Threading;
 using Alexandria.net.Enums;
 using Alexandria.net.Events;
 using Alexandria.net.Messaging.Receiver;
+using Alexandria.net.Messaging.Receiver.TrackAndTraceArgsStructs;
+using Newtonsoft.Json;
 using Xunit;
 
 namespace UnitTest
@@ -524,7 +526,18 @@ namespace UnitTest
             var result=Client.Transaction.SignAndSendTransaction(Transaction,PrivateKey);
             Console.WriteLine(result);
         }
-
+        
+        [Fact]
+        public void CallPlugin()
+        {
+            var args = new GetItemDetails()
+            {
+               serial = "01283848485954392"
+            };
+           
+            var result=Client.Transaction.CallPlugin("track_and_trace","get_transfer_requests",args);
+            Console.WriteLine(result);
+        }
 
         #endregion
     }

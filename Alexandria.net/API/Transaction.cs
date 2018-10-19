@@ -418,6 +418,25 @@ namespace Alexandria.net.API
 
             return finalResponse;
         }
+		
+		public DaemonResponse CallPlugin(string pluginName, string methodName, object args)
+		{           
+	
+			try
+			{                           
+				var result= SendRequestToDaemon(pluginName+'.'+methodName, args);
+				var contentdata = JsonConvert.DeserializeObject<DaemonResponse>(result);
+				return contentdata;  
+			}
+			catch (Exception ex)
+			{
+                
+				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+				throw;
+			}
+
+			
+		}
 		#endregion
 	}
 }
