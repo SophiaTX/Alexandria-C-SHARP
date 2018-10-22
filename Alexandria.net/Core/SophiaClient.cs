@@ -2,6 +2,7 @@
 using System.IO;
 using System.Reflection;
 using Alexandria.net.API;
+using Alexandria.net.Communication;
 using Alexandria.net.Enums;
 using Alexandria.net.Events;
 using Alexandria.net.Logging;
@@ -46,6 +47,7 @@ namespace Alexandria.net.Core
         /// Sophia Blockchain Application functions
         /// </summary>
         public Application Application { get; }
+        
 
         #endregion
 
@@ -75,6 +77,11 @@ namespace Alexandria.net.Core
             Witness = new Witness(config);
             Data = new Data(config);
             Application = new Application(config);
+
+            var aboutResponse = Transaction.About();
+
+            if (aboutResponse != null)
+                RpcConnection.ChainId = aboutResponse.Result.ChainId;            
         }
 
         #endregion
@@ -104,12 +111,14 @@ namespace Alexandria.net.Core
 
                 if (typeof(T) == typeof(Config))
                 {
+                    Console.WriteLine("I am in logging zone, yay!!!!");
                     var config = new Config
                     {
+              
                         LoggingType = LoggingType.Server,
                         LoggingServer = "http://logging.sophiatx.com",
                         LoggingPort = 12205,
-                        BuildMode = BuildMode.Test,
+                        BuildMode = BuildMode.Prod,
                         Hostname = "34.244.93.54",
                         DaemonPort = 9195,
                         WalletPort = 9195,

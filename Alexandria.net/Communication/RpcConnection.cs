@@ -27,9 +27,14 @@ namespace Alexandria.net.Communication
         private readonly string _uri;
         private readonly HttpClient _client;
         private readonly string _jsonRpc;
+        /// <summary>
+        /// 
+        /// </summary>
         protected readonly CSharpToCpp CSharpToCpp = new CSharpToCpp();
-        private readonly ILogger _logger;
+        private readonly ILogger _logger;      
         private readonly BuildMode _buildMode;
+        public static string ChainId;
+    
       
         #endregion
 
@@ -46,7 +51,7 @@ namespace Alexandria.net.Communication
         /// </summary>
         /// <param name="config">the Configuration paramaters for the endpoint and ports</param>
         /// <param name="wallet">true if configuraing for the wallet</param>
-        protected RpcConnection(IConfig config, bool wallet = true)
+        public RpcConnection(IConfig config, bool wallet = true)
         {
             Config = config;
             _uri = $"http://{Config.Hostname}:{(wallet ? Config.WalletPort : config.DaemonPort)}{config.Api}";
@@ -54,10 +59,13 @@ namespace Alexandria.net.Communication
             _jsonRpc = Config.Version;
 
             var assemblyname = Assembly.GetExecutingAssembly().GetName().Name;
-            _logger = new Logger(config, assemblyname);
+            
+            //_logger = new Logger(config, assemblyname);
+           
+            
             _buildMode = Config.BuildMode;
         }
-
+        
         #endregion
 
         #region public methods
@@ -105,6 +113,27 @@ namespace Alexandria.net.Communication
             }
             return result;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="method"></param>
+        /// <param name="params"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        protected string SendRequestToDaemon(string method, object @params, Type type = null)
+        {
+            string result; 
+            try
+            {
+                result = ProcessRequestOnDaemon(method, @params, type).Result;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            return result;
+        }
         
         /// <summary>
         /// The method is used to broadcast the transaction over the blockchain using the account of the user
@@ -115,26 +144,19 @@ namespace Alexandria.net.Communication
         /// <returns> transaction response data</returns>
         protected TransactionResponse StartBroadcasting<T>(T contentdata, string privateKey)
         {
+            
             var trans = new Transaction(Config);
             var key = new Key(Config);
             TransactionResponse finalResponse;
             try
-            {
-               
-                var fees = trans.CalculateFee(contentdata, "SPHTX");
-                
-                var feeAddedOperation = trans.AddFee(contentdata, fees.result);
-                
-                var transresponse = trans.CreateSimpleTransaction(feeAddedOperation.Result);
+            {                             
+                var transresponse = trans.CreateSimpleTransaction(contentdata);
                 if (transresponse == null) return null;
-
-                var aboutresponse = trans.About();
-                if (aboutresponse == null) return null;
 
                 var transaction = JsonConvert.SerializeObject(transresponse.Result);
                 
-                var digest = key.GetTransactionDigest(transaction,aboutresponse.Result.ChainId,new byte[64]);
-
+                var digest = key.GetTransactionDigest(transaction,ChainId,new byte[64]);
+           
                 var signature = key.SignDigest(digest, privateKey, new byte[130]);
                 var response = key.AddSignature(transaction, signature,new byte[transaction.Length + 200]);
                 finalResponse = trans.BroadcastTransaction(response);          
@@ -146,10 +168,37 @@ namespace Alexandria.net.Communication
                     logger.Send("log from.net");
                 }
                 //_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+            {                
+                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
 
             return finalResponse;
+        }
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="contentdata"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        protected TransactionResponse GetSimpleTransaction<T>(T contentdata)
+        {
+            var trans = new Transaction(Config);
+            TransactionResponse transresponse;
+            try
+            {               
+                transresponse = trans.CreateSimpleTransaction(contentdata);
+                if (transresponse == null) return null;                        
+            }
+            catch (Exception ex)
+            {
+              
+                
+                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+                throw;
+            }
+
+            return transresponse;
         }
         
         /// <summary>
@@ -190,6 +239,7 @@ namespace Alexandria.net.Communication
                 {
                     logger.Send("log from.net");
                 }
+                
                 _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
@@ -228,6 +278,64 @@ namespace Alexandria.net.Communication
                 var json = JsonConvert.SerializeObject(request).GetJsonString(type);
              
                 var httpResponse = _client.PostAsync(_uri, new StringContent(json, Encoding.UTF8)).Result;
+
+                if (httpResponse == null) return response;
+                response = await httpResponse.Content.ReadAsStringAsync();
+
+                if (response.Contains("error"))
+                {
+//                    using (var logger = new GrayLogUdpClient())
+//                    { 
+//                        logger.Send("Hello World !");
+//                    }
+                    
+                    if (_buildMode == BuildMode.Prod)
+                    {                       
+                        _logger.WriteError($"Date & Time: {DateTime.UtcNow} || Method: {methodname} || Request Data: {json} || Response Data: {response}");
+                    }
+                    throw new SophiaBlockchainException(response); 
+                }
+            }
+            catch (HttpRequestException ex)
+            {               
+                _logger.WriteError($"Message: {ex.Message} | StackTrace: {ex.StackTrace}");
+                throw;
+            }
+            catch (SophiaBlockchainException sx)
+            {               
+                _logger.WriteError($"Message: {sx.Message} | StackTrace: {sx.StackTrace} | Response: {sx.ErrMsg}");
+                throw;
+            }
+           return response;
+        }
+        
+        /// <summary>
+        /// Processes the request and gets the response from the server
+        /// </summary>
+        /// <param name="methodname">the method name to call</param>
+        /// <param name="params">the paramaters to pass with the method</param>
+        /// <param name="type"></param>
+        /// <returns>the http response from the server</returns>
+        private async Task<string> ProcessRequestOnDaemon(string methodname,  object @params , Type type = null)
+        {          
+//            using (var logger = new GrayLogUdpClient())
+//            { 
+//                logger.Send("Hello World !");
+//            }
+            var response = string.Empty;
+            try
+            {
+                var request = new
+                {
+                    jsonrpc = _jsonRpc,
+                    id = GetRequestId(),
+                    method = methodname,
+                    @params = @params ?? new ArrayList()
+                };
+
+                var json = JsonConvert.SerializeObject(request).GetJsonString(type);
+             
+                var httpResponse = _client.PostAsync("http://devnet.sophiatx.com:9193", new StringContent(json, Encoding.UTF8)).Result;
 
                 if (httpResponse == null) return response;
                 response = await httpResponse.Content.ReadAsStringAsync();

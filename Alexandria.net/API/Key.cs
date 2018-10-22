@@ -83,9 +83,13 @@ namespace Alexandria.net.API
         /// Key Constructor
         /// </summary>
         /// <param name="config">the Configuration paramaters for the endpoint and ports</param>
+        /// 
+        
+        
         public Key(IConfig config) :
             base(config)
         {
+           
             var assemblyname = Assembly.GetExecutingAssembly().GetName().Name;
             _logger = new Logger(config, assemblyname);
         }
