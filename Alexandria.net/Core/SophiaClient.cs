@@ -8,6 +8,9 @@ using Alexandria.net.Events;
 using Alexandria.net.Logging;
 using Alexandria.net.Settings;
 using Newtonsoft.Json;
+using Serilog;
+using Serilog.Sinks.Graylog;
+using Serilog.Sinks.Graylog.Core;
 
 namespace Alexandria.net.Core
 {
@@ -103,22 +106,23 @@ namespace Alexandria.net.Core
         {
             try
             {
-                var fullfilename = $"{AssemblyDirectory}\\{filename}";
+                var fullfilename = $"{AssemblyDirectory}/{filename}";
                 if (File.Exists(fullfilename))
                 {
                     return JsonConvert.DeserializeObject<T>(File.ReadAllText(fullfilename));
                 }
-
+                
                 if (typeof(T) == typeof(Config))
                 {
-                    Console.WriteLine("I am in logging zone, yay!!!!");
+                   
+                    
+
                     var config = new Config
                     {
-              
-                        LoggingType = LoggingType.Server,
-                        LoggingServer = "http://logging.sophiatx.com",
+                        LoggingType = LoggingType.File,
+                        LoggingServer = "logging.sophiatx.com",
                         LoggingPort = 12205,
-                        BuildMode = BuildMode.Prod,
+                        BuildMode = BuildMode.Test,
                         Hostname = "34.244.93.54",
                         DaemonPort = 9195,
                         WalletPort = 9195,

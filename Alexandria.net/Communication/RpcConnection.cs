@@ -12,8 +12,12 @@ using Alexandria.net.Mapping;
 using Alexandria.net.Messaging.Responses;
 using Alexandria.net.Settings;
 using Newtonsoft.Json;
+using Serilog;
+using Serilog.Sinks.Graylog;
+using Serilog.Sinks.Graylog.Core;
 using ILogger = Alexandria.net.Logging.ILogger;
 using Logger = Alexandria.net.Logging.Logger;
+
 
 namespace Alexandria.net.Communication
 {
@@ -28,14 +32,19 @@ namespace Alexandria.net.Communication
         private readonly string _uri;
         private readonly HttpClient _client;
         private readonly string _jsonRpc;
+        
+
 
         /// <summary>
         /// 
         /// </summary>
         protected readonly CSharpToCpp CSharpToCpp = new CSharpToCpp();
-
+       
         private readonly ILogger _logger;
         private readonly BuildMode _buildMode;
+        /// <summary>
+        /// 
+        /// </summary>
         public static string ChainId;
 
 
@@ -172,7 +181,7 @@ namespace Alexandria.net.Communication
             {
                 
 
-                //_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 {
                     _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                     throw;
@@ -243,10 +252,6 @@ namespace Alexandria.net.Communication
                 }
                 catch (Exception ex)
                 {
-//                using (var logger = new GrayLogUdpClient())
-//                {
-//                    logger.Send("log from.net");
-//                }
 
                     _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                     throw;
@@ -268,10 +273,7 @@ namespace Alexandria.net.Communication
             /// <returns>the http response from the server</returns>
             private async Task<string> ProcessRequest(string methodname, ArrayList @params = null, Type type = null)
             {
-//            using (var logger = new GrayLogUdpClient())
-//            { 
-//                logger.Send("Hello World !");
-//            }
+//           
                 var response = string.Empty;
                 try
                 {
@@ -291,12 +293,9 @@ namespace Alexandria.net.Communication
                     response = await httpResponse.Content.ReadAsStringAsync();
 
                     if (response.Contains("error"))
-                    {
-//                    using (var logger = new GrayLogUdpClient())
-//                    { 
-//                        logger.Send("Hello World !");
-//                    }
-
+                    {                  
+                        
+                        
                         if (_buildMode == BuildMode.Prod)
                         {
                             _logger.WriteError(
@@ -329,10 +328,7 @@ namespace Alexandria.net.Communication
             /// <returns>the http response from the server</returns>
             private async Task<string> ProcessRequestOnDaemon(string methodname, object @params, Type type = null)
             {
-//            using (var logger = new GrayLogUdpClient())
-//            { 
-//                logger.Send("Hello World !");
-//            }
+//            
                 var response = string.Empty;
                 try
                 {
@@ -354,11 +350,7 @@ namespace Alexandria.net.Communication
 
                     if (response.Contains("error"))
                     {
-//                    using (var logger = new GrayLogUdpClient())
-//                    { 
-//                        logger.Send("Hello World !");
-//                    }
-
+                   
                         if (_buildMode == BuildMode.Prod)
                         {
                             _logger.WriteError(
