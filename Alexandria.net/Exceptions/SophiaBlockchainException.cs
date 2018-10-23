@@ -6,6 +6,7 @@ using Serilog.Sinks.Graylog;
 using Serilog.Sinks.Graylog.Core;
 using Serilog.Sinks.Graylog.Core.Transport;
 
+
 namespace Alexandria.net.Exceptions
 {
     /// <summary>
@@ -13,6 +14,9 @@ namespace Alexandria.net.Exceptions
     /// </summary>
     public class SophiaBlockchainException : Exception
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public string ErrMsg { get; }
         
         /// <summary>
@@ -24,11 +28,13 @@ namespace Alexandria.net.Exceptions
             var loggerConfig = new LoggerConfiguration().WriteTo.Graylog(new GraylogSinkOptions
             {
                 HostnameOrAddress = "logging.sophiatx.com",
-                Port = 12205,
-                TransportType = TransportType.Udp
-                        
-            });
-            loggerConfig.WriteTo.File("log.txt", rollingInterval: RollingInterval.Day).CreateLogger();
+                Port = 12405
+                                     
+            }).CreateLogger();
+           
+            
+            loggerConfig.Write(LogEventLevel.Error,errorresponse);
+            
             ErrMsg = errorresponse;
             
             throw new System.ArgumentException(ErrMsg);

@@ -119,10 +119,10 @@ namespace Alexandria.net.Core
 
                     var config = new Config
                     {
-                        LoggingType = LoggingType.File,
+                        LoggingType = LoggingType.Server,
                         LoggingServer = "logging.sophiatx.com",
                         LoggingPort = 12205,
-                        BuildMode = BuildMode.Test,
+                        BuildMode = BuildMode.Prod,
                         Hostname = "34.244.93.54",
                         DaemonPort = 9195,
                         WalletPort = 9195,
