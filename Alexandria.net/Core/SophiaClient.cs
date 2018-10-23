@@ -111,7 +111,7 @@ namespace Alexandria.net.Core
 
                 if (typeof(T) == typeof(Config))
                 {
-                    Console.WriteLine("I am in logging zone, yay!!!!");
+                    
                     var config = new Config
                     {
               
