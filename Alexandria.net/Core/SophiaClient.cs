@@ -103,7 +103,7 @@ namespace Alexandria.net.Core
         {
             try
             {
-                var fullfilename = $"{AssemblyDirectory}\\{filename}";
+                var fullfilename = $"{AssemblyDirectory}/{filename}";
                 if (File.Exists(fullfilename))
                 {
                     return JsonConvert.DeserializeObject<T>(File.ReadAllText(fullfilename));
