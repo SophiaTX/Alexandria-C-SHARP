@@ -25,6 +25,7 @@ namespace Alexandria.net.Exceptions
         /// <param name="errorresponse"></param>
         public SophiaBlockchainException(string errorresponse)
         {
+            
             var loggerConfig = new LoggerConfiguration().WriteTo.Graylog(new GraylogSinkOptions
             {
                 HostnameOrAddress = "logging.sophiatx.com",
