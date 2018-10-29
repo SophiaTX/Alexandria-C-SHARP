@@ -333,7 +333,7 @@ namespace Alexandria.net.Communication
 
                 var json = JsonConvert.SerializeObject(request).GetJsonString(type);
              
-                var httpResponse = _client.PostAsync("http://devnet.sophiatx.com:9193", new StringContent(json, Encoding.UTF8)).Result;
+                var httpResponse = _client.PostAsync("http://stagenet.sophiatx.com:9193", new StringContent(json, Encoding.UTF8)).Result;
 
                 if (httpResponse == null) return response;
                 response = await httpResponse.Content.ReadAsStringAsync();
