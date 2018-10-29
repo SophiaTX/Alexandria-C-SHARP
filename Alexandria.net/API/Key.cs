@@ -110,7 +110,7 @@ namespace Alexandria.net.API
             }
             catch (Exception ex)
             {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+               
                 throw;
             }
         }
@@ -138,7 +138,7 @@ namespace Alexandria.net.API
             }
             catch (Exception ex)
             {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+               
                 throw;
             }
 
@@ -164,7 +164,7 @@ namespace Alexandria.net.API
             }
             catch (Exception ex)
             {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+               
                 throw;
             }
 
@@ -188,7 +188,7 @@ namespace Alexandria.net.API
                 }
                 catch (Exception ex)
                 {
-                    _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+                   
                     throw;
                 }
             
@@ -213,7 +213,7 @@ namespace Alexandria.net.API
             }
             catch (Exception ex) 
             {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+               
                 throw;
             }
            
@@ -240,7 +240,7 @@ namespace Alexandria.net.API
             }
             catch (Exception ex)
             {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+               
                 throw;
             }
         }
@@ -263,7 +263,7 @@ namespace Alexandria.net.API
             }
             catch (Exception ex)
             {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+               
                 throw;
             }
         }
@@ -285,7 +285,7 @@ namespace Alexandria.net.API
             }
             catch (Exception ex)
             {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+              
                 throw;
             }
         }
@@ -313,7 +313,7 @@ namespace Alexandria.net.API
             }
             catch (Exception ex)
             {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+              
                 throw;
             }
 
@@ -336,7 +336,7 @@ namespace Alexandria.net.API
             }
             catch (Exception ex)
             {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+               
                 throw;
             }
         }
@@ -361,7 +361,7 @@ namespace Alexandria.net.API
             }
             catch (Exception ex)
             {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+               
                 throw;
             }
 
@@ -387,7 +387,7 @@ namespace Alexandria.net.API
             }
             catch (Exception ex)
             {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+               
                 throw;
             }
         }
@@ -409,7 +409,7 @@ namespace Alexandria.net.API
             }
             catch (Exception ex)
             {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+              
                 throw;
             }
         }
@@ -430,7 +430,7 @@ namespace Alexandria.net.API
             }
             catch (Exception ex)
             {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+               
                 throw;
             }
         }
@@ -452,7 +452,7 @@ namespace Alexandria.net.API
             }
             catch (Exception ex)
             {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+               
                 throw;
             }
         }
@@ -473,7 +473,7 @@ namespace Alexandria.net.API
             }
             catch (Exception ex)
             {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+               
                 throw;
             }
         }

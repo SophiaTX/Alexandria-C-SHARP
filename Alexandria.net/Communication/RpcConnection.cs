@@ -13,6 +13,7 @@ using Alexandria.net.Messaging.Responses;
 using Alexandria.net.Settings;
 using Newtonsoft.Json;
 using Serilog;
+using Serilog.Events;
 using Serilog.Sinks.Graylog;
 using Serilog.Sinks.Graylog.Core;
 using ILogger = Alexandria.net.Logging.ILogger;
@@ -176,7 +177,7 @@ namespace Alexandria.net.Communication
             }
             catch (Exception ex)
             {                
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+ 
                 throw;
             }
 
@@ -201,7 +202,7 @@ namespace Alexandria.net.Communication
             {
               
                 
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+              
                 throw;
             }
 
@@ -223,15 +224,9 @@ namespace Alexandria.net.Communication
             TransactionResponse finalResponse;
             try
             {
-             
-//                var fees = trans.CalculateFee(contentdata, "SPHTX");           
-//                var feeAddedOperation = trans.AddFee(contentdata, fees.result);
-
+            
                 var transresponse = await trans.CreateSimpleTransactionAsync(contentdata);
                 if (transresponse == null) return null;
-
-//                var aboutresponse = await trans.AboutAsync();
-//                if (aboutresponse == null) return null;
 
                 var transaction = JsonConvert.SerializeObject(transresponse.Result);
                 var digest = key.GetTransactionDigest(transaction,ChainId,new byte[64]);
@@ -243,7 +238,6 @@ namespace Alexandria.net.Communication
             catch (Exception ex)
             {
                 
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
 
@@ -263,10 +257,6 @@ namespace Alexandria.net.Communication
         /// <returns>the http response from the server</returns>
         private async Task<string> ProcessRequest(string methodname, ArrayList @params = null, Type type = null)
         {          
-//            using (var logger = new GrayLogUdpClient())
-//            { 
-//                logger.Send("Hello World !");
-//            }
             var response = string.Empty;
             try
             {
@@ -287,27 +277,36 @@ namespace Alexandria.net.Communication
 
                 if (response.Contains("error"))
                 {
-//                  
-                    
-                    if (_buildMode == BuildMode.Test)
-                    {                       
-                       // _logger.WriteError($"Date & Time: {DateTime.UtcNow} || Method: {methodname} || Request Data: {json} || Response Data: {response}");
-                        throw new SophiaBlockchainException(response); 
+
+                    try
+                    {
+                        if (_buildMode == BuildMode.Test)
+                        {
+                            var loggerConfig = new LoggerConfiguration().WriteTo.Graylog(new GraylogSinkOptions
+                            {
+                                HostnameOrAddress = Config.LoggingServer,
+                                Port = Config.LoggingPort
+
+                            }).CreateLogger();
+
+
+                            loggerConfig.Write(LogEventLevel.Error, response);
+
+                        }
+
+                        throw new SophiaBlockchainException(response);
                     }
-                    
-                    throw new SophiaBlockchainException(response);                    
+                    catch (SophiaBlockchainException sx)
+                    {               
+                        throw sx;
+                    }
                 }
             }
             catch (HttpRequestException ex)
             {               
-               // _logger.WriteError($"Message: {ex.Message} | StackTrace: {ex.StackTrace}");
-                throw ex;
+                               throw;
             }
-            catch (SophiaBlockchainException sx)
-            {               
-               // _logger.WriteError($"Message: {sx.Message} | StackTrace: {sx.StackTrace} | Response: {sx.ErrMsg}");
-                throw sx;
-            }
+            
            return response;
         }
         
@@ -320,10 +319,7 @@ namespace Alexandria.net.Communication
         /// <returns>the http response from the server</returns>
         private async Task<string> ProcessRequestOnDaemon(string methodname,  object @params , Type type = null)
         {          
-//            using (var logger = new GrayLogUdpClient())
-//            { 
-//                logger.Send("Hello World !");
-//            }
+
             var response = string.Empty;
             try
             {
@@ -344,27 +340,31 @@ namespace Alexandria.net.Communication
 
                 if (response.Contains("error"))
                 {
-//                    using (var logger = new GrayLogUdpClient())
-//                    { 
-//                        logger.Send("Hello World !");
-//                    }
-                    
+                   
                     if (_buildMode == BuildMode.Test)
                     {          
-                        throw new SophiaBlockchainException(response); 
-                       // _logger.WriteError($"Date & Time: {DateTime.UtcNow} || Method: {methodname} || Request Data: {json} || Response Data: {response}");
+                        var loggerConfig = new LoggerConfiguration().WriteTo.Graylog(new GraylogSinkOptions
+                        {
+                            HostnameOrAddress = Config.LoggingServer,
+                            Port = Config.LoggingPort
+                                     
+                        }).CreateLogger();
+           
+            
+                        loggerConfig.Write(LogEventLevel.Error,response);
+                        
                     }
                     throw new SophiaBlockchainException(response); 
                 }
             }
             catch (HttpRequestException ex)
             {               
-               // _logger.WriteError($"Message: {ex.Message} | StackTrace: {ex.StackTrace}");
+               
                 throw ex;
             }
             catch (SophiaBlockchainException sx)
             {               
-                //_logger.WriteError($"Message: {sx.Message} | StackTrace: {sx.StackTrace} | Response: {sx.ErrMsg}");
+               
                 throw sx;
             }
            return response;

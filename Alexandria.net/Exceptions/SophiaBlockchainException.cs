@@ -1,11 +1,4 @@
 ﻿using System;
-using Alexandria.net.Enums;
-using Serilog;
-using Serilog.Events;
-using Serilog.Sinks.Graylog;
-using Serilog.Sinks.Graylog.Core;
-using Serilog.Sinks.Graylog.Core.Transport;
-
 
 namespace Alexandria.net.Exceptions
 {
@@ -24,22 +17,9 @@ namespace Alexandria.net.Exceptions
         /// </summary>
         /// <param name="errorresponse"></param>
         public SophiaBlockchainException(string errorresponse)
-        {
-            
-            var loggerConfig = new LoggerConfiguration().WriteTo.Graylog(new GraylogSinkOptions
-            {
-                HostnameOrAddress = "logging.sophiatx.com",
-                Port = 12405
-                                     
-            }).CreateLogger();
-           
-            
-            loggerConfig.Write(LogEventLevel.Error,errorresponse);
-            
-            ErrMsg = errorresponse;
-            
-            throw new System.ArgumentException(ErrMsg);
-            
+        {           
+            ErrMsg = errorresponse;            
+            throw new ArgumentException(ErrMsg);            
         }
     }
 }
