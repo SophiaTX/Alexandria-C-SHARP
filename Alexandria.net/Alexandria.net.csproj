@@ -15,7 +15,6 @@
     <DocumentationFile>bin\Debug\netcoreapp2.0\Alexandria.net.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Gelf4Net" Version="3.0.0.10" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="Serilog" Version="2.7.1" />
     <PackageReference Include="Serilog.Extensions.Logging" Version="2.0.2" />

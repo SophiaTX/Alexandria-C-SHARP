@@ -7,7 +7,6 @@ using Alexandria.net.Communication;
 using Alexandria.net.Logging;
 using Alexandria.net.Messaging.Responses;
 using Alexandria.net.Settings;
-using log4net.Core;
 using Newtonsoft.Json;
 using AccountResponse = Alexandria.net.Messaging.Responses.AccountResponse;
 using ILogger = Alexandria.net.Logging.ILogger;
@@ -419,6 +418,13 @@ namespace Alexandria.net.API
             return finalResponse;
         }
 		
+		/// <summary>
+		/// Call external APIs
+		/// </summary>
+		/// <param name="pluginName"></param>
+		/// <param name="methodName"></param>
+		/// <param name="args"></param>
+		/// <returns></returns>
 		public DaemonResponse CallPlugin(string pluginName, string methodName, object args)
 		{           
 	

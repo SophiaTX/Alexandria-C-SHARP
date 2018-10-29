@@ -8,6 +8,9 @@ using Alexandria.net.Events;
 using Alexandria.net.Logging;
 using Alexandria.net.Settings;
 using Newtonsoft.Json;
+using Serilog;
+using Serilog.Sinks.Graylog;
+using Serilog.Sinks.Graylog.Core;
 
 namespace Alexandria.net.Core
 {
@@ -108,15 +111,17 @@ namespace Alexandria.net.Core
                 {
                     return JsonConvert.DeserializeObject<T>(File.ReadAllText(fullfilename));
                 }
-
+                
                 if (typeof(T) == typeof(Config))
                 {
+                   
+                    
+
                     
                     var config = new Config
                     {
-              
                         LoggingType = LoggingType.Server,
-                        LoggingServer = "http://logging.sophiatx.com",
+                        LoggingServer = "logging.sophiatx.com",
                         LoggingPort = 12205,
                         BuildMode = BuildMode.Prod,
                         Hostname = "34.244.93.54",
