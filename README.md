@@ -19,7 +19,7 @@ Table of Contents
 
 Install
 =================
-- As a prerequisite for the nuget module to work, please have openssl installed on your machine
+- As a prerequisite for the nuget package to work, please have openssl installed on your machine
 (download openssl and install on Windows environment using https://slproweb.com/products/Win32OpenSSL.html)
 ("brew install openssl" on Mac environment)
 - Get the Library (Alexandria 1.0.3.7) as a nuget package from nuget.org

@@ -1,5 +1,4 @@
 ﻿using System;
-using Alexandria.net.Enums;
 
 namespace Alexandria.net.Exceptions
 {
@@ -8,6 +7,9 @@ namespace Alexandria.net.Exceptions
     /// </summary>
     public class SophiaBlockchainException : Exception
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public string ErrMsg { get; }
         
         /// <summary>
@@ -15,11 +17,9 @@ namespace Alexandria.net.Exceptions
         /// </summary>
         /// <param name="errorresponse"></param>
         public SophiaBlockchainException(string errorresponse)
-        {          
-            ErrMsg = errorresponse;
-            
-            throw new System.ArgumentException(ErrMsg);
-            
+        {           
+            ErrMsg = errorresponse;            
+            throw new ArgumentException(ErrMsg);            
         }
     }
 }

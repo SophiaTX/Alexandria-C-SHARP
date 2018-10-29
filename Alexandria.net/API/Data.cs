@@ -153,7 +153,7 @@ namespace Alexandria.net.API
             }
             catch (Exception ex)
             {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+               
                 throw;
             }
         }
@@ -176,7 +176,7 @@ namespace Alexandria.net.API
             }
             catch (Exception ex)
             {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+               
                 throw;
             }
         }
@@ -199,7 +199,7 @@ namespace Alexandria.net.API
             }
             catch (Exception ex)
             {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+               
                 throw;
             }
         }
@@ -216,12 +216,12 @@ namespace Alexandria.net.API
                 var customjsonrpc = MakeCustomBinaryOperation(binaryData.AppId, binaryData.Sender, binaryData.Recipients,
                     binaryData.BinaryDoc);
                 if (customjsonrpc == null) return null;
-                var resp = StartBroadcasting(customjsonrpc.Result, binaryData.PrivateKey);
+                var resp = StartBroadcasting(customjsonrpc.Result,binaryData.PrivateKey);
                 return resp;
             }
             catch (Exception ex)
             {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+               
                 throw;
             }
         }
@@ -243,7 +243,7 @@ namespace Alexandria.net.API
             }
             catch (Exception ex)
             {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+               
                 throw;
             }
         }
@@ -395,7 +395,7 @@ namespace Alexandria.net.API
             }
             catch (Exception ex)
             {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+               
                 throw;
             }
         }
@@ -412,7 +412,7 @@ namespace Alexandria.net.API
             }
             catch (Exception ex)
             {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+               
                 throw;
             }
         }
@@ -437,7 +437,7 @@ namespace Alexandria.net.API
             }
             catch (Exception ex)
             {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+               
                 throw;
             }
         }
@@ -463,7 +463,7 @@ namespace Alexandria.net.API
             }
             catch (Exception ex)
             {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+                
                 throw;
             }
         }
@@ -489,7 +489,7 @@ namespace Alexandria.net.API
             }
             catch (Exception ex)
             {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+               
                 throw;
             }
         }
@@ -516,7 +516,7 @@ namespace Alexandria.net.API
             }
             catch (Exception ex)
             {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+               
                 throw;
             }
         }
@@ -543,7 +543,7 @@ namespace Alexandria.net.API
             }
             catch (Exception ex)
             {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+               
                 throw;
             }
         }
