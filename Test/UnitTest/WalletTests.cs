@@ -246,7 +246,7 @@ namespace UnitTest
         [Fact]
         public void GetAccount()
         {
-            var result=Client.Account.GetAccount("sanjiv0000334");
+            var result=Client.Account.GetAccount("FAxz63F9p8JBhkXza7JlQ1yIgvI");
             Console.WriteLine(result);
         }
 
@@ -418,15 +418,15 @@ namespace UnitTest
         [Fact]
         public void SendJsonAsync()
         {
-            var test = "{\"ref_block_num\":16364,\"ref_block_prefix\":2217467278,\"expiration\":\"2018-06-20T15:24:06\",\"operations\":[[\"account_create\",{\"fee\":\"0.100000 SPHTX\",\"creator\":\"initminer\",\"new_account_name\":\"sanjiv9999\",\"owner\":{\"weight_threshold\":1,\"account_auths\":[],\"key_auths\":[[\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",1]]},\"active\":{\"weight_threshold\":1,\"account_auths\":[],\"key_auths\":[[\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",1]]},\"memo_key\":\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",\"json_metadata\":\"{}\"}]],\"extensions\":[],\"signatures\":[]}";
+            var test = "{\"ref_block_num\":16364,\"ref_block_prefix\":2217467278,\"expiration\":\"2018-06-20T15:24:06\",\"operations\":[[\"account_create\",{\"fee\":\"0.100000 SPHTX\",\"creator\":\"initminer\",\"new_account_name\":\"sanjiv9999\",\"owner\":{\"weight_threshold\":1,\"account_auths\":[],\"key_auths\":[[\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",1]]},\"active\":{\"weight_threshold\":1,\"account_auths\":[],\"key_auths\":[[\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",1]]},\"memo_key\":\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",\"json_metadata\":\"{Testing the account}\"}]],\"extensions\":[],\"signatures\":[]}";
 
             
                 var data = new JsonData
                 {
-                    AppId = 3,
-                    PrivateKey = "5HpSFkogryJQXNM4RtuvqDJtQEVDyTHwUS26bhLfhGuToifCRyx",
-                    Recipients = new List<string> {"45fR5HHoV2XA7NyvKdc3CK4WrixE"},
-                    Sender = "yofVXV_6Rdaun-yWM7U1I0m8G0w",
+                    AppId = 38789776,
+                    PrivateKey = "5JuMwaA1F4WzfhPLgDE7TUHyZsevUqmigEYQ6QobfyTKSa2Lyw8",
+                    Recipients = new List<string> {"K2F_dnhaRXbSMJLAsCe6FJhmOKU"},
+                    Sender = "sanjiv",
                     JsonDoc = test
                 };
 

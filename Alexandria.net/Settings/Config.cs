@@ -51,6 +51,11 @@ namespace Alexandria.net.Settings
         /// the json version
         /// </summary>
         public string Version { get; set; }
+        /// <summary>
+        /// other node address
+        /// </summary>
+        public string DaemonEndpoint { get; set; }
+        
 
         #endregion
     }

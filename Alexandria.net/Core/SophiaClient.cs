@@ -113,11 +113,7 @@ namespace Alexandria.net.Core
                 }
                 
                 if (typeof(T) == typeof(Config))
-                {
-                   
-                    
-
-                    
+                {                   
                     var config = new Config
                     {
                         LoggingType = LoggingType.Server,
@@ -128,7 +124,8 @@ namespace Alexandria.net.Core
                         DaemonPort = 9195,
                         WalletPort = 9195,
                         Api = "/rpc",
-                        Version = "2.0"
+                        Version = "2.0",
+                        DaemonEndpoint="http://stagenet.sophiatx.com:9193"
                     };
                     File.WriteAllText(fullfilename, JsonConvert.SerializeObject(config));
                     return (T) Convert.ChangeType(config, typeof(T));

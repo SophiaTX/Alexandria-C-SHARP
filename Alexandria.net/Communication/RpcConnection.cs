@@ -282,9 +282,12 @@ namespace Alexandria.net.Communication
                     {
                         if (_buildMode == BuildMode.Test)
                         {
+                            System.Uri uri = new Uri(Config.LoggingServer);
+                            string hostname = uri.Host;
                             var loggerConfig = new LoggerConfiguration().WriteTo.Graylog(new GraylogSinkOptions
                             {
-                                HostnameOrAddress = Config.LoggingServer,
+                                
+                                HostnameOrAddress = hostname,
                                 Port = Config.LoggingPort
 
                             }).CreateLogger();
@@ -333,7 +336,7 @@ namespace Alexandria.net.Communication
 
                 var json = JsonConvert.SerializeObject(request).GetJsonString(type);
              
-                var httpResponse = _client.PostAsync("http://stagenet.sophiatx.com:9193", new StringContent(json, Encoding.UTF8)).Result;
+                var httpResponse = _client.PostAsync(Config.DaemonEndpoint, new StringContent(json, Encoding.UTF8)).Result;
 
                 if (httpResponse == null) return response;
                 response = await httpResponse.Content.ReadAsStringAsync();

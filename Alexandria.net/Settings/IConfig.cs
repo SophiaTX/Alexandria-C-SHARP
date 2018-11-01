@@ -50,5 +50,9 @@ namespace Alexandria.net.Settings
         /// the json version
         /// </summary>
         string Version { get; set; }
+        /// <summary>
+        /// other node address
+        /// </summary>
+        string DaemonEndpoint { get; set; }
     }
 }
