@@ -1,20 +1,20 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>Alexandria.net</id>
-    <version>1.0.3</version>
+    <id>Alexandria.net-x64</id>
+    <version>1.0.3.8</version>
     <title>Alexandria</title>
     <authors>Martyn Harler, Sanjiv Jha</authors>
     <owners>Martyn Harler</owners>
-    <licenseUrl>https://www.sophiatx.com</licenseUrl>
+    <licenseUrl>https://www.sophiatx.com/storage/web/SophiaTX_Terms_of_Use_180523_EY.pdf?_t=1527171255</licenseUrl>
     <projectUrl>https://github.com/SophiaTX/Alexandria</projectUrl>
     <iconUrl>https://www.sophiatx.com/wp-content/uploads/2018/04/SophiaTX-Symbol-cut.png</iconUrl>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>.Net Library for SophiaTX Blockchain</description>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>X64 .Net Library for SophiaTX Blockchain, release covers .netcore 2.0, .netframework 4.5.2 and .net framework 4.6.2</description>
     <releaseNotes>Added platform dependent native libraries.</releaseNotes>
     <copyright>Copyright 2018</copyright>
-    <tags>Sophiatx.net Alexandria Alexandria.net</tags>
-    
+    <tags>Sophiatx.com Alexandria Alexandria.net</tags>
+
     <dependencies>
       <dependency id="Newtonsoft.Json" version="11.0.2"></dependency>
       <dependency id="Serilog" version="2.7.1"></dependency>
@@ -22,17 +22,34 @@
       <dependency id="Serilog.Formatting.Compact" version="1.0.0"></dependency>
       <dependency id="Serilog.Sinks.File" version="4.0.0"></dependency>
       <dependency id="Serilog.Sinks.Seq" version="4.0.0"></dependency>
-
     </dependencies>
-
   </metadata>
- 
+
   <files>
-    <file src="lib\*.*" target="lib" />
+  <!--   <file src="build\Alexandria.net.targets" target="build\native"/> -->
+  <!--   <file src="lib\x64\*.*" target="lib"/> -->
+  <!--   <file src="lib\x86\*.*" target="lib"/> -->
+  <!--   <file src="bin\Release\netcoreapp2.0\Alexandria.net.dll" target="runtimes\netcoreapp2.0\Alexandria.net.dll"></file> -->
+  <!--   <file src="bin\x64\Release\net462\Alexandria.net.dll" target="runtimes\win10-x64\lib\net462\Alexandria.net.dll"></file> -->
+  <!--   <file src="bin\x86\Release\net462\Alexandria.net.dll" target="runtimes\win10-x86\lib\net462\Alexandria.net.dll"></file> -->
+  <!--   <file src="bin\x64\Release\net452\Alexandria.net.dll" target="runtimes\win10-x64\lib\net452\Alexandria.net.dll"></file> -->
+  <!--   <file src="bin\x86\Release\net452\Alexandria.net.dll" target="runtimes\win10-x86\lib\net452\Alexandria.net.dll"></file> -->
+
+
+
+    <file src="lib\x64\*.*" target="lib" />
+   
+
+    <file src="bin\x64\Release\netcoreapp2.0\Alexandria.net.dll" target="lib\netcoreapp2.0"></file>
+
+    <file src="bin\x64\Release\net462\Alexandria.net.dll" target="lib\net462"></file>
+
+    <file src="bin\x64\Release\net452\Alexandria.net.dll" target="lib\net452"></file>
+
     <file src="build\Alexandria.net.targets" target="build" />
-    <file src="bin\Release\netcoreapp2.0\Alexandria.net.dll" target="lib\netcoreapp2.0\Alexandria.net.dll"></file
-    <file src="bin\Release\netcoreapp2.0\Alexandria.net.dll" target="lib\netcoreapp2.0\Alexandria.net.dll"></file>
-    <file src="bin\Release\netcoreapp2.0\Alexandria.net.dll" target="lib\netcoreapp2.0\Alexandria.net.dll"></file>
-    <file src="bin\Release\netcoreapp2.0\Alexandria.net.dll" target="lib\netcoreapp2.0\Alexandria.net.dll"></file>
+
+
   </files>
+
+
 </package>
