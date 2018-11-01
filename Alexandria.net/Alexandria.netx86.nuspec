@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>Alexandria.net</id>
-    <version>1.0.3.586</version>
+   <id>Alexandria.net-x86</id>
+    <version>1.0.3.8</version>
     <title>Alexandria</title>
     <authors>Martyn Harler, Sanjiv Jha</authors>
     <owners>Martyn Harler</owners>
@@ -29,12 +29,9 @@
     
     
     <file src="lib\x86\*.*" target="lib" />
-
-    <file src="bin\x86\Release\net462\Alexandria.net.dll" target="lib\net462\Alexandria.net.dll"></file>
-
+   
     <file src="bin\x86\Release\net452\Alexandria.net.dll" target="lib\net452\Alexandria.net.dll"></file>
-
-
-    <file src="build\Alexandria.net.targets" target="build" />
+    <file src="bin\x86\Release\net462\Alexandria.net.dll" target="lib\net462\Alexandria.net.dll"></file>
+    <file src="build\Alexandria.net-x86.targets" target="build" />
   </files>
 </package>
