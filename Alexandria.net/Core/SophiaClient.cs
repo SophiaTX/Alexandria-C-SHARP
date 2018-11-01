@@ -117,7 +117,7 @@ namespace Alexandria.net.Core
                     var config = new Config
                     {
                         LoggingType = LoggingType.Server,
-                        LoggingServer = "logging.sophiatx.com",
+                        LoggingServer = "http://logging.sophiatx.com",
                         LoggingPort = 12205,
                         BuildMode = BuildMode.Prod,
                         Hostname = "34.244.93.54",

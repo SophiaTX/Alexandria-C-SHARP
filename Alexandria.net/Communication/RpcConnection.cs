@@ -343,6 +343,8 @@ namespace Alexandria.net.Communication
 
                 if (response.Contains("error"))
                 {
+                    System.Uri uri = new Uri(Config.LoggingServer);
+                    string hostname = uri.Host;
                    
                     if (_buildMode == BuildMode.Test)
                     {          

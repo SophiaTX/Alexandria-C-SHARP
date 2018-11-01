@@ -424,7 +424,7 @@ namespace UnitTest
                 var data = new JsonData
                 {
                     AppId = 38789776,
-                    PrivateKey = "5JuMwaA1F4WzfhPLgDE7TUHyZsevUqmigEYQ6QobfyTKSa2Lyw8",
+                    PrivateKey = "5KUbCiBJac8omkwgftfkp8hUCgh5k2H3mgoqMDN7bfzDLLEK2i8",
                     Recipients = new List<string> {"K2F_dnhaRXbSMJLAsCe6FJhmOKU"},
                     Sender = "sanjiv",
                     JsonDoc = test
