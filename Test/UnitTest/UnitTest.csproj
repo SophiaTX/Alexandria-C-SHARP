@@ -8,12 +8,10 @@
     <DotNetCliToolReference Include="dotnet-xunit" Version="2.3.1" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Alexandria.net" Version="1.0.4" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.8.0" />
     <PackageReference Include="xunit" Version="2.4.0" />
     <PackageReference Include="xunit.runner.console" Version="2.4.0" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\Alexandria.net\Alexandria.net.csproj" />
   </ItemGroup>
 </Project>
