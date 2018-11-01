@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target Name="PlatformCheck" BeforeTargets="InjectReference"
+          Condition="'$(Platform)' != 'x86'">
+    <Error  Text="$(MSBuildThisFileName) does not work correctly on '$(Platform)' 
+                     platform. You need to specify platform (x86)." />
+  </Target>
+
+  <Target Name="InjectReference" BeforeTargets="ResolveAssemblyReferences">
+    <ItemGroup Condition="'$(Platform)' == 'x86'">
+      <MyPackageFiles Include="$(MSBuildThisFileDirectory)..\lib\*.*"/>
+    </ItemGroup>
+  </Target>
+  
+  <Target Name="CopyMyPackageFiles" AfterTargets="AfterBuild">
+    <Copy SourceFiles="@(MyPackageFiles)" DestinationFolder="$(OutputPath)">
+    </Copy>
+  </Target>
+</Project>
