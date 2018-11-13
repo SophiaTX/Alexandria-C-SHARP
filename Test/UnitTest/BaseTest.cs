@@ -6,6 +6,6 @@ namespace UnitTest
     {
      
         protected readonly SophiaClient
-            Client = new SophiaClient("devnet.sophiatx.com", 9091, 9195); 
+            Client = new SophiaClient("stagenet.sophiatx.com", 9091, 9195); 
     }
 }
