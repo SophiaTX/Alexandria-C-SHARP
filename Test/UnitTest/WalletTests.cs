@@ -418,7 +418,7 @@ namespace UnitTest
         [Fact]
         public void SendJsonAsync()
         {
-            var test = "{\"ref_block_num\":16364,\"ref_block_prefix\":2217467278,\"expiration\":\"2018-06-20T15:24:06\",\"operations\":[[\"account_create\",{\"fee\":\"0.100000 SPHTX\",\"creator\":\"initminer\",\"new_account_name\":\"sanjiv9999\",\"owner\":{\"weight_threshold\":1,\"account_auths\":[],\"key_auths\":[[\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",1]]},\"active\":{\"weight_threshold\":1,\"account_auths\":[],\"key_auths\":[[\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",1]]},\"memo_key\":\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",\"json_metadata\":\"{Testing the account}\"}]],\"extensions\":[],\"signatures\":[]}";
+            var test = "{\"ref_block_num\":16364,\"ref_block_prefix\":22174672778,\"expiration\":\"2018-06-20T15:24:06\",\"operations\":[[\"account_create\",{\"fee\":\"0.100000 SPHTX\",\"creator\":\"initminer\",\"new_account_name\":\"sanjiv9999\",\"owner\":{\"weight_threshold\":1,\"account_auths\":[],\"key_auths\":[[\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",1]]},\"active\":{\"weight_threshold\":1,\"account_auths\":[],\"key_auths\":[[\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",1]]},\"memo_key\":\"STM6vh1vH3DTzFj2NUpZgpXfNACxUGsXThSpwVLXh9KaYAnJtrUpz\",\"json_metadata\":\"{Testing the account}\"}]],\"extensions\":[],\"signatures\":[]}";
 
             
                 var data = new JsonData
@@ -455,9 +455,18 @@ namespace UnitTest
         [Fact]
         public void Receive()
         {
-            var result = Client.Data.Receive(20023, "K2F_dnhaRXbSMJLAsCe6FJhmOKU", SearchType.ByRecipient,
-                DateTime.UtcNow.AddDays(-10), 10);
-            Console.WriteLine(result.ReceivedDocumentCollection.Documents);
+            var result = Client.Data.Receive(3, "MY081010003", SearchType.ByRecipient,
+                DateTime.UtcNow.AddDays(-44), 10);
+            Console.WriteLine(result);            
+        }
+        [Fact]
+        public void ReceiveAsync()
+        {
+            var date = DateTime.UtcNow.AddDays(-100);
+            Console.WriteLine(date);
+            var result = Client.Data.ReceiveAsync(3, "MY081010003", SearchType.ByRecipient, date, 1000);
+            
+            Console.WriteLine(result);
             
         }
 

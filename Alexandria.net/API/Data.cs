@@ -293,7 +293,7 @@ namespace Alexandria.net.API
             try
             {
                 result = await GetReceivedDocumentsAsync(appId, accountName, searchType,
-                    start.ToString(CultureInfo.InvariantCulture), count);
+                    start, count);
             }
             catch (Exception e)
             {
@@ -341,7 +341,7 @@ namespace Alexandria.net.API
         /// <param name="count"></param>
         /// <returns>the received document response data</returns>
         public async Task<T> ReceiveAsync<T>(T type, ulong appId, string accountName, SearchType searchType,
-            string start, uint count)
+            DateTime start, uint count)
         {
             try
             {
@@ -532,7 +532,7 @@ namespace Alexandria.net.API
         /// <param name="count"></param>
         /// <returns></returns>
         private async Task<ReceivedDocumentResponse> GetReceivedDocumentsAsync(ulong appId, string account,
-            SearchType searchType, string start, uint count)
+            SearchType searchType, DateTime start, uint count)
         {
             try
             {
