@@ -328,3 +328,11 @@ Get details of list of applications
 var names = new List<string>{applicationName1, applicationName2};
 _client.Application.GetApplications(names);
 ```      
+
+Daemon Methods
+===================
+Call methods from different Api. 
+```c#
+var args = new argumentObject(){};
+_client.Transaction.CallPlugin(ApiName,MethodName,args);
+```
