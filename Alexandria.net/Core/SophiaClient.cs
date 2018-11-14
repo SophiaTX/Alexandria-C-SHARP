@@ -2,11 +2,15 @@
 using System.IO;
 using System.Reflection;
 using Alexandria.net.API;
+using Alexandria.net.Communication;
 using Alexandria.net.Enums;
 using Alexandria.net.Events;
 using Alexandria.net.Logging;
 using Alexandria.net.Settings;
 using Newtonsoft.Json;
+using Serilog;
+using Serilog.Sinks.Graylog;
+using Serilog.Sinks.Graylog.Core;
 
 namespace Alexandria.net.Core
 {
@@ -46,6 +50,7 @@ namespace Alexandria.net.Core
         /// Sophia Blockchain Application functions
         /// </summary>
         public Application Application { get; }
+        
 
         #endregion
 
@@ -75,6 +80,11 @@ namespace Alexandria.net.Core
             Witness = new Witness(config);
             Data = new Data(config);
             Application = new Application(config);
+
+            var aboutResponse = Transaction.About();
+
+            if (aboutResponse != null)
+                RpcConnection.ChainId = aboutResponse.Result.ChainId;            
         }
 
         #endregion
@@ -96,25 +106,26 @@ namespace Alexandria.net.Core
         {
             try
             {
-                var fullfilename = $"{AssemblyDirectory}\\{filename}";
+                var fullfilename = $"{AssemblyDirectory}/{filename}";
                 if (File.Exists(fullfilename))
                 {
                     return JsonConvert.DeserializeObject<T>(File.ReadAllText(fullfilename));
                 }
-
+                
                 if (typeof(T) == typeof(Config))
-                {
+                {                   
                     var config = new Config
                     {
                         LoggingType = LoggingType.Server,
-                        LoggingServer = "https://logging.sophiatx.com",
-                        LoggingPort = 12201,
+                        LoggingServer = "http://logging.sophiatx.com",
+                        LoggingPort = 12205,
                         BuildMode = BuildMode.Prod,
                         Hostname = "34.244.93.54",
                         DaemonPort = 9195,
                         WalletPort = 9195,
                         Api = "/rpc",
-                        Version = "2.0"
+                        Version = "2.0",
+                        DaemonEndpoint="http://stagenet.sophiatx.com:9193"
                     };
                     File.WriteAllText(fullfilename, JsonConvert.SerializeObject(config));
                     return (T) Convert.ChangeType(config, typeof(T));

@@ -27,50 +27,50 @@ namespace Alexandria.net.API
             /// <param name="privateKey">byte[52] private_key</param>
             /// <param name="publickey">the public key</param>
             /// <returns>Returns true if success or false for failed try</returns>
-        [DllImport(Libpath)]
+        [DllImport(Libpath, CallingConvention = CallingConvention.Cdecl) ]
         private static extern bool generate_private_key([MarshalAs(UnmanagedType.LPArray)] byte[] privateKey,
             [MarshalAs(UnmanagedType.LPArray)] byte[] publickey);
 
-        [DllImport(Libpath)]
+        [DllImport(Libpath, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool get_transaction_digest([MarshalAs(UnmanagedType.LPStr)] string transaction,
             [MarshalAs(UnmanagedType.LPStr)] string chainId,
             [MarshalAs(UnmanagedType.LPArray)] byte[] digest);
 
-        [DllImport(Libpath)]
+        [DllImport(Libpath, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool sign_digest([MarshalAs(UnmanagedType.LPStr)] string digest,
             [MarshalAs(UnmanagedType.LPStr)] string privateKey, [MarshalAs(UnmanagedType.LPArray)] byte[] signedDigest);
 
-        [DllImport(Libpath)]
+        [DllImport(Libpath, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool add_signature([MarshalAs(UnmanagedType.LPStr)] string transaction,
             [MarshalAs(UnmanagedType.LPStr)] string signature, [MarshalAs(UnmanagedType.LPArray)] byte[] signedTx);
 
-        [DllImport(Libpath)]
+        [DllImport(Libpath, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool get_public_key([MarshalAs(UnmanagedType.LPStr)] string privateKey,
             [MarshalAs(UnmanagedType.LPArray)] byte[] publicKey);
 
-        [DllImport(Libpath)]
+        [DllImport(Libpath, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool generate_key_pair_from_brain_key([MarshalAs(UnmanagedType.LPStr)] string brainKey,
             [MarshalAs(UnmanagedType.LPArray)] byte[] privateKey, [MarshalAs(UnmanagedType.LPArray)] byte[] publicKey);
 
-        [DllImport(Libpath)]
+        [DllImport(Libpath, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool verify_signature([MarshalAs(UnmanagedType.LPStr)] string digest,
             [MarshalAs(UnmanagedType.LPStr)] string publicKey, [MarshalAs(UnmanagedType.LPStr)] string signedDigest);
 
-        [DllImport(Libpath)]
+        [DllImport(Libpath, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool encrypt_memo([MarshalAs(UnmanagedType.LPStr)] string memo,
             [MarshalAs(UnmanagedType.LPStr)] string privateKey, [MarshalAs(UnmanagedType.LPStr)] string publicKey,
             [MarshalAs(UnmanagedType.LPArray)] byte[] encryptedMemo);
 
-        [DllImport(Libpath)]
+        [DllImport(Libpath, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool decrypt_memo([MarshalAs(UnmanagedType.LPStr)] string memo,
             [MarshalAs(UnmanagedType.LPStr)] string privateKey, [MarshalAs(UnmanagedType.LPStr)] string publicKey,
             [MarshalAs(UnmanagedType.LPArray)] byte[] decryptedMemo);
         
-        [DllImport(Libpath)]
+        [DllImport(Libpath, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool base64_decode([MarshalAs(UnmanagedType.LPStr)] string input, 
             [MarshalAs(UnmanagedType.LPArray)] byte[] output);
         
-        [DllImport(Libpath)]
+        [DllImport(Libpath, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool base64_encode([MarshalAs(UnmanagedType.LPStr)] string input, 
             [MarshalAs(UnmanagedType.LPArray)] byte[] output);
         
@@ -83,9 +83,13 @@ namespace Alexandria.net.API
         /// Key Constructor
         /// </summary>
         /// <param name="config">the Configuration paramaters for the endpoint and ports</param>
+        /// 
+        
+        
         public Key(IConfig config) :
             base(config)
         {
+           
             var assemblyname = Assembly.GetExecutingAssembly().GetName().Name;
             _logger = new Logger(config, assemblyname);
         }
@@ -106,7 +110,7 @@ namespace Alexandria.net.API
             }
             catch (Exception ex)
             {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+               
                 throw;
             }
         }
@@ -134,7 +138,7 @@ namespace Alexandria.net.API
             }
             catch (Exception ex)
             {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+               
                 throw;
             }
 
@@ -160,7 +164,7 @@ namespace Alexandria.net.API
             }
             catch (Exception ex)
             {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+               
                 throw;
             }
 
@@ -184,7 +188,7 @@ namespace Alexandria.net.API
                 }
                 catch (Exception ex)
                 {
-                    _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+                   
                     throw;
                 }
             
@@ -209,7 +213,7 @@ namespace Alexandria.net.API
             }
             catch (Exception ex) 
             {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+               
                 throw;
             }
            
@@ -236,7 +240,7 @@ namespace Alexandria.net.API
             }
             catch (Exception ex)
             {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+               
                 throw;
             }
         }
@@ -259,7 +263,7 @@ namespace Alexandria.net.API
             }
             catch (Exception ex)
             {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+               
                 throw;
             }
         }
@@ -281,7 +285,7 @@ namespace Alexandria.net.API
             }
             catch (Exception ex)
             {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+              
                 throw;
             }
         }
@@ -309,7 +313,7 @@ namespace Alexandria.net.API
             }
             catch (Exception ex)
             {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+              
                 throw;
             }
 
@@ -332,7 +336,7 @@ namespace Alexandria.net.API
             }
             catch (Exception ex)
             {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+               
                 throw;
             }
         }
@@ -357,7 +361,7 @@ namespace Alexandria.net.API
             }
             catch (Exception ex)
             {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+               
                 throw;
             }
 
@@ -383,7 +387,7 @@ namespace Alexandria.net.API
             }
             catch (Exception ex)
             {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+               
                 throw;
             }
         }
@@ -405,7 +409,7 @@ namespace Alexandria.net.API
             }
             catch (Exception ex)
             {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+              
                 throw;
             }
         }
@@ -426,7 +430,7 @@ namespace Alexandria.net.API
             }
             catch (Exception ex)
             {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+               
                 throw;
             }
         }
@@ -448,7 +452,7 @@ namespace Alexandria.net.API
             }
             catch (Exception ex)
             {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+               
                 throw;
             }
         }
@@ -469,7 +473,7 @@ namespace Alexandria.net.API
             }
             catch (Exception ex)
             {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+               
                 throw;
             }
         }

@@ -9,12 +9,14 @@
     <Copyright>Equidato Technologies AG</Copyright>
     <TargetFrameworks>net452;net462;netcoreapp2.0</TargetFrameworks>
     <Platforms>AnyCPU;x64;x86</Platforms>
+    <chainId>66423e7baa1f62570784e17cb78d48329e78faa43075cc9d847c434b4bfe2dfb</chainId>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>Alexandria.net.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DocumentationFile>bin\Debug\netcoreapp2.0\Alexandria.net.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Arebis.Logging.GrayLog" Version="1.9.0" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="Serilog" Version="2.7.1" />
     <PackageReference Include="Serilog.Extensions.Logging" Version="2.0.2" />

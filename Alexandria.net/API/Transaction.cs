@@ -9,6 +9,7 @@ using Alexandria.net.Messaging.Responses;
 using Alexandria.net.Settings;
 using Newtonsoft.Json;
 using AccountResponse = Alexandria.net.Messaging.Responses.AccountResponse;
+using ILogger = Alexandria.net.Logging.ILogger;
 
 namespace Alexandria.net.API
 {
@@ -19,15 +20,16 @@ namespace Alexandria.net.API
 	public class  Transaction : RpcConnection
 	{	
 		private readonly ILogger _logger;
-		
+		private IConfig Config { get; }
 		#region Constructors
-
+			
 		/// <summary>
 		/// Wallet Constructor
 		/// </summary>
 		/// <param name="config">the Configuration paramaters for the endpoint and ports</param>
 		public Transaction(IConfig config) : base(config)
 		{
+			Config = config;
 			var assemblyname = Assembly.GetExecutingAssembly().GetName().Name;
 			_logger = new Logger(config, assemblyname);
 		}
@@ -51,7 +53,7 @@ namespace Alexandria.net.API
 			}
 			catch(Exception ex)
 			{
-				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+			
 				throw ;
 			}
 		}
@@ -71,7 +73,7 @@ namespace Alexandria.net.API
 			}
 			catch(Exception ex)
 			{
-				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+			
 				throw ;
 			}
 		}
@@ -93,7 +95,7 @@ namespace Alexandria.net.API
 			}
 			catch(Exception ex)
 			{
-				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+			
 				throw ;
 			}
 		}
@@ -115,7 +117,7 @@ namespace Alexandria.net.API
 			}
 			catch(Exception ex)
 			{
-				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+			
 				throw ;
 			}
 		}
@@ -137,7 +139,7 @@ namespace Alexandria.net.API
 			}
 			catch(Exception ex)
 			{
-				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+			
 				throw ;
 			}		
 		}
@@ -159,8 +161,7 @@ namespace Alexandria.net.API
 			}
 			catch(Exception ex)
 			{
-				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
-				
+			
 				throw;
 			}		
 		}
@@ -182,8 +183,7 @@ namespace Alexandria.net.API
 			}
 			catch(Exception ex)
 			{
-				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
-				
+			
 				throw;
 			}		
 		}
@@ -206,7 +206,7 @@ namespace Alexandria.net.API
 			}
 			catch(Exception ex)
 			{
-				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+			
 				throw ;
 			}
 		}
@@ -228,7 +228,7 @@ namespace Alexandria.net.API
 			}
 			catch(Exception ex)
 			{
-				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+				
 				throw ;
 			}
 		}
@@ -250,7 +250,7 @@ namespace Alexandria.net.API
 			}
 			catch(Exception ex)
 			{
-				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+				
 				throw ;
 			}
 		}
@@ -274,7 +274,7 @@ namespace Alexandria.net.API
 			}
 			catch (Exception ex)
 			{
-				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+			
 				throw;
 			}
 		}
@@ -295,7 +295,7 @@ namespace Alexandria.net.API
 			}
 			catch(Exception ex)
 			{
-				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+			
 				throw ;
 			}
 		}
@@ -315,7 +315,7 @@ namespace Alexandria.net.API
 			}
 			catch(Exception ex)
 			{
-				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+			
 				throw ;
 			}
 		}
@@ -337,7 +337,7 @@ namespace Alexandria.net.API
 			}
 			catch(Exception ex)
 			{
-				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+			
 				throw;
 			}
 		}
@@ -360,7 +360,7 @@ namespace Alexandria.net.API
 			}
 			catch(Exception ex)
 			{
-				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+			
 				throw ;
 			}
 		}
@@ -383,11 +383,64 @@ namespace Alexandria.net.API
 			}
 			catch(Exception ex)
 			{
-				_logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+			
 				throw ;
 			}
 		}
+		/// <summary>
+		///  Sign and Send the transaction 
+		/// </summary>
+		/// <param name="contentdata"></param>
+		/// <param name="privateKey"></param>
+		/// <typeparam name="T"></typeparam>
+		/// <returns></returns>
+        public TransactionResponse SignAndSendTransaction<T>(T contentdata, string privateKey)
+        {           
+            var key = new Key(Config);
+            TransactionResponse finalResponse;
+            try
+            {                           
+                var transaction = JsonConvert.SerializeObject(contentdata);                
+                var digest = key.GetTransactionDigest(transaction,ChainId,new byte[64]);
+                var signature = key.SignDigest(digest, privateKey, new byte[130]);
+                var response = key.AddSignature(transaction, signature,new byte[transaction.Length + 200]);
+                finalResponse = BroadcastTransaction(response);          
+            }
+            catch (Exception ex)
+            {
+                
+            
+                throw;
+            }
+
+            return finalResponse;
+        }
 		
+		/// <summary>
+		/// Call external APIs
+		/// </summary>
+		/// <param name="pluginName"></param>
+		/// <param name="methodName"></param>
+		/// <param name="args"></param>
+		/// <returns></returns>
+		public DaemonResponse CallPlugin(string pluginName, string methodName, object args)
+		{           
+	
+			try
+			{                           
+				var result= SendRequestToDaemon(pluginName+'.'+methodName, args);
+				var contentdata = JsonConvert.DeserializeObject<DaemonResponse>(result);
+				return contentdata;  
+			}
+			catch (Exception ex)
+			{
+                
+			
+				throw;
+			}
+
+			
+		}
 		#endregion
 	}
 }
