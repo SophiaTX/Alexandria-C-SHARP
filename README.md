@@ -22,9 +22,10 @@ Install
 - As a prerequisite for the nuget package to work, please have openssl installed on your machine
 (download openssl and install on Windows environment using https://slproweb.com/products/Win32OpenSSL.html)
 ("brew install openssl" on Mac environment)
-- Get the Library (Alexandria 1.0.3.7) as a nuget package from nuget.org
 
-- https://www.nuget.org/packages/Alexandria.net/1.0.3.7 (Latest stable x64 version)
+- Get the latest nuget package from nuget.org (https://www.nuget.org)
+
+- Please select the package depending on your platform requirements 64 or 32 (x86) bit.
 
 - Add the nuget package into the project (using Nuget Package Manager)
 
@@ -328,3 +329,11 @@ Get details of list of applications
 var names = new List<string>{applicationName1, applicationName2};
 _client.Application.GetApplications(names);
 ```      
+
+Daemon Methods
+===================
+Call methods from different Api. 
+```c#
+var args = new argumentObject(){};
+_client.Transaction.CallPlugin(ApiName,MethodName,args);
+```
