@@ -236,7 +236,7 @@ namespace Alexandria.net.Communication
         /// <param name="params">the paramaters to pass with the method</param>
         /// <param name="type"></param>
         /// <returns>the http response from the server</returns>
-        private async Task<string> ProcessRequest(string methodname, string parameters = null, Type type = null)
+        private async Task<string> ProcessRequest(string methodname, object parameters, Type type = null)
         {          
             var response = string.Empty;
             var request = new
@@ -244,7 +244,7 @@ namespace Alexandria.net.Communication
                 jsonrpc = _jsonRpc,
                 id = GetRequestId(),
                 method = methodname,
-                @params = parameters
+                @params = new {parameters}
             };
 
             var json = JsonConvert.SerializeObject(request).GetJsonString(type);

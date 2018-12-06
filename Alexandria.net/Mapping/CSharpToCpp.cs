@@ -105,14 +105,14 @@
         /// <param name="value">C-Sharp function name</param>
         /// <param name="api"></param>
         /// <returns>CPP function name</returns>
-        public string GetValue(string value, string api = "alexandria.api")
+        public string GetValue(string value, string api = "alexandria_api")
         {
             switch (value)
             {
                 case "Vote":
                     return $"{api}.Vote";
                 case "AccountExists":
-                    return $"{api}.AccountExists";
+                    return $"{api}.account_exist";
                 case "HasPrivateKeys":
                     return $"{api}.HasPrivateKeys";               
                 case "GetActiveAuthority":
@@ -168,7 +168,7 @@
                 case "NormalizeBrainKey":
                     return $"{api}.NormalizeBrainKey";
                 case "About":
-                    return $"{api}.About";
+                    return $"{api}.about";
                 case "Challenge":
                     return $"{api}.Challenge";
                 case "GetBlock":
