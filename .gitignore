@@ -20,3 +20,10 @@ Alexandria.net.sln.DotSettings.user
 /UnitTestProject452/obj
 /UnitTestProject462/bin
 /UnitTestProject462/obj
+node_modules/
+Test
+/Test/
+/UnitTestProject462/
+/UnitTestProject452/
+UnitTestProject462/
+UnitTestProject452/
