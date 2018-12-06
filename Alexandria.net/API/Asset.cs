@@ -33,6 +33,7 @@ namespace Alexandria.net.API
         #endregion
 
         #region Methods
+
         /// <summary> 
         /// Trnasfer given assets from one user to other one.
         /// </summary>
@@ -42,23 +43,16 @@ namespace Alexandria.net.API
         /// <param name="amount">the amount to transfer "10.0000 SPHTX"</param>
         /// <param name="privateKey"></param>
         /// <returns>Returns Transaction object</returns>
-        public TransactionResponse Transfer(string from, string to,  string amount,string memo, string privateKey)
+        public TransactionResponse Transfer(string from, string to, string amount, string memo, string privateKey)
         {
-            try
-            {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                var @params = new ArrayList {from, to, amount,memo };
-                var result = SendRequest(reqname, @params);
+            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, @from, to, amount, memo);
+            //var @params = new ArrayList {from, to, amount, memo };
+            var result = SendRequest(reqname, @params);
 
-                var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
-                var response = StartBroadcasting(contentdata.Result, privateKey);
-                return response;
-            }
-            catch (Exception ex)
-            {
-               
-                throw;
-            }
+            var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
+            var response = StartBroadcasting(contentdata.Result, privateKey);
+            return response;
         }
 
         /// <summary>
@@ -73,23 +67,16 @@ namespace Alexandria.net.API
         /// <returns>Returns Transaction object</returns>
         public TransactionResponse TransferToVesting(string from, string to, string amount, string privateKey)
         {
-            try
-            {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                var @params = new ArrayList {from, to, amount};
-                var result = SendRequest(reqname, @params);
+            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, @from, to, amount);
+            //var @params = new ArrayList {from, to, amount};
+            var result = SendRequest(reqname, @params);
 
-                var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
-                var response = StartBroadcasting(contentdata.Result, privateKey);
-                return response;
-            }
-            catch (Exception ex)
-            {
-                
-                throw;
-            }
+            var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
+            var response = StartBroadcasting(contentdata.Result, privateKey);
+            return response;
         }
-        
+
         /// <summary>
         /// Set up a vesting withdraw request. The request Is fulfilled once a week over the next two years (104 weeks).
         /// The amount of vests to withdrawover the Next two
@@ -102,21 +89,14 @@ namespace Alexandria.net.API
         /// <returns></returns>
         public TransactionResponse WithdrawVesting(string from, string vestingShares, string privateKey)
         {
-            try
-            {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                var @params = new ArrayList {from, vestingShares};
-                var result = SendRequest(reqname, @params);
+            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, @from, vestingShares);
+            //var @params = new ArrayList {from, vestingShares};
+            var result = SendRequest(reqname, @params);
 
-                var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
-                var response = StartBroadcasting(contentdata.Result, privateKey);
-                return response;
-            }
-            catch (Exception ex)
-            {
-                
-                throw;
-            }
+            var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
+            var response = StartBroadcasting(contentdata.Result, privateKey);
+            return response;
         }
 
 
@@ -125,23 +105,14 @@ namespace Alexandria.net.API
         /// </summary>
         /// <param name="accountName">string accountName</param>
         /// <param name="assetSymbol">string assetSymbol</param>
-        /// <returns>Returns retruns ulong Accournt balance</returns>
+        /// <returns>Returns ulong Account balance</returns>
         private ulong GetAccountUiaBalance(string accountName, string assetSymbol)
         {
-            try
-            {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                var @params = new ArrayList {accountName, assetSymbol};
-                var result = SendRequest(reqname, @params);
-                return Convert.ToUInt64(result);
-            }
-            catch (Exception ex)
-            {
-                
-               
-                throw;
-            }
-            
+            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, accountName, assetSymbol);
+            //var @params = new ArrayList {accountName, assetSymbol};
+            var result = SendRequest(reqname, @params);
+            return Convert.ToUInt64(result);
         }
 
         /// <summary>
@@ -152,23 +123,17 @@ namespace Alexandria.net.API
         /// <param name="maxSupply">ulong maxSupply</param>
         /// <param name="assetSymbol">string assetSymbol</param>
         /// <returns>Returns true if success or false for failed try</returns>
-        private bool CreateUia(string ownerAccountName, Authority managementAuthority, ulong maxSupply, string assetSymbol)
+        private bool CreateUia(string ownerAccountName, Authority managementAuthority, ulong maxSupply,
+            string assetSymbol)
         {
-            try
-            {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                var @params = new ArrayList {ownerAccountName, managementAuthority, maxSupply, assetSymbol};
-                var result = SendRequest(reqname, @params);
-                return result == "true";
-            }
-            catch (Exception ex)
-            {
-                
-               
-                throw;
-            }
-            
+            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, ownerAccountName,
+                managementAuthority, maxSupply, assetSymbol);
+            //var @params = new ArrayList {ownerAccountName, managementAuthority, maxSupply, assetSymbol};
+            var result = SendRequest(reqname, @params);
+            return result == "true";
         }
+
         /// <summary>
         /// Issues an UIA for the Receiver account of given ammount
         /// </summary>
@@ -178,21 +143,14 @@ namespace Alexandria.net.API
         /// <returns>Returns true if success or false for failed try</returns>
         private bool IssueUia(string reveiverAccountName, ulong amount, string assetSymbol)
         {
-            try
-            {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                var @params = new ArrayList {reveiverAccountName, amount, assetSymbol};
-                var result = SendRequest(reqname, @params);
-                return result == "true";
-            }
-            catch (Exception ex)
-            {
-                
-               
-                throw;
-            }
-            
+            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, reveiverAccountName, amount,
+                assetSymbol);
+            //var @params = new ArrayList {reveiverAccountName, amount, assetSymbol};
+            var result = SendRequest(reqname, @params);
+            return result == "true";
         }
+
         /// <summary>
         ///  Vanish given amount of UIA 
         /// </summary>
@@ -202,22 +160,14 @@ namespace Alexandria.net.API
         /// <returns>Returns true if success or false for failed try</returns>
         private bool BurnUia(string accountName, ulong amount, string assetSymbol)
         {
-            try
-            {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                var @params = new ArrayList {accountName, amount, assetSymbol};
-                var result = SendRequest(reqname, @params);   
-                return result == "true";
-            }
-            catch (Exception ex)
-            {
-                
-               
-                throw;
-            }
-            
+            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+            var @params =
+                ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, accountName, amount, assetSymbol);
+            //var @params = new ArrayList {accountName, amount, assetSymbol};
+            var result = SendRequest(reqname, @params);
+            return result == "true";
         }
-        
+
         /// <summary>
         /// Check for the authority assigned to given UIA, identify by Symbol
         /// </summary>
@@ -225,20 +175,11 @@ namespace Alexandria.net.API
         /// <returns>Returns Json object with details combining</returns>
         private Authority GetUiaAuthority(string assetSymbol)
         {
-            try
-            {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                var @params = new ArrayList {assetSymbol};
-                var result = SendRequest(reqname, @params);
-                return JsonConvert.DeserializeObject<Authority>(result);
-            }
-            catch (Exception ex)
-            {
-                
-               
-                throw ;
-            }
-            
+            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, assetSymbol);
+            //var @params = new ArrayList {assetSymbol};
+            var result = SendRequest(reqname, @params);
+            return JsonConvert.DeserializeObject<Authority>(result);
         }
         
         /// <summary>
@@ -248,19 +189,11 @@ namespace Alexandria.net.API
         /// <returns>Returns true if success or false for failed try</returns>
         private bool HasUiaPrivateKey(string assetSymbol)
         {
-            try
-            {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                var @params = new ArrayList {assetSymbol};
-                var result = SendRequest(reqname, @params);
-                return result == "true";
-            }
-            catch (Exception ex)
-            {
-                
-               
-                throw ;
-            }
+            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, assetSymbol);
+            //var @params = new ArrayList {assetSymbol};
+            var result = SendRequest(reqname, @params);
+            return result == "true";
         }
         #endregion
     }

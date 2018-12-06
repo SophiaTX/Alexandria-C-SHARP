@@ -9,6 +9,7 @@ using Alexandria.net.Enums;
 using Alexandria.net.Exceptions;
 using Alexandria.net.Extensions;
 using Alexandria.net.Mapping;
+using Alexandria.net.Messaging.Params;
 using Alexandria.net.Messaging.Responses;
 using Alexandria.net.Settings;
 using Newtonsoft.Json;
@@ -40,6 +41,7 @@ namespace Alexandria.net.Communication
         /// 
         /// </summary>
         protected readonly CSharpToCpp CSharpToCpp = new CSharpToCpp();
+        protected readonly ParamHelper ParamHelper = new ParamHelper();
        
         private readonly ILogger _logger;
         private readonly BuildMode _buildMode;
@@ -91,7 +93,7 @@ namespace Alexandria.net.Communication
         /// <param name="params">the parameters to send with the method</param>
         /// <param name="type">type of operation</param>
         /// <returns>the http response from ther server</returns>
-        protected async Task<string> SendRequestAsync(string method, ArrayList @params = null, Type type = null)
+        protected async Task<string> SendRequestAsync(string method, string @params = null, Type type = null)
         {
             string result; 
             try
@@ -113,7 +115,7 @@ namespace Alexandria.net.Communication
         /// <param name="params"></param>
         /// <param name="type"></param>
         /// <returns></returns>
-        protected string SendRequest(string method, ArrayList @params = null, Type type = null)
+        protected string SendRequest(string method, string @params = null, Type type = null)
         {
             string result; 
             try
@@ -162,24 +164,16 @@ namespace Alexandria.net.Communication
             var trans = new Transaction(Config);
             var key = new Key(Config);
             TransactionResponse finalResponse;
-            try
-            {                             
-                var transresponse = trans.CreateSimpleTransaction(contentdata);
-                if (transresponse == null) return null;
+            var transresponse = trans.CreateSimpleTransaction(contentdata);
+            if (transresponse == null) return null;
 
-                var transaction = JsonConvert.SerializeObject(transresponse.Result);
+            var transaction = JsonConvert.SerializeObject(transresponse.Result);
                 
-                var digest = key.GetTransactionDigest(transaction,ChainId,new byte[64]);
+            var digest = key.GetTransactionDigest(transaction,ChainId,new byte[64]);
            
-                var signature = key.SignDigest(digest, privateKey, new byte[130]);
-                var response = key.AddSignature(transaction, signature,new byte[transaction.Length + 200]);
-                finalResponse = trans.BroadcastTransaction(response);          
-            }
-            catch (Exception ex)
-            {                
- 
-                throw;
-            }
+            var signature = key.SignDigest(digest, privateKey, new byte[130]);
+            var response = key.AddSignature(transaction, signature,new byte[transaction.Length + 200]);
+            finalResponse = trans.BroadcastTransaction(response);
 
             return finalResponse;
         }
@@ -192,19 +186,7 @@ namespace Alexandria.net.Communication
         protected TransactionResponse GetSimpleTransaction<T>(T contentdata)
         {
             var trans = new Transaction(Config);
-            TransactionResponse transresponse;
-            try
-            {               
-                transresponse = trans.CreateSimpleTransaction(contentdata);
-                if (transresponse == null) return null;                        
-            }
-            catch (Exception ex)
-            {
-              
-                
-              
-                throw;
-            }
+            var transresponse = trans.CreateSimpleTransaction(contentdata);
 
             return transresponse;
         }
@@ -243,7 +225,6 @@ namespace Alexandria.net.Communication
 
             return finalResponse;
         }
-
         #endregion
 
         #region private methods
@@ -255,62 +236,55 @@ namespace Alexandria.net.Communication
         /// <param name="params">the paramaters to pass with the method</param>
         /// <param name="type"></param>
         /// <returns>the http response from the server</returns>
-        private async Task<string> ProcessRequest(string methodname, ArrayList @params = null, Type type = null)
+        private async Task<string> ProcessRequest(string methodname, string parameters = null, Type type = null)
         {          
             var response = string.Empty;
-            try
+            var request = new
             {
-                var request = new
-                {
-                    jsonrpc = _jsonRpc,
-                    id = GetRequestId(),
-                    method = methodname,
-                    @params = @params ?? new ArrayList()
-                };
+                jsonrpc = _jsonRpc,
+                id = GetRequestId(),
+                method = methodname,
+                @params = parameters
+            };
 
-                var json = JsonConvert.SerializeObject(request).GetJsonString(type);
+            var json = JsonConvert.SerializeObject(request).GetJsonString(type);
              
-                var httpResponse = _client.PostAsync(_uri, new StringContent(json, Encoding.UTF8)).Result;
+            var httpResponse = _client.PostAsync(_uri, new StringContent(json, Encoding.UTF8)).Result;
 
-                if (httpResponse == null) return response;
-                response = await httpResponse.Content.ReadAsStringAsync();
+            if (httpResponse == null) return response;
+            response = await httpResponse.Content.ReadAsStringAsync();
 
-                if (response.Contains("error"))
+            if (response.Contains("error"))
+            {
+
+                try
                 {
-
-                    try
+                    if (_buildMode == BuildMode.Test)
                     {
-                        if (_buildMode == BuildMode.Test)
+                        Uri uri = new Uri(Config.LoggingServer);
+                        var hostname = uri.Host;
+                        var loggerConfig = new LoggerConfiguration().WriteTo.Graylog(new GraylogSinkOptions
                         {
-                            System.Uri uri = new Uri(Config.LoggingServer);
-                            string hostname = uri.Host;
-                            var loggerConfig = new LoggerConfiguration().WriteTo.Graylog(new GraylogSinkOptions
-                            {
                                 
-                                HostnameOrAddress = hostname,
-                                Port = Config.LoggingPort
+                            HostnameOrAddress = hostname,
+                            Port = Config.LoggingPort
 
-                            }).CreateLogger();
+                        }).CreateLogger();
 
 
-                            loggerConfig.Write(LogEventLevel.Error, response);
+                        loggerConfig.Write(LogEventLevel.Error, response);
 
-                        }
-
-                        throw new SophiaBlockchainException(response);
                     }
-                    catch (SophiaBlockchainException sx)
-                    {               
-                        throw sx;
-                    }
+
+                    throw new SophiaBlockchainException(response);
+                }
+                catch (SophiaBlockchainException sx)
+                {               
+                    throw sx;
                 }
             }
-            catch (HttpRequestException ex)
-            {               
-                               throw;
-            }
-            
-           return response;
+
+            return response;
         }
         
         /// <summary>

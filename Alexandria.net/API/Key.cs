@@ -17,7 +17,7 @@ namespace Alexandria.net.API
     public class Key : RpcConnection
     {
         private readonly ILogger _logger;
-        private const string Libpath = "libalexandria";
+        private const string LibPath = "libalexandria";
 
         #region DllImports
  
@@ -27,50 +27,50 @@ namespace Alexandria.net.API
             /// <param name="privateKey">byte[52] private_key</param>
             /// <param name="publickey">the public key</param>
             /// <returns>Returns true if success or false for failed try</returns>
-        [DllImport(Libpath, CallingConvention = CallingConvention.Cdecl) ]
+        [DllImport(LibPath, CallingConvention = CallingConvention.Cdecl) ]
         private static extern bool generate_private_key([MarshalAs(UnmanagedType.LPArray)] byte[] privateKey,
             [MarshalAs(UnmanagedType.LPArray)] byte[] publickey);
 
-        [DllImport(Libpath, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(LibPath, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool get_transaction_digest([MarshalAs(UnmanagedType.LPStr)] string transaction,
             [MarshalAs(UnmanagedType.LPStr)] string chainId,
             [MarshalAs(UnmanagedType.LPArray)] byte[] digest);
 
-        [DllImport(Libpath, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(LibPath, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool sign_digest([MarshalAs(UnmanagedType.LPStr)] string digest,
             [MarshalAs(UnmanagedType.LPStr)] string privateKey, [MarshalAs(UnmanagedType.LPArray)] byte[] signedDigest);
 
-        [DllImport(Libpath, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(LibPath, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool add_signature([MarshalAs(UnmanagedType.LPStr)] string transaction,
             [MarshalAs(UnmanagedType.LPStr)] string signature, [MarshalAs(UnmanagedType.LPArray)] byte[] signedTx);
 
-        [DllImport(Libpath, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(LibPath, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool get_public_key([MarshalAs(UnmanagedType.LPStr)] string privateKey,
             [MarshalAs(UnmanagedType.LPArray)] byte[] publicKey);
 
-        [DllImport(Libpath, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(LibPath, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool generate_key_pair_from_brain_key([MarshalAs(UnmanagedType.LPStr)] string brainKey,
             [MarshalAs(UnmanagedType.LPArray)] byte[] privateKey, [MarshalAs(UnmanagedType.LPArray)] byte[] publicKey);
 
-        [DllImport(Libpath, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(LibPath, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool verify_signature([MarshalAs(UnmanagedType.LPStr)] string digest,
             [MarshalAs(UnmanagedType.LPStr)] string publicKey, [MarshalAs(UnmanagedType.LPStr)] string signedDigest);
 
-        [DllImport(Libpath, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(LibPath, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool encrypt_memo([MarshalAs(UnmanagedType.LPStr)] string memo,
             [MarshalAs(UnmanagedType.LPStr)] string privateKey, [MarshalAs(UnmanagedType.LPStr)] string publicKey,
             [MarshalAs(UnmanagedType.LPArray)] byte[] encryptedMemo);
 
-        [DllImport(Libpath, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(LibPath, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool decrypt_memo([MarshalAs(UnmanagedType.LPStr)] string memo,
             [MarshalAs(UnmanagedType.LPStr)] string privateKey, [MarshalAs(UnmanagedType.LPStr)] string publicKey,
             [MarshalAs(UnmanagedType.LPArray)] byte[] decryptedMemo);
         
-        [DllImport(Libpath, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(LibPath, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool base64_decode([MarshalAs(UnmanagedType.LPStr)] string input, 
             [MarshalAs(UnmanagedType.LPArray)] byte[] output);
         
-        [DllImport(Libpath, CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(LibPath, CallingConvention = CallingConvention.Cdecl)]
         private static extern bool base64_encode([MarshalAs(UnmanagedType.LPStr)] string input, 
             [MarshalAs(UnmanagedType.LPArray)] byte[] output);
         
@@ -102,17 +102,9 @@ namespace Alexandria.net.API
         /// <returns>the keys result</returns>
         public string ListKeys()
         {
-            try
-            {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                var result = SendRequest(reqname);
-                return result;
-            }
-            catch (Exception ex)
-            {
-               
-                throw;
-            }
+            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+            var result = SendRequest(reqname);
+            return result;
         }
 
         /// <summary>
@@ -125,21 +117,13 @@ namespace Alexandria.net.API
         {
 
             KeyResponse result = null;
-            try
+            if (generate_private_key(privatekey, publickey))
             {
-                if (generate_private_key(privatekey, publickey))
+                result = new KeyResponse
                 {
-                    result = new KeyResponse
-                    {
-                        PrivateKey = System.Text.Encoding.Default.GetString(privatekey),
-                        PublicKey = System.Text.Encoding.Default.GetString(publickey)
-                    };
-                }
-            }
-            catch (Exception ex)
-            {
-               
-                throw;
+                    PrivateKey = System.Text.Encoding.Default.GetString(privatekey),
+                    PublicKey = System.Text.Encoding.Default.GetString(publickey)
+                };
             }
 
             return result;
@@ -154,20 +138,11 @@ namespace Alexandria.net.API
         /// <returns>Returns true if success or false for failed try</returns>
         public string GetTransactionDigest(string transaction, string chainId, byte[] digest)
         {
-            try
-            {
-                var result = get_transaction_digest(transaction, chainId, digest)
-                    ? System.Text.Encoding.Default.GetString(digest)
-                    : string.Empty;
+            var result = get_transaction_digest(transaction, chainId, digest)
+                ? System.Text.Encoding.Default.GetString(digest)
+                : string.Empty;
 
-                return result;
-            }
-            catch (Exception ex)
-            {
-               
-                throw;
-            }
-
+            return result;
         }
 
         /// <summary>
@@ -177,22 +152,12 @@ namespace Alexandria.net.API
         /// <returns>Returns true if success or false for failed try</returns>
         public GetTransactionDigestResponse GetTransactionDigestServer(string transaction)
         {
-           
-                try
-                {
-                    var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                    var @params = new ArrayList {transaction};
-                    var result= SendRequest(reqname, @params);
-                    var contentdata = JsonConvert.DeserializeObject<GetTransactionDigestResponse>(result);
-                    return contentdata;
-                }
-                catch (Exception ex)
-                {
-                   
-                    throw;
-                }
-            
-
+            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, transaction);
+            //var @params = new ArrayList {transaction};
+            var result= SendRequest(reqname, @params);
+            var contentdata = JsonConvert.DeserializeObject<GetTransactionDigestResponse>(result);
+            return contentdata;
         }
         /// <summary>
         /// Creates a signature for the given private key and transaction digest
@@ -203,20 +168,11 @@ namespace Alexandria.net.API
         /// <returns>Returns true if success or false for failed try</returns>
         public string SignDigest(string digest, string privatekey, byte[] signeddigest)
         {
-            try
-            {
-                var result = sign_digest(digest, privatekey, signeddigest)
-                    ? System.Text.Encoding.Default.GetString(signeddigest)
-                    : string.Empty;
+            var result = sign_digest(digest, privatekey, signeddigest)
+                ? System.Text.Encoding.Default.GetString(signeddigest)
+                : string.Empty;
 
-                return result;
-            }
-            catch (Exception ex) 
-            {
-               
-                throw;
-            }
-           
+            return result;
         }
         
         /// <summary>
@@ -228,21 +184,13 @@ namespace Alexandria.net.API
         /// <returns>Returns true if success or false for failed try</returns>
         public SignedTransactionResponseData AddSignature(string transaction, string signature, byte[] signedtx)
         {
-            try
-            {
-                var value = add_signature(transaction, signature, signedtx);
-                if (!value) return null;
+            var value = add_signature(transaction, signature, signedtx);
+            if (!value) return null;
                 
-                var signedTransaction = System.Text.Encoding.Default.GetString(signedtx);
-                Console.WriteLine(signedTransaction);
-                var result = JsonConvert.DeserializeObject<SignedTransactionResponseData>(signedTransaction);
-                return result;
-            }
-            catch (Exception ex)
-            {
-               
-                throw;
-            }
+            var signedTransaction = System.Text.Encoding.Default.GetString(signedtx);
+            Console.WriteLine(signedTransaction);
+            var result = JsonConvert.DeserializeObject<SignedTransactionResponseData>(signedTransaction);
+            return result;
         }
 
         /// <summary>
@@ -253,20 +201,14 @@ namespace Alexandria.net.API
         /// <returns>Returns true if success or false for failed try</returns>
         public SignedTransactionResponse AddSignatureServer(TransactionResponse transaction, string signature)
         {
-            try
-            {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                var @params = new ArrayList {transaction.Result,signature};
-                var signedTransaction= SendRequest(reqname, @params);
-                var result = JsonConvert.DeserializeObject<SignedTransactionResponse>(signedTransaction);
-                return result;
-            }
-            catch (Exception ex)
-            {
-               
-                throw;
-            }
+            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, transaction.Result, signature);
+            //var @params = new ArrayList {transaction.Result,signature};
+            var signedTransaction = SendRequest(reqname, @params);
+            var result = JsonConvert.DeserializeObject<SignedTransactionResponse>(signedTransaction);
+            return result;
         }
+
         /// <summary>
         /// Returns public_key for given private_key
         /// </summary>
@@ -275,19 +217,11 @@ namespace Alexandria.net.API
         /// <returns>return paramter public key derived from private_key</returns>
         public string GetPublicKey(string privateKey, byte[] publicKey)
         {
-            try
-            {
-                var result = get_public_key(privateKey, publicKey)
-                    ? System.Text.Encoding.Default.GetString(publicKey)
-                    : "Please enter correct a private key";
+            var result = get_public_key(privateKey, publicKey)
+                ? System.Text.Encoding.Default.GetString(publicKey)
+                : "Please enter correct a private key";
 
-                return result;
-            }
-            catch (Exception ex)
-            {
-              
-                throw;
-            }
+            return result;
         }
 
         /// <summary>
@@ -300,21 +234,13 @@ namespace Alexandria.net.API
         public KeyResponse GenerateKeyPairFromBrainKey(string brainKey, byte[] privateKey, byte[] publicKey)
         {
             KeyResponse result = null;
-            try
+            if (generate_key_pair_from_brain_key(brainKey, privateKey, publicKey))
             {
-                if (generate_key_pair_from_brain_key(brainKey, privateKey, publicKey))
+                result = new KeyResponse
                 {
-                    result = new KeyResponse
-                    {
-                        PrivateKey = System.Text.Encoding.Default.GetString(privateKey),
-                        PublicKey = System.Text.Encoding.Default.GetString(publicKey)
-                    };
-                }
-            }
-            catch (Exception ex)
-            {
-              
-                throw;
+                    PrivateKey = System.Text.Encoding.Default.GetString(privateKey),
+                    PublicKey = System.Text.Encoding.Default.GetString(publicKey)
+                };
             }
 
             return result;
@@ -329,16 +255,8 @@ namespace Alexandria.net.API
         /// <returns>true if signature is correct</returns>
         public bool VerifySignature(string digest, string publicKey, string signedDigest)
         {
-            try
-            {
-                var result = verify_signature(digest, publicKey, signedDigest);
-                return result;
-            }
-            catch (Exception ex)
-            {
-               
-                throw;
-            }
+            var result = verify_signature(digest, publicKey, signedDigest);
+            return result;
         }
 
         /// <summary>
@@ -351,20 +269,11 @@ namespace Alexandria.net.API
         /// <returns>true if signature is correct</returns>
         public string EncryptMemo(string memo, string privateKey, string publicKey, byte[] encryptedMemo)
         {
-            try
-            {
-                var result = encrypt_memo(memo, privateKey, publicKey, encryptedMemo)
-                    ? System.Text.Encoding.Default.GetString(encryptedMemo)
-                    : string.Empty;
+            var result = encrypt_memo(memo, privateKey, publicKey, encryptedMemo)
+                ? System.Text.Encoding.Default.GetString(encryptedMemo)
+                : string.Empty;
 
-                return result;
-            }
-            catch (Exception ex)
-            {
-               
-                throw;
-            }
-
+            return result;
         }
 
         /// <summary>
@@ -377,19 +286,11 @@ namespace Alexandria.net.API
         /// <returns>true if signature is correct</returns>
         public string DecryptMemo(string memo, string privateKey, string publicKey, byte[] decryptedMemo)
         {
-            try
-            {
-                var result = decrypt_memo(memo, privateKey, publicKey, decryptedMemo)
-                    ? System.Text.Encoding.Default.GetString(decryptedMemo)
-                    : string.Empty;
+            var result = decrypt_memo(memo, privateKey, publicKey, decryptedMemo)
+                ? System.Text.Encoding.Default.GetString(decryptedMemo)
+                : string.Empty;
 
-                return result;
-            }
-            catch (Exception ex)
-            {
-               
-                throw;
-            }
+            return result;
         }
         /// <summary>
         /// Encode the memo in base64 format
@@ -399,19 +300,11 @@ namespace Alexandria.net.API
         /// <returns>base64 result or empty string</returns>
         public string EncodeBase64(string input, byte[] output)
         {
-            try
-            {
-                var result = base64_encode(input, output)
-                    ? System.Text.Encoding.Default.GetString(output)
-                    : string.Empty;
+            var result = base64_encode(input, output)
+                ? System.Text.Encoding.Default.GetString(output)
+                : string.Empty;
 
-                return result;
-            }
-            catch (Exception ex)
-            {
-              
-                throw;
-            }
+            return result;
         }
         /// <summary>
         /// Decode the memo in base64 format
@@ -421,18 +314,10 @@ namespace Alexandria.net.API
         /// <returns>Decoded data or empty string</returns>
         public string DecodeBase64(string input, byte[] output)
         {
-            try
-            {
-                var result = base64_decode(input, output)? System.Text.Encoding.Default.GetString(output)
-                    : string.Empty;
+            var result = base64_decode(input, output)? System.Text.Encoding.Default.GetString(output)
+                : string.Empty;
 
-                return result;
-            }
-            catch (Exception ex)
-            {
-               
-                throw;
-            }
+            return result;
         }
 
         /// <summary>
@@ -442,19 +327,10 @@ namespace Alexandria.net.API
         /// <returns>Returns a passphrase</returns>
         public BrainKeySuggestion SuggestBrainKey()
         {
-            try
-            {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                var result = SendRequest(reqname);
-                var contentdata = JsonConvert.DeserializeObject<BrainKeySuggestion>(result);
-                return contentdata;
-
-            }
-            catch (Exception ex)
-            {
-               
-                throw;
-            }
+            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+            var result = SendRequest(reqname);
+            var contentdata = JsonConvert.DeserializeObject<BrainKeySuggestion>(result);
+            return contentdata;
         }
 
         /// <summary>
@@ -464,19 +340,11 @@ namespace Alexandria.net.API
         /// <returns>Returns normalized Passphrase</returns>
         public string NormalizeBrainKey(string brainKey)
         {
-            try
-            {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                var @params = new ArrayList {brainKey};
-                var result = SendRequest(reqname, @params);
-                return result;
-            }
-            catch (Exception ex)
-            {
-               
-                throw;
-            }
+            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, brainKey);
+            //var @params = new ArrayList {brainKey};
+            var result = SendRequest(reqname, @params);
+            return result;
         }
-        
     }
 }

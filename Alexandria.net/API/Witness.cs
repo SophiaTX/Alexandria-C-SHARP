@@ -26,7 +26,7 @@ namespace Alexandria.net.API
         /// <summary>
         /// Witness constructor
         /// </summary>
-        /// <param name="config">the Configuration paramaters for the endpoint and ports</param>
+        /// <param name="config">the Configuration parameters for the endpoint and ports</param>
         public Witness(IConfig config) :
             base(config)
         {
@@ -43,18 +43,10 @@ namespace Alexandria.net.API
         /// <returns>Returns json object combining list of active witnesses</returns>
         public ActiveWitnessResponse GetActiveWitnesses()
         {
-            try
-            {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                var result = SendRequest(reqname);
-                var contentdata = JsonConvert.DeserializeObject<ActiveWitnessResponse>(result);
-                return contentdata;
-            }
-            catch (Exception ex)
-            {
-           
-                throw;
-            }
+            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+            var result = SendRequest(reqname);
+            var contentdata = JsonConvert.DeserializeObject<ActiveWitnessResponse>(result);
+            return contentdata;
         }
 
         /// <summary>
@@ -64,20 +56,12 @@ namespace Alexandria.net.API
         /// <returns>the information about the witness stored In the block chain</returns>
         public GetWitnessResponse GetWitness(string ownerAccount)
         {
-            try
-            {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                var @params = new ArrayList {ownerAccount};
-                var result = SendRequest(reqname, @params);
-                var contentdata = JsonConvert.DeserializeObject<GetWitnessResponse>(result);
-                return contentdata;
-            }
-            catch (Exception ex)
-            {
-            
-                throw;
-            }
-
+            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, ownerAccount);
+            //var @params = new ArrayList {ownerAccount};
+            var result = SendRequest(reqname, @params);
+            var contentdata = JsonConvert.DeserializeObject<GetWitnessResponse>(result);
+            return contentdata;
         }
 
         /// <summary>
@@ -91,22 +75,15 @@ namespace Alexandria.net.API
         /// <returns>Returns a list of witnesss mapping witness names To witness ids</returns>
         public ActiveWitnessResponse ListWitnesses(string lowerbound, uint limit)
         {
-            try
-            {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                var @params = new ArrayList {lowerbound, limit};
-                var result = SendRequest(reqname, @params);
-                var contentdata = JsonConvert.DeserializeObject<ActiveWitnessResponse>(result);
-                return contentdata;
-            }
-            catch (Exception ex)
-            {
-             
-                throw;
-            }
+            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, lowerbound, limit);
+            //var @params = new ArrayList {lowerbound, limit};
+            var result = SendRequest(reqname, @params);
+            var contentdata = JsonConvert.DeserializeObject<ActiveWitnessResponse>(result);
+            return contentdata;
         }
 
-        
+
         /// <summary>
         /// Vote on a comment to be paid Sophia
         /// </summary>
@@ -117,17 +94,10 @@ namespace Alexandria.net.API
         /// <returns>the vote response data</returns>
         public string Vote(string voter, string author, string permlink, short weight)
         {
-            try
-            {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                var @params = new ArrayList {voter, author, permlink, weight};
-                return SendRequest(reqname, @params);
-            }
-            catch (Exception ex)
-            {
-            
-                throw;
-            }
+            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, voter, author, permlink, weight);
+            //var @params = new ArrayList {voter, author, permlink, weight};
+            return SendRequest(reqname, @params);
         }
 
         /// <summary>
@@ -143,21 +113,15 @@ namespace Alexandria.net.API
         public TransactionResponse VoteForWitness(string accountToVoteWith, string witnessToVoteFor, bool approve,
             string privateKey)
         {
-            try
-            {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                var @params = new ArrayList {accountToVoteWith, witnessToVoteFor, approve};
-                var result = SendRequest(reqname, @params);
-                var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
+            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, accountToVoteWith, witnessToVoteFor,
+                approve);
+            //var @params = new ArrayList {accountToVoteWith, witnessToVoteFor, approve};
+            var result = SendRequest(reqname, @params);
+            var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
 
-                var response = StartBroadcasting(contentdata.Result, privateKey);
-                return response;
-            }
-            catch (Exception ex)
-            {
-            
-                throw;
-            }
+            var response = StartBroadcasting(contentdata.Result, privateKey);
+            return response;
         }
 
         /// <summary>
@@ -172,31 +136,27 @@ namespace Alexandria.net.API
         /// <param name="privateKey"></param>
         /// <returns>Returns true if success or false for failed try</returns>
         public TransactionResponse UpdateWitness(string accountName, string descriptionUrl, string blockSigningKey,
-            string accountCreationPrice, int maxBlockSizeLimit, List<List<PrizeFeedQuoteMessage>> priceFeed, string privateKey)
+            string accountCreationPrice, int maxBlockSizeLimit, List<List<PrizeFeedQuoteMessage>> priceFeed,
+            string privateKey)
         {
-            try
-            {             
-                var pros = new ChainProperties
-                {
-                    AccountCreationFee = accountCreationPrice,
-                    MaximumBlockSize = maxBlockSizeLimit,
-                    PriceFeeds = priceFeed
-                };
-
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                var @params = new ArrayList {accountName, descriptionUrl, blockSigningKey, pros};
-                var result = SendRequest(reqname, @params, typeof(PrizeFeedQuoteMessage));
-                var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
-
-                var response = StartBroadcasting(contentdata.Result, privateKey);
-                return response;
-            }
-            catch (Exception ex)
+            var pros = new ChainProperties
             {
-            
-                throw;
-            }
+                AccountCreationFee = accountCreationPrice,
+                MaximumBlockSize = maxBlockSizeLimit,
+                PriceFeeds = priceFeed
+            };
+
+            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, accountName, descriptionUrl,
+                blockSigningKey, pros);
+            //var @params = new ArrayList {accountName, descriptionUrl, blockSigningKey, pros};
+            var result = SendRequest(reqname, @params, typeof(PrizeFeedQuoteMessage));
+            var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
+
+            var response = StartBroadcasting(contentdata.Result, privateKey);
+            return response;
         }
+
         #endregion
     }
 }

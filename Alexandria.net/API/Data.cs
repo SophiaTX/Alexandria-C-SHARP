@@ -141,21 +141,13 @@ namespace Alexandria.net.API
         /// <returns>the transaction response data</returns>
         public async Task<TransactionResponse> SendJsonAsync<T>(T data, JsonData jsonData)
         {
-            try
-            {
-                var jsondata = JsonConvert.SerializeObject(data);
-                jsonData.JsonDoc = jsondata;
-                var customjsonrpc = await MakeCustomJsonOperationAsync(jsonData.Sender, jsonData.Recipients,
-                    jsonData.AppId, jsonData.JsonDoc);
-                if (customjsonrpc == null) return null;
-                var resp = await StartBroadcastingAsync(customjsonrpc.Result, jsonData.PrivateKey);
-                return resp;
-            }
-            catch (Exception ex)
-            {
-               
-                throw;
-            }
+            var jsondata = JsonConvert.SerializeObject(data);
+            jsonData.JsonDoc = jsondata;
+            var customjsonrpc = await MakeCustomJsonOperationAsync(jsonData.Sender, jsonData.Recipients,
+                jsonData.AppId, jsonData.JsonDoc);
+            if (customjsonrpc == null) return null;
+            var resp = await StartBroadcastingAsync(customjsonrpc.Result, jsonData.PrivateKey);
+            return resp;
         }
 
         /// <summary>
@@ -166,19 +158,11 @@ namespace Alexandria.net.API
         /// <returns>the transaction response data</returns>
         public TransactionResponse SendJson(JsonData jsonData)
         {
-            try
-            {
-                var customjsonrpc = MakeCustomJsonOperation(jsonData.Sender, jsonData.Recipients, jsonData.AppId,
-                    jsonData.JsonDoc);
-                if (customjsonrpc == null) return null;
-                var resp = StartBroadcasting(customjsonrpc.Result, jsonData.PrivateKey);
-                return resp;
-            }
-            catch (Exception ex)
-            {
-               
-                throw;
-            }
+            var customjsonrpc = MakeCustomJsonOperation(jsonData.Sender, jsonData.Recipients, jsonData.AppId,
+                jsonData.JsonDoc);
+            if (customjsonrpc == null) return null;
+            var resp = StartBroadcasting(customjsonrpc.Result, jsonData.PrivateKey);
+            return resp;
         }
         
         /// <summary>
@@ -189,19 +173,11 @@ namespace Alexandria.net.API
         /// <returns>the transaction response data</returns>
         public async Task<TransactionResponse> SendJsonAsync(JsonData jsonData)
         {
-            try
-            {
-                var customjsonrpc = await MakeCustomJsonOperationAsync(jsonData.Sender, jsonData.Recipients, jsonData.AppId,
-                    jsonData.JsonDoc);
-                if (customjsonrpc == null) return null;
-                var resp = await StartBroadcastingAsync(customjsonrpc.Result, jsonData.PrivateKey);
-                return resp;
-            }
-            catch (Exception ex)
-            {
-               
-                throw;
-            }
+            var customjsonrpc = await MakeCustomJsonOperationAsync(jsonData.Sender, jsonData.Recipients, jsonData.AppId,
+                jsonData.JsonDoc);
+            if (customjsonrpc == null) return null;
+            var resp = await StartBroadcastingAsync(customjsonrpc.Result, jsonData.PrivateKey);
+            return resp;
         }
 
         /// <summary>
@@ -211,19 +187,11 @@ namespace Alexandria.net.API
         /// <returns></returns>
         public TransactionResponse SendBinary(BinaryData binaryData)
         {
-            try
-            {
-                var customjsonrpc = MakeCustomBinaryOperation(binaryData.AppId, binaryData.Sender, binaryData.Recipients,
-                    binaryData.BinaryDoc);
-                if (customjsonrpc == null) return null;
-                var resp = StartBroadcasting(customjsonrpc.Result,binaryData.PrivateKey);
-                return resp;
-            }
-            catch (Exception ex)
-            {
-               
-                throw;
-            }
+            var customjsonrpc = MakeCustomBinaryOperation(binaryData.AppId, binaryData.Sender, binaryData.Recipients,
+                binaryData.BinaryDoc);
+            if (customjsonrpc == null) return null;
+            var resp = StartBroadcasting(customjsonrpc.Result,binaryData.PrivateKey);
+            return resp;
         }
 
         /// <summary>
@@ -233,19 +201,11 @@ namespace Alexandria.net.API
         /// <returns></returns>
         public async Task<TransactionResponse> SendBinaryAsync(BinaryData binaryData)
         {
-            try
-            {
-                var customjsonrpc = await MakeCustomBinaryOperationAsync(binaryData.AppId, binaryData.Sender, binaryData.Recipients,
-                    binaryData.BinaryDoc);
-                if (customjsonrpc == null) return null;
-                var resp = await StartBroadcastingAsync(customjsonrpc.Result, binaryData.PrivateKey);
-                return resp;
-            }
-            catch (Exception ex)
-            {
-               
-                throw;
-            }
+            var customjsonrpc = await MakeCustomBinaryOperationAsync(binaryData.AppId, binaryData.Sender, binaryData.Recipients,
+                binaryData.BinaryDoc);
+            if (customjsonrpc == null) return null;
+            var resp = await StartBroadcastingAsync(customjsonrpc.Result, binaryData.PrivateKey);
+            return resp;
         }
 
         /// <summary>
@@ -386,35 +346,23 @@ namespace Alexandria.net.API
         private CustomJsonResponse MakeCustomJsonOperation(string sender, List<string> recipients, uint appId,
             string document)
         {
-            try
-            {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                var @params = new ArrayList {appId, sender, recipients, document};
-                var response = SendRequest(reqname, @params);
-                return JsonConvert.DeserializeObject<CustomJsonResponse>(response);
-            }
-            catch (Exception ex)
-            {
-               
-                throw;
-            }
+            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, appId, sender, recipients,
+                document);
+            //var @params = new ArrayList {appId, sender, recipients, document};
+            var response = SendRequest(reqname, @params);
+            return JsonConvert.DeserializeObject<CustomJsonResponse>(response);
         }
 
         private async Task<CustomJsonResponse> MakeCustomJsonOperationAsync(string sender, List<string> recipients,
             uint appId, string document)
         {
-            try
-            {
-                var reqname = CSharpToCpp.GetValue("MakeCustomJsonOperationAsync");
-                var @params = new ArrayList {appId, sender, recipients, document};
-                var response = await SendRequestAsync(reqname, @params);
-                return JsonConvert.DeserializeObject<CustomJsonResponse>(response);
-            }
-            catch (Exception ex)
-            {
-               
-                throw;
-            }
+            var reqname = CSharpToCpp.GetValue("MakeCustomJsonOperationAsync");
+            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, appId, sender, recipients,
+                document);
+//                var @params = new ArrayList {appId, sender, recipients, document};
+            var response = await SendRequestAsync(reqname, @params);
+            return JsonConvert.DeserializeObject<CustomJsonResponse>(response);
         }
 
         /// <summary>
@@ -425,21 +373,15 @@ namespace Alexandria.net.API
         /// <param name="appId">the application id</param>
         /// <param name="document">string document</param>
         /// <returns>the account response data </returns>
-        private AccountResponse MakeCustomBinaryOperation(ulong appId, string sender, List<string> recipients, 
+        private AccountResponse MakeCustomBinaryOperation(ulong appId, string sender, List<string> recipients,
             string document)
         {
-            try
-            {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                var @params = new ArrayList {appId, sender, recipients, document};
-                var response = SendRequest(reqname, @params);
-                return JsonConvert.DeserializeObject<AccountResponse>(response);
-            }
-            catch (Exception ex)
-            {
-               
-                throw;
-            }
+            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, appId, sender, recipients,
+                document);
+            //var @params = new ArrayList {appId, sender, recipients, document};
+            var response = SendRequest(reqname, @params);
+            return JsonConvert.DeserializeObject<AccountResponse>(response);
         }
 
         /// <summary>
@@ -453,19 +395,13 @@ namespace Alexandria.net.API
         private async Task<AccountResponse> MakeCustomBinaryOperationAsync(ulong appId, string sender,
             List<string> recipients, string document)
         {
-            try
-            {
-                var reqname = CSharpToCpp.GetValue("MakeCustomBinaryOperation");
-                var @params = new ArrayList {appId, sender, recipients, document};
-                var response = await SendRequestAsync(reqname, @params);
-               
-                return JsonConvert.DeserializeObject<AccountResponse>(response);
-            }
-            catch (Exception ex)
-            {
-                
-                throw;
-            }
+            var reqname = CSharpToCpp.GetValue("MakeCustomBinaryOperation");
+            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, appId, sender, recipients,
+                document);
+            //var @params = new ArrayList {appId, sender, recipients, document};
+            var response = await SendRequestAsync(reqname, @params);
+
+            return JsonConvert.DeserializeObject<AccountResponse>(response);
         }
 
 
@@ -480,18 +416,12 @@ namespace Alexandria.net.API
         private AccountResponse MakeCustomBinaryBase58Operation(string sender, List<string> recipients, ulong appId,
             string document)
         {
-            try
-            {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                var @params = new ArrayList {sender, recipients, appId, document};
-                var response = SendRequest(reqname, @params);
-                return JsonConvert.DeserializeObject<AccountResponse>(response);
-            }
-            catch (Exception ex)
-            {
-               
-                throw;
-            }
+            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, sender, recipients, appId,
+                document);
+            //var @params = new ArrayList {sender, recipients, appId, document};
+            var response = SendRequest(reqname, @params);
+            return JsonConvert.DeserializeObject<AccountResponse>(response);
         }
 
         /// <summary>
@@ -504,21 +434,15 @@ namespace Alexandria.net.API
         /// <param name="start"></param>
         /// <param name="count"></param>
         /// <returns></returns>
-        private ReceivedDocumentResponse GetReceivedDocuments(ulong appId, 
-            string account,SearchType searchType, DateTime start, uint count)
+        private ReceivedDocumentResponse GetReceivedDocuments(ulong appId,
+            string account, SearchType searchType, DateTime start, uint count)
         {
-            try
-            {
-                var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-                var @params = new ArrayList {appId, account,searchType.GetStringValue(), start, count};
-                var result = SendRequest(reqname, @params);
-                return JsonConvert.DeserializeObject<ReceivedDocumentResponse>(result);
-            }
-            catch (Exception ex)
-            {
-               
-                throw;
-            }
+            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, appId, account,
+                searchType.GetStringValue(), start, count);
+            //var @params = new ArrayList {appId, account,searchType.GetStringValue(), start, count};
+            var result = SendRequest(reqname, @params);
+            return JsonConvert.DeserializeObject<ReceivedDocumentResponse>(result);
         }
 
         /// <summary>
@@ -534,18 +458,12 @@ namespace Alexandria.net.API
         private async Task<ReceivedDocumentResponse> GetReceivedDocumentsAsync(ulong appId, string account,
             SearchType searchType, DateTime start, uint count)
         {
-            try
-            {
-                var reqname = CSharpToCpp.GetValue("GetReceivedDocuments");
-                var @params = new ArrayList {appId, account, searchType.GetStringValue(), start, count};
-                var result = await SendRequestAsync(reqname, @params);
-                return JsonConvert.DeserializeObject<ReceivedDocumentResponse>(result);
-            }
-            catch (Exception ex)
-            {
-               
-                throw;
-            }
+            var reqname = CSharpToCpp.GetValue("GetReceivedDocuments");
+            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, appId, account,
+                searchType.GetStringValue(), start, count);
+            //var @params = new ArrayList {appId, account, searchType.GetStringValue(), start, count};
+            var result = await SendRequestAsync(reqname, @params);
+            return JsonConvert.DeserializeObject<ReceivedDocumentResponse>(result);
         }
 
         #endregion

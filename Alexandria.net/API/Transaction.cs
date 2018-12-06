@@ -44,18 +44,10 @@ namespace Alexandria.net.API
 		/// <returns>Returns compile time info And client And dependencies versions</returns>
 		public AboutResponse About()
 		{
-			try
-			{
-				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-				var result= SendRequest(reqname);
-				var contentdata = JsonConvert.DeserializeObject<AboutResponse>(result);
-				return contentdata;
-			}
-			catch(Exception ex)
-			{
-			
-				throw ;
-			}
+			var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+			var result= SendRequest(reqname);
+			var contentdata = JsonConvert.DeserializeObject<AboutResponse>(result);
+			return contentdata;
 		}
 			
 		/// <summary>
@@ -64,18 +56,10 @@ namespace Alexandria.net.API
 		/// <returns>Returns compile time info And client And dependencies versions</returns>
 		public async Task<AboutResponse> AboutAsync()
 		{
-			try
-			{
-				var reqname = CSharpToCpp.GetValue("About");
-				var result= await SendRequestAsync(reqname);
-				var contentdata = JsonConvert.DeserializeObject<AboutResponse>(result);
-				return contentdata;
-			}
-			catch(Exception ex)
-			{
-			
-				throw ;
-			}
+			var reqname = CSharpToCpp.GetValue("About");
+			var result= await SendRequestAsync(reqname);
+			var contentdata = JsonConvert.DeserializeObject<AboutResponse>(result);
+			return contentdata;
 		}
 
 		/// <summary>
@@ -85,19 +69,12 @@ namespace Alexandria.net.API
 		/// <returns>Public block data On the blockchain</returns>
 		public BlockResponse GetBlock(uint num)
 		{
-			try
-			{
-				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-				var @params = new ArrayList {num};
-				var result =  SendRequest(reqname, @params);
-				var contentdata = JsonConvert.DeserializeObject<BlockResponse>(result);
-				return contentdata;
-			}
-			catch(Exception ex)
-			{
-			
-				throw ;
-			}
+			var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+			var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, num);
+			//var @params = new ArrayList {num};
+			var result =  SendRequest(reqname, @params);
+			var contentdata = JsonConvert.DeserializeObject<BlockResponse>(result);
+			return contentdata;
 		}
 
 		/// <summary>
@@ -107,19 +84,12 @@ namespace Alexandria.net.API
 		/// <returns>Returns object with Feed details</returns>
 		public FeedHistoryResponse GetFeedHistory(string symbol)
 		{
-			try
-			{
-				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-				var @params = new ArrayList {symbol};
-				var result= SendRequest(reqname, @params);
-				var contentdata = JsonConvert.DeserializeObject<FeedHistoryResponse>(result);
-				return contentdata;
-			}
-			catch(Exception ex)
-			{
-			
-				throw ;
-			}
+			var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+			var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, symbol);
+			//var @params = new ArrayList {symbol};
+			var result= SendRequest(reqname, @params);
+			var contentdata = JsonConvert.DeserializeObject<FeedHistoryResponse>(result);
+			return contentdata;
 		}
 
 		/// <summary>
@@ -129,19 +99,12 @@ namespace Alexandria.net.API
 		/// <returns>Returns object with transaction details</returns>
 		public TransactionResponse GetTransaction(string trxId)
 		{
-			try
-			{
-				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-				var @params = new ArrayList {trxId};
-				var result= SendRequest(reqname, @params);
-				var contentdata = JsonConvert.DeserializeObject<TransactionResponse>(result);
-				return contentdata;
-			}
-			catch(Exception ex)
-			{
-			
-				throw ;
-			}		
+			var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+			var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, trxId);
+			//var @params = new ArrayList {trxId};
+			var result= SendRequest(reqname, @params);
+			var contentdata = JsonConvert.DeserializeObject<TransactionResponse>(result);
+			return contentdata;
 		}
 
 		/// <summary>
@@ -151,19 +114,12 @@ namespace Alexandria.net.API
 		/// <returns>Returns Object with Transaction id and other details</returns>
 		public TransactionResponse BroadcastTransaction(SignedTransactionResponseData signedTx)
 		{
-			try
-			{
-				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-				var @params = new ArrayList {signedTx};
-				var result= SendRequest(reqname, @params);
-				var contentdata = JsonConvert.DeserializeObject<TransactionResponse>(result);
-				return contentdata;
-			}
-			catch(Exception ex)
-			{
-			
-				throw;
-			}		
+			var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+			var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, signedTx);
+			//var @params = new ArrayList {signedTx};
+			var result= SendRequest(reqname, @params);
+			var contentdata = JsonConvert.DeserializeObject<TransactionResponse>(result);
+			return contentdata;
 		}
 		
 		/// <summary>
@@ -173,19 +129,12 @@ namespace Alexandria.net.API
 		/// <returns>Returns Object with Transaction id and other details</returns>
 		public async Task<TransactionResponse> BroadcastTransactionAsync(SignedTransactionResponseData signedTx)
 		{
-			try
-			{
-				var reqname = CSharpToCpp.GetValue("BroadcastTransaction");
-				var @params = new ArrayList {signedTx};
-				var result= await SendRequestAsync(reqname, @params);
-				var contentdata = JsonConvert.DeserializeObject<TransactionResponse>(result);
-				return contentdata;
-			}
-			catch(Exception ex)
-			{
-			
-				throw;
-			}		
+			var reqname = CSharpToCpp.GetValue("BroadcastTransaction");
+			var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, signedTx);
+			//var @params = new ArrayList {signedTx};
+			var result= await SendRequestAsync(reqname, @params);
+			var contentdata = JsonConvert.DeserializeObject<TransactionResponse>(result);
+			return contentdata;
 		}
 
 		
@@ -196,19 +145,12 @@ namespace Alexandria.net.API
 		/// <returns>Returns Object with block number and other trnasaction details</returns>
 		public TransactionResponse CreateSimpleTransaction<T>(T operation)
 		{
-			try
-			{
-				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-				var @params = new ArrayList {operation};
-				var result= SendRequest(reqname, @params);
-				var contentdata = JsonConvert.DeserializeObject<TransactionResponse>(result);
-				return contentdata;
-			}
-			catch(Exception ex)
-			{
-			
-				throw ;
-			}
+			var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+			var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, operation);
+			//var @params = new ArrayList {operation};
+			var result= SendRequest(reqname, @params);
+			var contentdata = JsonConvert.DeserializeObject<TransactionResponse>(result);
+			return contentdata;
 		}
 		
 		/// <summary>
@@ -218,19 +160,12 @@ namespace Alexandria.net.API
 		/// <returns>Returns Object with block number and other trnasaction details</returns>
 		public async Task<TransactionResponse> CreateSimpleTransactionAsync<T>(T operation)
 		{
-			try
-			{
-				var reqname = CSharpToCpp.GetValue("CreateSimpleTransaction");
-				var @params = new ArrayList {operation};
-				var result= await SendRequestAsync(reqname, @params);
-				var contentdata = JsonConvert.DeserializeObject<TransactionResponse>(result);
-				return contentdata;
-			}
-			catch(Exception ex)
-			{
-				
-				throw ;
-			}
+			var reqname = CSharpToCpp.GetValue("CreateSimpleTransaction");
+			var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, operation);
+			//var @params = new ArrayList {operation};
+			var result= await SendRequestAsync(reqname, @params);
+			var contentdata = JsonConvert.DeserializeObject<TransactionResponse>(result);
+			return contentdata;
 		}
 		
 		/// <summary>
@@ -240,19 +175,12 @@ namespace Alexandria.net.API
 		/// <returns>the transactio nresponbse from the call</returns>
 		public TransactionResponse CreateTransaction(List<AccountResponse> operation)
 		{
-			try
-			{
-				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-				var @params = new ArrayList {operation};
-				var result= SendRequest(reqname, @params);
-				var contentdata = JsonConvert.DeserializeObject<TransactionResponse>(result);
-				return contentdata;
-			}
-			catch(Exception ex)
-			{
-				
-				throw ;
-			}
+			var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+			var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, operation);
+			//var @params = new ArrayList {operation};
+			var result= SendRequest(reqname, @params);
+			var contentdata = JsonConvert.DeserializeObject<TransactionResponse>(result);
+			return contentdata;
 		}
 		
 
@@ -264,19 +192,12 @@ namespace Alexandria.net.API
 		/// <returns>Returns sequence of operations included/generated in a specified block</returns>
 		public GetOperationsResponse GetOpsInBlock(uint blockNumber,bool onlyVirtual)
 		{
-			try
-			{
-				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-				var @params = new ArrayList {blockNumber,onlyVirtual};
-				var result =  SendRequest(reqname, @params);
-				var contentdata = JsonConvert.DeserializeObject<GetOperationsResponse>(result);
-				return contentdata;
-			}
-			catch (Exception ex)
-			{
-			
-				throw;
-			}
+			var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+			var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, blockNumber,onlyVirtual);
+			//var @params = new ArrayList {blockNumber,onlyVirtual};
+			var result =  SendRequest(reqname, @params);
+			var contentdata = JsonConvert.DeserializeObject<GetOperationsResponse>(result);
+			return contentdata;
 		}
 
 		/// <summary>
@@ -286,18 +207,10 @@ namespace Alexandria.net.API
 		/// <returns>Returns a list of all commands supported by the wallet API</returns>
 		public HelpResponse Help()
 		{
-			try
-			{
-				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-				var result= SendRequest(reqname);
-				var contentdata = JsonConvert.DeserializeObject<HelpResponse>(result);
-				return contentdata;
-			}
-			catch(Exception ex)
-			{
-			
-				throw ;
-			}
+			var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+			var result= SendRequest(reqname);
+			var contentdata = JsonConvert.DeserializeObject<HelpResponse>(result);
+			return contentdata;
 		}
 		
 		/// <summary>
@@ -306,18 +219,10 @@ namespace Alexandria.net.API
 		/// <returns>Returns info about the current state of the blockchain</returns>
 		public InfoResponse Info()
 		{
-			try
-			{
-				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-				var result= SendRequest(reqname);
-				var contentdata = JsonConvert.DeserializeObject<InfoResponse>(result);
-				return contentdata;
-			}
-			catch(Exception ex)
-			{
-			
-				throw ;
-			}
+			var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+			var result= SendRequest(reqname);
+			var contentdata = JsonConvert.DeserializeObject<InfoResponse>(result);
+			return contentdata;
 		}
 		
 		/// <summary>
@@ -327,19 +232,12 @@ namespace Alexandria.net.API
 		/// <returns>object</returns>
 		public SerializedTransaction SerializeTransaction(SignedTransactionResponse signedTx)
 		{
-			try
-			{
-				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-				var @params = new ArrayList {signedTx};
-				var result= SendRequest(reqname, @params);
-				var contentdata = JsonConvert.DeserializeObject<SerializedTransaction>(result);
-				return contentdata;
-			}
-			catch(Exception ex)
-			{
-			
-				throw;
-			}
+			var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+			var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, signedTx);
+			//var @params = new ArrayList {signedTx};
+			var result= SendRequest(reqname, @params);
+			var contentdata = JsonConvert.DeserializeObject<SerializedTransaction>(result);
+			return contentdata;
 		}
 		/// <summary>
 		/// Calculate the possible fees deduction for the selected operation
@@ -350,19 +248,12 @@ namespace Alexandria.net.API
 		/// <returns>Calculated fees for the transaction</returns>
 		public FeesResponse CalculateFee<T>(T operation, string symbol)
 		{
-			try
-			{
-				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-				var @params = new ArrayList {operation,symbol};
-				var result= SendRequest(reqname, @params);
-				var contentdata = JsonConvert.DeserializeObject<FeesResponse>(result);
-				return contentdata;
-			}
-			catch(Exception ex)
-			{
-			
-				throw ;
-			}
+			var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+			var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, operation,symbol);
+			//var @params = new ArrayList {operation,symbol};
+			var result= SendRequest(reqname, @params);
+			var contentdata = JsonConvert.DeserializeObject<FeesResponse>(result);
+			return contentdata;
 		}
 		/// <summary>
 		/// Add the calculated fees to the transaction
@@ -373,19 +264,12 @@ namespace Alexandria.net.API
 		/// <returns>object</returns>
 		public AccountResponse AddFee<T>(T operation, string fee)
 		{
-			try
-			{
-				var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-				var @params = new ArrayList {operation,fee};
-				var result= SendRequest(reqname, @params);
-				var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
-				return contentdata;
-			}
-			catch(Exception ex)
-			{
-			
-				throw ;
-			}
+			var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
+			var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, operation,fee);
+			//var @params = new ArrayList {operation,fee};
+			var result= SendRequest(reqname, @params);
+			var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
+			return contentdata;
 		}
 		/// <summary>
 		///  Sign and Send the transaction 
@@ -398,22 +282,13 @@ namespace Alexandria.net.API
         {           
             var key = new Key(Config);
             TransactionResponse finalResponse;
-            try
-            {                           
-                var transaction = JsonConvert.SerializeObject(contentdata);                
-                var digest = key.GetTransactionDigest(transaction,ChainId,new byte[64]);
-                var signature = key.SignDigest(digest, privateKey, new byte[130]);
-                var response = key.AddSignature(transaction, signature,new byte[transaction.Length + 200]);
-                finalResponse = BroadcastTransaction(response);          
-            }
-            catch (Exception ex)
-            {
-                
-            
-                throw;
-            }
+	        var transaction = JsonConvert.SerializeObject(contentdata);                
+	        var digest = key.GetTransactionDigest(transaction,ChainId,new byte[64]);
+	        var signature = key.SignDigest(digest, privateKey, new byte[130]);
+	        var response = key.AddSignature(transaction, signature,new byte[transaction.Length + 200]);
+	        finalResponse = BroadcastTransaction(response);
 
-            return finalResponse;
+	        return finalResponse;
         }
 		
 		/// <summary>
@@ -424,22 +299,10 @@ namespace Alexandria.net.API
 		/// <param name="args"></param>
 		/// <returns></returns>
 		public DaemonResponse CallPlugin(string pluginName, string methodName, object args)
-		{           
-	
-			try
-			{                           
-				var result= SendRequestToDaemon(pluginName+'.'+methodName, args);
-				var contentdata = JsonConvert.DeserializeObject<DaemonResponse>(result);
-				return contentdata;  
-			}
-			catch (Exception ex)
-			{
-                
-			
-				throw;
-			}
-
-			
+		{
+			var result= SendRequestToDaemon(pluginName+'.'+methodName, args);
+			var contentdata = JsonConvert.DeserializeObject<DaemonResponse>(result);
+			return contentdata;
 		}
 		#endregion
 	}
