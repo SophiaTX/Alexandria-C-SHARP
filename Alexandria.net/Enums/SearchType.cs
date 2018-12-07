@@ -10,12 +10,14 @@ namespace Alexandria.net.Enums
         /// <summary>
         /// Search by Sender
         /// </summary>
-        [StringValue("by_sender")] BySender = 0,
+        [StringValue("by_sender")] 
+        BySender=0,
 
         /// <summary>
         /// Search by Recipient
         /// </summary>
-        [StringValue("by_recipient")] ByRecipient = 1,
+        [StringValue("by_recipient")] 
+        ByRecipient = 1,
 
         /// <summary>
         /// Search by Sender DateTime (UTC)

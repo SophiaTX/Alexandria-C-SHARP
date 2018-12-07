@@ -68,9 +68,11 @@ namespace Alexandria.net.Communication
         /// <param name="wallet">true if configuraing for the wallet</param>
         public RpcConnection(IConfig config, bool wallet = true)
         {
+            var hch = new HttpClientHandler {Proxy = null, UseProxy = false};
+            
             Config = config;
             _uri = $"http://{Config.Hostname}:{(wallet ? Config.WalletPort : config.DaemonPort)}{config.Api}";
-            _client = new HttpClient();
+            _client = new HttpClient(hch);
             _jsonRpc = Config.Version;
 
             var assemblyname = Assembly.GetExecutingAssembly().GetName().Name;
@@ -305,7 +307,7 @@ namespace Alexandria.net.Communication
                     jsonrpc = _jsonRpc,
                     id = GetRequestId(),
                     method = methodname,
-                    @params = ""//@params ?? new object()
+                    @params = @params ?? new object()
                 };
 
                 var json = JsonConvert.SerializeObject(request).GetJsonString(type);

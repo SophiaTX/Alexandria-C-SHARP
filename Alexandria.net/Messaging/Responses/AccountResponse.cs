@@ -3,11 +3,16 @@ using Newtonsoft.Json;
 
 namespace Alexandria.net.Messaging.Responses
 {
+    public class AccountResponseResult
+    {
+        public List<object> op { get; set; }
+    }
     /// <summary>
     /// the account response 
     /// </summary>
     public class AccountResponse
     {
+        public string jsonrpc { get; set; }
         /// <summary>
         /// the transaction id
         /// </summary>
@@ -17,6 +22,6 @@ namespace Alexandria.net.Messaging.Responses
         /// the account response data
         /// </summary>
         [JsonProperty("result")]
-        public List<object> Result { get; set; }
+        public AccountResponseResult Result { get; set; }
     }
 }

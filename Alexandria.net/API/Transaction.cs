@@ -45,7 +45,7 @@ namespace Alexandria.net.API
 		public AboutResponse About()
 		{
 			var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-			var result= SendRequest(reqname);
+			var result= SendRequestToDaemon(reqname,new object());
 			var contentdata = JsonConvert.DeserializeObject<AboutResponse>(result);
 			return contentdata;
 		}
@@ -70,9 +70,9 @@ namespace Alexandria.net.API
 		public BlockResponse GetBlock(uint num)
 		{
 			var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-			var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, num);
-			//var @params = new ArrayList {num};
-			var result =  SendRequest(reqname, @params);
+			//var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, num);
+			var @params = new ArrayList {num};
+			var result =  SendRequestToDaemon(reqname, @params);
 			var contentdata = JsonConvert.DeserializeObject<BlockResponse>(result);
 			return contentdata;
 		}
@@ -87,7 +87,7 @@ namespace Alexandria.net.API
 			var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
 			var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, symbol);
 			//var @params = new ArrayList {symbol};
-			var result= SendRequest(reqname, @params);
+			var result= SendRequestToDaemon(reqname, @params);
 			var contentdata = JsonConvert.DeserializeObject<FeedHistoryResponse>(result);
 			return contentdata;
 		}
@@ -102,7 +102,7 @@ namespace Alexandria.net.API
 			var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
 			var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, trxId);
 			//var @params = new ArrayList {trxId};
-			var result= SendRequest(reqname, @params);
+			var result= SendRequestToDaemon(reqname, @params);
 			var contentdata = JsonConvert.DeserializeObject<TransactionResponse>(result);
 			return contentdata;
 		}
@@ -115,9 +115,9 @@ namespace Alexandria.net.API
 		public TransactionResponse BroadcastTransaction(SignedTransactionResponseData signedTx)
 		{
 			var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-			var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, signedTx);
-			//var @params = new ArrayList {signedTx};
-			var result= SendRequest(reqname, @params);
+			//var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, signedTx);
+			var @params = signedTx;
+			var result= SendRequestToDaemon(reqname, @params);
 			var contentdata = JsonConvert.DeserializeObject<TransactionResponse>(result);
 			return contentdata;
 		}
@@ -146,9 +146,9 @@ namespace Alexandria.net.API
 		public TransactionResponse CreateSimpleTransaction<T>(T operation)
 		{
 			var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-			var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, operation);
-			//var @params = new ArrayList {operation};
-			var result= SendRequest(reqname, @params);
+			//var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, operation);
+			var @params = operation;
+			var result= SendRequestToDaemon(reqname, @params);
 			var contentdata = JsonConvert.DeserializeObject<TransactionResponse>(result);
 			return contentdata;
 		}
@@ -178,7 +178,7 @@ namespace Alexandria.net.API
 			var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
 			var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, operation);
 			//var @params = new ArrayList {operation};
-			var result= SendRequest(reqname, @params);
+			var result= SendRequestToDaemon(reqname, @params);
 			var contentdata = JsonConvert.DeserializeObject<TransactionResponse>(result);
 			return contentdata;
 		}
@@ -195,7 +195,7 @@ namespace Alexandria.net.API
 			var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
 			var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, blockNumber,onlyVirtual);
 			//var @params = new ArrayList {blockNumber,onlyVirtual};
-			var result =  SendRequest(reqname, @params);
+			var result =  SendRequestToDaemon(reqname, @params);
 			var contentdata = JsonConvert.DeserializeObject<GetOperationsResponse>(result);
 			return contentdata;
 		}
@@ -208,7 +208,7 @@ namespace Alexandria.net.API
 		public HelpResponse Help()
 		{
 			var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-			var result= SendRequest(reqname);
+			var result= SendRequestToDaemon(reqname,new object());
 			var contentdata = JsonConvert.DeserializeObject<HelpResponse>(result);
 			return contentdata;
 		}
@@ -220,12 +220,12 @@ namespace Alexandria.net.API
 		public InfoResponse Info()
 		{
 			var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-			var result= SendRequest(reqname);
+			var result= SendRequestToDaemon(reqname,new object());
 			var contentdata = JsonConvert.DeserializeObject<InfoResponse>(result);
 			return contentdata;
 		}
 		
-		/// <summary>
+		/// <summary>w
 		/// Serialize currently generated transaction on to the blockchain with other transactions
 		/// </summary>
 		/// <param name="signedTx">Already signed transaction</param>
@@ -235,7 +235,7 @@ namespace Alexandria.net.API
 			var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
 			var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, signedTx);
 			//var @params = new ArrayList {signedTx};
-			var result= SendRequest(reqname, @params);
+			var result= SendRequestToDaemon(reqname, @params);
 			var contentdata = JsonConvert.DeserializeObject<SerializedTransaction>(result);
 			return contentdata;
 		}
@@ -251,7 +251,7 @@ namespace Alexandria.net.API
 			var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
 			var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, operation,symbol);
 			//var @params = new ArrayList {operation,symbol};
-			var result= SendRequest(reqname, @params);
+			var result= SendRequestToDaemon(reqname, @params);
 			var contentdata = JsonConvert.DeserializeObject<FeesResponse>(result);
 			return contentdata;
 		}
@@ -267,7 +267,7 @@ namespace Alexandria.net.API
 			var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
 			var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, operation,fee);
 			//var @params = new ArrayList {operation,fee};
-			var result= SendRequest(reqname, @params);
+			var result= SendRequestToDaemon(reqname, @params);
 			var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
 			return contentdata;
 		}

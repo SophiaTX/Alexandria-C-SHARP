@@ -3,11 +3,24 @@ using Newtonsoft.Json;
 
 namespace Alexandria.net.Messaging.Responses
 {
+    public class ActiveWitnessResponseResult
+    
+    {   /// <summary>
+        /// List of active witnesses
+        /// </summary>
+        [JsonProperty("active_witnesses")]
+        public List<string> ActiveWitnesses { get; set; }
+    }
     /// <summary>
     /// The active witness response data
     /// </summary>
     public class ActiveWitnessResponse
     {
+        /// <summary>
+        /// JsonRpc version
+        /// </summary>
+        [JsonProperty("jsonrpc")]
+        public string JsonRpc { get; set; }
         /// <summary>
         /// the transaction id
         /// </summary>
@@ -17,6 +30,6 @@ namespace Alexandria.net.Messaging.Responses
         /// the active witness response information
         /// </summary>
         [JsonProperty("result")]
-        public List<string> Result { get; set; }
+        public ActiveWitnessResponseResult Result { get; set; }
     }
 }

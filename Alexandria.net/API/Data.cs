@@ -444,7 +444,7 @@ namespace Alexandria.net.API
             {
                 app_id = appId,
                 account_name = account,
-                search_type = searchType,
+                search_type = searchType.GetStringValue(),
                 count = count,
                 start = start                
             };

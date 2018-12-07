@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using Alexandria.net.Communication;
+using Alexandria.net.Input;
 using Alexandria.net.Logging;
 using Alexandria.net.Messaging;
 using Alexandria.net.Messaging.Receiver;
@@ -39,14 +40,13 @@ namespace Alexandria.net.API
         #region Methods
 
         /// <summary>
-        /// Returns the list of witnesses producing blocks in the current round (21 Blocks)
+        /// Returns the list of witnesses przoducing blocks in the current round (21 Blocks)
         /// </summary>
         /// <returns>Returns json object combining list of active witnesses</returns>
         public ActiveWitnessResponse GetActiveWitnesses()
         {
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = new object();
-            var result = SendRequestToDaemon(reqname,@params);
+            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);        
+            var result = SendRequestToDaemon(reqname,new object());
             var contentdata = JsonConvert.DeserializeObject<ActiveWitnessResponse>(result);
             return contentdata;
         }
@@ -59,8 +59,11 @@ namespace Alexandria.net.API
         public GetWitnessResponse GetWitness(string ownerAccount)
         {
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, ownerAccount);
-            //var @params = new ArrayList {ownerAccount};
+            //var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, ownerAccount);
+            var @params = new GetWitnessInput
+            {
+                owner_account = ownerAccount
+            };
             var result = SendRequestToDaemon(reqname, @params);
             var contentdata = JsonConvert.DeserializeObject<GetWitnessResponse>(result);
             return contentdata;
@@ -78,8 +81,14 @@ namespace Alexandria.net.API
         public ActiveWitnessResponse ListWitnesses(string lowerbound, uint limit)
         {
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, lowerbound, limit);
-            //var @params = new ArrayList {lowerbound, limit};
+            
+            var @params = new ListWitnessesInput()
+            {
+                start = lowerbound, 
+                limit = limit
+             
+            };
+            
             var result = SendRequestToDaemon(reqname, @params);
             var contentdata = JsonConvert.DeserializeObject<ActiveWitnessResponse>(result);
             return contentdata;
@@ -116,9 +125,13 @@ namespace Alexandria.net.API
             string privateKey)
         {
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, accountToVoteWith, witnessToVoteFor,
-                approve);
-            //var @params = new ArrayList {accountToVoteWith, witnessToVoteFor, approve};
+            //var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, accountToVoteWith, witnessToVoteFor, approve);               
+            var @params = new VoteForWitness()
+            {
+                approve = approve,
+                voting_account = accountToVoteWith,
+                witness_to_vote_for = witnessToVoteFor
+            };
             var result = SendRequestToDaemon(reqname, @params);
             var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
 
