@@ -21,6 +21,7 @@ namespace Alexandria.net.Mapping
                 case "GetActiveAuthority":
                 case "GetMemoKey":
                 case "GetAccountBalance":
+                case "GetReceivedDocuments":
                 case "AccountExists":
                 case "About":
                     obj = CreateInstance<IParams>(typeof(AccountParams)).GetDetails(list);

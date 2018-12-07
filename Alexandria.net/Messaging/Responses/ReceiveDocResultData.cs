@@ -5,8 +5,9 @@ namespace Alexandria.net.Messaging.Responses
 {
     public class ReceiveDocResultData
     {
+        public int id { get; set; }
         public string sender { get; set; }
-        public List<string> recipients { get; set; }
+        public List<object> recipients { get; set; }
         public int app_id { get; set; }
         public string data { get; set; }
         public DateTime received { get; set; }

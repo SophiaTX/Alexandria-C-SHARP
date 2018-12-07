@@ -9,6 +9,7 @@ using Alexandria.net.Communication;
 using Alexandria.net.Enums;
 using Alexandria.net.Events;
 using Alexandria.net.Extensions;
+using Alexandria.net.Input;
 using Alexandria.net.Messaging.Receiver;
 using Alexandria.net.Messaging.Responses;
 using Alexandria.net.Settings;
@@ -326,7 +327,7 @@ namespace Alexandria.net.API
         private async void CheckIfDataReceived(object state)
         {
             var response = await ReceiveAsync( _appId, _accountName, _searchType, _startBy, _count);
-            if (response.Result[0] != null)
+            if (response.Result != null)
             {
                 OnDataReceivedBlockChainEvent?.Invoke(this, new DataReceivedEventArgs(response));
             }
@@ -438,10 +439,16 @@ namespace Alexandria.net.API
             string account, SearchType searchType, DateTime start, uint count)
         {
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, appId, account,
-                searchType.GetStringValue(), start, count);
-            //var @params = new ArrayList {appId, account,searchType.GetStringValue(), start, count};
-            var result = SendRequest(reqname, @params);
+            //var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, list);
+            var @params = new ListDocsInput()
+            {
+                app_id = appId,
+                account_name = account,
+                search_type = searchType,
+                count = count,
+                start = start                
+            };
+            var result = SendRequestToDaemon(reqname, @params);
             return JsonConvert.DeserializeObject<ReceivedDocumentResponse>(result);
         }
 

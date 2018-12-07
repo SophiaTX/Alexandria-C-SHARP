@@ -5,7 +5,7 @@
     /// </summary>
     public class CSharpToCpp
     {
-        private const string  Vote = "vote";
+        private const string Vote = "vote";
         private const string AccountExists = "account_exist";
         private const string HasPrivateKeys = "hasPrivateKeys";
         private const string GetActiveAuthority = "get_active_authority";
@@ -110,201 +110,202 @@
             switch (value)
             {
                 case "Vote":
-                    return $"{api}.Vote";
+                    return $"{api}."+Vote;
                 case "AccountExists":
-                    return $"{api}.account_exist";
+                    return $"{api}."+AccountExists;
                 case "HasPrivateKeys":
-                    return $"{api}.HasPrivateKeys";               
+                    return $"{api}."+HasPrivateKeys;               
                 case "GetActiveAuthority":
-                    return $"{api}.GetActiveAuthority";
+                    return $"{api}."+GetActiveAuthority;
                 case "GetOwnerAuthority":
-                    return $"{api}.GetOwnerAuthority";
+                    return $"{api}."+GetOwnerAuthority;
                 case "GetMemoKey":
-                    return $"{api}.GetMemoKey";
+                    return $"{api}."+GetMemoKey;
                 case "GetAccountBalance":
-                    return $"{api}.GetAccountBalance";
+                    return $"{api}."+GetAccountBalance;
                 case "GetVestingBalance":
-                    return $"{api}.GetVestingBalance";
+                    return $"{api}."+GetVestingBalance;
                 case "CreateSimpleAuthority":
-                    return $"{api}.CreateSimpleAuthority";
+                    return $"{api}."+CreateSimpleAuthority;
                 case "CreateSimpleMultisigAuthority":
-                    return $"{api}.CreateSimpleMultisigAuthority";
+                    return $"{api}."+CreateSimpleMultisigAuthority;
                 case "CreateSimpleManagedAuthority":
-                    return $"{api}.CreateSimpleManagedAuthority";
+                    return $"{api}."+CreateSimpleManagedAuthority;
                 case "CreateSimpleMultiManagedAuthority":
-                    return $"{api}.CreateSimpleMultiManagedAuthority";
+                    return $"{api}."+CreateSimpleMultiManagedAuthority;
                 case "UpdateAccount":
-                    return $"{api}.UpdateAccount";
+                    return $"{api}."+UpdateAccount;
                 case "DepositVesting":
-                    return $"{api}.DepositVesting";
+                    return $"{api}."+DepositVesting;
                 case "WithdrawVestings":
-                    return $"{api}.WithdrawVestings";
+                    return $"{api}."+WithdrawVestings;
                 case "VoteForWitness":
-                    return $"{api}.VoteForWitness";
+                    return $"{api}."+VoteForWitness;
                 case "UpdateToWitness":
-                    return $"{api}.UpdateToWitness";
+                    return $"{api}."+UpdateToWitness;
                 case "GetAccount":
-                    return $"{api}.GetAccount";
+                    return $"{api}."+GetAccount;
                 case "CreateAccount":
-                    return $"{api}.CreateAccount";
+                    return $"{api}."+CreateAccount;
                 case "Transfer":
-                    return $"{api}.Transfer";
+                    return $"{api}."+Transfer;
                 case "GetAccountUiaBalance":
-                    return $"{api}.GetAccountUiaBalance";
+                    return $"{api}."+GetAccountUiaBalance;
                 case "CreateUia":
-                    return $"{api}.CreateUia";
+                    return $"{api}."+CreateUia;
                 case "IssueUia":
-                    return $"{api}.IssueUia";
+                    return $"{api}."+IssueUia;
                 case "BurnUia":
-                    return $"{api}.BurnUia";
+                    return $"{api}."+BurnUia;
                 case "GetUiaAuthority":
-                    return $"{api}.GetUiaAuthority";
+                    return $"{api}."+GetUiaAuthority;
                 case "HasUiaPrivateKey":
-                    return $"{api}.HasUiaPrivateKey";
+                    return $"{api}."+HasUiaPrivateKey;
                 case "DeleteAccount":
-                    return $"{api}.DeleteAccount";
+                    return $"{api}."+DeleteAccount;
                 case "SuggestBrainKey":
-                    return $"{api}.SuggestBrainKey";
+                    return $"{api}."+SuggestBrainKey;
                 case "NormalizeBrainKey":
-                    return $"{api}.NormalizeBrainKey";
+                    return $"{api}."+NormalizeBrainKey;
                 case "About":
-                    return $"{api}.about";
+                    return $"{api}."+About;
                 case "Challenge":
-                    return $"{api}.Challenge";
+                    return $"{api}."+Challenge;
                 case "GetBlock":
-                    return $"{api}.GetBlock";
+                    return $"{api}."+GetBlock;
                 case "GetFeedHistory":
-                    return $"{api}.GetFeedHistory";
+                    return $"{api}."+GetFeedHistory;
                 case "GetTransaction":
-                    return $"{api}.GetTransaction";
+                    return $"{api}."+GetTransaction;
                 case "BroadcastTransaction":
-                    return $"{api}.BroadcastTransaction";
+                    return $"{api}."+BroadcastTransaction;
                 case "CreateSimpleTransactionTest":
                 case "CreateSimpleTransaction":
-                    return $"{api}.CreateSimpleTransaction";
+                    return $"{api}."+CreateSimpleTransaction;
                 case "CreateTransaction":
-                    return $"{api}.CreateTransaction";
+                    return $"{api}."+CreateTransaction;
                 case "PublishFeed":
-                    return $"{api}.PublishFeed";
+                    return $"{api}."+PublishFeed;
                 case "SetTransactionExpiration":
-                    return $"{api}.SetTransactionExpiration";
+                    return $"{api}."+SetTransactionExpiration;
                 case "SetVotingProxy":
-                    return $"{api}.SetVotingProxy";
+                    return $"{api}."+SetVotingProxy;
                 case "WithdrawVesting":
-                    return $"{api}.WithdrawVesting";
+                    return $"{api}."+WithdrawVesting;
                 case "TransferToVesting":
-                    return $"{api}.TransferToVesting";
+                    return $"{api}."+TransferToVesting;
                 case "GetOpsInBlock":
-                    return $"{api}.GetOpsInBlock";
+                    return $"{api}."+GetOpsInBlock;
                 case "GetActiveWitnesses":
-                    return $"{api}.GetActiveWitnesses";
+                    return $"{api}."+GetActiveWitnesses;
                 case "GetMinerQueue":
-                    return $"{api}.GetMinerQueue";
+                    return $"{api}."+GetMinerQueue;
                 case "GetWitness":
-                    return $"{api}.GetWitness";
+                    return $"{api}."+GetWitness;
                 case "ListWitnesses":
-                    return $"{api}.ListWitnesses";
+                    return $"{api}."+ListWitnesses;
                 case "UpdateWitness":
-                    return $"{api}.UpdateWitness";
+                    return $"{api}."+UpdateWitness;
                 case "Help":
-                    return $"{api}.Help";
+                    return $"{api}."+Help;
                 case "Info":
-                    return $"{api}.Info";
+                    return $"{api}."+Info;
                 case "SerializeTransaction":
-                    return $"{api}.SerializeTransaction";
+                    return $"{api}."+SerializeTransaction;
                 case "MakeCustomJsonOperation":
-                    return $"{api}.MakeCustomJsonOperation";
+                    return $"{api}."+MakeCustomJsonOperation;
                 case "GetReceivedDocuments":
-                    return $"{api}.GetReceivedDocuments";
+                    return $"{api}."+GetReceivedDocuments;
                 case "MakeCustomBinaryOperation":
-                    return $"{api}.MakeCustomBinaryOperation";
+                    return $"{api}."+MakeCustomBinaryOperation;
                 case "CreateApplication":
-                    return $"{api}.CreateApplication";
+                    return $"{api}."+CreateApplication;
                 case "DeleteApplication":
-                    return $"{api}.DeleteApplication";
+                    return $"{api}."+DeleteApplication;
                 case "UpdateApplication":
-                    return $"{api}.UpdateApplication";
+                    return $"{api}."+UpdateApplication;
                 case "BuyApplication":
-                    return $"{api}.BuyApplication";
+                    return $"{api}."+BuyApplication;
                 case "CancelApplicationBuying":
-                    return $"{api}.CancelApplicationBuying";
+                    return $"{api}."+CancelApplicationBuying;
                 case "GetApplicationBuyings":
-                    return $"{api}.GetApplicationBuyings"; 
+                    return $"{api}."+GetApplicationBuyings; 
                 case "GetApplications":
-                    return $"{api}.GetApplications";
+                    return $"{api}."+GetApplications;
                 case "GetConfig":
-                    return $"{api}.GetConfig";
+                    return $"{api}."+GetConfig;
                 case "GetDynamicGlobalProperties":
-                    return $"{api}.GetDynamicGlobalProperties";
+                    return $"{api}."+GetDynamicGlobalProperties;
                 case "GetChainProperties":
-                    return $"{api}.GetChainProperties";
+                    return $"{api}."+GetChainProperties;
                 case "GetCurrentMedianHistoryPrice":
-                    return $"{api}.GetCurrentMedianHistoryPrice";
+                    return $"{api}."+GetCurrentMedianHistoryPrice;
                 case "GetWitnessSchedule":
-                    return $"{api}.GetWitnessSchedule";
+                    return $"{api}."+GetWitnessSchedule;
                 case "GetHardforkVersion":
-                    return $"{api}.GetHardForkVersion";
+                    return $"{api}."+GetHardForkVersion;
                 case "GetNextScheduledHardfork":
-                    return $"{api}.GetNextScheduledHardfork";
+                    return $"{api}."+GetNextScheduledHardfork;
                 case "GetAccounts":
-                    return $"{api}.GetAccounts"; 
+                    return $"{api}."+GetAccounts; 
                 case "LookupAccountNames":
-                    return $"{api}.LookupAccountNames"; 
+                    return $"{api}."+LookupAccountNames; 
                 case "LookupAccounts":
-                    return $"{api}.LookupAccounts";
+                    return $"{api}."+LookupAccounts;
                 case "GetAccountCount":
-                    return $"{api}.GetAccountCount"; 
+                    return $"{api}."+GetAccountCount; 
                 case "GetOwnerHistory":
-                    return $"{api}.GetOwnerHistory";
+                    return $"{api}."+GetOwnerHistory;
                 case "GetRecoveryRequest":
-                    return $"{api}.GetRecoveryRequest"; 
+                    return $"{api}."+GetRecoveryRequest; 
                 case "GetBlockHeader":
-                    return $"{api}.GetBlockHeader"; 
+                    return $"{api}."+GetBlockHeader; 
                 case "GetWitnesses":
-                    return $"{api}.GetWitnesses";
+                    return $"{api}."+GetWitnesses;
                 case "GetConversionRequests":
-                    return $"{api}.GetConversionRequests"; 
+                    return $"{api}."+GetConversionRequests; 
                 case "GetWitnessByAccount":
-                    return $"{api}.GetWitnessByAccount";
+                    return $"{api}."+GetWitnessByAccount;
                 case "GetWitnessesByVote":
-                    return $"{api}.GetWitnessesByVote";
+                    return $"{api}."+GetWitnessesByVote;
                 case "GetWitnessCount":
-                    return $"{api}.GetWitnessCount";
+                    return $"{api}."+GetWitnessCount;
                 case "GetActiveVotes":
-                    return $"{api}.GetActiveVotes";
+                    return $"{api}."+GetActiveVotes;
                 case "GetContent":
-                    return $"{api}.GetContent";
+                    return $"{api}."+GetContent;
                 case "GetContentReplies":
-                    return $"{api}.GetContentReplies";
+                    return $"{api}."+GetContentReplies;
                 case "GetRepliesByLastUpdate":
-                    return $"{api}.GetRepliesByLastUpdate";
+                    return $"{api}."+GetRepliesByLastUpdate;
                 case "GetDiscussionsByAuthorBeforeDate":
-                    return $"{api}.GetDiscussionsByAuthorBeforeDate";
+                    return $"{api}."+GetDiscussionsByAuthorBeforeDate;
                 case "GetAccountHistory":
-                    return $"{api}.GetAccountHistory";
+                    return $"{api}."+GetAccountHistory;
                 case "GetAccountNameFromSeed":
-                    return $"{api}.GetAccountNameFromSeed";
+                    return $"{api}."+GetAccountNameFromSeed;
                 case "CalculateFee":
-                    return $"{api}.CalculateFee";
+                    return $"{api}."+CalculateFee;
                 case "AddFee":
-                    return $"{api}.AddFee";
+                    return $"{api}."+AddFee;
                 case "GetTransactionDigestServer":
-                    return $"{api}.GetTransactionDigestServer";
+                    return $"{api}."+GetTransactionDigestServer;
                 case "AddSignatureServer":
-                    return $"{api}.AddSignatureServer";
+                    return $"{api}."+AddSignatureServer;
                 case "MakeCustomJsonOperationAsync":
-                    return $"{api}.MakeCustomJsonOperationAsync";
+                    return $"{api}."+MakeCustomJsonOperationAsync;
                 case "MakeCustomBinaryOperationAsync":
-                    return $"{api}.MakeCustomBinaryOperation";
+                    return $"{api}."+MakeCustomBinaryOperation;
                 case "BroadcastTransactionAsync":
-                    return $"{api}.BroadcastTransaction";
+                    return $"{api}."+BroadcastTransaction;
                 case "CreateSimpleTransactionAsync":
-                    return $"{api}.CreateSimpleTransaction";
+                    return $"{api}."+CreateSimpleTransaction;
                 case "AboutAsync":
-                    return $"{api}.About";
+                    return $"{api}."+About;
                     
             }
             return string.Empty;
         }
     }
+
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using Alexandria.net.Communication;
 using Alexandria.net.Logging;
+using Alexandria.net.Messaging;
 using Alexandria.net.Messaging.Receiver;
 using Alexandria.net.Messaging.Responses;
 using Alexandria.net.Settings;
@@ -44,7 +45,8 @@ namespace Alexandria.net.API
         public ActiveWitnessResponse GetActiveWitnesses()
         {
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var result = SendRequest(reqname);
+            var @params = new object();
+            var result = SendRequestToDaemon(reqname,@params);
             var contentdata = JsonConvert.DeserializeObject<ActiveWitnessResponse>(result);
             return contentdata;
         }
@@ -59,7 +61,7 @@ namespace Alexandria.net.API
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
             var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, ownerAccount);
             //var @params = new ArrayList {ownerAccount};
-            var result = SendRequest(reqname, @params);
+            var result = SendRequestToDaemon(reqname, @params);
             var contentdata = JsonConvert.DeserializeObject<GetWitnessResponse>(result);
             return contentdata;
         }
@@ -78,7 +80,7 @@ namespace Alexandria.net.API
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
             var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, lowerbound, limit);
             //var @params = new ArrayList {lowerbound, limit};
-            var result = SendRequest(reqname, @params);
+            var result = SendRequestToDaemon(reqname, @params);
             var contentdata = JsonConvert.DeserializeObject<ActiveWitnessResponse>(result);
             return contentdata;
         }
@@ -97,7 +99,7 @@ namespace Alexandria.net.API
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
             var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, voter, author, permlink, weight);
             //var @params = new ArrayList {voter, author, permlink, weight};
-            return SendRequest(reqname, @params);
+            return SendRequestToDaemon(reqname, @params);
         }
 
         /// <summary>
@@ -117,7 +119,7 @@ namespace Alexandria.net.API
             var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, accountToVoteWith, witnessToVoteFor,
                 approve);
             //var @params = new ArrayList {accountToVoteWith, witnessToVoteFor, approve};
-            var result = SendRequest(reqname, @params);
+            var result = SendRequestToDaemon(reqname, @params);
             var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
 
             var response = StartBroadcasting(contentdata.Result, privateKey);
@@ -150,7 +152,7 @@ namespace Alexandria.net.API
             var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, accountName, descriptionUrl,
                 blockSigningKey, pros);
             //var @params = new ArrayList {accountName, descriptionUrl, blockSigningKey, pros};
-            var result = SendRequest(reqname, @params, typeof(PrizeFeedQuoteMessage));
+            var result = SendRequestToDaemon(reqname, @params, typeof(PrizeFeedQuoteMessage));
             var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
 
             var response = StartBroadcasting(contentdata.Result, privateKey);
