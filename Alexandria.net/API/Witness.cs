@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using Alexandria.net.Communication;
 using Alexandria.net.Logging;
+using Alexandria.net.Mapping;
 using Alexandria.net.Messaging.Receiver;
 using Alexandria.net.Messaging.Responses;
 using Alexandria.net.Settings;
@@ -15,23 +17,20 @@ namespace Alexandria.net.API
     /// <para>
     /// Sophia Blockchain Witness functions
     /// </para>
-    public class Witness : RpcConnection
+    public class Witness : ApiBase
     {
-        #region Member Variables
-        private readonly ILogger _logger;
-        #endregion
-        
         #region Constructor
+
         /// <inheritdoc />
         /// <summary>
         /// Witness constructor
         /// </summary>
         /// <param name="config">the Configuration parameters for the endpoint and ports</param>
-        public Witness(IConfig config) :
-            base(config)
+        /// <param name="methodMapperCollection"></param>
+        public Witness(IConfig config, List<MethodMapper> methodMapperCollection) :
+            base(methodMapperCollection)
         {
-            var assemblyname = Assembly.GetExecutingAssembly().GetName().Name;
-            _logger = new Logger(config, assemblyname);
+            Logger = new Logger(config, Assembly.GetExecutingAssembly().GetName().Name);
         }
         #endregion
         
@@ -43,10 +42,10 @@ namespace Alexandria.net.API
         /// <returns>Returns json object combining list of active witnesses</returns>
         public ActiveWitnessResponse GetActiveWitnesses()
         {
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var result = SendRequest(reqname);
-            var contentdata = JsonConvert.DeserializeObject<ActiveWitnessResponse>(result);
-            return contentdata;
+            var @params = ParamCollection.Find(s => s.MethodName == "GetActiveWitnesses");
+            var result = SendRequest(@params.BlockChainMethodName);
+            var content = JsonConvert.DeserializeObject<ActiveWitnessResponse>(result);
+            return content;
         }
 
         /// <summary>
@@ -56,12 +55,11 @@ namespace Alexandria.net.API
         /// <returns>the information about the witness stored In the block chain</returns>
         public GetWitnessResponse GetWitness(string ownerAccount)
         {
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, ownerAccount);
-            //var @params = new ArrayList {ownerAccount};
-            var result = SendRequest(reqname, @params);
-            var contentdata = JsonConvert.DeserializeObject<GetWitnessResponse>(result);
-            return contentdata;
+            var @params = ParamCollection.Single(s => s.MethodName == "GetWitness");
+            var data = @params.GetObjectAndJsonValue(ownerAccount);
+            var result = SendRequest(@params.BlockChainMethodName, data);
+            var content = JsonConvert.DeserializeObject<GetWitnessResponse>(result);
+            return content;
         }
 
         /// <summary>
@@ -75,12 +73,11 @@ namespace Alexandria.net.API
         /// <returns>Returns a list of witnesss mapping witness names To witness ids</returns>
         public ActiveWitnessResponse ListWitnesses(string lowerbound, uint limit)
         {
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, lowerbound, limit);
-            //var @params = new ArrayList {lowerbound, limit};
-            var result = SendRequest(reqname, @params);
-            var contentdata = JsonConvert.DeserializeObject<ActiveWitnessResponse>(result);
-            return contentdata;
+            var @params = ParamCollection.Single(s => s.MethodName == "ListWitnesses");
+            var data = @params.GetObjectAndJsonValue(lowerbound, limit);
+            var result = SendRequest(@params.BlockChainMethodName, data);
+            var content = JsonConvert.DeserializeObject<ActiveWitnessResponse>(result);
+            return content;
         }
 
 
@@ -94,10 +91,10 @@ namespace Alexandria.net.API
         /// <returns>the vote response data</returns>
         public string Vote(string voter, string author, string permlink, short weight)
         {
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, voter, author, permlink, weight);
-            //var @params = new ArrayList {voter, author, permlink, weight};
-            return SendRequest(reqname, @params);
+            var @params = ParamCollection.Single(s => s.MethodName == "Vote");
+            var data = @params.GetObjectAndJsonValue(voter, author, permlink, weight);
+            var result = SendRequest(@params.BlockChainMethodName, data);
+            return result;
         }
 
         /// <summary>
@@ -113,14 +110,14 @@ namespace Alexandria.net.API
         public TransactionResponse VoteForWitness(string accountToVoteWith, string witnessToVoteFor, bool approve,
             string privateKey)
         {
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, accountToVoteWith, witnessToVoteFor,
+            var @params = ParamCollection.Single(s => s.MethodName == "VoteForWitness");
+            var data = @params.GetObjectAndJsonValue(accountToVoteWith, witnessToVoteFor,
                 approve);
-            //var @params = new ArrayList {accountToVoteWith, witnessToVoteFor, approve};
-            var result = SendRequest(reqname, @params);
-            var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
 
-            var response = StartBroadcasting(contentdata.Result, privateKey);
+            var result = SendRequest(@params.BlockChainMethodName, data);
+            var content = JsonConvert.DeserializeObject<AccountResponse>(result);
+
+            var response = StartBroadcasting(content.Result, privateKey);
             return response;
         }
 
@@ -146,14 +143,13 @@ namespace Alexandria.net.API
                 PriceFeeds = priceFeed
             };
 
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, accountName, descriptionUrl,
+            var @params = ParamCollection.Single(s => s.MethodName == "UpdateWitness");
+            var data = @params.GetObjectAndJsonValue(accountName, descriptionUrl,
                 blockSigningKey, pros);
-            //var @params = new ArrayList {accountName, descriptionUrl, blockSigningKey, pros};
-            var result = SendRequest(reqname, @params, typeof(PrizeFeedQuoteMessage));
-            var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
+            var result = SendRequest(@params.BlockChainMethodName, data, typeof(PrizeFeedQuoteMessage));
+            var contentData = JsonConvert.DeserializeObject<AccountResponse>(result);
 
-            var response = StartBroadcasting(contentdata.Result, privateKey);
+            var response = StartBroadcasting(contentData.Result, privateKey);
             return response;
         }
 

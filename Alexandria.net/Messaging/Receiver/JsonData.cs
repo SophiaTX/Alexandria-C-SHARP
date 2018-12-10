@@ -10,19 +10,13 @@ namespace Alexandria.net.Messaging.Receiver
     /// </summary>
     public class JsonData
     {
-        #region Member Variables
-        private string _jsondoc = "";
-
-        #endregion
-
-
         /// <summary>
         /// the sender 
         /// </summary>
         public string Sender { get; set; }
 
         /// <summary>
-        /// the list of receipients
+        /// the list of recipients
         /// </summary>
         public List<string> Recipients { get; set; }
 
@@ -35,10 +29,6 @@ namespace Alexandria.net.Messaging.Receiver
         /// the document to send in json format
         /// </summary>
         public string JsonDoc{ get; set; }
-//        {
-//            get => _jsondoc;
-//            set => JsonHelper.IsValidJson(value) ? _jsondoc : JsonConvert.SerializeObject(value);
-//        }
 
         /// <summary>
         /// the sender private key

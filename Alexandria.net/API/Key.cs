@@ -1,10 +1,9 @@
-﻿﻿using System;
-using System.Collections;
-using System.Reflection;
-using System.Runtime.InteropServices;
-using Alexandria.net.Communication;
+﻿using System.Collections.Generic;
+using System.Linq;
+ using System.Reflection;
 using Alexandria.net.Logging;
-using Alexandria.net.Messaging.Responses;
+ using Alexandria.net.Mapping;
+ using Alexandria.net.Messaging.Responses;
 using Alexandria.net.Settings;
 using Newtonsoft.Json;
 
@@ -14,84 +13,21 @@ namespace Alexandria.net.API
     /// <para>
     /// Sophia Blockchain Key functions
     /// </para>
-    public class Key : RpcConnection
+    public class Key : ApiBase
     {
-        private readonly ILogger _logger;
-        private const string LibPath = "libalexandria";
 
-        #region DllImports
- 
-            /// <summary>
-            /// Creates a private key
-            /// </summary>
-            /// <param name="privateKey">byte[52] private_key</param>
-            /// <param name="publickey">the public key</param>
-            /// <returns>Returns true if success or false for failed try</returns>
-        [DllImport(LibPath, CallingConvention = CallingConvention.Cdecl) ]
-        private static extern bool generate_private_key([MarshalAs(UnmanagedType.LPArray)] byte[] privateKey,
-            [MarshalAs(UnmanagedType.LPArray)] byte[] publickey);
+        #region Constructor
 
-        [DllImport(LibPath, CallingConvention = CallingConvention.Cdecl)]
-        private static extern bool get_transaction_digest([MarshalAs(UnmanagedType.LPStr)] string transaction,
-            [MarshalAs(UnmanagedType.LPStr)] string chainId,
-            [MarshalAs(UnmanagedType.LPArray)] byte[] digest);
-
-        [DllImport(LibPath, CallingConvention = CallingConvention.Cdecl)]
-        private static extern bool sign_digest([MarshalAs(UnmanagedType.LPStr)] string digest,
-            [MarshalAs(UnmanagedType.LPStr)] string privateKey, [MarshalAs(UnmanagedType.LPArray)] byte[] signedDigest);
-
-        [DllImport(LibPath, CallingConvention = CallingConvention.Cdecl)]
-        private static extern bool add_signature([MarshalAs(UnmanagedType.LPStr)] string transaction,
-            [MarshalAs(UnmanagedType.LPStr)] string signature, [MarshalAs(UnmanagedType.LPArray)] byte[] signedTx);
-
-        [DllImport(LibPath, CallingConvention = CallingConvention.Cdecl)]
-        private static extern bool get_public_key([MarshalAs(UnmanagedType.LPStr)] string privateKey,
-            [MarshalAs(UnmanagedType.LPArray)] byte[] publicKey);
-
-        [DllImport(LibPath, CallingConvention = CallingConvention.Cdecl)]
-        private static extern bool generate_key_pair_from_brain_key([MarshalAs(UnmanagedType.LPStr)] string brainKey,
-            [MarshalAs(UnmanagedType.LPArray)] byte[] privateKey, [MarshalAs(UnmanagedType.LPArray)] byte[] publicKey);
-
-        [DllImport(LibPath, CallingConvention = CallingConvention.Cdecl)]
-        private static extern bool verify_signature([MarshalAs(UnmanagedType.LPStr)] string digest,
-            [MarshalAs(UnmanagedType.LPStr)] string publicKey, [MarshalAs(UnmanagedType.LPStr)] string signedDigest);
-
-        [DllImport(LibPath, CallingConvention = CallingConvention.Cdecl)]
-        private static extern bool encrypt_memo([MarshalAs(UnmanagedType.LPStr)] string memo,
-            [MarshalAs(UnmanagedType.LPStr)] string privateKey, [MarshalAs(UnmanagedType.LPStr)] string publicKey,
-            [MarshalAs(UnmanagedType.LPArray)] byte[] encryptedMemo);
-
-        [DllImport(LibPath, CallingConvention = CallingConvention.Cdecl)]
-        private static extern bool decrypt_memo([MarshalAs(UnmanagedType.LPStr)] string memo,
-            [MarshalAs(UnmanagedType.LPStr)] string privateKey, [MarshalAs(UnmanagedType.LPStr)] string publicKey,
-            [MarshalAs(UnmanagedType.LPArray)] byte[] decryptedMemo);
-        
-        [DllImport(LibPath, CallingConvention = CallingConvention.Cdecl)]
-        private static extern bool base64_decode([MarshalAs(UnmanagedType.LPStr)] string input, 
-            [MarshalAs(UnmanagedType.LPArray)] byte[] output);
-        
-        [DllImport(LibPath, CallingConvention = CallingConvention.Cdecl)]
-        private static extern bool base64_encode([MarshalAs(UnmanagedType.LPStr)] string input, 
-            [MarshalAs(UnmanagedType.LPArray)] byte[] output);
-        
-        
- 
-    #endregion
-
-        #region ctor
         /// <summary>
         /// Key Constructor
         /// </summary>
-        /// <param name="config">the Configuration paramaters for the endpoint and ports</param>
+        /// <param name="config">the Configuration parameters for the endpoint and ports</param>
+        /// <param name="methodMapperCollection"></param>
         /// 
-        
-        
-        public Key(IConfig config) :
-            base(config)
+        public Key(IConfig config, List<MethodMapper> methodMapperCollection) :
+            base(methodMapperCollection)
         {
-           
-            var assemblyname = Assembly.GetExecutingAssembly().GetName().Name;
-            _logger = new Logger(config, assemblyname);
+            Logger = new Logger(config, Assembly.GetExecutingAssembly().GetName().Name);
         }
         #endregion
         
@@ -102,8 +38,8 @@ namespace Alexandria.net.API
         /// <returns>the keys result</returns>
         public string ListKeys()
         {
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var result = SendRequest(reqname);
+            var @params = ParamCollection.Single(s => s.MethodName == "");
+            var result = SendRequest(@params.BlockChainMethodName);
             return result;
         }
 
@@ -129,21 +65,6 @@ namespace Alexandria.net.API
             return result;
         }
 
-        /// <summary>
-        /// Creates digest of JSON formatted transaction
-        /// </summary>
-        /// <param name="transaction">the transaction to digest</param>
-        /// <param name="chainId">the id in the blockchain</param>
-        /// <param name="digest">the digest bytes, returned digest of transaction (size 64)</param>
-        /// <returns>Returns true if success or false for failed try</returns>
-        public string GetTransactionDigest(string transaction, string chainId, byte[] digest)
-        {
-            var result = get_transaction_digest(transaction, chainId, digest)
-                ? System.Text.Encoding.Default.GetString(digest)
-                : string.Empty;
-
-            return result;
-        }
 
         /// <summary>
         /// Creates digest of JSON formatted transaction
@@ -152,46 +73,16 @@ namespace Alexandria.net.API
         /// <returns>Returns true if success or false for failed try</returns>
         public GetTransactionDigestResponse GetTransactionDigestServer(string transaction)
         {
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, transaction);
-            //var @params = new ArrayList {transaction};
-            var result= SendRequest(reqname, @params);
-            var contentdata = JsonConvert.DeserializeObject<GetTransactionDigestResponse>(result);
-            return contentdata;
-        }
-        /// <summary>
-        /// Creates a signature for the given private key and transaction digest
-        /// </summary>
-        /// <param name="digest">string digest</param>
-        /// <param name="privatekey">string privatekey</param>
-        /// <param name="signeddigest"> byte[] signeddigest, returns signature (size 130)</param>
-        /// <returns>Returns true if success or false for failed try</returns>
-        public string SignDigest(string digest, string privatekey, byte[] signeddigest)
-        {
-            var result = sign_digest(digest, privatekey, signeddigest)
-                ? System.Text.Encoding.Default.GetString(signeddigest)
-                : string.Empty;
+            var @params = ParamCollection.Single(s => s.MethodName == "GetTransactionDigestServer");
+            var data = @params.GetObjectAndJsonValue(transaction);
 
-            return result;
+            var result= SendRequest(@params.BlockChainMethodName, data);
+            var content = JsonConvert.DeserializeObject<GetTransactionDigestResponse>(result);
+            return content;
         }
         
-        /// <summary>
-        /// Adds signature to JSON formatted transaction
-        /// </summary>
-        /// <param name="transaction">string transaction</param>
-        /// <param name="signature">string signature</param>
-        /// <param name="signedtx">byte[] signedtx, returned signed transaction (size variable, depends on size of transaction on input_)</param>
-        /// <returns>Returns true if success or false for failed try</returns>
-        public SignedTransactionResponseData AddSignature(string transaction, string signature, byte[] signedtx)
-        {
-            var value = add_signature(transaction, signature, signedtx);
-            if (!value) return null;
-                
-            var signedTransaction = System.Text.Encoding.Default.GetString(signedtx);
-            Console.WriteLine(signedTransaction);
-            var result = JsonConvert.DeserializeObject<SignedTransactionResponseData>(signedTransaction);
-            return result;
-        }
+        
+        
 
         /// <summary>
         /// Adds signature to JSON formatted transaction
@@ -201,10 +92,10 @@ namespace Alexandria.net.API
         /// <returns>Returns true if success or false for failed try</returns>
         public SignedTransactionResponse AddSignatureServer(TransactionResponse transaction, string signature)
         {
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, transaction.Result, signature);
-            //var @params = new ArrayList {transaction.Result,signature};
-            var signedTransaction = SendRequest(reqname, @params);
+            var @params = ParamCollection.Single(s => s.MethodName == "AddSignatureServer");
+            var data = @params.GetObjectAndJsonValue(transaction.Result, signature);
+            
+            var signedTransaction = SendRequest(@params.BlockChainMethodName, data);
             var result = JsonConvert.DeserializeObject<SignedTransactionResponse>(signedTransaction);
             return result;
         }
@@ -321,16 +212,16 @@ namespace Alexandria.net.API
         }
 
         /// <summary>
-        /// Create a passphrase for users to remember easily and use ot to generate
+        /// Create a pass-phrase for users to remember easily and use ot to generate
         /// corresponding public and private keys
         /// </summary>
-        /// <returns>Returns a passphrase</returns>
+        /// <returns>Returns a pass-phrase</returns>
         public BrainKeySuggestion SuggestBrainKey()
         {
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var result = SendRequest(reqname);
-            var contentdata = JsonConvert.DeserializeObject<BrainKeySuggestion>(result);
-            return contentdata;
+            var @params = ParamCollection.Single(s => s.MethodName == "SuggestBrainKey");
+            var result = SendRequest(@params.BlockChainMethodName);
+            var content = JsonConvert.DeserializeObject<BrainKeySuggestion>(result);
+            return content;
         }
 
         /// <summary>
@@ -340,10 +231,10 @@ namespace Alexandria.net.API
         /// <returns>Returns normalized Passphrase</returns>
         public string NormalizeBrainKey(string brainKey)
         {
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, brainKey);
-            //var @params = new ArrayList {brainKey};
-            var result = SendRequest(reqname, @params);
+            var @params = ParamCollection.Single(s => s.MethodName == "NormalizeBrainKey");
+            var data = @params.GetObjectAndJsonValue(brainKey);
+           
+            var result = SendRequest(@params.BlockChainMethodName, data);
             return result;
         }
     }

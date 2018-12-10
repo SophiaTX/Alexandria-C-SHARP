@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
-using Alexandria.net.Communication;
 using Alexandria.net.Logging;
-using Alexandria.net.Messaging.Params;
+using Alexandria.net.Mapping;
 using Alexandria.net.Messaging.Responses;
 using Alexandria.net.Settings;
 using Newtonsoft.Json;
@@ -16,21 +14,19 @@ namespace Alexandria.net.API
     /// <para>
     /// Sophia Blockchain Account functions
     /// </para>
-    public class Account : RpcConnection
+    public class Account : ApiBase
     {
-        private readonly ILogger _logger;
-    
         #region Constructors
-        
+
         /// <summary>
         /// Account Constructor
         /// </summary>
         /// <param name="config">the config file parameters</param>
-        public Account(IConfig config) :
-            base(config)
+        /// <param name="methodMapperCollection"></param>
+        public Account(IConfig config, List<MethodMapper> methodMapperCollection) :
+            base(methodMapperCollection)
         {
-            var assemblyname = Assembly.GetExecutingAssembly().GetName().Name;
-            _logger = new Logger(config, assemblyname);
+            Logger = new Logger(config, Assembly.GetExecutingAssembly().GetName().Name);
         }
 
         #endregion
@@ -42,10 +38,9 @@ namespace Alexandria.net.API
         /// <returns>Returns true if success and false for failed try</returns>
         public AccountExistResponse AccountExists(string accountName)
         {
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, accountName);
-//                var @params = new ArrayList {accountName};
-            var result = SendRequest(reqname, @params);
+            var @params = ParamCollection.Single(s => s.MethodName == "AccountExists");
+            var data = @params.GetObjectAndJsonValue(accountName);
+            var result = SendRequest(@params.BlockChainMethodName, data);
             return JsonConvert.DeserializeObject<AccountExistResponse>(result);
         }
 
@@ -58,10 +53,9 @@ namespace Alexandria.net.API
         /// <returns>Returns the Json object with the details about the active authority</returns>
         public SimpleAuthorityResponse GetActiveAuthority(string accountName)
         {
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, accountName);
-            //var @params = new ArrayList {accountName};
-            var result = SendRequest(reqname, @params);
+            var @params = ParamCollection.Single(s => s.MethodName == "GetActiveAuthority");
+            var data = @params.GetObjectAndJsonValue( accountName);
+            var result = SendRequest(@params.BlockChainMethodName, data);
             return JsonConvert.DeserializeObject<SimpleAuthorityResponse>(result);
         }
 
@@ -72,10 +66,9 @@ namespace Alexandria.net.API
         /// <returns>Returns the Json object with the deails about the owner authority</returns>
         public SimpleAuthorityResponse GetOwnerAuthority(string accountName)
         {
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, accountName);
-            //var @params = new ArrayList {accountName};
-            var result = SendRequest(reqname, @params);
+            var @params = ParamCollection.Single(s => s.MethodName == "GetOwnerAuthority");
+            var data = @params.GetObjectAndJsonValue(accountName);
+            var result = SendRequest(@params.BlockChainMethodName, data);
             return JsonConvert.DeserializeObject<SimpleAuthorityResponse>(result);
         }
 
@@ -86,10 +79,9 @@ namespace Alexandria.net.API
         /// <returns>Returns the Memo Key of the corresponding account</returns>
         public GetMemoKeyResponse GetMemoKey(string accountName)
         {
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, accountName);
-            //var @params = new ArrayList {accountName};
-            var result = SendRequest(reqname, @params);
+            var @params = ParamCollection.Single(s => s.MethodName == "GetMemoKey");
+            var data = @params.GetObjectAndJsonValue( accountName);
+            var result = SendRequest(@params.BlockChainMethodName, data);
             return JsonConvert.DeserializeObject<GetMemoKeyResponse>(result);
         }
 
@@ -100,10 +92,9 @@ namespace Alexandria.net.API
         /// <returns>Returns the account balance as a Json object</returns>
         public AccountBalanceResponse GetAccountBalance(string accountName)
         {
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, accountName);
-            //var @params = new ArrayList {accountName};
-            var result = SendRequest(reqname, @params);
+            var @params = ParamCollection.Single(s => s.MethodName == "GetAccountBalance");
+            var data = @params.GetObjectAndJsonValue( accountName);
+            var result = SendRequest(@params.BlockChainMethodName, data);
             return JsonConvert.DeserializeObject<AccountBalanceResponse>(result);
         }
 
@@ -114,10 +105,9 @@ namespace Alexandria.net.API
         /// <returns>Returns the account balance as a Json object</returns>
         public VestingBalanceResponse GetVestingBalance(string accountName)
         {
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, accountName);
-            //var @params = new ArrayList {accountName};
-            var result = SendRequest(reqname, @params);
+            var @params = ParamCollection.Single(s => s.MethodName == "GetVestingBalance");
+            var data = @params.GetObjectAndJsonValue( accountName);
+            var result = SendRequest(@params.BlockChainMethodName, data);
             return JsonConvert.DeserializeObject<VestingBalanceResponse>(result);
         }
 
@@ -128,10 +118,9 @@ namespace Alexandria.net.API
         /// <returns>Returns Json object with details combining</returns>
         public SimpleAuthorityResponse CreateSimpleAuthority(string pubKey)
         {
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, pubKey);
-            //var @params = new ArrayList {pubKey};
-            var result = SendRequest(reqname, @params);
+            var @params = ParamCollection.Single(s => s.MethodName == "CreateSimpleAuthority");
+            var data = @params.GetObjectAndJsonValue( pubKey);
+            var result = SendRequest(@params.BlockChainMethodName, data);
             return JsonConvert.DeserializeObject<SimpleAuthorityResponse>(result);
         }
 
@@ -143,10 +132,9 @@ namespace Alexandria.net.API
         /// <returns>Returns Json object with details combining</returns>
         public SimpleAuthorityResponse CreateSimpleMultisigAuthority(List<string> pubKeys, ulong requiredSignatures)
         {
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, pubKeys, requiredSignatures);
-            //var @params = new ArrayList {pubKeys, requiredSignatures};
-            var result = SendRequest(reqname, @params);
+            var @params = ParamCollection.Single(s => s.MethodName == "CreateSimpleMultisigAuthority");
+            var data = @params.GetObjectAndJsonValue( pubKeys, requiredSignatures);
+            var result = SendRequest(@params.BlockChainMethodName, data);
             return JsonConvert.DeserializeObject<SimpleAuthorityResponse>(result);
         }
 
@@ -157,10 +145,9 @@ namespace Alexandria.net.API
         /// <returns>Returns Json object with details combining</returns>
         public object CreateSimpleManagedAuthority(string managingAccountName)
         {
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, managingAccountName);
-            //var @params = new ArrayList {managingAccountName};
-            var result = SendRequest(reqname, @params);
+            var @params = ParamCollection.Single(s => s.MethodName == "CreateSimpleManagedAuthority");
+            var data = @params.GetObjectAndJsonValue( managingAccountName);
+            var result = SendRequest(@params.BlockChainMethodName, data);
             return JsonConvert.DeserializeObject<object>(result);
         }
 
@@ -174,11 +161,10 @@ namespace Alexandria.net.API
             uint requiredSignatures)
         {
             managingAccounts.Add(requiredSignatures.ToString());
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, managingAccounts,
+            var @params = ParamCollection.Single(s => s.MethodName == "CreateSimpleMultiManagedAuthority");
+            var data = @params.GetObjectAndJsonValue( managingAccounts,
                 requiredSignatures);
-            //var @params = new ArrayList {managingAccounts, requiredSignatures};
-            var result = SendRequest(reqname, @params);
+            var result = SendRequest(@params.BlockChainMethodName, data);
             return JsonConvert.DeserializeObject<ManagedAuthorityResponse>(result);
         }
 
@@ -195,14 +181,13 @@ namespace Alexandria.net.API
         public TransactionResponse UpdateAccount(string accountName, string jsonMeta, string owner, string active,
             string memo, string privateKey)
         {
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, accountName, jsonMeta, owner,
+            var @params = ParamCollection.Single(s => s.MethodName == "UpdateAccount");
+            var data = @params.GetObjectAndJsonValue( accountName, jsonMeta, owner,
                 active, memo);
-            //var @params = new ArrayList {accountName, jsonMeta, owner, active, memo};
-            var result = SendRequest(reqname, @params);
-            var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
+            var result = SendRequest(@params.BlockChainMethodName, data);
+            var content = JsonConvert.DeserializeObject<AccountResponse>(result);
 
-            var response = StartBroadcasting(contentdata.Result, privateKey);
+            var response = StartBroadcasting(content.Result, privateKey);
             return response;
         }
 
@@ -219,13 +204,12 @@ namespace Alexandria.net.API
         /// <returns>the transaction response from the set voting proxy</returns>
         public TransactionResponse SetVotingProxy(string accountToModify, string proxy, string privateKey)
         {
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, accountToModify, proxy);
-            //var @params = new ArrayList {accountToModify, proxy};
-            var result = SendRequest(reqname, @params);
-            var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
+            var @params = ParamCollection.Single(s => s.MethodName == "SetVotingProxy");
+            var data = @params.GetObjectAndJsonValue( accountToModify, proxy);
+            var result = SendRequest(@params.BlockChainMethodName, data);
+            var content = JsonConvert.DeserializeObject<AccountResponse>(result);
 
-            var response = StartBroadcasting(contentdata.Result, privateKey);
+            var response = StartBroadcasting(content.Result, privateKey);
             return response;
         }
 
@@ -236,12 +220,11 @@ namespace Alexandria.net.API
         /// <returns>the account information</returns>
         public GetAccountResponse GetAccount(string seed)
         {
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, seed);
-            //var @params = new ArrayList {seed};
-            var result = SendRequest(reqname, @params);
-            var contentdata = JsonConvert.DeserializeObject<GetAccountResponse>(result);
-            return contentdata;
+            var @params = ParamCollection.Single(s => s.MethodName == "GetAccount");
+            var data = @params.GetObjectAndJsonValue( seed);
+            var result = SendRequest(@params.BlockChainMethodName, data);
+            var content = JsonConvert.DeserializeObject<GetAccountResponse>(result);
+            return content;
         }
 
         /// <summary>
@@ -253,12 +236,11 @@ namespace Alexandria.net.API
         /// <returns>the account history data</returns>
         public AccountHistoryResponse GetAccountHistory(string accountName, uint from, int limit)
         {
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, accountName, @from, limit);
-            //var @params = new ArrayList {accountName, from, limit};
-            var result = SendRequest(reqname, @params);
-            var contentdata = JsonConvert.DeserializeObject<AccountHistoryResponse>(result);
-            return contentdata;
+            var @params = ParamCollection.Single(s => s.MethodName == "GetAccountHistory");
+            var data = @params.GetObjectAndJsonValue( accountName, @from, limit);
+            var result = SendRequest(@params.BlockChainMethodName, data);
+            var content = JsonConvert.DeserializeObject<AccountHistoryResponse>(result);
+            return content;
         }
         
         /// <summary>
@@ -268,38 +250,36 @@ namespace Alexandria.net.API
         /// <returns>the account details</returns>
         public AccountNameFromSeedResponse GetAccountNameFromSeed(string seed)
         {
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, seed);
-            //var @params = new ArrayList {seed};
-            var result = SendRequest(reqname, @params);
-            var contentdata = JsonConvert.DeserializeObject<AccountNameFromSeedResponse>(result);
-            return contentdata;
+            var @params = ParamCollection.Single(s => s.MethodName == "GetAccountNameFromSeed");
+            var data = @params.GetObjectAndJsonValue( seed);
+            var result = SendRequest(@params.BlockChainMethodName, data);
+            var content = JsonConvert.DeserializeObject<AccountNameFromSeedResponse>(result);
+            return content;
         }
 
         /// <summary>
         /// Creates the new sophiatx account
         /// </summary>
-        /// <param name="witnessname">the name of the witness who will create the account.  Please use initminer as default</param>
+        /// <param name="witnessName">the name of the witness who will create the account.  Please use initminer as default</param>
         /// <param name="seed">the account name to create</param>
         /// <param name="jsonMeta">json formatted details of account</param>
-        /// <param name="ownerkey">the owner key</param>
-        /// <param name="activekey">the active key</param>
-        /// <param name="memokey">the memo key</param>
-        /// <param name="privatekey">the private key used for the digest</param>
+        /// <param name="ownerKey">the owner key</param>
+        /// <param name="activeKey">the active key</param>
+        /// <param name="memoKey">the memo key</param>
+        /// <param name="privateKey">the private key used for the digest</param>
         /// <returns>the account creation response details</returns>
-        public TransactionResponse CreateAccount(string seed, string jsonMeta, string ownerkey,
-            string activekey, string memokey, string witnessname,
-            string privatekey)
+        public TransactionResponse CreateAccount(string seed, string jsonMeta, string ownerKey,
+            string activeKey, string memoKey, string witnessName,
+            string privateKey)
         {
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, witnessname, seed, jsonMeta,
-                ownerkey, activekey, memokey);
-            //var @params = new ArrayList {witnessname, seed, jsonMeta, ownerkey, activekey, memokey};
-            var result = SendRequest(reqname, @params);
+            var @params = ParamCollection.Single(s => s.MethodName == "CreateAccount");
+            var data = @params.GetObjectAndJsonValue( witnessName, seed, jsonMeta,
+                ownerKey, activeKey, memoKey);
+            var result = SendRequest(@params.BlockChainMethodName, data);
 
-            var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
+            var content = JsonConvert.DeserializeObject<AccountResponse>(result);
 
-            var response = StartBroadcasting(contentdata.Result, privatekey);
+            var response = StartBroadcasting(content.Result, privateKey);
             return response;
         }
 
@@ -311,12 +291,11 @@ namespace Alexandria.net.API
         /// <returns>Returns object containing information about the new operation created</returns>
         public TransactionResponse DeleteAccount(string accountName, string privateKey)
         {
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, accountName);
-            //var @params = new ArrayList {accountName};
-            var result = SendRequest(reqname, @params);
-            var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);                
-            var response = StartBroadcasting(contentdata.Result, privateKey);
+            var @params = ParamCollection.Single(s => s.MethodName == "DeleteAccount");
+            var data = @params.GetObjectAndJsonValue( accountName);
+            var result = SendRequest(@params.BlockChainMethodName, data);
+            var contentData = JsonConvert.DeserializeObject<AccountResponse>(result);                
+            var response = StartBroadcasting(contentData.Result, privateKey);
             return response;
         }
     } 

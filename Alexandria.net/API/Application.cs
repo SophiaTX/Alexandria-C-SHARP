@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
-using Alexandria.net.Communication;
 using Alexandria.net.Enums;
 using Alexandria.net.Extensions;
 using Alexandria.net.Logging;
+using Alexandria.net.Mapping;
 using Alexandria.net.Messaging.Responses;
 using Alexandria.net.Settings;
 using Newtonsoft.Json;
@@ -15,9 +15,9 @@ namespace Alexandria.net.API
     /// <para>
     /// WSophia Blockchain Wallet functions
     /// </para>
-    public class Application:RpcConnection
+    public class Application:ApiBase
     {
-        private readonly ILogger _logger;
+        //private readonly ILogger _logger;
 
         #region constructor
 
@@ -25,11 +25,11 @@ namespace Alexandria.net.API
         /// Application Constructor
         /// </summary>
         /// <param name="config"></param>
-        /// <param name="wallet"></param>
-        public Application(IConfig config, bool wallet = true) : base(config, wallet)
+        /// <param name="methodMapperCollection"></param>
+        public Application(IConfig config, List<MethodMapper> methodMapperCollection) : base(
+            methodMapperCollection)
         {
-            var assemblyname = Assembly.GetExecutingAssembly().GetName().Name;
-            _logger = new Logger(config, assemblyname);
+            Logger = new Logger(config, Assembly.GetExecutingAssembly().GetName().Name);
         }
 
         #endregion
@@ -50,13 +50,12 @@ namespace Alexandria.net.API
         public TransactionResponse CreateApplication(string author, string appName, string url, string metaData,
             byte priceParam, string privateKey)
         {
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, author, appName, url, metaData,
+            var @params = ParamCollection.Single(s => s.MethodName == "");
+            var data = @params.GetObjectAndJsonValue(author, appName, url, metaData,
                 priceParam);
-            //var @params = new ArrayList {author, appName, url, metaData, priceParam};
-            var result = SendRequest(reqname, @params);
-            var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
-            var response = StartBroadcasting(contentdata.Result, privateKey);
+            var result = SendRequest(@params.BlockChainMethodName, data);
+            var content = JsonConvert.DeserializeObject<AccountResponse>(result);
+            var response = StartBroadcasting(content.Result, privateKey);
             return response;
         }
 
@@ -74,13 +73,13 @@ namespace Alexandria.net.API
         public TransactionResponse UpdateApplication(string author, string appName, string newAuthor, string url,
             string metaData, byte priceParam, string privateKey)
         {
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, author, appName, newAuthor, url,
+            var @params = ParamCollection.Single(s => s.MethodName == "");
+            var data = @params.GetObjectAndJsonValue(author, appName, newAuthor, url,
                 metaData, priceParam);
-            //var @params = new ArrayList {author, appName, newAuthor, url, metaData, priceParam};
-            var result = SendRequest(reqname, @params);
-            var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
-            var response = StartBroadcasting(contentdata.Result, privateKey);
+
+            var result = SendRequest(@params.BlockChainMethodName, data);
+            var content = JsonConvert.DeserializeObject<AccountResponse>(result);
+            var response = StartBroadcasting(content.Result, privateKey);
             return response;
         }
 
@@ -92,12 +91,12 @@ namespace Alexandria.net.API
         /// <param name="privateKey"></param>
         public TransactionResponse DeleteApplication(string author, string appName, string privateKey)
         {
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, author, appName);
-            //var @params = new ArrayList {author, appName};
-            var result = SendRequest(reqname, @params);
-            var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
-            var response = StartBroadcasting(contentdata.Result, privateKey);
+            var @params = ParamCollection.Single(s => s.MethodName == "");
+            var data = @params.GetObjectAndJsonValue(author, appName);
+
+            var result = SendRequest(@params.BlockChainMethodName, data);
+            var content = JsonConvert.DeserializeObject<AccountResponse>(result);
+            var response = StartBroadcasting(content.Result, privateKey);
             return response;
         }
 
@@ -109,12 +108,11 @@ namespace Alexandria.net.API
         /// <param name="privateKey"></param>
         public TransactionResponse BuyApplication(string buyer, long appId, string privateKey)
         {
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, buyer, appId);
-            //var @params = new ArrayList {buyer, appId};
-            var result = SendRequest(reqname, @params);
-            var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
-            var response = StartBroadcasting(contentdata.Result, privateKey);
+            var @params = ParamCollection.Single(s => s.MethodName == "");
+            var data = @params.GetObjectAndJsonValue(buyer, appId);
+            var result = SendRequest(@params.BlockChainMethodName, data);
+            var content = JsonConvert.DeserializeObject<AccountResponse>(result);
+            var response = StartBroadcasting(content.Result, privateKey);
             return response;
         }
 
@@ -128,12 +126,11 @@ namespace Alexandria.net.API
         /// <param name="privateKey"></param>
         public TransactionResponse CancelApplicationBuying(string appOwner, string buyer, long appId, string privateKey)
         {
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, appOwner, buyer, appId);
-            //var @params = new ArrayList {appOwner, buyer, appId};
-            var result = SendRequest(reqname, @params);
-            var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
-            var response = StartBroadcasting(contentdata.Result, privateKey);
+            var @params = ParamCollection.Single(s => s.MethodName == "");
+            var data = @params.GetObjectAndJsonValue(appOwner, buyer, appId);
+            var result = SendRequest(@params.BlockChainMethodName, data);
+            var content = JsonConvert.DeserializeObject<AccountResponse>(result);
+            var response = StartBroadcasting(content.Result, privateKey);
             return response;
         }
 
@@ -145,27 +142,25 @@ namespace Alexandria.net.API
         /// <param name="count">count Number of items to retrieve</param>
         public ApplicationSearchResponse GetApplicationBuyings(string buyerName, SearchType searchType, uint count)
         {
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, buyerName,
+            var @params = ParamCollection.Single(s => s.MethodName == "");
+            var data = @params.GetObjectAndJsonValue(buyerName,
                 searchType.GetStringValue(), count);
-            //var @params = new ArrayList {buyerName, searchType.GetStringValue(), count};
-            var result = SendRequest(reqname, @params);
-            var contentdata = JsonConvert.DeserializeObject<ApplicationSearchResponse>(result);
+            var result = SendRequest(@params.BlockChainMethodName, data);
+            var content = JsonConvert.DeserializeObject<ApplicationSearchResponse>(result);
 
-            return contentdata;
+            return content;
         }
 
         /// <summary>
         /// Get list of published applications on the blockchain
         /// </summary>
-        /// <param name="applicationNames">list of names of appictions to be searched</param>
+        /// <param name="applicationNames">list of names of applictions to be searched</param>
         /// <returns>the application response data</returns>
         public GetApplicationResponse GetApplications(List<string> applicationNames)
         {
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, applicationNames);
-            //var @params = new ArrayList {applicationNames};
-            var result= SendRequest(reqname, @params);
+            var @params = ParamCollection.Single(s => s.MethodName == "");
+            var data = @params.GetObjectAndJsonValue(applicationNames);
+            var result = SendRequest(@params.BlockChainMethodName, data);
             var response = JsonConvert.DeserializeObject<GetApplicationResponse>(result);
 
             return response;

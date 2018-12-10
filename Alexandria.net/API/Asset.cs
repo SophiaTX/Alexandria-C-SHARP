@@ -1,8 +1,9 @@
 ﻿using System;
-using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
-using Alexandria.net.Communication;
 using Alexandria.net.Logging;
+using Alexandria.net.Mapping;
 using Alexandria.net.Messaging.Responses;
 using Alexandria.net.Settings;
 using Newtonsoft.Json;
@@ -13,21 +14,19 @@ namespace Alexandria.net.API
     /// <para>
     /// Sophia Blockchain Asset functions
     /// </para>
-    public class Asset : RpcConnection
+    public class Asset : ApiBase
     {
-        private readonly ILogger _logger;
-
         #region Constructors
 
         /// <summary>
         /// asset constructor
         /// </summary>
-        /// <param name="config">the Configuration paramaters for the endpoint and ports</param>
-        public Asset(IConfig config) :
-            base(config)
+        /// <param name="config">the Configuration parameters for the endpoint and ports</param>
+        /// <param name="methodMapperCollection"></param>
+        public Asset(IConfig config, List<MethodMapper> methodMapperCollection) :
+            base(methodMapperCollection)
         {
-            var assemblyname = Assembly.GetExecutingAssembly().GetName().Name;
-            _logger = new Logger(config, assemblyname);
+            Logger = new Logger(config, Assembly.GetExecutingAssembly().GetName().Name);
         }
 
         #endregion
@@ -35,7 +34,7 @@ namespace Alexandria.net.API
         #region Methods
 
         /// <summary> 
-        /// Trnasfer given assets from one user to other one.
+        /// Transfer given assets from one user to other one.
         /// </summary>
         /// <param name="from">string from</param>
         /// <param name="to">string to</param>
@@ -45,13 +44,12 @@ namespace Alexandria.net.API
         /// <returns>Returns Transaction object</returns>
         public TransactionResponse Transfer(string from, string to, string amount, string memo, string privateKey)
         {
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, @from, to, amount, memo);
-            //var @params = new ArrayList {from, to, amount, memo };
-            var result = SendRequest(reqname, @params);
+            var @params = ParamCollection.Single(s => s.MethodName == "Transfer");
+            var data = @params.GetObjectAndJsonValue(from, to, amount, memo);
+            var result = SendRequest(@params.BlockChainMethodName, data);
 
-            var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
-            var response = StartBroadcasting(contentdata.Result, privateKey);
+            var content = JsonConvert.DeserializeObject<AccountResponse>(result);
+            var response = StartBroadcasting(content.Result, privateKey);
             return response;
         }
 
@@ -67,13 +65,12 @@ namespace Alexandria.net.API
         /// <returns>Returns Transaction object</returns>
         public TransactionResponse TransferToVesting(string from, string to, string amount, string privateKey)
         {
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, @from, to, amount);
-            //var @params = new ArrayList {from, to, amount};
-            var result = SendRequest(reqname, @params);
+            var @params = ParamCollection.Single(s => s.MethodName == "TransferToVesting");
+            var data = @params.GetObjectAndJsonValue(@from, to, amount);
+            var result = SendRequest(@params.BlockChainMethodName, data);
 
-            var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
-            var response = StartBroadcasting(contentdata.Result, privateKey);
+            var content = JsonConvert.DeserializeObject<AccountResponse>(result);
+            var response = StartBroadcasting(content.Result, privateKey);
             return response;
         }
 
@@ -89,13 +86,11 @@ namespace Alexandria.net.API
         /// <returns></returns>
         public TransactionResponse WithdrawVesting(string from, string vestingShares, string privateKey)
         {
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, @from, vestingShares);
-            //var @params = new ArrayList {from, vestingShares};
-            var result = SendRequest(reqname, @params);
-
-            var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
-            var response = StartBroadcasting(contentdata.Result, privateKey);
+            var @params = ParamCollection.Single(s => s.MethodName == "WithdrawVesting");
+            var data = @params.GetObjectAndJsonValue(@from, vestingShares);
+            var result = SendRequest(@params.BlockChainMethodName, data);
+            var content = JsonConvert.DeserializeObject<AccountResponse>(result);
+            var response = StartBroadcasting(content.Result, privateKey);
             return response;
         }
 
@@ -108,10 +103,9 @@ namespace Alexandria.net.API
         /// <returns>Returns ulong Account balance</returns>
         private ulong GetAccountUiaBalance(string accountName, string assetSymbol)
         {
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, accountName, assetSymbol);
-            //var @params = new ArrayList {accountName, assetSymbol};
-            var result = SendRequest(reqname, @params);
+            var @params = ParamCollection.Single(s => s.MethodName == "GetAccountUiaBalance");
+            var data = @params.GetObjectAndJsonValue(accountName, assetSymbol);
+            var result = SendRequest(@params.BlockChainMethodName, data);
             return Convert.ToUInt64(result);
         }
 
@@ -126,28 +120,26 @@ namespace Alexandria.net.API
         private bool CreateUia(string ownerAccountName, Authority managementAuthority, ulong maxSupply,
             string assetSymbol)
         {
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, ownerAccountName,
+            var @params = ParamCollection.Single(s => s.MethodName == "CreateUia");
+            var data = @params.GetObjectAndJsonValue(ownerAccountName,
                 managementAuthority, maxSupply, assetSymbol);
-            //var @params = new ArrayList {ownerAccountName, managementAuthority, maxSupply, assetSymbol};
-            var result = SendRequest(reqname, @params);
+            var result = SendRequest(@params.BlockChainMethodName, data);
             return result == "true";
         }
 
         /// <summary>
         /// Issues an UIA for the Receiver account of given ammount
         /// </summary>
-        /// <param name="reveiverAccountName">string reveiverAccountName</param>
+        /// <param name="receiverAccountName">string receiverAccountName</param>
         /// <param name="amount">ulong amount</param>
         /// <param name="assetSymbol">string assetSymbol</param>
         /// <returns>Returns true if success or false for failed try</returns>
-        private bool IssueUia(string reveiverAccountName, ulong amount, string assetSymbol)
+        private bool IssueUia(string receiverAccountName, ulong amount, string assetSymbol)
         {
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, reveiverAccountName, amount,
+            var @params = ParamCollection.Single(s => s.MethodName == "IssueUia");
+            var data = @params.GetObjectAndJsonValue(receiverAccountName, amount,
                 assetSymbol);
-            //var @params = new ArrayList {reveiverAccountName, amount, assetSymbol};
-            var result = SendRequest(reqname, @params);
+            var result = SendRequest(@params.BlockChainMethodName, data);
             return result == "true";
         }
 
@@ -160,11 +152,10 @@ namespace Alexandria.net.API
         /// <returns>Returns true if success or false for failed try</returns>
         private bool BurnUia(string accountName, ulong amount, string assetSymbol)
         {
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params =
-                ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, accountName, amount, assetSymbol);
-            //var @params = new ArrayList {accountName, amount, assetSymbol};
-            var result = SendRequest(reqname, @params);
+            var @params = ParamCollection.Single(s => s.MethodName == "BurnUia");
+            var data = @params.GetObjectAndJsonValue(accountName, amount, assetSymbol);
+            var result = SendRequest(@params.BlockChainMethodName, data);
+
             return result == "true";
         }
 
@@ -175,10 +166,10 @@ namespace Alexandria.net.API
         /// <returns>Returns Json object with details combining</returns>
         private Authority GetUiaAuthority(string assetSymbol)
         {
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, assetSymbol);
-            //var @params = new ArrayList {assetSymbol};
-            var result = SendRequest(reqname, @params);
+            var @params = ParamCollection.Single(s => s.MethodName == "GetUiaAuthority");
+            var data = @params.GetObjectAndJsonValue(assetSymbol);
+            var result = SendRequest(@params.BlockChainMethodName, data);
+
             return JsonConvert.DeserializeObject<Authority>(result);
         }
         
@@ -189,10 +180,10 @@ namespace Alexandria.net.API
         /// <returns>Returns true if success or false for failed try</returns>
         private bool HasUiaPrivateKey(string assetSymbol)
         {
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, assetSymbol);
-            //var @params = new ArrayList {assetSymbol};
-            var result = SendRequest(reqname, @params);
+            var @params = ParamCollection.Single(s => s.MethodName == "HasUiaPrivateKey");
+            var data = @params.GetObjectAndJsonValue(assetSymbol);
+            var result = SendRequest(@params.BlockChainMethodName, data);
+
             return result == "true";
         }
         #endregion

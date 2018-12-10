@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using Alexandria.net.API;
@@ -6,6 +7,7 @@ using Alexandria.net.Communication;
 using Alexandria.net.Enums;
 using Alexandria.net.Events;
 using Alexandria.net.Logging;
+using Alexandria.net.Mapping;
 using Alexandria.net.Settings;
 using Newtonsoft.Json;
 using Serilog;
@@ -19,6 +21,13 @@ namespace Alexandria.net.Core
     /// </summary>
     public class SophiaClient
     {
+        #region Member Variables
+        /// <summary>
+        /// The RPC Connection for sending and receiving information from the blockchain
+        /// </summary>
+        public static RpcConnection RpcConnection;
+        #endregion
+        
         #region Properties
 
         /// <summary>
@@ -65,6 +74,9 @@ namespace Alexandria.net.Core
         public SophiaClient(string hostname = "", ushort daemonPort = 0, ushort walletPort = 0)
         {
             var config = LoadJson<Config>("config.json");
+
+            var methodMapper = LoadJson<List<MethodMapper>>("MethodMapper.json");
+            
             if (config == null) return;
             if (hostname != "")
                 config.Hostname = hostname;
@@ -73,18 +85,15 @@ namespace Alexandria.net.Core
             if (walletPort != 0)
                 config.WalletPort = walletPort;
 
-            Account = new Account(config);
-            Asset = new Asset(config);
-            Key = new Key(config);
-            Transaction = new Transaction(config);
-            Witness = new Witness(config);
-            Data = new Data(config);
-            Application = new Application(config);
+            Account = new Account(config, methodMapper);
+            Asset = new Asset(config, methodMapper);
+            Key = new Key(config, methodMapper);
+            Transaction = new Transaction(config, methodMapper);
+            Witness = new Witness(config, methodMapper);
+            Data = new Data(config, methodMapper);
+            Application = new Application(config, methodMapper);
 
-            var aboutResponse = Transaction.About();
-
-            if (aboutResponse != null)
-                RpcConnection.ChainId = aboutResponse.Result.ChainId;            
+            RpcConnection = new RpcConnection(config);
         }
 
         #endregion
@@ -106,10 +115,10 @@ namespace Alexandria.net.Core
         {
             try
             {
-                var fullfilename = $"{AssemblyDirectory}/{filename}";
-                if (File.Exists(fullfilename))
+                var fullFilename = $"{AssemblyDirectory}/{filename}";
+                if (File.Exists(fullFilename))
                 {
-                    return JsonConvert.DeserializeObject<T>(File.ReadAllText(fullfilename));
+                    return JsonConvert.DeserializeObject<T>(File.ReadAllText(fullFilename));
                 }
                 
                 if (typeof(T) == typeof(Config))
@@ -127,12 +136,12 @@ namespace Alexandria.net.Core
                         Version = "2.0",
                         DaemonEndpoint="http://stagenet.sophiatx.com:9193"
                     };
-                    File.WriteAllText(fullfilename, JsonConvert.SerializeObject(config));
+                    File.WriteAllText(fullFilename, JsonConvert.SerializeObject(config));
                     return (T) Convert.ChangeType(config, typeof(T));
                 }
                 else if (typeof(T) == typeof(BlockchainConfig))
                 {
-                    var blockchainconfig = new BlockchainConfig
+                    var blockChainConfig = new BlockchainConfig
                     {
                         Account = AccountOwner.Sender,
                         Index = 0,
@@ -140,8 +149,16 @@ namespace Alexandria.net.Core
                         SearchType = SearchType.BySender,
                         Start = StartBy.Index
                     };
-                    File.WriteAllText(fullfilename, JsonConvert.SerializeObject(blockchainconfig));
-                    return (T) Convert.ChangeType(blockchainconfig, typeof(T));
+                    File.WriteAllText(fullFilename, JsonConvert.SerializeObject(blockChainConfig));
+                    return (T) Convert.ChangeType(blockChainConfig, typeof(T));
+                }
+                else if (typeof(T) == typeof(List<MethodMapper>))
+                {
+                    var mm = new MethodMapperCollection();
+                    
+                    var coll = mm.BuildMethodMapperJson(fullFilename);
+                    
+                    return (T) Convert.ChangeType(coll, typeof(T));
                 }
             }
             catch (Exception e)

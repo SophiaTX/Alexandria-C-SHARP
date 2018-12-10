@@ -1,19 +1,17 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Globalization;
+using System.Linq;
 using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
-using Alexandria.net.Communication;
 using Alexandria.net.Enums;
 using Alexandria.net.Events;
 using Alexandria.net.Extensions;
+using Alexandria.net.Mapping;
 using Alexandria.net.Messaging.Receiver;
 using Alexandria.net.Messaging.Responses;
 using Alexandria.net.Settings;
 using Newtonsoft.Json;
-using ILogger = Alexandria.net.Logging.ILogger;
 using Logger = Alexandria.net.Logging.Logger;
 
 namespace Alexandria.net.API
@@ -22,11 +20,10 @@ namespace Alexandria.net.API
     /// <summary>
     /// Sophia Blockchain Data functions
     /// </summary>
-    public class Data : RpcConnection
+    public class Data : ApiBase
     {
         #region member variables
 
-        private readonly ILogger _logger;
         private Thread _thread;
         private Timer _timer;
         private int _timeoutInMilliseconds = 20000;
@@ -38,16 +35,16 @@ namespace Alexandria.net.API
 
         #endregion
 
-        #region ctor
+        #region Constructor
 
         /// <summary>
         /// Data object constructor
         /// </summary>
-        /// <param name="config">the Configuration paramaters for the endpoint and ports</param>
-        public Data(IConfig config) : base(config)
+        /// <param name="config">the Configuration parameters for the endpoint and ports</param>
+        /// <param name="methodMapperCollection"></param>
+        public Data(IConfig config, List<MethodMapper> methodMapperCollection) : base(methodMapperCollection)
         {
-            var assemblyname = Assembly.GetExecutingAssembly().GetName().Name;
-            _logger = new Logger(config, assemblyname);
+            Logger = new Logger(config, Assembly.GetExecutingAssembly().GetName().Name);
         }
 
         #endregion
@@ -76,19 +73,19 @@ namespace Alexandria.net.API
         /// <param name="count"></param>
         /// <param name="frequency">the timer frequency to be set, default is 20 seconds (milliseconds)</param>
         /// <param name="appid"></param>
-        /// <param name="accountname"></param>
-        /// <param name="searchtype"></param>
-        /// <param name="startby"></param>
-        public void StartListening(ulong appid, string accountname, SearchType searchtype, DateTime startby, uint count,
+        /// <param name="accountName"></param>
+        /// <param name="searchType"></param>
+        /// <param name="startBy"></param>
+        public void StartListening(ulong appid, string accountName, SearchType searchType, DateTime startBy, uint count,
             int frequency = 20000)
         {
             try
             {
                 _appId = appid;
-                _accountName = accountname;
+                _accountName = accountName;
                 _timeoutInMilliseconds = frequency;
-                _searchType = searchtype;
-                _startBy = startby;
+                _searchType = searchType;
+                _startBy = startBy;
                 _count = count;
                 var t = new ParameterizedThreadStart(SophiaClient_DataReceived);
                 _thread = new Thread(t)
@@ -101,7 +98,7 @@ namespace Alexandria.net.API
             }
             catch (Exception ex)
             {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+                Logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
         }
@@ -110,24 +107,24 @@ namespace Alexandria.net.API
         /// Sends the parsed data to the blockchain
         /// </summary>
         /// <param name="data">the data to send, this is a type parameter, so any data type can be sent</param>
-        /// <param name="jsondata">the sender info required for the transaction</param>
+        /// <param name="jsonData">the sender info required for the transaction</param>
         /// <param></param>
         /// <returns>the transaction response data</returns>
-        public TransactionResponse SendJson<T>(T data, JsonData jsondata)
+        public TransactionResponse SendJson<T>(T data, JsonData jsonData)
         {
             try
             {
-                var serialiseddata = JsonConvert.SerializeObject(data);
-                jsondata.JsonDoc = serialiseddata;
-                var customjsonrpc = MakeCustomJsonOperation(jsondata.Sender, jsondata.Recipients, jsondata.AppId,
-                    jsondata.JsonDoc);
-                if (customjsonrpc == null) return null;
-                var resp = StartBroadcasting(customjsonrpc.Result, jsondata.PrivateKey);
+                var serialisedData = JsonConvert.SerializeObject(data);
+                jsonData.JsonDoc = serialisedData;
+                var customJsonRpc = MakeCustomJsonOperation(jsonData.Sender, jsonData.Recipients, jsonData.AppId,
+                    jsonData.JsonDoc);
+                if (customJsonRpc == null) return null;
+                var resp = StartBroadcasting(customJsonRpc.Result, jsonData.PrivateKey);
                 return resp;
             }
             catch (Exception ex)
             {
-                _logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
+                Logger.WriteError($"Message:{ex.Message} | StackTrace:{ex.StackTrace}");
                 throw;
             }
         }
@@ -330,8 +327,6 @@ namespace Alexandria.net.API
             {
                 OnDataReceivedBlockChainEvent?.Invoke(this, new DataReceivedEventArgs(response));
             }
-
-            //_message.SaveJson();
             _timer.Change(_timeoutInMilliseconds, Timeout.Infinite);
         }
 
@@ -346,23 +341,21 @@ namespace Alexandria.net.API
         private CustomJsonResponse MakeCustomJsonOperation(string sender, List<string> recipients, uint appId,
             string document)
         {
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, appId, sender, recipients,
+            var @params = ParamCollection.Single(s => s.MethodName == "MakeCustomJsonOperation");
+            var data = @params.GetObjectAndJsonValue(appId, sender, recipients,
                 document);
-            //var @params = new ArrayList {appId, sender, recipients, document};
-            var response = SendRequest(reqname, @params);
-            return JsonConvert.DeserializeObject<CustomJsonResponse>(response);
+            var result = SendRequest(@params.BlockChainMethodName, data);
+            return JsonConvert.DeserializeObject<CustomJsonResponse>(result);
         }
 
         private async Task<CustomJsonResponse> MakeCustomJsonOperationAsync(string sender, List<string> recipients,
             uint appId, string document)
         {
-            var reqname = CSharpToCpp.GetValue("MakeCustomJsonOperationAsync");
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, appId, sender, recipients,
+            var @params = ParamCollection.Single(s => s.MethodName == "MakeCustomJsonOperationAsync");
+            var data = @params.GetObjectAndJsonValue(appId, sender, recipients,
                 document);
-//                var @params = new ArrayList {appId, sender, recipients, document};
-            var response = await SendRequestAsync(reqname, @params);
-            return JsonConvert.DeserializeObject<CustomJsonResponse>(response);
+            var result = await SendRequestAsync(@params.BlockChainMethodName, data);
+            return JsonConvert.DeserializeObject<CustomJsonResponse>(result);
         }
 
         /// <summary>
@@ -376,12 +369,11 @@ namespace Alexandria.net.API
         private AccountResponse MakeCustomBinaryOperation(ulong appId, string sender, List<string> recipients,
             string document)
         {
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, appId, sender, recipients,
+            var @params = ParamCollection.Single(s => s.MethodName == "MakeCustomBinaryOperation");
+            var data = @params.GetObjectAndJsonValue(appId, sender, recipients,
                 document);
-            //var @params = new ArrayList {appId, sender, recipients, document};
-            var response = SendRequest(reqname, @params);
-            return JsonConvert.DeserializeObject<AccountResponse>(response);
+            var result = SendRequest(@params.BlockChainMethodName, data);
+            return JsonConvert.DeserializeObject<AccountResponse>(result);
         }
 
         /// <summary>
@@ -395,11 +387,10 @@ namespace Alexandria.net.API
         private async Task<AccountResponse> MakeCustomBinaryOperationAsync(ulong appId, string sender,
             List<string> recipients, string document)
         {
-            var reqname = CSharpToCpp.GetValue("MakeCustomBinaryOperation");
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, appId, sender, recipients,
+            var @params = ParamCollection.Single(s => s.MethodName == "MakeCustomBinaryOperation");
+            var data = @params.GetObjectAndJsonValue(appId, sender, recipients,
                 document);
-            //var @params = new ArrayList {appId, sender, recipients, document};
-            var response = await SendRequestAsync(reqname, @params);
+            var response = await SendRequestAsync(@params.BlockChainMethodName, data);
 
             return JsonConvert.DeserializeObject<AccountResponse>(response);
         }
@@ -416,17 +407,16 @@ namespace Alexandria.net.API
         private AccountResponse MakeCustomBinaryBase58Operation(string sender, List<string> recipients, ulong appId,
             string document)
         {
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, sender, recipients, appId,
+            var @params = ParamCollection.Single(s => s.MethodName == "MakeCustomBinaryBase58Operation");
+            var data = @params.GetObjectAndJsonValue(sender, recipients, appId,
                 document);
-            //var @params = new ArrayList {sender, recipients, appId, document};
-            var response = SendRequest(reqname, @params);
-            return JsonConvert.DeserializeObject<AccountResponse>(response);
+            var result = SendRequest(@params.BlockChainMethodName, data);
+            return JsonConvert.DeserializeObject<AccountResponse>(result);
         }
 
         /// <summary>
         /// Allowed options for search_type are "by_sender", "by_recipient", "by_sender_datetime", "by_recipient_datetime".
-        /// Account is then either sender or recevier, and start is either index od ISO time stamp.
+        /// Account is then either sender or receiver, and start is either index od ISO time stamp.
         /// </summary>
         /// <param name="appId">the application id</param>
         /// <param name="searchType"></param>
@@ -437,11 +427,10 @@ namespace Alexandria.net.API
         private ReceivedDocumentResponse GetReceivedDocuments(ulong appId,
             string account, SearchType searchType, DateTime start, uint count)
         {
-            var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, appId, account,
+            var @params = ParamCollection.Single(s => s.MethodName == "GetReceivedDocuments");
+            var data = @params.GetObjectAndJsonValue(appId, account,
                 searchType.GetStringValue(), start, count);
-            //var @params = new ArrayList {appId, account,searchType.GetStringValue(), start, count};
-            var result = SendRequest(reqname, @params);
+            var result = SendRequest(@params.BlockChainMethodName, data);
             return JsonConvert.DeserializeObject<ReceivedDocumentResponse>(result);
         }
 
@@ -458,11 +447,10 @@ namespace Alexandria.net.API
         private async Task<ReceivedDocumentResponse> GetReceivedDocumentsAsync(ulong appId, string account,
             SearchType searchType, DateTime start, uint count)
         {
-            var reqname = CSharpToCpp.GetValue("GetReceivedDocuments");
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, appId, account,
+            var @params = ParamCollection.Single(s => s.MethodName == "GetReceivedDocuments");
+            var data = @params.GetObjectAndJsonValue(appId, account,
                 searchType.GetStringValue(), start, count);
-            //var @params = new ArrayList {appId, account, searchType.GetStringValue(), start, count};
-            var result = await SendRequestAsync(reqname, @params);
+            var result = await SendRequestAsync(@params.BlockChainMethodName,data);
             return JsonConvert.DeserializeObject<ReceivedDocumentResponse>(result);
         }
 

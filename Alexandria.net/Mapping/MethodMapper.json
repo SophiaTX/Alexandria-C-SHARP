@@ -1,0 +1,462 @@
+[
+    {
+        "MethodName": "Vote",
+        "BlockChainMethodName": "vote",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "AccountExists",
+        "BlockChainMethodName": "account_exist",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "HasPrivateKeys",
+        "BlockChainMethodName": "hasPrivateKeys",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "GetActiveAuthority",
+        "BlockChainMethodName": "get_active_authority",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "GetOwnerAuthority",
+        "BlockChainMethodName": "get_owner_authority",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "GetMemoKey",
+        "BlockChainMethodName": "get_memo_key",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "GetAccountBalance",
+        "BlockChainMethodName": "get_account_balance",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "GetVestingBalance",
+        "BlockChainMethodName": "get_vesting_balance",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "CreateSimpleAuthority",
+        "BlockChainMethodName": "create_simple_authority",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "CreateSimpleMultisigAuthority",
+        "BlockChainMethodName": "create_simple_multisig_authority",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "CreateSimpleManagedAuthority",
+        "BlockChainMethodName": "create_simple_managed_authority",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "CreateSimpleMultiManagedAuthority",
+        "BlockChainMethodName": "create_simple_multisig_managed_authority",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "UpdateAccount",
+        "BlockChainMethodName": "update_account",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "DepositVesting",
+        "BlockChainMethodName": "depositVesting",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "WithdrawVestings",
+        "BlockChainMethodName": "withdrawVestings",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "VoteForWitness",
+        "BlockChainMethodName": "vote_for_witness",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "UpdateToWitness",
+        "BlockChainMethodName": "updateToWitness",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "GetAccount",
+        "BlockChainMethodName": "get_account",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "CreateAccount",
+        "BlockChainMethodName": "create_account",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "Transfer",
+        "BlockChainMethodName": "transfer",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "GetAccountUiaBalance",
+        "BlockChainMethodName": "getAccountUiaBalance",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "CreateUia",
+        "BlockChainMethodName": "createUia",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "IssueUia",
+        "BlockChainMethodName": "issueUia",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "BurnUia",
+        "BlockChainMethodName": "burnUia",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "GetUiaAuthority",
+        "BlockChainMethodName": "getUiaAuthority",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "HasUiaPrivateKey",
+        "BlockChainMethodName": "hasUiaPrivateKey",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "DeleteAccount",
+        "BlockChainMethodName": "delete_account",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "SuggestBrainKey",
+        "BlockChainMethodName": "suggest_brain_key",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "NormalizeBrainKey",
+        "BlockChainMethodName": "normalize_brain_key",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "About",
+        "BlockChainMethodName": "about",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "Challenge",
+        "BlockChainMethodName": "challenge",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "GetBlock",
+        "BlockChainMethodName": "get_block",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "GetFeedHistory",
+        "BlockChainMethodName": "get_feed_history",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "GetTransaction",
+        "BlockChainMethodName": "get_transaction",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "BroadcastTransaction",
+        "BlockChainMethodName": "broadcast_transaction",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "CreateSimpleTransaction",
+        "BlockChainMethodName": "create_simple_transaction",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "CreateTransaction",
+        "BlockChainMethodName": "create_transaction",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "PublishFeed",
+        "BlockChainMethodName": "publish_feed",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "SetTransactionExpiration",
+        "BlockChainMethodName": "set_transaction_expiration",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "SetVotingProxy",
+        "BlockChainMethodName": "set_voting_proxy",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "WithdrawVesting",
+        "BlockChainMethodName": "withdraw_vesting",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "TransferToVesting",
+        "BlockChainMethodName": "transfer_to_vesting",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "GetOpsInBlock",
+        "BlockChainMethodName": "get_ops_in_block",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "GetActiveWitnesses",
+        "BlockChainMethodName": "get_active_witnesses",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "GetMinerQueue ",
+        "BlockChainMethodName": "get_miner_queue",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "GetWitness ",
+        "BlockChainMethodName": "get_witness",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "ListWitnesses ",
+        "BlockChainMethodName": "list_witnesses",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "UpdateWitness ",
+        "BlockChainMethodName": "update_witness",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "Help ",
+        "BlockChainMethodName": "help",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "Info ",
+        "BlockChainMethodName": "info",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "SerializeTransaction",
+        "BlockChainMethodName": "serialize_transaction",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "MakeCustomJsonOperation",
+        "BlockChainMethodName": "make_custom_json_operation",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "MakeCustomJsonOperationAsync",
+        "BlockChainMethodName": "make_custom_json_operation",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "GetReceivedDocuments",
+        "BlockChainMethodName": "get_received_documents",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "MakeCustomBinaryOperation",
+        "BlockChainMethodName": "make_custom_binary_operation",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "CreateApplication",
+        "BlockChainMethodName": "create_application",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "UpdateApplication",
+        "BlockChainMethodName": "update_application",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "BuyApplication",
+        "BlockChainMethodName": "buy_application",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "DeleteApplication",
+        "BlockChainMethodName": "delete_application",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "CancelApplicationBuying",
+        "BlockChainMethodName": "cancel_application_buying",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "GetApplicationBuyings",
+        "BlockChainMethodName": "get_application_buyings",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "GetApplications",
+        "BlockChainMethodName": "get_applications",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "GetConfig",
+        "BlockChainMethodName": "get_config",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "GetDynamicGlobalProperties",
+        "BlockChainMethodName": "get_dynamic_global_properties",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "GetChainProperties",
+        "BlockChainMethodName": "get_chain_properties",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "GetCurrentMedianHistoryPrice",
+        "BlockChainMethodName": "get_current_median_history_price",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "GetWitnessSchedule",
+        "BlockChainMethodName": "get_witness_schedule",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "GetHardForkVersion",
+        "BlockChainMethodName": "get_hardfork_version",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "GetNextScheduledHardfork",
+        "BlockChainMethodName": "get_next_scheduled_hardfork",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "GetAccounts",
+        "BlockChainMethodName": "get_accounts",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "LookupAccountNames",
+        "BlockChainMethodName": "lookup_account_names",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "LookupAccounts",
+        "BlockChainMethodName": "lookup_accounts",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "GetAccountCount",
+        "BlockChainMethodName": "get_account_count",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "GetOwnerHistory",
+        "BlockChainMethodName": "get_owner_history",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "GetRecoveryRequest",
+        "BlockChainMethodName": "get_recovery_request",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "GetBlockHeader",
+        "BlockChainMethodName": "get_block_header",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "GetWitnesses",
+        "BlockChainMethodName": "get_witnesses",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "GetConversionRequests ",
+        "BlockChainMethodName": "get_conversion_requests",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "GetWitnessByAccount",
+        "BlockChainMethodName": "get_witness_by_account",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "GetWitnessesByVote",
+        "BlockChainMethodName": "get_witnesses_by_vote",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "GetWitnessCount",
+        "BlockChainMethodName": "get_witness_count",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "GetActiveVotes",
+        "BlockChainMethodName": "get_active_votes",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "GetContent",
+        "BlockChainMethodName": "get_content",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "GetContentReplies",
+        "BlockChainMethodName": "get_content_replies",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "GetRepliesByLastUpdate",
+        "BlockChainMethodName": "get_replies_by_last_update",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "GetDiscussionsByAuthorBeforeDate",
+        "BlockChainMethodName": "get_discussions_by_author_before_date",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "GetAccountHistory",
+        "BlockChainMethodName": "get_account_history",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "GetAccountNameFromSeed",
+        "BlockChainMethodName": "get_account_name_from_seed",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "CalculateFee",
+        "BlockChainMethodName": "calculate_fee",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "AddFee",
+        "BlockChainMethodName": "add_fee",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "GetTransactionDigestServer",
+        "BlockChainMethodName": "get_transaction_digest",
+        "ObjectTypeName": "VoteParams"
+    },
+    {
+        "MethodName": "AddSignatureServer",
+        "BlockChainMethodName": "add_signature",
+        "ObjectTypeName": "VoteParams"
+    }
+]
