@@ -68,7 +68,7 @@ public class Data3
     public Error2 error { get; set; }
 }
 
-public class Tx
+public class Txx
 {
     public int ref_block_num { get; set; }
     public long ref_block_prefix { get; set; }
@@ -92,7 +92,7 @@ public class Data2
 {
     public string error { get; set; }
     public Data3 data { get; set; }
-    public Tx tx { get; set; }
+    public Txx tx { get; set; }
     public string invalidNameCallMethod { get; set; }
     public List<CallParam> invalidNameCallParams { get; set; }
 }

@@ -7,6 +7,7 @@ namespace Alexandria.net.Messaging.Responses
     /// </summary>
     public class AboutResponse
     {
+        public string jsonrpc { get; set; }
         /// <summary>
         /// the transaction id
         /// </summary>
@@ -16,6 +17,11 @@ namespace Alexandria.net.Messaging.Responses
         /// the about data reponse information
         /// </summary>
         [JsonProperty("result")]
-        public AboutData Result { get; set; }
+        public AboutDataResult Result { get; set; }
+    }
+
+    public class AboutDataResult
+    {
+        public AboutData about { get; set; }
     }
 }

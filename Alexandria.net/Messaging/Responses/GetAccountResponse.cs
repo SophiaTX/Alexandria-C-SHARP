@@ -8,6 +8,7 @@ namespace Alexandria.net.Messaging.Responses
     /// </summary>
     public class GetAccountResponse
     {
+        public string jsonrpc { get; set; }
         /// <summary>
         /// the transaction id
         /// </summary>
@@ -17,6 +18,10 @@ namespace Alexandria.net.Messaging.Responses
         /// the account details result data
         /// </summary>
         [JsonProperty("result")]
-        public List<AccountDetails> Result { get; set; }
+        public GetAccountResult Result { get; set; }
+    }
+    public class GetAccountResult
+    {
+        public List<AccountDetails> account { get; set; }
     }
 }

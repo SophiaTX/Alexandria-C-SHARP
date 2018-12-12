@@ -47,7 +47,7 @@ namespace Alexandria.net.API
         /// <param name="metaData">The meta data of new application</param>
         /// <param name="priceParam">The price parameter that specifies billing for the app (1 or 0)</param>
         /// <param name="privateKey"></param>
-        public TransactionResponse CreateApplication(string author, string appName, string url, string metaData,
+        public BroadcastTxResponse CreateApplication(string author, string appName, string url, string metaData,
             byte priceParam, string privateKey)
         {
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
@@ -71,7 +71,7 @@ namespace Alexandria.net.API
         /// <param name="metaData">Updated meta data</param>
         /// <param name="priceParam">Updated price param</param>
         /// <param name="privateKey"></param>
-        public TransactionResponse UpdateApplication(string author, string appName, string newAuthor, string url,
+        public BroadcastTxResponse UpdateApplication(string author, string appName, string newAuthor, string url,
             string metaData, byte priceParam, string privateKey)
         {
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
@@ -90,7 +90,7 @@ namespace Alexandria.net.API
         /// <param name="author">The author of application that will be deleted</param>
         /// <param name="appName">The name of app that will be deleted</param>
         /// <param name="privateKey"></param>
-        public TransactionResponse DeleteApplication(string author, string appName, string privateKey)
+        public BroadcastTxResponse DeleteApplication(string author, string appName, string privateKey)
         {
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
             var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, author, appName);
@@ -107,7 +107,7 @@ namespace Alexandria.net.API
         /// <param name="buyer">The buyer of application</param>
         /// <param name="appId">The id of app that buyer will buy</param>
         /// <param name="privateKey"></param>
-        public TransactionResponse BuyApplication(string buyer, long appId, string privateKey)
+        public BroadcastTxResponse BuyApplication(string buyer, long appId, string privateKey)
         {
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
             var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, buyer, appId);
@@ -126,7 +126,7 @@ namespace Alexandria.net.API
         ///  <param name="buyer">The buyer of application</param>
         ///  <param name="appId">The id of bought app</param>
         /// <param name="privateKey"></param>
-        public TransactionResponse CancelApplicationBuying(string appOwner, string buyer, long appId, string privateKey)
+        public BroadcastTxResponse CancelApplicationBuying(string appOwner, string buyer, long appId, string privateKey)
         {
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
             var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, appOwner, buyer, appId);

@@ -8,6 +8,7 @@ using Alexandria.net.API;
 using Alexandria.net.Enums;
 using Alexandria.net.Exceptions;
 using Alexandria.net.Extensions;
+using Alexandria.net.Input;
 using Alexandria.net.Mapping;
 using Alexandria.net.Messaging.Params;
 using Alexandria.net.Messaging.Responses;
@@ -19,6 +20,7 @@ using Serilog.Sinks.Graylog;
 using Serilog.Sinks.Graylog.Core;
 using ILogger = Alexandria.net.Logging.ILogger;
 using Logger = Alexandria.net.Logging.Logger;
+using Trx = Alexandria.net.Input.Trx;
 
 
 namespace Alexandria.net.Communication
@@ -160,22 +162,40 @@ namespace Alexandria.net.Communication
         /// <param name="privateKey">private key of the user</param>
         /// <typeparam name="T">type of the transaction's json body</typeparam>
         /// <returns> transaction response data</returns>
-        protected TransactionResponse StartBroadcasting<T>(T contentdata, string privateKey)
+        protected BroadcastTxResponse StartBroadcasting<T>(T contentdata, string privateKey)
         {
             
             var trans = new Transaction(Config);
             var key = new Key(Config);
-            TransactionResponse finalResponse;
+            BroadcastTxResponse finalResponse;
             var transresponse = trans.CreateSimpleTransaction(contentdata);
             if (transresponse == null) return null;
 
-            var transaction = JsonConvert.SerializeObject(transresponse.Result);
+            var transaction = JsonConvert.SerializeObject(transresponse.Result.simple_tx);
                 
             var digest = key.GetTransactionDigest(transaction,ChainId,new byte[64]);
            
             var signature = key.SignDigest(digest, privateKey, new byte[130]);
             var response = key.AddSignature(transaction, signature,new byte[transaction.Length + 200]);
-            finalResponse = trans.BroadcastTransaction(response);
+            
+            var newTrx = new Trx()
+
+            {
+                expiration = response.Expiration,
+                extensions = response.Extensions,
+                ref_block_num = response.RefBlockNum,
+                ref_block_prefix = response.RefBlockPrefix,
+                operations = response.Operations,
+                signatures = response.Signatures
+
+            };
+           
+            var input = new BroadcastTransactionInput
+            {
+                tx = newTrx                
+            };
+            
+            finalResponse = trans.BroadcastTransaction(input);
 
             return finalResponse;
         }
@@ -216,8 +236,24 @@ namespace Alexandria.net.Communication
                 var digest = key.GetTransactionDigest(transaction,ChainId,new byte[64]);
                 var signature = key.SignDigest(digest, privateKey, new byte[130]);
                 var response = key.AddSignature(transaction, signature,new byte[transaction.Length + 200]);
+                var newTrx = new Trx()
+
+                {
+                    expiration = response.Expiration,
+                    extensions = response.Extensions,
+                    ref_block_num = response.RefBlockNum,
+                    ref_block_prefix = response.RefBlockPrefix,
+                    operations = response.Operations,
+                    signatures = response.Signatures
+
+                };
+           
+                var input = new BroadcastTransactionInput
+                {
+                    tx = newTrx                
+                };
                
-                finalResponse = await trans.BroadcastTransactionAsync(response);          
+                finalResponse = await trans.BroadcastTransactionAsync(input);          
             }
             catch (Exception ex)
             {

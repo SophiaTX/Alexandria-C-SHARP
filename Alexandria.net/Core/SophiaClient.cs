@@ -84,7 +84,7 @@ namespace Alexandria.net.Core
             var aboutResponse = Transaction.About();
 
             if (aboutResponse != null)
-                RpcConnection.ChainId = aboutResponse.Result.ChainId;            
+                RpcConnection.ChainId = aboutResponse.Result.about.ChainId;            
         }
 
         #endregion

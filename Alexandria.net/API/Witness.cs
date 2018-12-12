@@ -121,7 +121,7 @@ namespace Alexandria.net.API
         /// <param name="approve">true if the account Is voting for the account to be able to be a block produce</param>
         /// <param name="privateKey"></param>
         /// <returns>the transacxtion response data</returns>
-        public TransactionResponse VoteForWitness(string accountToVoteWith, string witnessToVoteFor, bool approve,
+        public BroadcastTxResponse VoteForWitness(string accountToVoteWith, string witnessToVoteFor, bool approve,
             string privateKey)
         {
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
@@ -150,7 +150,7 @@ namespace Alexandria.net.API
         /// <param name="priceFeed"></param>
         /// <param name="privateKey"></param>
         /// <returns>Returns true if success or false for failed try</returns>
-        public TransactionResponse UpdateWitness(string accountName, string descriptionUrl, string blockSigningKey,
+        public BroadcastTxResponse UpdateWitness(string accountName, string descriptionUrl, string blockSigningKey,
             string accountCreationPrice, int maxBlockSizeLimit, List<List<PrizeFeedQuoteMessage>> priceFeed,
             string privateKey)
         {
@@ -162,9 +162,17 @@ namespace Alexandria.net.API
             };
 
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, accountName, descriptionUrl,
-                blockSigningKey, pros);
+            //var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, accountName, descriptionUrl, blockSigningKey, pros);
+               
             //var @params = new ArrayList {accountName, descriptionUrl, blockSigningKey, pros};
+            var @params = new WitnessUpdateInput()
+            {
+                witness_account_name = accountName,
+                block_signing_key = blockSigningKey,
+                props = pros,
+                url=descriptionUrl
+               
+            };
             var result = SendRequestToDaemon(reqname, @params, typeof(PrizeFeedQuoteMessage));
             var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
 

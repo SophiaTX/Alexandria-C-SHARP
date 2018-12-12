@@ -8,6 +8,7 @@ namespace Alexandria.net.Messaging.Responses
     /// </summary>
     public class AccountHistoryResponse
     {
+        public string jsonrpc { get; set; }
         /// <summary>
         /// the transaction id
         /// </summary>
@@ -17,6 +18,11 @@ namespace Alexandria.net.Messaging.Responses
         /// the account history results data
         /// </summary>
         [JsonProperty("result")]
-        public List<List<object>> Result { get; set; }
+        public HistoryResult Result { get; set; }
+    }
+
+    public class HistoryResult
+    {
+        public List<object> account_history { get; set; }
     }
 }

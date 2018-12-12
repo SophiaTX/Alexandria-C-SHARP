@@ -7,6 +7,7 @@ namespace Alexandria.net.Messaging.Responses
     /// </summary>
     public class TransactionResponse
     {
+        public string jsonrpc { get; set; }
         /// <summary>
         /// the response id
         /// </summary>
@@ -16,8 +17,10 @@ namespace Alexandria.net.Messaging.Responses
         /// the resulting transaction data sent back from the blockchain
         /// </summary>
         [JsonProperty("result")]
-        public TransactionData Result { get; set; }
+        public TxResult Result { get; set; }
     }
-
-    
+    public class TxResult
+    {
+        public TransactionData simple_tx { get; set; }
+    }
 }

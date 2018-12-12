@@ -43,7 +43,7 @@ namespace Alexandria.net.API
         /// <param name="amount">the amount to transfer "10.0000 SPHTX"</param>
         /// <param name="privateKey"></param>
         /// <returns>Returns Transaction object</returns>
-        public TransactionResponse Transfer(string from, string to, string amount, string memo, string privateKey)
+        public BroadcastTxResponse Transfer(string from, string to, string amount, string memo, string privateKey)
         {
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
             var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, @from, to, amount, memo);
@@ -65,7 +65,7 @@ namespace Alexandria.net.API
         /// <param name="amount">The amount of SPHTX to vest i.e. "100.00 SPHTX"</param>
         /// <param name="privateKey"></param>
         /// <returns>Returns Transaction object</returns>
-        public TransactionResponse TransferToVesting(string from, string to, string amount, string privateKey)
+        public BroadcastTxResponse TransferToVesting(string from, string to, string amount, string privateKey)
         {
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
             var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, @from, to, amount);
@@ -87,7 +87,7 @@ namespace Alexandria.net.API
         /// <param name="vestingShares"> The amount should be in the format "10.0000 VESTS" showing amount and currency symbol</param>
         /// <param name="privateKey"></param>
         /// <returns></returns>
-        public TransactionResponse WithdrawVesting(string from, string vestingShares, string privateKey)
+        public BroadcastTxResponse WithdrawVesting(string from, string vestingShares, string privateKey)
         {
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
             var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, @from, vestingShares);

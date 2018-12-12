@@ -8,6 +8,7 @@ namespace Alexandria.net.Messaging.Responses
     /// </summary>
     public class GetOperationsResponse
     {
+        public string jsonrpc { get; set; }
         /// <summary>
         /// the tyransaction id
         /// </summary>
@@ -17,6 +18,11 @@ namespace Alexandria.net.Messaging.Responses
         /// the operations data result
         /// </summary>
         [JsonProperty("result")]
-        public List<Operations> Result { get; set; }
+        public GetOperationResult Result { get; set; }
     }
+    public class GetOperationResult
+    {
+        public List<object> ops_in_block { get; set; }
+    }
+    
 }

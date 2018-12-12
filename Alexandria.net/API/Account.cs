@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using Alexandria.net.Communication;
+using Alexandria.net.Input;
 using Alexandria.net.Logging;
 using Alexandria.net.Messaging.Params;
 using Alexandria.net.Messaging.Responses;
@@ -45,7 +46,7 @@ namespace Alexandria.net.API
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
             var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, accountName);
 //                var @params = new ArrayList {accountName};
-            var result = SendRequest(reqname, @params);
+            var result = SendRequestToDaemon(reqname, @params);
             return JsonConvert.DeserializeObject<AccountExistResponse>(result);
         }
 
@@ -61,7 +62,7 @@ namespace Alexandria.net.API
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
             var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, accountName);
             //var @params = new ArrayList {accountName};
-            var result = SendRequest(reqname, @params);
+            var result = SendRequestToDaemon(reqname, @params);
             return JsonConvert.DeserializeObject<SimpleAuthorityResponse>(result);
         }
 
@@ -75,7 +76,7 @@ namespace Alexandria.net.API
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
             var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, accountName);
             //var @params = new ArrayList {accountName};
-            var result = SendRequest(reqname, @params);
+            var result = SendRequestToDaemon(reqname, @params);
             return JsonConvert.DeserializeObject<SimpleAuthorityResponse>(result);
         }
 
@@ -89,7 +90,7 @@ namespace Alexandria.net.API
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
             var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, accountName);
             //var @params = new ArrayList {accountName};
-            var result = SendRequest(reqname, @params);
+            var result = SendRequestToDaemon(reqname, @params);
             return JsonConvert.DeserializeObject<GetMemoKeyResponse>(result);
         }
 
@@ -101,9 +102,12 @@ namespace Alexandria.net.API
         public AccountBalanceResponse GetAccountBalance(string accountName)
         {
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, accountName);
-            //var @params = new ArrayList {accountName};
-            var result = SendRequest(reqname, @params);
+            //var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, accountName);
+            var @params = new GetVestingBalanceInput
+            {
+                account_name = accountName
+            };
+            var result = SendRequestToDaemon(reqname, @params);
             return JsonConvert.DeserializeObject<AccountBalanceResponse>(result);
         }
 
@@ -115,9 +119,12 @@ namespace Alexandria.net.API
         public VestingBalanceResponse GetVestingBalance(string accountName)
         {
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, accountName);
-            //var @params = new ArrayList {accountName};
-            var result = SendRequest(reqname, @params);
+            //var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, accountName);
+            var @params = new GetVestingBalanceInput
+            {
+                account_name = accountName
+            };
+            var result = SendRequestToDaemon(reqname, @params);
             return JsonConvert.DeserializeObject<VestingBalanceResponse>(result);
         }
 
@@ -131,7 +138,7 @@ namespace Alexandria.net.API
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
             var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, pubKey);
             //var @params = new ArrayList {pubKey};
-            var result = SendRequest(reqname, @params);
+            var result = SendRequestToDaemon(reqname, @params);
             return JsonConvert.DeserializeObject<SimpleAuthorityResponse>(result);
         }
 
@@ -146,7 +153,7 @@ namespace Alexandria.net.API
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
             var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, pubKeys, requiredSignatures);
             //var @params = new ArrayList {pubKeys, requiredSignatures};
-            var result = SendRequest(reqname, @params);
+            var result = SendRequestToDaemon(reqname, @params);
             return JsonConvert.DeserializeObject<SimpleAuthorityResponse>(result);
         }
 
@@ -160,7 +167,7 @@ namespace Alexandria.net.API
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
             var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, managingAccountName);
             //var @params = new ArrayList {managingAccountName};
-            var result = SendRequest(reqname, @params);
+            var result = SendRequestToDaemon(reqname, @params);
             return JsonConvert.DeserializeObject<object>(result);
         }
 
@@ -178,7 +185,7 @@ namespace Alexandria.net.API
             var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, managingAccounts,
                 requiredSignatures);
             //var @params = new ArrayList {managingAccounts, requiredSignatures};
-            var result = SendRequest(reqname, @params);
+            var result = SendRequestToDaemon(reqname, @params);
             return JsonConvert.DeserializeObject<ManagedAuthorityResponse>(result);
         }
 
@@ -192,16 +199,15 @@ namespace Alexandria.net.API
         /// <param name="memo">Input byte[] memo</param>
         /// <param name="privateKey">the private key associated with the account</param>
         /// <returns>Returns true if success or false for failed try</returns>
-        public TransactionResponse UpdateAccount(string accountName, string jsonMeta, string owner, string active,
+        public BroadcastTxResponse UpdateAccount(string accountName, string jsonMeta, string owner, string active,
             string memo, string privateKey)
         {
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, accountName, jsonMeta, owner,
-                active, memo);
-            //var @params = new ArrayList {accountName, jsonMeta, owner, active, memo};
-            var result = SendRequest(reqname, @params);
+        //  var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, accountName, jsonMeta, owner,
+        //  active, memo);
+            var @params = new UpdateAccountInput {account_name = accountName, json_meta = jsonMeta, owner = owner, active = active, memo = memo};
+            var result = SendRequestToDaemon(reqname, @params);
             var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
-
             var response = StartBroadcasting(contentdata.Result, privateKey);
             return response;
         }
@@ -217,12 +223,16 @@ namespace Alexandria.net.API
         /// <param name="proxy">the name Of account that should proxy To, Or empty String To have no proxy </param>
         /// <param name="privateKey"></param>
         /// <returns>the transaction response from the set voting proxy</returns>
-        public TransactionResponse SetVotingProxy(string accountToModify, string proxy, string privateKey)
+        public BroadcastTxResponse SetVotingProxy(string accountToModify, string proxy, string privateKey)
         {
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, accountToModify, proxy);
-            //var @params = new ArrayList {accountToModify, proxy};
-            var result = SendRequest(reqname, @params);
+            //var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, accountToModify, proxy);
+            var @params = new SetVotingProxyInput
+            {
+                account_to_modify = accountToModify,
+                proxy = proxy
+            };
+            var result = SendRequestToDaemon(reqname, @params);
             var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
 
             var response = StartBroadcasting(contentdata.Result, privateKey);
@@ -234,12 +244,12 @@ namespace Alexandria.net.API
         /// </summary>
         /// <param name="seed">the account to get</param>
         /// <returns>the account information</returns>
-        public GetAccountResponse GetAccount(string seed)
+        public GetAccountResponse GetAccount(string accountName)
         {
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, seed);
-            //var @params = new ArrayList {seed};
-            var result = SendRequest(reqname, @params);
+            //var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, seed);
+            var @params = new GetAccountInput {account_name = accountName};
+            var result = SendRequestToDaemon(reqname, @params);
             var contentdata = JsonConvert.DeserializeObject<GetAccountResponse>(result);
             return contentdata;
         }
@@ -254,9 +264,9 @@ namespace Alexandria.net.API
         public AccountHistoryResponse GetAccountHistory(string accountName, uint from, int limit)
         {
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, accountName, @from, limit);
-            //var @params = new ArrayList {accountName, from, limit};
-            var result = SendRequest(reqname, @params);
+            //var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, accountName, @from, limit);
+            var @params = new GetAccountHistoryInput {account = accountName, start = from, limit = limit};
+            var result = SendRequestToDaemon(reqname, @params);
             var contentdata = JsonConvert.DeserializeObject<AccountHistoryResponse>(result);
             return contentdata;
         }
@@ -269,9 +279,9 @@ namespace Alexandria.net.API
         public AccountNameFromSeedResponse GetAccountNameFromSeed(string seed)
         {
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, seed);
-            //var @params = new ArrayList {seed};
-            var result = SendRequest(reqname, @params);
+            //var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, seed);
+            var @params = new NameFromSeedInput {seed = seed};
+            var result = SendRequestToDaemon(reqname, @params);
             var contentdata = JsonConvert.DeserializeObject<AccountNameFromSeedResponse>(result);
             return contentdata;
         }
@@ -287,15 +297,22 @@ namespace Alexandria.net.API
         /// <param name="memokey">the memo key</param>
         /// <param name="privatekey">the private key used for the digest</param>
         /// <returns>the account creation response details</returns>
-        public TransactionResponse CreateAccount(string seed, string jsonMeta, string ownerkey,
+        public BroadcastTxResponse CreateAccount(string seed, string jsonMeta, string ownerkey,
             string activekey, string memokey, string witnessname,
             string privatekey)
         {
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, witnessname, seed, jsonMeta,
-                ownerkey, activekey, memokey);
-            //var @params = new ArrayList {witnessname, seed, jsonMeta, ownerkey, activekey, memokey};
-            var result = SendRequest(reqname, @params);
+            //var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, witnessname, seed, jsonMeta, ownerkey, activekey, memokey);
+            var @params = new CreateAccountInput
+            {
+                creator = witnessname, 
+                name_seed = seed, 
+                json_meta = jsonMeta, 
+                owner=ownerkey, 
+                active = activekey, 
+                memo = memokey
+            };
+            var result = SendRequestToDaemon(reqname, @params);
 
             var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
 
@@ -309,12 +326,12 @@ namespace Alexandria.net.API
         /// <param name="accountName">the account name to be deleted</param>
         /// <param name="privateKey">the private key attached to the account</param>
         /// <returns>Returns object containing information about the new operation created</returns>
-        public TransactionResponse DeleteAccount(string accountName, string privateKey)
+        public BroadcastTxResponse DeleteAccount(string accountName, string privateKey)
         {
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, accountName);
-            //var @params = new ArrayList {accountName};
-            var result = SendRequest(reqname, @params);
+            //var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, accountName);
+            var @params = new DeleteAccountInput {account_name = accountName};
+            var result = SendRequestToDaemon(reqname, @params);
             var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);                
             var response = StartBroadcasting(contentdata.Result, privateKey);
             return response;

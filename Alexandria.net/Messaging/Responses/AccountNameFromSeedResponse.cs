@@ -2,11 +2,17 @@
 
 namespace Alexandria.net.Messaging.Responses
 {
+    
+    public class SeedResult
+    {
+        public string account_name { get; set; }
+    }
     /// <summary>
     /// the account name from seed response object
     /// </summary>
     public class AccountNameFromSeedResponse
     {
+        public string jsonrpc { get; set; }
         /// <summary>
         /// the transaction id
         /// </summary>
@@ -16,6 +22,6 @@ namespace Alexandria.net.Messaging.Responses
         /// the account name results data
         /// </summary>
         [JsonProperty("result")]
-        public string Result { get; set; }
+        public SeedResult Result { get; set; }
     }
 }

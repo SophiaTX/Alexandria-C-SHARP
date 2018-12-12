@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Threading.Tasks;
 using Alexandria.net.Communication;
+using Alexandria.net.Input;
 using Alexandria.net.Logging;
 using Alexandria.net.Messaging.Responses;
 using Alexandria.net.Settings;
@@ -71,7 +72,10 @@ namespace Alexandria.net.API
 		{
 			var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
 			//var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, num);
-			var @params = new ArrayList {num};
+			var @params = new GetBlockInput
+			{
+				num = num
+			};
 			var result =  SendRequestToDaemon(reqname, @params);
 			var contentdata = JsonConvert.DeserializeObject<BlockResponse>(result);
 			return contentdata;
@@ -85,8 +89,11 @@ namespace Alexandria.net.API
 		public FeedHistoryResponse GetFeedHistory(string symbol)
 		{
 			var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-			var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, symbol);
-			//var @params = new ArrayList {symbol};
+			//var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, symbol);
+			var @params = new FeedHistoryInput()
+			{
+				symbol = symbol
+			};
 			var result= SendRequestToDaemon(reqname, @params);
 			var contentdata = JsonConvert.DeserializeObject<FeedHistoryResponse>(result);
 			return contentdata;
@@ -97,13 +104,16 @@ namespace Alexandria.net.API
 		/// </summary>
 		/// <param name="trxId"></param>
 		/// <returns>Returns object with transaction details</returns>
-		public TransactionResponse GetTransaction(string trxId)
+		public BroadcastTxResponse GetTransaction(string trxId)
 		{
 			var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-			var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, trxId);
-			//var @params = new ArrayList {trxId};
+			//var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, trxId);
+			var @params = new GetTransactionInput
+			{
+				tx_id= trxId
+			};
 			var result= SendRequestToDaemon(reqname, @params);
-			var contentdata = JsonConvert.DeserializeObject<TransactionResponse>(result);
+			var contentdata = JsonConvert.DeserializeObject<BroadcastTxResponse>(result);
 			return contentdata;
 		}
 
@@ -112,13 +122,13 @@ namespace Alexandria.net.API
 		/// </summary>
 		/// <param name="signedTx"></param>
 		/// <returns>Returns Object with Transaction id and other details</returns>
-		public TransactionResponse BroadcastTransaction(SignedTransactionResponseData signedTx)
+		public BroadcastTxResponse BroadcastTransaction(BroadcastTransactionInput signedTx)
 		{
 			var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
 			//var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, signedTx);
 			var @params = signedTx;
 			var result= SendRequestToDaemon(reqname, @params);
-			var contentdata = JsonConvert.DeserializeObject<TransactionResponse>(result);
+			var contentdata = JsonConvert.DeserializeObject<BroadcastTxResponse>(result);
 			return contentdata;
 		}
 		
@@ -127,7 +137,7 @@ namespace Alexandria.net.API
 		/// </summary>
 		/// <param name="signedTx"></param>
 		/// <returns>Returns Object with Transaction id and other details</returns>
-		public async Task<TransactionResponse> BroadcastTransactionAsync(SignedTransactionResponseData signedTx)
+		public async Task<TransactionResponse> BroadcastTransactionAsync(BroadcastTransactionInput signedTx)
 		{
 			var reqname = CSharpToCpp.GetValue("BroadcastTransaction");
 			var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, signedTx);
@@ -193,8 +203,12 @@ namespace Alexandria.net.API
 		public GetOperationsResponse GetOpsInBlock(uint blockNumber,bool onlyVirtual)
 		{
 			var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-			var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, blockNumber,onlyVirtual);
-			//var @params = new ArrayList {blockNumber,onlyVirtual};
+			//var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, blockNumber,onlyVirtual);
+			var @params = new getOpsInBlockInput()
+			{
+				block_num = blockNumber,
+				only_virtual = onlyVirtual
+			};
 			var result =  SendRequestToDaemon(reqname, @params);
 			var contentdata = JsonConvert.DeserializeObject<GetOperationsResponse>(result);
 			return contentdata;
@@ -271,25 +285,25 @@ namespace Alexandria.net.API
 			var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
 			return contentdata;
 		}
-		/// <summary>
-		///  Sign and Send the transaction 
-		/// </summary>
-		/// <param name="contentdata"></param>
-		/// <param name="privateKey"></param>
-		/// <typeparam name="T"></typeparam>
-		/// <returns></returns>
-        public TransactionResponse SignAndSendTransaction<T>(T contentdata, string privateKey)
-        {           
-            var key = new Key(Config);
-            TransactionResponse finalResponse;
-	        var transaction = JsonConvert.SerializeObject(contentdata);                
-	        var digest = key.GetTransactionDigest(transaction,ChainId,new byte[64]);
-	        var signature = key.SignDigest(digest, privateKey, new byte[130]);
-	        var response = key.AddSignature(transaction, signature,new byte[transaction.Length + 200]);
-	        finalResponse = BroadcastTransaction(response);
-
-	        return finalResponse;
-        }
+//		/// <summary>
+//		///  Sign and Send the transaction 
+//		/// </summary>
+//		/// <param name="contentdata"></param>
+//		/// <param name="privateKey"></param>
+//		/// <typeparam name="T"></typeparam>
+//		/// <returns></returns>
+//        public TransactionResponse SignAndSendTransaction<T>(T contentdata, string privateKey)
+//        {           
+//            var key = new Key(Config);
+//            TransactionResponse finalResponse;
+//	        var transaction = JsonConvert.SerializeObject(contentdata);                
+//	        var digest = key.GetTransactionDigest(transaction,ChainId,new byte[64]);
+//	        var signature = key.SignDigest(digest, privateKey, new byte[130]);
+//	        var response = key.AddSignature(transaction, signature,new byte[transaction.Length + 200]);
+//	        finalResponse = BroadcastTransaction(response);
+//
+//	        return finalResponse;
+//        }
 		
 		/// <summary>
 		/// Call external APIs

@@ -114,7 +114,7 @@ namespace Alexandria.net.API
         /// <param name="jsondata">the sender info required for the transaction</param>
         /// <param></param>
         /// <returns>the transaction response data</returns>
-        public TransactionResponse SendJson<T>(T data, JsonData jsondata)
+        public BroadcastTxResponse SendJson<T>(T data, JsonData jsondata)
         {
             try
             {
@@ -157,7 +157,7 @@ namespace Alexandria.net.API
         /// <param name="jsonData">the sender info required for the transaction</param>
         /// <param></param>
         /// <returns>the transaction response data</returns>
-        public TransactionResponse SendJson(JsonData jsonData)
+        public BroadcastTxResponse SendJson(JsonData jsonData)
         {
             var customjsonrpc = MakeCustomJsonOperation(jsonData.Sender, jsonData.Recipients, jsonData.AppId,
                 jsonData.JsonDoc);
@@ -186,7 +186,7 @@ namespace Alexandria.net.API
         /// </summary>
         /// <param name="binaryData"></param>
         /// <returns></returns>
-        public TransactionResponse SendBinary(BinaryData binaryData)
+        public BroadcastTxResponse SendBinary(BinaryData binaryData)
         {
             var customjsonrpc = MakeCustomBinaryOperation(binaryData.AppId, binaryData.Sender, binaryData.Recipients,
                 binaryData.BinaryDoc);

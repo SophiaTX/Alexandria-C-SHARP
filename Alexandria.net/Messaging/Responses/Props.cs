@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using System.Collections.Generic;
+using Alexandria.net.Messaging.Receiver;
+using Newtonsoft.Json;
 
 namespace Alexandria.net.Messaging.Responses
 {
@@ -17,5 +19,6 @@ namespace Alexandria.net.Messaging.Responses
         /// </summary>
         [JsonProperty("maximum_block_size")]
         public int MaximumBlockSize { get; set; }
+        
     }
 }
