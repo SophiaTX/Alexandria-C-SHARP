@@ -4,6 +4,7 @@ using System.Reflection;
 using Alexandria.net.Communication;
 using Alexandria.net.Enums;
 using Alexandria.net.Extensions;
+using Alexandria.net.Input;
 using Alexandria.net.Logging;
 using Alexandria.net.Messaging.Responses;
 using Alexandria.net.Settings;
@@ -51,10 +52,10 @@ namespace Alexandria.net.API
             byte priceParam, string privateKey)
         {
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, author, appName, url, metaData,
-                priceParam);
-            //var @params = new ArrayList {author, appName, url, metaData, priceParam};
-            var result = SendRequest(reqname, @params);
+//            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, author, appName, url, metaData,
+//                priceParam);
+            var @params = new CreateApplicationInput{author = author, app_name = appName, url = url, meta_data = metaData, price_param = priceParam};
+            var result = SendRequestToDaemon(reqname, @params);
             var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
             var response = StartBroadcasting(contentdata.Result, privateKey);
             return response;
@@ -75,10 +76,11 @@ namespace Alexandria.net.API
             string metaData, byte priceParam, string privateKey)
         {
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, author, appName, newAuthor, url,
-                metaData, priceParam);
-            //var @params = new ArrayList {author, appName, newAuthor, url, metaData, priceParam};
-            var result = SendRequest(reqname, @params);
+//            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, author, appName, newAuthor, url,
+//                metaData, priceParam);
+           
+            var @params = new UpdateApplicationInput {author = author, app_name = appName, new_author = newAuthor, url = url, meta_data = metaData, price_param = priceParam};
+            var result = SendRequestToDaemon(reqname, @params);
             var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
             var response = StartBroadcasting(contentdata.Result, privateKey);
             return response;
@@ -93,9 +95,9 @@ namespace Alexandria.net.API
         public BroadcastTxResponse DeleteApplication(string author, string appName, string privateKey)
         {
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, author, appName);
-            //var @params = new ArrayList {author, appName};
-            var result = SendRequest(reqname, @params);
+            //var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, author, appName);
+            var @params = new DeleteApplicationInput {author = author, app_name = appName};
+            var result = SendRequestToDaemon(reqname, @params);
             var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
             var response = StartBroadcasting(contentdata.Result, privateKey);
             return response;
@@ -110,9 +112,9 @@ namespace Alexandria.net.API
         public BroadcastTxResponse BuyApplication(string buyer, long appId, string privateKey)
         {
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, buyer, appId);
-            //var @params = new ArrayList {buyer, appId};
-            var result = SendRequest(reqname, @params);
+            //var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, buyer, appId);
+            var @params = new BuyApplicationInput {buyer = buyer, app_id = appId};
+            var result = SendRequestToDaemon(reqname, @params);
             var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
             var response = StartBroadcasting(contentdata.Result, privateKey);
             return response;
@@ -129,9 +131,9 @@ namespace Alexandria.net.API
         public BroadcastTxResponse CancelApplicationBuying(string appOwner, string buyer, long appId, string privateKey)
         {
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, appOwner, buyer, appId);
-            //var @params = new ArrayList {appOwner, buyer, appId};
-            var result = SendRequest(reqname, @params);
+            //var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, appOwner, buyer, appId);
+            var @params = new CancelBuyingInput {app_owner = appOwner, buyer = buyer, app_id = appId};
+            var result = SendRequestToDaemon(reqname, @params);
             var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
             var response = StartBroadcasting(contentdata.Result, privateKey);
             return response;
@@ -146,10 +148,10 @@ namespace Alexandria.net.API
         public ApplicationSearchResponse GetApplicationBuyings(string buyerName, SearchType searchType, uint count)
         {
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, buyerName,
-                searchType.GetStringValue(), count);
-            //var @params = new ArrayList {buyerName, searchType.GetStringValue(), count};
-            var result = SendRequest(reqname, @params);
+//            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, buyerName,
+//                searchType.GetStringValue(), count);
+            var @params = new GetApplicationBuyingInput {name = buyerName, search_type = searchType.GetStringValue(), count = count};
+            var result = SendRequestToDaemon(reqname, @params);
             var contentdata = JsonConvert.DeserializeObject<ApplicationSearchResponse>(result);
 
             return contentdata;
@@ -163,9 +165,9 @@ namespace Alexandria.net.API
         public GetApplicationResponse GetApplications(List<string> applicationNames)
         {
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, applicationNames);
-            //var @params = new ArrayList {applicationNames};
-            var result= SendRequest(reqname, @params);
+            //var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, applicationNames);
+            var @params = new GetApplicationsInput {names = applicationNames};
+            var result= SendRequestToDaemon(reqname, @params);
             var response = JsonConvert.DeserializeObject<GetApplicationResponse>(result);
 
             return response;

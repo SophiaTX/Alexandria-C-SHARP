@@ -8,6 +8,7 @@ namespace Alexandria.net.Messaging.Responses
     /// </summary>
     public class ApplicationSearchResponse
     {
+        public string jsonrpc { get; set; }
         /// <summary>
         /// the transaction id
         /// </summary>
@@ -17,7 +18,11 @@ namespace Alexandria.net.Messaging.Responses
         /// the application search data
         /// </summary>
         [JsonProperty("result")]
-        public List<ApplicationSearchData> Result { get; set; }
+        public AppResult Result { get; set; }
     }
-    
+
+    public class AppResult
+    {
+        public List<ApplicationSearchData> application_buyings { get; set; }
+    }
 }

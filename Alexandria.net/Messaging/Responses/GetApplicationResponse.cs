@@ -3,11 +3,16 @@ using Newtonsoft.Json;
 
 namespace Alexandria.net.Messaging.Responses
 {
+    public class GetAppResult
+    {
+        public List<ApplicationData> applications { get; set; }
+    }
     /// <summary>
     /// the response data from the GetApplication method call
     /// </summary>
     public class GetApplicationResponse
     {
+        public string jsonrpc { get; set; }
         /// <summary>
         /// the transaction id
         /// </summary>
@@ -17,6 +22,6 @@ namespace Alexandria.net.Messaging.Responses
         /// the application data returned from the call
         /// </summary>
         [JsonProperty("result")]
-        public List<ApplicationData> Result { get; set; }
+        public GetAppResult Result { get; set; }
     }
 }

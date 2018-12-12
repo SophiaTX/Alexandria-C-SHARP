@@ -348,10 +348,9 @@ namespace Alexandria.net.API
             string document)
         {
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, appId, sender, recipients,
-                document);
-            //var @params = new ArrayList {appId, sender, recipients, document};
-            var response = SendRequest(reqname, @params);
+            //var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, appId, sender, recipients, document);
+            var @params = new MakeCustomJsonInput {app_id = appId, from = sender, to = recipients, json = document};
+            var response = SendRequestToDaemon(reqname, @params);
             return JsonConvert.DeserializeObject<CustomJsonResponse>(response);
         }
 
@@ -361,7 +360,7 @@ namespace Alexandria.net.API
             var reqname = CSharpToCpp.GetValue("MakeCustomJsonOperationAsync");
             var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, appId, sender, recipients,
                 document);
-//                var @params = new ArrayList {appId, sender, recipients, document};
+  //          var @params = new MakeCustomJsonInput {app_id = appId, from = sender, to = recipients, json = document};
             var response = await SendRequestAsync(reqname, @params);
             return JsonConvert.DeserializeObject<CustomJsonResponse>(response);
         }
@@ -378,10 +377,10 @@ namespace Alexandria.net.API
             string document)
         {
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, appId, sender, recipients,
-                document);
-            //var @params = new ArrayList {appId, sender, recipients, document};
-            var response = SendRequest(reqname, @params);
+//            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, appId, sender, recipients,
+//                document);
+            var @params = new MakeCustomBinaryInput {app_id = appId, from = sender, to = recipients, data = document};
+            var response = SendRequestToDaemon(reqname, @params);
             return JsonConvert.DeserializeObject<AccountResponse>(response);
         }
 
@@ -440,7 +439,7 @@ namespace Alexandria.net.API
         {
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
             //var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, list);
-            var @params = new ListDocsInput()
+            var @params = new ListDocsInput
             {
                 app_id = appId,
                 account_name = account,

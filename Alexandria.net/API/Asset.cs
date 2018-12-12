@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Reflection;
 using Alexandria.net.Communication;
+using Alexandria.net.Input;
 using Alexandria.net.Logging;
 using Alexandria.net.Messaging.Responses;
 using Alexandria.net.Settings;
@@ -46,9 +47,9 @@ namespace Alexandria.net.API
         public BroadcastTxResponse Transfer(string from, string to, string amount, string memo, string privateKey)
         {
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, @from, to, amount, memo);
-            //var @params = new ArrayList {from, to, amount, memo };
-            var result = SendRequest(reqname, @params);
+            //var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, @from, to, amount, memo);
+            var @params = new TransferInput {from=from, to=to, amount = amount, memo = memo };
+            var result = SendRequestToDaemon(reqname, @params);
 
             var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
             var response = StartBroadcasting(contentdata.Result, privateKey);
@@ -68,9 +69,9 @@ namespace Alexandria.net.API
         public BroadcastTxResponse TransferToVesting(string from, string to, string amount, string privateKey)
         {
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, @from, to, amount);
-            //var @params = new ArrayList {from, to, amount};
-            var result = SendRequest(reqname, @params);
+            //var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, @from, to, amount);
+            var @params = new TransferToVestingInput {from=from, to=to, amount = amount};
+            var result = SendRequestToDaemon(reqname, @params);
 
             var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
             var response = StartBroadcasting(contentdata.Result, privateKey);
@@ -90,10 +91,9 @@ namespace Alexandria.net.API
         public BroadcastTxResponse WithdrawVesting(string from, string vestingShares, string privateKey)
         {
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, @from, vestingShares);
-            //var @params = new ArrayList {from, vestingShares};
-            var result = SendRequest(reqname, @params);
-
+            //var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, @from, vestingShares);
+            var @params = new WithdrawWestingInput {from=from, vesting_shares = vestingShares};
+            var result = SendRequestToDaemon(reqname, @params);
             var contentdata = JsonConvert.DeserializeObject<AccountResponse>(result);
             var response = StartBroadcasting(contentdata.Result, privateKey);
             return response;
