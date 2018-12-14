@@ -328,7 +328,7 @@ namespace Alexandria.net.API
         public BrainKeySuggestion SuggestBrainKey()
         {
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var result = SendRequestToDaemon(reqname,new object());
+            var result = SendRequest(reqname);
             var contentdata = JsonConvert.DeserializeObject<BrainKeySuggestion>(result);
             return contentdata;
         }

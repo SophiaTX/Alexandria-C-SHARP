@@ -2,6 +2,7 @@
 
 namespace Alexandria.net.Messaging.Responses
 {
+    
     /// <summary>
     /// the authority data response
     /// </summary>

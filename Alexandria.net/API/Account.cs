@@ -44,8 +44,11 @@ namespace Alexandria.net.API
         public AccountExistResponse AccountExists(string accountName)
         {
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, accountName);
-//                var @params = new ArrayList {accountName};
+            //var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, accountName);
+            var @params = new GetAccountInput
+            {
+                account_name = accountName
+            };
             var result = SendRequestToDaemon(reqname, @params);
             return JsonConvert.DeserializeObject<AccountExistResponse>(result);
         }
@@ -60,8 +63,11 @@ namespace Alexandria.net.API
         public SimpleAuthorityResponse GetActiveAuthority(string accountName)
         {
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, accountName);
-            //var @params = new ArrayList {accountName};
+            //var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, accountName);
+            var @params = new GetAccountInput
+            {
+                account_name = accountName
+            };
             var result = SendRequestToDaemon(reqname, @params);
             return JsonConvert.DeserializeObject<SimpleAuthorityResponse>(result);
         }
@@ -74,8 +80,11 @@ namespace Alexandria.net.API
         public SimpleAuthorityResponse GetOwnerAuthority(string accountName)
         {
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, accountName);
-            //var @params = new ArrayList {accountName};
+            //var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, accountName);
+            var @params = new GetAccountInput
+            {
+                account_name = accountName
+            };
             var result = SendRequestToDaemon(reqname, @params);
             return JsonConvert.DeserializeObject<SimpleAuthorityResponse>(result);
         }
@@ -88,8 +97,11 @@ namespace Alexandria.net.API
         public GetMemoKeyResponse GetMemoKey(string accountName)
         {
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, accountName);
-            //var @params = new ArrayList {accountName};
+            //var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, accountName);
+            var @params = new GetAccountInput
+            {
+                account_name = accountName
+            };
             var result = SendRequestToDaemon(reqname, @params);
             return JsonConvert.DeserializeObject<GetMemoKeyResponse>(result);
         }
@@ -103,7 +115,7 @@ namespace Alexandria.net.API
         {
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
             //var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, accountName);
-            var @params = new GetVestingBalanceInput
+            var @params = new GetAccountInput
             {
                 account_name = accountName
             };
@@ -120,7 +132,7 @@ namespace Alexandria.net.API
         {
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
             //var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, accountName);
-            var @params = new GetVestingBalanceInput
+            var @params = new GetAccountInput
             {
                 account_name = accountName
             };
