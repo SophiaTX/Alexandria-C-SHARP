@@ -2,6 +2,10 @@
 
 namespace Alexandria.net.Messaging.Responses
 {
+    public class SimpleResult
+    {
+        public SimpleAuthorityData simple_authority { get; set; }
+    }
     /// <summary>
     /// the authority response 
     /// </summary>
@@ -16,6 +20,6 @@ namespace Alexandria.net.Messaging.Responses
         /// the Authority data response
         /// </summary>
         [JsonProperty("result")]
-        public CreateSimpleAuthorityData Result { get; set; }
+        public SimpleResult Result { get; set; }
     }
 }

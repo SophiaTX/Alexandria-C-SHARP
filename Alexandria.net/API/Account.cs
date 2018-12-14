@@ -145,13 +145,13 @@ namespace Alexandria.net.API
         /// </summary>
         /// <param name="pubKey">Input byte[] pubKey</param>
         /// <returns>Returns Json object with details combining</returns>
-        public SimpleAuthorityResponse CreateSimpleAuthority(string pubKey)
+        public CreateSimpleAuthorityResponse CreateSimpleAuthority(string pubKey)
         {
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, pubKey);
-            //var @params = new ArrayList {pubKey};
+            //var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, pubKey);
+            var @params = new PublicKeyInput {pub_key = pubKey};
             var result = SendRequestToDaemon(reqname, @params);
-            return JsonConvert.DeserializeObject<SimpleAuthorityResponse>(result);
+            return JsonConvert.DeserializeObject<CreateSimpleAuthorityResponse>(result);
         }
 
         /// <summary>
@@ -160,13 +160,13 @@ namespace Alexandria.net.API
         /// <param name="pubKeys">Input List of Byte[] pubKeys</param>
         /// <param name="requiredSignatures">Input ulong requiredSignatures</param>
         /// <returns>Returns Json object with details combining</returns>
-        public SimpleAuthorityResponse CreateSimpleMultisigAuthority(List<string> pubKeys, ulong requiredSignatures)
+        public CreateAuthorityResponse CreateSimpleMultisigAuthority(List<string> pubKeys, ulong requiredSignatures)
         {
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, pubKeys, requiredSignatures);
-            //var @params = new ArrayList {pubKeys, requiredSignatures};
+            //var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, pubKeys, requiredSignatures);
+            var @params = new AuthorityInput {pub_keys = pubKeys, required_signatures = requiredSignatures};
             var result = SendRequestToDaemon(reqname, @params);
-            return JsonConvert.DeserializeObject<SimpleAuthorityResponse>(result);
+            return JsonConvert.DeserializeObject<CreateAuthorityResponse>(result);
         }
 
         /// <summary>
@@ -174,13 +174,13 @@ namespace Alexandria.net.API
         /// </summary>
         /// <param name="managingAccountName">string managingAccountName</param>
         /// <returns>Returns Json object with details combining</returns>
-        public object CreateSimpleManagedAuthority(string managingAccountName)
+        public SimpleAuthorityResponse CreateSimpleManagedAuthority(string managingAccountName)
         {
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, managingAccountName);
-            //var @params = new ArrayList {managingAccountName};
+            //var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, managingAccountName);
+            var @params = new managingAccountInput {managing_account=managingAccountName};
             var result = SendRequestToDaemon(reqname, @params);
-            return JsonConvert.DeserializeObject<object>(result);
+            return JsonConvert.DeserializeObject<SimpleAuthorityResponse>(result);
         }
 
         /// <summary>
@@ -194,9 +194,9 @@ namespace Alexandria.net.API
         {
             managingAccounts.Add(requiredSignatures.ToString());
             var reqname = CSharpToCpp.GetValue(MethodBase.GetCurrentMethod().Name);
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, managingAccounts,
-                requiredSignatures);
-            //var @params = new ArrayList {managingAccounts, requiredSignatures};
+//            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, managingAccounts,
+//                requiredSignatures);
+            var @params = new ArrayList {managingAccounts, requiredSignatures};
             var result = SendRequestToDaemon(reqname, @params);
             return JsonConvert.DeserializeObject<ManagedAuthorityResponse>(result);
         }
