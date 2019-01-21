@@ -154,7 +154,27 @@ namespace Alexandria.net.Communication
             }
             return result;
         }
-        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="method"></param>
+        /// <param name="params"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        protected async Task<string> SendRequestToDaemonAsync(string method, object @params, Type type = null)
+        {
+            string result; 
+            try
+            {
+                result = ProcessRequestOnDaemon(method, @params, type).Result;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            return result;
+        }
         /// <summary>
         /// The method is used to broadcast the transaction over the blockchain using the account of the user
         /// </summary>
@@ -221,18 +241,18 @@ namespace Alexandria.net.Communication
         /// <param name="privateKey">private key of the user</param>
         /// <typeparam name="T">type of the transaction's json body</typeparam>
         /// <returns> transaction response data</returns>
-        protected async Task<TransactionResponse> StartBroadcastingAsync<T>(T contentdata, string privateKey)
+        protected async Task<BroadcastTxResponse> StartBroadcastingAsync<T>(T contentdata, string privateKey)
         {
             var trans = new Transaction(Config);
             var key = new Key(Config);
-            TransactionResponse finalResponse;
+            BroadcastTxResponse finalResponse;
             try
             {
             
                 var transresponse = await trans.CreateSimpleTransactionAsync(contentdata);
                 if (transresponse == null) return null;
 
-                var transaction = JsonConvert.SerializeObject(transresponse.Result);
+                var transaction = JsonConvert.SerializeObject(transresponse.Result.simple_tx);
                 var digest = key.GetTransactionDigest(transaction,ChainId,new byte[64]);
                 var signature = key.SignDigest(digest, privateKey, new byte[130]);
                 var response = key.AddSignature(transaction, signature,new byte[transaction.Length + 200]);

@@ -140,7 +140,7 @@ namespace Alexandria.net.API
         /// <param name="jsonData">the sender info required for the transaction</param>
         /// <param></param>
         /// <returns>the transaction response data</returns>
-        public async Task<TransactionResponse> SendJsonAsync<T>(T data, JsonData jsonData)
+        public async Task<BroadcastTxResponse> SendJsonAsync<T>(T data, JsonData jsonData)
         {
             var jsondata = JsonConvert.SerializeObject(data);
             jsonData.JsonDoc = jsondata;
@@ -172,7 +172,7 @@ namespace Alexandria.net.API
         /// <param name="jsonData">the sender info required for the transaction</param>
         /// <param></param>
         /// <returns>the transaction response data</returns>
-        public async Task<TransactionResponse> SendJsonAsync(JsonData jsonData)
+        public async Task<BroadcastTxResponse> SendJsonAsync(JsonData jsonData)
         {
             var customjsonrpc = await MakeCustomJsonOperationAsync(jsonData.Sender, jsonData.Recipients, jsonData.AppId,
                 jsonData.JsonDoc);
@@ -200,7 +200,7 @@ namespace Alexandria.net.API
         /// </summary>
         /// <param name="binaryData">Data collection</param>
         /// <returns></returns>
-        public async Task<TransactionResponse> SendBinaryAsync(BinaryData binaryData)
+        public async Task<BroadcastTxResponse> SendBinaryAsync(BinaryData binaryData)
         {
             var customjsonrpc = await MakeCustomBinaryOperationAsync(binaryData.AppId, binaryData.Sender, binaryData.Recipients,
                 binaryData.BinaryDoc);
@@ -358,10 +358,10 @@ namespace Alexandria.net.API
             uint appId, string document)
         {
             var reqname = CSharpToCpp.GetValue("MakeCustomJsonOperationAsync");
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, appId, sender, recipients,
-                document);
-  //          var @params = new MakeCustomJsonInput {app_id = appId, from = sender, to = recipients, json = document};
-            var response = await SendRequestAsync(reqname, @params);
+  //          var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, appId, sender, recipients,
+   //             document);
+            var @params = new MakeCustomJsonInput {app_id = appId, from = sender, to = recipients, json = document};
+            var response = await SendRequestToDaemonAsync(reqname, @params);
             return JsonConvert.DeserializeObject<CustomJsonResponse>(response);
         }
 
@@ -396,10 +396,10 @@ namespace Alexandria.net.API
             List<string> recipients, string document)
         {
             var reqname = CSharpToCpp.GetValue("MakeCustomBinaryOperation");
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, appId, sender, recipients,
-                document);
-            //var @params = new ArrayList {appId, sender, recipients, document};
-            var response = await SendRequestAsync(reqname, @params);
+//            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, appId, sender, recipients,
+//                document);
+            var @params = new MakeCustomBinaryInput {app_id = appId, from = sender, to = recipients, data = document};
+            var response = await SendRequestToDaemonAsync(reqname, @params);
 
             return JsonConvert.DeserializeObject<AccountResponse>(response);
         }
@@ -465,10 +465,17 @@ namespace Alexandria.net.API
             SearchType searchType, DateTime start, uint count)
         {
             var reqname = CSharpToCpp.GetValue("GetReceivedDocuments");
-            var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, appId, account,
-                searchType.GetStringValue(), start, count);
-            //var @params = new ArrayList {appId, account, searchType.GetStringValue(), start, count};
-            var result = await SendRequestAsync(reqname, @params);
+            //var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, appId, account,
+             //   searchType.GetStringValue(), start, count);
+            var @params = new ListDocsInput
+            {
+                app_id = appId,
+                account_name = account,
+                search_type = searchType.GetStringValue(),
+                count = count,
+                start = start                
+            };
+            var result = await SendRequestToDaemonAsync(reqname, @params);
             return JsonConvert.DeserializeObject<ReceivedDocumentResponse>(result);
         }
 

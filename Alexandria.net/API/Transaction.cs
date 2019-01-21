@@ -137,13 +137,13 @@ namespace Alexandria.net.API
 		/// </summary>
 		/// <param name="signedTx"></param>
 		/// <returns>Returns Object with Transaction id and other details</returns>
-		public async Task<TransactionResponse> BroadcastTransactionAsync(BroadcastTransactionInput signedTx)
+		public async Task<BroadcastTxResponse> BroadcastTransactionAsync(BroadcastTransactionInput signedTx)
 		{
 			var reqname = CSharpToCpp.GetValue("BroadcastTransaction");
-			var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, signedTx);
-			//var @params = new ArrayList {signedTx};
-			var result= await SendRequestAsync(reqname, @params);
-			var contentdata = JsonConvert.DeserializeObject<TransactionResponse>(result);
+			//var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, signedTx);
+			var @params = signedTx;
+			var result= await SendRequestToDaemonAsync(reqname, @params);
+			var contentdata = JsonConvert.DeserializeObject<BroadcastTxResponse>(result);
 			return contentdata;
 		}
 
@@ -171,9 +171,9 @@ namespace Alexandria.net.API
 		public async Task<TransactionResponse> CreateSimpleTransactionAsync<T>(T operation)
 		{
 			var reqname = CSharpToCpp.GetValue("CreateSimpleTransaction");
-			var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, operation);
-			//var @params = new ArrayList {operation};
-			var result= await SendRequestAsync(reqname, @params);
+			//var @params = ParamHelper.GetValue(MethodBase.GetCurrentMethod().Name, operation);
+			var @params = operation;
+			var result= await SendRequestToDaemonAsync(reqname, @params);
 			var contentdata = JsonConvert.DeserializeObject<TransactionResponse>(result);
 			return contentdata;
 		}
