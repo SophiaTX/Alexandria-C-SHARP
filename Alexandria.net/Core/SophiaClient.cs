@@ -50,7 +50,10 @@ namespace Alexandria.net.Core
         /// Sophia Blockchain Application functions
         /// </summary>
         public Application Application { get; }
-        
+        /// <summary>
+        /// 
+        /// </summary>
+        public Mpm Mpm { get; }
 
         #endregion
 
@@ -80,9 +83,9 @@ namespace Alexandria.net.Core
             Witness = new Witness(config);
             Data = new Data(config);
             Application = new Application(config);
-
+            Mpm=new Mpm(config);
+            
             var aboutResponse = Transaction.About();
-
             if (aboutResponse != null)
                 RpcConnection.ChainId = aboutResponse.Result.about.ChainId;            
         }
