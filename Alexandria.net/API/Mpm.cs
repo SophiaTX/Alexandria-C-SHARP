@@ -201,26 +201,65 @@ namespace Alexandria.net.API
                 });
             }
 
-//            var builder = new SqlConnectionStringBuilder
-//            {
-//                DataSource = "localhost",
-//                UserID = "sa",
-//                Password = "<YourStrong!Passw0rd>",
-//                InitialCatalog = "master"
-//            };
-//            Console.Write("connecting to SQL server...");
-//            using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
-//            {
-//                connection.Open();
-//                Console.WriteLine("Done");
-//                String sql = "DROP DATABASE IF EXISTS [MpmDB]; CREATE DATABASE [MpmDB]";
-//                using (SqlCommand command = new SqlCommand(sql, connection))
-//                {
-//                    command.ExecuteNonQuery();
-//                    Console.WriteLine("Done.");
-//                }
-//                
-//            }
+            var builder = new SqlConnectionStringBuilder
+            {
+                DataSource = "localhost",
+                UserID = "sa",
+                Password = "<YourStrong!Passw0rd>",
+                InitialCatalog = "master"
+            };
+            Console.Write("connecting to SQL server...");
+            using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
+            {
+                connection.Open();
+                Console.WriteLine("Done");
+                String sql = "DROP DATABASE IF EXISTS [MpmDB]; CREATE DATABASE [MpmDB]";
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    command.ExecuteNonQuery();
+                    Console.WriteLine("Done.");
+                }
+                // Create a Table and insert some sample data
+                
+                StringBuilder sb = new StringBuilder();
+                sb.Append("USE MpmDB; ");
+                sb.Append("CREATE TABLE Groups ( ");
+                sb.Append(" Id INT IDENTITY(1,1) NOT NULL PRIMARY KEY, ");
+                sb.Append(" Admin NVARCHAR(50), ");
+                sb.Append(" CurrentGroupName NVARCHAR(50) ");
+                sb.Append(" Description NVARCHAR(50), ");
+                sb.Append(" Members NVARCHAR(50) ");
+                sb.Append(" GroupName NVARCHAR(50), ");
+                sb.Append(" GroupKey NVARCHAR(50) ");
+                sb.Append(" CurrentSeq NVARCHAR(50) ");
+                sb.Append("); ");
+                sb.Append("INSERT INTO Employees (Name, Location) VALUES ");
+                sb.Append("(N'Jared', N'Australia'), ");
+                sb.Append("(N'Nikita', N'India'), ");
+                sb.Append("(N'Tom', N'Germany'); ");
+                sql = sb.ToString();
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    command.ExecuteNonQuery();
+                    Console.WriteLine("Done.");
+                }
+
+                // INSERT demo
+                Console.Write("Inserting a new row into table, press any key to continue...");
+                Console.ReadKey(true);
+                sb.Clear();
+                sb.Append("INSERT Employees (Name, Location) ");
+                sb.Append("VALUES (@name, @location);");
+                sql = sb.ToString();
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    command.Parameters.AddWithValue("@name", "Jake");
+                    command.Parameters.AddWithValue("@location", "United States");
+                    int rowsAffected = command.ExecuteNonQuery();
+                    Console.WriteLine(rowsAffected + " row(s) inserted");
+                }
+
+            }
             ret.operation_payloads=operationalList;
             ret.group_name = groupName;
             return ret;
