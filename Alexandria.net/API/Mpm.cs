@@ -122,7 +122,7 @@ namespace Alexandria.net.API
         }
        
         /// <summary>
-        /// 
+        /// Get Account name registered on the blockchain
         /// </summary>
         /// <param name="adminName"></param>
         /// <returns></returns>
@@ -155,7 +155,7 @@ namespace Alexandria.net.API
             string groupKey = CreateRandomKey();
             string[] membersArray = members;
             var list= new List<string>();
-            var operational_list=new List<Dictionary<string, GroupMeta>>();
+            var operationalList=new List<Dictionary<string, GroupMeta>>();
             foreach (string s in membersArray)
             {
                 var member = GetAccount(s);
@@ -165,6 +165,15 @@ namespace Alexandria.net.API
                     description = description,
                     new_group_name = groupName,
                     senders_pubkey = admin.Result.account[0].MemoKey
+                };
+                var gOb=new GroupObject
+                {
+                    Admin=adminName,
+                    CurrentGroupName = groupName,
+                    Description = description,
+                    Members = membersArray,
+                    GroupName = groupName,
+                    GroupKey = groupKey
                 };
                 list.Add(admin.Result.account[0].Name);
                 gOp.user_list = list.ToArray();
@@ -179,22 +188,20 @@ namespace Alexandria.net.API
                 var messageMeta = EncodeAndPack(privateKey,member.Result.account[0].MemoKey,gOp);
                 messageMeta.recipient = member.Result.account[0].MemoKey;
                 messageMeta.sender = admin.Result.account[0].Name;
-                
-                 operational_list.Add(new Dictionary<string, GroupMeta>
-                 {
-                     {
-                         member.Result.account[0].Name,messageMeta
-                     }
 
-                 });
-                
+                operationalList.Add(new Dictionary<string, GroupMeta>
+                {
+                    {
+                        member.Result.account[0].Name, messageMeta
+                    }
+
+                });
             }
-            ret.operation_payloads=operational_list;
+            ret.operation_payloads=operationalList;
             ret.group_name = groupName;
             return ret;
-
         }
-//        
+        
 //        public object AddGroupParticipants(string groupName, string privateKey, string admin, string [] newMembers)
 //        {
 //            
