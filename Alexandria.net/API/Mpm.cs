@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data.SqlClient;
 using System.Linq;
+using System.Net.Mime;
 using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
@@ -16,7 +18,7 @@ using Alexandria.net.Settings;
 using Newtonsoft.Json;
 using AccountResponse = Alexandria.net.Messaging.Responses.AccountResponse;
 
-
+using System.Data.SqlClient;
 namespace Alexandria.net.API
 {
    
@@ -156,6 +158,15 @@ namespace Alexandria.net.API
             string[] membersArray = members;
             var list= new List<string>();
             var operationalList=new List<Dictionary<string, GroupMeta>>();
+            var gOb=new GroupObject
+            {
+                Admin=adminName,
+                CurrentGroupName = groupName,
+                Description = description,
+                Members = membersArray,
+                GroupName = groupName,
+                GroupKey = groupKey
+            };
             foreach (string s in membersArray)
             {
                 var member = GetAccount(s);
@@ -166,15 +177,7 @@ namespace Alexandria.net.API
                     new_group_name = groupName,
                     senders_pubkey = admin.Result.account[0].MemoKey
                 };
-                var gOb=new GroupObject
-                {
-                    Admin=adminName,
-                    CurrentGroupName = groupName,
-                    Description = description,
-                    Members = membersArray,
-                    GroupName = groupName,
-                    GroupKey = groupKey
-                };
+               
                 list.Add(admin.Result.account[0].Name);
                 gOp.user_list = list.ToArray();
 
@@ -197,6 +200,27 @@ namespace Alexandria.net.API
 
                 });
             }
+
+//            var builder = new SqlConnectionStringBuilder
+//            {
+//                DataSource = "localhost",
+//                UserID = "sa",
+//                Password = "<YourStrong!Passw0rd>",
+//                InitialCatalog = "master"
+//            };
+//            Console.Write("connecting to SQL server...");
+//            using (SqlConnection connection = new SqlConnection(builder.ConnectionString))
+//            {
+//                connection.Open();
+//                Console.WriteLine("Done");
+//                String sql = "DROP DATABASE IF EXISTS [MpmDB]; CREATE DATABASE [MpmDB]";
+//                using (SqlCommand command = new SqlCommand(sql, connection))
+//                {
+//                    command.ExecuteNonQuery();
+//                    Console.WriteLine("Done.");
+//                }
+//                
+//            }
             ret.operation_payloads=operationalList;
             ret.group_name = groupName;
             return ret;

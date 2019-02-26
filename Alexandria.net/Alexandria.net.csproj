@@ -24,6 +24,7 @@
     <PackageReference Include="Serilog.Sinks.File" Version="4.0.0" />
     <PackageReference Include="Serilog.Sinks.Graylog" Version="2.0.2" />
     <PackageReference Include="Serilog.Sinks.Seq" Version="4.0.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.7.0-preview.19073.11" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="API\SphTxApi.cs" />
