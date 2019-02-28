@@ -1,43 +1,33 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Net.Mime;
 using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
-//using System.Security.Cryptography.Algorithms;
 using Alexandria.net.Communication;
-using Alexandria.net.Input;
 using Alexandria.net.Logging;
-using Alexandria.net.Messaging.Params;
 using Alexandria.net.Messaging.Responses;
 using Alexandria.net.Settings;
 using Newtonsoft.Json;
-using AccountResponse = Alexandria.net.Messaging.Responses.AccountResponse;
 
-using System.Data.SqlClient;
-using System.IO;
-using Alexandria.net.Messaging.mpmObjects;
 
 namespace Alexandria.net.API
 {
    
+    /// <inheritdoc />
     /// <summary>
-    /// 
     /// </summary>
     public class Mpm: RpcConnection
     {
         private readonly ILogger _logger;
         private IConfig Config { get; }
         #region Constructor
+
         /// <inheritdoc />
         /// <summary>
         /// </summary>
         /// <param name="config"></param>
-        /// <param name="wallet"></param>
         public Mpm(IConfig config) : base(config)
         {   
             Config = config;
@@ -53,7 +43,7 @@ namespace Alexandria.net.API
 
         //suggestGroupName
         /// <summary>
-        /// 
+        /// Suggest a group name for current messgae exchange
         /// </summary>
         /// <param name="description"></param>
         /// <returns></returns>
@@ -77,7 +67,7 @@ namespace Alexandria.net.API
         }
 
         /// <summary>
-        /// 
+        /// Create random key for next key exchange
         /// </summary>
         /// <returns></returns>
         private string CreateRandomKey()
@@ -106,12 +96,13 @@ namespace Alexandria.net.API
 
         }
 
-         
+
         /// <summary>
-        /// 
+        /// Encode a message and create a bundle of object
         /// </summary>
-        /// <param name="key"></param>
+        /// <param name="publicKey"></param>
         /// <param name="op"></param>
+        /// <param name="privateKey"></param>
         private GroupMeta EncodeAndPack(string privateKey,string publicKey, GroupOp op)
         {                       
               MessageWrapper messageContent=new MessageWrapper
@@ -120,8 +111,8 @@ namespace Alexandria.net.API
                   operation_data = op
               };
             var key=new Key(Config);
-            string encodedMessages=key.EncryptMemo(messageContent.ToString(), privateKey, publicKey, new byte[1024]);;
-            GroupMeta messageMeta =new GroupMeta
+            var encodedMessages=key.EncryptMemo(messageContent.ToString(), privateKey, publicKey, new byte[1024]);;
+            var messageMeta =new GroupMeta
             {
                data = encodedMessages
             };
@@ -135,7 +126,7 @@ namespace Alexandria.net.API
             return encodedMessage.Trim('\u0000');
         }
         /// <summary>
-        /// Get Account name registered on the blockchain
+        /// Get Account name registered on the block chain
         /// </summary>
         /// <param name="adminName"></param>
         /// <returns></returns>
@@ -166,19 +157,9 @@ namespace Alexandria.net.API
             var admin = GetAccount(adminName);
             var groupName = SuggestGroupName(description);
             var groupKey = CreateRandomKey();
-            var membersArray = new string[members.Length];
-            membersArray = members;
+            var membersArray = members;
             var list= new List<string>();
             var operationalList=new List<Dictionary<string, GroupMeta>>();
-            var gOb=new GroupObject
-            {
-                Admin=adminName,
-                CurrentGroupName = groupName,
-                Description = description,
-                Members = membersArray,
-                GroupName = groupName,
-                GroupKey = groupKey
-            };
             foreach (string s in membersArray)
             {
                 var member = GetAccount(s);
@@ -264,6 +245,15 @@ namespace Alexandria.net.API
             return ret;
         }
         
+        /// <summary>
+        /// Add participants to the group
+        /// </summary>
+        /// <param name="groupName"></param>
+        /// <param name="privateKey"></param>
+        /// <param name="adminName"></param>
+        /// <param name="newMembers"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public CreateGroupReturn AddGroupParticipants(string groupName, string privateKey, string adminName, string [] newMembers)
         {
             var ret = new CreateGroupReturn();
@@ -316,8 +306,6 @@ namespace Alexandria.net.API
                 {
                     var membersArray = members.Union(newMembers).ToArray();
 
-
-                    var list = new List<string>();
                     var operationalList = new List<Dictionary<string, GroupMeta>>();
                         
                     foreach (string s in membersArray)
@@ -417,6 +405,15 @@ namespace Alexandria.net.API
             
             return ret;
         }
+        /// <summary>
+        /// Delete a participant from the group
+        /// </summary>
+        /// <param name="groupName"></param>
+        /// <param name="privateKey"></param>
+        /// <param name="adminName"></param>
+        /// <param name="deleteMembers"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public CreateGroupReturn DeleteGroupParticipants(string groupName, string privateKey, string adminName, string [] deleteMembers)
         {
             var ret = new CreateGroupReturn();
@@ -468,7 +465,7 @@ namespace Alexandria.net.API
                 if (members != null)
                 {
                     var membersArray = members.Except(deleteMembers).ToArray();
-                    var list = new List<string>();
+                    
                     var operationalList = new List<Dictionary<string, GroupMeta>>();
                         
                     foreach (string s in membersArray)
@@ -569,6 +566,15 @@ namespace Alexandria.net.API
             return ret;
             
         }
+        /// <summary>
+        /// Change group description
+        /// </summary>
+        /// <param name="groupName"></param>
+        /// <param name="privateKey"></param>
+        /// <param name="description"></param>
+        /// <param name="adminName"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public CreateGroupReturn UpdateGroup(string groupName, string privateKey, string description, string adminName)
         {
             var ret = new CreateGroupReturn();
@@ -615,9 +621,6 @@ namespace Alexandria.net.API
                 var newGroupName = SuggestGroupName(description);
                 var newGroupKey = CreateRandomKey();
 
-                
-
-                    var list = new List<string>();
                     var operationalList = new List<Dictionary<string, GroupMeta>>();
                         
                     
@@ -686,6 +689,14 @@ namespace Alexandria.net.API
             
             return ret;
         }
+        /// <summary>
+        /// Disband a group by changing the group name and group key for future security
+        /// </summary>
+        /// <param name="groupName"></param>
+        /// <param name="privateKey"></param>
+        /// <param name="adminName"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public CreateGroupReturn DisbandGroup(string groupName, string privateKey, string adminName)
         {
              var ret = new CreateGroupReturn();
@@ -733,8 +744,7 @@ namespace Alexandria.net.API
                 var admin = GetAccount(adminName);
                 var newGroupName = SuggestGroupName(description);
                 var newGroupKey = CreateRandomKey();
-                
-                    var list = new List<string>();
+               
                     var operationalList = new List<Dictionary<string, GroupMeta>>();
                         
                     
@@ -803,7 +813,7 @@ namespace Alexandria.net.API
             return ret;
         }
         /// <summary>
-        /// 
+        /// Send encrypted group messages
         /// </summary>
         /// <param name="groupName"></param>
         /// <param name="privateKey"></param>
@@ -920,10 +930,223 @@ namespace Alexandria.net.API
             return ret;
             
         }
+
+        /// <summary>
+        /// Get details of a group
+        /// </summary>
+        /// <param name="groupName"></param>
+        /// <returns></returns>
+        public GetGroupResponse GetGroup(string groupName)
+        {
+            var getGroupResponse = new GetGroupResponse();
+            
+            var builder = new SqlConnectionStringBuilder
+            {
+                DataSource = "localhost",
+                UserID = "sa",
+                Password = "<YourStrong!Passw0rd>",
+                InitialCatalog = "master"
+            };
+            Console.Write("connecting to SQL server...");
+            using (var connection = new SqlConnection(builder.ConnectionString))
+            {
+                connection.Open();
+                Console.WriteLine("Done");
+                var sb = new StringBuilder();
+                sb.Append("USE MpmDB; ");
+                sb.Append(
+                    "IF EXISTS(Select * from Groups) Begin Select GroupName,Members,CurrentGroupName,Admin,GroupKey,Description,CurrentSeq from Groups where Groups.GroupName = '" +
+                    groupName + "' End ; ");
+
+                var sql = sb.ToString();
+                using (var command = new SqlCommand(sql, connection))
+                {
+                    var item = command.ExecuteReader();
+                    while (item.Read())
+                    {
+                        getGroupResponse.GroupName=item[0].ToString();
+                        getGroupResponse.CurrentGroupName = item[2].ToString();
+                        getGroupResponse.Members = item[1].ToString().Replace("\"", "").Trim('[').Trim(']').Split(',');
+                        getGroupResponse.Admin = item[3].ToString();
+                        getGroupResponse.GroupKey = item[4].ToString();
+                        getGroupResponse.Description=item[5].ToString();
+                        getGroupResponse.CurrentSeq=item[6].ToString();
+                    }
+
+                    Console.WriteLine("Done.");
+                }
+            }
+
+            return getGroupResponse;
+
+        }
+        /// <summary>
+        /// Get name of the group depending on the current name
+        /// </summary>
+        /// <param name="currentGroupName"></param>
+        /// <returns></returns>
+        public string GetGroupName(string currentGroupName)
+        {
+            string getGroupNameResponse =null;
+            
+            var builder = new SqlConnectionStringBuilder
+            {
+                DataSource = "localhost",
+                UserID = "sa",
+                Password = "<YourStrong!Passw0rd>",
+                InitialCatalog = "master"
+            };
+            Console.Write("connecting to SQL server...");
+            using (var connection = new SqlConnection(builder.ConnectionString))
+            {
+                connection.Open();
+                Console.WriteLine("Done");
+                var sb = new StringBuilder();
+                sb.Append("USE MpmDB; ");
+                sb.Append(
+                    "IF EXISTS(Select * from Groups) Begin Select GroupName from Groups where Groups.CurrentGroupName = '" +
+                    currentGroupName + "' End ; ");
+
+                var sql = sb.ToString();
+                using (var command = new SqlCommand(sql, connection))
+                {
+                    var item = command.ExecuteReader();
+                    while (item.Read())
+                    {
+                       
+                        getGroupNameResponse = item[0].ToString();
+                        
+                    }
+
+                    Console.WriteLine("Done.");
+                }
+            }
+
+            return getGroupNameResponse;
+        }
+        /// <summary>
+        /// List all the groups 
+        /// </summary>
+        /// <param name="start"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        public object ListMyGroups(string start,uint count)
+        {
+
+            var listMyGroupsResponse = new List<GetGroupResponse>();
+            
+            
+            if (count >= 1000) return JsonConvert.SerializeObject("Count should be less than 1000"); 
+            
+            var builder = new SqlConnectionStringBuilder
+            {
+                DataSource = "localhost",
+                UserID = "sa",
+                Password = "<YourStrong!Passw0rd>",
+                InitialCatalog = "master"
+            };
+            Console.Write("connecting to SQL server...");
+            using (var connection = new SqlConnection(builder.ConnectionString))
+            {
+                connection.Open();
+                Console.WriteLine("Done");
+                var sb = new StringBuilder();
+                sb.Append("USE MpmDB; ");
+                
+                sb.Append(
+                    "IF EXISTS(Select * from Groups) Begin Select * from Groups where Groups.Id in " +
+                    "(SELECT * FROM (SELECT ROW_NUMBER() OVER (ORDER BY Id ASC) AS rownumber FROM Groups) AS foo WHERE rownumber >= (Select min(Id) from Groups where GroupName= '" + start + "'))  End ; ");
+
+                var sql = sb.ToString();
+                
+                    using (var command = new SqlCommand(sql, connection))
+                    {
+                        var item = command.ExecuteReader();
+                        while (item.Read())
+                        {
+                            
+                            listMyGroupsResponse.Add(new GetGroupResponse{
+                                
+                                GroupName = item["GroupName"].ToString(),
+                                GroupKey = item["GroupKey"].ToString(),
+                                Description = item["Description"].ToString(),
+                                Members = item["Members"].ToString().Replace("\"", "").Trim('[').Trim(']').Split(','),
+                                Admin = item["Admin"].ToString(),
+                                CurrentGroupName = item["CurrentGroupName"].ToString(),
+                                CurrentSeq = item["CurrentSeq"].ToString(),
+                                
+                            });
+
+                        
+                        
+                        Console.WriteLine("Done.");
+                    }
+                }
+
+            }
+
+            return listMyGroupsResponse;
+        }
+        /// <summary>
+        /// List all the messages belongs to a user
+        /// </summary>
+        /// <param name="groupName"></param>
+        /// <param name="start"></param>
+        /// <param name="count"></param>
+        /// <returns></returns>
+        public object ListMyMessages(string groupName,string start,uint count)
+        {
+            
+            var listMyMessagesResponse = new List<GetMessagesResponse>();
+            
+            
+            if (count >= 1000) return JsonConvert.SerializeObject("Count should be less than 1000"); 
+            
+            var builder = new SqlConnectionStringBuilder
+            {
+                DataSource = "localhost",
+                UserID = "sa",
+                Password = "<YourStrong!Passw0rd>",
+                InitialCatalog = "master"
+            };
+            Console.Write("connecting to SQL server...");
+            using (var connection = new SqlConnection(builder.ConnectionString))
+            {
+                connection.Open();
+                Console.WriteLine("Done");
+                var sb = new StringBuilder();
+                sb.Append("USE MpmDB; ");
+                
+                sb.Append(
+                    "IF EXISTS(Select * from Messages) Begin Select * from Messages where Messages.Id in " +
+                    "(SELECT * FROM (SELECT ROW_NUMBER() OVER (ORDER BY Id ASC) AS rownumber FROM Messages) AS foo WHERE rownumber >= (Select min(Id) from Messages where GroupName= '" + groupName + "'))  End ; ");
+
+                var sql = sb.ToString();
+                
+                    using (var command = new SqlCommand(sql, connection))
+                    {
+                        var item = command.ExecuteReader();
+                        while (item.Read())
+                        {
+                            var payloads = JsonConvert.DeserializeObject<GroupMeta>(item["OperationPayloads"].ToString());
+                            
+                            if(payloads.sender==start){
+                            listMyMessagesResponse.Add(new GetMessagesResponse{
+                                
+                                GroupName = item["GroupName"].ToString(),
+                                OperationPayloads = JsonConvert.DeserializeObject<GroupMeta>(item["OperationPayloads"].ToString())
+                                
+                            });
+                            }
+                        
+                        Console.WriteLine("Done.");
+                    }
+                }
+
+            }
+
+            return listMyMessagesResponse;
+        }
         #endregion
     }
-    
-    
-
-   
 }
